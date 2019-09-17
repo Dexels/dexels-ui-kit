@@ -1,0 +1,50 @@
+{
+  "name": "dexels-ui-kit",
+  "version": "1.0.0",
+  "description": "An UI kit which can be used in Dexels applications",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npm run build:dev",
+    "build:dev": "BABEL_ENV=dev webpack-dev-server --hot --config config/webpack.dev.js --mode development",
+    "build:prod": "BABEL_ENV=prod webpack --config config/webpack.prod.js --mode production",
+    "dist": "npm run build:prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dexels/dexels-ui-kit.git"
+  },
+  "keywords": [
+    "UI kit",
+    "React",
+    "Styled Components"
+  ],
+  "author": "Dexels BV",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dexels/dexels-ui-kit/issues"
+  },
+  "homepage": "https://github.com/Dexels/dexels-ui-kit#readme",
+  "dependencies": {
+    "@hot-loader/react-dom": "^16.9.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-hot-loader": "^4.12.13",
+    "styled-components": "^4.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1",
+    "webpack-merge": "^4.2.2"
+  }
+}
