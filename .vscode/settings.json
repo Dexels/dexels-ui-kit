@@ -3,4 +3,8 @@
   "eslint.options": {
     "configFile": "./config/.eslintrc.js",
   },
+  "files.associations": {
+    "*.js": "javascriptreact",
+  },
+  "files.trimTrailingWhitespace": true,
 }
