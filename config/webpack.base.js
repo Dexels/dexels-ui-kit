@@ -23,7 +23,7 @@ module.exports = () => ({
   output: {
     filename: '[name].[hash].min.js',
     path: distPath,
-    publicPath: '/',
+    publicPath: './',
   },
   plugins: [
     new CleanWebpackPlugin(),

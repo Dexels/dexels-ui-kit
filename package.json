@@ -8,6 +8,7 @@
     "build:dev": "BABEL_ENV=dev webpack-dev-server --hot --config config/webpack.dev.js --mode development",
     "build:prod": "BABEL_ENV=prod webpack --config config/webpack.prod.js --mode production",
     "dist": "npm run build:prod",
+    "lint:css": "stylelint './src/**/*.js' --config config/.stylelintrc.js",
     "lint:js": "eslint './src/**/*.js' --config config/.eslintrc.js"
   },
   "repository": {
@@ -20,6 +21,11 @@
     "Styled Components"
   ],
   "author": "Dexels BV",
+  "browserslist": [
+    "Last 1 Chrome versions",
+    "Last 1 Edge versions",
+    "Last 1 Firefox versions"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Dexels/dexels-ui-kit/issues"
@@ -52,6 +58,11 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "stylelint": "^11.0.0",
+    "stylelint-config-concentric-order": "^3.4.1",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.1",
