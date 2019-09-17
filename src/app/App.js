@@ -1,3 +1,4 @@
+import BaseStyles from './styles/base/base';
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import styled from 'styled-components';
@@ -10,9 +11,12 @@ const StyledApp = styled.div`
 `;
 
 const App = () => (
-  <StyledApp>
-    {'Hello World!'}
-  </StyledApp>
+  <>
+    <BaseStyles />
+    <StyledApp>
+      {'Hello World!'}
+    </StyledApp>
+  </>
 );
 
 export default hot(App);
