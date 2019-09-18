@@ -1,9 +1,12 @@
 import { css } from 'styled-components';
 
-const TEXT_STYLING_SIZES = {
+export const TEXT_STYLING_SIZES = {
     BODY1: 'BODY1',
     BODY2: 'BODY1',
     BODY3: 'BODY1',
+    BUTTON_LARGE: 'BUTTON_LARGE',
+    BUTTON_SMALL: 'BUTTON_SMALL',
+    CAPTION: 'CAPTION',
     H1: 'H1',
     H2: 'H4',
     H3: 'H4',
@@ -28,6 +31,27 @@ const textStyling = (size) => {
             return (css`
                 line-height: 18px;
                 font-size: 14px;
+                font-weight: 300;
+            `);
+
+        case TEXT_STYLING_SIZES.BUTTON_SMALL:
+            return (css`
+                line-height: 16px;
+                font-size: 14px;
+                font-weight: 500;
+            `);
+
+        case TEXT_STYLING_SIZES.BUTTON_LARGE:
+            return (css`
+                line-height: 20px;
+                font-size: 16px;
+                font-weight: 500;
+            `);
+
+        case TEXT_STYLING_SIZES.CAPTION:
+            return (css`
+                line-height: 16px;
+                font-size: 12px;
                 font-weight: 300;
             `);
 
