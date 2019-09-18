@@ -9,7 +9,8 @@
     "build:prod": "cross-env BABEL_ENV=prod webpack --config config/webpack.prod.js --mode production",
     "dist": "npm run build:prod",
     "lint:css": "stylelint './src/**/*.js' --config config/.stylelintrc.js",
-    "lint:js": "eslint './src/**/*.js' --config config/.eslintrc.js"
+    "lint:js": "eslint './src/**/*.js' --config config/.eslintrc.js",
+    "storybook": "start-storybook"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^5.2.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
