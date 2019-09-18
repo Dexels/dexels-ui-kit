@@ -17,6 +17,7 @@ const App = () => (
         <StyledApp>
             {'Hello World!'}
         </StyledApp>
+        <span className="icon-Cards" />
     </>
 );
 

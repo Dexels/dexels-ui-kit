@@ -1,3 +1,4 @@
+import './app/styles/fonts/fonts.css';
 import App from './app/App';
 import React from 'react';
 import { render } from 'react-dom';
