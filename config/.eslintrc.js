@@ -17,11 +17,12 @@ module.exports = {
     curly: ['error', 'all'],
     'import/no-extraneous-dependencies': 0,
     'import/order': 0,
+    indent: ['error', 4],
     'jsx-a11y/media-has-caption': 0,
     'max-len': ['error', {
       code: 120,
       ignoreTemplateLiterals: true,
-      tabWidth: 2,
+      tabWidth: 4,
     }],
     'no-alert': 0,
     'object-property-newline': ['error', {
@@ -54,6 +55,9 @@ module.exports = {
       },
     ],
     'react/jsx-filename-extension': 0,
+    'react/jsx-indent': ['error', 4, {
+        checkAttributes: true,
+    }],
     'react/jsx-max-props-per-line': ['error', {
       maximum: 3,
     }],
