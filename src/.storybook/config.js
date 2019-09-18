@@ -14,4 +14,4 @@ addDecorator((storyFn) => (
     </>
 ));
 
-configure(require.context('../src', true, /\.stories\.js$/), module);
+configure(require.context('../app', true, /\.stories\.js$/), module);
