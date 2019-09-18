@@ -61,6 +61,7 @@ module.exports = {
         checkAttributes: true,
         indentLogicalExpressions: true,
     }],
+    'react/jsx-indent-props': ['error', 4],
     'react/jsx-max-props-per-line': ['error', {
       maximum: 3,
     }],
