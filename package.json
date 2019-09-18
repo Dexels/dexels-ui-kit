@@ -8,6 +8,7 @@
     "start": "run-script-os",
     "start:win32": "if-env NODE_ENV=production ?? npm run build:prod:windows || npm run build:dev:windows",
     "build:dev:windows": "\"set BABEL_ENV=\"dev\" && webpack-dev-server --hot --config config/webpack.dev.js --mode development\"",
+    "build:prod:windows": "\"set BABEL_ENV=\"prod\" && webpack-dev-server --hot --config config/webpack.dev.js --mode production\"",
     "build:dev": "BABEL_ENV=dev webpack-dev-server --hot --config config/webpack.dev.js --mode development",
     "build:prod": "BABEL_ENV=prod webpack --config config/webpack.prod.js --mode production",
     "dist": "npm run build:prod",
