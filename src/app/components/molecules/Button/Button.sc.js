@@ -27,6 +27,12 @@ export const StyledButton = styled.button`
     text-transform: uppercase;
     color: ${({ theme }) => theme.buttonTextColor};
 
+    &:focus,
+    &:hover {
+        background-color: ${({ theme }) => theme.buttonHoverColor};
+        border-color: ${({ theme }) => theme.buttonHoverColor};
+    }
+
     /* Direction styling */
     ${({ direction }) => direction === BUTTON_DIRECTIONS.RTL && css`
         ${Text} {
@@ -63,16 +69,26 @@ export const StyledButton = styled.button`
 
     /* Variants styling */
     ${({ variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
-        background-color: transparent;
+        background-color: transparent !important;
         color: ${({ theme }) => theme.buttonPrimaryColor};
+
+        &:focus,
+        &:hover {
+            color: ${({ theme }) => theme.buttonHoverColor};
+        }
     `};
 
     ${({ variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
-        background-color: transparent;
+        background-color: transparent !important;
         color: ${({ theme }) => theme.buttonPrimaryColor};
         padding: 0;
         min-height: 0;
         border: 0;
+
+        &:focus,
+        &:hover {
+            color: ${({ theme }) => theme.buttonHoverColor};
+        }
     `};
 
     /* Exception styling */
