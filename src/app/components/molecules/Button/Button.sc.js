@@ -1,8 +1,19 @@
-import { BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
 import styled, { css } from 'styled-components';
 import textStyling, { TEXT_STYLING_SIZES } from '../../../styles/mixins/textStyling';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
+
+export const IconWrapper = styled.div`
+    flex: 0 0 auto;
+    order: 1;
+    margin: 0 6px 0 0;
+`;
+
+export const Text = styled.p`
+    flex: 0 0 auto;
+    order: 2;
+`;
 
 export const StyledButton = styled.button`
     appearance: none;
@@ -15,6 +26,18 @@ export const StyledButton = styled.button`
     cursor: pointer;
     text-transform: uppercase;
     color: ${({ theme }) => theme.buttonTextColor};
+
+    /* Direction styling */
+    ${({ direction }) => direction === BUTTON_DIRECTIONS.RTL && css`
+        ${Text} {
+            order: 1;
+        }
+
+        ${IconWrapper} {
+            order: 2;
+            margin: 0 0 0 6px;
+        }
+    `};
 
     /* isDisabled styling */
     ${({ isDisabled }) => isDisabled && css`
@@ -59,6 +82,7 @@ export const StyledButton = styled.button`
 `;
 
 StyledButton.propTypes = {
+    direction: PropTypes.oneOf(Object.values(BUTTON_DIRECTIONS)).isRequired,
     isDisabled: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
     theme: PropTypes.shape({
@@ -70,12 +94,9 @@ StyledButton.propTypes = {
         buttonSmallHeight: PropTypes.string.isRequired,
         buttonTextColor: PropTypes.string.isRequired,
     }).isRequired,
+    variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
 };
 
 StyledButton.defaultProps = {
     theme: defaultTheme,
 };
-
-export const Text = styled.p`
-    flex: 0 0 auto;
-`;

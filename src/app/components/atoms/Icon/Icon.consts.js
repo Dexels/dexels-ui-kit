@@ -1,5 +1,5 @@
 export const ICON_TYPES = {
-    ADD: 'ADD',
+    ADD: 'Add',
     ALERT: 'Alert',
     ARROW_DOWN: 'Arrow-Down',
     ARROW_LEFT: 'Arrow-Left',

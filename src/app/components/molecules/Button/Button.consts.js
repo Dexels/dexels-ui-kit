@@ -1,3 +1,8 @@
+export const BUTTON_DIRECTIONS = {
+    LTR: 'LTR',
+    RTL: 'RTL',
+};
+
 export const BUTTON_SIZES = {
     LARGE: 'LARGE',
     SMALL: 'SMALL',

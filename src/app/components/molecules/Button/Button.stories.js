@@ -15,3 +15,16 @@ export const Configurable = () => (
         {text('Text', 'Configure me!')}
     </Button>
 );
+
+export const ConfigurableWithIcon = () => (
+    <Button
+        direction={select('Direction', Button.directions, Button.directions.LTR)}
+        iconType={select('Icon type', Button.iconTypes, Button.iconTypes.ARROW_DOWN)}
+        isDisabled={boolean('Is disabled', false)}
+        onClick={action('On click')}
+        size={select('Size', Button.sizes, Button.sizes.LARGE)}
+        variant={select('Type', Button.variants, Button.variants.FILLED)}
+    >
+        {text('Text', 'Configure me!')}
+    </Button>
+);

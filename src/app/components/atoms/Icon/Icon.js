@@ -9,7 +9,7 @@ const Icon = ({ type }) => (
 Icon.types = ICON_TYPES;
 
 Icon.propTypes = {
-    type: PropTypes.oneOf(Object.values(ICON_TYPES)).isRequired,
+    type: PropTypes.oneOf(Object.values(Icon.types)).isRequired,
 };
 
 export default Icon;

@@ -4,11 +4,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledApp = styled.div`
+    margin: 0 0 20px;
     background-color: black;
-    color: white;
     padding: 20px;
     text-align: center;
-    margin: 0 0 20px;
+    color: white;
 `;
 
 const App = () => (
