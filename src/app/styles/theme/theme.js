@@ -3,8 +3,6 @@
 import { blue100, purple100, sl10 } from '../colors/colors';
 
 const theme = {
-    // Global theming
-    primaryTextColor: purple100,
     // Button theming
     buttonDisabledColor: sl10,
     buttonHoverColor: blue100,

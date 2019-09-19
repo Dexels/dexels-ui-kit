@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import Button from './Button';
 import React from 'react';
 
-export default { title: 'atoms/Button' };
+export default { title: 'molecules/Button' };
 
 export const Configurable = () => (
     <Button

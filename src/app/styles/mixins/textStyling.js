@@ -2,15 +2,17 @@ import { css } from 'styled-components';
 
 export const TEXT_STYLING_SIZES = {
     BODY1: 'BODY1',
-    BODY2: 'BODY1',
-    BODY3: 'BODY1',
+    BODY2: 'BODY2',
+    BODY3: 'BODY3',
     BUTTON_LARGE: 'BUTTON_LARGE',
     BUTTON_SMALL: 'BUTTON_SMALL',
     CAPTION: 'CAPTION',
     H1: 'H1',
-    H2: 'H4',
-    H3: 'H4',
+    H2: 'H2',
+    H3: 'H3',
     H4: 'H4',
+    H5: 'H5',
+    H6: 'H6',
 };
 
 // This function will return text styling based on the size you pass to it

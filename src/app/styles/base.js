@@ -5,7 +5,6 @@ export default createGlobalStyle`
     ${reset};
 
     body {
-        color: ${({ theme }) => theme.primaryTextColor};
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
