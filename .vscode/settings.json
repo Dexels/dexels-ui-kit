@@ -1,10 +1,10 @@
 {
-  "eslint.enable": true,
-  "eslint.options": {
-    "configFile": "./config/.eslintrc.js",
-  },
-  "files.associations": {
-    "*.js": "javascriptreact",
-  },
-  "files.trimTrailingWhitespace": true,
+    "eslint.enable": true,
+    "eslint.options": {
+        "configFile": "./config/.eslintrc.js",
+    },
+    "files.associations": {
+        "*.js": "javascriptreact",
+    },
+    "files.trimTrailingWhitespace": true,
 }
