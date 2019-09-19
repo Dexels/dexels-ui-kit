@@ -3,4 +3,10 @@ import reset from 'styled-reset';
 
 export default createGlobalStyle`
     ${reset};
+
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: ${({ theme }) => theme.primaryTextColor};
+    }
 `;
