@@ -7,4 +7,5 @@
         "*.js": "javascriptreact",
     },
     "files.trimTrailingWhitespace": true,
+    "typescript.validate.enable": false,
 }
