@@ -28,6 +28,11 @@ module.exports = {
             tabWidth: 4,
         }],
         'no-alert': 0,
+        'no-multiple-empty-lines': ['error', {
+            max: 1,
+            maxBOF: 0,
+            maxEOF: 1,
+        }],
         'object-property-newline': ['error', {
             allowAllPropertiesOnSameLine: false,
         }],
