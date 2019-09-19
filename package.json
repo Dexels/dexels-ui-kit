@@ -10,7 +10,7 @@
     "dist": "npm run build:prod",
     "lint:css": "stylelint './src/**/*.js' --config config/.stylelintrc.js",
     "lint:js": "eslint './src/**/*.js' --config config/.eslintrc.js",
-    "storybook": "start-storybook --config-dir src/.storybook --quiet"
+    "storybook": "start-storybook --config-dir ./src/.storybook -s ./public --quiet"
   },
   "repository": {
     "type": "git",
