@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import textStyling, { TEXT_STYLING_SIZES } from '../../../styles/mixins/textStyling';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
+import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
 export const IconWrapper = styled.div`
     flex: 0 0 auto;
@@ -21,16 +22,16 @@ export const StyledButton = styled.button`
     flex-wrap: nowrap;
     align-items: center;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.buttonPrimaryColor};
-    background-color: ${({ theme }) => theme.buttonPrimaryColor};
+    border: 1px solid ${({ theme }) => theme.button.colorPrimary};
+    background-color: ${({ theme }) => theme.button.colorPrimary};
     cursor: pointer;
     text-transform: uppercase;
-    color: ${({ theme }) => theme.buttonTextColor};
+    color: ${({ theme }) => theme.button.textColor};
 
     &:focus,
     &:hover {
-        background-color: ${({ theme }) => theme.buttonHoverColor};
-        border-color: ${({ theme }) => theme.buttonHoverColor};
+        background-color: ${({ theme }) => theme.button.colorHover};
+        border-color: ${({ theme }) => theme.button.colorHover};
     }
 
     /* Direction styling */
@@ -48,46 +49,46 @@ export const StyledButton = styled.button`
     /* isDisabled styling */
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
-        background-color: ${({ theme }) => theme.buttonDisabledColor};
-        border-color: ${({ theme }) => theme.buttonDisabledColor};
+        background-color: ${({ theme }) => theme.button.colorDisabled};
+        border-color: ${({ theme }) => theme.button.colorDisabled};
     `};
 
     /* Sizes styling */
     ${({ size }) => size === BUTTON_SIZES.SMALL && css`
         ${textStyling(TEXT_STYLING_SIZES.BUTTON_SMALL)};
-        min-height: ${({ theme }) => theme.buttonSmallHeight};
-        border-radius: ${({ theme }) => theme.buttonSmallBorderRadius};
+        min-height: ${({ theme }) => theme.button.heightSmall};
+        border-radius: ${({ theme }) => theme.button.borderRadiusSmall};
         padding: 6px 16px;
     `};
 
     ${({ size }) => size === BUTTON_SIZES.LARGE && css`
         ${textStyling(TEXT_STYLING_SIZES.BUTTON_LARGE)};
-        min-height: ${({ theme }) => theme.buttonLargeHeight};
-        border-radius: ${({ theme }) => theme.buttonLargeBorderRadius};
+        min-height: ${({ theme }) => theme.button.heightLarge};
+        border-radius: ${({ theme }) => theme.button.borderRadiusLarge};
         padding: 12px 16px;
     `};
 
     /* Variants styling */
     ${({ variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
-        color: ${({ theme }) => theme.buttonPrimaryColor};
+        color: ${({ theme }) => theme.button.colorPrimary};
 
         &:focus,
         &:hover {
-            color: ${({ theme }) => theme.buttonHoverColor};
+            color: ${({ theme }) => theme.button.colorHover};
         }
     `};
 
     ${({ variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         background-color: transparent !important;
-        color: ${({ theme }) => theme.buttonPrimaryColor};
+        color: ${({ theme }) => theme.button.colorPrimary};
         padding: 0;
         min-height: 0;
         border: 0;
 
         &:focus,
         &:hover {
-            color: ${({ theme }) => theme.buttonHoverColor};
+            color: ${({ theme }) => theme.button.colorHover};
         }
     `};
 
@@ -102,13 +103,9 @@ StyledButton.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
     theme: PropTypes.shape({
-        buttonDisabledColor: PropTypes.string.isRequired,
-        buttonLargeBorderRadius: PropTypes.string.isRequired,
-        buttonLargeHeight: PropTypes.string.isRequired,
-        buttonPrimaryColor: PropTypes.string.isRequired,
-        buttonSmallBorderRadius: PropTypes.string.isRequired,
-        buttonSmallHeight: PropTypes.string.isRequired,
-        buttonTextColor: PropTypes.string.isRequired,
+        button: PropTypes.objectOf((propValue, key, componentName) => (
+            validateThemePropTypes(propValue, key, componentName)
+        )).isRequired,
     }).isRequired,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
 };
