@@ -1,4 +1,9 @@
-import { blue100, purple100, sl10 } from '../colors/colors';
+import {
+    blue100,
+    purple100,
+    sl10,
+    sl25,
+} from '../colors/colors';
 import { css } from 'styled-components';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 
@@ -15,6 +20,15 @@ const theme = {
         heightLarge: '48px',
         heightSmall: '32px',
         textColor: 'white',
+    },
+    input: {
+        borderRadius: '8px',
+        colorFocus: blue100,
+        colorHover: blue100,
+        colorPrimary: purple100,
+        heightFullSize: '48px',
+        labelColorHover: purple100,
+        labelColorPrimary: sl25,
     },
     textStyles: {
         body1: {
