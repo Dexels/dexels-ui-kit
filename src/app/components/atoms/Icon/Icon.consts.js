@@ -1,66 +1,13 @@
-export const ICON_TYPES = {
-    ADD: 'Add',
-    ALERT: 'Alert',
-    ARROW_DOWN: 'Arrow-Down',
-    ARROW_LEFT: 'Arrow-Left',
-    ARROW_RIGHT: 'Arrow-Right',
-    ARROW_UP: 'Arrow-Up',
-    CALENDAR: 'Calendar',
-    CANCEL: 'Cancel',
-    CAR: 'Car',
-    CARDS: 'Cards',
-    CHANGE: 'Change',
-    CHECK: 'Check',
-    CHEVRON_DOWN: 'Chevron-Down',
-    CHEVRON_LEFT: 'Chevron-Left',
-    CHEVRON_RIGHT: 'Chevron-Right',
-    CHEVRON_UP: 'Chevron-Up',
-    CLOCK: 'Clock',
-    CLOSE: 'Close',
-    CLUB_SHIELD: 'Club-Shield',
-    CLUB_SHIRT: 'Club-Shirt',
-    CONCEPT: 'Concept',
-    CONCEPT_ALERT: 'ConceptAlert',
-    DONE: 'Done',
-    DROP_DOWN: 'Drop-Down',
-    DROP_UP: 'Drop-Up',
-    ERROR: 'Error',
-    HELP: 'Help',
-    HOME: 'Home',
-    INDICATOR: 'Indicator',
-    INFO: 'Info',
-    LOCKED: 'Locked',
-    LOGOUT: 'Logout',
-    MAIL: 'Mail',
-    MATCH_A_COMP: 'Match-A-comp',
-    MATCH_B_COMP: 'Match-B-comp',
-    MATCH_CONE: 'Match-Cone',
-    MATCH_CUP: 'Match-Cup',
-    MENU: 'Menu',
-    MINUS: 'Minus',
-    MOVE_ALL: 'Move-All',
-    MOVE_LEFTRIGHT: 'Move-LeftRight',
-    MOVE_UPDOWN: 'Move-UpDown',
-    NOTIFICATION: 'Notification',
-    PENCIL: 'Pencil',
-    PIN: 'Pin',
-    PLUS: 'Plus',
-    POSTBOX_IN: 'PostboxIn',
-    POSTBOX_OUT: 'PostboxOut',
-    REMOVE: 'Remove',
-    SEARCH: 'Search',
-    SEND: 'Send',
-    SETTINGS: 'Settings',
-    SHARE: 'Share',
-    SUSPENDED: 'Suspended',
-    TIP: 'Tip',
-    TRASH: 'Trash',
-    UNLOCKED: 'Unlocked',
-    USER: 'User',
-    USER_CIRCLE: 'UserCircle',
-    VISIBILITY_OFF: 'Visibility-Off',
-    VISIBILITY_ON: 'Visibility-On',
-    WORLD: 'World',
-};
+import iconFontData from '../../../styles/fonts/selection';
+
+export const ICON_TYPES = {};
+
+iconFontData.icons.forEach(({ properties: { name } }) => {
+    if (name.includes('-')) {
+        ICON_TYPES[name.replace(/-/g, '')] = name;
+    } else {
+        ICON_TYPES[name] = name;
+    }
+});
 
 export default ICON_TYPES;
