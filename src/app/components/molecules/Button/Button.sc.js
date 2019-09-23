@@ -18,20 +18,16 @@ export const Text = styled.p`
 export const StyledButton = styled.button`
     appearance: none;
     display: flex;
+    position: relative;
     flex-wrap: nowrap;
     align-items: center;
     outline: none;
     border: 1px solid ${({ theme }) => theme.button.colorPrimary};
     background-color: ${({ theme }) => theme.button.colorPrimary};
     cursor: pointer;
+    overflow: hidden;
     text-transform: uppercase;
     color: ${({ theme }) => theme.button.textColor};
-
-    &:focus,
-    &:hover {
-        background-color: ${({ theme }) => theme.button.colorHover};
-        border-color: ${({ theme }) => theme.button.colorHover};
-    }
 
     /* Direction styling */
     ${({ direction }) => direction === BUTTON_DIRECTIONS.RTL && css`
@@ -95,6 +91,35 @@ export const StyledButton = styled.button`
     ${({ isDisabled, variant }) => isDisabled && variant !== BUTTON_VARIANTS.FILLED && css`
         color: ${({ theme }) => theme.buttonDisabledColor};
     `};
+
+    &:after {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: scale(10, 10);
+        transition: transform .5s, opacity 1s;
+        opacity: 0;
+        background-image: radial-gradient(circle, white 10%, transparent 10.01%);
+        background-position: 50%;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        content: '';
+        pointer-events: none;
+    }
+
+    &:active,
+    &:hover {
+        border-color: ${({ theme }) => theme.button.colorHover};
+        background-color: ${({ theme }) => theme.button.colorHover};
+    }
+
+    &:active:after {
+        transform: scale(0, 0);
+        transition: none;
+        opacity: .2;
+    }
 `;
 
 StyledButton.propTypes = {
