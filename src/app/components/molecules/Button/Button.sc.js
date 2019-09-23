@@ -1,6 +1,5 @@
 import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
 import styled, { css } from 'styled-components';
-import textStyling, { TEXT_STYLING_SIZES } from '../../../styles/mixins/textStyling';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
@@ -55,14 +54,14 @@ export const StyledButton = styled.button`
 
     /* Sizes styling */
     ${({ size }) => size === BUTTON_SIZES.SMALL && css`
-        ${textStyling(TEXT_STYLING_SIZES.BUTTON_SMALL)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonSmall)};
         min-height: ${({ theme }) => theme.button.heightSmall};
         border-radius: ${({ theme }) => theme.button.borderRadiusSmall};
         padding: 6px 16px;
     `};
 
     ${({ size }) => size === BUTTON_SIZES.LARGE && css`
-        ${textStyling(TEXT_STYLING_SIZES.BUTTON_LARGE)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonLarge)};
         min-height: ${({ theme }) => theme.button.heightLarge};
         border-radius: ${({ theme }) => theme.button.borderRadiusLarge};
         padding: 12px 16px;
