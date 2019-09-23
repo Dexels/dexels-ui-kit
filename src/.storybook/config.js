@@ -9,10 +9,14 @@ addDecorator(withKnobs);
 
 // Wrap all stories in the ThemeProvider and render the BaseStyling
 addDecorator((storyFn) => (
-    <>
+    <div style={{
+        margin: '40px auto',
+        width: '80%',
+    }}
+    >
         <BaseStyles />
         {storyFn()}
-    </>
+    </div>
 ));
 
 // Import all stories
