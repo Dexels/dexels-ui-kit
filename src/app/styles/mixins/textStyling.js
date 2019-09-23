@@ -1,25 +1,26 @@
 import { css } from 'styled-components';
+import mapArrayToObject from '../../utils/mapArrayToObject';
 
-export const TEXT_STYLING_SIZES = {
-    BODY1: 'BODY1',
-    BODY2: 'BODY2',
-    BODY3: 'BODY3',
-    BUTTON_LARGE: 'BUTTON_LARGE',
-    BUTTON_SMALL: 'BUTTON_SMALL',
-    CAPTION: 'CAPTION',
-    H1: 'H1',
-    H2: 'H2',
-    H3: 'H3',
-    H4: 'H4',
-    H5: 'H5',
-    H6: 'H6',
-};
+export const TEXT_STYLING_SIZES = mapArrayToObject([
+    'BODY1',
+    'BODY2',
+    'BODY3',
+    'BUTTON_LARGE',
+    'BUTTON_SMALL',
+    'CAPTION',
+    'H1',
+    'H2',
+    'H3',
+    'H4',
+    'H5',
+    'H6',
+]);
 
 // This function will return text styling based on the size you pass to it
 // The default size will be BODY1
 const textStyling = (size) => {
     if (!Object.values(TEXT_STYLING_SIZES).includes(size)) {
-        throw new Error('The text size you\'ve specified is not supported.');
+        throw new Error('The text size you\'ve specified is not a supported size.');
     }
 
     switch (size) {

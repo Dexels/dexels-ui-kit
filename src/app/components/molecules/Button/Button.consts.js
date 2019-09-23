@@ -1,15 +1,7 @@
-export const BUTTON_DIRECTIONS = {
-    LTR: 'LTR',
-    RTL: 'RTL',
-};
+import mapArrayToObject from '../../../utils/mapArrayToObject';
 
-export const BUTTON_SIZES = {
-    LARGE: 'LARGE',
-    SMALL: 'SMALL',
-};
+export const BUTTON_DIRECTIONS = mapArrayToObject(['LTR', 'RTL']);
 
-export const BUTTON_VARIANTS = {
-    FILLED: 'FILLED',
-    OUTLINE: 'OUTLINE',
-    TEXT_ONLY: 'TEXT_ONLY',
-};
+export const BUTTON_SIZES = mapArrayToObject(['LARGE', 'SMALL']);
+
+export const BUTTON_VARIANTS = mapArrayToObject(['FILLED', 'OUTLINE', 'TEXT_ONLY']);
