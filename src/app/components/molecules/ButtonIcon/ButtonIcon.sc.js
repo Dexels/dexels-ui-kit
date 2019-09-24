@@ -20,7 +20,6 @@ export const StyledButtonIcon = styled.button`
         color: ${({ theme }) => theme.buttonIcon.colorDisabled};
     `};
 
-
     /* Sizes styling */
     ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
         font-size: ${({ theme }) => theme.buttonIcon.sizeSmall};
