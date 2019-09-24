@@ -27,3 +27,5 @@ export const sl50 = '#7F91A8';
 export const sl75 = '#3F5A7C';
 
 export const sl100 = '#002451';
+
+export const white = '#FFFFFFF';

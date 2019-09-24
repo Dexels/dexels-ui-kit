@@ -8,4 +8,5 @@
     },
     "files.trimTrailingWhitespace": true,
     "typescript.validate.enable": false,
+    "files.eol": "\n",
 }

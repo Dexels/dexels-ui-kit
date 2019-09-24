@@ -3,9 +3,14 @@ import {
     purple100,
     sl10,
     sl25,
+    white,
 } from '../colors/colors';
 import { css } from 'styled-components';
 import mapArrayToObject from '../../utils/mapArrayToObject';
+
+const DEFAULT_FONT_SIZE = 14;
+const DEFAULT_LINE_HEIGHT = 18;
+const DEFAULT_SIZE_UNIT = 8; // Used for padding/margin/sizing
 
 const theme = {
     availableTextStyles() {
@@ -17,69 +22,77 @@ const theme = {
         colorDisabled: sl10,
         colorHover: blue100,
         colorPrimary: purple100,
-        heightLarge: '48px',
-        heightSmall: '32px',
-        textColor: 'white',
+        heightLarge: (DEFAULT_SIZE_UNIT * 6).toString().concat('px'),
+        heightSmall: (DEFAULT_SIZE_UNIT * 4).toString().concat('px'),
+        textColor: white,
+    },
+    buttonIcon: {
+        backgroundColorHover: sl25,
+        colorDisabled: sl10,
+        colorHover: blue100,
+        colorPrimary: purple100,
+        sizeLarge: (DEFAULT_SIZE_UNIT * 2).toString().concat('px'),
+        sizeSmall: (DEFAULT_SIZE_UNIT * 1.5).toString().concat('px'),
     },
     input: {
         borderRadius: '8px',
         colorFocus: blue100,
         colorHover: blue100,
         colorPrimary: purple100,
-        heightFullSize: '48px',
+        heightFullSize: (DEFAULT_SIZE_UNIT * 6).toString().concat('px'),
         labelColorHover: purple100,
         labelColorPrimary: sl25,
     },
     textStyles: {
         body1: {
-            fontSize: '16px',
+            fontSize: (DEFAULT_FONT_SIZE + 2).toString().concat('px'),
             fontWeight: '400',
-            lineHeight: '24px',
+            lineHeight: (DEFAULT_LINE_HEIGHT + 6).toString().concat('px'),
         },
         body2: {
-            fontSize: '14px',
+            fontSize: DEFAULT_FONT_SIZE.toString().concat('px'),
             fontWeight: '400',
-            lineHeight: '18px',
+            lineHeight: DEFAULT_LINE_HEIGHT.toString().concat('px'),
         },
         body3: {
-            fontSize: '14px',
+            fontSize: DEFAULT_FONT_SIZE.toString().concat('px'),
             fontWeight: '300',
-            lineHeight: '18px',
+            lineHeight: DEFAULT_LINE_HEIGHT.toString().concat('px'),
         },
         buttonLarge: {
-            fontSize: '16px',
+            fontSize: (DEFAULT_FONT_SIZE + 2).toString().concat('px'),
             fontWeight: '500',
-            lineHeight: '20px',
+            lineHeight: (DEFAULT_LINE_HEIGHT + 2).toString().concat('px'),
         },
         buttonSmall: {
-            fontSize: '14px',
+            fontSize: DEFAULT_FONT_SIZE.toString().concat('px'),
             fontWeight: '500',
-            lineHeight: '16px',
+            lineHeight: (DEFAULT_LINE_HEIGHT - 2).toString().concat('px'),
         },
         caption: {
-            fontSize: '12px',
+            fontSize: (DEFAULT_FONT_SIZE - 2).toString().concat('px'),
             fontWeight: '300',
-            lineHeight: '16px',
+            lineHeight: (DEFAULT_LINE_HEIGHT - 2).toString().concat('px'),
         },
         h1: {
-            fontSize: '24px',
+            fontSize: (DEFAULT_FONT_SIZE + 10).toString().concat('px'),
             fontWeight: '500',
-            lineHeight: '30px',
+            lineHeight: (DEFAULT_LINE_HEIGHT + 12).toString().concat('px'),
         },
         h2: {
-            fontSize: '20px',
+            fontSize: (DEFAULT_FONT_SIZE + 6).toString().concat('px'),
             fontWeight: '500',
-            lineHeight: '28px',
+            lineHeight: (DEFAULT_LINE_HEIGHT + 10).toString().concat('px'),
         },
         h3: {
-            fontSize: '16px',
+            fontSize: (DEFAULT_FONT_SIZE + 2).toString().concat('px'),
             fontWeight: '600',
-            lineHeight: '24px',
+            lineHeight: (DEFAULT_LINE_HEIGHT + 6).toString().concat('px'),
         },
         h4: {
-            fontSize: '14px',
+            fontSize: DEFAULT_FONT_SIZE.toString().concat('px'),
             fontWeight: '600',
-            lineHeight: '22px',
+            lineHeight: (DEFAULT_LINE_HEIGHT + 4).toString().concat('px'),
         },
     },
     textStyling(textStyleSelector) {

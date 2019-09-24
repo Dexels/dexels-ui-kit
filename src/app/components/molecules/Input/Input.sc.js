@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import { INPUT_VARIANTS } from './Input.consts';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
 export const Label = styled.label`
