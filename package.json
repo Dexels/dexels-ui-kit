@@ -8,8 +8,8 @@
     "build:dev": "cross-env BABEL_ENV=dev webpack-dev-server --hot --config config/webpack.dev.js --mode development",
     "build:prod": "cross-env BABEL_ENV=prod webpack --config config/webpack.prod.js --mode production",
     "dist": "npm run build:prod",
-    "lint:css": "stylelint './src/**/*.js' --config config/.stylelintrc.js",
-    "lint:js": "eslint './src/**/*.js' --config config/.eslintrc.js",
+    "lint:css": "stylelint \"src/**/*.js\" --config config/.stylelintrc.js",
+    "lint:js": "eslint \"src/**/*.js\" --config config/.eslintrc.js",
     "storybook": "start-storybook --config-dir ./src/.storybook -s ./public --quiet"
   },
   "repository": {
@@ -37,14 +37,14 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-hot-loader": "^4.12.13",
-    "styled-components": "^4.3.2",
+    "react-hot-loader": "^4.12.14",
+    "styled-components": "^4.4.0",
     "styled-reset": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^5.2.1",
     "@storybook/addon-knobs": "^5.2.1",
