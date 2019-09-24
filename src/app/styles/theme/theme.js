@@ -1,6 +1,7 @@
 import {
     blue100,
     purple100,
+    red,
     sl10,
     sl2,
     sl25,
@@ -8,10 +9,6 @@ import {
 } from '../colors/colors';
 import { css } from 'styled-components';
 import mapArrayToObject from '../../utils/mapArrayToObject';
-
-const DEFAULT_FONT_SIZE = 14;
-const DEFAULT_LINE_HEIGHT = 18;
-const DEFAULT_SIZE_UNIT = 8; // Used for padding/margin/sizing
 
 const theme = {
     availableTextStyles() {
@@ -23,8 +20,8 @@ const theme = {
         colorDisabled: sl10,
         colorHover: blue100,
         colorPrimary: purple100,
-        heightLarge: (DEFAULT_SIZE_UNIT * 6).toString().concat('px'),
-        heightSmall: (DEFAULT_SIZE_UNIT * 4).toString().concat('px'),
+        heightLarge: '48px',
+        heightSmall: '32px',
         textColor: white,
     },
     buttonIcon: {
@@ -32,69 +29,75 @@ const theme = {
         colorDisabled: sl10,
         colorHover: blue100,
         colorPrimary: purple100,
-        // Icons are actually fonts, so use fontsize
-        sizeLarge: DEFAULT_FONT_SIZE.toString().concat('px'),
-        sizeSmall: (DEFAULT_FONT_SIZE * 0.8).toString().concat('px'),
+        sizeLarge: '14px',
+        sizeSmall: '12px',
     },
     input: {
         borderRadius: '8px',
+        colorDisabled: sl10,
+        colorError: red,
         colorFocus: blue100,
         colorHover: blue100,
         colorPrimary: purple100,
-        heightFullSize: (DEFAULT_SIZE_UNIT * 6).toString().concat('px'),
+        heightFullSize: '48px',
+        labelColorActive: purple100,
+        labelColorDisabled: sl10,
+        labelColorError: red,
+        labelColorFocus: blue100,
         labelColorHover: purple100,
         labelColorPrimary: sl25,
+        textColor: purple100,
     },
     textStyles: {
         body1: {
-            fontSize: (DEFAULT_FONT_SIZE + 2).toString().concat('px'),
+            fontSize: '16px',
             fontWeight: '400',
-            lineHeight: (DEFAULT_LINE_HEIGHT + 6).toString().concat('px'),
+            lineHeight: '24px',
         },
         body2: {
-            fontSize: DEFAULT_FONT_SIZE.toString().concat('px'),
+            fontSize: '14px',
             fontWeight: '400',
-            lineHeight: DEFAULT_LINE_HEIGHT.toString().concat('px'),
+            lineHeight: '18px',
         },
         body3: {
-            fontSize: DEFAULT_FONT_SIZE.toString().concat('px'),
+            fontSize: '14px',
             fontWeight: '300',
-            lineHeight: DEFAULT_LINE_HEIGHT.toString().concat('px'),
+            lineHeight: '18px',
         },
         buttonLarge: {
-            fontSize: (DEFAULT_FONT_SIZE + 2).toString().concat('px'),
+            fontSize: '16px',
             fontWeight: '500',
-            lineHeight: (DEFAULT_LINE_HEIGHT + 2).toString().concat('px'),
+            lineHeight: '20px',
         },
         buttonSmall: {
-            fontSize: DEFAULT_FONT_SIZE.toString().concat('px'),
+            fontSize: '14px',
             fontWeight: '500',
-            lineHeight: (DEFAULT_LINE_HEIGHT - 2).toString().concat('px'),
+            lineHeight: '16px',
         },
         caption: {
-            fontSize: (DEFAULT_FONT_SIZE - 2).toString().concat('px'),
+            fontSize: '12px',
             fontWeight: '300',
-            lineHeight: (DEFAULT_LINE_HEIGHT - 2).toString().concat('px'),
+            lineHeight: '16px',
         },
         h1: {
-            fontSize: (DEFAULT_FONT_SIZE + 10).toString().concat('px'),
+            fontSize: '24px',
             fontWeight: '500',
-            lineHeight: (DEFAULT_LINE_HEIGHT + 12).toString().concat('px'),
+            lineHeight: '30px',
         },
         h2: {
-            fontSize: (DEFAULT_FONT_SIZE + 6).toString().concat('px'),
+            fontSize: '20px',
             fontWeight: '500',
-            lineHeight: (DEFAULT_LINE_HEIGHT + 10).toString().concat('px'),
+            lineHeight: '28px',
         },
         h3: {
-            fontSize: (DEFAULT_FONT_SIZE + 2).toString().concat('px'),
+            fontSize: '16px',
             fontWeight: '600',
-            lineHeight: (DEFAULT_LINE_HEIGHT + 6).toString().concat('px'),
+            lineHeight: '24px',
         },
         h4: {
-            fontSize: DEFAULT_FONT_SIZE.toString().concat('px'),
+            fontSize: '14px',
             fontWeight: '600',
-            lineHeight: (DEFAULT_LINE_HEIGHT + 4).toString().concat('px'),
+            lineHeight: '22px',
         },
     },
     textStyling(textStyleSelector) {

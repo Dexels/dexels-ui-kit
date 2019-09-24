@@ -1,14 +1,14 @@
-import { BUTTONICON_SIZES } from './ButtonIcon.consts';
+import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledButtonIcon } from './ButtonIcon.sc';
 
 const ButtonIcon = ({
+    iconType,
     isDisabled,
     onClick,
     size,
-    iconType,
 }) => (
     <StyledButtonIcon
         isDisabled={isDisabled}
@@ -20,7 +20,7 @@ const ButtonIcon = ({
 );
 
 ButtonIcon.types = Icon.types;
-ButtonIcon.sizes = BUTTONICON_SIZES;
+ButtonIcon.sizes = BUTTON_ICON_SIZES;
 
 ButtonIcon.propTypes = {
     iconType: PropTypes.oneOf(Object.values(ButtonIcon.types)),

@@ -1,5 +1,5 @@
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 
-export const BUTTONICON_SIZES = mapArrayToObject(['LARGE', 'SMALL']);
+export const BUTTON_ICON_SIZES = mapArrayToObject(['LARGE', 'SMALL']);
 
-export default BUTTONICON_SIZES;
+export default BUTTON_ICON_SIZES;

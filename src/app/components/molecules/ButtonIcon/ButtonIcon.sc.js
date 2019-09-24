@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { BUTTONICON_SIZES } from './ButtonIcon.consts';
+import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
@@ -7,7 +7,7 @@ import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 export const StyledButtonIcon = styled.button`
     display: flex;
     align-items: center;
-    border: unset;
+    border: 0;
     border-radius: 50px;
     background-color: transparent;
     cursor: pointer;
@@ -22,18 +22,18 @@ export const StyledButtonIcon = styled.button`
 
 
     /* Sizes styling */
-    ${({ size }) => size === BUTTONICON_SIZES.SMALL && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
         font-size: ${({ theme }) => theme.buttonIcon.sizeSmall};
         padding: 12px;
     `};
 
-    ${({ size }) => size === BUTTONICON_SIZES.LARGE && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.LARGE && css`
         font-size: ${({ theme }) => theme.buttonIcon.sizeLarge};
         padding: 12px;
     `};
 
     &:after {
-        border: unset;
+        border: 0;
         pointer-events: none;
     }
 
@@ -44,7 +44,7 @@ export const StyledButtonIcon = styled.button`
     }
 
     &:active:after {
-        border: unset;
+        border: 0;
     }
 `;
 
@@ -52,7 +52,7 @@ export default StyledButtonIcon;
 
 StyledButtonIcon.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
-    size: PropTypes.oneOf(Object.values(BUTTONICON_SIZES)).isRequired,
+    size: PropTypes.oneOf(Object.values(BUTTON_ICON_SIZES)).isRequired,
     theme: PropTypes.shape({
         buttonIcon: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
