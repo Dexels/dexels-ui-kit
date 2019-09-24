@@ -7,10 +7,10 @@ export default { title: 'molecules/Button' };
 
 export const Configurable = () => (
     <Button
-        isDisabled={boolean('Is disabled', false)}
+        isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
         onClick={action('On click')}
-        size={select('Size', Button.sizes, Button.sizes.LARGE)}
-        variant={select('Type', Button.variants, Button.variants.FILLED)}
+        size={select('Size', Button.sizes, Button.defaultProps.size)}
+        variant={select('Type', Button.variants, Button.defaultProps.variant)}
     >
         {text('Text', 'Configure me!')}
     </Button>
@@ -18,12 +18,12 @@ export const Configurable = () => (
 
 export const ConfigurableWithIcon = () => (
     <Button
-        direction={select('Direction', Button.directions, Button.directions.LTR)}
-        iconType={select('Icon type', Button.iconTypes, Button.iconTypes.ARROW_DOWN)}
-        isDisabled={boolean('Is disabled', false)}
+        direction={select('Direction', Button.directions, Button.defaultProps.direction)}
+        iconType={select('Icon type', Button.iconTypes, Button.defaultProps.iconType)}
+        isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
         onClick={action('On click')}
-        size={select('Size', Button.sizes, Button.sizes.LARGE)}
-        variant={select('Type', Button.variants, Button.variants.FILLED)}
+        size={select('Size', Button.sizes, Button.defaultProps.size)}
+        variant={select('Type', Button.variants, Button.defaultProps.variant)}
     >
         {text('Text', 'Configure me!')}
     </Button>

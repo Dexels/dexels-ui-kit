@@ -7,9 +7,9 @@ export default { title: 'molecules/ButtonIcon' };
 
 export const Configurable = () => (
     <ButtonIcon
-        iconType={select('Type', ButtonIcon.types, ButtonIcon.types.CHEVRON_DOWN)}
-        isDisabled={boolean('Is disabled', false)}
+        iconType={select('Type', ButtonIcon.types, ButtonIcon.defaultProps.iconType)}
+        isDisabled={boolean('Is disabled', ButtonIcon.defaultProps.isDisabled)}
         onClick={action('On click')}
-        size={select('Size', ButtonIcon.sizes, ButtonIcon.sizes.LARGE)}
+        size={select('Size', ButtonIcon.sizes, ButtonIcon.defaultProps.size)}
     />
 );
