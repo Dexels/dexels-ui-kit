@@ -28,4 +28,4 @@ export const sl75 = '#3F5A7C';
 
 export const sl100 = '#002451';
 
-export const white = '#FFFFFFF';
+export const white = '#FFFFFF';

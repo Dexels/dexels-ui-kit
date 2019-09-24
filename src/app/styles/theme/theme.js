@@ -2,6 +2,7 @@ import {
     blue100,
     purple100,
     sl10,
+    sl2,
     sl25,
     white,
 } from '../colors/colors';
@@ -27,12 +28,13 @@ const theme = {
         textColor: white,
     },
     buttonIcon: {
-        backgroundColorHover: sl25,
+        backgroundColorHover: sl2,
         colorDisabled: sl10,
         colorHover: blue100,
         colorPrimary: purple100,
-        sizeLarge: (DEFAULT_SIZE_UNIT * 2).toString().concat('px'),
-        sizeSmall: (DEFAULT_SIZE_UNIT * 1.5).toString().concat('px'),
+        // Icons are actually fonts, so use fontsize
+        sizeLarge: DEFAULT_FONT_SIZE.toString().concat('px'),
+        sizeSmall: (DEFAULT_FONT_SIZE * 0.8).toString().concat('px'),
     },
     input: {
         borderRadius: '8px',

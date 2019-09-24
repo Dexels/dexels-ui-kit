@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
 export const StyledButtonIcon = styled.button`
+    display: flex;
+    align-items: center;
     border: unset;
     border-radius: 50px;
     background-color: transparent;
-    color: ${({ theme }) => theme.buttonIcon.colorPrimary};
     cursor: pointer;
     padding: 12px;
+    color: ${({ theme }) => theme.buttonIcon.colorPrimary};
 
     /* isDisabled styling */
     ${({ isDisabled }) => isDisabled && css`
@@ -22,32 +24,16 @@ export const StyledButtonIcon = styled.button`
     /* Sizes styling */
     ${({ size }) => size === BUTTONICON_SIZES.SMALL && css`
         font-size: ${({ theme }) => theme.buttonIcon.sizeSmall};
-        /* min-height: ${({ theme }) => theme.buttonIcon.sizeSmall};
-        min-width: ${({ theme }) => theme.buttonIcon.sizeSmall}; */
         padding: 12px;
     `};
 
     ${({ size }) => size === BUTTONICON_SIZES.LARGE && css`
         font-size: ${({ theme }) => theme.buttonIcon.sizeLarge};
-        /* min-height: ${({ theme }) => theme.buttonIcon.sizeLarge};
-        min-width: ${({ theme }) => theme.buttonIcon.sizeLarge}; */
         padding: 12px;
     `};
 
     &:after {
-        /* display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scale(10, 10);
-        transition: transform .5s, opacity 1s;
-        opacity: 0;
-        background-image: radial-gradient(circle, white 10%, transparent 10.01%);
-        background-position: 50%;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 100%;
-        content: ''; */
+        border: unset;
         pointer-events: none;
     }
 
@@ -59,9 +45,6 @@ export const StyledButtonIcon = styled.button`
 
     &:active:after {
         border: unset;
-        transform: scale(0, 0);
-        transition: none;
-        opacity: .2;
     }
 `;
 
