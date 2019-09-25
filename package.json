@@ -1,6 +1,7 @@
 {
   "name": "dexels-ui-kit",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "author": "Dexels B.V.",
   "description": "An UI kit which can be used in Dexels applications",
   "main": "src/index.js",
   "scripts": {
@@ -21,7 +22,6 @@
     "React",
     "Styled Components"
   ],
-  "author": "Dexels BV",
   "browserslist": [
     "Last 1 Chrome versions",
     "Last 1 Edge versions",
