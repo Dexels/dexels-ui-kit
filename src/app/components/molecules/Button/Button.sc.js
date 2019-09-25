@@ -41,6 +41,12 @@ export const StyledButton = styled.button`
         }
     `};
 
+    /* Set the width to use full available */
+    ${({ fullWidth }) => fullWidth && css`
+        width: 100%;
+        justify-content: center;
+    `};
+
     /* isDisabled styling */
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
@@ -124,6 +130,7 @@ export const StyledButton = styled.button`
 
 StyledButton.propTypes = {
     direction: PropTypes.oneOf(Object.values(BUTTON_DIRECTIONS)).isRequired,
+    fullWidth: PropTypes.bool,
     isDisabled: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
     theme: PropTypes.shape({

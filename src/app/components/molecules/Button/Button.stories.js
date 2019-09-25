@@ -7,6 +7,7 @@ export default { title: 'molecules/Button' };
 
 export const Configurable = () => (
     <Button
+        fullWidth={boolean('Use full width', Button.defaultProps.fullWidth)}
         isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
         onClick={action('On click')}
         size={select('Size', Button.sizes, Button.defaultProps.size)}
@@ -19,6 +20,7 @@ export const Configurable = () => (
 export const ConfigurableWithIcon = () => (
     <Button
         direction={select('Direction', Button.directions, Button.defaultProps.direction)}
+        fullWidth={boolean('Use full width', Button.defaultProps.fullWidth)}
         iconType={select('Icon type', Button.iconTypes, Button.defaultProps.iconType)}
         isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
         onClick={action('On click')}
