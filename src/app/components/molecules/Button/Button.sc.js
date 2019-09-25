@@ -1,19 +1,13 @@
 import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import { IconWrapperComponent, TextComponent } from '../_Consts/Components';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
-export const IconWrapper = styled.div`
-    flex: 0 0 auto;
-    order: 1;
-    margin: 0 6px 0 0;
-`;
+export const IconWrapper = IconWrapperComponent;
 
-export const Text = styled.p`
-    flex: 0 0 auto;
-    order: 2;
-`;
+export const Text = TextComponent;
 
 export const StyledButton = styled.button`
     appearance: none;
