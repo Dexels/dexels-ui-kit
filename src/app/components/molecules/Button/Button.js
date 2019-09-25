@@ -7,6 +7,7 @@ import React from 'react';
 const Button = ({
     children,
     direction,
+    fullWidth,
     iconType,
     isDisabled,
     onClick,
@@ -15,6 +16,7 @@ const Button = ({
 }) => (
     <StyledButton
         direction={direction}
+        fullWidth={fullWidth}
         isDisabled={isDisabled}
         onClick={onClick}
         size={size}
@@ -39,6 +41,7 @@ Button.variants = BUTTON_VARIANTS;
 Button.propTypes = {
     children: PropTypes.node.isRequired,
     direction: PropTypes.oneOf(Object.values(Button.directions)),
+    fullWidth: PropTypes.bool,
     iconType: PropTypes.oneOf(Object.values(Button.iconTypes)),
     isDisabled: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
@@ -48,6 +51,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
     direction: Button.directions.LTR,
+    fullWidth: false,
     iconType: null,
     isDisabled: false,
     size: Button.sizes.LARGE,
