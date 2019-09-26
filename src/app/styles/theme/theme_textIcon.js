@@ -2,7 +2,6 @@ import {
     sl50,
     white,
 } from '../colors/colors';
-import defaultTextStyle from './defaultTextStyle';
 
 const themeTextIcon = {
     textIcon: {

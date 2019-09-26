@@ -22,6 +22,6 @@ function rippleEffect(backgroundColor = white) {
             pointer-events: none;
         `
     );
-};
+}
 
 export default rippleEffect;

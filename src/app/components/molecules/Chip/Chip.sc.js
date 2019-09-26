@@ -18,14 +18,14 @@ export const StyledChip = styled.button`
     flex-wrap: nowrap;
     align-items: center;
     outline: none;
-    border-radius: ${({ theme }) => theme.chip.borderRadius};
     border: 1px solid ${({ theme }) => theme.chip.colorPrimary};
+    border-radius: ${({ theme }) => theme.chip.borderRadius};
     background-color: ${({ theme }) => theme.chip.backgroundColor};
     cursor: pointer;
     padding: 8px;
+    height: ${({ theme }) => theme.chip.height};
     overflow: hidden;
     color: ${({ theme }) => theme.chip.colorPrimary};
-    height: ${({ theme }) => theme.chip.height};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().chip)};
 
     /* Direction styling */

@@ -8,13 +8,13 @@ export const StyledTextIcon = styled.div`
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    border-radius: 50px;
     border: 0;
+    border-radius: 50px;
     background-color: ${({ theme }) => theme.textIcon.backgroundColor};
     padding: 8px;
-    color: ${({ theme }) => theme.textIcon.colorPrimary};
-    height: ${({ theme }) => theme.textIcon.size};
     width: ${({ theme }) => theme.textIcon.size};
+    height: ${({ theme }) => theme.textIcon.size};
+    color: ${({ theme }) => theme.textIcon.colorPrimary};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().textIcon)};
 `;
 

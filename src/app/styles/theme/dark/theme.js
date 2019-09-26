@@ -1,23 +1,23 @@
 import { css } from 'styled-components';
-import defaultTextStyle from './defaultTextStyle';
-import mapArrayToObject from '../../utils/mapArrayToObject';
+import defaultTheme from '../theme';
+import mapArrayToObject from '../../../utils/mapArrayToObject';
 /* Theme files for the components */
-import themeButton from './theme_button';
-import themeButtonIcon from './theme_buttonIcon';
-import themeChip from './theme_chip';
-import themeInput from './theme_input';
-import themeTextIcon from './theme_textIcon';
+// import themeButton from './theme_button';
+// import themeButtonIcon from './theme_buttonIcon';
+// import themeChip from './theme_chip';
+// import themeInput from './theme_input';
+// import themeTextIcon from './theme_textIcon';
 
 const theme = {
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
     },
     /* COMPONENT STYLES */
-    button: themeButton.button,
-    buttonIcon: themeButtonIcon.buttonIcon,
-    chip: themeChip.chip,
-    input: themeInput.input,
-    textIcon: themeTextIcon.textIcon,
+    button: defaultTheme.button,
+    buttonIcon: defaultTheme.buttonIcon,
+    chip: defaultTheme.chip,
+    input: defaultTheme.input,
+    textIcon: defaultTheme.textIcon,
     /* TEXT STYLES */
     textStyles: {
         body1: {
@@ -35,14 +35,14 @@ const theme = {
             fontWeight: '300',
             lineHeight: '18px',
         },
-        buttonLarge: themeButton.textStyles.buttonLarge,
-        buttonSmall: themeButton.textStyles.buttonSmall,
+        buttonLarge: defaultTheme.textStyles.buttonLarge,
+        buttonSmall: defaultTheme.textStyles.buttonSmall,
         caption: {
             fontSize: '12px',
             fontWeight: '300',
             lineHeight: '16px',
         },
-        chip: themeChip.textStyles.chip,
+        chip: defaultTheme.textStyles.chip,
         h1: {
             fontSize: '24px',
             fontWeight: '500',
@@ -63,7 +63,7 @@ const theme = {
             fontWeight: '600',
             lineHeight: '22px',
         },
-        textIcon: themeTextIcon.textStyles.textIcon,
+        textIcon: defaultTheme.textStyles.textIcon,
     },
     textStyling(textStyleSelector) {
         const validTextStylingSelectors = Object.keys(this.textStyles);
@@ -76,10 +76,10 @@ const theme = {
 
         /* Use the default style as fallback setting */
         return css`
-            line-height: ${textStyle.lineHeight ? textStyle.lineHeight : defaultTextStyle.lineHeight};
-            font-family: ${textStyle.fontFamily ? textStyle.fontFamily : defaultTextStyle.fontFamily};
-            font-size: ${textStyle.fontSize ? textStyle.fontSize : defaultTextStyle.fontSize};
-            font-weight: ${textStyle.fontWeight ? textStyle.fontWeight : defaultTextStyle.fontWeight};
+            line-height: ${textStyle.lineHeight ? textStyle.lineHeight : defaultTheme.textStyles.lineHeight};
+            font-family: ${textStyle.fontFamily ? textStyle.fontFamily : defaultTheme.textStyles.fontFamily};
+            font-size: ${textStyle.fontSize ? textStyle.fontSize : defaultTheme.textStyles.fontSize};
+            font-weight: ${textStyle.fontWeight ? textStyle.fontWeight : defaultTheme.textStyles.fontWeight};
         `;
     },
 };
