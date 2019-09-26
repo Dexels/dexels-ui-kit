@@ -18,13 +18,6 @@ const themeChip = {
         height: '32px',
     },
     textStyles: {
-        // LEFT AS DISCUSSION EXAMPLE FOR USING DEFAULT AS FALLBACK, BUT OVERRIDE SPECIFIC PROPS
-        // chip: {
-        //     fontFamily: defaultTextStyle.default.fontFamily,
-        //     fontSize: '24px',
-        //     fontWeight: '400',
-        //     lineHeight: defaultTextStyle.default.lineHeight,
-        // },
         chip: defaultTextStyle.default,
     },
 };

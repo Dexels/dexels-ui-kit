@@ -1,10 +1,8 @@
+import { IconDiv, StyledChip, Text } from './Chip.sc';
 import { CHIP_DIRECTIONS } from './Chip.consts';
 import Icon from '../../atoms/Icon/Icon';
-import IconWrapper from '../../atoms/IconWrapper/IconWrapper';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyledChip } from './Chip.sc';
-import TextWrapper from '../../atoms/TextWrapper/TextWrapper';
 
 const Chip = ({
     children,
@@ -21,13 +19,13 @@ const Chip = ({
         onClick={onClick}
     >
         {iconType && (
-            <IconWrapper>
+            <IconDiv>
                 <Icon type={iconType} />
-            </IconWrapper>
+            </IconDiv>
         )}
-        <TextWrapper>
+        <Text>
             {children}
-        </TextWrapper>
+        </Text>
     </StyledChip>
 );
 

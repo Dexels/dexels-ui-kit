@@ -16,7 +16,6 @@ const themeTextIcon = {
             fontFamily: 'sans-serif',
             fontSize: '24px',
             fontWeight: '600',
-            lineHeight: defaultTextStyle.default.lineHeight,
         },
     },
 };

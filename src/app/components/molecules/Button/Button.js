@@ -1,10 +1,8 @@
 import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import { IconDiv, StyledButton, Text } from './Button.sc';
 import Icon from '../../atoms/Icon/Icon';
-import IconWrapper from '../../atoms/IconWrapper/IconWrapper';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyledButton } from './Button.sc';
-import TextWrapper from '../../atoms/TextWrapper/TextWrapper';
 
 const Button = ({
     children,
@@ -25,13 +23,13 @@ const Button = ({
         variant={variant}
     >
         {iconType && (
-            <IconWrapper>
+            <IconDiv>
                 <Icon type={iconType} />
-            </IconWrapper>
+            </IconDiv>
         )}
-        <TextWrapper>
+        <Text>
             {children}
-        </TextWrapper>
+        </Text>
     </StyledButton>
 );
 

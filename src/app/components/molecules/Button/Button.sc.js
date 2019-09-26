@@ -1,14 +1,15 @@
 import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
-import { IconWrapperComponent, TextComponent } from '../_Consts/Components';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
+import IconWrapper from '../../atoms/IconWrapper/IconWrapper';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
+import TextWrapper from '../../atoms/TextWrapper/TextWrapper';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
-export const IconWrapper = IconWrapperComponent;
+export const IconDiv = IconWrapper;
 
-export const Text = TextComponent;
+export const Text = TextWrapper;
 
 export const StyledButton = styled.button`
     appearance: none;
@@ -30,7 +31,7 @@ export const StyledButton = styled.button`
             order: 1;
         }
 
-        ${IconWrapper} {
+        ${IconDiv} {
             order: 2;
             margin: 0 0 0 6px;
         }
