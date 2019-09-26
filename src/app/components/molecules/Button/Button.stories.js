@@ -21,7 +21,7 @@ export const ConfigurableWithIcon = () => (
     <Button
         direction={select('Direction', Button.directions, Button.defaultProps.direction)}
         fullWidth={boolean('Use full width', Button.defaultProps.fullWidth)}
-        iconType={select('Icon type', Button.iconTypes, Button.defaultProps.iconType)}
+        iconType={select('Icon type', Button.iconTypes, Button.iconTypes.CHECK)}
         isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
         onClick={action('On click')}
         size={select('Size', Button.sizes, Button.defaultProps.size)}

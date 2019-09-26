@@ -9,6 +9,7 @@ import {
 } from '../colors/colors';
 import { css } from 'styled-components';
 import mapArrayToObject from '../../utils/mapArrayToObject';
+import themechip from './theme_chip';
 
 const theme = {
     availableTextStyles() {
@@ -32,6 +33,7 @@ const theme = {
         sizeLarge: '14px',
         sizeSmall: '12px',
     },
+    chip: themechip.chip,
     input: {
         borderRadius: '8px',
         colorDisabled: sl10,
@@ -79,6 +81,7 @@ const theme = {
             fontWeight: '300',
             lineHeight: '16px',
         },
+        chip: themechip.textStyles.chip,
         h1: {
             fontSize: '24px',
             fontWeight: '500',
