@@ -4,6 +4,7 @@ import mapArrayToObject from '../../utils/mapArrayToObject';
 /* Theme files for the components */
 import themeButton from './theme_button';
 import themeButtonIcon from './theme_buttonIcon';
+import themeCard from './theme_card';
 import themeChip from './theme_chip';
 import themeInput from './theme_input';
 import themeTextIcon from './theme_textIcon';
@@ -15,6 +16,7 @@ const theme = {
     /* COMPONENT STYLES */
     button: themeButton.button,
     buttonIcon: themeButtonIcon.buttonIcon,
+    card: themeCard.card,
     chip: themeChip.chip,
     input: themeInput.input,
     textIcon: themeTextIcon.textIcon,
