@@ -2,6 +2,7 @@ import {
     blue100,
     sl10,
     sl100,
+    sl5,
 } from '../colors/colors';
 import defaultTextStyle from './defaultTextStyle';
 
@@ -9,7 +10,7 @@ const themeChip = {
     chip: {
         backgroundColor: sl10,
         backgroundColorDeselected: 'transparent',
-        backgroundColorHover: 'transparent',
+        backgroundColorHover: sl5,
         borderRadius: '8px',
         colorDisabled: sl100,
         colorHover: sl100,
