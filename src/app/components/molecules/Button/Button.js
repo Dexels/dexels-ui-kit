@@ -1,8 +1,10 @@
 import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
-import { IconWrapper, StyledButton, Text } from './Button.sc';
 import Icon from '../../atoms/Icon/Icon';
+import IconWrapper from '../../atoms/IconWrapper/IconWrapper';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { StyledButton } from './Button.sc';
+import TextWrapper from '../../atoms/TextWrapper/TextWrapper';
 
 const Button = ({
     children,
@@ -27,9 +29,9 @@ const Button = ({
                 <Icon type={iconType} />
             </IconWrapper>
         )}
-        <Text>
+        <TextWrapper>
             {children}
-        </Text>
+        </TextWrapper>
     </StyledButton>
 );
 
