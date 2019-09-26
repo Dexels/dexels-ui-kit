@@ -10,6 +10,7 @@ import {
 import { css } from 'styled-components';
 import defaultTextStyle from './defaultTextStyle';
 import mapArrayToObject from '../../utils/mapArrayToObject';
+/* Theme files for the components */
 import themeChip from './theme_chip';
 import themeTextIcon from './theme_textIcon';
 
