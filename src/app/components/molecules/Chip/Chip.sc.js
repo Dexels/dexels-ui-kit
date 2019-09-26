@@ -45,8 +45,8 @@ export const StyledChip = styled.button`
         color: ${({ theme }) => theme.chip.colorDisabled};
     `};
 
-    /* selected styling */
-    ${({ selected }) => !selected && css`
+    /* isSelected styling */
+    ${({ isSelected }) => !isSelected && css`
         background-color: ${({ theme }) => theme.chip.backgroundColorDeselected};
     `};
 
@@ -69,8 +69,8 @@ export const StyledChip = styled.button`
 
     &:active,
     &:hover {
-        background-color: ${({ theme, selected }) => selected && theme.chip.backgroundColorHover};
-        background-color: ${({ theme, selected }) => !selected && theme.chip.backgroundColor};
+        background-color: ${({ theme, isSelected }) => isSelected && theme.chip.backgroundColorHover};
+        background-color: ${({ theme, isSelected }) => !isSelected && theme.chip.backgroundColor};
         color: ${({ theme }) => theme.chip.colorHover};
     }
 
@@ -85,6 +85,7 @@ export default StyledChip;
 
 StyledChip.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
+    isSelected: PropTypes.bool,
     theme: PropTypes.shape({
         chip: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)

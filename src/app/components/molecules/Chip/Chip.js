@@ -9,14 +9,14 @@ const Chip = ({
     direction,
     iconType,
     isDisabled,
+    isSelected,
     onClick,
-    selected,
 }) => (
     <StyledChip
         direction={direction}
         isDisabled={isDisabled}
+        isSelected={isSelected}
         onClick={onClick}
-        selected={selected}
     >
         {iconType && (
             <IconWrapper>
@@ -37,15 +37,15 @@ Chip.propTypes = {
     direction: PropTypes.oneOf(Object.values(Chip.directions)),
     iconType: PropTypes.oneOf(Object.values(Chip.types)),
     isDisabled: PropTypes.bool,
+    isSelected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    selected: PropTypes.bool,
 };
 
 Chip.defaultProps = {
     direction: Chip.directions.LTR,
     iconType: null,
     isDisabled: false,
-    selected: true,
+    isSelected: true,
 };
 
 export default Chip;

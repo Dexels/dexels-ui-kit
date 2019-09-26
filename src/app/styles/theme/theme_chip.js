@@ -4,7 +4,7 @@ import {
 } from '../colors/colors';
 import defaultTextStyle from './defaultTextStyle';
 
-const themechip = {
+const themeChip = {
     chip: {
         backgroundColor: sl10,
         backgroundColorDeselected: 'transparent',
@@ -26,4 +26,4 @@ const themechip = {
     },
 };
 
-export default themechip;
+export default themeChip;

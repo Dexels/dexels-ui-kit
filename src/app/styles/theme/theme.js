@@ -8,8 +8,10 @@ import {
     white,
 } from '../colors/colors';
 import { css } from 'styled-components';
+import defaultTextStyle from './defaultTextStyle';
 import mapArrayToObject from '../../utils/mapArrayToObject';
-import themechip from './theme_chip';
+import themeChip from './theme_chip';
+import themeTextIcon from './theme_textIcon';
 
 const theme = {
     availableTextStyles() {
@@ -33,7 +35,7 @@ const theme = {
         sizeLarge: '14px',
         sizeSmall: '12px',
     },
-    chip: themechip.chip,
+    chip: themeChip.chip,
     input: {
         borderRadius: '8px',
         colorDisabled: sl10,
@@ -50,6 +52,7 @@ const theme = {
         labelColorPrimary: sl25,
         textColor: purple100,
     },
+    textIcon: themeTextIcon.textIcon,
     textStyles: {
         body1: {
             fontSize: '16px',
@@ -81,7 +84,7 @@ const theme = {
             fontWeight: '300',
             lineHeight: '16px',
         },
-        chip: themechip.textStyles.chip,
+        chip: themeChip.textStyles.chip,
         h1: {
             fontSize: '24px',
             fontWeight: '500',
@@ -102,6 +105,7 @@ const theme = {
             fontWeight: '600',
             lineHeight: '22px',
         },
+        textIcon: themeTextIcon.textStyles.textIcon,
     },
     textStyling(textStyleSelector) {
         const validTextStylingSelectors = Object.keys(this.textStyles);
@@ -113,9 +117,10 @@ const theme = {
         const textStyle = this.textStyles[textStyleSelector];
 
         return css`
-            line-height: ${textStyle.lineHeight};
-            font-size: ${textStyle.fontSize};
-            font-weight: ${textStyle.fontWeight};
+            line-height: ${textStyle.lineHeight ? textStyle.lineHeight : defaultTextStyle.lineHeight};
+            font-family: ${textStyle.fontFamily ? textStyle.fontFamily : defaultTextStyle.fontFamily};
+            font-size: ${textStyle.fontSize ? textStyle.fontSize : defaultTextStyle.fontSize};
+            font-weight: ${textStyle.fontWeight ? textStyle.fontWeight : defaultTextStyle.fontWeight};
         `;
     },
 };
