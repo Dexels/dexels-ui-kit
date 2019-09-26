@@ -3,6 +3,7 @@ import { IconWrapperComponent, TextComponent } from '../_Consts/Components';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
+import rippleEffect from '../../../styles/mixins/rippleEffect';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
 export const IconWrapper = IconWrapperComponent;
@@ -93,20 +94,7 @@ export const StyledButton = styled.button`
     `};
 
     &:after {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scale(10, 10);
-        transition: transform .5s, opacity 1s;
-        opacity: 0;
-        background-image: radial-gradient(circle, white 10%, transparent 10.01%);
-        background-position: 50%;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 100%;
-        content: '';
-        pointer-events: none;
+        ${rippleEffect()}
     }
 
     &:active,

@@ -116,6 +116,7 @@ const theme = {
 
         const textStyle = this.textStyles[textStyleSelector];
 
+        /* Use the default style as fallback setting */
         return css`
             line-height: ${textStyle.lineHeight ? textStyle.lineHeight : defaultTextStyle.lineHeight};
             font-family: ${textStyle.fontFamily ? textStyle.fontFamily : defaultTextStyle.fontFamily};

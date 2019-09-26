@@ -1,4 +1,4 @@
-import mapArrayToObject from '../../../utils/mapArrayToObject';
+import mapArrayToObject from './mapArrayToObject';
 
 export const DIRECTIONS = mapArrayToObject(['LTR', 'RTL']);
 

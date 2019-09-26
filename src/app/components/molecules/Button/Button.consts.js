@@ -1,4 +1,4 @@
-import { DIRECTIONS, SIZES } from '../_Consts/Constants';
+import { DIRECTIONS, SIZES } from '../../../utils/constants';
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 export const BUTTON_DIRECTIONS = DIRECTIONS;

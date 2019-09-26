@@ -1,4 +1,4 @@
-import { SIZES } from '../_Consts/Constants';
+import { SIZES } from '../../../utils/constants';
 
 export const BUTTON_ICON_SIZES = SIZES;
 

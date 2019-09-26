@@ -1,4 +1,5 @@
 import {
+    blue100,
     sl10,
     sl100,
 } from '../colors/colors';
@@ -13,11 +14,13 @@ const themeChip = {
         colorDisabled: sl100,
         colorHover: sl100,
         colorPrimary: sl100,
+        colorRipple: blue100,
         height: '32px',
     },
     textStyles: {
         // LEFT AS DISCUSSION EXAMPLE FOR USING DEFAULT AS FALLBACK, BUT OVERRIDE SPECIFIC PROPS
         // chip: {
+        //     fontFamily: defaultTextStyle.default.fontFamily,
         //     fontSize: '24px',
         //     fontWeight: '400',
         //     lineHeight: defaultTextStyle.default.lineHeight,

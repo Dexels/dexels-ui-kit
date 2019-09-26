@@ -1,4 +1,4 @@
-import { DIRECTIONS } from '../_Consts/Constants';
+import { DIRECTIONS } from '../../../utils/constants';
 
 export const CHIP_DIRECTIONS = DIRECTIONS;
 
