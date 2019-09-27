@@ -7,9 +7,9 @@ import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
 export const StyledCard = styled.div`
-    display: flex;
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
+    display: flex;
     border-radius: ${({ theme }) => theme.card.borderRadius};
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.card.padding};
@@ -17,22 +17,20 @@ export const StyledCard = styled.div`
     height: ${({ height }) => height};
 `;
 
-export default StyledCard;
-
 StyledCard.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)),
-    height: PropTypes.string,
+    elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)).isRequired,
+    height: PropTypes.string.isRequired,
     position: PropTypes.oneOf(Object.values(CARD_POSITIONS)),
     theme: PropTypes.shape({
         chip: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }).isRequired,
-    width: PropTypes.string,
+        )),
+    }),
+    width: PropTypes.string.isRequired,
 };
 
 StyledCard.defaultProps = {
-    height: '100%',
     theme: defaultTheme,
-    width: '100%',
 };
+
+export default StyledCard;

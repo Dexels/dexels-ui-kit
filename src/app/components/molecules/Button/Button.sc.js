@@ -25,7 +25,6 @@ export const StyledButton = styled.button`
     text-transform: uppercase;
     color: ${({ theme }) => theme.button.textColor};
 
-    /* Direction styling */
     ${({ direction }) => direction === BUTTON_DIRECTIONS.RTL && css`
         ${Text} {
             order: 1;
@@ -37,61 +36,56 @@ export const StyledButton = styled.button`
         }
     `};
 
-    /* Set the width to use full available */
     ${({ fullWidth }) => fullWidth && css`
         width: 100%;
         justify-content: center;
     `};
 
-    /* isDisabled styling */
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;
-        background-color: ${({ theme }) => theme.button.colorDisabled};
-        border-color: ${({ theme }) => theme.button.colorDisabled};
+        background-color: ${theme.button.colorDisabled};
+        border-color: ${theme.button.colorDisabled};
     `};
 
-    /* Sizes styling */
-    ${({ size }) => size === BUTTON_SIZES.SMALL && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonSmall)};
-        min-height: ${({ theme }) => theme.button.heightSmall};
-        border-radius: ${({ theme }) => theme.button.borderRadiusSmall};
+    ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
+        min-height: ${theme.button.heightSmall};
+        border-radius: ${theme.button.borderRadiusSmall};
         padding: 6px 16px;
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.LARGE && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonLarge)};
-        min-height: ${({ theme }) => theme.button.heightLarge};
-        border-radius: ${({ theme }) => theme.button.borderRadiusLarge};
+    ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
+        min-height: ${theme.button.heightLarge};
+        border-radius: ${theme.button.borderRadiusLarge};
         padding: 12px 16px;
     `};
 
-    /* Variants styling */
-    ${({ variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
+    ${({ theme, variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
-        color: ${({ theme }) => theme.button.colorPrimary};
+        color: ${theme.button.colorPrimary};
 
         &:focus,
         &:hover {
-            color: ${({ theme }) => theme.button.colorHover};
+            color: ${theme.button.colorHover};
         }
     `};
 
-    ${({ variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
+    ${({ theme, variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         background-color: transparent !important;
-        color: ${({ theme }) => theme.button.colorPrimary};
+        color: ${theme.button.colorPrimary};
         padding: 0;
         min-height: 0;
         border: 0;
 
         &:focus,
         &:hover {
-            color: ${({ theme }) => theme.button.colorHover};
+            color: ${theme.button.colorHover};
         }
     `};
 
-    /* Exception styling */
-    ${({ isDisabled, variant }) => isDisabled && variant !== BUTTON_VARIANTS.FILLED && css`
-        color: ${({ theme }) => theme.buttonDisabledColor};
+    ${({ isDisabled, theme, variant }) => isDisabled && variant !== BUTTON_VARIANTS.FILLED && css`
+        color: ${theme.buttonDisabledColor};
     `};
 
     &:after {
@@ -113,14 +107,14 @@ export const StyledButton = styled.button`
 
 StyledButton.propTypes = {
     direction: PropTypes.oneOf(Object.values(BUTTON_DIRECTIONS)).isRequired,
-    fullWidth: PropTypes.bool,
+    fullWidth: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
     theme: PropTypes.shape({
         button: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
-    }).isRequired,
+    }),
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
 };
 

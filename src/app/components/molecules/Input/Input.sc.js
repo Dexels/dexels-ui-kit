@@ -70,7 +70,7 @@ Label.propTypes = {
         input: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
-    }).isRequired,
+    }),
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
 };
 
@@ -88,8 +88,8 @@ export const TextField = styled.input`
     width: 100%;
     color: ${({ theme }) => theme.input.textColor};
 
-    ${({ isTextarea }) => isTextarea && css`
-        height: ${({ theme }) => theme.input.heightTextarea};
+    ${({ isTextarea, theme }) => isTextarea && css`
+        height: ${theme.input.heightTextarea};
         padding: 11px 12px;
         resize: none;
     `};
@@ -125,7 +125,7 @@ TextField.propTypes = {
         input: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
-    }).isRequired,
+    }),
 };
 
 TextField.defaultProps = {
@@ -135,7 +135,7 @@ TextField.defaultProps = {
 export const StyledInput = styled.div`
     position: relative;
 
-    ${({ variant }) => variant === INPUT_VARIANTS.COMPACT && css`
+    ${({ variant, theme }) => variant === INPUT_VARIANTS.COMPACT && css`
         ${ErrorMessage} {
             margin-left: 0;
         }
@@ -146,13 +146,13 @@ export const StyledInput = styled.div`
             border-left: 0;
             border-radius: 0;
             padding: 0;
-            height: ${({ theme }) => theme.input.heightCompact};
+            height: ${theme.input.heightCompact};
         }
     `};
 
-    ${({ variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
+    ${({ variant, theme }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
         ${TextField} {
-            height: ${({ theme }) => theme.input.heightFullSize};
+            height: ${theme.input.heightFullSize};
         }
     `};
 `;
@@ -162,7 +162,7 @@ StyledInput.propTypes = {
         input: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
-    }).isRequired,
+    }),
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
 };
 

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
 export const StyledTextIcon = styled.div`
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().textIcon)};
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -15,20 +16,18 @@ export const StyledTextIcon = styled.div`
     width: ${({ theme }) => theme.textIcon.size};
     height: ${({ theme }) => theme.textIcon.size};
     color: ${({ theme }) => theme.textIcon.colorPrimary};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().textIcon)};
 `;
 
-export default StyledTextIcon;
-
 StyledTextIcon.propTypes = {
-    text: PropTypes.string,
     theme: PropTypes.shape({
         textIcon: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
-    }).isRequired,
+    }),
 };
 
 StyledTextIcon.defaultProps = {
     theme: defaultTheme,
 };
+
+export default StyledTextIcon;

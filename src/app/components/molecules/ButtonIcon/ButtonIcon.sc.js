@@ -14,20 +14,18 @@ export const StyledButtonIcon = styled.button`
     padding: 12px;
     color: ${({ theme }) => theme.buttonIcon.colorPrimary};
 
-    /* isDisabled styling */
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;
-        color: ${({ theme }) => theme.buttonIcon.colorDisabled};
+        color: ${theme.buttonIcon.colorDisabled};
     `};
 
-    /* Sizes styling */
-    ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
-        font-size: ${({ theme }) => theme.buttonIcon.sizeSmall};
+    ${({ size, theme }) => size === BUTTON_ICON_SIZES.SMALL && css`
+        font-size: ${theme.buttonIcon.sizeSmall};
         padding: 12px;
     `};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.LARGE && css`
-        font-size: ${({ theme }) => theme.buttonIcon.sizeLarge};
+    ${({ size, theme }) => size === BUTTON_ICON_SIZES.LARGE && css`
+        font-size: ${theme.buttonIcon.sizeLarge};
         padding: 12px;
     `};
 
@@ -47,8 +45,6 @@ export const StyledButtonIcon = styled.button`
     }
 `;
 
-export default StyledButtonIcon;
-
 StyledButtonIcon.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_ICON_SIZES)).isRequired,
@@ -56,9 +52,11 @@ StyledButtonIcon.propTypes = {
         buttonIcon: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
-    }).isRequired,
+    }),
 };
 
 StyledButtonIcon.defaultProps = {
     theme: defaultTheme,
 };
+
+export default StyledButtonIcon;
