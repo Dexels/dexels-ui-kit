@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
-import validateThemePropTypes from '../../../utils/validateThemePropTypes';
+import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledButton = styled.button`
     appearance: none;

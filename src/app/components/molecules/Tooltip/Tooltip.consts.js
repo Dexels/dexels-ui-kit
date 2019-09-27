@@ -1,8 +1,5 @@
 import { ELEVATIONS, PLACEMENTS } from '../../../utils/constants';
-import {
-    sl100,
-    sl25,
-} from '../../../styles/colors/colors';
+import { sl100, sl25 } from '../../../styles/colors/colors';
 
 export const TOOLTIP_ELEVATIONS = ELEVATIONS;
 

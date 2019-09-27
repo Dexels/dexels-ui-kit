@@ -10,7 +10,6 @@ export const Configurable = () => (
         placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
         title={text('Title', 'Configure me!')}
     >
-        {/* EXAMPLE COMPONENT */}
         <span style={{
             backgroundColor: 'yellow',
             borderRadius: '50px',
@@ -28,11 +27,10 @@ export const ConfigurableWithLongText = () => (
         placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
         title={text('Title', 'Configure me!')}
     >
-        {/* EXAMPLE COMPONENT */}
         <span style={{
             backgroundColor: 'red',
-            color: 'white',
             borderRadius: '50px',
+            color: 'white',
             padding: '4px',
         }}
         >

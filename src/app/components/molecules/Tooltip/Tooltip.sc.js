@@ -4,7 +4,7 @@ import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import validateThemePropTypes from '../../../utils/validateThemePropTypes';
+import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledTooltip = styled.div`
     position: relative;
@@ -24,36 +24,31 @@ export const StyledTooltip = styled.div`
     }
 
     &::after {
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().tooltip)};
+        ${({ placement }) => getPlacement(placement)};
+        ${({ elevation }) => getElevation(elevation)};
         z-index: 99999999;
         border-radius: ${({ theme }) => theme.tooltip.borderRadius};
         padding: ${({ theme }) => theme.tooltip.padding};
-        ${({ elevation }) => getElevation(elevation)};
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
         color: ${({ theme }) => theme.tooltip.colorPrimary};
-        ${({ placement }) => getPlacement(placement)};
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().tooltip)};
         content: attr(data-tooltip); /* This is referring to the tag provided by Tooltip.js */
     }
 
     &:hover {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    &:hover::after,
-    &:hover::before {
-        visibility: visible;
-        opacity: 1;
+        &::after,
+        &::before {
+            visibility: visible;
+            opacity: 1;
+        }
     }
 `;
 
-export default StyledTooltip;
-
 StyledTooltip.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(TOOLTIP_ELEVATIONS)),
-    placement: PropTypes.oneOf(Object.values(TOOLTIP_PLACEMENTS)),
+    elevation: PropTypes.oneOf(Object.values(TOOLTIP_ELEVATIONS)).isRequired,
+    placement: PropTypes.oneOf(Object.values(TOOLTIP_PLACEMENTS)).isRequired,
     theme: PropTypes.shape({
         tooltip: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -65,3 +60,5 @@ StyledTooltip.propTypes = {
 StyledTooltip.defaultProps = {
     theme: defaultTheme,
 };
+
+export default StyledTooltip;

@@ -1,7 +1,7 @@
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import validateThemePropTypes from '../../../utils/validateThemePropTypes';
+import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledTextIcon = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().textIcon)};

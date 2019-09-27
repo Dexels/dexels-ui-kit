@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import { INPUT_VARIANTS } from './Input.consts';
 import PropTypes from 'prop-types';
-import validateThemePropTypes from '../../../utils/validateThemePropTypes';
+import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const ErrorMessage = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};

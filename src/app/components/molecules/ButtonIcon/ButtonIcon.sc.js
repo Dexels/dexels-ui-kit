@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
-import validateThemePropTypes from '../../../utils/validateThemePropTypes';
+import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledButtonIcon = styled.button`
     display: flex;

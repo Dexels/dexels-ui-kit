@@ -1,7 +1,7 @@
-import { StyledTooltip, StyledTooltipContainer } from './Tooltip.sc';
 import { TOOLTIP_ELEVATIONS, TOOLTIP_PLACEMENTS } from './Tooltip.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { StyledTooltip } from './Tooltip.sc';
 
 const Tooltip = ({
     children,
@@ -12,7 +12,6 @@ const Tooltip = ({
     <StyledTooltip
         data-tooltip={title}
         elevation={elevation}
-        id="Tooltip"
         placement={placement}
     >
         {children}

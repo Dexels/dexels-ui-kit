@@ -1,4 +1,4 @@
-export default (propValue, key, componentName) => {
+const validateThemePropTypes = (propValue, key, componentName) => {
     const themeProperty = propValue[key];
 
     if (themeProperty === undefined) {
@@ -11,3 +11,5 @@ export default (propValue, key, componentName) => {
 
     return true;
 };
+
+export default validateThemePropTypes;

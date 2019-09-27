@@ -4,7 +4,7 @@ import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import validateThemePropTypes from '../../../utils/validateThemePropTypes';
+import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledContentContainer = styled.div`
     ${({ position }) => getPosition(position)};

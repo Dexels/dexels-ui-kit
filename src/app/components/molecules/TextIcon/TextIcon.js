@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledTextIcon } from './TextIcon.sc';
-import validateInputLength from '../../../utils/validators';
+import validateInputLength from '../../../utils/validators/validateInputLength';
 
 const TextIcon = ({ text }) => (
     <StyledTextIcon>
