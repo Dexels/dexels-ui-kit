@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { PLACEMENTS } from '../../utils/constants';
 
-function getHorizontalOffset(placement) {
+const getHorizontalOffset = (placement) => {
     switch (placement) {
         case PLACEMENTS.LEFT:
             return '-100px';
@@ -18,9 +18,9 @@ function getHorizontalOffset(placement) {
         default:
             return '0%';
     }
-}
+};
 
-function getVerticalOffset(placement) {
+const getVerticalOffset = (placement) => {
     switch (placement) {
         case PLACEMENTS.LEFT:
             return '-4px';
@@ -37,16 +37,11 @@ function getVerticalOffset(placement) {
         default:
             return '-4px';
     }
-}
+};
 
-function getPlacement(placement) {
-    const left = getHorizontalOffset(placement);
-    const top = getVerticalOffset(placement);
-
-    return css`
-        top: ${top};
-        left: ${left};
-    `;
-}
+const getPlacement = (placement) => (css`
+    top: ${getHorizontalOffset(placement)};
+    left: ${getVerticalOffset(placement)};
+`);
 
 export default getPlacement;

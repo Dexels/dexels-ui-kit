@@ -34,7 +34,7 @@ export const StyledTooltip = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
         color: ${({ theme }) => theme.tooltip.colorPrimary};
-        content: attr(data-tooltip); /* This is referring to the tag provided by Tooltip.js */
+        content: attr(data-tooltip);
     }
 
     &:hover {
