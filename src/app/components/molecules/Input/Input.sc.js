@@ -59,6 +59,10 @@ export const Label = styled.label`
     ${({ hasError, theme }) => hasError && css`
         color: ${theme.input.labelColorError} !important;
     `};
+
+    ${({ isValid, theme }) => isValid && css`
+        color: ${theme.input.labelColorValid} !important;
+    `};
 `;
 
 Label.propTypes = {
@@ -66,6 +70,7 @@ Label.propTypes = {
     hasValue: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isFocussed: PropTypes.bool.isRequired,
+    isValid: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         input: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -107,6 +112,10 @@ export const TextField = styled.input`
         border-color: ${theme.input.colorError} !important;
     `};
 
+    ${({ isValid, theme }) => isValid && css`
+        border-color: ${theme.input.colorValid} !important;
+    `};
+
     &:hover {
         border-color: ${({ theme }) => theme.input.colorHover};
 
@@ -121,6 +130,7 @@ TextField.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFocussed: PropTypes.bool.isRequired,
     isTextarea: PropTypes.bool.isRequired,
+    isValid: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         input: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)

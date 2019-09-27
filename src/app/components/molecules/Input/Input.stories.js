@@ -10,6 +10,7 @@ export const Configurable = () => (
         hasError={boolean('Has error', Input.defaultProps.hasError)}
         isDisabled={boolean('Is disabled', Input.defaultProps.isDisabled)}
         isTextarea={boolean('Is textarea', Input.defaultProps.isTextarea)}
+        isValid={boolean('Is valid', Input.defaultProps.isValid)}
         label={text('Label', 'This is a label')}
         name="A random name"
         type={select('Type', Input.types, Input.defaultProps.type)}

@@ -14,6 +14,7 @@ const Input = ({
     hasError,
     isDisabled,
     isTextarea,
+    isValid,
     label,
     name,
     type,
@@ -35,6 +36,7 @@ const Input = ({
                 isDisabled={isDisabled}
                 isFocussed={isFocussed}
                 isTextarea={isTextarea}
+                isValid={isValid}
                 name={name}
                 onBlur={() => {
                     setIsFocussed(false);
@@ -51,6 +53,7 @@ const Input = ({
                 hasValue={hasValue}
                 isDisabled={isDisabled}
                 isFocussed={isFocussed}
+                isValid={isValid}
                 variant={variant}
             >
                 {label}
@@ -73,6 +76,7 @@ Input.propTypes = {
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isTextarea: PropTypes.bool,
+    isValid: PropTypes.bool,
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.oneOf(Object.values(Input.types)),
@@ -85,6 +89,7 @@ Input.defaultProps = {
     hasError: false,
     isDisabled: false,
     isTextarea: false,
+    isValid: false,
     type: Input.types.TEXT,
     variant: Input.variants.FULL_SIZE,
 };
