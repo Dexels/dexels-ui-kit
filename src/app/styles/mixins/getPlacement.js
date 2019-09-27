@@ -3,29 +3,17 @@ import { PLACEMENTS } from '../../utils/constants';
 
 function getHorizontalOffset(placement) {
     switch (placement) {
-        case PLACEMENTS.TOP_LEFT:
-            return '-50%';
+        case PLACEMENTS.LEFT:
+            return '-100px';
 
-        case PLACEMENTS.MIDDLE_LEFT:
-            return '-80%';
+        case PLACEMENTS.TOP:
+            return '0px';
 
-        case PLACEMENTS.TOP_RIGHT:
-            return '150%';
+        case PLACEMENTS.RIGHT:
+            return '100px';
 
-        case PLACEMENTS.MIDDLE_RIGHT:
-            return '100%';
-
-        case PLACEMENTS.BOTTOM_RIGHT:
-            return '100%';
-
-        case PLACEMENTS.TOP_CENTER:
-            return '50%';
-
-        case PLACEMENTS.MIDDLE_CENTER:
-            return '-10%';
-
-        case PLACEMENTS.BOTTOM_CENTER:
-            return '-10%';
+        case PLACEMENTS.BOTTOM:
+            return '0px';
 
         default:
             return '0%';
@@ -34,26 +22,20 @@ function getHorizontalOffset(placement) {
 
 function getVerticalOffset(placement) {
     switch (placement) {
-        case PLACEMENTS.BOTTOM_LEFT:
-            return '250%';
+        case PLACEMENTS.LEFT:
+            return '-4px';
 
-        case PLACEMENTS.BOTTOM_CENTER:
-            return '250%';
+        case PLACEMENTS.TOP:
+            return '-42px';
 
-        case PLACEMENTS.BOTTOM_RIGHT:
-            return '250%';
+        case PLACEMENTS.RIGHT:
+            return '-4px';
 
-        case PLACEMENTS.MIDDLE_LEFT:
-            return '-25%';
-
-        case PLACEMENTS.MIDDLE_CENTER:
-            return '-25%';
-
-        case PLACEMENTS.MIDDLE_RIGHT:
-            return '-25%';
+        case PLACEMENTS.BOTTOM:
+            return '32px';
 
         default:
-            return '-150%';
+            return '-4px';
     }
 }
 
@@ -62,8 +44,8 @@ function getPlacement(placement) {
     const top = getVerticalOffset(placement);
 
     return css`
-        left: ${left};
         top: ${top};
+        left: ${left};
     `;
 }
 

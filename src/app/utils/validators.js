@@ -1,18 +1,11 @@
-export default function validateInputLength(input, minChars, maxChars, propName, componentName) {
-    const propValue = input;
+const validateInputLength = (input, minChars, maxChars, propName, componentName) => {
+    const errorText = `Invalid prop ${propName} passed to ${componentName}. Expected a value between ${minChars} and ${maxChars} characters.`;
 
-    const errorText = 'Invalid prop '.concat(propName)
-        .concat(' passed to ')
-        .concat(componentName)
-        .concat('. Expected a value between')
-        .concat(minChars)
-        .concat(' and ')
-        .concat(maxChars)
-        .concat(' characters.');
-
-    if (propValue.length < minChars || propValue.length > maxChars) {
-        return new Error(errorText.concat(' Got '.concat(propValue.length)));
+    if (input.length < minChars || input.length > maxChars) {
+        return new Error(`${errorText} Got ${input.length} characters instead.`);
     }
 
     return null;
-}
+};
+
+export default validateInputLength;

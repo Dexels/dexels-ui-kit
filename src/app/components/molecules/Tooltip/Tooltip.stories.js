@@ -21,3 +21,22 @@ export const Configurable = () => (
         </span>
     </Tooltip>
 );
+
+export const ConfigurableWithLongText = () => (
+    <Tooltip
+        elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
+        placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
+        title={text('Title', 'Configure me!')}
+    >
+        {/* EXAMPLE COMPONENT */}
+        <span style={{
+            backgroundColor: 'red',
+            color: 'white',
+            borderRadius: '50px',
+            padding: '4px',
+        }}
+        >
+            {'Hover me, but this time with some long text'}
+        </span>
+    </Tooltip>
+);

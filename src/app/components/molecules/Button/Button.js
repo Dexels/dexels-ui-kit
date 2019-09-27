@@ -1,8 +1,8 @@
 import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
-import { IconDiv, StyledButton, Text } from './Button.sc';
-import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { StyledButton } from './Button.sc';
+import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const Button = ({
     children,
@@ -15,26 +15,20 @@ const Button = ({
     variant,
 }) => (
     <StyledButton
-        direction={direction}
         fullWidth={fullWidth}
         isDisabled={isDisabled}
         onClick={onClick}
         size={size}
         variant={variant}
     >
-        {iconType && (
-            <IconDiv>
-                <Icon type={iconType} />
-            </IconDiv>
-        )}
-        <Text>
+        <TextWithOptionalIcon direction={direction} iconType={iconType}>
             {children}
-        </Text>
+        </TextWithOptionalIcon>
     </StyledButton>
 );
 
 Button.directions = BUTTON_DIRECTIONS;
-Button.iconTypes = Icon.types;
+Button.iconTypes = TextWithOptionalIcon.iconTypes;
 Button.sizes = BUTTON_SIZES;
 Button.variants = BUTTON_VARIANTS;
 
@@ -52,7 +46,7 @@ Button.propTypes = {
 Button.defaultProps = {
     direction: Button.directions.LTR,
     fullWidth: false,
-    iconType: null,
+    iconType: '',
     isDisabled: false,
     size: Button.sizes.LARGE,
     variant: Button.variants.FILLED,

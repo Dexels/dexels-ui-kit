@@ -1,27 +1,23 @@
+import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
+import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
+import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
+import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
-import defaultTextStyle from './defaultTextStyle';
+import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
-/* Theme files for the components */
-import themeButton from './theme_button';
-import themeButtonIcon from './theme_buttonIcon';
-import themeCard from './theme_card';
-import themeChip from './theme_chip';
-import themeInput from './theme_input';
-import themeTextIcon from './theme_textIcon';
-import themeTooltip from './theme_tooltip';
+import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
+import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
 const theme = {
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
     },
-    /* COMPONENT STYLES */
-    button: themeButton.button,
-    buttonIcon: themeButtonIcon.buttonIcon,
-    card: themeCard.card,
-    chip: themeChip.chip,
-    input: themeInput.input,
-    textIcon: themeTextIcon.textIcon,
-    /* TEXT STYLES */
+    button: BUTTON_THEME,
+    buttonIcon: BUTTON_ICON_THEME,
+    card: CARD_THEME,
+    chip: CHIP_THEME,
+    input: INPUT_THEME,
+    textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {
             fontSize: '16px',
@@ -38,14 +34,13 @@ const theme = {
             fontWeight: '300',
             lineHeight: '18px',
         },
-        buttonLarge: themeButton.textStyles.buttonLarge,
-        buttonSmall: themeButton.textStyles.buttonSmall,
+        buttonLarge: BUTTON_THEME.textStyles.buttonLarge,
+        buttonSmall: BUTTON_THEME.textStyles.buttonSmall,
         caption: {
             fontSize: '12px',
             fontWeight: '300',
             lineHeight: '16px',
         },
-        chip: themeChip.textStyles.chip,
         h1: {
             fontSize: '24px',
             fontWeight: '500',
@@ -66,10 +61,14 @@ const theme = {
             fontWeight: '600',
             lineHeight: '22px',
         },
-        textIcon: themeTextIcon.textStyles.textIcon,
-        tooltip: themeTooltip.textStyles.tooltip,
+        textIcon: {
+            fontFamily: 'sans-serif',
+            fontSize: '24px',
+            fontWeight: '600',
+        },
+        tooltip: TOOLTIP_THEME.textStyles.tooltip,
     },
-    textStyling(textStyleSelector) {
+    textStyling(textStyleSelector = 'body1') {
         const validTextStylingSelectors = Object.keys(this.textStyles);
 
         if (!validTextStylingSelectors.includes(textStyleSelector)) {
@@ -78,15 +77,14 @@ const theme = {
 
         const textStyle = this.textStyles[textStyleSelector];
 
-        /* Use the default style as fallback setting */
         return css`
-            line-height: ${textStyle.lineHeight ? textStyle.lineHeight : defaultTextStyle.lineHeight};
-            font-family: ${textStyle.fontFamily ? textStyle.fontFamily : defaultTextStyle.fontFamily};
-            font-size: ${textStyle.fontSize ? textStyle.fontSize : defaultTextStyle.fontSize};
-            font-weight: ${textStyle.fontWeight ? textStyle.fontWeight : defaultTextStyle.fontWeight};
+            line-height: ${textStyle.lineHeight};
+            font-family: ${textStyle.fontFamily};
+            font-size: ${textStyle.fontSize};
+            font-weight: ${textStyle.fontWeight};
         `;
     },
-    tooltip: themeTooltip.tooltip,
+    tooltip: TOOLTIP_THEME,
 };
 
 export default theme;

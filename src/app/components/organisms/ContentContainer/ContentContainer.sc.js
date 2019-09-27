@@ -7,34 +7,31 @@ import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 
 export const StyledContentContainer = styled.div`
-    display: flex;
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
+    display: flex;
     border: 0;
-    background-color: 'transparent';
+    background-color: transparent;
     padding: ${({ padding }) => padding};
     width: ${({ width }) => width};
     height: ${({ height }) => height};
 `;
 
-export default StyledContentContainer;
-
 StyledContentContainer.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)),
-    height: PropTypes.string,
-    padding: PropTypes.string,
+    elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)).isRequired,
+    height: PropTypes.string.isRequired,
+    padding: PropTypes.string.isRequired,
     position: PropTypes.oneOf(Object.values(CARD_POSITIONS)),
     theme: PropTypes.shape({
         chip: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
-    }).isRequired,
-    width: PropTypes.string,
+    }),
+    width: PropTypes.string.isRequired,
 };
 
 StyledContentContainer.defaultProps = {
-    height: '100%',
-    padding: '8px',
     theme: defaultTheme,
-    width: '100%',
 };
+
+export default StyledContentContainer;

@@ -28,6 +28,11 @@ export const POSITIONS = mapArrayToObject([
     'BOTTOM_RIGHT',
 ]);
 
-export const PLACEMENTS = POSITIONS;
+export const PLACEMENTS = mapArrayToObject([
+    'LEFT',
+    'TOP',
+    'RIGHT',
+    'BOTTOM',
+]);
 
 export const SIZES = mapArrayToObject(['LARGE', 'SMALL']);

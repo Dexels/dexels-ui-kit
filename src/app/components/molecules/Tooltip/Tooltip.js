@@ -9,36 +9,14 @@ const Tooltip = ({
     placement,
     title,
 }) => (
-    <StyledTooltipContainer
-        id="TooltipContainer"
+    <StyledTooltip
+        data-tooltip={title}
+        elevation={elevation}
+        id="Tooltip"
+        placement={placement}
     >
         {children}
-        <StyledTooltip
-            elevation={elevation}
-            id="Tooltip"
-            placement={placement}
-            title={title}
-        >
-            {title}
-        </StyledTooltip>
-    </StyledTooltipContainer>
-    // <>
-    //     {/* Make sure the children are in a span tag otherwise icons will not work properly */}
-    //     <span
-    //         aria-describedby="Tooltip"
-    //         id="TooltipContainer"
-    //     >
-    //         {children}
-    //     </span>
-    //     <StyledTooltip
-    //         aria-hidden="true"
-    //         elevation={elevation}
-    //         id="Tooltip"
-    //         placement={placement}
-    //         role="tooltip"
-    //         title={title}
-    //     />
-    // </>
+    </StyledTooltip>
 );
 
 Tooltip.elevations = TOOLTIP_ELEVATIONS;
@@ -53,7 +31,7 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
     elevation: Tooltip.elevations.LEVEL_1,
-    placement: Tooltip.placements.TOP_CENTER,
+    placement: Tooltip.placements.BOTTOM,
 };
 
 export default Tooltip;
