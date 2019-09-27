@@ -14,36 +14,45 @@ const Input = ({
     hasError,
     isDisabled,
     isTextarea,
-    isValid,
     label,
     name,
     type,
     variant,
 }) => {
     const [value, setValue] = useState(defaultValue);
+    const [isFocussed, setIsFocussed] = useState(false);
+    const hasValue = value.length > 0;
 
     const handleOnChange = (event) => {
         setValue(event.target.value);
     };
 
     return (
-        <StyledInput
-            hasError={hasError}
-            hasValue={value.length > 0}
-            isDisabled={isDisabled}
-            isValid={isValid}
-            variant={variant}
-        >
+        <StyledInput variant={variant}>
             <TextField
                 as={isTextarea ? 'textarea' : 'input'}
+                hasError={hasError}
+                isDisabled={isDisabled}
+                isFocussed={isFocussed}
                 isTextarea={isTextarea}
-                isVariantCompact={variant === Input.variants.COMPACT}
                 name={name}
+                onBlur={() => {
+                    setIsFocussed(false);
+                }}
                 onChange={handleOnChange}
+                onFocus={() => {
+                    setIsFocussed(true);
+                }}
                 type={type}
                 value={value}
             />
-            <Label>
+            <Label
+                hasError={hasError}
+                hasValue={hasValue}
+                isDisabled={isDisabled}
+                isFocussed={isFocussed}
+                variant={variant}
+            >
                 {label}
             </Label>
             {errorMessage && hasError && (
@@ -64,7 +73,6 @@ Input.propTypes = {
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isTextarea: PropTypes.bool,
-    isValid: PropTypes.bool,
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.oneOf(Object.values(Input.types)),
@@ -77,7 +85,6 @@ Input.defaultProps = {
     hasError: false,
     isDisabled: false,
     isTextarea: false,
-    isValid: false,
     type: Input.types.TEXT,
     variant: Input.variants.FULL_SIZE,
 };
