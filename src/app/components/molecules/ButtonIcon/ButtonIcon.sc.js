@@ -7,6 +7,7 @@ import validateThemePropTypes from '../../../utils/validateThemePropTypes';
 export const StyledButtonIcon = styled.button`
     display: flex;
     align-items: center;
+    outline: none;
     border: 0;
     border-radius: 50px;
     background-color: transparent;

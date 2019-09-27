@@ -49,19 +49,19 @@ export const Label = styled.label`
             left: 0;
             padding: 0;
         `};
-    `}};
+    `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;
         color: ${theme.input.labelColorDisabled} !important;
     `};
 
-    ${({ hasError, theme }) => hasError && css`
-        color: ${theme.input.labelColorError} !important;
-    `};
-
     ${({ isValid, theme }) => isValid && css`
         color: ${theme.input.labelColorValid} !important;
+    `};
+
+    ${({ hasError, theme }) => hasError && css`
+        color: ${theme.input.labelColorError} !important;
     `};
 `;
 
