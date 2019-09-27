@@ -46,7 +46,7 @@ Button.propTypes = {
 Button.defaultProps = {
     direction: Button.directions.LTR,
     fullWidth: false,
-    iconType: '',
+    iconType: null,
     isDisabled: false,
     size: Button.sizes.LARGE,
     variant: Button.variants.FILLED,

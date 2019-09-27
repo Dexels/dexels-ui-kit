@@ -1,4 +1,4 @@
-import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
@@ -86,7 +86,6 @@ export const StyledButton = styled.button`
 `;
 
 StyledButton.propTypes = {
-    direction: PropTypes.oneOf(Object.values(BUTTON_DIRECTIONS)).isRequired,
     fullWidth: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,

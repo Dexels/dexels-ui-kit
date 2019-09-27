@@ -28,7 +28,7 @@ TextWithOptionalIcon.propTypes = {
 
 TextWithOptionalIcon.defaultProps = {
     direction: TextWithOptionalIcon.directions.LTR,
-    iconType: '',
+    iconType: null,
 };
 
 export default TextWithOptionalIcon;
