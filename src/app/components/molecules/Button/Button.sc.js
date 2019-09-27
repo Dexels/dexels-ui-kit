@@ -1,22 +1,13 @@
 import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
-import IconWrapper from '../../atoms/IconWrapper/IconWrapper';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
-import TextWrapper from '../../atoms/TextWrapper/TextWrapper';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
-
-export const IconDiv = IconWrapper;
-
-export const Text = TextWrapper;
 
 export const StyledButton = styled.button`
     appearance: none;
-    display: flex;
     position: relative;
-    flex-wrap: nowrap;
-    align-items: center;
     outline: none;
     border: 1px solid ${({ theme }) => theme.button.colorPrimary};
     background-color: ${({ theme }) => theme.button.colorPrimary};
@@ -24,17 +15,6 @@ export const StyledButton = styled.button`
     overflow: hidden;
     text-transform: uppercase;
     color: ${({ theme }) => theme.button.textColor};
-
-    ${({ direction }) => direction === BUTTON_DIRECTIONS.RTL && css`
-        ${Text} {
-            order: 1;
-        }
-
-        ${IconDiv} {
-            order: 2;
-            margin: 0 0 0 6px;
-        }
-    `};
 
     ${({ fullWidth }) => fullWidth && css`
         width: 100%;
@@ -121,3 +101,5 @@ StyledButton.propTypes = {
 StyledButton.defaultProps = {
     theme: defaultTheme,
 };
+
+export default StyledButton;

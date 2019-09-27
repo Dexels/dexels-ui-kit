@@ -1,15 +1,8 @@
 import styled, { css } from 'styled-components';
-import { CHIP_DIRECTIONS } from './Chip.consts';
 import defaultTheme from '../../../styles/theme/theme';
-import IconWrapper from '../../atoms/IconWrapper/IconWrapper';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
-import TextWrapper from '../../atoms/TextWrapper/TextWrapper';
 import validateThemePropTypes from '../../../utils/validateThemePropTypes';
-
-export const IconDiv = IconWrapper;
-
-export const Text = TextWrapper;
 
 export const StyledChip = styled.button`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().chip)};
@@ -27,17 +20,6 @@ export const StyledChip = styled.button`
     height: ${({ theme }) => theme.chip.height};
     overflow: hidden;
     color: ${({ theme }) => theme.chip.colorPrimary};
-
-    ${({ direction }) => direction === CHIP_DIRECTIONS.RTL && css`
-        ${Text} {
-            order: 1;
-        }
-
-        ${IconDiv} {
-            order: 2;
-            margin: 0 0 0 6px;
-        }
-    `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;
@@ -82,3 +64,5 @@ StyledChip.propTypes = {
 StyledChip.defaultProps = {
     theme: defaultTheme,
 };
+
+export default StyledChip;
