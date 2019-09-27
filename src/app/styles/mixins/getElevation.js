@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-function getElevation(level = 'LEVEL_1') {
+const getElevation = (level = 'LEVEL_1') => {
     switch (level) {
         case 'LEVEL_0':
             return css`
@@ -54,9 +54,9 @@ function getElevation(level = 'LEVEL_1') {
 
         default:
             return css`
-                box-shadow: unset;
+                box-shadow: none;
             `;
     }
-}
+};
 
 export default getElevation;

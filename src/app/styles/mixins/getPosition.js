@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { POSITIONS } from '../../utils/constants';
 
-function getHorizontalPosition(position) {
+const getHorizontalPosition = (position) => {
     switch (position) {
         case POSITIONS.TOP_RIGHT:
             return 'flex-end';
@@ -24,9 +24,9 @@ function getHorizontalPosition(position) {
         default:
             return 'flex-start';
     }
-}
+};
 
-function getVerticalPosition(position) {
+const getVerticalPosition = (position) => {
     switch (position) {
         case POSITIONS.BOTTOM_LEFT:
             return 'flex-end';
@@ -49,16 +49,11 @@ function getVerticalPosition(position) {
         default:
             return 'flex-start';
     }
-}
+};
 
-function getPosition(position) {
-    const alignItems = getVerticalPosition(position);
-    const justifyContent = getHorizontalPosition(position);
-
-    return css`
-        align-items: ${alignItems};
-        justify-content: ${justifyContent};
-    `;
-}
+const getPosition = (position) => (css`
+    align-items: ${getVerticalPosition(position)};
+    justify-content: ${getHorizontalPosition(position)};
+`);
 
 export default getPosition;
