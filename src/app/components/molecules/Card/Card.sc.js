@@ -32,7 +32,5 @@ StyledCard.propTypes = {
 };
 
 StyledCard.defaultProps = {
-    height: '100%',
     theme: defaultTheme,
-    width: '100%',
 };

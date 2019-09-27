@@ -8,6 +8,7 @@ import themeCard from './theme_card';
 import themeChip from './theme_chip';
 import themeInput from './theme_input';
 import themeTextIcon from './theme_textIcon';
+import themeTooltip from './theme_tooltip';
 
 const theme = {
     availableTextStyles() {
@@ -66,6 +67,7 @@ const theme = {
             lineHeight: '22px',
         },
         textIcon: themeTextIcon.textStyles.textIcon,
+        tooltip: themeTooltip.textStyles.tooltip,
     },
     textStyling(textStyleSelector) {
         const validTextStylingSelectors = Object.keys(this.textStyles);
@@ -84,6 +86,7 @@ const theme = {
             font-weight: ${textStyle.fontWeight ? textStyle.fontWeight : defaultTextStyle.fontWeight};
         `;
     },
+    tooltip: themeTooltip.tooltip,
 };
 
 export default theme;
