@@ -6,6 +6,7 @@ import { css } from 'styled-components';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
+import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
 const theme = {
     availableTextStyles() {
@@ -33,16 +34,8 @@ const theme = {
             fontWeight: '300',
             lineHeight: '18px',
         },
-        buttonLarge: {
-            fontSize: '16px',
-            fontWeight: '500',
-            lineHeight: '20px',
-        },
-        buttonSmall: {
-            fontSize: '14px',
-            fontWeight: '500',
-            lineHeight: '16px',
-        },
+        buttonLarge: BUTTON_THEME.textStyles.buttonLarge,
+        buttonSmall: BUTTON_THEME.textStyles.buttonSmall,
         caption: {
             fontSize: '12px',
             fontWeight: '300',
@@ -73,6 +66,7 @@ const theme = {
             fontSize: '24px',
             fontWeight: '600',
         },
+        tooltip: TOOLTIP_THEME.textStyles.tooltip,
     },
     textStyling(textStyleSelector = 'body1') {
         const validTextStylingSelectors = Object.keys(this.textStyles);
@@ -90,6 +84,7 @@ const theme = {
             font-weight: ${textStyle.fontWeight};
         `;
     },
+    tooltip: TOOLTIP_THEME,
 };
 
 export default theme;
