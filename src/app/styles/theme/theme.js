@@ -5,6 +5,7 @@ import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
+import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/NoResultsCard.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
@@ -17,6 +18,7 @@ const theme = {
     card: CARD_THEME,
     chip: CHIP_THEME,
     input: INPUT_THEME,
+    noResultsCard: NO_RESULTS_CARD_THEME,
     textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {
