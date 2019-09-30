@@ -9,11 +9,11 @@ import {
 
 export const CHECKBOX_THEME = {
     borderRadius: '5px',
+    colorDefault: purple100,
     colorDisabled: sl10,
     colorError: red,
     colorFocus: blue100,
     colorHover: blue100,
-    colorDefault: purple100,
     colorValid: green,
     iconColor: white,
     iconFontSize: '12px',

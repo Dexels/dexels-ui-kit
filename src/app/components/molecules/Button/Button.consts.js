@@ -16,9 +16,9 @@ export const BUTTON_VARIANTS = mapArrayToObject(['FILLED', 'OUTLINE', 'TEXT_ONLY
 export const BUTTON_THEME = {
     borderRadiusLarge: '24px',
     borderRadiusSmall: '16px',
+    colorDefault: purple100,
     colorDisabled: sl10,
     colorHover: blue100,
-    colorDefault: purple100,
     heightLarge: '48px',
     heightSmall: '32px',
     textColor: white,
