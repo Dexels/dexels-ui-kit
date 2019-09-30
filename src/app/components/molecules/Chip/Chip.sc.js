@@ -12,14 +12,14 @@ export const StyledChip = styled.button`
     flex-wrap: nowrap;
     align-items: center;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.chip.colorPrimary};
+    border: 1px solid ${({ theme }) => theme.chip.colorDefault};
     border-radius: ${({ theme }) => theme.chip.borderRadius};
     background-color: ${({ theme }) => theme.chip.backgroundColorDeselected};
     cursor: pointer;
     padding: ${({ theme }) => theme.chip.padding};
     height: ${({ theme }) => theme.chip.height};
     overflow: hidden;
-    color: ${({ theme }) => theme.chip.colorPrimary};
+    color: ${({ theme }) => theme.chip.colorDefault};
 
     ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;

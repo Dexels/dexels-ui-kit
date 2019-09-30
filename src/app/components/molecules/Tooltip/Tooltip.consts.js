@@ -10,6 +10,6 @@ export const TOOLTIP_TRANSITIONS = TRANSITIONS;
 export const TOOLTIP_THEME = {
     backgroundColor: sl100,
     borderRadius: '15px',
-    colorPrimary: sl25,
+    colorDefault: sl25,
     padding: '4px 8px 4px 8px',
 };

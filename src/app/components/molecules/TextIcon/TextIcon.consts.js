@@ -3,7 +3,7 @@ import { sl50, white } from '../../../styles/colors/colors';
 export const TEXT_ICON_THEME = {
     backgroundColor: sl50,
     borderRadius: '50px',
-    colorPrimary: white,
+    colorDefault: white,
     size: '24px',
 };
 

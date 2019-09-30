@@ -18,7 +18,7 @@ export const BUTTON_THEME = {
     borderRadiusSmall: '16px',
     colorDisabled: sl10,
     colorHover: blue100,
-    colorPrimary: purple100,
+    colorDefault: purple100,
     heightLarge: '48px',
     heightSmall: '32px',
     textColor: white,

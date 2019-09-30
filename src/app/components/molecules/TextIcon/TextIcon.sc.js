@@ -15,7 +15,7 @@ export const StyledTextIcon = styled.div`
     padding: 8px;
     width: ${({ theme }) => theme.textIcon.size};
     height: ${({ theme }) => theme.textIcon.size};
-    color: ${({ theme }) => theme.textIcon.colorPrimary};
+    color: ${({ theme }) => theme.textIcon.colorDefault};
 `;
 
 StyledTextIcon.propTypes = {

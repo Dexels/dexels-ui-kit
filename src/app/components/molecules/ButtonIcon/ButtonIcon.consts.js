@@ -12,7 +12,7 @@ export const BUTTON_ICON_THEME = {
     backgroundColorHover: sl2,
     colorDisabled: sl10,
     colorHover: blue100,
-    colorPrimary: purple100,
+    colorDefault: purple100,
     sizeLarge: '14px',
     sizeSmall: '12px',
 };

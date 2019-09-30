@@ -13,7 +13,7 @@ export const CHECKBOX_THEME = {
     colorError: red,
     colorFocus: blue100,
     colorHover: blue100,
-    colorPrimary: purple100,
+    colorDefault: purple100,
     colorValid: green,
     iconColor: white,
     iconFontSize: '12px',

@@ -5,14 +5,14 @@ import validateThemePropTypes from '../../../utils/validators/validateThemePropT
 
 export const StyledCheckbox = styled.div`
     position: relative;
-    border: 1px solid ${({ theme }) => theme.checkbox.colorPrimary};
+    border: 1px solid ${({ theme }) => theme.checkbox.colorDefault};
     border-radius: ${({ theme }) => theme.checkbox.borderRadius};
     width: ${({ theme }) => theme.checkbox.size};
     height: ${({ theme }) => theme.checkbox.size};
     pointer-events: none;
 
     ${({ isChecked, theme }) => isChecked && css`
-        background-color: ${theme.checkbox.colorPrimary};
+        background-color: ${theme.checkbox.colorDefault};
     `};
 
     ${({ isChecked, isDisabled, theme }) => isDisabled && css`

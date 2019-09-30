@@ -9,8 +9,8 @@ export const StyledButton = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.button.colorPrimary};
-    background-color: ${({ theme }) => theme.button.colorPrimary};
+    border: 1px solid ${({ theme }) => theme.button.colorDefault};
+    background-color: ${({ theme }) => theme.button.colorDefault};
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
@@ -43,7 +43,7 @@ export const StyledButton = styled.button`
 
     ${({ theme, variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
-        color: ${theme.button.colorPrimary};
+        color: ${theme.button.colorDefault};
 
         &:focus,
         &:hover {
@@ -53,7 +53,7 @@ export const StyledButton = styled.button`
 
     ${({ theme, variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         background-color: transparent !important;
-        color: ${theme.button.colorPrimary};
+        color: ${theme.button.colorDefault};
         padding: 0;
         min-height: 0;
         border: 0;

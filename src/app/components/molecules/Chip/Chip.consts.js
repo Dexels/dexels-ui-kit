@@ -15,7 +15,7 @@ export const CHIP_THEME = {
     borderRadius: '8px',
     colorDisabled: sl100,
     colorHover: sl100,
-    colorPrimary: sl100,
+    colorDefault: sl100,
     colorRipple: blue100,
     height: '32px',
     padding: '6px 8px 6px 8px',
