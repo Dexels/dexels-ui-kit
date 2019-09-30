@@ -1,6 +1,6 @@
 import {
     ErrorMessageWrapper,
-    Label,
+    LabelWrapper,
     StyledInput,
     TextField,
 } from './Input.sc';
@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import { INPUT_TYPES } from './Input.consts';
 import { INPUT_VARIANTS } from '../../../utils/constants';
+import Label from '../../atoms/Label/Label';
 import PropTypes from 'prop-types';
 
 const Input = ({
@@ -24,6 +25,7 @@ const Input = ({
 }) => {
     const [value, setValue] = useState(defaultValue);
     const [isFocussed, setIsFocussed] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
     const hasValue = value.length > 0;
 
     const handleOnChange = (event) => {
@@ -31,7 +33,7 @@ const Input = ({
     };
 
     return (
-        <StyledInput variant={variant}>
+        <StyledInput isDisabled={isDisabled}>
             <TextField
                 as={isTextarea ? 'textarea' : 'input'}
                 hasError={hasError}
@@ -47,21 +49,35 @@ const Input = ({
                 onFocus={() => {
                     setIsFocussed(true);
                 }}
+                onMouseEnter={() => {
+                    setIsHovered(true);
+                }}
+                onMouseLeave={() => {
+                    setIsHovered(false);
+                }}
                 type={type}
                 value={value}
+                variant={variant}
             />
-            <Label
-                hasError={hasError}
+            <LabelWrapper
                 hasValue={hasValue}
-                isDisabled={isDisabled}
                 isFocussed={isFocussed}
-                isValid={isValid}
                 variant={variant}
             >
-                {label}
-            </Label>
+                <Label
+                    hasError={hasError}
+                    isActive={hasValue}
+                    isDisabled={isDisabled}
+                    isFocussed={isFocussed}
+                    isHovered={isHovered}
+                    isSmall={hasValue || isFocussed}
+                    isValid={isValid}
+                >
+                    {label}
+                </Label>
+            </LabelWrapper>
             {errorMessage && hasError && (
-                <ErrorMessageWrapper>
+                <ErrorMessageWrapper variant={variant}>
                     <ErrorMessage>
                         {errorMessage}
                     </ErrorMessage>

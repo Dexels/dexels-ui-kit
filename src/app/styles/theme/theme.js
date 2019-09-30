@@ -6,6 +6,7 @@ import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
 import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
+import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/NoResultsCard.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
@@ -22,6 +23,7 @@ const theme = {
     chip: CHIP_THEME,
     errorMessage: ERROR_MESSAGE_THEME,
     input: INPUT_THEME,
+    label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
     textIcon: TEXT_ICON_THEME,
     textStyles: {
