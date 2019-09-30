@@ -1,4 +1,4 @@
-import { select, text } from '@storybook/addon-knobs';
+import { number, select, text } from '@storybook/addon-knobs';
 import React from 'react';
 import Tooltip from './Tooltip';
 
@@ -9,6 +9,8 @@ export const Configurable = () => (
         elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
         placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
         title={text('Title', 'Configure me!')}
+        transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
+        transitionType={select('Transition type', Tooltip.transitionTypes, Tooltip.defaultProps.transitionType)}
     >
         <span style={{
             backgroundColor: 'yellow',
@@ -26,6 +28,8 @@ export const ConfigurableWithLongText = () => (
         elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
         placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
         title={text('Title', 'Configure me!')}
+        transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
+        transitionType={select('Transition type', Tooltip.transitionTypes, Tooltip.defaultProps.transitionType)}
     >
         <span style={{
             backgroundColor: 'red',

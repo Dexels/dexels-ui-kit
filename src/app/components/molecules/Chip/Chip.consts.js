@@ -18,6 +18,7 @@ export const CHIP_THEME = {
     colorPrimary: sl100,
     colorRipple: blue100,
     height: '32px',
+    padding: '6px 8px 6px 8px',
 };
 
 export default CHIP_DIRECTIONS;

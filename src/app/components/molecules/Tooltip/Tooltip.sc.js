@@ -1,9 +1,9 @@
-import { TOOLTIP_ELEVATIONS, TOOLTIP_PLACEMENTS } from './Tooltip.consts';
 import defaultTheme from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledTooltip = styled.div`
@@ -11,8 +11,8 @@ export const StyledTooltip = styled.div`
 
     &::after,
     &::before {
+        ${({ transitionDuration, transitionType }) => transitionType !== 'NONE' && transitionEffect('all', transitionType, transitionDuration, 0)};
         position: absolute;
-        transition: all 0.4s ease-out;
         visibility: hidden;
         opacity: 0;
         background-color: ${({ theme }) => theme.tooltip.backgroundColor};
@@ -24,7 +24,7 @@ export const StyledTooltip = styled.div`
     }
 
     &::after {
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().tooltip)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
         ${({ placement }) => getPlacement(placement)};
         ${({ elevation }) => getElevation(elevation)};
         z-index: 99999999;
@@ -47,14 +47,11 @@ export const StyledTooltip = styled.div`
 `;
 
 StyledTooltip.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(TOOLTIP_ELEVATIONS)).isRequired,
-    placement: PropTypes.oneOf(Object.values(TOOLTIP_PLACEMENTS)).isRequired,
     theme: PropTypes.shape({
         tooltip: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }).isRequired,
-    title: PropTypes.string.isRequired,
 };
 
 StyledTooltip.defaultProps = {

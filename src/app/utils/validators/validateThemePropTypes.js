@@ -1,4 +1,5 @@
 const validateThemePropTypes = (propValue, key, componentName) => {
+
     const themeProperty = propValue[key];
 
     if (themeProperty === undefined) {
