@@ -1,4 +1,3 @@
-import { CARD_ELEVATIONS, CARD_POSITIONS } from '../../molecules/Card/Card.consts';
 import defaultTheme from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
@@ -18,16 +17,11 @@ export const StyledContentContainer = styled.div`
 `;
 
 StyledContentContainer.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)).isRequired,
-    height: PropTypes.string.isRequired,
-    padding: PropTypes.string.isRequired,
-    position: PropTypes.oneOf(Object.values(CARD_POSITIONS)),
     theme: PropTypes.shape({
         chip: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
-    width: PropTypes.string.isRequired,
 };
 
 StyledContentContainer.defaultProps = {
