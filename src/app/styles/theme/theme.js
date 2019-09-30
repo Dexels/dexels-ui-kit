@@ -1,3 +1,4 @@
+import { ALERT_DIALOG_THEME } from '../../components/organisms/AlertDialog/AlertDialog.consts';
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
 import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
@@ -10,6 +11,7 @@ import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.co
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
 const theme = {
+    alertDialog: ALERT_DIALOG_THEME,
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
     },

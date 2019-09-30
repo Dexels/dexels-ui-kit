@@ -1,5 +1,11 @@
 import mapArrayToObject from './mapArrayToObject';
 
+export const ALIGNMENTS = mapArrayToObject([
+    'LEFT',
+    'CENTER',
+    'RIGHT',
+]);
+
 export const DIRECTIONS = mapArrayToObject(['LTR', 'RTL']);
 
 /* When adding an option (or removing), check the elevations file for adding/removing css values */
