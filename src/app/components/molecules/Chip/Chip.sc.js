@@ -5,7 +5,7 @@ import rippleEffect from '../../../styles/mixins/rippleEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledChip = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().chip)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     appearance: none;
     display: flex;
     position: relative;
@@ -16,7 +16,7 @@ export const StyledChip = styled.button`
     border-radius: ${({ theme }) => theme.chip.borderRadius};
     background-color: ${({ theme }) => theme.chip.backgroundColorDeselected};
     cursor: pointer;
-    padding: 8px;
+    padding: ${({ theme }) => theme.chip.padding};
     height: ${({ theme }) => theme.chip.height};
     overflow: hidden;
     color: ${({ theme }) => theme.chip.colorPrimary};

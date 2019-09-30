@@ -65,10 +65,9 @@ const theme = {
         },
         textIcon: {
             fontFamily: 'sans-serif',
-            fontSize: '24px',
+            fontSize: '14px',
             fontWeight: '600',
         },
-        tooltip: TOOLTIP_THEME.textStyles.tooltip,
     },
     textStyling(textStyleSelector = 'body1') {
         const validTextStylingSelectors = Object.keys(this.textStyles);

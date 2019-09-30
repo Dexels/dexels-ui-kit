@@ -18,7 +18,7 @@ export const Configurable = () => (
 export const ConfigurableWithIcon = () => (
     <Chip
         direction={select('Direction', Chip.directions, Chip.defaultProps.direction)}
-        iconType={select('Type', Chip.types, Chip.types.CHECK)}
+        iconType={select('Type', Chip.iconTypes, Chip.iconTypes.CHECK)}
         isDisabled={boolean('Is disabled', Chip.defaultProps.isDisabled)}
         isSelected={boolean('Is selected', Chip.defaultProps.isSelected)}
         onClick={action('On click')}

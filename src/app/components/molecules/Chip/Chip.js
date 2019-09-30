@@ -33,7 +33,7 @@ Chip.propTypes = {
 
 Chip.defaultProps = {
     direction: Chip.directions.LTR,
-    iconType: '',
+    iconType: null,
     isDisabled: false,
     isSelected: true,
 };

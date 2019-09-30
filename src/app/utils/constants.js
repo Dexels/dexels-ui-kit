@@ -36,3 +36,12 @@ export const PLACEMENTS = mapArrayToObject([
 ]);
 
 export const SIZES = mapArrayToObject(['LARGE', 'SMALL']);
+
+export const TRANSITIONS = mapArrayToObject([
+    'EASE',
+    'EASE_IN',
+    'EASE_IN_OUT',
+    'EASE_OUT',
+    'LINEAR',
+    'NONE',
+]);
