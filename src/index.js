@@ -1,4 +1,4 @@
-import './app/styles/fonts/fonts.css';
+import './app/styles/fonts/iconfont/iconfont.css';
 import App from './app/App';
 import React from 'react';
 import { render } from 'react-dom';

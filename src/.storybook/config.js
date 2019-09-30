@@ -1,4 +1,4 @@
-import '../app/styles/fonts/fonts.css';
+import '../app/styles/fonts/iconfont/iconfont.css';
 import { addDecorator, configure } from '@storybook/react';
 import BaseStyles from '../app/styles/base';
 import React from 'react';
