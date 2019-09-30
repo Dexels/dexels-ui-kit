@@ -1,6 +1,7 @@
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
 import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
+import { CHECKBOX_THEME } from '../../components/molecules/Checkbox/Checkbox.consts';
 import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
@@ -15,6 +16,7 @@ const theme = {
     button: BUTTON_THEME,
     buttonIcon: BUTTON_ICON_THEME,
     card: CARD_THEME,
+    checkbox: CHECKBOX_THEME,
     chip: CHIP_THEME,
     input: INPUT_THEME,
     textIcon: TEXT_ICON_THEME,
