@@ -1,8 +1,10 @@
 import mapArrayToObject from './mapArrayToObject';
 
-export const DIRECTIONS = mapArrayToObject(['LTR', 'RTL']);
+export const DIRECTIONS = mapArrayToObject([
+    'LTR',
+    'RTL',
+]);
 
-/* When adding an option (or removing), check the elevations file for adding/removing css values */
 export const ELEVATIONS = mapArrayToObject([
     'LEVEL_0',
     'LEVEL_1',
@@ -14,6 +16,11 @@ export const ELEVATIONS = mapArrayToObject([
     'LEVEL_12',
     'LEVEL_16',
     'LEVEL_24',
+]);
+
+export const INPUT_VARIANTS = mapArrayToObject([
+    'COMPACT',
+    'FULL_SIZE',
 ]);
 
 export const POSITIONS = mapArrayToObject([
@@ -35,7 +42,10 @@ export const PLACEMENTS = mapArrayToObject([
     'BOTTOM',
 ]);
 
-export const SIZES = mapArrayToObject(['LARGE', 'SMALL']);
+export const SIZES = mapArrayToObject([
+    'LARGE',
+    'SMALL',
+]);
 
 export const TRANSITIONS = mapArrayToObject([
     'EASE',
