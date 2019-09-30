@@ -42,6 +42,7 @@ Title.defaultProps = {
 
 export const Item = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    padding-bottom: 4px;
     color: ${({ theme }) => theme.noResultsCard.colorItem};
 `;
 
@@ -59,8 +60,8 @@ Item.defaultProps = {
 
 export const Left = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
-    color: ${({ theme }) => theme.noResultsCard.colorHeader};
     width: 48px;
+    color: ${({ theme }) => theme.noResultsCard.colorHeader};
 `;
 
 Left.propTypes = {

@@ -1,4 +1,11 @@
-import { Header, Item, Left, Right, StyledNoResultsCard, Title } from './NoResultsCard.sc';
+import {
+    Header,
+    Item,
+    Left,
+    Right,
+    StyledNoResultsCard,
+    Title,
+} from './NoResultsCard.sc';
 import Card from '../../molecules/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
@@ -9,6 +16,7 @@ const NoResultsCard = ({
     header,
     height,
     iconType,
+    itemPrefix,
     items,
     title,
     width,
@@ -32,10 +40,9 @@ const NoResultsCard = ({
                 && items.length !== 0
                 && items.map((item) => (
                     <Item>
-                        {item}
+                        {itemPrefix.concat(' ').concat(item)}
                     </Item>
-                ))
-            }
+                ))}
         </Right>
     </StyledNoResultsCard>
 );
@@ -48,6 +55,7 @@ NoResultsCard.propTypes = {
     header: PropTypes.string.isRequired,
     height: PropTypes.string,
     iconType: PropTypes.oneOf(Object.values(NoResultsCard.iconTypes)),
+    itemPrefix: PropTypes.string,
     items: PropTypes.arrayOf(
         PropTypes.shape({
             text: PropTypes.string,
@@ -60,7 +68,8 @@ NoResultsCard.propTypes = {
 NoResultsCard.defaultProps = {
     elevation: NoResultsCard.elevations.LEVEL_1,
     height: '100%',
-    iconType: NoResultsCard.iconTypes.SEACRH,
+    iconType: NoResultsCard.iconTypes.SEARCH,
+    itemPrefix: '-',
     items: null,
     width: '100%',
 };
