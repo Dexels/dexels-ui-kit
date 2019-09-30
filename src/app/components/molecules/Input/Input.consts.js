@@ -8,14 +8,12 @@ import {
 } from '../../../styles/colors/colors';
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 
-export const INPUT_TYPES = {
-    EMAIL: 'email',
-    NUMBER: 'number',
-    PASSWORD: 'password',
-    TEXT: 'text',
-};
-
-export const INPUT_VARIANTS = mapArrayToObject(['COMPACT', 'FULL_SIZE']);
+export const INPUT_TYPES = mapArrayToObject([
+    'EMAIL',
+    'NUMBER',
+    'PASSWORD',
+    'TEXT',
+], true);
 
 export const INPUT_THEME = {
     borderRadius: '8px',
@@ -25,7 +23,7 @@ export const INPUT_THEME = {
     colorHover: blue100,
     colorPrimary: purple100,
     colorValid: green,
-    heightCompact: '23px',
+    heightCompact: '24px',
     heightFullSize: '46px',
     heightTextarea: '126px',
     labelColorActive: purple100,

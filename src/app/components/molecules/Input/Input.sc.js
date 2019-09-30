@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
-import { INPUT_VARIANTS } from './Input.consts';
+import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
@@ -45,7 +45,7 @@ export const Label = styled.label`
         background-color: transparent;
 
         ${(hasValue || isFocussed) && css`
-            top: -14px;
+            top: -16px;
             left: 0;
             padding: 0;
         `};
