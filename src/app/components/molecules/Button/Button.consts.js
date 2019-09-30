@@ -22,16 +22,4 @@ export const BUTTON_THEME = {
     heightLarge: '48px',
     heightSmall: '32px',
     textColor: white,
-    textStyles: {
-        buttonLarge: {
-            fontSize: '16px',
-            fontWeight: '500',
-            lineHeight: '20px',
-        },
-        buttonSmall: {
-            fontSize: '14px',
-            fontWeight: '500',
-            lineHeight: '16px',
-        },
-    },
 };

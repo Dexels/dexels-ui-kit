@@ -22,6 +22,7 @@ const theme = {
     checkbox: CHECKBOX_THEME,
     chip: CHIP_THEME,
     errorMessage: ERROR_MESSAGE_THEME,
+    fontFamily: "'Open Sans', arial, sans-serif",
     input: INPUT_THEME,
     label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
@@ -42,8 +43,6 @@ const theme = {
             fontWeight: '300',
             lineHeight: '18px',
         },
-        buttonLarge: BUTTON_THEME.textStyles.buttonLarge,
-        buttonSmall: BUTTON_THEME.textStyles.buttonSmall,
         caption: {
             fontSize: '12px',
             fontWeight: '300',
@@ -61,18 +60,13 @@ const theme = {
         },
         h3: {
             fontSize: '16px',
-            fontWeight: '600',
+            fontWeight: '700',
             lineHeight: '24px',
         },
         h4: {
             fontSize: '14px',
-            fontWeight: '600',
+            fontWeight: '700',
             lineHeight: '22px',
-        },
-        textIcon: {
-            fontFamily: 'sans-serif',
-            fontSize: '14px',
-            fontWeight: '600',
         },
     },
     textStyling(textStyleSelector = 'body1') {
@@ -86,7 +80,7 @@ const theme = {
 
         return css`
             line-height: ${textStyle.lineHeight};
-            font-family: ${textStyle.fontFamily || '"Roboto", "Franklin Gothic Medium", Tahoma, sans-serif'};
+            font-family: ${this.fontFamily};
             font-size: ${textStyle.fontSize};
             font-weight: ${textStyle.fontWeight};
         `;

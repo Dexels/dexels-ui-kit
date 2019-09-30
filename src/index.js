@@ -1,4 +1,5 @@
 import './app/styles/fonts/iconfont/iconfont.css';
+import './app/styles/fonts/opensans/opensans.css';
 import App from './app/App';
 import React from 'react';
 import { render } from 'react-dom';

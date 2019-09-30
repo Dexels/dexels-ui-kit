@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'ClubWebIcons';
-    src:  url('/fonts/ClubWebIcons.eot?2w285t');
-    src:  url('/fonts/ClubWebIcons.eot?2w285t#iefix') format('embedded-opentype'),
-    url('/fonts/ClubWebIcons.ttf?2w285t') format('truetype'),
-    url('/fonts/ClubWebIcons.woff?2w285t') format('woff'),
-    url('/fonts/ClubWebIcons.svg?2w285t#ClubWebIcons') format('svg');
+    src:  url('/fonts/iconfont/ClubWebIcons.eot?2w285t');
+    src:  url('/fonts/iconfont/ClubWebIcons.eot?2w285t#iefix') format('embedded-opentype'),
+    url('/fonts/iconfont/ClubWebIcons.ttf?2w285t') format('truetype'),
+    url('/fonts/iconfont/ClubWebIcons.woff?2w285t') format('woff'),
+    url('/fonts/iconfont/ClubWebIcons.svg?2w285t#ClubWebIcons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
