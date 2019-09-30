@@ -4,6 +4,7 @@ import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
 import { CHECKBOX_THEME } from '../../components/molecules/Checkbox/Checkbox.consts';
 import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
+import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
@@ -18,6 +19,7 @@ const theme = {
     card: CARD_THEME,
     checkbox: CHECKBOX_THEME,
     chip: CHIP_THEME,
+    errorMessage: ERROR_MESSAGE_THEME,
     input: INPUT_THEME,
     textIcon: TEXT_ICON_THEME,
     textStyles: {

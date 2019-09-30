@@ -4,15 +4,9 @@ import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const ErrorMessage = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
+export const ErrorMessageWrapper = styled.div`
     margin: 4px 0 0 12px;
-    color: ${({ theme }) => theme.input.colorError};
 `;
-
-ErrorMessage.defaultProps = {
-    theme: defaultTheme,
-};
 
 export const Label = styled.label`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
@@ -146,7 +140,7 @@ export const StyledInput = styled.div`
     position: relative;
 
     ${({ variant, theme }) => variant === INPUT_VARIANTS.COMPACT && css`
-        ${ErrorMessage} {
+        ${ErrorMessageWrapper} {
             margin-left: 0;
         }
 

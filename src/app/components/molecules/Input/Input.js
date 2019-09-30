@@ -1,10 +1,11 @@
 import {
-    ErrorMessage,
+    ErrorMessageWrapper,
     Label,
     StyledInput,
     TextField,
 } from './Input.sc';
 import React, { useState } from 'react';
+import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import { INPUT_TYPES } from './Input.consts';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
@@ -60,9 +61,11 @@ const Input = ({
                 {label}
             </Label>
             {errorMessage && hasError && (
-                <ErrorMessage>
-                    {errorMessage}
-                </ErrorMessage>
+                <ErrorMessageWrapper>
+                    <ErrorMessage>
+                        {errorMessage}
+                    </ErrorMessage>
+                </ErrorMessageWrapper>
             )}
         </StyledInput>
     );
