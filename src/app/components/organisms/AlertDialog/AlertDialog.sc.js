@@ -12,9 +12,9 @@ export const Header = styled.div`
     align-items: center;
     border-top-left-radius: ${({ theme }) => theme.alertDialog.borderRadius};
     border-top-right-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    height: ${({ heightHeader }) => heightHeader};
-    padding: 16px;
     background-color: ${({ theme }) => theme.alertDialog.backgroundColorHeader};
+    padding: 16px;
+    height: ${({ heightHeader }) => heightHeader};
     color: ${({ theme }) => theme.alertDialog.colorHeader};
 `;
 
@@ -35,9 +35,9 @@ export const Body = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     border-top-left-radius: ${({ hasHeader, theme }) => !hasHeader && theme.alertDialog.borderRadius};
     border-top-right-radius: ${({ hasHeader, theme }) => !hasHeader && theme.alertDialog.borderRadius};
+    background-color: ${({ theme }) => theme.alertDialog.backgroundColorBody};
     padding: 16px;
     height: 100%;
-    background-color: ${({ theme }) => theme.alertDialog.backgroundColorBody};
     color: ${({ theme }) => theme.alertDialog.colorBody};
 `;
 
@@ -60,13 +60,13 @@ export const ButtonSpacer = styled.span`
 export const Footer = styled.div`
     ${({ alignmentFooter }) => getAlignment(alignmentFooter)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    border-bottom-left-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    border-bottom-right-radius: ${({ theme }) => theme.alertDialog.borderRadius};
     display: flex;
     align-items: center;
-    height: ${({ heightFooter }) => heightFooter};
-    padding: 16px;
+    border-bottom-left-radius: ${({ theme }) => theme.alertDialog.borderRadius};
+    border-bottom-right-radius: ${({ theme }) => theme.alertDialog.borderRadius};
     background-color: ${({ theme }) => theme.alertDialog.backgroundColorFooter};
+    padding: 16px;
+    height: ${({ heightFooter }) => heightFooter};
 `;
 
 Footer.propTypes = {
@@ -87,8 +87,8 @@ export const StyledAlertDialog = styled.div`
     flex-direction: column;
     border-radius: ${({ theme }) => theme.alertDialog.borderRadius};
     width: ${({ widthDialog }) => widthDialog};
-    height: ${({ heightDialog }) => heightDialog};
     max-width: ${({ widthDialog }) => widthDialog};
+    height: ${({ heightDialog }) => heightDialog};
     max-height: ${({ heightDialog }) => heightDialog};
 `;
 
