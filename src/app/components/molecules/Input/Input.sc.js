@@ -83,17 +83,17 @@ export const TextField = styled.input`
         border-color: ${theme.input.colorFocus};
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
-        border-color: ${theme.input.colorDisabled};
-        color: ${theme.input.colorDisabled};
-    `};
-
     ${({ hasError, theme }) => hasError && css`
         border-color: ${theme.input.colorError};
     `};
 
     ${({ isValid, theme }) => isValid && css`
         border-color: ${theme.input.colorValid};
+    `};
+
+    ${({ isDisabled, theme }) => isDisabled && css`
+        border-color: ${theme.input.colorDisabled};
+        color: ${theme.input.colorDisabled};
     `};
 
     &:hover {

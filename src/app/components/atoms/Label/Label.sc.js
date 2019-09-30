@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export const StyledLabel = styled.label`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    cursor: inherit;
     color: ${({ theme }) => theme.label.colorDefault};
 
     ${({ isHovered, theme }) => isHovered && css`
@@ -18,16 +19,16 @@ export const StyledLabel = styled.label`
         color: ${theme.label.colorFocus};
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.label.colorDisabled};
-    `};
-
     ${({ isValid, theme }) => isValid && css`
         color: ${theme.label.colorValid};
     `};
 
     ${({ hasError, theme }) => hasError && css`
         color: ${theme.label.colorError};
+    `};
+
+    ${({ isDisabled, theme }) => isDisabled && css`
+        color: ${theme.label.colorDisabled};
     `};
 
     ${({ isSmall, theme }) => isSmall && theme.textStyling(theme.availableTextStyles().caption)};
