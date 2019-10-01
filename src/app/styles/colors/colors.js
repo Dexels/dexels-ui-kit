@@ -1,3 +1,5 @@
+export const black = '#000000';
+
 export const blue25 = '#BFE7FE';
 
 export const blue50 = '#80CFFE';
@@ -11,6 +13,8 @@ export const purple100 = '#3D4A9A';
 export const green = '#2DD67B';
 
 export const orange = '#EB6500';
+
+export const overlay = 'rgba(0,0,0,0.4)';
 
 export const red = '#F94E4E';
 

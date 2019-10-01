@@ -12,8 +12,10 @@ export const Configurable = () => (
         body={text('Body', 'Some body text')}
         buttonTextCancel={text('Button text cancel', 'Cancel')}
         buttonTextOk={text('Button text ok', 'Ok')}
+        direction={select('Direction', AlertDialog.directions, AlertDialog.defaultProps.direction)}
         elevation={select('Elevation', AlertDialog.elevations, AlertDialog.defaultProps.elevation)}
         handleCancel={() => alert("You've pressed cancel")}
+        handleClose={() => alert("You've pressed close")}
         handleOk={() => alert("You've pressed ok")}
         header={text('Header', 'Some header text')}
         heightDialog={text('Set height of dialog in px or %', AlertDialog.defaultProps.heightDialog)}

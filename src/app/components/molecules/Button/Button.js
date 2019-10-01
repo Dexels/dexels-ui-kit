@@ -5,7 +5,7 @@ import { StyledButton } from './Button.sc';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const Button = ({
-    autofocus,
+    autoFocus,
     children,
     direction,
     fullWidth,
@@ -16,7 +16,7 @@ const Button = ({
     variant,
 }) => (
     <StyledButton
-        autofocus={autofocus}
+        autoFocus={autoFocus}
         fullWidth={fullWidth}
         isDisabled={isDisabled}
         onClick={onClick}
@@ -35,7 +35,7 @@ Button.sizes = BUTTON_SIZES;
 Button.variants = BUTTON_VARIANTS;
 
 Button.propTypes = {
-    autofocus: PropTypes.bool,
+    autoFocus: PropTypes.bool,
     children: PropTypes.node.isRequired,
     direction: PropTypes.oneOf(Object.values(Button.directions)),
     fullWidth: PropTypes.bool,
@@ -47,7 +47,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-    autofocus: false,
+    autoFocus: false,
     direction: Button.directions.LTR,
     fullWidth: false,
     iconType: null,

@@ -11,6 +11,7 @@ import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/NoResultsCard.consts';
+import { OVERLAY_THEME } from '../../components/molecules/Overlay/Overlay.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
@@ -30,6 +31,7 @@ const theme = {
     inputPassword: INPUT_PASSWORD_THEME,
     label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
+    overlay: OVERLAY_THEME,
     textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {

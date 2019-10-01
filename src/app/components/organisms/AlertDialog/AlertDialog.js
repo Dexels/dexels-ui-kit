@@ -1,18 +1,17 @@
-import { ALERT_DIALOG_ALIGNMENTS, ALERT_DIALOG_ELEVATIONS } from './AlertDialog.consts';
+import { ALERT_DIALOG_ALIGNMENTS, ALERT_DIALOG_DIRECTIONS, ALERT_DIALOG_ELEVATIONS } from './AlertDialog.consts';
 import {
     Body,
     ButtonSpacer,
     CloseButton,
-    Container,
     Footer,
     Header,
     StyledAlertDialog,
 } from './AlertDialog.sc';
 import Button from '../../molecules/Button/Button';
 import Icon from '../../atoms/Icon/Icon';
+import Overlay from '../../molecules/Overlay/Overlay';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 
 const AlertDialog = ({
     alignmentBody,
@@ -21,6 +20,7 @@ const AlertDialog = ({
     body,
     buttonTextCancel,
     buttonTextOk,
+    direction,
     elevation,
     handleCancel,
     handleClose,
@@ -32,7 +32,19 @@ const AlertDialog = ({
     showCloseButton,
     widthDialog,
 }) => (
-    <Container>
+    <Overlay
+        fullScreen
+        isVisible
+    >
+        { showCloseButton
+        && (
+            <CloseButton
+                direction={direction}
+                onClick={handleClose}
+            >
+                <Icon type={Icon.types.CLOSE} />
+            </CloseButton>
+        )}
         <StyledAlertDialog
             elevation={elevation}
             heightDialog={heightDialog}
@@ -43,15 +55,8 @@ const AlertDialog = ({
                 <Header
                     alignmentHeader={alignmentHeader}
                     heightHeader={heightHeader}
-                    showCloseButton={showCloseButton}
                 >
                     {header}
-                    <CloseButton>
-                        <ButtonIcon
-                            iconType={Icon.CLOSE}
-                            onClick={handleClose}
-                        />
-                    </CloseButton>
                 </Header>
             )}
             <Body
@@ -70,7 +75,7 @@ const AlertDialog = ({
                 && (
                     <>
                         <Button
-                            autofocus
+                            autoFocus
                             iconType={Button.iconTypes.CLOSE}
                             onClick={handleCancel}
                             size={Button.sizes.SMALL}
@@ -91,10 +96,11 @@ const AlertDialog = ({
                 </Button>
             </Footer>
         </StyledAlertDialog>
-    </Container>
+    </Overlay>
 );
 
 AlertDialog.alignments = ALERT_DIALOG_ALIGNMENTS;
+AlertDialog.directions = ALERT_DIALOG_DIRECTIONS;
 AlertDialog.elevations = ALERT_DIALOG_ELEVATIONS;
 
 AlertDialog.propTypes = {
@@ -104,6 +110,7 @@ AlertDialog.propTypes = {
     body: PropTypes.node.isRequired,
     buttonTextCancel: PropTypes.string,
     buttonTextOk: PropTypes.string.isRequired,
+    direction: PropTypes.oneOf(Object.values(AlertDialog.directions)),
     elevation: PropTypes.oneOf(Object.values(AlertDialog.elevations)),
     handleCancel: PropTypes.func,
     handleClose: PropTypes.func,
@@ -121,11 +128,12 @@ AlertDialog.defaultProps = {
     alignmentFooter: AlertDialog.alignments.RIGHT,
     alignmentHeader: AlertDialog.alignments.CENTER,
     buttonTextCancel: 'Cancel',
+    direction: AlertDialog.directions.LTR,
     elevation: AlertDialog.elevations.LEVEL_12,
     handleCancel: null,
     handleClose: null,
     header: null,
-    heightDialog: '100%',
+    heightDialog: '200px',
     heightFooter: '56px',
     heightHeader: '56px',
     showCloseButton: true,

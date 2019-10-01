@@ -5,25 +5,35 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const Container = styled.div`
-    /* display: none; */
-    display: flex;
+export const CloseButton = styled.button`
     position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 100px;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    top: 10px;
+    border: 0;
+    background-color: ${({ theme }) => theme.alertDialog.closeButtonBackgroundColor};
+    width: ${({ direction }) => direction === 'RTL' && '99%'};
+    text-align: ${({ direction }) => direction === 'LTR' && 'left'};
+    text-align: ${({ direction }) => direction === 'RTL' && 'right'};
+    color: ${({ theme }) => theme.alertDialog.closeButtonColor};
+    font-size: ${({ theme }) => theme.alertDialog.closeButtonSize};
+
+    &:active,
+    &:hover {
+        background-color: ${({ theme }) => theme.alertDialog.closeButtonBackgroundColorHover};
+        color: ${({ theme }) => theme.alertDialog.closeButtonColorHover};
+    }
 `;
 
-export const CloseButton = styled.span`
-    color: #FFFFFF;
-    float: right;
-`;
+CloseButton.propTypes = {
+    theme: PropTypes.shape({
+        alertDialog: PropTypes.objectOf((propValue, key, componentName) => (
+            validateThemePropTypes(propValue, key, componentName)
+        )).isRequired,
+    }),
+};
+
+CloseButton.defaultProps = {
+    theme: defaultTheme,
+};
 
 export const Header = styled.header`
     ${({ alignmentHeader }) => getAlignment(alignmentHeader)};
