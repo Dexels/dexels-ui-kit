@@ -7,6 +7,10 @@ export const StyledLabel = styled.label`
     cursor: inherit;
     color: ${({ theme }) => theme.label.colorDefault};
 
+    ${({ isCheckboxLabel, theme }) => isCheckboxLabel && css`
+        color: ${theme.label.colorCheckboxLabel};
+    `};
+
     ${({ isHovered, theme }) => isHovered && css`
         color: ${theme.label.colorHover};
     `};
@@ -37,6 +41,7 @@ export const StyledLabel = styled.label`
 StyledLabel.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isActive: PropTypes.bool.isRequired,
+    isCheckboxLabel: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isFocussed: PropTypes.bool.isRequired,
     isSmall: PropTypes.bool.isRequired,
@@ -45,6 +50,7 @@ StyledLabel.propTypes = {
         availableTextStyles: PropTypes.func.isRequired,
         label: PropTypes.shape({
             colorActive: PropTypes.string.isRequired,
+            colorCheckboxLabel: PropTypes.string.isRequired,
             colorDefault: PropTypes.string.isRequired,
             colorDisabled: PropTypes.string.isRequired,
             colorError: PropTypes.string.isRequired,

@@ -6,6 +6,7 @@ const Label = ({
     children,
     hasError,
     isActive,
+    isCheckboxLabel,
     isHovered,
     isDisabled,
     isFocussed,
@@ -15,6 +16,7 @@ const Label = ({
     <StyledLabel
         hasError={hasError}
         isActive={isActive}
+        isCheckboxLabel={isCheckboxLabel}
         isDisabled={isDisabled}
         isFocussed={isFocussed}
         isHovered={isHovered}
@@ -29,6 +31,7 @@ Label.propTypes = {
     children: PropTypes.node.isRequired,
     hasError: PropTypes.bool,
     isActive: PropTypes.bool,
+    isCheckboxLabel: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFocussed: PropTypes.bool,
     isHovered: PropTypes.bool,
@@ -39,6 +42,7 @@ Label.propTypes = {
 Label.defaultProps = {
     hasError: false,
     isActive: false,
+    isCheckboxLabel: false,
     isDisabled: false,
     isFocussed: false,
     isHovered: false,
