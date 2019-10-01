@@ -6,6 +6,9 @@ import {
     sl10,
     white,
 } from '../../../styles/colors/colors';
+import { DIRECTIONS } from '../../../utils/constants';
+
+export const CHECKBOX_DIRECTIONS = DIRECTIONS;
 
 export const CHECKBOX_THEME = {
     borderRadius: '5px',
@@ -19,5 +22,3 @@ export const CHECKBOX_THEME = {
     iconFontSize: '12px',
     size: '24px',
 };
-
-export default CHECKBOX_THEME;
