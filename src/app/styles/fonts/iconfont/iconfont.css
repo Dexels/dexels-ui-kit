@@ -1,0 +1,208 @@
+@font-face {
+    font-family: 'ClubWebIcons';
+    src:  url('/fonts/iconfont/ClubWebIcons.eot?2w285t');
+    src:  url('/fonts/iconfont/ClubWebIcons.eot?2w285t#iefix') format('embedded-opentype'),
+    url('/fonts/iconfont/ClubWebIcons.ttf?2w285t') format('truetype'),
+    url('/fonts/iconfont/ClubWebIcons.woff?2w285t') format('woff'),
+    url('/fonts/iconfont/ClubWebIcons.svg?2w285t#ClubWebIcons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'ClubWebIcons' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}
+
+.icon-Concept:before {
+    content: "\e938";
+}
+.icon-ConceptAlert:before {
+    content: "\e939";
+}
+.icon-Cards:before {
+    content: "\e93a";
+}
+.icon-Change:before {
+    content: "\e93b";
+}
+.icon-PostboxOut:before {
+    content: "\e93c";
+}
+.icon-PostboxIn:before {
+    content: "\e93d";
+}
+.icon-Suspended:before {
+    content: "\e937";
+}
+.icon-Error:before {
+    content: "\e936";
+}
+.icon-Indicator:before {
+    content: "\e935";
+}
+.icon-Match-A-comp:before {
+    content: "\e931";
+}
+.icon-Match-B-comp:before {
+    content: "\e932";
+}
+.icon-Match-Cone:before {
+    content: "\e933";
+}
+.icon-Match-Cup:before {
+    content: "\e934";
+}
+.icon-Alert:before {
+    content: "\e900";
+}
+.icon-Add:before {
+    content: "\e901";
+}
+.icon-Arrow-Down:before {
+    content: "\e902";
+}
+.icon-Arrow-Left:before {
+    content: "\e903";
+}
+.icon-Arrow-Right:before {
+    content: "\e904";
+}
+.icon-Arrow-Up:before {
+    content: "\e905";
+}
+.icon-Calendar:before {
+    content: "\e906";
+}
+.icon-Cancel:before {
+    content: "\e907";
+}
+.icon-Car:before {
+    content: "\e908";
+}
+.icon-Check:before {
+    content: "\e909";
+}
+.icon-Chevron-Down:before {
+    content: "\e90a";
+}
+.icon-Chevron-Left:before {
+    content: "\e90b";
+}
+.icon-Chevron-Right:before {
+    content: "\e90c";
+}
+.icon-Chevron-Up:before {
+    content: "\e90d";
+}
+.icon-Clock:before {
+    content: "\e90e";
+}
+.icon-Close:before {
+    content: "\e90f";
+}
+.icon-Club-Shield:before {
+    content: "\e910";
+}
+.icon-Club-Shirt:before {
+    content: "\e911";
+}
+.icon-Done:before {
+    content: "\e912";
+}
+.icon-Drop-Down:before {
+    content: "\e913";
+}
+.icon-Drop-Up:before {
+    content: "\e914";
+}
+.icon-Help:before {
+    content: "\e915";
+}
+.icon-Home:before {
+    content: "\e916";
+}
+.icon-Info:before {
+    content: "\e917";
+}
+.icon-Locked:before {
+    content: "\e918";
+}
+.icon-Logout:before {
+    content: "\e919";
+}
+.icon-Mail:before {
+    content: "\e91a";
+}
+.icon-Menu:before {
+    content: "\e91b";
+}
+.icon-Minus:before {
+    content: "\e91c";
+}
+.icon-Move-All:before {
+    content: "\e91d";
+}
+.icon-Move-LeftRight:before {
+    content: "\e91e";
+}
+.icon-Move-UpDown:before {
+    content: "\e91f";
+}
+.icon-Notification:before {
+    content: "\e920";
+}
+.icon-Pencil:before {
+    content: "\e921";
+}
+.icon-Pin:before {
+    content: "\e922";
+}
+.icon-Plus:before {
+    content: "\e923";
+}
+.icon-Remove:before {
+    content: "\e924";
+}
+.icon-Search:before {
+    content: "\e925";
+}
+.icon-Send:before {
+    content: "\e926";
+}
+.icon-Settings:before {
+    content: "\e927";
+}
+.icon-Share:before {
+    content: "\e928";
+}
+.icon-Tip:before {
+    content: "\e929";
+}
+.icon-Trash:before {
+    content: "\e92a";
+}
+.icon-Unlocked:before {
+    content: "\e92b";
+}
+.icon-User:before {
+    content: "\e92c";
+}
+.icon-UserCircle:before {
+    content: "\e92d";
+}
+.icon-Visibility-On:before {
+    content: "\e92e";
+}
+.icon-Visibility-Off:before {
+    content: "\e92f";
+}
+.icon-World:before {
+    content: "\e930";
+}

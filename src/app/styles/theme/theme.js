@@ -2,9 +2,13 @@ import { ALERT_DIALOG_THEME } from '../../components/organisms/AlertDialog/Alert
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
 import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
+import { CHECKBOX_THEME } from '../../components/molecules/Checkbox/Checkbox.consts';
 import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
+import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
+import { INPUT_PASSWORD_THEME } from '../../components/organisms/InputPassword/InputPassword.consts';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
+import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/NoResultsCard.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
@@ -18,8 +22,13 @@ const theme = {
     button: BUTTON_THEME,
     buttonIcon: BUTTON_ICON_THEME,
     card: CARD_THEME,
+    checkbox: CHECKBOX_THEME,
     chip: CHIP_THEME,
+    errorMessage: ERROR_MESSAGE_THEME,
+    fontFamily: "'Open Sans', arial, sans-serif",
     input: INPUT_THEME,
+    inputPassword: INPUT_PASSWORD_THEME,
+    label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
     textIcon: TEXT_ICON_THEME,
     textStyles: {
@@ -38,8 +47,6 @@ const theme = {
             fontWeight: '300',
             lineHeight: '18px',
         },
-        buttonLarge: BUTTON_THEME.textStyles.buttonLarge,
-        buttonSmall: BUTTON_THEME.textStyles.buttonSmall,
         caption: {
             fontSize: '12px',
             fontWeight: '300',
@@ -57,18 +64,13 @@ const theme = {
         },
         h3: {
             fontSize: '16px',
-            fontWeight: '600',
+            fontWeight: '700',
             lineHeight: '24px',
         },
         h4: {
             fontSize: '14px',
-            fontWeight: '600',
+            fontWeight: '700',
             lineHeight: '22px',
-        },
-        textIcon: {
-            fontFamily: 'sans-serif',
-            fontSize: '14px',
-            fontWeight: '600',
         },
     },
     textStyling(textStyleSelector = 'body1') {
@@ -83,6 +85,7 @@ const theme = {
         return css`
             line-height: ${textStyle.lineHeight};
             font-family: ${textStyle.fontFamily || 'Roboto, "Franklin Gothic Medium", Tahoma, sans-serif'};
+            font-family: ${this.fontFamily};
             font-size: ${textStyle.fontSize};
             font-weight: ${textStyle.fontWeight};
         `;

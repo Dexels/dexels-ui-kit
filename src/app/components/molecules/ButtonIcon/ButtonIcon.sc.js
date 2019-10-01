@@ -13,7 +13,7 @@ export const StyledButtonIcon = styled.button`
     background-color: transparent;
     cursor: pointer;
     padding: 12px;
-    color: ${({ theme }) => theme.buttonIcon.colorPrimary};
+    color: ${({ theme }) => theme.buttonIcon.colorDefault};
 
     ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;

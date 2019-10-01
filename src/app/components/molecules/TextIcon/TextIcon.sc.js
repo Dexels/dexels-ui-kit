@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledTextIcon = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().textIcon)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -15,7 +15,7 @@ export const StyledTextIcon = styled.div`
     padding: 8px;
     width: ${({ theme }) => theme.textIcon.size};
     height: ${({ theme }) => theme.textIcon.size};
-    color: ${({ theme }) => theme.textIcon.colorPrimary};
+    color: ${({ theme }) => theme.textIcon.colorDefault};
 `;
 
 StyledTextIcon.propTypes = {

@@ -16,22 +16,10 @@ export const BUTTON_VARIANTS = mapArrayToObject(['FILLED', 'OUTLINE', 'TEXT_ONLY
 export const BUTTON_THEME = {
     borderRadiusLarge: '24px',
     borderRadiusSmall: '16px',
+    colorDefault: purple100,
     colorDisabled: sl10,
     colorHover: blue100,
-    colorPrimary: purple100,
     heightLarge: '48px',
     heightSmall: '32px',
     textColor: white,
-    textStyles: {
-        buttonLarge: {
-            fontSize: '16px',
-            fontWeight: '500',
-            lineHeight: '20px',
-        },
-        buttonSmall: {
-            fontSize: '14px',
-            fontWeight: '500',
-            lineHeight: '16px',
-        },
-    },
 };

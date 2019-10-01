@@ -1,97 +1,77 @@
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
-import { INPUT_VARIANTS } from './Input.consts';
+import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const ErrorMessage = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
-    margin: 4px 0 0 12px;
-    color: ${({ theme }) => theme.input.colorError};
+export const StyledInput = styled.div`
+    position: relative;
+
+    ${({ isDisabled }) => isDisabled && css`
+        * {
+            pointer-events: none;
+        }
+    `};
 `;
 
-ErrorMessage.defaultProps = {
-    theme: defaultTheme,
+StyledInput.propTypes = {
+    isDisabled: PropTypes.bool.isRequired,
 };
 
-export const Label = styled.label`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    display: block;
+export const LabelWrapper = styled.div`
     position: absolute;
-    top: 11px;
-    left: 12px;
-    background-color: white;
-    color: ${({ theme }) => theme.input.labelColorPrimary};
     pointer-events: none;
-
-    ${({ hasValue, isFocussed, theme }) => (hasValue || isFocussed) && css`
-        ${theme.textStyling(theme.availableTextStyles().caption)};
-        top: -8px;
-        left: 20px;
-        padding: 0 4px;
-    `};
-
-    ${({ hasValue, theme }) => hasValue && css`
-        color: ${theme.input.labelColorActive} !important;
-    `};
-
-    ${({ isFocussed, theme }) => isFocussed && css`
-        color: ${theme.input.labelColorFocus} !important;
-    `};
 
     ${({ hasValue, isFocussed, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
         top: 0;
         left: 0;
-        background-color: transparent;
 
         ${(hasValue || isFocussed) && css`
-            top: -14px;
+            top: -16px;
             left: 0;
             padding: 0;
         `};
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
-        pointer-events: none;
-        color: ${theme.input.labelColorDisabled} !important;
-    `};
+    ${({ hasValue, isFocussed, variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
+        top: 11px;
+        left: 12px;
+        background-color: white;
 
-    ${({ isValid, theme }) => isValid && css`
-        color: ${theme.input.labelColorValid} !important;
-    `};
-
-    ${({ hasError, theme }) => hasError && css`
-        color: ${theme.input.labelColorError} !important;
+        ${(hasValue || isFocussed) && css`
+            top: -8px;
+            left: 20px;
+            padding: 0 4px;
+        `};
     `};
 `;
 
-Label.propTypes = {
-    hasError: PropTypes.bool.isRequired,
+LabelWrapper.propTypes = {
     hasValue: PropTypes.bool.isRequired,
-    isDisabled: PropTypes.bool.isRequired,
     isFocussed: PropTypes.bool.isRequired,
-    isValid: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        input: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
-};
-
-Label.defaultProps = {
-    theme: defaultTheme,
 };
 
 export const TextField = styled.input`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     display: block;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.input.colorPrimary};
-    border-radius: ${({ theme }) => theme.input.borderRadius};
-    padding: 0 12px;
     width: 100%;
     color: ${({ theme }) => theme.input.textColor};
+
+    ${({ variant, theme }) => variant === INPUT_VARIANTS.COMPACT && css`
+        border: 0;
+        border-bottom: 1px solid ${theme.input.colorDefault};
+        padding: 0;
+        height: ${theme.input.heightCompact};
+    `};
+
+    ${({ variant, theme }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
+        border: 1px solid ${theme.input.colorDefault};
+        border-radius: ${theme.input.borderRadius};
+        padding: 0 12px;
+        height: ${theme.input.heightFullSize};
+    `};
 
     ${({ isTextarea, theme }) => isTextarea && css`
         height: ${theme.input.heightTextarea};
@@ -100,28 +80,24 @@ export const TextField = styled.input`
     `};
 
     ${({ isFocussed, theme }) => isFocussed && css`
-        border-color: ${theme.input.colorFocus} !important;
-    `};
-
-    ${({ isDisabled, theme }) => isDisabled && css`
-        pointer-events: none;
-        border-color: ${theme.input.colorDisabled} !important;
+        border-color: ${theme.input.colorFocus};
     `};
 
     ${({ hasError, theme }) => hasError && css`
-        border-color: ${theme.input.colorError} !important;
+        border-color: ${theme.input.colorError};
     `};
 
     ${({ isValid, theme }) => isValid && css`
-        border-color: ${theme.input.colorValid} !important;
+        border-color: ${theme.input.colorValid};
+    `};
+
+    ${({ isDisabled, theme }) => isDisabled && css`
+        border-color: ${theme.input.colorDisabled};
+        color: ${theme.input.colorDisabled};
     `};
 
     &:hover {
         border-color: ${({ theme }) => theme.input.colorHover};
-
-        + ${Label} {
-            color: ${({ theme }) => theme.input.labelColorHover};
-        }
     }
 `;
 
@@ -132,50 +108,25 @@ TextField.propTypes = {
     isTextarea: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
+        availableTextStyles: PropTypes.func.isRequired,
         input: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
+        textStyling: PropTypes.func.isRequired,
     }),
+    variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
 };
 
 TextField.defaultProps = {
     theme: defaultTheme,
 };
 
-export const StyledInput = styled.div`
-    position: relative;
-
-    ${({ variant, theme }) => variant === INPUT_VARIANTS.COMPACT && css`
-        ${ErrorMessage} {
-            margin-left: 0;
-        }
-
-        ${TextField} {
-            border-top: 0;
-            border-right: 0;
-            border-left: 0;
-            border-radius: 0;
-            padding: 0;
-            height: ${theme.input.heightCompact};
-        }
-    `};
-
-    ${({ variant, theme }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
-        ${TextField} {
-            height: ${theme.input.heightFullSize};
-        }
+export const ErrorMessageWrapper = styled.div`
+    ${({ variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
+        margin: 4px 0 0 12px;
     `};
 `;
 
-StyledInput.propTypes = {
-    theme: PropTypes.shape({
-        input: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
+ErrorMessageWrapper.propTypes = {
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
-};
-
-StyledInput.defaultProps = {
-    theme: defaultTheme,
 };

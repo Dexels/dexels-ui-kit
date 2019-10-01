@@ -11,7 +11,7 @@ export const Configurable = () => (
         isDisabled={boolean('Is disabled', InputPassword.defaultProps.isDisabled)}
         isValid={boolean('Is valid', InputPassword.defaultProps.isValid)}
         label={text('Label', 'Your password')}
-        name="A random name"
+        name="a-inputpassword-name"
         variant={select('Variant', InputPassword.variants, InputPassword.defaultProps.variant)}
     />
 );

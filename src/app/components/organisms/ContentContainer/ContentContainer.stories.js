@@ -1,4 +1,5 @@
 import { select, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import Card from '../../molecules/Card/Card';
 import ContentContainer from './ContentContainer';
@@ -30,7 +31,7 @@ export const ConfigurableWithComponent = () => (
             elevation={Card.elevations.LEVEL_4}
         >
             <Button
-                onClick={() => {}}
+                onClick={action('On click')}
             >
                 {'Button for testing'}
             </Button>
