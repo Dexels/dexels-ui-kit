@@ -4,10 +4,9 @@ import {
     StyledInput,
     TextField,
 } from './Input.sc';
+import { INPUT_TYPES, INPUT_VARIANTS } from './Input.consts';
 import React, { useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
-import { INPUT_TYPES } from './Input.consts';
-import { INPUT_VARIANTS } from '../../../utils/constants';
 import Label from '../../atoms/Label/Label';
 import PropTypes from 'prop-types';
 

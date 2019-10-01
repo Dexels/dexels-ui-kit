@@ -5,6 +5,7 @@ import { CHECKBOX_THEME } from '../../components/molecules/Checkbox/Checkbox.con
 import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
 import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
+import { INPUT_PASSWORD_THEME } from '../../components/organisms/InputPassword/InputPassword.consts';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
@@ -24,6 +25,7 @@ const theme = {
     errorMessage: ERROR_MESSAGE_THEME,
     fontFamily: "'Open Sans', arial, sans-serif",
     input: INPUT_THEME,
+    inputPassword: INPUT_PASSWORD_THEME,
     label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
     textIcon: TEXT_ICON_THEME,

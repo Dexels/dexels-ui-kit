@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyledInputPassword, VisibilitySwitch } from './InputPassword.sc';
 import Icon from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
+import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 import PropTypes from 'prop-types';
 
 const InputPassword = ({
@@ -29,6 +30,7 @@ const InputPassword = ({
                 variant={variant}
             />
             <VisibilitySwitch
+                isDisabled={isDisabled}
                 onClick={() => {
                     setIsVisible(!isVisible);
                 }}
@@ -40,7 +42,7 @@ const InputPassword = ({
     );
 };
 
-InputPassword.variants = Input.variants;
+InputPassword.variants = INPUT_PASSWORD_VARIANTS;
 
 InputPassword.propTypes = {
     errorMessage: PropTypes.string,
