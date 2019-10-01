@@ -5,7 +5,27 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const Header = styled.div`
+export const Container = styled.div`
+    /* display: none; */
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+`;
+
+export const CloseButton = styled.span`
+    color: #FFFFFF;
+    float: right;
+`;
+
+export const Header = styled.header`
     ${({ alignmentHeader }) => getAlignment(alignmentHeader)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     display: flex;
@@ -57,7 +77,7 @@ export const ButtonSpacer = styled.span`
     padding-right: 16px;
 `;
 
-export const Footer = styled.div`
+export const Footer = styled.footer`
     ${({ alignmentFooter }) => getAlignment(alignmentFooter)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
@@ -85,6 +105,7 @@ export const StyledAlertDialog = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-direction: column;
+    margin: auto;
     border-radius: ${({ theme }) => theme.alertDialog.borderRadius};
     width: ${({ widthDialog }) => widthDialog};
     max-width: ${({ widthDialog }) => widthDialog};

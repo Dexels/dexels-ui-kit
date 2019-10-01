@@ -2,13 +2,17 @@ import { ALERT_DIALOG_ALIGNMENTS, ALERT_DIALOG_ELEVATIONS } from './AlertDialog.
 import {
     Body,
     ButtonSpacer,
+    CloseButton,
+    Container,
     Footer,
     Header,
     StyledAlertDialog,
 } from './AlertDialog.sc';
 import Button from '../../molecules/Button/Button';
+import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 
 const AlertDialog = ({
     alignmentBody,
@@ -28,59 +32,66 @@ const AlertDialog = ({
     showCloseButton,
     widthDialog,
 }) => (
-    <StyledAlertDialog
-        elevation={elevation}
-        heightDialog={heightDialog}
-        widthDialog={widthDialog}
-    >
-        { header
-        && (
-            <Header
-                alignmentHeader={alignmentHeader}
-                handleClose={handleClose}
-                heightHeader={heightHeader}
-                showCloseButton={showCloseButton}
-            >
-                {header}
-            </Header>
-        )}
-        <Body
-            alignmentBody={alignmentBody}
-            hasHeader={header !== undefined && header !== ''}
+    <Container>
+        <StyledAlertDialog
+            elevation={elevation}
+            heightDialog={heightDialog}
+            widthDialog={widthDialog}
         >
-            {body}
-        </Body>
-        <Footer
-            alignmentFooter={alignmentFooter}
-            heightFooter={heightFooter}
-        >
-            { buttonTextCancel !== undefined
-            && buttonTextCancel !== ''
-            && handleCancel
+            { header
             && (
-                <>
-                    <Button
-                        autofocus
-                        iconType={Button.iconTypes.CLOSE}
-                        onClick={handleCancel}
-                        size={Button.sizes.SMALL}
-                        variant={Button.variants.TEXT_ONLY}
-                    >
-                        {buttonTextCancel}
-                    </Button>
-                    <ButtonSpacer />
-                </>
+                <Header
+                    alignmentHeader={alignmentHeader}
+                    heightHeader={heightHeader}
+                    showCloseButton={showCloseButton}
+                >
+                    {header}
+                    <CloseButton>
+                        <ButtonIcon
+                            iconType={Icon.CLOSE}
+                            onClick={handleClose}
+                        />
+                    </CloseButton>
+                </Header>
             )}
-            <Button
-                iconType={Button.iconTypes.CHECK}
-                onClick={handleOk}
-                size={Button.sizes.SMALL}
-                variant={Button.variants.OUTLINE}
+            <Body
+                alignmentBody={alignmentBody}
+                hasHeader={header !== undefined && header !== ''}
             >
-                {buttonTextOk}
-            </Button>
-        </Footer>
-    </StyledAlertDialog>
+                {body}
+            </Body>
+            <Footer
+                alignmentFooter={alignmentFooter}
+                heightFooter={heightFooter}
+            >
+                { buttonTextCancel !== undefined
+                && buttonTextCancel !== ''
+                && handleCancel
+                && (
+                    <>
+                        <Button
+                            autofocus
+                            iconType={Button.iconTypes.CLOSE}
+                            onClick={handleCancel}
+                            size={Button.sizes.SMALL}
+                            variant={Button.variants.TEXT_ONLY}
+                        >
+                            {buttonTextCancel}
+                        </Button>
+                        <ButtonSpacer />
+                    </>
+                )}
+                <Button
+                    iconType={Button.iconTypes.CHECK}
+                    onClick={handleOk}
+                    size={Button.sizes.SMALL}
+                    variant={Button.variants.OUTLINE}
+                >
+                    {buttonTextOk}
+                </Button>
+            </Footer>
+        </StyledAlertDialog>
+    </Container>
 );
 
 AlertDialog.alignments = ALERT_DIALOG_ALIGNMENTS;
