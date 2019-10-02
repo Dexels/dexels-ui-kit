@@ -28,7 +28,7 @@ const AlertDialog = ({
     heightHeader,
     onCancel,
     onClose,
-    onOk,
+    onConfirm,
     showCloseButton,
     widthDialog,
 }) => (
@@ -88,7 +88,7 @@ const AlertDialog = ({
                 )}
                 <Button
                     iconType={Button.iconTypes.CHECK}
-                    onClick={onOk}
+                    onClick={onConfirm}
                     size={Button.sizes.SMALL}
                     variant={Button.variants.OUTLINE}
                 >
@@ -118,7 +118,7 @@ AlertDialog.propTypes = {
     heightHeader: PropTypes.string,
     onCancel: PropTypes.func,
     onClose: PropTypes.func,
-    onOk: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
     showCloseButton: PropTypes.bool,
     widthDialog: PropTypes.string,
 };

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 export default { title: 'organisms/AlertDialog' };
 
-const Configurable = ({ onCancel, onClose, onOk }) => (
+const Configurable = ({ onCancel, onClose, onConfirm }) => (
     <AlertDialog
         alignmentBody={select('Align body', AlertDialog.alignments, AlertDialog.defaultProps.alignmentBody)}
         alignmentFooter={select('Align footer', AlertDialog.alignments, AlertDialog.defaultProps.alignmentFooter)}
@@ -22,7 +22,7 @@ const Configurable = ({ onCancel, onClose, onOk }) => (
         heightHeader={text('Set height of header in px or %', AlertDialog.defaultProps.heightHeader)}
         onCancel={onCancel}
         onClose={onClose}
-        onOk={onOk}
+        onConfirm={onConfirm}
         showCloseButton={boolean('Show close button', AlertDialog.defaultProps.showCloseButton)}
         widthDialog={text('Set width of dialog in px or %', AlertDialog.defaultProps.widthDialog)}
     />
@@ -31,13 +31,13 @@ const Configurable = ({ onCancel, onClose, onOk }) => (
 Configurable.propTypes = {
     onCancel: PropTypes.func,
     onClose: PropTypes.func,
-    onOk: PropTypes.func,
+    onConfirm: PropTypes.func,
 };
 
 Configurable.defaultProps = {
     onCancel: null,
     onClose: null,
-    onOk: null,
+    onConfirm: null,
 };
 
 export const ConfigurableAlert = () => {
@@ -58,7 +58,7 @@ export const ConfigurableAlert = () => {
                 <Configurable
                     onCancel={() => setVisible(false)}
                     onClose={() => setVisible(false)}
-                    onOk={() => setVisible(false)}
+                    onConfirm={() => setVisible(false)}
                 />
             )}
         </>
