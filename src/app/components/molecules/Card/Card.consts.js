@@ -1,4 +1,7 @@
-import { ELEVATIONS, POSITIONS } from '../../../utils/constants';
+import {
+    ELEVATIONS,
+    POSITIONS,
+} from '../../../utils/constants';
 import { white } from '../../../styles/colors/colors';
 
 export const CARD_ELEVATIONS = ELEVATIONS;

@@ -47,6 +47,14 @@ export const SIZES = mapArrayToObject([
     'SMALL',
 ]);
 
+export const STATUSES = mapArrayToObject([
+    'DEFAULT',
+    'DISABLED',
+    'NONE',
+    'OK',
+    'WARNING',
+]);
+
 export const TRANSITIONS = mapArrayToObject([
     'EASE',
     'EASE_IN',
