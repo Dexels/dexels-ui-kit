@@ -1,4 +1,5 @@
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](link to site)
 
 # dexels-ui-kit
 An React UI kit which can be used in any React application.
@@ -25,3 +26,10 @@ Assuming you've a Jira account, this is the way how you're supposed to work on a
 - If the reviewer doesn't have any feedback anymore he should move the ticket to the `Test` column and add a comment along the lines of `Reviewed and approved.`.
 - The lead developer on this project will then merge the PR to the `test` branch.
 - More will follow..
+
+# Interesting reads
+
+Airbnb is famous for many things and one of those things are their extended code style guides. I would advice every developer who is working with JavaScript and/or React to read them. If you're going to work on this project please check them out since a lot of code in this project is following the patterns mentioned in these guides:
+
+- [Airbnb JavaScript style guide](https://github.com/airbnb/javascript)
+- [Airbnb React style guide](https://github.com/airbnb/javascript/tree/master/react)
