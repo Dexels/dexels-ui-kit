@@ -7,10 +7,12 @@ import {
     white,
 } from '../../../styles/colors/colors';
 import { DIRECTIONS } from '../../../utils/constants';
+import mapArrayToObject from '../../../utils/mapArrayToObject';
 
-export const RADIO_BUTTON_DIRECTIONS = DIRECTIONS;
+export const SELECTION_CONTROL_DIRECTIONS = DIRECTIONS;
 
-export const RADIO_BUTTON_THEME = {
+export const SELECTION_CONTROL_THEME = {
+    checkboxBorderRadius: '5px',
     colorDefault: purple100,
     colorDisabled: sl10,
     colorError: red,
@@ -21,3 +23,8 @@ export const RADIO_BUTTON_THEME = {
     iconSize: '12px',
     size: '24px',
 };
+
+export const SELECTION_CONTROL_TYPES = mapArrayToObject([
+    'CHECKBOX',
+    'RADIO',
+], true);

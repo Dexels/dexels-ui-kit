@@ -1,16 +1,18 @@
 import {
     ErrorMessageWrapper,
+    IconWrapper,
+    InputWrapper,
     LabelWrapper,
-    RadioButtonWrapper,
-    StyledRadioButton,
-} from './RadioButton.sc';
+    StyledSelectionControl,
+} from './SelectionControl.sc';
+import { SELECTION_CONTROL_DIRECTIONS, SELECTION_CONTROL_TYPES } from './SelectionControl.consts';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
+import Icon from '../../atoms/Icon/Icon';
 import Label from '../../atoms/Label/Label';
 import PropTypes from 'prop-types';
-import { RADIO_BUTTON_DIRECTIONS } from './RadioButton.consts';
 import React from 'react';
 
-const RadioButton = ({
+const SelectionControl = ({
     direction,
     errorMessage,
     hasError,
@@ -20,25 +22,33 @@ const RadioButton = ({
     label,
     name,
     onChange,
+    type,
     value,
 }) => (
     <>
-        <StyledRadioButton>
-            <RadioButtonWrapper
+        <StyledSelectionControl>
+            <InputWrapper
                 direction={direction}
                 hasError={hasError}
                 isChecked={isChecked}
                 isDisabled={isDisabled}
                 isValid={isValid}
+                type={type}
             >
                 <input
                     checked={isChecked}
+                    disabled={isDisabled}
                     name={name}
                     onChange={onChange}
-                    type="radio"
+                    type={type}
                     value={value}
                 />
-            </RadioButtonWrapper>
+                {isChecked && type === SelectionControl.types.CHECKBOX && (
+                    <IconWrapper>
+                        <Icon type={Icon.types.CHECK} />
+                    </IconWrapper>
+                )}
+            </InputWrapper>
             <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
                 <Label
                     hasError={hasError}
@@ -49,7 +59,7 @@ const RadioButton = ({
                     {label}
                 </Label>
             </LabelWrapper>
-        </StyledRadioButton>
+        </StyledSelectionControl>
         {errorMessage && hasError && (
             <ErrorMessageWrapper>
                 <ErrorMessage>
@@ -60,10 +70,11 @@ const RadioButton = ({
     </>
 );
 
-RadioButton.directions = RADIO_BUTTON_DIRECTIONS;
+SelectionControl.directions = SELECTION_CONTROL_DIRECTIONS;
+SelectionControl.types = SELECTION_CONTROL_TYPES;
 
-RadioButton.propTypes = {
-    direction: PropTypes.oneOf(Object.values(RadioButton.directions)),
+SelectionControl.propTypes = {
+    direction: PropTypes.oneOf(Object.values(SelectionControl.directions)),
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     isChecked: PropTypes.bool,
@@ -72,16 +83,18 @@ RadioButton.propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    type: PropTypes.oneOf(Object.values(SelectionControl.types)),
     value: PropTypes.string.isRequired,
 };
 
-RadioButton.defaultProps = {
-    direction: RadioButton.directions.LTR,
+SelectionControl.defaultProps = {
+    direction: SelectionControl.directions.LTR,
     errorMessage: '',
     hasError: false,
     isChecked: false,
     isDisabled: false,
     isValid: false,
+    type: SelectionControl.types.CHECKBOX,
 };
 
-export default RadioButton;
+export default SelectionControl;
