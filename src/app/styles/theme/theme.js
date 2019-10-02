@@ -2,7 +2,6 @@ import { ALERT_DIALOG_THEME } from '../../components/organisms/AlertDialog/Alert
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
 import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
-import { CHECKBOX_THEME } from '../../components/molecules/Checkbox/Checkbox.consts';
 import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
 import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
@@ -12,6 +11,7 @@ import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/NoResultsCard.consts';
 import { OVERLAY_THEME } from '../../components/molecules/Overlay/Overlay.consts';
+import { SELECTION_CONTROL_THEME } from '../../components/molecules/SelectionControl/SelectionControl.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
@@ -23,7 +23,6 @@ const theme = {
     button: BUTTON_THEME,
     buttonIcon: BUTTON_ICON_THEME,
     card: CARD_THEME,
-    checkbox: CHECKBOX_THEME,
     chip: CHIP_THEME,
     errorMessage: ERROR_MESSAGE_THEME,
     fontFamily: "'Open Sans', arial, sans-serif",
@@ -32,6 +31,7 @@ const theme = {
     label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
     overlay: OVERLAY_THEME,
+    selectionControl: SELECTION_CONTROL_THEME,
     textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {
