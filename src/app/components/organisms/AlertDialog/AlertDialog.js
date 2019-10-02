@@ -36,8 +36,7 @@ const AlertDialog = ({
         fullScreen
         isVisible
     >
-        { showCloseButton
-        && (
+        {showCloseButton && (
             <CloseButton
                 direction={direction}
                 onClick={onClose}
@@ -50,8 +49,7 @@ const AlertDialog = ({
             heightDialog={heightDialog}
             widthDialog={widthDialog}
         >
-            { header
-            && (
+            {header && (
                 <Header
                     alignmentHeader={alignmentHeader}
                     heightHeader={heightHeader}
@@ -69,10 +67,7 @@ const AlertDialog = ({
                 alignmentFooter={alignmentFooter}
                 heightFooter={heightFooter}
             >
-                { buttonTextCancel !== undefined
-                && buttonTextCancel !== ''
-                && onCancel
-                && (
+                {buttonTextCancel !== undefined && buttonTextCancel !== '' && onCancel && (
                     <>
                         <Button
                             autoFocus
