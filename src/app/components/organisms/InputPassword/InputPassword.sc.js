@@ -8,15 +8,14 @@ export const StyledInputPassword = styled.div`
 `;
 
 export const VisibilitySwitch = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h2)};
     appearance: none;
     position: absolute;
     outline: none;
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    padding: 4px 8px;
-    color: ${({ theme }) => theme.inputPassword.visibilitySwitchColorDisabled};
+    color: ${({ theme }) => theme.inputPassword.visibilitySwitchColorDefault};
 
     ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
         top: 0px;
