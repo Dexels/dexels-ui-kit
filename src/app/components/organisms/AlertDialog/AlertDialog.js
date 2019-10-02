@@ -22,13 +22,13 @@ const AlertDialog = ({
     buttonTextOk,
     direction,
     elevation,
-    handleCancel,
-    handleClose,
-    handleOk,
     header,
     heightDialog,
     heightFooter,
     heightHeader,
+    onCancel,
+    onClose,
+    onOk,
     showCloseButton,
     widthDialog,
 }) => (
@@ -40,7 +40,7 @@ const AlertDialog = ({
         && (
             <CloseButton
                 direction={direction}
-                onClick={handleClose}
+                onClick={onClose}
             >
                 <Icon type={Icon.types.CLOSE} />
             </CloseButton>
@@ -71,13 +71,13 @@ const AlertDialog = ({
             >
                 { buttonTextCancel !== undefined
                 && buttonTextCancel !== ''
-                && handleCancel
+                && onCancel
                 && (
                     <>
                         <Button
                             autoFocus
                             iconType={Button.iconTypes.CLOSE}
-                            onClick={handleCancel}
+                            onClick={onCancel}
                             size={Button.sizes.SMALL}
                             variant={Button.variants.TEXT_ONLY}
                         >
@@ -88,7 +88,7 @@ const AlertDialog = ({
                 )}
                 <Button
                     iconType={Button.iconTypes.CHECK}
-                    onClick={handleOk}
+                    onClick={onOk}
                     size={Button.sizes.SMALL}
                     variant={Button.variants.OUTLINE}
                 >
@@ -112,13 +112,13 @@ AlertDialog.propTypes = {
     buttonTextOk: PropTypes.string.isRequired,
     direction: PropTypes.oneOf(Object.values(AlertDialog.directions)),
     elevation: PropTypes.oneOf(Object.values(AlertDialog.elevations)),
-    handleCancel: PropTypes.func,
-    handleClose: PropTypes.func,
-    handleOk: PropTypes.func.isRequired,
     header: PropTypes.string,
     heightDialog: PropTypes.string,
     heightFooter: PropTypes.string,
     heightHeader: PropTypes.string,
+    onCancel: PropTypes.func,
+    onClose: PropTypes.func,
+    onOk: PropTypes.func.isRequired,
     showCloseButton: PropTypes.bool,
     widthDialog: PropTypes.string,
 };
@@ -130,12 +130,12 @@ AlertDialog.defaultProps = {
     buttonTextCancel: 'Cancel',
     direction: AlertDialog.directions.LTR,
     elevation: AlertDialog.elevations.LEVEL_12,
-    handleCancel: null,
-    handleClose: null,
     header: null,
     heightDialog: '200px',
     heightFooter: '56px',
     heightHeader: '56px',
+    onCancel: null,
+    onClose: null,
     showCloseButton: true,
     widthDialog: '300px',
 };
