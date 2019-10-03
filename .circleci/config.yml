@@ -23,16 +23,22 @@ jobs:
                 paths:
                     - ./node_modules
     lint_javascript:
-        - run:
-            name: Run ESLint
-            command: 'npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml'
-        - store_test_results:
-            path: reports/junit
-        - store_artifacts:
-            path: reports/junit
+        docker:
+            - image: circleci/node:10.16.0
+        steps:
+            - run:
+                name: Run ESLint
+                command: 'npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml'
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
     lint_css:
-        - run:
-            command: Echo 'Linted some css'
+        docker:
+            - image: circleci/node:10.16.0
+        steps:
+            - run:
+                command: Echo 'Linted some css'
     workflows:
         install_dependencies_and_lint:
             jobs:
