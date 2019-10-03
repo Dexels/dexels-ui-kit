@@ -65,6 +65,11 @@ module.exports = {
         },
         ],
         'react/jsx-curly-brace-presence': 0,
+        'react/jsx-curly-spacing': ['error', {
+            when: 'never',
+            children: true,
+            allowMultiline: false,
+        }],
         'react/jsx-filename-extension': 0,
         'react/jsx-indent': ['error', 4, {
             checkAttributes: true,

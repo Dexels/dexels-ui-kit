@@ -36,13 +36,11 @@ const NoResultsCard = ({
             <Title>
                 {title}
             </Title>
-            { items
-                && items.length !== 0
-                && items.map((item) => (
-                    <Item>
-                        {itemPrefix.concat(' ').concat(item)}
-                    </Item>
-                ))}
+            {items && items.length !== 0 && items.map((item) => (
+                <Item>
+                    {itemPrefix.concat(' ').concat(item)}
+                </Item>
+            ))}
         </Right>
     </StyledNoResultsCard>
 );
