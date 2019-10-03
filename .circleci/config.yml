@@ -2,30 +2,40 @@
 # - https://circleci.com/docs/2.0/language-javascript/
 version: 2.1
 jobs:
-  build:
-    docker:
-        - image: circleci/node:10.16.0
-    steps:
-        - checkout
+    install_dependencies:
+        docker:
+            - image: circleci/node:10.16.0
+        steps:
+            - checkout
+            - run:
+                name: Update NPM
+                command: 'sudo npm install -g npm@latest'
+            - restore_cache:
+                # special step to restore the dependency cache
+                # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+                key: dependency-cache-{{ checksum "package-lock.json" }}
+            - run:
+                name: Install dependencies
+                command: |
+                    npm install
+            - save_cache: # special step to save the dependency cache
+                key: dependency-cache-{{ checksum "package-lock.json" }}
+                paths:
+                    - ./node_modules
+    lint_javascript:
         - run:
-            name: update-npm
-            command: 'sudo npm install -g npm@latest'
-        - restore_cache:
-            # special step to restore the dependency cache
-            # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-            key: dependency-cache-{{ checksum "package-lock.json" }}
-        - run:
-            name: Install dependencies
-            command: |
-                npm install
-        - save_cache: # special step to save the dependency cache
-            key: dependency-cache-{{ checksum "package-lock.json" }}
-            paths:
-                - ./node_modules
-        - run:
-            name: run-eslint
+            name: Run ESLint
             command: 'npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml'
         - store_test_results:
             path: reports/junit
         - store_artifacts:
             path: reports/junit
+    lint_css:
+        - run:
+            command: Echo 'Linted some css'
+    workflows:
+        Install dependencies and lint JS and CSS:
+            jobs:
+                - install_dependencies
+                - lint_javascript
+                - lint_css
