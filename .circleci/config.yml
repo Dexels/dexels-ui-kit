@@ -34,7 +34,7 @@ jobs:
         - run:
             command: Echo 'Linted some css'
     workflows:
-        Install dependencies and lint JS and CSS:
+        install_dependencies_and_lint:
             jobs:
                 - install_dependencies
                 - lint_javascript
