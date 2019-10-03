@@ -15,3 +15,7 @@ jobs:
             command: |
                 ls -al
                 echo '^^^That should look familiar^^^'
+        - run:
+            name: Install dependencies
+            command: |
+                npm install
