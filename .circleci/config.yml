@@ -39,9 +39,13 @@ jobs:
         steps:
             - run:
                 command: Echo 'Linted some css'
-    workflows:
-        install_dependencies_and_lint:
-            jobs:
-                - install_dependencies
-                - lint_javascript
-                - lint_css
+workflows:
+    install_dependencies_and_lint:
+        jobs:
+            - install_dependencies
+            - lint_javascript:
+                requires:
+                    - install_dependencies
+            - lint_css:
+                requires:
+                    - install_dependencies
