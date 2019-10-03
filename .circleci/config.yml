@@ -1,3 +1,5 @@
+# Configuration based on:
+# - https://circleci.com/docs/2.0/language-javascript/
 version: 2.1
 jobs:
   build:
@@ -6,16 +8,24 @@ jobs:
     steps:
         - checkout
         - run:
-            name: The First Step
-            command: |
-                echo 'Hello World!'
-                echo 'This is the delivery pipeline'
-        - run:
-            name: Code Has Arrived
-            command: |
-                ls -al
-                echo '^^^That should look familiar^^^'
+            name: update-npm
+            command: 'sudo npm install -g npm@latest'
+        - restore_cache:
+            # special step to restore the dependency cache
+            # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+            key: dependency-cache-{{ checksum "package-lock.json" }}
         - run:
             name: Install dependencies
             command: |
                 npm install
+        - save_cache: # special step to save the dependency cache
+            key: dependency-cache-{{ checksum "package-lock.json" }}
+            paths:
+                - ./node_modules
+        - run:
+            name: run-eslint
+            command: 'npm run lint:js -- --format junit --output reports/junit/js-lint-results.xml'
+        - store_test_results:
+            path: reports/junit
+        - store_artifacts:
+            path: reports/junit
