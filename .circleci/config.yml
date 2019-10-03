@@ -24,7 +24,7 @@ jobs:
                 - ./node_modules
         - run:
             name: run-eslint
-            command: 'npm run lint:js -- --format junit --output reports/junit/js-lint-results.xml'
+            command: 'npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml'
         - store_test_results:
             path: reports/junit
         - store_artifacts:
