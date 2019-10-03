@@ -6,25 +6,30 @@ import PropTypes from 'prop-types';
 
 export default { title: 'organisms/AlertDialog' };
 
-const Configurable = ({ onCancel, onClose, onConfirm }) => (
+export const Configurable = ({ onCancel, onClose, onConfirm }) => (
     <AlertDialog
-        alignmentBody={select('Align body', AlertDialog.alignments, AlertDialog.defaultProps.alignmentBody)}
-        alignmentFooter={select('Align footer', AlertDialog.alignments, AlertDialog.defaultProps.alignmentFooter)}
-        alignmentHeader={select('Align header', AlertDialog.alignments, AlertDialog.defaultProps.alignmentHeader)}
         body={text('Body', 'Some body text')}
+        bodyAlignment={select('Align body', AlertDialog.alignments, AlertDialog.defaultProps.bodyAlignment)}
+        buttonClosePosition={
+            select('Close button position',
+                AlertDialog.directions,
+                AlertDialog.defaultProps.buttonClosePosition)
+        }
         buttonTextCancel={text('Button text cancel', 'Cancel')}
         buttonTextOk={text('Button text ok', 'Ok')}
-        direction={select('Direction', AlertDialog.directions, AlertDialog.defaultProps.direction)}
+        dialogHeight={text('Set height of dialog in px or %', AlertDialog.defaultProps.dialogHeight)}
+        dialogWidth={text('Set width of dialog in px or %', AlertDialog.defaultProps.dialogWidth)}
         elevation={select('Elevation', AlertDialog.elevations, AlertDialog.defaultProps.elevation)}
+        footerAlignment={select('Align footer', AlertDialog.alignments, AlertDialog.defaultProps.footerAlignment)}
+        footerHeight={text('Set height of footer in px or %', AlertDialog.defaultProps.footerHeight)}
+        hasButtonClose={boolean('Show close button', AlertDialog.defaultProps.hasButtonClose)}
+        hasOverlay={boolean('Has overlay', AlertDialog.defaultProps.hasOverlay)}
         header={text('Header', 'Some header text')}
-        heightDialog={text('Set height of dialog in px or %', AlertDialog.defaultProps.heightDialog)}
-        heightFooter={text('Set height of footer in px or %', AlertDialog.defaultProps.heightFooter)}
-        heightHeader={text('Set height of header in px or %', AlertDialog.defaultProps.heightHeader)}
+        headerAlignment={select('Align header', AlertDialog.alignments, AlertDialog.defaultProps.headerAlignment)}
+        headerHeight={text('Set height of header in px or %', AlertDialog.defaultProps.headerHeight)}
         onCancel={onCancel}
         onClose={onClose}
         onConfirm={onConfirm}
-        showCloseButton={boolean('Show close button', AlertDialog.defaultProps.showCloseButton)}
-        widthDialog={text('Set width of dialog in px or %', AlertDialog.defaultProps.widthDialog)}
     />
 );
 
@@ -41,24 +46,30 @@ Configurable.defaultProps = {
 };
 
 export const ConfigurableAlert = () => {
-    const [isVisible, setVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     return (
         <>
             <Button
-                onClick={() => setVisible(!isVisible)}
+                onClick={() => setIsVisible(!isVisible)}
                 variant="FILLED"
             >
                 { isVisible && 'ALERT DIALOG IS SHOWN' }
                 { !isVisible && 'SHOW ALERT DIALOG' }
             </Button>
 
-            { isVisible
+            {isVisible
             && (
                 <Configurable
-                    onCancel={() => setVisible(false)}
-                    onClose={() => setVisible(false)}
-                    onConfirm={() => setVisible(false)}
+                    onCancel={() => {
+                        setIsVisible(false);
+                    }}
+                    onClose={() => {
+                        setIsVisible(false);
+                    }}
+                    onConfirm={() => {
+                        setIsVisible(false);
+                    }}
                 />
             )}
         </>

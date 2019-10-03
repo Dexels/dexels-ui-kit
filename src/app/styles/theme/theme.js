@@ -86,7 +86,6 @@ const theme = {
 
         return css`
             line-height: ${textStyle.lineHeight};
-            font-family: ${textStyle.fontFamily || 'Roboto, "Franklin Gothic Medium", Tahoma, sans-serif'};
             font-family: ${this.fontFamily};
             font-size: ${textStyle.fontSize};
             font-weight: ${textStyle.fontWeight};

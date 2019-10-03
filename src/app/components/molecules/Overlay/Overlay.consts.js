@@ -1,7 +1,5 @@
-import { overlay } from '../../../styles/colors/colors';
-
 export const OVERLAY_THEME = {
-    backgroundColor: overlay,
+    opacity: '0.4',
 };
 
 export default OVERLAY_THEME;

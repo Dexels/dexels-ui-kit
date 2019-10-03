@@ -8,17 +8,17 @@ import {
 } from '../../../styles/colors/colors';
 
 export const ALERT_DIALOG_THEME = {
-    backgroundColorBody: white,
-    backgroundColorFooter: sl5,
-    backgroundColorHeader: purple100,
+    bodyBackgroundColor: white,
+    bodyColor: sl100,
     borderRadius: '8px',
-    closeButtonBackgroundColor: 'transparent',
-    closeButtonBackgroundColorHover: 'transparent',
-    closeButtonColor: black,
-    closeButtonColorHover: white,
-    closeButtonSize: '18px',
-    colorBody: sl100,
-    colorHeader: white,
+    buttonCloseBackgroundColor: 'transparent',
+    buttonCloseBackgroundColorHover: 'transparent',
+    buttonCloseColor: black,
+    buttonCloseColorHover: white,
+    buttonCloseSize: '24px',
+    footerBackgroundColor: sl5,
+    headerBackgroundColor: purple100,
+    headerColor: white,
 };
 
 export const ALERT_DIALOG_ALIGNMENTS = ALIGNMENTS;

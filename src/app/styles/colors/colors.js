@@ -14,8 +14,6 @@ export const green = '#2DD67B';
 
 export const orange = '#EB6500';
 
-export const overlay = 'rgba(0,0,0,0.4)';
-
 export const red = '#F94E4E';
 
 export const sl2 = '#FAFBFC';

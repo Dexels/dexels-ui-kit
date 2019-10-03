@@ -1,29 +1,35 @@
+import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const CloseButton = styled.button`
+export const ButtonWrapper = styled.div`
+    margin: 0 16px 0 0;
+`;
+
+export const ButtonClose = styled.button`
     position: fixed;
     top: 10px;
+    z-index: 2;
     border: 0;
-    background-color: ${({ theme }) => theme.alertDialog.closeButtonBackgroundColor};
-    width: ${({ direction }) => direction === 'RTL' && '99%'};
-    text-align: ${({ direction }) => direction === 'LTR' && 'left'};
-    text-align: ${({ direction }) => direction === 'RTL' && 'right'};
-    color: ${({ theme }) => theme.alertDialog.closeButtonColor};
-    font-size: ${({ theme }) => theme.alertDialog.closeButtonSize};
+    background-color: ${({ theme }) => theme.alertDialog.buttonCloseBackgroundColor};
+    ${({ buttonClosePosition }) => buttonClosePosition === 'RTL' && css`
+        width: 100%;
+    `};
+    text-align: ${({ buttonClosePosition }) => (buttonClosePosition === 'LTR' ? 'left' : 'right')};
+    color: ${({ theme }) => theme.alertDialog.buttonCloseColor};
+    font-size: ${({ theme }) => theme.alertDialog.buttonCloseSize};
 
     &:active,
     &:hover {
-        background-color: ${({ theme }) => theme.alertDialog.closeButtonBackgroundColorHover};
-        color: ${({ theme }) => theme.alertDialog.closeButtonColorHover};
+        background-color: ${({ theme }) => theme.alertDialog.buttonCloseBackgroundColorHover};
+        color: ${({ theme }) => theme.alertDialog.buttonCloseColorHover};
     }
 `;
 
-CloseButton.propTypes = {
+ButtonClose.propTypes = {
     theme: PropTypes.shape({
         alertDialog: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -31,21 +37,21 @@ CloseButton.propTypes = {
     }),
 };
 
-CloseButton.defaultProps = {
+ButtonClose.defaultProps = {
     theme: defaultTheme,
 };
 
 export const Header = styled.header`
-    ${({ alignmentHeader }) => getAlignment(alignmentHeader)};
+    ${({ headerAlignment }) => getAlignment(headerAlignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     display: flex;
     align-items: center;
     border-top-left-radius: ${({ theme }) => theme.alertDialog.borderRadius};
     border-top-right-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    background-color: ${({ theme }) => theme.alertDialog.backgroundColorHeader};
+    background-color: ${({ theme }) => theme.alertDialog.headerBackgroundColor};
     padding: 16px;
-    height: ${({ heightHeader }) => heightHeader};
-    color: ${({ theme }) => theme.alertDialog.colorHeader};
+    height: ${({ headerHeight }) => headerHeight};
+    color: ${({ theme }) => theme.alertDialog.headerColor};
 `;
 
 Header.propTypes = {
@@ -61,14 +67,14 @@ Header.defaultProps = {
 };
 
 export const Body = styled.div`
-    ${({ alignmentBody }) => getAlignment(alignmentBody)};
+    ${({ bodyAlignment }) => getAlignment(bodyAlignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     border-top-left-radius: ${({ hasHeader, theme }) => !hasHeader && theme.alertDialog.borderRadius};
     border-top-right-radius: ${({ hasHeader, theme }) => !hasHeader && theme.alertDialog.borderRadius};
-    background-color: ${({ theme }) => theme.alertDialog.backgroundColorBody};
+    background-color: ${({ theme }) => theme.alertDialog.bodyBackgroundColor};
     padding: 16px;
     height: 100%;
-    color: ${({ theme }) => theme.alertDialog.colorBody};
+    color: ${({ theme }) => theme.alertDialog.bodyColor};
 `;
 
 Body.propTypes = {
@@ -83,20 +89,16 @@ Body.defaultProps = {
     theme: defaultTheme,
 };
 
-export const ButtonSpacer = styled.span`
-    padding-right: 16px;
-`;
-
 export const Footer = styled.footer`
-    ${({ alignmentFooter }) => getAlignment(alignmentFooter)};
+    ${({ footerAlignment }) => getAlignment(footerAlignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
     align-items: center;
     border-bottom-left-radius: ${({ theme }) => theme.alertDialog.borderRadius};
     border-bottom-right-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    background-color: ${({ theme }) => theme.alertDialog.backgroundColorFooter};
+    background-color: ${({ theme }) => theme.alertDialog.footerBackgroundColor};
     padding: 16px;
-    height: ${({ heightFooter }) => heightFooter};
+    height: ${({ footerHeight }) => footerHeight};
 `;
 
 Footer.propTypes = {
@@ -115,12 +117,13 @@ export const StyledAlertDialog = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-direction: column;
+    z-index: 999;
     margin: auto;
     border-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    width: ${({ widthDialog }) => widthDialog};
-    max-width: ${({ widthDialog }) => widthDialog};
-    height: ${({ heightDialog }) => heightDialog};
-    max-height: ${({ heightDialog }) => heightDialog};
+    width: ${({ dialogWidth }) => dialogWidth};
+    max-width: ${({ dialogWidth }) => dialogWidth};
+    height: ${({ dialogHeight }) => dialogHeight};
+    max-height: ${({ dialogHeight }) => dialogHeight};
 `;
 
 StyledAlertDialog.propTypes = {

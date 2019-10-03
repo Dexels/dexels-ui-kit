@@ -1,8 +1,8 @@
 import { ALERT_DIALOG_ALIGNMENTS, ALERT_DIALOG_DIRECTIONS, ALERT_DIALOG_ELEVATIONS } from './AlertDialog.consts';
 import {
     Body,
-    ButtonSpacer,
-    CloseButton,
+    ButtonClose,
+    ButtonWrapper,
     Footer,
     Header,
     StyledAlertDialog,
@@ -14,68 +14,68 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const AlertDialog = ({
-    alignmentBody,
-    alignmentFooter,
-    alignmentHeader,
+    bodyAlignment,
     body,
+    buttonClosePosition,
     buttonTextCancel,
     buttonTextOk,
-    direction,
+    dialogHeight,
+    dialogWidth,
     elevation,
+    footerAlignment,
+    footerHeight,
+    hasButtonClose,
+    hasOverlay,
     header,
-    heightDialog,
-    heightFooter,
-    heightHeader,
+    headerAlignment,
+    headerHeight,
     onCancel,
     onClose,
     onConfirm,
-    showCloseButton,
-    widthDialog,
 }) => (
     <Overlay
-        fullScreen
-        isVisible
+        isFullscreen
+        isVisible={hasOverlay}
     >
-        { showCloseButton
+        {hasButtonClose
+        && hasOverlay
         && (
-            <CloseButton
-                direction={direction}
+            <ButtonClose
+                buttonClosePosition={buttonClosePosition}
                 onClick={onClose}
             >
                 <Icon type={Icon.types.CLOSE} />
-            </CloseButton>
+            </ButtonClose>
         )}
         <StyledAlertDialog
+            dialogHeight={dialogHeight}
+            dialogWidth={dialogWidth}
             elevation={elevation}
-            heightDialog={heightDialog}
-            widthDialog={widthDialog}
         >
-            { header
+            {header
             && (
                 <Header
-                    alignmentHeader={alignmentHeader}
-                    heightHeader={heightHeader}
+                    headerAlignment={headerAlignment}
+                    headerHeight={headerHeight}
                 >
                     {header}
                 </Header>
             )}
             <Body
-                alignmentBody={alignmentBody}
+                bodyAlignment={bodyAlignment}
                 hasHeader={header !== undefined && header !== ''}
             >
                 {body}
             </Body>
             <Footer
-                alignmentFooter={alignmentFooter}
-                heightFooter={heightFooter}
+                footerAlignment={footerAlignment}
+                footerHeight={footerHeight}
             >
-                { buttonTextCancel !== undefined
-                && buttonTextCancel !== ''
+                {buttonTextCancel
                 && onCancel
                 && (
-                    <>
+                    <ButtonWrapper>
                         <Button
-                            autoFocus
                             iconType={Button.iconTypes.CLOSE}
                             onClick={onCancel}
                             size={Button.sizes.SMALL}
@@ -83,10 +83,10 @@ const AlertDialog = ({
                         >
                             {buttonTextCancel}
                         </Button>
-                        <ButtonSpacer />
-                    </>
+                    </ButtonWrapper>
                 )}
                 <Button
+                    autoFocus
                     iconType={Button.iconTypes.CHECK}
                     onClick={onConfirm}
                     size={Button.sizes.SMALL}
@@ -104,40 +104,42 @@ AlertDialog.directions = ALERT_DIALOG_DIRECTIONS;
 AlertDialog.elevations = ALERT_DIALOG_ELEVATIONS;
 
 AlertDialog.propTypes = {
-    alignmentBody: PropTypes.oneOf(Object.values(AlertDialog.alignments)),
-    alignmentFooter: PropTypes.oneOf(Object.values(AlertDialog.alignments)),
-    alignmentHeader: PropTypes.oneOf(Object.values(AlertDialog.alignments)),
     body: PropTypes.node.isRequired,
+    bodyAlignment: PropTypes.oneOf(Object.values(AlertDialog.alignments)),
+    buttonClosePosition: PropTypes.oneOf(Object.values(AlertDialog.directions)),
     buttonTextCancel: PropTypes.string,
     buttonTextOk: PropTypes.string.isRequired,
-    direction: PropTypes.oneOf(Object.values(AlertDialog.directions)),
+    dialogHeight: PropTypes.string,
+    dialogWidth: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(AlertDialog.elevations)),
+    footerAlignment: PropTypes.oneOf(Object.values(AlertDialog.alignments)),
+    footerHeight: PropTypes.string,
+    hasButtonClose: PropTypes.bool,
+    hasOverlay: PropTypes.bool,
     header: PropTypes.string,
-    heightDialog: PropTypes.string,
-    heightFooter: PropTypes.string,
-    heightHeader: PropTypes.string,
+    headerAlignment: PropTypes.oneOf(Object.values(AlertDialog.alignments)),
+    headerHeight: PropTypes.string,
     onCancel: PropTypes.func,
     onClose: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
-    showCloseButton: PropTypes.bool,
-    widthDialog: PropTypes.string,
 };
 
 AlertDialog.defaultProps = {
-    alignmentBody: AlertDialog.alignments.CENTER,
-    alignmentFooter: AlertDialog.alignments.RIGHT,
-    alignmentHeader: AlertDialog.alignments.CENTER,
+    bodyAlignment: AlertDialog.alignments.CENTER,
+    buttonClosePosition: AlertDialog.directions.LTR,
     buttonTextCancel: 'Cancel',
-    direction: AlertDialog.directions.LTR,
+    dialogHeight: '200px',
+    dialogWidth: '300px',
     elevation: AlertDialog.elevations.LEVEL_12,
+    footerAlignment: AlertDialog.alignments.RIGHT,
+    footerHeight: '56px',
+    hasButtonClose: true,
+    hasOverlay: true,
     header: null,
-    heightDialog: '200px',
-    heightFooter: '56px',
-    heightHeader: '56px',
+    headerAlignment: AlertDialog.alignments.CENTER,
+    headerHeight: '56px',
     onCancel: null,
     onClose: null,
-    showCloseButton: true,
-    widthDialog: '300px',
 };
 
 export default AlertDialog;

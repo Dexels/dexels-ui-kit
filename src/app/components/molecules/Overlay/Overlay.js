@@ -4,14 +4,14 @@ import { StyledOverlay } from './Overlay.sc';
 
 const Overlay = ({
     children,
-    fullScreen,
     height,
+    isFullscreen,
     isVisible,
     width,
 }) => (
     <StyledOverlay
-        fullScreen={fullScreen}
         height={height}
+        isFullscreen={isFullscreen}
         isVisible={isVisible}
         width={width}
     >
@@ -21,15 +21,15 @@ const Overlay = ({
 
 Overlay.propTypes = {
     children: PropTypes.node.isRequired,
-    fullScreen: PropTypes.bool,
     height: PropTypes.string,
+    isFullscreen: PropTypes.bool,
     isVisible: PropTypes.bool,
     width: PropTypes.string,
 };
 
 Overlay.defaultProps = {
-    fullScreen: true,
     height: '80%',
+    isFullscreen: true,
     isVisible: true,
     width: '80%',
 };
