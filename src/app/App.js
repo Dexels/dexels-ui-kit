@@ -11,6 +11,7 @@ const StyledApp = styled.div`
     color: white;
 `;
 
+
 const App = () => (
     <>
         <BaseStyles />
