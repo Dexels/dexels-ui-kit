@@ -52,8 +52,7 @@ const AlertDialog = ({
             dialogWidth={dialogWidth}
             elevation={elevation}
         >
-            {header
-            && (
+            {header && (
                 <Header
                     headerAlignment={headerAlignment}
                     headerHeight={headerHeight}

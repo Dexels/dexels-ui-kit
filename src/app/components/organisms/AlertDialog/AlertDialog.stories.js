@@ -54,12 +54,10 @@ export const ConfigurableAlert = () => {
                 onClick={() => setIsVisible(!isVisible)}
                 variant="FILLED"
             >
-                { isVisible && 'ALERT DIALOG IS SHOWN' }
-                { !isVisible && 'SHOW ALERT DIALOG' }
+                {isVisible && 'ALERT DIALOG IS SHOWN'}
+                {!isVisible && 'SHOW ALERT DIALOG'}
             </Button>
-
-            {isVisible
-            && (
+            {isVisible && (
                 <Configurable
                     onCancel={() => {
                         setIsVisible(false);
