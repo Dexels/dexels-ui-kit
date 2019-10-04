@@ -5,6 +5,7 @@ jobs:
     install_dependencies:
         docker:
             - image: circleci/node:10.16.0
+        working_directory: ~/dexels-ui-kit
         steps:
             - checkout
             - run:
@@ -24,6 +25,7 @@ jobs:
     lint_javascript:
         docker:
             - image: circleci/node:10.16.0
+        working_directory: ~/dexels-ui-kit
         steps:
             - run:
                 name: Run ESLint
@@ -35,6 +37,7 @@ jobs:
     lint_css:
         docker:
             - image: circleci/node:10.16.0
+        working_directory: ~/dexels-ui-kit
         steps:
             - run:
                 command: echo 'Linted some css'
