@@ -27,6 +27,7 @@ jobs:
             - image: circleci/node:10.16.0
         working_directory: ~/dexels-ui-kit
         steps:
+            - checkout
             - run:
                 command: 'ls -al'
             - run:
@@ -41,6 +42,7 @@ jobs:
             - image: circleci/node:10.16.0
         working_directory: ~/dexels-ui-kit
         steps:
+            - checkout
             - run:
                 command: echo 'Linted some css'
 workflows:
