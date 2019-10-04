@@ -13,6 +13,9 @@ import { SELECTION_CONTROL_THEME } from '../../components/molecules/SelectionCon
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
+const FONT_FAMILY_PRIMARY = "'Open Sans', arial, sans-serif";
+const FONT_FAMILY_SECONDARY = "'Exo 2', sans-serif";
+
 const theme = {
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
@@ -22,7 +25,8 @@ const theme = {
     card: CARD_THEME,
     chip: CHIP_THEME,
     errorMessage: ERROR_MESSAGE_THEME,
-    fontFamily: "'Open Sans', arial, sans-serif",
+    fontFamilyPrimary: FONT_FAMILY_PRIMARY,
+    fontFamilySecondary: FONT_FAMILY_SECONDARY,
     input: INPUT_THEME,
     inputPassword: INPUT_PASSWORD_THEME,
     label: LABEL_THEME,
@@ -31,44 +35,40 @@ const theme = {
     textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {
+            fontFamily: FONT_FAMILY_PRIMARY,
             fontSize: '16px',
             fontWeight: '400',
-            lineHeight: '24px',
+            lineHeight: '22px',
         },
         body2: {
+            fontFamily: FONT_FAMILY_PRIMARY,
             fontSize: '14px',
             fontWeight: '400',
-            lineHeight: '18px',
-        },
-        body3: {
-            fontSize: '14px',
-            fontWeight: '300',
             lineHeight: '18px',
         },
         caption: {
+            fontFamily: FONT_FAMILY_PRIMARY,
             fontSize: '12px',
-            fontWeight: '300',
+            fontWeight: '400',
             lineHeight: '16px',
         },
         h1: {
+            fontFamily: FONT_FAMILY_SECONDARY,
             fontSize: '24px',
             fontWeight: '500',
-            lineHeight: '30px',
+            lineHeight: '34px',
         },
         h2: {
+            fontFamily: FONT_FAMILY_SECONDARY,
             fontSize: '20px',
             fontWeight: '500',
             lineHeight: '28px',
         },
         h3: {
+            fontFamily: FONT_FAMILY_SECONDARY,
             fontSize: '16px',
-            fontWeight: '700',
+            fontWeight: '500',
             lineHeight: '24px',
-        },
-        h4: {
-            fontSize: '14px',
-            fontWeight: '700',
-            lineHeight: '22px',
         },
     },
     textStyling(textStyleSelector = 'body1') {
@@ -82,7 +82,7 @@ const theme = {
 
         return css`
             line-height: ${textStyle.lineHeight};
-            font-family: ${this.fontFamily};
+            font-family: ${textStyle.fontFamily ? textStyle.fontFamily : FONT_FAMILY_PRIMARY};
             font-size: ${textStyle.fontSize};
             font-weight: ${textStyle.fontWeight};
         `;
