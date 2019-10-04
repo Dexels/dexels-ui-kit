@@ -50,6 +50,7 @@ export const SIZES = mapArrayToObject([
 export const STATUSES = mapArrayToObject([
     'DEFAULT',
     'DISABLED',
+    'ERROR',
     'NONE',
     'OK',
     'WARNING',

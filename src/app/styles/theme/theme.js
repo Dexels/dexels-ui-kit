@@ -28,6 +28,9 @@ const theme = {
     label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
     selectionControl: SELECTION_CONTROL_THEME,
+    statusIndicator: {
+        size: '8px',
+    },
     textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {

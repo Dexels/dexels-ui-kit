@@ -2,10 +2,10 @@ import {
     STATUS_CARD_PLACEMENTS,
     STATUS_CARD_STATUSES,
 } from './StatusCard.consts';
+import { StyledStatusCard, StyledStatusCardWrapper } from './StatusCard.sc';
 import Card from '../../molecules/Card/Card';
 import PropTypes from 'prop-types';
 import React from 'react';
-import StatusIndicator from '../../molecules/StatusIndicator/StatusIndicator';
 
 const StatusCard = ({
     children,
@@ -16,19 +16,23 @@ const StatusCard = ({
     statusPlacement,
     width,
 }) => (
-    <Card
+    <StyledStatusCardWrapper
         elevation={elevation}
-        height={height}
-        position={position}
-        width={width}
     >
-        <StatusIndicator
+        <StyledStatusCard
             status={status}
             statusPlacement={statusPlacement}
         >
-            {children}
-        </StatusIndicator>
-    </Card>
+            <Card
+                elevation={Card.elevations.LEVEL_0}
+                height={height}
+                position={position}
+                width={width}
+            >
+                {children}
+            </Card>
+        </StyledStatusCard>
+    </StyledStatusCardWrapper>
 );
 
 StatusCard.elevations = Card.elevations;
@@ -50,8 +54,8 @@ StatusCard.defaultProps = {
     elevation: Card.defaultProps.elevation,
     height: Card.defaultProps.height,
     position: Card.defaultProps.position,
-    status: Card.defaultProps.status,
-    statusPlacement: Card.defaultProps.statusPlacement,
+    status: StatusCard.statuses.DEFAULT,
+    statusPlacement: StatusCard.statusPlacements.TOP,
     width: Card.defaultProps.width,
 };
 
