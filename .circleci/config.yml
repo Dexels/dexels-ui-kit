@@ -28,6 +28,8 @@ jobs:
         working_directory: ~/dexels-ui-kit
         steps:
             - run:
+                command: 'ls -al'
+            - run:
                 name: Run ESLint
                 command: 'npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml'
             - store_test_results:
