@@ -1,3 +1,4 @@
+import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constants';
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
 import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
@@ -12,9 +13,6 @@ import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/
 import { SELECTION_CONTROL_THEME } from '../../components/molecules/SelectionControl/SelectionControl.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
-
-const FONT_FAMILY_PRIMARY = "'Open Sans', arial, sans-serif";
-const FONT_FAMILY_SECONDARY = "'Exo 2', sans-serif";
 
 const theme = {
     availableTextStyles() {
