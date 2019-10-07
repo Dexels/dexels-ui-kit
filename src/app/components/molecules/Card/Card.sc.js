@@ -12,8 +12,6 @@ export const StyledCard = styled.div`
     border-radius: 4px;
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: 8px;
-    width: 100%;
-    height: 100%;
     white-space: wrap;
 `;
 
