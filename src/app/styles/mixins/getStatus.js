@@ -26,43 +26,43 @@ const getStatusColor = (status) => {
             return orange;
 
         default:
-            return 'rgb(0,0,0,0)'; // This is to make sure the space is being used
+            return 'transparent';
     }
 };
 
-const getStatusCss = (status, statusIndicatorSize, statusPlacement) => {
-    const baseCss = statusIndicatorSize.concat(' solid ');
+const getStatusCSS = (status, statusIndicatorSize, statusPlacement) => {
+    const baseCSS = statusIndicatorSize.concat(' solid ');
 
     switch (statusPlacement) {
         case PLACEMENTS.BOTTOM:
             return css`
-                border-bottom: ${`${baseCss}${getStatusColor(status)}`};
+                border-bottom: ${`${baseCSS} ${getStatusColor(status)}`};
             `;
 
         case PLACEMENTS.LEFT:
             return css`
-                border-left: ${`${baseCss}${getStatusColor(status)}`};
+                border-left: ${`${baseCSS} ${getStatusColor(status)}`};
             `;
 
         case PLACEMENTS.RIGHT:
             return css`
-                border-right: ${`${baseCss}${getStatusColor(status)}`};
+                border-right: ${`${baseCSS} ${getStatusColor(status)}`};
             `;
 
         case PLACEMENTS.TOP:
             return css`
-                border-top: ${`${baseCss}${getStatusColor(status)}`};
+                border-top: ${`${baseCSS} ${getStatusColor(status)}`};
             `;
 
         default:
             return css`
-                border-left: ${`${baseCss}${getStatusColor(status)}`};
+                border-left: ${`${baseCSS} ${getStatusColor(status)}`};
             `;
     }
 };
 
-export const getStatus = (status,
-    statusIndicatorSize,
-    statusPlacement) => getStatusCss(status, statusIndicatorSize, statusPlacement);
+export const getStatus = (status, statusIndicatorSize, statusPlacement) => (
+    getStatusCSS(status, statusIndicatorSize, statusPlacement)
+);
 
 export default getStatus;
