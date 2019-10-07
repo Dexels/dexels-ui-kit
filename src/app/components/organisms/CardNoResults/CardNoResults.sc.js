@@ -7,12 +7,12 @@ import validateThemePropTypes from '../../../utils/validators/validateThemePropT
 export const Header = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     margin-bottom: 16px;
-    color: ${({ theme }) => theme.noResultsCard.colorHeader};
+    color: ${({ theme }) => theme.cardNoResults.colorHeader};
 `;
 
 Header.propTypes = {
     theme: PropTypes.shape({
-        noResultsCard: PropTypes.objectOf((propValue, key, componentName) => (
+        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -25,12 +25,12 @@ Header.defaultProps = {
 export const Title = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
     margin: 4px 4px 4px 0;
-    color: ${({ theme }) => theme.noResultsCard.colorTitle};
+    color: ${({ theme }) => theme.cardNoResults.colorTitle};
 `;
 
 Title.propTypes = {
     theme: PropTypes.shape({
-        noResultsCard: PropTypes.objectOf((propValue, key, componentName) => (
+        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -43,12 +43,12 @@ Title.defaultProps = {
 export const Item = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     padding-bottom: 4px;
-    color: ${({ theme }) => theme.noResultsCard.colorItem};
+    color: ${({ theme }) => theme.cardNoResults.colorItem};
 `;
 
 Item.propTypes = {
     theme: PropTypes.shape({
-        noResultsCard: PropTypes.objectOf((propValue, key, componentName) => (
+        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -60,12 +60,12 @@ Item.defaultProps = {
 
 export const Left = styled.div`
     width: 48px;
-    color: ${({ theme }) => theme.noResultsCard.colorHeader};
+    color: ${({ theme }) => theme.cardNoResults.colorHeader};
 `;
 
 Left.propTypes = {
     theme: PropTypes.shape({
-        noResultsCard: PropTypes.objectOf((propValue, key, componentName) => (
+        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -79,23 +79,23 @@ export const Right = styled.div`
     width: 100%;
 `;
 
-export const StyledNoResultsCard = styled.div`
+export const StyledCardNoResults = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    background-color: ${({ theme }) => theme.noResultsCard.backgroundColor};
+    background-color: ${({ theme }) => theme.cardNoResults.backgroundColor};
     padding: 24px;
 `;
 
-StyledNoResultsCard.propTypes = {
+StyledCardNoResults.propTypes = {
     theme: PropTypes.shape({
-        noResultsCard: PropTypes.objectOf((propValue, key, componentName) => (
+        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
 };
 
-StyledNoResultsCard.defaultProps = {
+StyledCardNoResults.defaultProps = {
     theme: defaultTheme,
 };
