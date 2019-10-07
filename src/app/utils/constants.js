@@ -1,5 +1,11 @@
 import mapArrayToObject from './mapArrayToObject';
 
+export const ALIGNMENTS = mapArrayToObject([
+    'LEFT',
+    'CENTER',
+    'RIGHT',
+]);
+
 export const DIRECTIONS = mapArrayToObject([
     'LTR',
     'RTL',
