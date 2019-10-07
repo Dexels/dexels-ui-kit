@@ -12,13 +12,10 @@ export const CHIP_THEME = {
     backgroundColor: sl10,
     backgroundColorDeselected: 'transparent',
     backgroundColorHover: sl5,
-    borderRadius: '8px',
     colorDefault: sl100,
     colorDisabled: sl100,
     colorHover: sl100,
     colorRipple: blue100,
-    height: '32px',
-    padding: '6px 8px 6px 8px',
 };
 
 export default CHIP_DIRECTIONS;
