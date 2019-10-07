@@ -10,13 +10,11 @@ export const Configurable = ({ onCancel, onClose, onConfirm }) => (
     <AlertDialog
         body={text('Body', 'Some body text')}
         bodyAlignment={select('Align body', AlertDialog.alignments, AlertDialog.defaultProps.bodyAlignment)}
-        buttonClosePosition={
-            select('Close button position',
-                AlertDialog.directions,
-                AlertDialog.defaultProps.buttonClosePosition)
-        }
-        buttonTextCancel={text('Button text cancel', 'Cancel')}
-        buttonTextOk={text('Button text ok', 'Ok')}
+        buttonCancelText={text('Button cancel text', 'Cancel')}
+        buttonClosePosition={select(
+            'Button close position', AlertDialog.directions, AlertDialog.defaultProps.buttonClosePosition,
+        )}
+        buttonConfirmText={text('Button confirm text', 'Ok')}
         dialogHeight={text('Set height of dialog in px or %', AlertDialog.defaultProps.dialogHeight)}
         dialogWidth={text('Set width of dialog in px or %', AlertDialog.defaultProps.dialogWidth)}
         elevation={select('Elevation', AlertDialog.elevations, AlertDialog.defaultProps.elevation)}

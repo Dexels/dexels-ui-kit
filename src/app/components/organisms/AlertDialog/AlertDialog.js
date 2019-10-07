@@ -16,9 +16,9 @@ import React from 'react';
 const AlertDialog = ({
     bodyAlignment,
     body,
+    buttonCancelText,
     buttonClosePosition,
-    buttonTextCancel,
-    buttonTextOk,
+    buttonConfirmText,
     dialogHeight,
     dialogWidth,
     elevation,
@@ -49,7 +49,7 @@ const AlertDialog = ({
                 {body}
             </Body>
             <Footer footerAlignment={footerAlignment} footerHeight={footerHeight}>
-                {buttonTextCancel && onCancel && (
+                {buttonCancelText && onCancel && (
                     <ButtonWrapper>
                         <Button
                             iconType={Button.iconTypes.CLOSE}
@@ -57,7 +57,7 @@ const AlertDialog = ({
                             size={Button.sizes.SMALL}
                             variant={Button.variants.TEXT_ONLY}
                         >
-                            {buttonTextCancel}
+                            {buttonCancelText}
                         </Button>
                     </ButtonWrapper>
                 )}
@@ -68,7 +68,7 @@ const AlertDialog = ({
                     size={Button.sizes.SMALL}
                     variant={Button.variants.OUTLINE}
                 >
-                    {buttonTextOk}
+                    {buttonConfirmText}
                 </Button>
             </Footer>
         </StyledAlertDialog>
@@ -82,9 +82,9 @@ AlertDialog.elevations = ALERT_DIALOG_ELEVATIONS;
 AlertDialog.propTypes = {
     body: PropTypes.node.isRequired,
     bodyAlignment: PropTypes.oneOf(Object.values(AlertDialog.alignments)),
+    buttonCancelText: PropTypes.string,
     buttonClosePosition: PropTypes.oneOf(Object.values(AlertDialog.directions)),
-    buttonTextCancel: PropTypes.string,
-    buttonTextOk: PropTypes.string.isRequired,
+    buttonConfirmText: PropTypes.string.isRequired,
     dialogHeight: PropTypes.string,
     dialogWidth: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(AlertDialog.elevations)),
@@ -102,8 +102,8 @@ AlertDialog.propTypes = {
 
 AlertDialog.defaultProps = {
     bodyAlignment: AlertDialog.alignments.CENTER,
+    buttonCancelText: 'Cancel',
     buttonClosePosition: AlertDialog.directions.LTR,
-    buttonTextCancel: 'Cancel',
     dialogHeight: '200px',
     dialogWidth: '300px',
     elevation: AlertDialog.elevations.LEVEL_12,
