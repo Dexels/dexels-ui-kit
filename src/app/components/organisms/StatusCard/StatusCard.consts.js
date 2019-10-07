@@ -1,7 +1,4 @@
-import {
-    PLACEMENTS,
-    STATUSES,
-} from '../../../utils/constants';
+import { PLACEMENTS, STATUSES } from '../../../utils/constants';
 
 export const STATUS_CARD_PLACEMENTS = PLACEMENTS;
 

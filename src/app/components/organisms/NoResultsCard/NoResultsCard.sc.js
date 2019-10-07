@@ -86,8 +86,6 @@ export const StyledNoResultsCard = styled.div`
     justify-content: flex-start;
     background-color: ${({ theme }) => theme.noResultsCard.backgroundColor};
     padding: 24px;
-    width: 100%;
-    height: 100%;
 `;
 
 StyledNoResultsCard.propTypes = {

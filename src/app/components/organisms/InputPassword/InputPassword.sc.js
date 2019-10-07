@@ -8,24 +8,23 @@ export const StyledInputPassword = styled.div`
 `;
 
 export const VisibilitySwitch = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     appearance: none;
     position: absolute;
     outline: none;
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    padding: 4px 8px;
-    color: ${({ theme }) => theme.inputPassword.visibilitySwitchColorDisabled};
+    color: ${({ theme }) => theme.inputPassword.visibilitySwitchColorDefault};
 
     ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
-        top: 0px;
+        top: 0;
         right: 0;
         padding: 0 0 0 8px;
     `};
 
     ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.FULL_SIZE && css`
-        top: 7px;
+        top: 8px;
         right: 8px;
         padding: 4px 8px;
     `};
@@ -34,6 +33,10 @@ export const VisibilitySwitch = styled.button`
         color: ${theme.inputPassword.visibilitySwitchColorDisabled};
         pointer-events: none;
     `};
+
+    span {
+        display: block;
+    }
 `;
 
 VisibilitySwitch.propTypes = {

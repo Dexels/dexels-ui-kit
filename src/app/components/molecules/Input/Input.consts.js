@@ -18,7 +18,7 @@ export const INPUT_THEME = {
     colorHover: blue100,
     colorValid: green,
     heightCompact: '24px',
-    heightFullSize: '46px',
+    heightFullSize: '48px',
     heightTextarea: '126px',
     textColor: sl100,
 };

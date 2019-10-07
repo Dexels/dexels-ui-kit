@@ -3,7 +3,7 @@ import Chip from '../../molecules/Chip/Chip';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function getIconType(variant) {
+const getIconType = (variant) => {
     switch (variant) {
         case STATUSCHIP_VARIANTS.SELECTED:
             return 'Check';
@@ -14,11 +14,11 @@ function getIconType(variant) {
         default:
             return null;
     }
-}
+};
 
-function isSelected(variant) {
-    return variant !== STATUSCHIP_VARIANTS.DESELECTED;
-}
+const isSelected = (variant) => (
+    variant !== STATUSCHIP_VARIANTS.DESELECTED
+);
 
 const StatusChip = ({
     children,

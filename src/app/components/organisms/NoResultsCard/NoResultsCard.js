@@ -21,9 +21,7 @@ const NoResultsCard = ({
     items,
     title,
 }) => (
-    <StyledNoResultsCard
-        elevation={elevation}
-    >
+    <StyledNoResultsCard elevation={elevation}>
         <Left>
             <IconWrapper iconSize={iconSize}>
                 <Icon type={iconType} />

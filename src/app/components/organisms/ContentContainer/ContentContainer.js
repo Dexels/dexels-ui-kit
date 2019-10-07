@@ -3,15 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledContentContainer } from './ContentContainer.sc';
 
-const ContentContainer = ({
-    children,
-    elevation,
-    position,
-}) => (
-    <StyledContentContainer
-        elevation={elevation}
-        position={position}
-    >
+const ContentContainer = ({ children, elevation, position }) => (
+    <StyledContentContainer elevation={elevation} position={position}>
         {children}
     </StyledContentContainer>
 );

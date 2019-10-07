@@ -13,16 +13,8 @@ const Chip = ({
     isSelected,
     onClick,
 }) => (
-    <StyledChip
-        isDisabled={isDisabled}
-        isSelected={isSelected}
-        onClick={onClick}
-    >
-        <TextWithOptionalIcon
-            direction={direction}
-            iconSize={iconSize}
-            iconType={iconType}
-        >
+    <StyledChip isDisabled={isDisabled} isSelected={isSelected} onClick={onClick}>
+        <TextWithOptionalIcon direction={direction} iconSize={iconSize} iconType={iconType}>
             {children}
         </TextWithOptionalIcon>
     </StyledChip>
