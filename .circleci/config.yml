@@ -1,24 +1,29 @@
 # Configuration based on:
 # - https://circleci.com/docs/2.0/language-javascript/
+# - https://github.com/circleci/frontend/blob/master/.circleci/config.yml
 # If you want to learn more about YAML check out the following documentation:
 # - https://learnxinyminutes.com/docs/yaml/
 version: 2.1
-default: &defaults
-    working_directory: ~/dexels-ui-kit
-    docker:
-        - image: circleci/node:10.16.0
+
+references:
+    container_config: &container_config
+        docker:
+            - image: circleci/node:10.16.0
+        working_directory: ~/dexels-ui-kit
+    restore_dependencies: &restore_dependencies
+        - restore_cache:
+            # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+            key: dependency-cache-{{ checksum "package-lock.json" }}
 
 jobs:
     install_dependencies:
-        <<: *defaults
+        <<: *container_config
         steps:
             - checkout
             - run:
                 name: Update NPM
                 command: 'sudo npm install -g npm@latest'
-            - restore_cache:
-                # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-                key: dependency-cache-{{ checksum "package-lock.json" }}
+            - *restore_dependencies
             - run:
                 name: Install dependencies
                 command: |
@@ -28,11 +33,12 @@ jobs:
                 paths:
                     - ./node_modules
     lint_javascript:
-        <<: *defaults
+        <<: *container_config
         steps:
             - checkout
             - run:
                 command: 'ls -al'
+            - *restore_dependencies
             - run:
                 name: Run ESLint
                 command: 'npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml'
@@ -41,7 +47,7 @@ jobs:
             - store_artifacts:
                 path: reports/junit
     lint_css:
-        <<: *defaults
+        <<: *container_config
         steps:
             - checkout
             - run:
