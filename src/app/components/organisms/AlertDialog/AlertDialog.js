@@ -33,46 +33,23 @@ const AlertDialog = ({
     onClose,
     onConfirm,
 }) => (
-    <Overlay
-        isFullscreen
-        isVisible={hasOverlay}
-    >
-        {hasButtonClose
-        && hasOverlay
-        && (
-            <ButtonClose
-                buttonClosePosition={buttonClosePosition}
-                onClick={onClose}
-            >
+    <Overlay isFullscreen isVisible={hasOverlay}>
+        {hasButtonClose && hasOverlay && (
+            <ButtonClose buttonClosePosition={buttonClosePosition} onClick={onClose}>
                 <Icon type={Icon.types.CLOSE} />
             </ButtonClose>
         )}
-        <StyledAlertDialog
-            dialogHeight={dialogHeight}
-            dialogWidth={dialogWidth}
-            elevation={elevation}
-        >
+        <StyledAlertDialog dialogHeight={dialogHeight} dialogWidth={dialogWidth} elevation={elevation}>
             {header && (
-                <Header
-                    headerAlignment={headerAlignment}
-                    headerHeight={headerHeight}
-                >
+                <Header headerAlignment={headerAlignment} headerHeight={headerHeight}>
                     {header}
                 </Header>
             )}
-            <Body
-                bodyAlignment={bodyAlignment}
-                hasHeader={header !== undefined && header !== ''}
-            >
+            <Body bodyAlignment={bodyAlignment} hasHeader={header}>
                 {body}
             </Body>
-            <Footer
-                footerAlignment={footerAlignment}
-                footerHeight={footerHeight}
-            >
-                {buttonTextCancel
-                && onCancel
-                && (
+            <Footer footerAlignment={footerAlignment} footerHeight={footerHeight}>
+                {buttonTextCancel && onCancel && (
                     <ButtonWrapper>
                         <Button
                             iconType={Button.iconTypes.CLOSE}
