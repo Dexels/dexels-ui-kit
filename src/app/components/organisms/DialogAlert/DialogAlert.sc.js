@@ -14,24 +14,24 @@ export const ButtonClose = styled.button`
     top: 10px;
     z-index: 2;
     border: 0;
-    background-color: ${({ theme }) => theme.alertDialog.buttonCloseBackgroundColor};
+    background-color: ${({ theme }) => theme.dialogAlert.buttonCloseBackgroundColor};
     ${({ buttonClosePosition }) => buttonClosePosition === 'RTL' && css`
         width: 100%;
     `};
     text-align: ${({ buttonClosePosition }) => (buttonClosePosition === 'LTR' ? 'left' : 'right')};
-    color: ${({ theme }) => theme.alertDialog.buttonCloseColor};
-    font-size: ${({ theme }) => theme.alertDialog.buttonCloseSize};
+    color: ${({ theme }) => theme.dialogAlert.buttonCloseColor};
+    font-size: ${({ theme }) => theme.dialogAlert.buttonCloseSize};
 
     &:active,
     &:hover {
-        background-color: ${({ theme }) => theme.alertDialog.buttonCloseBackgroundColorHover};
-        color: ${({ theme }) => theme.alertDialog.buttonCloseColorHover};
+        background-color: ${({ theme }) => theme.dialogAlert.buttonCloseBackgroundColorHover};
+        color: ${({ theme }) => theme.dialogAlert.buttonCloseColorHover};
     }
 `;
 
 ButtonClose.propTypes = {
     theme: PropTypes.shape({
-        alertDialog: PropTypes.objectOf((propValue, key, componentName) => (
+        dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -46,17 +46,17 @@ export const Header = styled.header`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     display: flex;
     align-items: center;
-    border-top-left-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    border-top-right-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    background-color: ${({ theme }) => theme.alertDialog.headerBackgroundColor};
+    border-top-left-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
+    border-top-right-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
+    background-color: ${({ theme }) => theme.dialogAlert.headerBackgroundColor};
     padding: 16px;
     height: ${({ headerHeight }) => headerHeight};
-    color: ${({ theme }) => theme.alertDialog.headerColor};
+    color: ${({ theme }) => theme.dialogAlert.headerColor};
 `;
 
 Header.propTypes = {
     theme: PropTypes.shape({
-        alertDialog: PropTypes.objectOf((propValue, key, componentName) => (
+        dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -69,17 +69,17 @@ Header.defaultProps = {
 export const Body = styled.div`
     ${({ bodyAlignment }) => getAlignment(bodyAlignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    border-top-left-radius: ${({ hasHeader, theme }) => !hasHeader && theme.alertDialog.borderRadius};
-    border-top-right-radius: ${({ hasHeader, theme }) => !hasHeader && theme.alertDialog.borderRadius};
-    background-color: ${({ theme }) => theme.alertDialog.bodyBackgroundColor};
+    border-top-left-radius: ${({ hasHeader, theme }) => !hasHeader && theme.dialogAlert.borderRadius};
+    border-top-right-radius: ${({ hasHeader, theme }) => !hasHeader && theme.dialogAlert.borderRadius};
+    background-color: ${({ theme }) => theme.dialogAlert.bodyBackgroundColor};
     padding: 16px;
     height: 100%;
-    color: ${({ theme }) => theme.alertDialog.bodyColor};
+    color: ${({ theme }) => theme.dialogAlert.bodyColor};
 `;
 
 Body.propTypes = {
     theme: PropTypes.shape({
-        alertDialog: PropTypes.objectOf((propValue, key, componentName) => (
+        dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -94,16 +94,16 @@ export const Footer = styled.footer`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
     align-items: center;
-    border-bottom-left-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    border-bottom-right-radius: ${({ theme }) => theme.alertDialog.borderRadius};
-    background-color: ${({ theme }) => theme.alertDialog.footerBackgroundColor};
+    border-bottom-left-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
+    border-bottom-right-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
+    background-color: ${({ theme }) => theme.dialogAlert.footerBackgroundColor};
     padding: 16px;
     height: ${({ footerHeight }) => footerHeight};
 `;
 
 Footer.propTypes = {
     theme: PropTypes.shape({
-        alertDialog: PropTypes.objectOf((propValue, key, componentName) => (
+        dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -113,27 +113,27 @@ Footer.defaultProps = {
     theme: defaultTheme,
 };
 
-export const StyledAlertDialog = styled.div`
+export const StyledDialogAlert = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-direction: column;
     z-index: 999;
     margin: auto;
-    border-radius: ${({ theme }) => theme.alertDialog.borderRadius};
+    border-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
     width: ${({ dialogWidth }) => dialogWidth};
     max-width: ${({ dialogWidth }) => dialogWidth};
     height: ${({ dialogHeight }) => dialogHeight};
     max-height: ${({ dialogHeight }) => dialogHeight};
 `;
 
-StyledAlertDialog.propTypes = {
+StyledDialogAlert.propTypes = {
     theme: PropTypes.shape({
-        alertDialog: PropTypes.objectOf((propValue, key, componentName) => (
+        dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
 };
 
-StyledAlertDialog.defaultProps = {
+StyledDialogAlert.defaultProps = {
     theme: defaultTheme,
 };
