@@ -22,7 +22,7 @@ jobs:
             - checkout
             - run:
                 name: Update NPM
-                command: 'sudo npm install -g npm@latest'
+                command: sudo npm install -g npm@latest
             - *restore_dependencies
             - run:
                 name: Install dependencies
@@ -36,12 +36,12 @@ jobs:
         <<: *container_config
         steps:
             - checkout
-            - run:
-                command: 'ls -al'
             - *restore_dependencies
             - run:
+                command: 'ls -al'
+            - run:
                 name: Run ESLint
-                command: 'npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml'
+                command: npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml
             - store_test_results:
                 path: reports/junit
             - store_artifacts:
@@ -50,8 +50,13 @@ jobs:
         <<: *container_config
         steps:
             - checkout
+            - *restore_dependencies
             - run:
-                command: echo 'Linted some css'
+                command: npm run lint:css -- --custom-formatter 'node_modules/stylelint-junit-formatter' --output-file reports/junit/css-lint-results.xml
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
 
 workflows:
     install_dependencies_and_lint:
