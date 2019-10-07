@@ -20,14 +20,9 @@ const NoResultsCard = ({
     items,
     title,
 }) => (
-    <StyledNoResultsCard
-        elevation={elevation}
-    >
+    <StyledNoResultsCard elevation={elevation}>
         <Left>
-            <Icon
-                size={iconSize}
-                type={iconType}
-            />
+            <Icon size={iconSize} type={iconType} />
         </Left>
         <Right>
             <Header>

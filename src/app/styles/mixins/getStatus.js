@@ -31,7 +31,7 @@ const getStatusColor = (status) => {
 };
 
 const getStatusCSS = (status, statusIndicatorSize, statusPlacement) => {
-    const baseCSS = statusIndicatorSize.concat(' solid ');
+    const baseCSS = `${statusIndicatorSize} solid`;
 
     switch (statusPlacement) {
         case PLACEMENTS.BOTTOM:

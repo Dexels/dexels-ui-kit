@@ -12,8 +12,6 @@ export const StyledContentContainer = styled.div`
     border: 0;
     background-color: transparent;
     padding: 8px;
-    width: 100%;
-    height: 100%;
 `;
 
 StyledContentContainer.propTypes = {
