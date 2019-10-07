@@ -9,11 +9,11 @@ export const StyledCard = styled.div`
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
-    border-radius: ${({ theme }) => theme.card.borderRadius};
+    border-radius: 4px;
     background-color: ${({ theme }) => theme.card.backgroundColor};
-    padding: ${({ theme }) => theme.card.padding};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
+    padding: 8px;
+    width: 100%;
+    height: 100%;
     white-space: wrap;
 `;
 

@@ -11,9 +11,9 @@ export const StyledContentContainer = styled.div`
     display: flex;
     border: 0;
     background-color: transparent;
-    padding: ${({ padding }) => padding};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
+    padding: 8px;
+    width: 100%;
+    height: 100%;
 `;
 
 StyledContentContainer.propTypes = {

@@ -8,7 +8,6 @@ export default { title: 'organisms/StatusCard' };
 export const Configurable = () => (
     <StatusCard
         elevation={select('Elevation', StatusCard.elevations, StatusCard.defaultProps.elevation)}
-        height={text('Set height in px or %', StatusCard.defaultProps.height)}
         position={select('Position', StatusCard.positions, StatusCard.defaultProps.position)}
         status={select('Status', StatusCard.statuses, StatusCard.defaultProps.status)}
         statusPlacement={
@@ -16,7 +15,6 @@ export const Configurable = () => (
                 StatusCard.statusPlacements,
                 StatusCard.defaultProps.statusPlacement)
         }
-        width={text('Set width in px or %', StatusCard.defaultProps.width)}
     >
         {text('Text', 'Configure me!')}
     </StatusCard>
@@ -25,7 +23,6 @@ export const Configurable = () => (
 export const ConfigurableWithComponent = () => (
     <StatusCard
         elevation={select('Elevation', StatusCard.elevations, StatusCard.defaultProps.elevation)}
-        height={text('Set height in px or %', StatusCard.defaultProps.height)}
         position={select('Position', StatusCard.positions, StatusCard.defaultProps.position)}
         status={select('Status', StatusCard.statuses, StatusCard.defaultProps.status)}
         statusPlacement={
@@ -33,7 +30,6 @@ export const ConfigurableWithComponent = () => (
                 StatusCard.statusPlacements,
                 StatusCard.defaultProps.statusPlacement)
         }
-        width={text('Set width in px or %', StatusCard.defaultProps.width)}
     >
         <Button
             onClick={() => {}}
