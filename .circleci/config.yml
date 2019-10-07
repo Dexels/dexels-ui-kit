@@ -1,11 +1,16 @@
 # Configuration based on:
 # - https://circleci.com/docs/2.0/language-javascript/
+# If you want to learn more about YAML check out the following documentation:
+# - https://learnxinyminutes.com/docs/yaml/
 version: 2.1
+default: &defaults
+    working_directory: ~/dexels-ui-kit
+    docker:
+        - image: circleci/node:10.16.0
+
 jobs:
     install_dependencies:
-        docker:
-            - image: circleci/node:10.16.0
-        working_directory: ~/dexels-ui-kit
+        <<: *defaults
         steps:
             - checkout
             - run:
@@ -23,9 +28,7 @@ jobs:
                 paths:
                     - ./node_modules
     lint_javascript:
-        docker:
-            - image: circleci/node:10.16.0
-        working_directory: ~/dexels-ui-kit
+        <<: *defaults
         steps:
             - checkout
             - run:
@@ -38,13 +41,12 @@ jobs:
             - store_artifacts:
                 path: reports/junit
     lint_css:
-        docker:
-            - image: circleci/node:10.16.0
-        working_directory: ~/dexels-ui-kit
+        <<: *defaults
         steps:
             - checkout
             - run:
                 command: echo 'Linted some css'
+
 workflows:
     install_dependencies_and_lint:
         jobs:
