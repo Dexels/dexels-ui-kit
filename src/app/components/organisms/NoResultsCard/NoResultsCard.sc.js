@@ -23,8 +23,7 @@ Header.defaultProps = {
 };
 
 export const Title = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    font-family: ${({ theme }) => theme.noResultsCard.fontFamilyTitle};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
     margin: 4px 4px 4px 0px;
     color: ${({ theme }) => theme.noResultsCard.colorTitle};
 `;
@@ -42,7 +41,7 @@ Title.defaultProps = {
 };
 
 export const Item = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     padding-bottom: 4px;
     color: ${({ theme }) => theme.noResultsCard.colorItem};
 `;
@@ -60,7 +59,6 @@ Item.defaultProps = {
 };
 
 export const Left = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     width: 48px;
     color: ${({ theme }) => theme.noResultsCard.colorHeader};
 `;
@@ -85,12 +83,11 @@ export const StyledNoResultsCard = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-direction: row;
-    align-items: baseline;
     justify-content: flex-start;
     background-color: ${({ theme }) => theme.noResultsCard.backgroundColor};
-    padding: ${({ theme }) => theme.noResultsCard.padding};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
+    padding: 24px;
+    width: 100%;
+    height: 100%;
 `;
 
 StyledNoResultsCard.propTypes = {

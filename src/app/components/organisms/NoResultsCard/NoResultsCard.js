@@ -14,20 +14,20 @@ import React from 'react';
 const NoResultsCard = ({
     elevation,
     header,
-    height,
+    iconSize,
     iconType,
     itemPrefix,
     items,
     title,
-    width,
 }) => (
     <StyledNoResultsCard
         elevation={elevation}
-        height={height}
-        width={width}
     >
         <Left>
-            <Icon type={iconType} />
+            <Icon
+                size={iconSize}
+                type={iconType}
+            />
         </Left>
         <Right>
             <Header>
@@ -51,7 +51,7 @@ NoResultsCard.iconTypes = Icon.types;
 NoResultsCard.propTypes = {
     elevation: PropTypes.oneOf(Object.values(NoResultsCard.elevations)),
     header: PropTypes.string.isRequired,
-    height: PropTypes.string,
+    iconSize: PropTypes.string,
     iconType: PropTypes.oneOf(Object.values(NoResultsCard.iconTypes)),
     itemPrefix: PropTypes.string,
     items: PropTypes.arrayOf(
@@ -60,16 +60,14 @@ NoResultsCard.propTypes = {
         }),
     ),
     title: PropTypes.string.isRequired,
-    width: PropTypes.string,
 };
 
 NoResultsCard.defaultProps = {
     elevation: NoResultsCard.elevations.LEVEL_1,
-    height: '100%',
+    iconSize: '32px',
     iconType: NoResultsCard.iconTypes.SEARCH,
     itemPrefix: '-',
     items: null,
-    width: '100%',
 };
 
 export default NoResultsCard;
