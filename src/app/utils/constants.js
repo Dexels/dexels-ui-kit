@@ -34,27 +34,36 @@ export const INPUT_VARIANTS = mapArrayToObject([
 ]);
 
 export const POSITIONS = mapArrayToObject([
-    'TOP_LEFT',
-    'TOP_CENTER',
-    'TOP_RIGHT',
-    'MIDDLE_LEFT',
-    'MIDDLE_CENTER',
-    'MIDDLE_RIGHT',
-    'BOTTOM_LEFT',
     'BOTTOM_CENTER',
+    'BOTTOM_LEFT',
     'BOTTOM_RIGHT',
+    'MIDDLE_CENTER',
+    'MIDDLE_LEFT',
+    'MIDDLE_RIGHT',
+    'TOP_CENTER',
+    'TOP_LEFT',
+    'TOP_RIGHT',
 ]);
 
 export const PLACEMENTS = mapArrayToObject([
-    'LEFT',
-    'TOP',
-    'RIGHT',
     'BOTTOM',
+    'LEFT',
+    'RIGHT',
+    'TOP',
 ]);
 
 export const SIZES = mapArrayToObject([
     'LARGE',
     'SMALL',
+]);
+
+export const STATUSES = mapArrayToObject([
+    'DEFAULT',
+    'DISABLED',
+    'ERROR',
+    'NONE',
+    'OK',
+    'WARNING',
 ]);
 
 export const TRANSITIONS = mapArrayToObject([

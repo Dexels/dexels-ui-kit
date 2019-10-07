@@ -34,6 +34,9 @@ const theme = {
     noResultsCard: NO_RESULTS_CARD_THEME,
     overlay: OVERLAY_THEME,
     selectionControl: SELECTION_CONTROL_THEME,
+    statusIndicator: {
+        size: '8px',
+    },
     textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {

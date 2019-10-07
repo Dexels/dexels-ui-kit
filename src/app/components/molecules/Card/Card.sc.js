@@ -1,4 +1,3 @@
-import { CARD_ELEVATIONS, CARD_POSITIONS } from './Card.consts';
 import defaultTheme from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
@@ -15,18 +14,15 @@ export const StyledCard = styled.div`
     padding: ${({ theme }) => theme.card.padding};
     width: ${({ width }) => width};
     height: ${({ height }) => height};
+    white-space: wrap;
 `;
 
 StyledCard.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)).isRequired,
-    height: PropTypes.string.isRequired,
-    position: PropTypes.oneOf(Object.values(CARD_POSITIONS)),
     theme: PropTypes.shape({
-        chip: PropTypes.objectOf((propValue, key, componentName) => (
+        card: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )),
     }),
-    width: PropTypes.string.isRequired,
 };
 
 StyledCard.defaultProps = {
