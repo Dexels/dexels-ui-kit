@@ -8,10 +8,13 @@ export const Text = styled.p`
 `;
 
 export const IconWrapper = styled.div`
-    display: flex;
-    align-items: center;
     order: 1;
     margin: 0 6px 0 0;
+
+    span {
+        display: block;
+    }
+
     ${({ iconSize }) => iconSize && css`
         font-size: ${iconSize};
     `};
