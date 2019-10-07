@@ -24,7 +24,7 @@ Header.defaultProps = {
 
 export const Title = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
-    margin: 4px 4px 4px 0px;
+    margin: 4px 4px 4px 0;
     color: ${({ theme }) => theme.noResultsCard.colorTitle};
 `;
 
