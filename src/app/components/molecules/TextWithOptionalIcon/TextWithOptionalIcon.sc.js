@@ -8,7 +8,8 @@ export const Text = styled.p`
 `;
 
 export const IconWrapper = styled.div`
-    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
     order: 1;
     margin: 0 6px 0 0;
 `;

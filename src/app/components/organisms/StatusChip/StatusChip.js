@@ -4,27 +4,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function getIconType(variant) {
-    let result = null;
+    switch (variant) {
+        case STATUSCHIP_VARIANTS.SELECTED:
+            return 'Check';
 
-    if (variant === STATUSCHIP_VARIANTS.SELECTED) {
-        result = 'Check';
-    } else if (variant === STATUSCHIP_VARIANTS.INDETERMINATE) {
-        result = 'Minus';
-    } else if (variant === STATUSCHIP_VARIANTS.HANDLE_ALL) {
-        result = 'Minus';
+        case STATUSCHIP_VARIANTS.INDETERMINATE:
+            return 'Minus';
+
+        default:
+            return null;
     }
-
-    return result;
 }
 
 function isSelected(variant) {
-    let result = true;
-
-    if (variant === STATUSCHIP_VARIANTS.DESELECTED) {
-        result = false;
-    }
-
-    return result;
+    return variant !== STATUSCHIP_VARIANTS.DESELECTED;
 }
 
 const StatusChip = ({
