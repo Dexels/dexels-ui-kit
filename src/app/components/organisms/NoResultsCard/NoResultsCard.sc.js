@@ -77,7 +77,6 @@ Left.defaultProps = {
 };
 
 export const Right = styled.div`
-    /* display: flex; */
     width: 100%;
 `;
 

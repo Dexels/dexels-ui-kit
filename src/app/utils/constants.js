@@ -1,5 +1,11 @@
 import mapArrayToObject from './mapArrayToObject';
 
+export const ALIGNMENTS = mapArrayToObject([
+    'LEFT',
+    'CENTER',
+    'RIGHT',
+]);
+
 export const DIRECTIONS = mapArrayToObject([
     'LTR',
     'RTL',
@@ -18,33 +24,46 @@ export const ELEVATIONS = mapArrayToObject([
     'LEVEL_24',
 ]);
 
+export const FONT_FAMILY_PRIMARY = "'Open Sans', arial, sans-serif";
+
+export const FONT_FAMILY_SECONDARY = "'Exo 2', sans-serif";
+
 export const INPUT_VARIANTS = mapArrayToObject([
     'COMPACT',
     'FULL_SIZE',
 ]);
 
 export const POSITIONS = mapArrayToObject([
-    'TOP_LEFT',
-    'TOP_CENTER',
-    'TOP_RIGHT',
-    'MIDDLE_LEFT',
-    'MIDDLE_CENTER',
-    'MIDDLE_RIGHT',
-    'BOTTOM_LEFT',
     'BOTTOM_CENTER',
+    'BOTTOM_LEFT',
     'BOTTOM_RIGHT',
+    'MIDDLE_CENTER',
+    'MIDDLE_LEFT',
+    'MIDDLE_RIGHT',
+    'TOP_CENTER',
+    'TOP_LEFT',
+    'TOP_RIGHT',
 ]);
 
 export const PLACEMENTS = mapArrayToObject([
-    'LEFT',
-    'TOP',
-    'RIGHT',
     'BOTTOM',
+    'LEFT',
+    'RIGHT',
+    'TOP',
 ]);
 
 export const SIZES = mapArrayToObject([
     'LARGE',
     'SMALL',
+]);
+
+export const STATUSES = mapArrayToObject([
+    'DEFAULT',
+    'DISABLED',
+    'ERROR',
+    'NONE',
+    'OK',
+    'WARNING',
 ]);
 
 export const TRANSITIONS = mapArrayToObject([
