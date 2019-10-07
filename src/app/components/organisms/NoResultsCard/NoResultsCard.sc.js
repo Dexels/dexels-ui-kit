@@ -25,7 +25,7 @@ Header.defaultProps = {
 export const Title = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     font-family: ${({ theme }) => theme.noResultsCard.fontFamilyTitle};
-    margin: 4px;
+    margin: 4px 4px 4px 0px;
     color: ${({ theme }) => theme.noResultsCard.colorTitle};
 `;
 
