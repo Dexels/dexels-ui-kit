@@ -29,14 +29,14 @@
 @font-face {
     font-family: 'Open Sans';
     src: url('/fonts/opensans/OpenSans-Semibold.woff') format('woff');
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Open Sans';
     src: url('/fonts/opensans/OpenSans-SemiboldItalic.woff') format('woff');
-    font-weight: 500;
+    font-weight: 600;
     font-style: italic;
 }
 
@@ -57,13 +57,13 @@
 @font-face {
     font-family: 'Open Sans';
     src: url('/fonts/opensans/OpenSans-ExtraBold.woff') format('woff');
-    font-weight: 900;
+    font-weight: 800;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Open Sans';
     src: url('/fonts/opensans/OpenSans-ExtraBoldItalic.woff') format('woff');
-    font-weight: 900;
+    font-weight: 800;
     font-style: italic;
 }
