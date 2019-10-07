@@ -1,7 +1,4 @@
-import {
-    STATUS_CARD_PLACEMENTS,
-    STATUS_CARD_STATUSES,
-} from './StatusCard.consts';
+import { STATUS_CARD_PLACEMENTS, STATUS_CARD_STATUSES } from './StatusCard.consts';
 import { StyledStatusCard, StyledStatusCardWrapper } from './StatusCard.sc';
 import Card from '../../molecules/Card/Card';
 import PropTypes from 'prop-types';
@@ -14,17 +11,9 @@ const StatusCard = ({
     status,
     statusPlacement,
 }) => (
-    <StyledStatusCardWrapper
-        elevation={elevation}
-    >
-        <StyledStatusCard
-            status={status}
-            statusPlacement={statusPlacement}
-        >
-            <Card
-                elevation={Card.elevations.LEVEL_0}
-                position={position}
-            >
+    <StyledStatusCardWrapper elevation={elevation}>
+        <StyledStatusCard status={status} statusPlacement={statusPlacement}>
+            <Card elevation={Card.elevations.LEVEL_0} position={position}>
                 {children}
             </Card>
         </StyledStatusCard>

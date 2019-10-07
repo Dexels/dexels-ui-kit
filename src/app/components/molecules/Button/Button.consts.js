@@ -4,11 +4,7 @@ import {
     sl10,
     white,
 } from '../../../styles/colors/colors';
-import {
-    DIRECTIONS,
-    FONT_FAMILY_SECONDARY,
-    SIZES,
-} from '../../../utils/constants';
+import { DIRECTIONS, FONT_FAMILY_SECONDARY, SIZES } from '../../../utils/constants';
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 export const BUTTON_DIRECTIONS = DIRECTIONS;
