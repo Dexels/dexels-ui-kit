@@ -11,7 +11,7 @@ references:
             - image: circleci/node:10.16.0
         working_directory: ~/dexels-ui-kit
     restore_dependencies: &restore_dependencies
-        - restore_cache:
+        restore_cache:
             # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
             key: dependency-cache-{{ checksum "package-lock.json" }}
 
