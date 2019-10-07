@@ -51,6 +51,18 @@ const theme = {
             fontWeight: '400',
             lineHeight: '18px',
         },
+        buttonLarge: {
+            fontFamily: FONT_FAMILY_SECONDARY,
+            fontSize: '16px',
+            fontWeight: '600',
+            lineHeight: '22px',
+        },
+        buttonSmall: {
+            fontFamily: FONT_FAMILY_SECONDARY,
+            fontSize: '14px',
+            fontWeight: '600',
+            lineHeight: '22px',
+        },
         caption: {
             fontFamily: FONT_FAMILY_PRIMARY,
             fontSize: '12px',
@@ -72,7 +84,7 @@ const theme = {
         h3: {
             fontFamily: FONT_FAMILY_SECONDARY,
             fontSize: '16px',
-            fontWeight: '500',
+            fontWeight: '600',
             lineHeight: '24px',
         },
     },
