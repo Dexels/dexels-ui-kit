@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
     text-transform: uppercase;
     color: ${({ theme }) => theme.button.textColor};
 
-    ${({ fullWidth }) => fullWidth && css`
+    ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
         justify-content: center;
     `};
@@ -86,8 +86,8 @@ export const StyledButton = styled.button`
 `;
 
 StyledButton.propTypes = {
-    fullWidth: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
+    isFullWidth: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
     theme: PropTypes.shape({
         button: PropTypes.objectOf((propValue, key, componentName) => (
