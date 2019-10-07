@@ -16,8 +16,13 @@ const StatusCard = ({
     statusPlacement,
     width,
 }) => (
-    <StyledStatusCardWrapper elevation={elevation}>
-        <StyledStatusCard status={status} statusPlacement={statusPlacement}>
+    <StyledStatusCardWrapper
+        elevation={elevation}
+    >
+        <StyledStatusCard
+            status={status}
+            statusPlacement={statusPlacement}
+        >
             <Card
                 elevation={Card.elevations.LEVEL_0}
                 height={height}
