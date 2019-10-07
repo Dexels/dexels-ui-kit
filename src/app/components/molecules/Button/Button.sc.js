@@ -15,6 +15,7 @@ export const StyledButton = styled.button`
     overflow: hidden;
     text-transform: uppercase;
     color: ${({ theme }) => theme.button.textColor};
+    font-family: ${({ theme }) => theme.button.fontFamily};
 
     ${({ fullWidth }) => fullWidth && css`
         width: 100%;

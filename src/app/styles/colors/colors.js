@@ -1,3 +1,5 @@
+export const black = '#000000';
+
 export const blue25 = '#BFE7FE';
 
 export const blue50 = '#80CFFE';
