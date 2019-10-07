@@ -8,6 +8,7 @@ import {
 } from './NoResultsCard.sc';
 import Card from '../../molecules/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
+import { IconWrapper } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -24,10 +25,9 @@ const NoResultsCard = ({
         elevation={elevation}
     >
         <Left>
-            <Icon
-                size={iconSize}
-                type={iconType}
-            />
+            <IconWrapper iconSize={iconSize}>
+                <Icon type={iconType} />
+            </IconWrapper>
         </Left>
         <Right>
             <Header>

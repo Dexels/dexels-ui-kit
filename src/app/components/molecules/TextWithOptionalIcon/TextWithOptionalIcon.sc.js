@@ -12,6 +12,9 @@ export const IconWrapper = styled.div`
     align-items: center;
     order: 1;
     margin: 0 6px 0 0;
+    ${({ iconSize }) => iconSize && css`
+        font-size: ${iconSize};
+    `};
 `;
 
 export const StyledTextWithOptionalIcon = styled.div`
