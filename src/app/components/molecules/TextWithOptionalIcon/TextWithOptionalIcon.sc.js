@@ -11,13 +11,13 @@ export const IconWrapper = styled.div`
     order: 1;
     margin: 0 6px 0 0;
 
-    span {
-        display: block;
-    }
-
     ${({ iconSize }) => iconSize && css`
         font-size: ${iconSize};
     `};
+
+    span {
+        display: block;
+    }
 `;
 
 export const StyledTextWithOptionalIcon = styled.div`
