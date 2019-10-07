@@ -30,6 +30,7 @@ export const StyledButton = styled.button`
 
     ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
         ${theme.textStyling(theme.availableTextStyles().body2)};
+        font-family: ${theme.button.fontFamily};
         min-height: ${theme.button.heightSmall};
         border-radius: ${theme.button.borderRadiusSmall};
         padding: 6px 16px;
@@ -37,6 +38,7 @@ export const StyledButton = styled.button`
 
     ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
         ${theme.textStyling(theme.availableTextStyles().body1)};
+        font-family: ${theme.button.fontFamily};
         min-height: ${theme.button.heightLarge};
         border-radius: ${theme.button.borderRadiusLarge};
         padding: 12px 16px;
