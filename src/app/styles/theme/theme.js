@@ -1,3 +1,4 @@
+import { ALERT_DIALOG_THEME } from '../../components/organisms/AlertDialog/AlertDialog.consts';
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
 import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
@@ -9,11 +10,13 @@ import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/NoResultsCard.consts';
+import { OVERLAY_THEME } from '../../components/molecules/Overlay/Overlay.consts';
 import { SELECTION_CONTROL_THEME } from '../../components/molecules/SelectionControl/SelectionControl.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
 const theme = {
+    alertDialog: ALERT_DIALOG_THEME,
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
     },
@@ -27,6 +30,7 @@ const theme = {
     inputPassword: INPUT_PASSWORD_THEME,
     label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
+    overlay: OVERLAY_THEME,
     selectionControl: SELECTION_CONTROL_THEME,
     textIcon: TEXT_ICON_THEME,
     textStyles: {
