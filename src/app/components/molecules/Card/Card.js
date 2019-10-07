@@ -1,7 +1,4 @@
-import {
-    CARD_ELEVATIONS,
-    CARD_POSITIONS,
-} from './Card.consts';
+import { CARD_ELEVATIONS, CARD_POSITIONS } from './Card.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledCard } from './Card.sc';
