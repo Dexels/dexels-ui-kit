@@ -34,7 +34,7 @@ export const LabelWrapper = styled.div`
     `};
 
     ${({ hasValue, isFocussed, variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
-        top: 11px;
+        top: 12px;
         left: 12px;
         background-color: white;
 
@@ -75,12 +75,8 @@ export const TextField = styled.input`
 
     ${({ isTextarea, theme }) => isTextarea && css`
         height: ${theme.input.heightTextarea};
-        padding: 11px 12px;
+        padding: 12px;
         resize: none;
-    `};
-
-    ${({ isFocussed, theme }) => isFocussed && css`
-        border-color: ${theme.input.colorFocus};
     `};
 
     ${({ hasError, theme }) => hasError && css`
@@ -89,6 +85,10 @@ export const TextField = styled.input`
 
     ${({ isValid, theme }) => isValid && css`
         border-color: ${theme.input.colorValid};
+    `};
+
+    ${({ isFocussed, theme }) => isFocussed && css`
+        border-color: ${theme.input.colorFocus};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
