@@ -11,7 +11,7 @@
     "dist": "npm run build:prod",
     "lint:css": "stylelint \"src/**/*.js\" --config config/.stylelintrc.js",
     "lint:js": "eslint \"src/**/*.js\" --config config/.eslintrc.js",
-    "storybook": "start-storybook -c ./src/.storybook -s ./public --quiet",
+    "storybook": "start-storybook -c ./src/.storybook -s ./public --port 80 --quiet",
     "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out"
   },
   "repository": {
