@@ -5,7 +5,6 @@ import styled from 'styled-components';
 export const StyledErrorMessage = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
     color: ${({ theme }) => theme.errorMessage.color};
-    padding: 0px;
 `;
 
 StyledErrorMessage.propTypes = {
