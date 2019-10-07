@@ -1,3 +1,4 @@
+import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
 import { addDecorator, configure } from '@storybook/react';

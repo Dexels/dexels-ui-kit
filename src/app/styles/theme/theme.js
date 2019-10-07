@@ -1,3 +1,5 @@
+import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constants';
+import { ALERT_DIALOG_THEME } from '../../components/organisms/AlertDialog/AlertDialog.consts';
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
 import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
@@ -9,11 +11,13 @@ import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/NoResultsCard.consts';
+import { OVERLAY_THEME } from '../../components/molecules/Overlay/Overlay.consts';
 import { SELECTION_CONTROL_THEME } from '../../components/molecules/SelectionControl/SelectionControl.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
 const theme = {
+    alertDialog: ALERT_DIALOG_THEME,
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
     },
@@ -22,11 +26,13 @@ const theme = {
     card: CARD_THEME,
     chip: CHIP_THEME,
     errorMessage: ERROR_MESSAGE_THEME,
-    fontFamily: "'Open Sans', arial, sans-serif",
+    fontFamilyPrimary: FONT_FAMILY_PRIMARY,
+    fontFamilySecondary: FONT_FAMILY_SECONDARY,
     input: INPUT_THEME,
     inputPassword: INPUT_PASSWORD_THEME,
     label: LABEL_THEME,
     noResultsCard: NO_RESULTS_CARD_THEME,
+    overlay: OVERLAY_THEME,
     selectionControl: SELECTION_CONTROL_THEME,
     statusIndicator: {
         size: '8px',
@@ -34,44 +40,40 @@ const theme = {
     textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {
+            fontFamily: FONT_FAMILY_PRIMARY,
             fontSize: '16px',
             fontWeight: '400',
-            lineHeight: '24px',
+            lineHeight: '22px',
         },
         body2: {
+            fontFamily: FONT_FAMILY_PRIMARY,
             fontSize: '14px',
             fontWeight: '400',
-            lineHeight: '18px',
-        },
-        body3: {
-            fontSize: '14px',
-            fontWeight: '300',
             lineHeight: '18px',
         },
         caption: {
+            fontFamily: FONT_FAMILY_PRIMARY,
             fontSize: '12px',
-            fontWeight: '300',
+            fontWeight: '400',
             lineHeight: '16px',
         },
         h1: {
+            fontFamily: FONT_FAMILY_SECONDARY,
             fontSize: '24px',
             fontWeight: '500',
-            lineHeight: '30px',
+            lineHeight: '34px',
         },
         h2: {
+            fontFamily: FONT_FAMILY_SECONDARY,
             fontSize: '20px',
             fontWeight: '500',
             lineHeight: '28px',
         },
         h3: {
+            fontFamily: FONT_FAMILY_SECONDARY,
             fontSize: '16px',
-            fontWeight: '700',
+            fontWeight: '500',
             lineHeight: '24px',
-        },
-        h4: {
-            fontSize: '14px',
-            fontWeight: '700',
-            lineHeight: '22px',
         },
     },
     textStyling(textStyleSelector = 'body1') {
@@ -85,7 +87,7 @@ const theme = {
 
         return css`
             line-height: ${textStyle.lineHeight};
-            font-family: ${this.fontFamily};
+            font-family: ${textStyle.fontFamily ? textStyle.fontFamily : FONT_FAMILY_PRIMARY};
             font-size: ${textStyle.fontSize};
             font-weight: ${textStyle.fontWeight};
         `;
