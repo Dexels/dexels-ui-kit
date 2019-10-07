@@ -79,16 +79,16 @@ export const TextField = styled.input`
         resize: none;
     `};
 
-    ${({ isFocussed, theme }) => isFocussed && css`
-        border-color: ${theme.input.colorFocus};
-    `};
-
     ${({ hasError, theme }) => hasError && css`
         border-color: ${theme.input.colorError};
     `};
 
     ${({ isValid, theme }) => isValid && css`
         border-color: ${theme.input.colorValid};
+    `};
+
+    ${({ isFocussed, theme }) => isFocussed && css`
+        border-color: ${theme.input.colorFocus};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
