@@ -26,8 +26,7 @@ jobs:
             - *restore_dependencies
             - run:
                 name: Install dependencies
-                command: |
-                    npm install
+                command: npm install
             - save_cache:
                 key: dependency-cache-{{ checksum "package-lock.json" }}
                 paths:
