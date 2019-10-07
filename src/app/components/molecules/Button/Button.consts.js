@@ -4,7 +4,11 @@ import {
     sl10,
     white,
 } from '../../../styles/colors/colors';
-import { DIRECTIONS, SIZES } from '../../../utils/constants';
+import {
+    DIRECTIONS,
+    FONT_FAMILY_SECONDARY,
+    SIZES,
+} from '../../../utils/constants';
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 export const BUTTON_DIRECTIONS = DIRECTIONS;
@@ -19,6 +23,7 @@ export const BUTTON_THEME = {
     colorDefault: purple100,
     colorDisabled: sl10,
     colorHover: blue100,
+    fontFamily: FONT_FAMILY_SECONDARY,
     heightLarge: '48px',
     heightSmall: '32px',
     textColor: white,
