@@ -8,17 +8,17 @@ const Button = ({
     autoFocus,
     children,
     direction,
-    fullWidth,
     iconType,
     isDisabled,
+    isFullWidth,
     onClick,
     size,
     variant,
 }) => (
     <StyledButton
         autoFocus={autoFocus}
-        fullWidth={fullWidth}
         isDisabled={isDisabled}
+        isFullWidth={isFullWidth}
         onClick={onClick}
         size={size}
         variant={variant}
@@ -38,9 +38,9 @@ Button.propTypes = {
     autoFocus: PropTypes.bool,
     children: PropTypes.node.isRequired,
     direction: PropTypes.oneOf(Object.values(Button.directions)),
-    fullWidth: PropTypes.bool,
     iconType: PropTypes.oneOf(Object.values(Button.iconTypes)),
     isDisabled: PropTypes.bool,
+    isFullWidth: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     size: PropTypes.oneOf(Object.values(Button.sizes)),
     variant: PropTypes.oneOf(Object.values(Button.variants)),
@@ -49,9 +49,9 @@ Button.propTypes = {
 Button.defaultProps = {
     autoFocus: false,
     direction: Button.directions.LTR,
-    fullWidth: false,
     iconType: null,
     isDisabled: false,
+    isFullWidth: false,
     size: Button.sizes.LARGE,
     variant: Button.variants.FILLED,
 };
