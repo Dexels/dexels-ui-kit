@@ -3,7 +3,7 @@ import Button from '../../molecules/Button/Button';
 import CardStatus from './CardStatus';
 import React from 'react';
 
-export default { title: 'organisms/CardStatus' };
+export default { title: 'molecules/CardStatus' };
 
 export const Configurable = () => (
     <CardStatus

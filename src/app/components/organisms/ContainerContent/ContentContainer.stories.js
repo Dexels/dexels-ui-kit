@@ -1,7 +1,7 @@
 import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
-import Card from '../../molecules/Card/Card';
+import Card from '../../atoms/Card/Card';
 import ContainerContent from './ContainerContent';
 import React from 'react';
 

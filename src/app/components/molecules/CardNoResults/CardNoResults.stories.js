@@ -2,7 +2,7 @@ import { array, select, text } from '@storybook/addon-knobs';
 import CardNoResults from './CardNoResults';
 import React from 'react';
 
-export default { title: 'organisms/CardNoResults' };
+export default { title: 'molecules/CardNoResults' };
 
 export const Configurable = () => (
     <CardNoResults

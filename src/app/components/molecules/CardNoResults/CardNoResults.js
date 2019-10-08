@@ -6,7 +6,7 @@ import {
     StyledCardNoResults,
     Title,
 } from './CardNoResults.sc';
-import Card from '../../molecules/Card/Card';
+import Card from '../../atoms/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
 import { IconWrapper } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
