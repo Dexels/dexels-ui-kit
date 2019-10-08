@@ -25,6 +25,7 @@ module.exports = () => ({
     },
     output: {
         filename: 'index.js',
+        libraryTarget: 'commonjs2',
         path: distPath,
         publicPath: './',
     },

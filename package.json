@@ -1,7 +1,10 @@
 {
     "name": "dexels-ui-kit",
-    "version": "1.0.4",
-    "author": "Dexels B.V.",
+    "version": "1.0.5",
+    "author": {
+        "name": "Dexels B.V.",
+        "email": "info@dexels.com"
+    },
     "description": "An UI kit which can be used in Dexels applications",
     "main": "dist/index.js",
     "files": [
