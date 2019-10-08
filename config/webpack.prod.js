@@ -4,6 +4,8 @@ const baseConfig = require('./webpack.base');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { resolve } = require('path');
+const { publicPath } = require('./paths');
 
 module.exports = () => (
     merge(baseConfig(), {
@@ -11,6 +13,7 @@ module.exports = () => (
         module: {
             rules: [
                 {
+                    include: [resolve(__dirname, publicPath)],
                     test: /\.css$/i,
                     use: [MiniCssExtractPlugin.loader, 'css-loader'],
                 },
