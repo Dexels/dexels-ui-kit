@@ -33,7 +33,7 @@
     "url": "https://github.com/Dexels/dexels-ui-kit/issues"
   },
   "homepage": "https://github.com/Dexels/dexels-ui-kit#readme",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "styled-components": "^4.4.0",
@@ -62,7 +62,11 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
     "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "styled-reset": "^4.0.2",
     "style-loader": "^1.0.0",
+    "styled-components": "^4.4.0",
     "stylelint": "^11.0.0",
     "stylelint-config-concentric-order": "^3.5.0",
     "stylelint-config-recommended": "^3.0.0",
