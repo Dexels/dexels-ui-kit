@@ -1,8 +1,8 @@
 import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constants';
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
-import { CARD_NO_RESULTS_THEME } from '../../components/organisms/CardNoResults/CardNoResults.consts';
-import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
+import { CARD_NO_RESULTS_THEME } from '../../components/molecules/CardNoResults/CardNoResults.consts';
+import { CARD_THEME } from '../../components/atoms/Card/Card.consts';
 import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
 import { DIALOG_ALERT_THEME } from '../../components/organisms/DialogAlert/DialogAlert.consts';

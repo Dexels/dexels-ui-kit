@@ -1,4 +1,4 @@
-import Card from '../../molecules/Card/Card';
+import Card from '../../atoms/Card/Card';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledContainerContent } from './ContainerContent.sc';
