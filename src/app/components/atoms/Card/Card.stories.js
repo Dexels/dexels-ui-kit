@@ -1,9 +1,9 @@
 import { select, text } from '@storybook/addon-knobs';
-import Button from '../Button/Button';
+import Button from '../../molecules/Button/Button';
 import Card from './Card';
 import React from 'react';
 
-export default { title: 'molecules/Card' };
+export default { title: 'atoms/Card' };
 
 export const Configurable = () => (
     <Card
