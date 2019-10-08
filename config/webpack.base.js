@@ -24,7 +24,7 @@ module.exports = () => ({
         ],
     },
     output: {
-        filename: '[name].[hash].min.js',
+        filename: 'index.js',
         path: distPath,
         publicPath: './',
     },
