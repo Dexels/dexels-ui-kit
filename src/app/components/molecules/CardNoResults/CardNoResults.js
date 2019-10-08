@@ -8,7 +8,7 @@ import {
 } from './CardNoResults.sc';
 import Card from '../../atoms/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
-import { IconWrapper } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon.sc';
+import { IconWrapper } from '../TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
 
