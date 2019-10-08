@@ -9,17 +9,9 @@ module.exports = () => ({
     module: {
         rules: [
             {
-                test: /\.html$/,
-                use: 'html-loader',
-            },
-            {
                 exclude: /(node_modules)/,
                 test: /\.(js|jsx)$/,
                 use: 'babel-loader',
-            },
-            {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
             },
         ],
     },
