@@ -1,6 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { distPath, publicPath, srcPath } = require('./paths');
 
 module.exports = () => ({
@@ -37,17 +36,12 @@ module.exports = () => ({
                 to: distPath,
             },
         ]),
-        new HtmlWebpackPlugin({
-            template: `${srcPath}/templates/index.html`,
-        }),
     ],
     resolve: {
-        alias: {
-            'react-dom': '@hot-loader/react-dom',
-        },
         extensions: [
             '.js',
             '.jsx',
+            '.json',
         ],
     },
 });
