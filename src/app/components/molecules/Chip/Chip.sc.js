@@ -13,11 +13,11 @@ export const StyledChip = styled.button`
     align-items: center;
     outline: none;
     border: 1px solid ${({ theme }) => theme.chip.colorDefault};
-    border-radius: ${({ theme }) => theme.chip.borderRadius};
+    border-radius: 8px;
     background-color: ${({ theme }) => theme.chip.backgroundColorDeselected};
     cursor: pointer;
-    padding: ${({ theme }) => theme.chip.padding};
-    height: ${({ theme }) => theme.chip.height};
+    padding: 3px 8px 4px 8px;
+    height: 32px;
     overflow: hidden;
     color: ${({ theme }) => theme.chip.colorDefault};
 
@@ -52,8 +52,6 @@ export const StyledChip = styled.button`
 `;
 
 StyledChip.propTypes = {
-    isDisabled: PropTypes.bool.isRequired,
-    isSelected: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         chip: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)

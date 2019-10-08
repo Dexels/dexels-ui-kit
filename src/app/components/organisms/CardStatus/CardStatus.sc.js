@@ -5,22 +5,22 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const StyledStatusCardWrapper = styled.div`
+export const StyledCardStatusWrapper = styled.div`
     ${({ elevation }) => getElevation(elevation)};
 `;
 
-export const StyledStatusCard = styled.div`
+export const StyledCardStatus = styled.div`
     ${({ status, statusPlacement, theme }) => getStatus(status, theme.statusIndicator.size, statusPlacement)};
 `;
 
-StyledStatusCard.propTypes = {
+StyledCardStatus.propTypes = {
     theme: PropTypes.shape({
-        noResultsCard: PropTypes.objectOf((propValue, key, componentName) => (
+        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
 };
 
-StyledStatusCard.defaultProps = {
+StyledCardStatus.defaultProps = {
     theme: defaultTheme,
 };

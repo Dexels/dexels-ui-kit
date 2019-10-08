@@ -8,9 +8,16 @@ export const Text = styled.p`
 `;
 
 export const IconWrapper = styled.div`
-    flex: 0 0 auto;
     order: 1;
     margin: 0 6px 0 0;
+
+    ${({ iconSize }) => iconSize && css`
+        font-size: ${iconSize};
+    `};
+
+    span {
+        display: block;
+    }
 `;
 
 export const StyledTextWithOptionalIcon = styled.div`

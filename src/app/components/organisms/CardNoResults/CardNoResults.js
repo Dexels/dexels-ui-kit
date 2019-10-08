@@ -3,31 +3,29 @@ import {
     Item,
     Left,
     Right,
-    StyledNoResultsCard,
+    StyledCardNoResults,
     Title,
-} from './NoResultsCard.sc';
+} from './CardNoResults.sc';
 import Card from '../../molecules/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
+import { IconWrapper } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const NoResultsCard = ({
+const CardNoResults = ({
     elevation,
     header,
-    height,
+    iconSize,
     iconType,
     itemPrefix,
     items,
     title,
-    width,
 }) => (
-    <StyledNoResultsCard
-        elevation={elevation}
-        height={height}
-        width={width}
-    >
+    <StyledCardNoResults elevation={elevation}>
         <Left>
-            <Icon type={iconType} />
+            <IconWrapper iconSize={iconSize}>
+                <Icon type={iconType} />
+            </IconWrapper>
         </Left>
         <Right>
             <Header>
@@ -42,17 +40,17 @@ const NoResultsCard = ({
                 </Item>
             ))}
         </Right>
-    </StyledNoResultsCard>
+    </StyledCardNoResults>
 );
 
-NoResultsCard.elevations = Card.elevations;
-NoResultsCard.iconTypes = Icon.types;
+CardNoResults.elevations = Card.elevations;
+CardNoResults.iconTypes = Icon.types;
 
-NoResultsCard.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(NoResultsCard.elevations)),
+CardNoResults.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(CardNoResults.elevations)),
     header: PropTypes.string.isRequired,
-    height: PropTypes.string,
-    iconType: PropTypes.oneOf(Object.values(NoResultsCard.iconTypes)),
+    iconSize: PropTypes.string,
+    iconType: PropTypes.oneOf(Object.values(CardNoResults.iconTypes)),
     itemPrefix: PropTypes.string,
     items: PropTypes.arrayOf(
         PropTypes.shape({
@@ -60,16 +58,14 @@ NoResultsCard.propTypes = {
         }),
     ),
     title: PropTypes.string.isRequired,
-    width: PropTypes.string,
 };
 
-NoResultsCard.defaultProps = {
-    elevation: NoResultsCard.elevations.LEVEL_1,
-    height: '100%',
-    iconType: NoResultsCard.iconTypes.SEARCH,
+CardNoResults.defaultProps = {
+    elevation: CardNoResults.elevations.LEVEL_1,
+    iconSize: '32px',
+    iconType: CardNoResults.iconTypes.SEARCH,
     itemPrefix: '-',
     items: null,
-    width: '100%',
 };
 
-export default NoResultsCard;
+export default CardNoResults;

@@ -7,6 +7,4 @@ export const CARD_POSITIONS = POSITIONS;
 
 export const CARD_THEME = {
     backgroundColor: white,
-    borderRadius: '4px',
-    padding: '8px',
 };

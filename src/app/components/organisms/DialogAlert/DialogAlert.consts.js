@@ -7,7 +7,13 @@ import {
     white,
 } from '../../../styles/colors/colors';
 
-export const ALERT_DIALOG_THEME = {
+export const DIALOG_ALERT_ALIGNMENTS = ALIGNMENTS;
+
+export const DIALOG_ALERT_DIRECTIONS = DIRECTIONS;
+
+export const DIALOG_ALERT_ELEVATIONS = ELEVATIONS;
+
+export const DIALOG_ALERT_THEME = {
     bodyBackgroundColor: white,
     bodyColor: sl100,
     borderRadius: '8px',
@@ -20,9 +26,3 @@ export const ALERT_DIALOG_THEME = {
     headerBackgroundColor: purple100,
     headerColor: white,
 };
-
-export const ALERT_DIALOG_ALIGNMENTS = ALIGNMENTS;
-
-export const ALERT_DIALOG_DIRECTIONS = DIRECTIONS;
-
-export const ALERT_DIALOG_ELEVATIONS = ELEVATIONS;
