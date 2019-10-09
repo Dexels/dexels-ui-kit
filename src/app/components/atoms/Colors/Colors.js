@@ -1,18 +1,25 @@
 import * as colors from '../../../styles/colors/colors';
-import PropTypes from 'prop-types';
+import { StyledColor, StyledColorText, StyledColorWrapper } from './Colors.sc';
 import React from 'react';
-import { StyledColor } from './Colors.sc';
 
-const Colors = ({ color }) => (
-    <StyledColor
-        color={color}
-    />
+const objectToArray = (object) => {
+    const arr = Array.from(Object.keys(object), (element) => ([`${element}`, object[element]]));
+
+    return arr;
+};
+
+const Colors = () => (
+    <StyledColorWrapper>
+        {objectToArray(colors).length > 0 && objectToArray(colors).map((color) => (
+            <StyledColor color={color[1]} key={color[0]}>
+                <StyledColorText color={color[1]}>
+                    {color[0]}
+                </StyledColorText>
+            </StyledColor>
+        ))}
+    </StyledColorWrapper>
 );
 
 Colors.colors = colors;
-
-Colors.propTypes = {
-    color: PropTypes.oneOf(Object.values(Colors.colors)).isRequired,
-};
 
 export default Colors;
