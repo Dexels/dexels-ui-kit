@@ -15,6 +15,10 @@ export const IconWrapper = styled.div`
         font-size: ${iconSize};
     `};
 
+    ${({ iconColor }) => iconColor && css`
+        color: ${iconColor};
+    `};
+
     span {
         display: block;
     }
