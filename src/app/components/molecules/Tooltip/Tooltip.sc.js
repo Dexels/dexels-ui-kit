@@ -11,7 +11,7 @@ export const StyledTooltip = styled.div`
 
     &::after,
     &::before {
-        ${({ transitionDuration, transitionType }) => transitionEffect(transitionType, transitionDuration, 0)};
+        ${({ transitionDuration, transitionEasing }) => transitionEffect(transitionEasing, transitionDuration, 0)};
         position: absolute;
         visibility: hidden;
         opacity: 0;

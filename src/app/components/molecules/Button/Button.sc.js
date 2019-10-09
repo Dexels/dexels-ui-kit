@@ -1,4 +1,4 @@
-import { BUTTON_SIZES, BUTTON_TRANSITIONS, BUTTON_VARIANTS } from './Button.consts';
+import { BUTTON_EASINGS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledButton = styled.button`
-    ${({ transitionDuration, transitionType }) => transitionEffect(transitionType, transitionDuration, 0)};
+    ${({ transitionDuration, transitionEasing }) => transitionEffect(transitionEasing, transitionDuration, 0)};
     appearance: none;
     position: relative;
     outline: none;
@@ -99,7 +99,7 @@ StyledButton.propTypes = {
         )).isRequired,
     }),
     transitionDuration: PropTypes.number.isRequired,
-    transitionType: PropTypes.oneOf(Object.values(BUTTON_TRANSITIONS)).isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(BUTTON_EASINGS)).isRequired,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
 };
 

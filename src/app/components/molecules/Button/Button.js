@@ -1,7 +1,7 @@
 import {
     BUTTON_DIRECTIONS,
+    BUTTON_EASINGS,
     BUTTON_SIZES,
-    BUTTON_TRANSITIONS,
     BUTTON_VARIANTS,
 } from './Button.consts';
 import PropTypes from 'prop-types';
@@ -19,7 +19,7 @@ const Button = ({
     onClick,
     size,
     transitionDuration,
-    transitionType,
+    transitionEasing,
     variant,
 }) => (
     <StyledButton
@@ -29,7 +29,7 @@ const Button = ({
         onClick={onClick}
         size={size}
         transitionDuration={transitionDuration}
-        transitionType={transitionType}
+        transitionEasing={transitionEasing}
         variant={variant}
     >
         <TextWithOptionalIcon direction={direction} iconType={iconType}>
@@ -41,7 +41,7 @@ const Button = ({
 Button.directions = BUTTON_DIRECTIONS;
 Button.iconTypes = TextWithOptionalIcon.iconTypes;
 Button.sizes = BUTTON_SIZES;
-Button.transitionTypes = BUTTON_TRANSITIONS;
+Button.transitionEasings = BUTTON_EASINGS;
 Button.variants = BUTTON_VARIANTS;
 
 Button.propTypes = {
@@ -54,7 +54,7 @@ Button.propTypes = {
     onClick: PropTypes.func.isRequired,
     size: PropTypes.oneOf(Object.values(Button.sizes)),
     transitionDuration: PropTypes.number,
-    transitionType: PropTypes.oneOf(Object.values(Button.transitionTypes)),
+    transitionEasing: PropTypes.oneOf(Object.values(Button.transitionEasings)),
     variant: PropTypes.oneOf(Object.values(Button.variants)),
 };
 
@@ -66,7 +66,7 @@ Button.defaultProps = {
     isFullWidth: false,
     size: Button.sizes.LARGE,
     transitionDuration: 0.3,
-    transitionType: Button.transitionTypes.EASE,
+    transitionEasing: Button.transitionEasings.EASE,
     variant: Button.variants.FILLED,
 };
 
