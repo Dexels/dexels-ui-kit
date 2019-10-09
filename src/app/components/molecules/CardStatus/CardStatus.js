@@ -1,6 +1,6 @@
 import { CARD_STATUS_PLACEMENTS, CARD_STATUS_STATUSES } from './CardStatus.consts';
 import { StyledCardStatus, StyledCardStatusWrapper } from './CardStatus.sc';
-import Card from '../../molecules/Card/Card';
+import Card from '../../atoms/Card/Card';
 import PropTypes from 'prop-types';
 import React from 'react';
 

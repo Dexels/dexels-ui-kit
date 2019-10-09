@@ -6,10 +6,10 @@ import {
     StyledCardNoResults,
     Title,
 } from './CardNoResults.sc';
-import Card from '../../molecules/Card/Card';
+import Card from '../../atoms/Card/Card';
 import Colors from '../../atoms/Colors/Colors';
 import Icon from '../../atoms/Icon/Icon';
-import { IconWrapper } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon.sc';
+import { IconWrapper } from '../TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
 
