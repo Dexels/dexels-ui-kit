@@ -18,6 +18,16 @@ const Colors = () => (
             </StyledColor>
         ))}
     </StyledColorWrapper>
+const Colors = () => (
+    <StyledColorWrapper>
+        {Object.keys(colors).map((colorName) => (
+            <StyledColor color={colors[colorName]} key={colorName}>
+                <StyledColorText color={colors[colorName]}>
+                    {colorName}
+                </StyledColorText>
+            </StyledColor>
+        ))}
+    </StyledColorWrapper>
 );
 
 Colors.colors = colors;
