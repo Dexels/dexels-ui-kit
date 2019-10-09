@@ -7,7 +7,10 @@ import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledButton = styled.button`
-    ${({ transitionDuration, transitionEasing }) => transitionEffect(transitionEasing, transitionDuration, 0)};
+    ${({ transitionDuration, transitionEasing }) => transitionEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+    })};
     appearance: none;
     position: relative;
     outline: none;

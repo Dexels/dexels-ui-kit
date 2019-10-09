@@ -38,7 +38,7 @@ Tooltip.propTypes = {
 Tooltip.defaultProps = {
     elevation: Tooltip.elevations.LEVEL_1,
     placement: Tooltip.placements.BOTTOM,
-    transitionDuration: 0.4,
+    transitionDuration: 400,
     transitionEasing: Tooltip.transitionEasings.EASE_IN_OUT,
 };
 
