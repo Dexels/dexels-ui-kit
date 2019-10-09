@@ -1,6 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { distPath, publicPath, srcPath } = require('./paths');
+const { distPath, srcPath } = require('./paths');
 
 module.exports = () => ({
     entry: {
@@ -19,16 +18,10 @@ module.exports = () => ({
         filename: 'index.js',
         libraryTarget: 'commonjs2',
         path: distPath,
-        publicPath: './',
+        publicPath: '/',
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new CopyWebpackPlugin([
-            {
-                from: publicPath,
-                to: distPath,
-            },
-        ]),
     ],
     resolve: {
         extensions: [
