@@ -1,4 +1,6 @@
+import * as colors from '../../../styles/colors/colors';
 import { invertColor } from '../../../utils/invertColor';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const StyledColorWrapper = styled.div`
@@ -13,6 +15,10 @@ export const StyledColorText = styled.span`
     color: ${({ color }) => invertColor(color, true)};
 `;
 
+StyledColorText.propTypes = {
+    color: PropTypes.oneOf(Object.values(colors)),
+};
+
 export const StyledColor = styled.div`
     display: flex;
     flex-direction: column;
@@ -25,3 +31,7 @@ export const StyledColor = styled.div`
     width: 100px;
     height: 100px;
 `;
+
+StyledColor.propTypes = {
+    color: PropTypes.oneOf(Object.values(colors)),
+};

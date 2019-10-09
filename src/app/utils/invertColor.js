@@ -1,8 +1,3 @@
-const padZero = (str, len) => {
-    const lenTmp = len || 2;
-    const zeros = new Array(lenTmp).join('0');
-
-    return (zeros.concat(str)).slice(-lenTmp);
 const padZero = (str, len = 2) => (
     `${new Array(len).join('0')}${str}`.slice(-len)
 );
@@ -28,10 +23,7 @@ export const invertColor = (hex, bw = false) => {
     let b = parseInt(hexTmp.slice(4, 6), 16);
 
     if (bw) {
-        // http://stackoverflow.com/a/3943023/112731
-        return (r * 0.299 + g * 0.587 + b * 0.114) > 186
-            ? '#000000'
-            : '#FFFFFF';
+        return (r * 0.299 + g * 0.587 + b * 0.114) > 186 ? '#000000' : '#FFFFFF';
     }
 
     // invert color components
@@ -40,7 +32,7 @@ export const invertColor = (hex, bw = false) => {
     b = (255 - b).toString(16);
 
     // pad each with zeros and return
-    return '#'.concat(padZero(r)).concat(padZero(g)).concat(padZero(b));
+    return `#${padZero(r)}${padZero(g)}${padZero(b)}`;
 };
 
 export default invertColor;

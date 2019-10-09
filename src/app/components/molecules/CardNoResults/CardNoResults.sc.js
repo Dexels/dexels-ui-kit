@@ -60,7 +60,6 @@ Item.defaultProps = {
 
 export const Left = styled.div`
     width: 48px;
-    /* color: ${({ theme }) => theme.cardNoResults.colorHeader}; */
 `;
 
 Left.propTypes = {
