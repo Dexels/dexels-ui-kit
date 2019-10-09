@@ -2,7 +2,6 @@ import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
 import { addDecorator, configure } from '@storybook/react';
-import BaseStyles from '../app/styles/base';
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
@@ -16,7 +15,6 @@ addDecorator((storyFn) => (
         width: '80%',
     }}
     >
-        <BaseStyles />
         {storyFn()}
     </div>
 ));
