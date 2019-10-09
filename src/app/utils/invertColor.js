@@ -1,5 +1,5 @@
-const padZero = (str, len = 2) => (
-    `${new Array(len).join('0')}${str}`.slice(-len)
+const padZero = (string, length = 2) => (
+    string.padStart(length, '0')
 );
 
 export const invertColor = (hex, bw = false) => {
