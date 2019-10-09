@@ -1,4 +1,4 @@
-import { BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import { BUTTON_SIZES, BUTTON_VARIANTS, BUTTON_TRANSITIONS } from './Button.consts';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledButton = styled.button`
+    ${({ transitionDuration, transitionType }) => transitionEffect(transitionType, transitionDuration, 0)};
     appearance: none;
     position: relative;
     outline: none;
@@ -77,7 +78,6 @@ export const StyledButton = styled.button`
 
     &:active,
     &:hover {
-        ${({ transitionDuration, transitionType }) => transitionEffect(transitionType, transitionDuration, 0)};
         border-color: ${({ theme }) => theme.button.colorHover};
         background-color: ${({ theme }) => theme.button.colorHover};
     }
@@ -98,6 +98,8 @@ StyledButton.propTypes = {
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
+    transitionDuration: PropTypes.number.isRequired,
+    transitionType: PropTypes.oneOf(Object.values(BUTTON_TRANSITIONS)).isRequired,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
 };
 
