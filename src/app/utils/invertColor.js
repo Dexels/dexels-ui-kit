@@ -3,7 +3,9 @@ const padZero = (str, len) => {
     const zeros = new Array(lenTmp).join('0');
 
     return (zeros.concat(str)).slice(-lenTmp);
-};
+const padZero = (str, len = 2) => (
+    `${new Array(len).join('0')}${str}`.slice(-len)
+);
 
 export const invertColor = (hex, bw = false) => {
     let hexTmp = hex;
