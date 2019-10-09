@@ -11,13 +11,11 @@
         "dist"
     ],
     "scripts": {
-        "start": "npm run build:dev",
-        "build:dev": "cross-env BABEL_ENV=dev webpack-dev-server --hot --config config/webpack.dev.js --mode development",
         "build:prod": "cross-env BABEL_ENV=prod webpack --config config/webpack.prod.js --mode production",
         "dist": "npm run build:prod",
         "lint:css": "stylelint \"src/**/*.js\" --config config/.stylelintrc.js",
         "lint:js": "eslint \"src/**/*.js\" --config config/.eslintrc.js",
-        "storybook": "start-storybook -c ./src/.storybook -s ./public --port 80 --quiet",
+        "storybook": "start-storybook -c ./src/.storybook -s ./public --port 56525 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
         "prepublishOnly": "rm -rf node_modules && npm i && npm run dist"
     },
@@ -64,7 +62,6 @@
         "babel-loader": "^8.0.6",
         "babel-plugin-styled-components": "^1.10.6",
         "clean-webpack-plugin": "^3.0.0",
-        "copy-webpack-plugin": "^5.0.4",
         "cross-env": "^6.0.3",
         "css-loader": "^3.2.0",
         "eslint": "^6.5.1",
@@ -74,6 +71,7 @@
         "eslint-plugin-jsx-a11y": "^6.2.3",
         "eslint-plugin-react": "^7.16.0",
         "eslint-plugin-react-hooks": "^2.1.2",
+        "file-loader": "^4.2.0",
         "mini-css-extract-plugin": "^0.8.0",
         "optimize-css-assets-webpack-plugin": "^5.0.3",
         "prop-types": "^15.7.2",
