@@ -1,4 +1,4 @@
-import { BUTTON_SIZES, BUTTON_VARIANTS, BUTTON_TRANSITIONS } from './Button.consts';
+import { BUTTON_SIZES, BUTTON_TRANSITIONS, BUTTON_VARIANTS } from './Button.consts';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
