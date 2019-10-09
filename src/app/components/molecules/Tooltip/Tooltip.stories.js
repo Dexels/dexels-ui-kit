@@ -10,7 +10,7 @@ export const Configurable = () => (
         placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
         title={text('Title', 'Configure me!')}
         transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
-        transitionType={select('Transition type', Tooltip.transitionTypes, Tooltip.defaultProps.transitionType)}
+        transitionEasing={select('Transition type', Tooltip.transitionEasings, Tooltip.defaultProps.transitionEasing)}
     >
         <span style={{
             backgroundColor: 'yellow',
@@ -29,7 +29,7 @@ export const ConfigurableWithLongText = () => (
         placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
         title={text('Title', 'Configure me!')}
         transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
-        transitionType={select('Transition type', Tooltip.transitionTypes, Tooltip.defaultProps.transitionType)}
+        transitionEasing={select('Transition type', Tooltip.transitionEasings, Tooltip.defaultProps.transitionEasing)}
     >
         <span style={{
             backgroundColor: 'red',
