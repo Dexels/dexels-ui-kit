@@ -11,7 +11,11 @@ export const StyledTooltip = styled.div`
 
     &::after,
     &::before {
-        ${({ transitionDuration, transitionType }) => transitionType !== 'NONE' && transitionEffect('all', transitionType, transitionDuration, 0)};
+        /* This weird indent is a bug in ESLint */
+        ${({ transitionDuration, transitionEasing }) => transitionEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+    })};
         position: absolute;
         visibility: hidden;
         opacity: 0;

@@ -11,6 +11,15 @@ export const DIRECTIONS = mapArrayToObject([
     'RTL',
 ]);
 
+export const EASINGS = mapArrayToObject([
+    'EASE',
+    'EASE_IN',
+    'EASE_IN_OUT',
+    'EASE_OUT',
+    'LINEAR',
+    'NONE',
+]);
+
 export const ELEVATIONS = mapArrayToObject([
     'LEVEL_0',
     'LEVEL_1',
@@ -64,13 +73,4 @@ export const STATUSES = mapArrayToObject([
     'NONE',
     'OK',
     'WARNING',
-]);
-
-export const TRANSITIONS = mapArrayToObject([
-    'EASE',
-    'EASE_IN',
-    'EASE_IN_OUT',
-    'EASE_OUT',
-    'LINEAR',
-    'NONE',
 ]);
