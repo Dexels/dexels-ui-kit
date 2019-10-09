@@ -31,6 +31,7 @@ export const StyledButton = styled.button`
     ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
         ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
         min-height: ${theme.button.heightSmall};
+        min-width: 80px;
         border-radius: ${theme.button.borderRadiusSmall};
         padding: 4px 16px;
     `};
@@ -38,6 +39,7 @@ export const StyledButton = styled.button`
     ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
         ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
         min-height: ${theme.button.heightLarge};
+        min-width: 100px;
         border-radius: ${theme.button.borderRadiusLarge};
         padding: 8px 16px;
     `};
@@ -75,7 +77,7 @@ export const StyledButton = styled.button`
 
     &:active,
     &:hover {
-        ${({ transitionDuration, transitionType }) => transitionType !== 'NONE' && transitionEffect('all', transitionType, transitionDuration, 0)};
+        ${({ transitionDuration, transitionType }) => transitionEffect(transitionType, transitionDuration, 0)};
         border-color: ${({ theme }) => theme.button.colorHover};
         background-color: ${({ theme }) => theme.button.colorHover};
     }
