@@ -1,33 +1,53 @@
-export const black = '#000000';
+const black = '#000000';
 
-export const blue25 = '#BFE7FE';
+const blue25 = '#BFE7FE';
 
-export const blue50 = '#80CFFE';
+const blue50 = '#80CFFE';
 
-export const blue100 = '#009FFD';
+const blue100 = '#009FFD';
 
-export const purple50 = '#9BA1C9';
+const purple50 = '#9BA1C9';
 
-export const purple100 = '#3D4A9A';
+const purple100 = '#3D4A9A';
 
-export const green = '#2DD67B';
+const green = '#2DD67B';
 
-export const orange = '#EB6500';
+const orange = '#EB6500';
 
-export const red = '#F94E4E';
+const red = '#F94E4E';
 
-export const sl2 = '#FAFBFC';
+const sl2 = '#FAFBFC';
 
-export const sl5 = '#F2F4F6';
+const sl5 = '#F2F4F6';
 
-export const sl10 = '#E5E9ED';
+const sl10 = '#E5E9ED';
 
-export const sl25 = '#BFC8D3';
+const sl25 = '#BFC8D3';
 
-export const sl50 = '#7F91A8';
+const sl50 = '#7F91A8';
 
-export const sl75 = '#3F5A7C';
+const sl75 = '#3F5A7C';
 
-export const sl100 = '#002451';
+const sl100 = '#002451';
 
-export const white = '#FFFFFF';
+const white = '#FFFFFF';
+
+export {
+    black,
+    blue25,
+    blue50,
+    blue100,
+    purple50,
+    purple100,
+    green,
+    orange,
+    red,
+    sl2,
+    sl5,
+    sl10,
+    sl25,
+    sl50,
+    sl75,
+    sl100,
+    white,
+};
