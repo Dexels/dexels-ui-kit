@@ -13,7 +13,6 @@ module.exports = () => (
         module: {
             rules: [
                 {
-                    include: [resolve(__dirname, publicPath)],
                     test: /\.css$/i,
                     use: [MiniCssExtractPlugin.loader, 'css-loader'],
                 },
