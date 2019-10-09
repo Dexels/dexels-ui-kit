@@ -1,13 +1,11 @@
 import {
     Body,
     ButtonClose,
-    ButtonWrapper,
-    Footer,
     Header,
     StyledDialogAlert,
 } from './DialogAlert.sc';
 import { DIALOG_ALERT_ALIGNMENTS, DIALOG_ALERT_DIRECTIONS, DIALOG_ALERT_ELEVATIONS } from './DialogAlert.consts';
-import Button from '../../molecules/Button/Button';
+import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import Icon from '../../atoms/Icon/Icon';
 import Overlay from '../../molecules/Overlay/Overlay';
 import PropTypes from 'prop-types';
@@ -22,8 +20,8 @@ const DialogAlert = ({
     dialogHeight,
     dialogWidth,
     elevation,
-    footerAlignment,
-    footerHeight,
+    footerMessage,
+    hasButtonCancel,
     hasButtonClose,
     hasOverlay,
     header,
@@ -48,29 +46,14 @@ const DialogAlert = ({
             <Body bodyAlignment={bodyAlignment} hasHeader={header}>
                 {body}
             </Body>
-            <Footer footerAlignment={footerAlignment} footerHeight={footerHeight}>
-                {buttonCancelText && onCancel && (
-                    <ButtonWrapper>
-                        <Button
-                            iconType={Button.iconTypes.CLOSE}
-                            onClick={onCancel}
-                            size={Button.sizes.SMALL}
-                            variant={Button.variants.TEXT_ONLY}
-                        >
-                            {buttonCancelText}
-                        </Button>
-                    </ButtonWrapper>
-                )}
-                <Button
-                    autoFocus
-                    iconType={Button.iconTypes.CHECK}
-                    onClick={onConfirm}
-                    size={Button.sizes.SMALL}
-                    variant={Button.variants.OUTLINE}
-                >
-                    {buttonConfirmText}
-                </Button>
-            </Footer>
+            <DialogFooter
+                buttonCancelText={buttonCancelText}
+                buttonConfirmText={buttonConfirmText}
+                hasButtonCancel={hasButtonCancel}
+                message={footerMessage}
+                onCancel={onCancel}
+                onConfirm={onConfirm}
+            />
         </StyledDialogAlert>
     </Overlay>
 );
@@ -88,8 +71,8 @@ DialogAlert.propTypes = {
     dialogHeight: PropTypes.string,
     dialogWidth: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(DialogAlert.elevations)),
-    footerAlignment: PropTypes.oneOf(Object.values(DialogAlert.alignments)),
-    footerHeight: PropTypes.string,
+    footerMessage: PropTypes.string,
+    hasButtonCancel: PropTypes.bool,
     hasButtonClose: PropTypes.bool,
     hasOverlay: PropTypes.bool,
     header: PropTypes.string,
@@ -107,8 +90,8 @@ DialogAlert.defaultProps = {
     dialogHeight: '200px',
     dialogWidth: '300px',
     elevation: DialogAlert.elevations.LEVEL_12,
-    footerAlignment: DialogAlert.alignments.RIGHT,
-    footerHeight: '56px',
+    footerMessage: null,
+    hasButtonCancel: true,
     hasButtonClose: true,
     hasOverlay: true,
     header: null,
