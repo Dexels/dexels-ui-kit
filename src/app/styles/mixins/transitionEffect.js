@@ -5,8 +5,8 @@ const transitionEffect = (
     duration = 0.4,
     delay = 0,
     property = 'all',
-) => (property !== 'NONE'
-    && css`transition: ${`${property} ${duration}s ${type.split('_').join('-').toLowerCase()} ${delay}s`}
+) => (property !== 'NONE' && css`
+    transition: ${`${property} ${duration}s ${type.split('_').join('-').toLowerCase()} ${delay}s`};
 `);
 
 export default transitionEffect;
