@@ -2,7 +2,7 @@
 
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](link-to-site)
 
-[![CircleCI](https://circleci.com/gh/Dexels/dexels-ui-kit/tree/master.svg?style=svg)](https://circleci.com/gh/Dexels/dexels-ui-kit/tree/master)
+[![CircleCI](https://circleci.com/gh/Dexels/dexels-ui-kit/tree/master.svg?style=svg&circle-token=e3efe33b974e4f52e4be52418d787a587200a41b)](https://circleci.com/gh/Dexels/dexels-ui-kit/tree/master)
 
 # dexels-ui-kit
 An React UI kit which can be used in any React application.
