@@ -67,7 +67,7 @@ CardNoResults.propTypes = {
 CardNoResults.defaultProps = {
     elevation: CardNoResults.elevations.LEVEL_1,
     iconColor: CardNoResults.iconColors.purple100,
-    iconSize: '32px',
+    iconSize: '30px',
     iconType: CardNoResults.iconTypes.SEARCH,
     itemPrefix: '-',
     items: null,
