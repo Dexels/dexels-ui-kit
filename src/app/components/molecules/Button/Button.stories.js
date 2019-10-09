@@ -1,4 +1,9 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import {
+    boolean,
+    number,
+    select,
+    text,
+} from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from './Button';
 import React from 'react';
@@ -11,6 +16,8 @@ export const Configurable = () => (
         isFullWidth={boolean('Is full width', Button.defaultProps.isFullWidth)}
         onClick={action('On click')}
         size={select('Size', Button.sizes, Button.defaultProps.size)}
+        transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
+        transitionType={select('Transition type', Button.transitionTypes, Button.defaultProps.transitionType)}
         variant={select('Type', Button.variants, Button.defaultProps.variant)}
     >
         {text('Text', 'Configure me!')}
@@ -25,6 +32,8 @@ export const ConfigurableWithIcon = () => (
         isFullWidth={boolean('Use full width', Button.defaultProps.isFullWidth)}
         onClick={action('On click')}
         size={select('Size', Button.sizes, Button.defaultProps.size)}
+        transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
+        transitionType={select('Transition type', Button.transitionTypes, Button.defaultProps.transitionType)}
         variant={select('Type', Button.variants, Button.defaultProps.variant)}
     >
         {text('Text', 'Configure me!')}

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
+import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledButton = styled.button`
@@ -74,6 +75,7 @@ export const StyledButton = styled.button`
 
     &:active,
     &:hover {
+        ${({ transitionDuration, transitionType }) => transitionType !== 'NONE' && transitionEffect('all', transitionType, transitionDuration, 0)};
         border-color: ${({ theme }) => theme.button.colorHover};
         background-color: ${({ theme }) => theme.button.colorHover};
     }

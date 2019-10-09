@@ -4,12 +4,19 @@ import {
     sl10,
     white,
 } from '../../../styles/colors/colors';
-import { DIRECTIONS, FONT_FAMILY_SECONDARY, SIZES } from '../../../utils/constants';
+import {
+    DIRECTIONS,
+    FONT_FAMILY_SECONDARY,
+    SIZES,
+    TRANSITIONS,
+} from '../../../utils/constants';
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 export const BUTTON_DIRECTIONS = DIRECTIONS;
 
 export const BUTTON_SIZES = SIZES;
+
+export const BUTTON_TRANSITIONS = TRANSITIONS;
 
 export const BUTTON_VARIANTS = mapArrayToObject(['FILLED', 'OUTLINE', 'TEXT_ONLY']);
 
