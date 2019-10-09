@@ -21,7 +21,6 @@ const DialogAlert = ({
     dialogWidth,
     elevation,
     footerMessage,
-    hasButtonCancel,
     hasButtonClose,
     hasOverlay,
     header,
@@ -49,7 +48,6 @@ const DialogAlert = ({
             <DialogFooter
                 buttonCancelText={buttonCancelText}
                 buttonConfirmText={buttonConfirmText}
-                hasButtonCancel={hasButtonCancel}
                 message={footerMessage}
                 onCancel={onCancel}
                 onConfirm={onConfirm}
@@ -72,7 +70,6 @@ DialogAlert.propTypes = {
     dialogWidth: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(DialogAlert.elevations)),
     footerMessage: PropTypes.string,
-    hasButtonCancel: PropTypes.bool,
     hasButtonClose: PropTypes.bool,
     hasOverlay: PropTypes.bool,
     header: PropTypes.string,
@@ -91,7 +88,6 @@ DialogAlert.defaultProps = {
     dialogWidth: '300px',
     elevation: DialogAlert.elevations.LEVEL_12,
     footerMessage: null,
-    hasButtonCancel: true,
     hasButtonClose: true,
     hasOverlay: true,
     header: null,

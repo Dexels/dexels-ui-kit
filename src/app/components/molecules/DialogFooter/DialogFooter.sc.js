@@ -37,8 +37,6 @@ export const StyledDialogFooter = styled.footer`
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
-    /* border-bottom-left-radius: ${({ theme }) => theme.dialogFooter.borderRadius};
-    border-bottom-right-radius: ${({ theme }) => theme.dialogFooter.borderRadius}; */
     background-color: ${({ theme }) => theme.dialogFooter.backgroundColor};
     padding: 16px;
     height: 76px;

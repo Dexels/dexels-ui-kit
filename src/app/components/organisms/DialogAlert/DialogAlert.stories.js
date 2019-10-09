@@ -1,5 +1,6 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import DialogAlert from './DialogAlert';
 import PropTypes from 'prop-types';
@@ -19,7 +20,6 @@ const ConfigurableDialog = ({ onCancel, onClose, onConfirm }) => (
         dialogWidth={text('Set width of dialog in px or %', DialogAlert.defaultProps.dialogWidth)}
         elevation={select('Elevation', DialogAlert.elevations, DialogAlert.defaultProps.elevation)}
         footerMessage={text('Message in footer', '')}
-        hasButtonCancel={boolean('Show cancel button', DialogAlert.defaultProps.hasButtonCancel)}
         hasButtonClose={boolean('Show close button', DialogAlert.defaultProps.hasButtonClose)}
         hasOverlay={boolean('Has overlay', DialogAlert.defaultProps.hasOverlay)}
         header={text('Header', '')}
@@ -45,15 +45,9 @@ ConfigurableDialog.defaultProps = {
 
 export const Configurable = () => (
     <ConfigurableDialog
-        onCancel={() => {
-            alert('Pressed cancel');
-        }}
-        onClose={() => {
-            alert('Pressed closed');
-        }}
-        onConfirm={() => {
-            alert('Pressed confirm');
-        }}
+        onCancel={action('On cancel click')}
+        onClose={action('On close click')}
+        onConfirm={action('On confirm click')}
     />
 );
 
@@ -71,15 +65,9 @@ export const ConfigurableAlert = () => {
             </Button>
             {isVisible && (
                 <ConfigurableDialog
-                    onCancel={() => {
-                        setIsVisible(false);
-                    }}
-                    onClose={() => {
-                        setIsVisible(false);
-                    }}
-                    onConfirm={() => {
-                        setIsVisible(false);
-                    }}
+                    onCancel={action('On cancel click')}
+                    onClose={action('On close click')}
+                    onConfirm={action('On confirm click')}
                 />
             )}
         </>

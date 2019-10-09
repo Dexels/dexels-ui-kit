@@ -11,7 +11,6 @@ import React from 'react';
 const DialogFooter = ({
     buttonCancelText,
     buttonConfirmText,
-    hasButtonCancel,
     message,
     onCancel,
     onConfirm,
@@ -21,7 +20,7 @@ const DialogFooter = ({
             {message}
         </TextWrapper>
         <ButtonBarWrapper>
-            {hasButtonCancel && onCancel && (
+            {onCancel && (
                 <ButtonWrapper>
                     <Button
                         iconType={Button.iconTypes.CLOSE}
@@ -49,7 +48,6 @@ const DialogFooter = ({
 DialogFooter.propTypes = {
     buttonCancelText: PropTypes.string,
     buttonConfirmText: PropTypes.string.isRequired,
-    hasButtonCancel: PropTypes.bool,
     message: PropTypes.string,
     onCancel: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
@@ -57,7 +55,6 @@ DialogFooter.propTypes = {
 
 DialogFooter.defaultProps = {
     buttonCancelText: 'Cancel',
-    hasButtonCancel: true,
     message: null,
     onCancel: null,
 };
