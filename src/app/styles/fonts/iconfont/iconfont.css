@@ -1,7 +1,7 @@
 @font-face {
-    font-family: 'ClubWebIcons';
-    src: url('/fonts/iconfont/ClubWebIcons.eot?yipcys');
-    src: url('/fonts/iconfont/ClubWebIcons.eot?yipcys#iefix') format('embedded-opentype'), url('/fonts/iconfont/ClubWebIcons.ttf?yipcys') format('truetype'), url('/fonts/iconfont/ClubWebIcons.woff?yipcys') format('woff'), url('/fonts/iconfont/ClubWebIcons.svg?yipcys#ClubWebIcons') format('svg');
+    font-family: 'IconFont';
+    src: url('/fonts/iconfont/iconfont.eot?yipcys');
+    src: url('/fonts/iconfont/iconfont.eot?yipcys#iefix') format('embedded-opentype'), url('/fonts/iconfont/iconfont.ttf?yipcys') format('truetype'), url('/fonts/iconfont/iconfont.woff?yipcys') format('woff'), url('/fonts/iconfont/iconfont.svg?yipcys#iconfont') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -9,7 +9,7 @@
 
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'ClubWebIcons' !important;
+    font-family: 'IconFont' !important;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;

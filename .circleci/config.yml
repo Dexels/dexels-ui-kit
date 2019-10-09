@@ -1,0 +1,71 @@
+# Configuration based on:
+# - https://circleci.com/docs/2.0/language-javascript/
+# - https://github.com/circleci/frontend/blob/master/.circleci/config.yml
+# If you want to learn more about YAML check out the following documentation:
+# - https://learnxinyminutes.com/docs/yaml/
+version: 2.1
+
+references:
+    container_config: &container_config
+        docker:
+            - image: circleci/node:10.16.0
+        working_directory: ~/dexels-ui-kit
+    restore_dependencies: &restore_dependencies
+        restore_cache:
+            # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+            key: dependency-cache-{{ checksum "package-lock.json" }}
+
+jobs:
+    install_dependencies:
+        <<: *container_config
+        steps:
+            - checkout
+            - run:
+                name: Update NPM
+                command: sudo npm install -g npm@latest
+            - *restore_dependencies
+            - run:
+                name: Install dependencies
+                command: npm install
+            - save_cache:
+                key: dependency-cache-{{ checksum "package-lock.json" }}
+                paths:
+                    - ./node_modules
+    lint_javascript:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - run:
+                command: 'ls -al'
+            - run:
+                name: Run ESLint
+                command: npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
+    lint_css:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - run:
+                command: |
+                    mkdir -p reports/junit
+                    npm run lint:css -- --custom-formatter 'node_modules/stylelint-junit-formatter' --output-file reports/junit/css-lint-results.xml
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
+
+workflows:
+    install_dependencies_and_lint:
+        jobs:
+            - install_dependencies
+            - lint_javascript:
+                requires:
+                    - install_dependencies
+            - lint_css:
+                requires:
+                    - install_dependencies

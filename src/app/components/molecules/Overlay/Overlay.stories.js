@@ -1,4 +1,4 @@
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, number } from '@storybook/addon-knobs';
 import Overlay from './Overlay';
 import React from 'react';
 
@@ -6,9 +6,9 @@ export default { title: 'molecules/Overlay' };
 
 export const Configurable = () => (
     <Overlay
-        height={text('Set height in px or %', Overlay.defaultProps.height)}
+        height={number('Set height in %', Overlay.defaultProps.height)}
         isFullscreen={boolean('Fullscreen', Overlay.defaultProps.isFullscreen)}
         isVisible={boolean('Is visible', Overlay.defaultProps.isVisible)}
-        width={text('Set width in px or %', Overlay.defaultProps.width)}
+        width={number('Set width in %', Overlay.defaultProps.width)}
     />
 );

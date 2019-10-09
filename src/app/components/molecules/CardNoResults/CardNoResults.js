@@ -3,15 +3,16 @@ import {
     Item,
     Left,
     Right,
-    StyledNoResultsCard,
+    StyledCardNoResults,
     Title,
-} from './NoResultsCard.sc';
-import Card from '../../molecules/Card/Card';
+} from './CardNoResults.sc';
+import Card from '../../atoms/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
+import { IconWrapper } from '../TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const NoResultsCard = ({
+const CardNoResults = ({
     elevation,
     header,
     iconSize,
@@ -20,14 +21,11 @@ const NoResultsCard = ({
     items,
     title,
 }) => (
-    <StyledNoResultsCard
-        elevation={elevation}
-    >
+    <StyledCardNoResults elevation={elevation}>
         <Left>
-            <Icon
-                size={iconSize}
-                type={iconType}
-            />
+            <IconWrapper iconSize={iconSize}>
+                <Icon type={iconType} />
+            </IconWrapper>
         </Left>
         <Right>
             <Header>
@@ -42,17 +40,17 @@ const NoResultsCard = ({
                 </Item>
             ))}
         </Right>
-    </StyledNoResultsCard>
+    </StyledCardNoResults>
 );
 
-NoResultsCard.elevations = Card.elevations;
-NoResultsCard.iconTypes = Icon.types;
+CardNoResults.elevations = Card.elevations;
+CardNoResults.iconTypes = Icon.types;
 
-NoResultsCard.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(NoResultsCard.elevations)),
+CardNoResults.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(CardNoResults.elevations)),
     header: PropTypes.string.isRequired,
     iconSize: PropTypes.string,
-    iconType: PropTypes.oneOf(Object.values(NoResultsCard.iconTypes)),
+    iconType: PropTypes.oneOf(Object.values(CardNoResults.iconTypes)),
     itemPrefix: PropTypes.string,
     items: PropTypes.arrayOf(
         PropTypes.shape({
@@ -62,12 +60,12 @@ NoResultsCard.propTypes = {
     title: PropTypes.string.isRequired,
 };
 
-NoResultsCard.defaultProps = {
-    elevation: NoResultsCard.elevations.LEVEL_1,
+CardNoResults.defaultProps = {
+    elevation: CardNoResults.elevations.LEVEL_1,
     iconSize: '32px',
-    iconType: NoResultsCard.iconTypes.SEARCH,
+    iconType: CardNoResults.iconTypes.SEARCH,
     itemPrefix: '-',
     items: null,
 };
 
-export default NoResultsCard;
+export default CardNoResults;

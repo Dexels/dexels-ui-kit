@@ -1,26 +1,29 @@
 import defaultTheme from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
-import { getStatus } from '../../../styles/mixins/getStatus';
+import getPosition from '../../../styles/mixins/getPosition';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const StyledStatusCardWrapper = styled.div`
+export const StyledContainerContent = styled.div`
+    ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
+    display: flex;
+    border: 0;
+    background-color: transparent;
+    padding: 8px;
 `;
 
-export const StyledStatusCard = styled.div`
-    ${({ status, statusPlacement, theme }) => getStatus(status, theme.statusIndicator.size, statusPlacement)};
-`;
-
-StyledStatusCard.propTypes = {
+StyledContainerContent.propTypes = {
     theme: PropTypes.shape({
-        noResultsCard: PropTypes.objectOf((propValue, key, componentName) => (
+        chip: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
 };
 
-StyledStatusCard.defaultProps = {
+StyledContainerContent.defaultProps = {
     theme: defaultTheme,
 };
+
+export default StyledContainerContent;

@@ -13,6 +13,6 @@ export const BUTTON_ICON_THEME = {
     colorDefault: purple100,
     colorDisabled: sl10,
     colorHover: blue100,
-    sizeLarge: '14px',
-    sizeSmall: '12px',
+    sizeLarge: '20px',
+    sizeSmall: '14px',
 };

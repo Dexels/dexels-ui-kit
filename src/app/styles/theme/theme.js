@@ -1,37 +1,37 @@
 import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constants';
-import { ALERT_DIALOG_THEME } from '../../components/organisms/AlertDialog/AlertDialog.consts';
 import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
 import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
-import { CARD_THEME } from '../../components/molecules/Card/Card.consts';
+import { CARD_NO_RESULTS_THEME } from '../../components/molecules/CardNoResults/CardNoResults.consts';
+import { CARD_THEME } from '../../components/atoms/Card/Card.consts';
 import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
+import { DIALOG_ALERT_THEME } from '../../components/organisms/DialogAlert/DialogAlert.consts';
 import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
 import { INPUT_PASSWORD_THEME } from '../../components/organisms/InputPassword/InputPassword.consts';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
-import { NO_RESULTS_CARD_THEME } from '../../components/organisms/NoResultsCard/NoResultsCard.consts';
 import { OVERLAY_THEME } from '../../components/molecules/Overlay/Overlay.consts';
 import { SELECTION_CONTROL_THEME } from '../../components/molecules/SelectionControl/SelectionControl.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
 const theme = {
-    alertDialog: ALERT_DIALOG_THEME,
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
     },
     button: BUTTON_THEME,
     buttonIcon: BUTTON_ICON_THEME,
     card: CARD_THEME,
+    cardNoResults: CARD_NO_RESULTS_THEME,
     chip: CHIP_THEME,
+    dialogAlert: DIALOG_ALERT_THEME,
     errorMessage: ERROR_MESSAGE_THEME,
     fontFamilyPrimary: FONT_FAMILY_PRIMARY,
     fontFamilySecondary: FONT_FAMILY_SECONDARY,
     input: INPUT_THEME,
     inputPassword: INPUT_PASSWORD_THEME,
     label: LABEL_THEME,
-    noResultsCard: NO_RESULTS_CARD_THEME,
     overlay: OVERLAY_THEME,
     selectionControl: SELECTION_CONTROL_THEME,
     statusIndicator: {
@@ -50,6 +50,18 @@ const theme = {
             fontSize: '14px',
             fontWeight: '400',
             lineHeight: '18px',
+        },
+        buttonLarge: {
+            fontFamily: FONT_FAMILY_SECONDARY,
+            fontSize: '16px',
+            fontWeight: '600',
+            lineHeight: '22px',
+        },
+        buttonSmall: {
+            fontFamily: FONT_FAMILY_SECONDARY,
+            fontSize: '14px',
+            fontWeight: '600',
+            lineHeight: '22px',
         },
         caption: {
             fontFamily: FONT_FAMILY_PRIMARY,
@@ -72,7 +84,7 @@ const theme = {
         h3: {
             fontFamily: FONT_FAMILY_SECONDARY,
             fontSize: '16px',
-            fontWeight: '500',
+            fontWeight: '600',
             lineHeight: '24px',
         },
     },

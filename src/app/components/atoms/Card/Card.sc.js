@@ -5,27 +5,26 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const StyledContentContainer = styled.div`
+export const StyledCard = styled.div`
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
-    border: 0;
-    background-color: transparent;
-    padding: ${({ padding }) => padding};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
+    border-radius: 4px;
+    background-color: ${({ theme }) => theme.card.backgroundColor};
+    padding: 8px;
+    white-space: wrap;
 `;
 
-StyledContentContainer.propTypes = {
+StyledCard.propTypes = {
     theme: PropTypes.shape({
-        chip: PropTypes.objectOf((propValue, key, componentName) => (
+        card: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
+        )),
     }),
 };
 
-StyledContentContainer.defaultProps = {
+StyledCard.defaultProps = {
     theme: defaultTheme,
 };
 
-export default StyledContentContainer;
+export default StyledCard;
