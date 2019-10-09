@@ -62,7 +62,7 @@ CardNoResults.propTypes = {
 
 CardNoResults.defaultProps = {
     elevation: CardNoResults.elevations.LEVEL_1,
-    iconSize: '32px',
+    iconSize: '30px',
     iconType: CardNoResults.iconTypes.SEARCH,
     itemPrefix: '-',
     items: null,

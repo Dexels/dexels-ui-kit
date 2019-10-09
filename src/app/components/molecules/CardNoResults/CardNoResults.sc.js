@@ -59,6 +59,7 @@ Item.defaultProps = {
 };
 
 export const Left = styled.div`
+    margin-top: 6px; /* Correction for line-height h1 element */
     width: 48px;
     color: ${({ theme }) => theme.cardNoResults.colorHeader};
 `;
@@ -84,15 +85,8 @@ export const StyledCardNoResults = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-<<<<<<< HEAD:src/app/components/organisms/NoResultsCard/NoResultsCard.sc.js
-    background-color: ${({ theme }) => theme.noResultsCard.backgroundColor};
-    padding: 24px;
-    width: 100%;
-    height: 100%;
-=======
     background-color: ${({ theme }) => theme.cardNoResults.backgroundColor};
     padding: 24px;
->>>>>>> master:src/app/components/molecules/CardNoResults/CardNoResults.sc.js
 `;
 
 StyledCardNoResults.propTypes = {
