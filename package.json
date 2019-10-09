@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "1.0.7",
+    "version": "1.0.9",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -15,7 +15,7 @@
         "dist": "npm run build:prod",
         "lint:css": "stylelint \"src/**/*.js\" --config config/.stylelintrc.js",
         "lint:js": "eslint \"src/**/*.js\" --config config/.eslintrc.js",
-        "storybook": "start-storybook -c ./src/.storybook -s ./public --port 56525 --quiet",
+        "storybook": "start-storybook -c ./src/.storybook -s ./public --port 80 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
         "prepublishOnly": "rm -rf node_modules && npm i && npm run dist"
     },
