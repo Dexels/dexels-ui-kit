@@ -86,7 +86,7 @@ export const ConfigurableCheckbox = () => {
             isDisabled={boolean('Is disabled', SelectionControl.defaultProps.isDisabled)}
             isValid={boolean('Is valid', SelectionControl.defaultProps.isValid)}
             label={text('Label 1', 'Im a girl')}
-            name="a-radio-button-name"
+            name="a-checkbox-name"
             onChange={() => {
                 setIsChecked(!isChecked);
             }}
