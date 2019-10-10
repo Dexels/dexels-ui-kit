@@ -10,6 +10,13 @@ const webpack = require('webpack');
 module.exports = {
     entry: resolve(__dirname, `${libPath}/index.js`),
     externals: {
+        'prop-types': {
+            amd: 'prop-types',
+            commonjs: 'prop-types',
+            commonjs2: 'prop-types',
+            root: 'PropTypes',
+            umd: 'prop-types',
+        },
         react: {
             amd: 'react',
             commonjs: 'react',
