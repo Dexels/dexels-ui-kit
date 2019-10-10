@@ -45,7 +45,7 @@ export const ConfigurableRadioButton = () => {
                 type={SelectionControl.types.RADIO}
                 value="female"
             />
-            <div style={{ height: '8px' }} />
+            <div style={{ height: '12px' }} />
             <SelectionControl
                 direction={direction}
                 errorMessage={text('Errormessage', 'Oops, something went wrong!')}

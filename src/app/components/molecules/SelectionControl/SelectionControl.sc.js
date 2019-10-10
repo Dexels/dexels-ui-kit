@@ -6,7 +6,7 @@ import {
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
-import rippleEffect from '../../../styles/mixins/rippleEffect';
+import setCentered from '../../../styles/mixins/setCentered';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledSelectionControl = styled.div`
@@ -14,59 +14,8 @@ export const StyledSelectionControl = styled.div`
     flex-wrap: nowrap;
 `;
 
-export const InputHoverWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 6px 0 0;
-    border-radius: 50px;
-    width: ${({ theme }) => theme.selectionControl.sizeHover};
-    height: ${({ theme }) => (theme.selectionControl.sizeHover)};
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        margin: 0 6px 0 0;
-        order: 1;
-    `};
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        margin: 0 0 0 6px;
-        order: 2;
-    `};
-
-    /* &:active:after  {
-        background-color: ${({ theme }) => theme.selectionControl.colorPressed};
-    } */
-
-    &:hover,
-    &:focus {
-        /* This weird indent is a bug in ESLint */
-        ${({ transitionDuration, transitionEasing }) => transitionEffect({
-            duration: transitionDuration,
-            easing: transitionEasing,
-        })};
-        background-color: ${({ isDisabled, theme }) => !isDisabled && theme.selectionControl.colorHover};
-    }
-`;
-
-InputHoverWrapper.propTypes = {
-    direction: PropTypes.oneOf(Object.values(SELECTION_CONTROL_DIRECTIONS)).isRequired,
-    isDisabled: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        selectionControl: PropTypes.shape({
-            colorHover: PropTypes.string.isRequired,
-            colorPressed: PropTypes.string.isRequired,
-            sizeHover: PropTypes.string.isRequired,
-        }).isRequired,
-    }),
-    transitionDuration: PropTypes.number,
-    transitionEasing: PropTypes.oneOf(Object.values(SELECTION_CONTROL_EASINGS)),
-};
-
-InputHoverWrapper.defaultProps = {
-    theme: defaultTheme,
-    transitionDuration: 300,
-};
-
+/* eslint-disable indent */
+// The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
 export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
@@ -74,6 +23,16 @@ export const InputWrapper = styled.div`
     width: ${({ theme }) => theme.selectionControl.size};
     height: ${({ theme }) => theme.selectionControl.size};
     pointer-events: none;
+
+    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
+        margin: 0 18px 0 0;
+        order: 1;
+    `};
+
+    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
+        margin: 0 0 0 18px;
+        order: 2;
+    `};
 
     ${({ type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
         border-radius: ${({ theme }) => theme.selectionControl.checkboxBorderRadius};
@@ -91,8 +50,8 @@ export const InputWrapper = styled.div`
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                width:  ${theme.selectionControl.radioButtonInnerSize};
-                height:  ${theme.selectionControl.radioButtonInnerSize};
+                width:  ${theme.selectionControl.radioButtonDotSize};
+                height:  ${theme.selectionControl.radioButtonDotSize};
                 background-color: ${theme.selectionControl.iconColor};
                 content: '';
                 transform: translate3d(-50%, -50%, 0);
@@ -129,13 +88,31 @@ export const InputWrapper = styled.div`
         }
     `};
 
-    &:active:after  {
-        background-color: ${({ theme }) => theme.selectionControl.colorPressed};
+    &::before {
+        ${({ transitionDuration, transitionEasing }) => transitionEffect({
+            duration: transitionDuration,
+            easing: transitionEasing,
+        })};
+        ${({ theme }) => css`
+            width: calc(${theme.selectionControl.size} * (1 + 2/3));
+            height: calc(${theme.selectionControl.size} * (1 + 2/3));
+        `};
+        ${setCentered()};
+        display: block;
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+        border-radius: 100%;
+        background-color: ${({ theme }) => theme.selectionControl.colorHover};
+        content: '';
     }
 
-    /* &:after {
-        ${({ theme }) => rippleEffect(theme.selectionControl.colorPressed)}
-    } */
+    &:hover,
+    &:focus {
+        &::before {
+            opacity: 1;
+        }
+    }
 
     input {
         display: block;
@@ -150,6 +127,7 @@ export const InputWrapper = styled.div`
         pointer-events: auto;
     }
 `;
+/* eslint-enable */
 
 InputWrapper.propTypes = {
     hasError: PropTypes.bool.isRequired,
@@ -162,14 +140,15 @@ InputWrapper.propTypes = {
             colorDefault: PropTypes.string.isRequired,
             colorDisabled: PropTypes.string.isRequired,
             colorError: PropTypes.string.isRequired,
-            colorPressed: PropTypes.string.isRequired,
             colorValid: PropTypes.string.isRequired,
             iconColor: PropTypes.string.isRequired,
             iconSize: PropTypes.string.isRequired,
-            radioButtonInnerSize: PropTypes.string.isRequired,
+            radioButtonDotSize: PropTypes.string.isRequired,
             size: PropTypes.string.isRequired,
         }).isRequired,
     }),
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(SELECTION_CONTROL_EASINGS)),
     type: PropTypes.oneOf(Object.values(SELECTION_CONTROL_TYPES)).isRequired,
 };
 

@@ -1,6 +1,5 @@
 import {
     blue10,
-    blue50,
     green,
     purple100,
     red,
@@ -20,13 +19,11 @@ export const SELECTION_CONTROL_THEME = {
     colorDisabled: sl10,
     colorError: red,
     colorHover: blue10,
-    colorPressed: blue50,
     colorValid: green,
     iconColor: white,
     iconSize: '20px',
-    radioButtonInnerSize: '60%',
+    radioButtonDotSize: '60%',
     size: '24px',
-    sizeHover: '40px',
 };
 
 export const SELECTION_CONTROL_TYPES = mapArrayToObject([

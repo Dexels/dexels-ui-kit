@@ -1,7 +1,6 @@
 import {
     ErrorMessageWrapper,
     IconWrapper,
-    InputHoverWrapper,
     InputWrapper,
     LabelWrapper,
     StyledSelectionControl,
@@ -34,34 +33,30 @@ const SelectionControl = ({
 }) => (
     <>
         <StyledSelectionControl>
-            <InputHoverWrapper
+            <InputWrapper
                 direction={direction}
+                hasError={hasError}
+                isChecked={isChecked}
                 isDisabled={isDisabled}
+                isValid={isValid}
                 transitionDuration={transitionDuration}
                 transitionEasing={transitionEasing}
+                type={type}
             >
-                <InputWrapper
-                    hasError={hasError}
-                    isChecked={isChecked}
-                    isDisabled={isDisabled}
-                    isValid={isValid}
+                <input
+                    checked={isChecked}
+                    disabled={isDisabled}
+                    name={name}
+                    onChange={onChange}
                     type={type}
-                >
-                    <input
-                        checked={isChecked}
-                        disabled={isDisabled}
-                        name={name}
-                        onChange={onChange}
-                        type={type}
-                        value={value}
-                    />
-                    {isChecked && type === SelectionControl.types.CHECKBOX && (
-                        <IconWrapper>
-                            <Icon type={Icon.types.CHECK} />
-                        </IconWrapper>
-                    )}
-                </InputWrapper>
-            </InputHoverWrapper>
+                    value={value}
+                />
+                {isChecked && type === SelectionControl.types.CHECKBOX && (
+                    <IconWrapper>
+                        <Icon type={Icon.types.CHECK} />
+                    </IconWrapper>
+                )}
+            </InputWrapper>
             <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
                 <Label
                     hasError={hasError}
