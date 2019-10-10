@@ -6,6 +6,7 @@ import { CARD_THEME } from '../../components/atoms/Card/Card.consts';
 import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
 import { DIALOG_ALERT_THEME } from '../../components/organisms/DialogAlert/DialogAlert.consts';
+import { DIALOG_FOOTER_THEME } from '../../components/molecules/DialogFooter/DialogFooter.consts';
 import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
 import { INPUT_PASSWORD_THEME } from '../../components/organisms/InputPassword/InputPassword.consts';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
@@ -26,6 +27,7 @@ const theme = {
     cardNoResults: CARD_NO_RESULTS_THEME,
     chip: CHIP_THEME,
     dialogAlert: DIALOG_ALERT_THEME,
+    dialogFooter: DIALOG_FOOTER_THEME,
     errorMessage: ERROR_MESSAGE_THEME,
     fontFamilyPrimary: FONT_FAMILY_PRIMARY,
     fontFamilySecondary: FONT_FAMILY_SECONDARY,
