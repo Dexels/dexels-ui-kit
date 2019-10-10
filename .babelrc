@@ -6,8 +6,7 @@
     "env": {
         "dev": {
             "plugins": [
-                "babel-plugin-styled-components",
-                "react-hot-loader/babel"
+                "babel-plugin-styled-components"
             ]
         }
     }
