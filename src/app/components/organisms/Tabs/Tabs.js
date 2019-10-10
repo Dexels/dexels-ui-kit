@@ -5,7 +5,7 @@ import {
     TabHeaderList,
     TabPanel,
 } from './Tabs.sc';
-import Card from '../../atoms/Card/Card';
+import { ELEVATIONS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 
 const Tabs = ({ elevation, hasFullWidthTabHeaders, tabs }) => {
@@ -34,17 +34,15 @@ const Tabs = ({ elevation, hasFullWidthTabHeaders, tabs }) => {
     );
 };
 
-Tabs.elevations = Card.elevations;
+Tabs.elevations = ELEVATIONS;
 
 Tabs.propTypes = {
     elevation: PropTypes.oneOf(Object.values(Tabs.elevations)),
     hasFullWidthTabHeaders: PropTypes.bool,
-    tabs: PropTypes.arrayOf(
-        PropTypes.shape({
-            content: PropTypes.node.isRequired,
-            title: PropTypes.node.isRequired,
-        }),
-    ).isRequired,
+    tabs: PropTypes.arrayOf(PropTypes.shape({
+        content: PropTypes.node.isRequired,
+        title: PropTypes.node.isRequired,
+    })).isRequired,
 };
 
 Tabs.defaultProps = {

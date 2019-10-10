@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
+import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
@@ -36,7 +37,6 @@ TabHeader.propTypes = {
 };
 
 TabHeader.defaultProps = {
-    isActive: false,
     theme: defaultTheme,
 };
 
@@ -80,13 +80,5 @@ export const StyledTabs = styled.div`
 `;
 
 StyledTabs.propTypes = {
-    theme: PropTypes.shape({
-        tabs: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-StyledTabs.defaultProps = {
-    theme: defaultTheme,
+    elevation: PropTypes.oneOf(Object.values(ELEVATIONS)).isRequired,
 };
