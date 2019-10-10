@@ -1,4 +1,9 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import {
+    boolean,
+    number,
+    select,
+    text,
+} from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import SelectionControl from './SelectionControl';
 
@@ -10,6 +15,13 @@ export const ConfigurableRadioButton = () => {
     const hasError = boolean('Has error', SelectionControl.defaultProps.hasError);
     const isDisabled = boolean('Is disabled', SelectionControl.defaultProps.isDisabled);
     const isValid = boolean('Is valid', SelectionControl.defaultProps.isValid);
+    const transitionDuration = number('Transition duration', SelectionControl.defaultProps.transitionDuration);
+
+    const transitionEasing = select(
+        'Transition type',
+        SelectionControl.transitionEasings,
+        SelectionControl.defaultProps.transitionEasing,
+    );
 
     return (
         <>
@@ -28,6 +40,8 @@ export const ConfigurableRadioButton = () => {
                 onChange={() => {
                     setGender('female');
                 }}
+                transitionDuration={transitionDuration}
+                transitionEasing={transitionEasing}
                 type={SelectionControl.types.RADIO}
                 value="female"
             />
@@ -44,6 +58,8 @@ export const ConfigurableRadioButton = () => {
                 onChange={() => {
                     setGender('male');
                 }}
+                transitionDuration={transitionDuration}
+                transitionEasing={transitionEasing}
                 type={SelectionControl.types.RADIO}
                 value="male"
             />
@@ -53,6 +69,13 @@ export const ConfigurableRadioButton = () => {
 
 export const ConfigurableCheckbox = () => {
     const [isChecked, setIsChecked] = useState(false);
+    const transitionDuration = number('Transition duration', SelectionControl.defaultProps.transitionDuration);
+
+    const transitionEasing = select(
+        'Transition type',
+        SelectionControl.transitionEasings,
+        SelectionControl.defaultProps.transitionEasing,
+    );
 
     return (
         <SelectionControl
@@ -67,6 +90,8 @@ export const ConfigurableCheckbox = () => {
             onChange={() => {
                 setIsChecked(!isChecked);
             }}
+            transitionDuration={transitionDuration}
+            transitionEasing={transitionEasing}
             type={SelectionControl.types.CHECKBOX}
             value="female"
         />

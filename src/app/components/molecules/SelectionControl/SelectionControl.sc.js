@@ -1,17 +1,75 @@
-import { SELECTION_CONTROL_DIRECTIONS, SELECTION_CONTROL_TYPES } from './SelectionControl.consts';
+import {
+    SELECTION_CONTROL_DIRECTIONS,
+    SELECTION_CONTROL_EASINGS,
+    SELECTION_CONTROL_TYPES,
+} from './SelectionControl.consts';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
+import rippleEffect from '../../../styles/mixins/rippleEffect';
+import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledSelectionControl = styled.div`
     display: flex;
     flex-wrap: nowrap;
 `;
 
+export const InputHoverWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 6px 0 0;
+    border-radius: 50px;
+    width: ${({ theme }) => theme.selectionControl.sizeHover};
+    height: ${({ theme }) => (theme.selectionControl.sizeHover)};
+
+    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
+        margin: 0 6px 0 0;
+        order: 1;
+    `};
+
+    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
+        margin: 0 0 0 6px;
+        order: 2;
+    `};
+
+    /* &:active:after  {
+        background-color: ${({ theme }) => theme.selectionControl.colorPressed};
+    } */
+
+    &:hover,
+    &:focus {
+        /* This weird indent is a bug in ESLint */
+        ${({ transitionDuration, transitionEasing }) => transitionEffect({
+            duration: transitionDuration,
+            easing: transitionEasing,
+        })};
+        background-color: ${({ isDisabled, theme }) => !isDisabled && theme.selectionControl.colorHover};
+    }
+`;
+
+InputHoverWrapper.propTypes = {
+    direction: PropTypes.oneOf(Object.values(SELECTION_CONTROL_DIRECTIONS)).isRequired,
+    isDisabled: PropTypes.bool.isRequired,
+    theme: PropTypes.shape({
+        selectionControl: PropTypes.shape({
+            colorHover: PropTypes.string.isRequired,
+            colorPressed: PropTypes.string.isRequired,
+            sizeHover: PropTypes.string.isRequired,
+        }).isRequired,
+    }),
+    transitionDuration: PropTypes.number,
+    transitionEasing: PropTypes.oneOf(Object.values(SELECTION_CONTROL_EASINGS)),
+};
+
+InputHoverWrapper.defaultProps = {
+    theme: defaultTheme,
+    transitionDuration: 300,
+};
+
 export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
-    margin: 0 6px 0 0;
     border: 1px solid ${({ theme }) => theme.selectionControl.colorDefault};
     width: ${({ theme }) => theme.selectionControl.size};
     height: ${({ theme }) => theme.selectionControl.size};
@@ -25,16 +83,6 @@ export const InputWrapper = styled.div`
         border-radius: 100%;
     `};
 
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        margin: 0 6px 0 0;
-        order: 1;
-    `};
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        margin: 0 0 0 6px;
-        order: 2;
-    `};
-
     ${({ isChecked, theme, type }) => isChecked && css`
         background-color: ${theme.selectionControl.colorDefault};
 
@@ -43,8 +91,8 @@ export const InputWrapper = styled.div`
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                width:  ${theme.selectionControl.iconSize};
-                height:  ${theme.selectionControl.iconSize};
+                width:  ${theme.selectionControl.radioButtonInnerSize};
+                height:  ${theme.selectionControl.radioButtonInnerSize};
                 background-color: ${theme.selectionControl.iconColor};
                 content: '';
                 transform: translate3d(-50%, -50%, 0);
@@ -81,6 +129,14 @@ export const InputWrapper = styled.div`
         }
     `};
 
+    &:active:after  {
+        background-color: ${({ theme }) => theme.selectionControl.colorPressed};
+    }
+
+    /* &:after {
+        ${({ theme }) => rippleEffect(theme.selectionControl.colorPressed)}
+    } */
+
     input {
         display: block;
         position: relative;
@@ -96,7 +152,6 @@ export const InputWrapper = styled.div`
 `;
 
 InputWrapper.propTypes = {
-    direction: PropTypes.oneOf(Object.values(SELECTION_CONTROL_DIRECTIONS)).isRequired,
     hasError: PropTypes.bool.isRequired,
     isChecked: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
@@ -107,9 +162,11 @@ InputWrapper.propTypes = {
             colorDefault: PropTypes.string.isRequired,
             colorDisabled: PropTypes.string.isRequired,
             colorError: PropTypes.string.isRequired,
+            colorPressed: PropTypes.string.isRequired,
             colorValid: PropTypes.string.isRequired,
             iconColor: PropTypes.string.isRequired,
             iconSize: PropTypes.string.isRequired,
+            radioButtonInnerSize: PropTypes.string.isRequired,
             size: PropTypes.string.isRequired,
         }).isRequired,
     }),
