@@ -1,4 +1,4 @@
-import { CHIP_DIRECTIONS } from './Chip.consts';
+import { CHIP_DIRECTIONS, CHIP_EASINGS } from './Chip.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledChip } from './Chip.sc';
@@ -12,8 +12,16 @@ const Chip = ({
     isDisabled,
     isSelected,
     onClick,
+    transitionDuration,
+    transitionEasing,
 }) => (
-    <StyledChip isDisabled={isDisabled} isSelected={isSelected} onClick={onClick}>
+    <StyledChip
+        isDisabled={isDisabled}
+        isSelected={isSelected}
+        onClick={onClick}
+        transitionDuration={transitionDuration}
+        transitionEasing={transitionEasing}
+    >
         <TextWithOptionalIcon direction={direction} iconSize={iconSize} iconType={iconType}>
             {children}
         </TextWithOptionalIcon>
@@ -22,6 +30,7 @@ const Chip = ({
 
 Chip.directions = CHIP_DIRECTIONS;
 Chip.iconTypes = TextWithOptionalIcon.iconTypes;
+Chip.transitionEasings = CHIP_EASINGS;
 
 Chip.propTypes = {
     children: PropTypes.node.isRequired,
@@ -31,6 +40,8 @@ Chip.propTypes = {
     isDisabled: PropTypes.bool,
     isSelected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
+    transitionDuration: PropTypes.number,
+    transitionEasing: PropTypes.oneOf(Object.values(Chip.transitionEasings)),
 };
 
 Chip.defaultProps = {
@@ -39,6 +50,8 @@ Chip.defaultProps = {
     iconType: null,
     isDisabled: false,
     isSelected: true,
+    transitionDuration: 300,
+    transitionEasing: Chip.transitionEasings.EASE,
 };
 
 export default Chip;

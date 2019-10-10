@@ -1,4 +1,9 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import {
+    boolean,
+    number,
+    select,
+    text,
+} from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Chip from './Chip';
 import React from 'react';
@@ -10,6 +15,8 @@ export const Configurable = () => (
         isDisabled={boolean('Is disabled', Chip.defaultProps.isDisabled)}
         isSelected={boolean('Is selected', Chip.defaultProps.isSelected)}
         onClick={action('On click')}
+        transitionDuration={number('Transition duration', Chip.defaultProps.transitionDuration)}
+        transitionEasing={select('Transition type', Chip.transitionEasings, Chip.defaultProps.transitionEasing)}
     >
         {text('Text', 'Configure me!')}
     </Chip>
@@ -22,6 +29,8 @@ export const ConfigurableWithIcon = () => (
         isDisabled={boolean('Is disabled', Chip.defaultProps.isDisabled)}
         isSelected={boolean('Is selected', Chip.defaultProps.isSelected)}
         onClick={action('On click')}
+        transitionDuration={number('Transition duration', Chip.defaultProps.transitionDuration)}
+        transitionEasing={select('Transition type', Chip.transitionEasings, Chip.defaultProps.transitionEasing)}
     >
         {text('Text', 'Configure me!')}
     </Chip>
