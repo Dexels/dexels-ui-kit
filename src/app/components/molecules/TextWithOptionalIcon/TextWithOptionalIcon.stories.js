@@ -13,6 +13,7 @@ export const Configurable = () => (
 export const ConfigurableWithIcon = () => (
     <TextWithOptionalIcon
         direction={select('Direction', TextWithOptionalIcon.directions, TextWithOptionalIcon.defaultProps.direction)}
+        iconColor={select('Icon color', TextWithOptionalIcon.iconColors, TextWithOptionalIcon.iconColors.sl100)}
         iconType={select('Icon type', TextWithOptionalIcon.iconTypes, TextWithOptionalIcon.iconTypes.CHECK)}
     >
         {text('Text', 'Configure me!')}

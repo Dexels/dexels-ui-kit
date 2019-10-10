@@ -1,4 +1,9 @@
-import { BUTTON_DIRECTIONS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import {
+    BUTTON_DIRECTIONS,
+    BUTTON_EASINGS,
+    BUTTON_SIZES,
+    BUTTON_VARIANTS,
+} from './Button.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledButton } from './Button.sc';
@@ -8,19 +13,23 @@ const Button = ({
     autoFocus,
     children,
     direction,
-    fullWidth,
     iconType,
     isDisabled,
+    isFullWidth,
     onClick,
     size,
+    transitionDuration,
+    transitionEasing,
     variant,
 }) => (
     <StyledButton
         autoFocus={autoFocus}
-        fullWidth={fullWidth}
         isDisabled={isDisabled}
+        isFullWidth={isFullWidth}
         onClick={onClick}
         size={size}
+        transitionDuration={transitionDuration}
+        transitionEasing={transitionEasing}
         variant={variant}
     >
         <TextWithOptionalIcon direction={direction} iconType={iconType}>
@@ -32,27 +41,32 @@ const Button = ({
 Button.directions = BUTTON_DIRECTIONS;
 Button.iconTypes = TextWithOptionalIcon.iconTypes;
 Button.sizes = BUTTON_SIZES;
+Button.transitionEasings = BUTTON_EASINGS;
 Button.variants = BUTTON_VARIANTS;
 
 Button.propTypes = {
     autoFocus: PropTypes.bool,
     children: PropTypes.node.isRequired,
     direction: PropTypes.oneOf(Object.values(Button.directions)),
-    fullWidth: PropTypes.bool,
     iconType: PropTypes.oneOf(Object.values(Button.iconTypes)),
     isDisabled: PropTypes.bool,
+    isFullWidth: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     size: PropTypes.oneOf(Object.values(Button.sizes)),
+    transitionDuration: PropTypes.number,
+    transitionEasing: PropTypes.oneOf(Object.values(Button.transitionEasings)),
     variant: PropTypes.oneOf(Object.values(Button.variants)),
 };
 
 Button.defaultProps = {
     autoFocus: false,
     direction: Button.directions.LTR,
-    fullWidth: false,
     iconType: null,
     isDisabled: false,
+    isFullWidth: false,
     size: Button.sizes.LARGE,
+    transitionDuration: 300,
+    transitionEasing: Button.transitionEasings.EASE,
     variant: Button.variants.FILLED,
 };
 

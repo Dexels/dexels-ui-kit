@@ -11,7 +11,11 @@ export const StyledTooltip = styled.div`
 
     &::after,
     &::before {
-        ${({ transitionDuration, transitionType }) => transitionType !== 'NONE' && transitionEffect('all', transitionType, transitionDuration, 0)};
+        /* This weird indent is a bug in ESLint */
+        ${({ transitionDuration, transitionEasing }) => transitionEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+    })};
         position: absolute;
         visibility: hidden;
         opacity: 0;
@@ -28,8 +32,8 @@ export const StyledTooltip = styled.div`
         ${({ placement }) => getPlacement(placement)};
         ${({ elevation }) => getElevation(elevation)};
         z-index: 99999999;
-        border-radius: ${({ theme }) => theme.tooltip.borderRadius};
-        padding: ${({ theme }) => theme.tooltip.padding};
+        border-radius: 15px;
+        padding: 4px 8px 4px 8px;
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;

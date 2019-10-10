@@ -4,9 +4,11 @@ import {
     sl100,
     sl5,
 } from '../../../styles/colors/colors';
-import { DIRECTIONS } from '../../../utils/constants';
+import { DIRECTIONS, EASINGS } from '../../../utils/constants';
 
 export const CHIP_DIRECTIONS = DIRECTIONS;
+
+export const CHIP_EASINGS = EASINGS;
 
 export const CHIP_THEME = {
     backgroundColor: sl10,

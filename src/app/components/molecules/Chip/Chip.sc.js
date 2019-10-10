@@ -2,9 +2,14 @@ import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
+import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledChip = styled.button`
+    ${({ transitionDuration, transitionEasing }) => transitionEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+    })};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     appearance: none;
     display: flex;
@@ -16,7 +21,7 @@ export const StyledChip = styled.button`
     border-radius: 8px;
     background-color: ${({ theme }) => theme.chip.backgroundColorDeselected};
     cursor: pointer;
-    padding: 4px 8px 4px 8px;
+    padding: 3px 8px 4px 8px;
     height: 32px;
     overflow: hidden;
     color: ${({ theme }) => theme.chip.colorDefault};

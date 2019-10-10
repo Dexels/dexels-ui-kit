@@ -7,5 +7,6 @@ module.exports = {
     ],
     rules: {
         indentation: 4,
+        'length-zero-no-unit': true,
     },
 };

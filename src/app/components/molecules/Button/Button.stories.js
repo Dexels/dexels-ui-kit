@@ -1,4 +1,9 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import {
+    boolean,
+    number,
+    select,
+    text,
+} from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from './Button';
 import React from 'react';
@@ -7,10 +12,12 @@ export default { title: 'molecules/Button' };
 
 export const Configurable = () => (
     <Button
-        fullWidth={boolean('Use full width', Button.defaultProps.fullWidth)}
         isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
+        isFullWidth={boolean('Is full width', Button.defaultProps.isFullWidth)}
         onClick={action('On click')}
         size={select('Size', Button.sizes, Button.defaultProps.size)}
+        transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
+        transitionEasing={select('Transition type', Button.transitionEasings, Button.defaultProps.transitionEasing)}
         variant={select('Type', Button.variants, Button.defaultProps.variant)}
     >
         {text('Text', 'Configure me!')}
@@ -20,11 +27,13 @@ export const Configurable = () => (
 export const ConfigurableWithIcon = () => (
     <Button
         direction={select('Direction', Button.directions, Button.defaultProps.direction)}
-        fullWidth={boolean('Use full width', Button.defaultProps.fullWidth)}
         iconType={select('Icon type', Button.iconTypes, Button.iconTypes.CHECK)}
         isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
+        isFullWidth={boolean('Use full width', Button.defaultProps.isFullWidth)}
         onClick={action('On click')}
         size={select('Size', Button.sizes, Button.defaultProps.size)}
+        transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
+        transitionEasing={select('Transition type', Button.transitionEasings, Button.defaultProps.transitionEasing)}
         variant={select('Type', Button.variants, Button.defaultProps.variant)}
     >
         {text('Text', 'Configure me!')}

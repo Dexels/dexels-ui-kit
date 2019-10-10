@@ -1,12 +1,12 @@
 import { css } from 'styled-components';
 
-const transitionEffect = (
-    property = 'all',
-    type = 'ease-in-out',
-    duration = 0.4,
+const transitionEffect = ({
+    duration = 400,
     delay = 0,
-) => (css`
-    transition: ${`${property} ${duration}s ${type.split('_').join('-').toLowerCase()} ${delay}s`}
+    easing = 'ease-in-out',
+    property = 'all',
+} = {}) => (property !== 'NONE' && css`
+    transition: ${`${property} ${duration}ms ${easing.split('_').join('-').toLowerCase()} ${delay}ms`};
 `);
 
 export default transitionEffect;

@@ -6,12 +6,15 @@ import {
 } from '../../../styles/colors/colors';
 import {
     DIRECTIONS,
+    EASINGS,
     FONT_FAMILY_SECONDARY,
     SIZES,
 } from '../../../utils/constants';
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 export const BUTTON_DIRECTIONS = DIRECTIONS;
+
+export const BUTTON_EASINGS = EASINGS;
 
 export const BUTTON_SIZES = SIZES;
 

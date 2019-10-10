@@ -17,8 +17,8 @@ export const StyledOverlay = styled.div`
     ${({ isVisible, theme }) => isVisible && css`
         background-color: ${`rgba(0,0,0, ${theme.overlay.opacity})`}
     `};
-    width: ${({ isFullscreen, width }) => (isFullscreen ? '100%' : width)};
-    height: ${({ isFullscreen, height }) => (isFullscreen ? '100%' : height)};
+    width: ${({ isFullscreen, width }) => (isFullscreen ? '100%' : `${width}%`)};
+    height: ${({ isFullscreen, height }) => (isFullscreen ? '100%' : `${height}%`)};
     overflow: auto;
 `;
 
