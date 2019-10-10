@@ -1,11 +1,16 @@
-import { BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import { BUTTON_EASINGS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
+import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledButton = styled.button`
+    ${({ transitionDuration, transitionEasing }) => transitionEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+    })};
     appearance: none;
     position: relative;
     outline: none;
@@ -30,6 +35,7 @@ export const StyledButton = styled.button`
     ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
         ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
         min-height: ${theme.button.heightSmall};
+        min-width: 80px;
         border-radius: ${theme.button.borderRadiusSmall};
         padding: 4px 16px;
     `};
@@ -37,6 +43,7 @@ export const StyledButton = styled.button`
     ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
         ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
         min-height: ${theme.button.heightLarge};
+        min-width: 100px;
         border-radius: ${theme.button.borderRadiusLarge};
         padding: 8px 16px;
     `};
@@ -94,6 +101,8 @@ StyledButton.propTypes = {
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(BUTTON_EASINGS)).isRequired,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
 };
 

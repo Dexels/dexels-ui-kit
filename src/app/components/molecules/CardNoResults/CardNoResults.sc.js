@@ -59,8 +59,8 @@ Item.defaultProps = {
 };
 
 export const Left = styled.div`
+    margin-top: 6px; /* Correction for line-height h1 element */
     width: 48px;
-    color: ${({ theme }) => theme.cardNoResults.colorHeader};
 `;
 
 Left.propTypes = {
