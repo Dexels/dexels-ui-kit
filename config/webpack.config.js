@@ -5,7 +5,6 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { resolve } = require('path');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = {
     entry: resolve(__dirname, `${libPath}/index.js`),
@@ -79,9 +78,6 @@ module.exports = {
     plugins: [
         new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production'),
-        }),
         new MiniCSSExtractPlugin({
             filename: '[name].css',
         }),
