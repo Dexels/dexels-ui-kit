@@ -39,6 +39,7 @@ module.exports = {
             umd: 'styled-components',
         },
     },
+    mode: 'production',
     module: {
         rules: [
             {

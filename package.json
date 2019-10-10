@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "1.0.12",
+    "version": "1.0.14",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -12,7 +12,7 @@
     ],
     "scripts": {
         "start": "npm run storybook",
-        "build:prod": "cross-env BABEL_ENV=prod webpack --config config/webpack.config.js --mode\"production\"",
+        "build:prod": "cross-env BABEL_ENV=prod webpack --config config/webpack.config.js",
         "dist": "npm run build:prod",
         "lint:css": "stylelint \"src/**/*.js\" --config config/.stylelintrc.js",
         "lint:js": "eslint \"src/**/*.js\" --config config/.eslintrc.js",
