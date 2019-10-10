@@ -4,24 +4,30 @@ import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
-export const TabHeader = styled.div`
+export const TabHeader = styled.button`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0 8px;
     width: fit-content;
     text-align: center;
-    color: ${({ theme }) => theme.tabs.colorTabHeader};
+    color: ${({ theme }) => theme.tabs.tabHeaderColor};
 
-    ${({ hasFullwidthTabHeader }) => hasFullwidthTabHeader && css`
+    ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
     `};
 
-    ${({ isActive }) => isActive && css`
-        border-bottom: 2px solid ${({ theme }) => theme.tabs.colorTabHeader};
+    ${({ isActive, theme }) => isActive && css`
+        border-bottom-color: ${theme.tabs.tabHeaderColor};
     `};
 `;
 
 TabHeader.propTypes = {
-    hasFullwidthTabHeader: PropTypes.bool.isRequired,
     isActive: PropTypes.bool.isRequired,
+    isFullWidth: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         tabs: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -37,9 +43,8 @@ TabHeader.defaultProps = {
 export const TabHeaderList = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
-    margin: 0;
-    border-bottom: 1px solid lightgray;
-    width: 100%;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid ${({ theme }) => theme.tabs.tabHeaderListBorderColor};
 `;
 
 TabHeaderList.propTypes = {
@@ -56,7 +61,6 @@ TabHeaderList.defaultProps = {
 
 export const TabPanel = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    color: inherit;
 `;
 
 TabPanel.propTypes = {

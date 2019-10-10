@@ -8,7 +8,7 @@ import {
 import Card from '../../atoms/Card/Card';
 import PropTypes from 'prop-types';
 
-const Tabs = ({ elevation, hasFullwidthTabHeader, tabs }) => {
+const Tabs = ({ elevation, hasFullWidthTabHeaders, tabs }) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
 
     return (
@@ -16,8 +16,8 @@ const Tabs = ({ elevation, hasFullwidthTabHeader, tabs }) => {
             <TabHeaderList>
                 {tabs.length > 0 && tabs.map((tab, index) => (
                     <TabHeader
-                        hasFullwidthTabHeader={hasFullwidthTabHeader}
                         isActive={activeTabIndex === index}
+                        isFullWidth={hasFullWidthTabHeaders}
                         key={tab.title}
                         onClick={() => {
                             setActiveTabIndex(index);
@@ -38,7 +38,7 @@ Tabs.elevations = Card.elevations;
 
 Tabs.propTypes = {
     elevation: PropTypes.oneOf(Object.values(Tabs.elevations)),
-    hasFullwidthTabHeader: PropTypes.bool,
+    hasFullWidthTabHeaders: PropTypes.bool,
     tabs: PropTypes.arrayOf(
         PropTypes.shape({
             content: PropTypes.node.isRequired,
@@ -49,7 +49,7 @@ Tabs.propTypes = {
 
 Tabs.defaultProps = {
     elevation: Tabs.elevations.LEVEL_1,
-    hasFullwidthTabHeader: true,
+    hasFullWidthTabHeaders: true,
 };
 
 export default Tabs;

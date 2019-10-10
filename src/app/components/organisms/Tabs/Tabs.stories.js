@@ -16,7 +16,7 @@ const comp = (
 export const Configurable = () => (
     <Tabs
         elevation={select('Elevation', Tabs.elevations, Tabs.defaultProps.elevation)}
-        hasFullwidthTabHeader={boolean('Has fullwidth tab header', Tabs.defaultProps.hasFullwidthTabHeader)}
+        hasFullWidthTabHeaders={boolean('Has fullwidth tab headers', Tabs.defaultProps.hasFullWidthTabHeaders)}
         tabs={[{
             content: comp,
             title: 'Tab 1',
