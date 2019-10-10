@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
+import { TEXT_WITH_OPTIONAL_ICON_COLORS, TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
 import PropTypes from 'prop-types';
-import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
 
 export const Text = styled.p`
     flex: 0 0 auto;
@@ -15,10 +15,19 @@ export const IconWrapper = styled.div`
         font-size: ${iconSize};
     `};
 
+    ${({ iconColor }) => iconColor && css`
+        color: ${iconColor};
+    `};
+
     span {
         display: block;
     }
 `;
+
+IconWrapper.propTypes = {
+    iconColor: PropTypes.oneOf(Object.values(TEXT_WITH_OPTIONAL_ICON_COLORS)),
+    iconSize: PropTypes.string,
+};
 
 export const StyledTextWithOptionalIcon = styled.div`
     display: flex;
