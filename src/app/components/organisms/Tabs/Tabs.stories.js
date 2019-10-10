@@ -1,4 +1,4 @@
-import { array, select } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import Button from '../../molecules/Button/Button';
 import React from 'react';
 import Tabs from './Tabs';
@@ -16,7 +16,8 @@ const comp = (
 export const Configurable = () => (
     <Tabs
         elevation={select('Elevation', Tabs.elevations, Tabs.defaultProps.elevation)}
-        tabs={array('Tabs', [{
+        hasFullwidthTabHeader={boolean('Has fullwidth tab header', Tabs.defaultProps.hasFullwidthTabHeader)}
+        tabs={[{
             content: comp,
             title: 'Tab 1',
         },
@@ -27,6 +28,6 @@ export const Configurable = () => (
         {
             content: 'Tab3 content',
             title: 'Tab 3',
-        }])}
+        }]}
     />
 );

@@ -5,7 +5,6 @@ export const TABS_THEME = {
     colorHover: blue100,
     colorTabHeader: purple100,
     colorTabPanel: purple100,
-    padding: '8px',
     textColor: blue100,
 };
 

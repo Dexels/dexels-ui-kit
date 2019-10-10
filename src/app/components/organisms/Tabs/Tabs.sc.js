@@ -6,10 +6,13 @@ import validateThemePropTypes from '../../../utils/validators/validateThemePropT
 
 export const TabHeader = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
-    width: 100%;
+    width: fit-content;
     text-align: center;
     color: ${({ theme }) => theme.tabs.colorTabHeader};
-    font-family: ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+
+    ${({ hasFullwidthTabHeader }) => hasFullwidthTabHeader && css`
+        width: 100%;
+    `};
 
     ${({ isActive }) => isActive && css`
         border-bottom: 2px solid ${({ theme }) => theme.tabs.colorTabHeader};
@@ -17,6 +20,7 @@ export const TabHeader = styled.div`
 `;
 
 TabHeader.propTypes = {
+    hasFullwidthTabHeader: PropTypes.bool.isRequired,
     isActive: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         tabs: PropTypes.objectOf((propValue, key, componentName) => (
@@ -52,8 +56,6 @@ TabHeaderList.defaultProps = {
 
 export const TabPanel = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    width: ${({ width }) => width};
-    min-height: 40vh;
     color: inherit;
 `;
 
@@ -69,33 +71,8 @@ TabPanel.defaultProps = {
     theme: defaultTheme,
 };
 
-export const TabsComponent = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
-    width: 100%;
-    font-family: inherit;
-    font-size: inherit;
-`;
-
-TabsComponent.propTypes = {
-    theme: PropTypes.shape({
-        tabs: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-TabsComponent.defaultProps = {
-    theme: defaultTheme,
-};
-
 export const StyledTabs = styled.div`
     ${({ elevation }) => getElevation(elevation)};
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: flex-start;
-    background-color: ${({ theme }) => theme.tabs.backgroundColor};
-    padding: ${({ theme }) => theme.tabs.padding};
 `;
 
 StyledTabs.propTypes = {
