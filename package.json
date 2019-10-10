@@ -11,6 +11,7 @@
         "dist"
     ],
     "scripts": {
+        "start": "npm run storybook",
         "build:prod": "cross-env BABEL_ENV=prod webpack --config config/webpack.prod.js --mode production",
         "dist": "npm run build:prod",
         "lint:css": "stylelint \"src/**/*.js\" --config config/.stylelintrc.js",
