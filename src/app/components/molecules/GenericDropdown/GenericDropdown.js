@@ -1,10 +1,10 @@
 import {
     DisplayListButton,
-    Item,
-    SelectionList,
+    Option,
+    Select,
     StyledGenericDropdown,
 } from './GenericDropdown.sc';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Card from '../../atoms/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
 import { IconWrapper } from '../TextWithOptionalIcon/TextWithOptionalIcon.sc';
@@ -18,6 +18,23 @@ const GenericDropdown = ({
 }) => {
     const [isListCollapsed, setListCollapsed] = useState(false);
 
+    function useOutsideAlerter() {
+        function handleClickOutside() {
+            setListCollapsed(false);
+        }
+
+        useEffect(() => {
+            document.addEventListener('mouseout', handleClickOutside);
+
+            return () => {
+                document.removeEventListener('mouseout', handleClickOutside);
+            };
+        });
+    }
+
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef);
+
     return (
         <StyledGenericDropdown
             elevation={elevation}
@@ -26,24 +43,26 @@ const GenericDropdown = ({
             onClick={() => {
                 setListCollapsed(!isListCollapsed);
             }}
+            ref={wrapperRef}
         >
             <DisplayListButton isDisabled={isDisabled} isListCollapsed={isListCollapsed}>
                 <IconWrapper iconSize={iconSize}>
                     <Icon type={isListCollapsed ? Icon.types.DROP_DOWN : Icon.types.DROP_UP} />
                 </IconWrapper>
             </DisplayListButton>
-            <SelectionList
+            <Select
                 isDisabled={isDisabled}
+                isListCollapsed={isListCollapsed}
                 onChange={() => {
                     setListCollapsed(!isListCollapsed);
                 }}
             >
                 {items.length > 0 && items.map((item) => (
-                    <Item key={item}>
-                        {`${item}`}
-                    </Item>
+                    <Option key={item}>
+                        {item}
+                    </Option>
                 ))}
-            </SelectionList>
+            </Select>
         </StyledGenericDropdown>
     );
 };

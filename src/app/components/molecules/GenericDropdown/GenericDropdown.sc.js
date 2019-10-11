@@ -33,11 +33,11 @@ DisplayListButton.defaultProps = {
     theme: defaultTheme,
 };
 
-export const Item = styled.option`
+export const Option = styled.option`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
 `;
 
-Item.propTypes = {
+Option.propTypes = {
     theme: PropTypes.shape({
         genericDropdown: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -45,11 +45,11 @@ Item.propTypes = {
     }),
 };
 
-Item.defaultProps = {
+Option.defaultProps = {
     theme: defaultTheme,
 };
 
-export const SelectionList = styled.select`
+export const Select = styled.select`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     appearance: none;
     position: relative;
@@ -63,7 +63,7 @@ export const SelectionList = styled.select`
     `};
 `;
 
-SelectionList.propTypes = {
+Select.propTypes = {
     isDisabled: PropTypes.bool,
     theme: PropTypes.shape({
         genericDropdown: PropTypes.objectOf((propValue, key, componentName) => (
@@ -72,7 +72,7 @@ SelectionList.propTypes = {
     }),
 };
 
-SelectionList.defaultProps = {
+Select.defaultProps = {
     isDisabled: false,
     theme: defaultTheme,
 };
