@@ -14,6 +14,7 @@ import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import { OVERLAY_THEME } from '../../components/molecules/Overlay/Overlay.consts';
 import { SELECTION_CONTROL_THEME } from '../../components/molecules/SelectionControl/SelectionControl.consts';
+import { TABS_THEME } from '../../components/organisms/Tabs/Tabs.consts';
 import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
 import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
 
@@ -39,6 +40,7 @@ const theme = {
     statusIndicator: {
         size: '8px',
     },
+    tabs: TABS_THEME,
     textIcon: TEXT_ICON_THEME,
     textStyles: {
         body1: {
