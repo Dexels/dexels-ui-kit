@@ -9,7 +9,22 @@ import { ELEVATIONS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 
 const Tabs = ({ elevation, hasFullWidthTabHeaders, tabs }) => {
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    let initiallyActiveTabIndex = null;
+
+    (function setInitiallyActiveTabIndex() {
+        let isTabSet = false;
+
+        tabs.map((tab, index) => {
+            if (!tab.disabled && !isTabSet) {
+                isTabSet = true;
+                initiallyActiveTabIndex = index;
+            }
+
+            return initiallyActiveTabIndex;
+        });
+    }());
+
+    const [activeTabIndex, setActiveTabIndex] = useState(initiallyActiveTabIndex);
 
     return (
         <StyledTabs elevation={elevation}>
@@ -17,6 +32,7 @@ const Tabs = ({ elevation, hasFullWidthTabHeaders, tabs }) => {
                 {tabs.length > 0 && tabs.map((tab, index) => (
                     <TabHeader
                         isActive={activeTabIndex === index}
+                        isDisabled={tab.disabled}
                         isFullWidth={hasFullWidthTabHeaders}
                         key={tab.title}
                         onClick={() => {
@@ -27,9 +43,11 @@ const Tabs = ({ elevation, hasFullWidthTabHeaders, tabs }) => {
                     </TabHeader>
                 ))}
             </TabHeaderList>
-            <TabPanel>
-                {tabs[activeTabIndex].content}
-            </TabPanel>
+            {tabs[activeTabIndex] && (
+                <TabPanel>
+                    {tabs[activeTabIndex].content}
+                </TabPanel>
+            )}
         </StyledTabs>
     );
 };
@@ -41,6 +59,7 @@ Tabs.propTypes = {
     hasFullWidthTabHeaders: PropTypes.bool,
     tabs: PropTypes.arrayOf(PropTypes.shape({
         content: PropTypes.node.isRequired,
+        disabled: PropTypes.node.isRequired,
         title: PropTypes.node.isRequired,
     })).isRequired,
 };
