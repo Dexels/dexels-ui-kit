@@ -6,7 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { resolve } = require('path');
 const TerserJSPlugin = require('terser-webpack-plugin');
 
-module.exports = {
+module.exports = (env = {}) => ({
     entry: resolve(__dirname, `${libPath}/index.js`),
     externals: {
         'prop-types': {
@@ -43,6 +43,7 @@ module.exports = {
         rules: [
             {
                 exclude: /(node_modules)/,
+                sideEffects: false,
                 test: /\.(js|jsx)$/,
                 use: 'babel-loader',
             },
@@ -76,7 +77,9 @@ module.exports = {
         publicPath: '/',
     },
     plugins: [
-        new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin({
+            analyzerMode: env.analyze ? 'server' : 'disabled',
+        }),
         new CleanWebpackPlugin(),
         new MiniCSSExtractPlugin({
             filename: '[name].css',
@@ -87,4 +90,4 @@ module.exports = {
             fonts: resolve(__dirname, `${publicPath}/fonts`),
         },
     },
-};
+});
