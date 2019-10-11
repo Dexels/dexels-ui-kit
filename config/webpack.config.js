@@ -71,7 +71,7 @@ module.exports = {
     output: {
         filename: 'index.js',
         library: 'DexelsUIKit',
-        libraryTarget: 'umd',
+        libraryTarget: 'commonjs2',
         path: distPath,
         publicPath: '/',
     },
