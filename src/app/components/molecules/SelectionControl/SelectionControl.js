@@ -5,7 +5,11 @@ import {
     LabelWrapper,
     StyledSelectionControl,
 } from './SelectionControl.sc';
-import { SELECTION_CONTROL_DIRECTIONS, SELECTION_CONTROL_TYPES } from './SelectionControl.consts';
+import {
+    SELECTION_CONTROL_DIRECTIONS,
+    SELECTION_CONTROL_EASINGS,
+    SELECTION_CONTROL_TYPES,
+} from './SelectionControl.consts';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import Icon from '../../atoms/Icon/Icon';
 import Label from '../../atoms/Label/Label';
@@ -22,6 +26,8 @@ const SelectionControl = ({
     label,
     name,
     onChange,
+    transitionDuration,
+    transitionEasing,
     type,
     value,
 }) => (
@@ -33,6 +39,8 @@ const SelectionControl = ({
                 isChecked={isChecked}
                 isDisabled={isDisabled}
                 isValid={isValid}
+                transitionDuration={transitionDuration}
+                transitionEasing={transitionEasing}
                 type={type}
             >
                 <input
@@ -71,6 +79,7 @@ const SelectionControl = ({
 );
 
 SelectionControl.directions = SELECTION_CONTROL_DIRECTIONS;
+SelectionControl.transitionEasings = SELECTION_CONTROL_EASINGS;
 SelectionControl.types = SELECTION_CONTROL_TYPES;
 
 SelectionControl.propTypes = {
@@ -83,6 +92,8 @@ SelectionControl.propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    transitionDuration: PropTypes.number,
+    transitionEasing: PropTypes.oneOf(Object.values(SelectionControl.transitionEasings)),
     type: PropTypes.oneOf(Object.values(SelectionControl.types)),
     value: PropTypes.string.isRequired,
 };
@@ -94,6 +105,8 @@ SelectionControl.defaultProps = {
     isChecked: false,
     isDisabled: false,
     isValid: false,
+    transitionDuration: 300,
+    transitionEasing: SelectionControl.transitionEasings.EASE,
     type: SelectionControl.types.CHECKBOX,
 };
 
