@@ -1,5 +1,5 @@
 import {
-    DisplayList,
+    DisplayListButton,
     Item,
     SelectionList,
     StyledGenericDropdown,
@@ -12,41 +12,35 @@ import PropTypes from 'prop-types';
 
 const GenericDropdown = ({
     elevation,
-    handleClick,
     iconSize,
     isDisabled,
     items,
 }) => {
-    const [listOpen, setListOpen] = useState(false);
+    const [isListCollapsed, setListCollapsed] = useState(false);
 
     return (
         <StyledGenericDropdown
             elevation={elevation}
             isDisabled={isDisabled}
-            listOpen={listOpen}
+            isListCollapsed={isListCollapsed}
             onClick={() => {
-                setListOpen(!listOpen);
+                setListCollapsed(!isListCollapsed);
             }}
         >
-            <DisplayList
-                isDisabled={isDisabled}
-                listOpen={listOpen}
-            >
+            <DisplayListButton isDisabled={isDisabled} isListCollapsed={isListCollapsed}>
                 <IconWrapper iconSize={iconSize}>
-                    <Icon type={listOpen ? Icon.types.DROP_DOWN : Icon.types.DROP_UP} />
+                    <Icon type={isListCollapsed ? Icon.types.DROP_DOWN : Icon.types.DROP_UP} />
                 </IconWrapper>
-            </DisplayList>
+            </DisplayListButton>
             <SelectionList
                 isDisabled={isDisabled}
+                onChange={() => {
+                    setListCollapsed(!isListCollapsed);
+                }}
             >
                 {items.length > 0 && items.map((item) => (
-                    <Item
-                        key={item.id}
-                        onClick={() => {
-                            handleClick(item);
-                        }}
-                    >
-                        {`${item.value}`}
+                    <Item key={item}>
+                        {`${item}`}
                     </Item>
                 ))}
             </SelectionList>
@@ -59,21 +53,15 @@ GenericDropdown.iconTypes = Icon.types;
 
 GenericDropdown.propTypes = {
     elevation: PropTypes.oneOf(Object.values(GenericDropdown.elevations)),
-    handleClick: PropTypes.func.isRequired,
     iconSize: PropTypes.string,
     isDisabled: PropTypes.bool,
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            text: PropTypes.string,
-        }),
-    ),
+    items: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 GenericDropdown.defaultProps = {
     elevation: GenericDropdown.elevations.LEVEL_0,
     iconSize: '24px',
     isDisabled: false,
-    items: null,
 };
 
 export default GenericDropdown;
