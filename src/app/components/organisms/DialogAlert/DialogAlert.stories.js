@@ -9,26 +9,25 @@ export default { title: 'organisms/DialogAlert' };
 
 const ConfigurableDialog = ({ onCancel, onClose, onConfirm }) => (
     <DialogAlert
-        body={text('Body', 'Some body text')}
-        bodyAlignment={select('Align body', DialogAlert.alignments, DialogAlert.defaultProps.bodyAlignment)}
-        buttonCancelText={text('Button cancel text', 'Cancel')}
+        bodyAlignment={select('Body alignment', DialogAlert.alignments, DialogAlert.defaultProps.bodyAlignment)}
+        buttonCancelText={text('ButtonCancel text', 'Cancel')}
         buttonClosePosition={select(
-            'Button close position', DialogAlert.directions, DialogAlert.defaultProps.buttonClosePosition,
+            'ButtonClose position', DialogAlert.directions, DialogAlert.defaultProps.buttonClosePosition,
         )}
         buttonConfirmText={text('Button confirm text', 'Ok')}
-        dialogHeight={text('Set height of dialog in px or %', DialogAlert.defaultProps.dialogHeight)}
-        dialogWidth={text('Set width of dialog in px or %', DialogAlert.defaultProps.dialogWidth)}
         elevation={select('Elevation', DialogAlert.elevations, DialogAlert.defaultProps.elevation)}
         footerMessage={text('Message in footer', '')}
         hasButtonClose={boolean('Show close button', DialogAlert.defaultProps.hasButtonClose)}
         hasOverlay={boolean('Has overlay', DialogAlert.defaultProps.hasOverlay)}
         header={text('Header', '')}
         headerAlignment={select('Align header', DialogAlert.alignments, DialogAlert.defaultProps.headerAlignment)}
-        headerHeight={text('Set height of header in px or %', DialogAlert.defaultProps.headerHeight)}
         onCancel={onCancel}
         onClose={onClose}
         onConfirm={onConfirm}
-    />
+        width={text('Set width in px or %', DialogAlert.defaultProps.width)}
+    >
+        {text('Body', 'Some body text')}
+    </DialogAlert>
 );
 
 ConfigurableDialog.propTypes = {
@@ -45,9 +44,9 @@ ConfigurableDialog.defaultProps = {
 
 export const Configurable = () => (
     <ConfigurableDialog
-        onCancel={action('On cancel click')}
-        onClose={action('On close click')}
-        onConfirm={action('On confirm click')}
+        onCancel={action('OnCancel click')}
+        onClose={action('OnClose click')}
+        onConfirm={action('OnConfirm click')}
     />
 );
 
@@ -57,17 +56,27 @@ export const ConfigurableAlert = () => {
     return (
         <>
             <Button
-                onClick={() => setIsVisible(!isVisible)}
-                variant="FILLED"
+                onClick={() => {
+                    setIsVisible(true);
+                }}
+                variant={Button.variants.FILLED}
             >
-                {isVisible && 'ALERT DIALOG IS SHOWN'}
-                {!isVisible && 'SHOW ALERT DIALOG'}
+                {isVisible ? 'ALERT DIALOG IS SHOWING' : 'SHOW ALERT DIALOG'}
             </Button>
             {isVisible && (
                 <ConfigurableDialog
-                    onCancel={action('On cancel click')}
-                    onClose={action('On close click')}
-                    onConfirm={action('On confirm click')}
+                    onCancel={() => {
+                        action('OnCancel');
+                        setIsVisible(false);
+                    }}
+                    onClose={() => {
+                        action('onClose');
+                        setIsVisible(false);
+                    }}
+                    onConfirm={() => {
+                        action('onConfirm');
+                        setIsVisible(false);
+                    }}
                 />
             )}
         </>
