@@ -39,7 +39,6 @@ export const StyledDialogFooter = styled.footer`
     border-bottom-right-radius: inherit;
     background-color: ${({ theme }) => theme.dialogFooter.backgroundColor};
     padding: 16px;
-    height: 76px;
 `;
 
 StyledDialogFooter.propTypes = {
