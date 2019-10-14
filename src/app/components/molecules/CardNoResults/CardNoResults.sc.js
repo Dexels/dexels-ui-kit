@@ -4,9 +4,30 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
+export const StyledCardNoResults = styled.div`
+    ${({ elevation }) => getElevation(elevation)};
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    background-color: ${({ theme }) => theme.cardNoResults.backgroundColor};
+    padding: 24px;
+`;
+
+StyledCardNoResults.propTypes = {
+    theme: PropTypes.shape({
+        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
+            validateThemePropTypes(propValue, key, componentName)
+        )).isRequired,
+    }),
+};
+
+StyledCardNoResults.defaultProps = {
+    theme: defaultTheme,
+};
+
 export const Header = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
-    margin-bottom: 16px;
+    margin: 0 0 16px;
     color: ${({ theme }) => theme.cardNoResults.colorHeader};
 `;
 
@@ -22,7 +43,7 @@ Header.defaultProps = {
     theme: defaultTheme,
 };
 
-export const Title = styled.div`
+export const Title = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
     margin: 4px 4px 4px 0;
     color: ${({ theme }) => theme.cardNoResults.colorTitle};
@@ -40,9 +61,9 @@ Title.defaultProps = {
     theme: defaultTheme,
 };
 
-export const Item = styled.div`
+export const Item = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    padding-bottom: 4px;
+    margin: 0 0 4px;
     color: ${({ theme }) => theme.cardNoResults.colorItem};
 `;
 
@@ -59,7 +80,8 @@ Item.defaultProps = {
 };
 
 export const Left = styled.div`
-    margin-top: 6px; /* Correction for line-height h1 element */
+    flex: 0 0 auto;
+    margin-top: 4px; /* Correction for line-height Title element */
     width: 48px;
 `;
 
@@ -76,26 +98,5 @@ Left.defaultProps = {
 };
 
 export const Right = styled.div`
-    width: 100%;
+    flex: 1 1 auto;
 `;
-
-export const StyledCardNoResults = styled.div`
-    ${({ elevation }) => getElevation(elevation)};
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    background-color: ${({ theme }) => theme.cardNoResults.backgroundColor};
-    padding: 24px;
-`;
-
-StyledCardNoResults.propTypes = {
-    theme: PropTypes.shape({
-        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-StyledCardNoResults.defaultProps = {
-    theme: defaultTheme,
-};
