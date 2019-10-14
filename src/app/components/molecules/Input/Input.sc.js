@@ -2,9 +2,11 @@ import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledInput = styled.div`
+    ${setBoxSizing()};
     position: relative;
 
     ${({ isDisabled }) => isDisabled && css`

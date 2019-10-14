@@ -1,10 +1,12 @@
 import defaultTheme from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledCardNoResults = styled.div`
+    ${setBoxSizing()};
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-wrap: nowrap;

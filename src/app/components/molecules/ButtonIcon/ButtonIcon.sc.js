@@ -9,7 +9,7 @@ export const StyledButtonIcon = styled.button`
     align-items: center;
     outline: none;
     border: 0;
-    border-radius: 50px;
+    border-radius: 100%;
     background-color: transparent;
     cursor: pointer;
     color: ${({ theme }) => theme.buttonIcon.colorDefault};
