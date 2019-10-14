@@ -75,6 +75,7 @@ module.exports = (env = {}) => ({
         libraryTarget: 'umd',
         path: distPath,
         publicPath: '/',
+        umdNamedDefine: true,
     },
     plugins: [
         new BundleAnalyzerPlugin({
