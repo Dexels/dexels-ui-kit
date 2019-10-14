@@ -60,26 +60,47 @@ export const InputWrapper = styled.div`
         `};
     `};
 
-    ${({ isChecked, isValid, theme }) => isValid && css`
+    ${({ isIndeterminate, theme, type }) => isIndeterminate && css`
+        ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+            background-color: ${theme.selectionControl.colorDefault};
+        `};
+    `};
+
+    ${({
+        isChecked,
+        isIndeterminate,
+        isValid,
+        theme,
+        }) => isValid && css`
         border-color: ${theme.selectionControl.colorValid};
 
-        ${isChecked && css`
+        ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.selectionControl.colorValid};
         `};
     `};
 
-    ${({ hasError, isChecked, theme }) => hasError && css`
+    ${({
+        hasError,
+        isChecked,
+        isIndeterminate,
+        theme,
+        }) => hasError && css`
         border-color: ${theme.selectionControl.colorError};
 
-        ${isChecked && css`
+        ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.selectionControl.colorError};
         `};
     `};
 
-    ${({ isChecked, isDisabled, theme }) => isDisabled && css`
+    ${({
+        isChecked,
+        isDisabled,
+        isIndeterminate,
+        theme,
+        }) => isDisabled && css`
         border-color: ${theme.selectionControl.colorDisabled};
 
-        ${isChecked && css`
+        ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.selectionControl.colorDisabled};
         `};
 
@@ -133,6 +154,7 @@ InputWrapper.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isChecked: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
+    isIndeterminate: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         selectionControl: PropTypes.shape({

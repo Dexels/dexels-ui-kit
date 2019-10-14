@@ -22,6 +22,7 @@ const SelectionControl = ({
     hasError,
     isChecked,
     isDisabled,
+    isIndeterminate,
     isValid,
     label,
     name,
@@ -38,6 +39,7 @@ const SelectionControl = ({
                 hasError={hasError}
                 isChecked={isChecked}
                 isDisabled={isDisabled}
+                isIndeterminate={isIndeterminate}
                 isValid={isValid}
                 transitionDuration={transitionDuration}
                 transitionEasing={transitionEasing}
@@ -54,6 +56,11 @@ const SelectionControl = ({
                 {isChecked && type === SelectionControl.types.CHECKBOX && (
                     <IconWrapper>
                         <Icon type={Icon.types.CHECK} />
+                    </IconWrapper>
+                )}
+                {isIndeterminate && type === SelectionControl.types.CHECKBOX && (
+                    <IconWrapper>
+                        <Icon type={Icon.types.MINUS} />
                     </IconWrapper>
                 )}
             </InputWrapper>
@@ -88,6 +95,7 @@ SelectionControl.propTypes = {
     hasError: PropTypes.bool,
     isChecked: PropTypes.bool,
     isDisabled: PropTypes.bool,
+    isIndeterminate: PropTypes.bool,
     isValid: PropTypes.bool,
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -104,6 +112,7 @@ SelectionControl.defaultProps = {
     hasError: false,
     isChecked: false,
     isDisabled: false,
+    isIndeterminate: false,
     isValid: false,
     transitionDuration: 300,
     transitionEasing: SelectionControl.transitionEasings.EASE,
