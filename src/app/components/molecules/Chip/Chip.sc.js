@@ -7,12 +7,12 @@ import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledChip = styled.button`
+    ${setBoxSizing()};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
     })};
-    ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     appearance: none;
     position: relative;
     outline: none;
@@ -20,8 +20,8 @@ export const StyledChip = styled.button`
     border-radius: 8px;
     background-color: ${({ theme }) => theme.chip.backgroundColorDeselected};
     cursor: pointer;
-    padding: 3px 8px 4px 8px;
-    height: 32px;
+    padding: 4px 8px;
+    min-height: 32px;
     overflow: hidden;
     color: ${({ theme }) => theme.chip.colorDefault};
 

@@ -9,8 +9,6 @@ export const StyledOverlay = styled.div`
     display: flex;
     position: fixed;
     z-index: 1;
-    width: ${({ isFullscreen, width }) => (isFullscreen ? '100%' : `${width}%`)};
-    height: ${({ isFullscreen, height }) => (isFullscreen ? '100%' : `${height}%`)};
     overflow: auto;
 
     ${({ isFullscreen }) => isFullscreen && css`
