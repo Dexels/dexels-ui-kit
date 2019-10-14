@@ -60,6 +60,12 @@ const basic = {
             },
         },
     },
+    dropdown: {
+        backgroundColor: 'transparent',
+        colorActiveInput: blue100,
+        colorDisabled: sl10,
+        colorDivider: sl100,
+    },
     root: {
         backgroundColor: 'grey',
         color: '#fff',
@@ -117,6 +123,12 @@ const dark = {
             },
         },
     },
+    dropdown: {
+        backgroundColor: 'transparent',
+        colorActiveInput: blue100,
+        colorDisabled: sl10,
+        colorDivider: sl100,
+    },
     root: {
         backgroundColor: '#222',
         color: '#fff',
@@ -173,6 +185,12 @@ const light = {
                 height: '32px',
             },
         },
+    },
+    dropdown: {
+        backgroundColor: 'transparent',
+        colorActiveInput: blue100,
+        colorDisabled: sl10,
+        colorDivider: sl100,
     },
     root: {
         backgroundColor: '#fafafa',

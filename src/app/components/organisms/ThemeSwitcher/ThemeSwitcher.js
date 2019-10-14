@@ -1,4 +1,5 @@
-import Button from '../../molecules/Button/Button';
+import { getThemeName, getThemeNamesList, setThemeName } from '../../../styles/theme/themeFunctions';
+import GenericDropdown from '../../molecules/GenericDropdown/GenericDropdown';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledThemeSwitcher } from './ThemeSwitcher.sc';
@@ -10,11 +11,18 @@ export const ThemeSwitcher = ({ theme }) => {
     const setThemeProps = (layout = 'basic', mode = 'basic') => {
         themeSwitcher.setLayout(layout);
         themeSwitcher.setMode(mode);
+        setThemeName(mode);
     };
 
     return (
         <StyledThemeSwitcher>
-            <Button onClick={() => setThemeProps(theme.layout, theme.mode === 'dark' ? 'light' : 'dark')}>
+            <GenericDropdown
+                // defaultValue={getThemeName()}
+                items={getThemeNamesList()}
+                onChange={(selectedValue) => setThemeProps(theme.layout, selectedValue)}
+            />
+
+            {/* <Button onClick={() => setThemeProps(theme.layout, theme.mode === 'dark' ? 'light' : 'dark')}>
                 {'Switch mode. Now selected = '}
                 {theme.mode}
                 {' Mode'}
@@ -33,7 +41,7 @@ export const ThemeSwitcher = ({ theme }) => {
                 {'Switch layout. Now selected =  '}
                 {theme.layout}
                 {' Layout'}
-            </Button>
+            </Button> */}
         </StyledThemeSwitcher>
     );
 };

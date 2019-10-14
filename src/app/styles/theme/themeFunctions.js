@@ -2,7 +2,7 @@ import * as themes from './themes';
 
 const ITEM_NAME = 'theme';
 
-const getThemeIndex = (themeName = 'default') => {
+const getThemeIndex = (themeName = 'basic') => {
     let themeIndex = 0;
 
     Object.keys(themes).forEach((theme, index) => {
@@ -12,6 +12,16 @@ const getThemeIndex = (themeName = 'default') => {
     });
 
     return themeIndex;
+};
+
+export const getThemeNamesList = () => {
+    const themeArray = [];
+
+    Object.keys(themes).forEach((theme) => {
+        themeArray.push(theme);
+    });
+
+    return themeArray;
 };
 
 export const getThemeComponentObject = (themeObject, name) => {
@@ -26,21 +36,21 @@ export const getThemeComponentObject = (themeObject, name) => {
     return prop;
 };
 
-export const getThemeObject = (themeName = 'default') => {
+export const getThemeObject = (themeName = 'basic') => {
     const themeObject = themes[Object.keys(themes)[getThemeIndex(themeName)]];
 
     return themeObject;
 };
 
 export const getThemeName = () => {
-    return sessionStorage.getItem(ITEM_NAME) ? getThemeObject(sessionStorage.getItem(ITEM_NAME)) : getThemeObject();
+    return sessionStorage.getItem(ITEM_NAME) ? sessionStorage.getItem(ITEM_NAME) : 'basic';
 };
 
 export const removeThemeName = () => {
     sessionStorage.removeItem(ITEM_NAME);
 };
 
-export const setThemeName = (name = 'default') => {
+export const setThemeName = (name = 'basic') => {
     sessionStorage.setItem(ITEM_NAME, name);
 };
 
