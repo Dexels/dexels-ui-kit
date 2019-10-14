@@ -1,26 +1,28 @@
 import {
-    blue100,
+    blue10,
     green,
     purple100,
     red,
     sl10,
     white,
 } from '../../../styles/colors/colors';
-import { DIRECTIONS } from '../../../utils/constants';
+import { DIRECTIONS, EASINGS } from '../../../utils/constants';
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 export const SELECTION_CONTROL_DIRECTIONS = DIRECTIONS;
+
+export const SELECTION_CONTROL_EASINGS = EASINGS;
 
 export const SELECTION_CONTROL_THEME = {
     checkboxBorderRadius: '5px',
     colorDefault: purple100,
     colorDisabled: sl10,
     colorError: red,
-    colorFocus: blue100,
-    colorHover: blue100,
+    colorHover: blue10,
     colorValid: green,
     iconColor: white,
-    iconSize: '12px',
+    iconSize: '20px',
+    radioButtonDotSize: '60%',
     size: '24px',
 };
 
