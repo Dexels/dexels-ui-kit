@@ -1,10 +1,13 @@
+import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
 import { BUTTON_EASINGS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
 import styled, { css } from 'styled-components';
-import defaultTheme from '../../../styles/theme/theme';
+import { getThemeComponent } from '../../../styles/theme/themeFunctions';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
-import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
+
+const buttonTheme = getThemeComponent('button');
+console.log('**************** theme', buttonTheme)
 
 export const StyledButton = styled.button`
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
@@ -14,75 +17,101 @@ export const StyledButton = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.button.colorDefault};
-    background-color: ${({ theme }) => theme.button.colorDefault};
+    border: 1px solid ${buttonTheme.borderColor};
+    background-color: ${buttonTheme.backgroundColor};
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
-    color: ${({ theme }) => theme.button.textColor};
+    color: ${buttonTheme.color};
+
+    &:active,
+    &:hover {
+        border-color: ${buttonTheme.borderColorHover};
+        background-color: ${buttonTheme.backgroundColorHover};
+    }
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
         justify-content: center;
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
+    ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
-        background-color: ${theme.button.colorDisabled};
-        border-color: ${theme.button.colorDisabled};
+        background-color: ${buttonTheme.backgroundColorDisabled};
+        border-color: ${buttonTheme.borderColorDisabled};
     `};
 
-    ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
-        ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
-        min-height: ${theme.button.heightSmall};
+    ${({ size }) => size === BUTTON_SIZES.SMALL && css`
+        ${textStyling(availableTextStyles().buttonSmall)};
+        min-height: ${buttonTheme.variant.small.height};
         min-width: 80px;
-        border-radius: ${theme.button.borderRadiusSmall};
+        border-radius: ${buttonTheme.variant.small.borderRadius};
         padding: 4px 16px;
     `};
 
-    ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
-        ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
-        min-height: ${theme.button.heightLarge};
+    ${({ size }) => size === BUTTON_SIZES.LARGE && css`
+        ${textStyling(availableTextStyles().buttonLarge)};
+        min-height: ${buttonTheme.variant.large.height};
         min-width: 100px;
-        border-radius: ${theme.button.borderRadiusLarge};
+        border-radius: ${buttonTheme.variant.large.borderRadius};
         padding: 8px 16px;
     `};
 
-    ${({ theme, variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
-        background-color: transparent !important;
-        color: ${theme.button.colorDefault};
+    ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.FILLED && css`
+        background-color: ${buttonTheme.filled.backgroundColor};
+        color: ${buttonTheme.filled.color};
 
         &:focus,
         &:hover {
-            color: ${theme.button.colorHover};
+            color: ${buttonTheme.filled.colorHover};
         }
+
+        ${isDisabled && css`
+            background-color: ${buttonTheme.filled.backgroundColorDisabled};
+            border-color: ${buttonTheme.filled.borderColorDisabled};
+            color: ${buttonTheme.filled.colorDisabled};
+        `};
     `};
 
-    ${({ theme, variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
+    ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
-        color: ${theme.button.colorDefault};
+        color: ${buttonTheme.outline.color};
+
+        &:focus,
+        &:hover {
+            color: ${buttonTheme.outline.colorHover};
+        }
+
+        ${isDisabled && css`
+            background-color: ${buttonTheme.outline.backgroundColorDisabled};
+            border-color: ${buttonTheme.outline.borderColorDisabled};
+            color: ${buttonTheme.outline.colorDisabled};
+        `};
+    `};
+
+    ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
+        background-color: transparent !important;
+        color: ${buttonTheme.textonly.color};
         padding: 0;
         min-height: 0;
         border: 0;
 
         &:focus,
         &:hover {
-            color: ${theme.button.colorHover};
+            color: ${buttonTheme.textonly.colorHover};
         }
+
+        ${isDisabled && css`
+            color: ${buttonTheme.outline.colorDisabled};
+        `};
     `};
 
-    ${({ isDisabled, theme, variant }) => isDisabled && variant !== BUTTON_VARIANTS.FILLED && css`
-        color: ${theme.buttonDisabledColor};
-    `};
+    /* ${({ isDisabled, variant }) => isDisabled && variant !== BUTTON_VARIANTS.FILLED && css`
+        color: ${buttonTheme.colorDisabled};
+    `}; */
 
     &:after {
         ${rippleEffect()}
-    }
-
-    &:active,
-    &:hover {
-        border-color: ${({ theme }) => theme.button.colorHover};
-        background-color: ${({ theme }) => theme.button.colorHover};
     }
 
     &:active:after {
@@ -96,18 +125,9 @@ StyledButton.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFullWidth: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
-    theme: PropTypes.shape({
-        button: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
     transitionDuration: PropTypes.number.isRequired,
     transitionEasing: PropTypes.oneOf(Object.values(BUTTON_EASINGS)).isRequired,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
-};
-
-StyledButton.defaultProps = {
-    theme: defaultTheme,
 };
 
 export default StyledButton;
