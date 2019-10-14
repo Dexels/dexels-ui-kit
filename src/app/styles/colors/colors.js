@@ -1,5 +1,7 @@
 const black = '#000000';
 
+const blue10 = '#DFF3FE';
+
 const blue25 = '#BFE7FE';
 
 const blue50 = '#80CFFE';
@@ -34,6 +36,7 @@ const white = '#FFFFFF';
 
 export {
     black,
+    blue10,
     blue25,
     blue50,
     blue100,
