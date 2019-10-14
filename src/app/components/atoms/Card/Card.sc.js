@@ -8,11 +8,12 @@ import validateThemePropTypes from '../../../utils/validators/validateThemePropT
 export const StyledCard = styled.div`
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
+    box-sizing: border-box;
     display: flex;
     border-radius: 4px;
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: 8px;
-    white-space: wrap;
+    word-break: break-word;
 `;
 
 StyledCard.propTypes = {
