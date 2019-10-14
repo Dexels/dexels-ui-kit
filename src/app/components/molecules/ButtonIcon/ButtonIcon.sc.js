@@ -12,7 +12,6 @@ export const StyledButtonIcon = styled.button`
     border-radius: 50px;
     background-color: transparent;
     cursor: pointer;
-    padding: 12px;
     color: ${({ theme }) => theme.buttonIcon.colorDefault};
 
     ${({ isDisabled, theme }) => isDisabled && css`
