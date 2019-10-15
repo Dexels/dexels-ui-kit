@@ -13,37 +13,35 @@ import React from 'react';
 
 const DialogAlert = ({
     bodyAlignment,
-    body,
     buttonCancelText,
     buttonClosePosition,
     buttonConfirmText,
-    dialogHeight,
-    dialogWidth,
+    children,
     elevation,
     footerMessage,
     hasButtonClose,
     hasOverlay,
     header,
     headerAlignment,
-    headerHeight,
     onCancel,
     onClose,
     onConfirm,
+    width,
 }) => (
     <Overlay isFullscreen isVisible={hasOverlay}>
         {hasButtonClose && hasOverlay && (
-            <ButtonClose buttonClosePosition={buttonClosePosition} onClick={onClose}>
+            <ButtonClose onClick={onClose} position={buttonClosePosition}>
                 <Icon type={Icon.types.CLOSE} />
             </ButtonClose>
         )}
-        <StyledDialogAlert dialogHeight={dialogHeight} dialogWidth={dialogWidth} elevation={elevation}>
+        <StyledDialogAlert elevation={elevation} width={width}>
             {header && (
-                <Header headerAlignment={headerAlignment} headerHeight={headerHeight}>
+                <Header alignment={headerAlignment}>
                     {header}
                 </Header>
             )}
-            <Body bodyAlignment={bodyAlignment} hasHeader={header}>
-                {body}
+            <Body alignment={bodyAlignment} hasHeader={Boolean(header)}>
+                {children}
             </Body>
             <DialogFooter
                 buttonCancelText={buttonCancelText}
@@ -61,40 +59,36 @@ DialogAlert.directions = DIALOG_ALERT_DIRECTIONS;
 DialogAlert.elevations = DIALOG_ALERT_ELEVATIONS;
 
 DialogAlert.propTypes = {
-    body: PropTypes.node.isRequired,
     bodyAlignment: PropTypes.oneOf(Object.values(DialogAlert.alignments)),
     buttonCancelText: PropTypes.string,
     buttonClosePosition: PropTypes.oneOf(Object.values(DialogAlert.directions)),
     buttonConfirmText: PropTypes.string.isRequired,
-    dialogHeight: PropTypes.string,
-    dialogWidth: PropTypes.string,
+    children: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(DialogAlert.elevations)),
     footerMessage: PropTypes.string,
     hasButtonClose: PropTypes.bool,
     hasOverlay: PropTypes.bool,
     header: PropTypes.string,
     headerAlignment: PropTypes.oneOf(Object.values(DialogAlert.alignments)),
-    headerHeight: PropTypes.string,
     onCancel: PropTypes.func,
     onClose: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
+    width: PropTypes.string,
 };
 
 DialogAlert.defaultProps = {
     bodyAlignment: DialogAlert.alignments.CENTER,
     buttonCancelText: 'Cancel',
     buttonClosePosition: DialogAlert.directions.LTR,
-    dialogHeight: '200px',
-    dialogWidth: '300px',
     elevation: DialogAlert.elevations.LEVEL_12,
     footerMessage: null,
     hasButtonClose: true,
     hasOverlay: true,
     header: null,
     headerAlignment: DialogAlert.alignments.CENTER,
-    headerHeight: '56px',
     onCancel: null,
     onClose: null,
+    width: '300px',
 };
 
 export default DialogAlert;

@@ -37,7 +37,7 @@ TextWithOptionalIcon.propTypes = {
 
 TextWithOptionalIcon.defaultProps = {
     direction: TextWithOptionalIcon.directions.LTR,
-    iconColor: TextWithOptionalIcon.iconColors.sl100,
+    iconColor: null,
     iconSize: '24px',
     iconType: null,
 };

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 export const Text = styled.p`
     flex: 0 0 auto;
     order: 2;
+    margin: 0;
 `;
 
 export const IconWrapper = styled.div`
