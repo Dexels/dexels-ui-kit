@@ -22,10 +22,10 @@ ButtonContainer.defaultProps = {
 };
 
 export const ButtonsWrapper = styled.div`
-    align-self: center;
-    height:30px;
     display: flex;
     flex-direction:row;
+    align-self: center;
+    height:30px;
 `;
 
 ButtonsWrapper.propTypes = {
@@ -41,8 +41,8 @@ ButtonsWrapper.defaultProps = {
 };
 
 export const TitleWrapper = styled.div`
-    color: ${({ theme }) => theme.header.headerColor};
     margin:auto;
+    color: ${({ theme }) => theme.header.headerColor};
 `;
 
 TitleWrapper.propTypes = {
@@ -59,11 +59,11 @@ TitleWrapper.defaultProps = {
 
 export const RightContainer = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    align-self: center;
-    color: ${({ theme }) => theme.header.headerColor};
     display: flex;
     flex-wrap: nowrap;
+    align-self: center;
     height: 40px;
+    color: ${({ theme }) => theme.header.headerColor};
     margin-inline-start: auto;
 `;
 
@@ -81,11 +81,11 @@ RightContainer.defaultProps = {
 
 export const LeftContainer = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    align-self: center;
-    color: ${({ theme }) => theme.header.headerColor};
     display: flex;
     flex-wrap: nowrap;
+    align-self: center;
     height: 40px;
+    color: ${({ theme }) => theme.header.headerColor};
 `;
 
 LeftContainer.propTypes = {
@@ -103,10 +103,10 @@ LeftContainer.defaultProps = {
 export const StyledHeader = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     /* background: ${({ theme }) => theme.header.headerBackgroundColor}; */
-    color: ${({ theme }) => theme.header.headerColor};
     display: flex;
     flex-direction:row;
     height: 52px;
+    color: ${({ theme }) => theme.header.headerColor};
 `;
 
 StyledHeader.propTypes = {

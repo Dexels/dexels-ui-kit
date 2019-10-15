@@ -30,6 +30,10 @@ export const StyledButtonIcon = styled.button`
         padding: 12px;
     `};
 
+    ${({ variant }) => variant === BUTTON_ICON_VARIANTS.HEADER && css`
+        color: inherit;
+    `};
+
     &:after {
         border: 0;
         pointer-events: none;
@@ -45,9 +49,6 @@ export const StyledButtonIcon = styled.button`
         border: 0;
     }
 
-    ${({ variant }) => variant === BUTTON_ICON_VARIANTS.HEADER && css`
-        color: inherit;
-    `};
 `;
 
 StyledButtonIcon.propTypes = {
