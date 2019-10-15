@@ -2,7 +2,7 @@ import * as colors from '../colors/colors';
 import { textStyles } from './textStyles';
 import theme from 'styled-theming';
 
-export const getAvailableThemes = () => (
+export const getAvailableThemeModes = () => (
     ['basic', 'dark', 'light']
 );
 
