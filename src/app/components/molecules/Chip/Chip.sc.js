@@ -2,37 +2,36 @@ import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledChip = styled.button`
+    ${setBoxSizing()};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
     })};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     appearance: none;
-    display: flex;
     position: relative;
-    flex-wrap: nowrap;
-    align-items: center;
     outline: none;
     border: 1px solid ${({ theme }) => theme.chip.colorDefault};
     border-radius: 8px;
     background-color: ${({ theme }) => theme.chip.backgroundColorDeselected};
     cursor: pointer;
-    padding: 3px 8px 4px 8px;
-    height: 32px;
+    padding: 4px 8px;
+    min-height: 32px;
     overflow: hidden;
     color: ${({ theme }) => theme.chip.colorDefault};
+
+    ${({ isSelected, theme }) => isSelected && css`
+        background-color: ${theme.chip.backgroundColor};
+    `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;
         color: ${theme.chip.colorDisabled};
-    `};
-
-    ${({ isSelected, theme }) => isSelected && css`
-        background-color: ${theme.chip.backgroundColor};
     `};
 
     &:after {
