@@ -3,7 +3,7 @@ import {
     orange,
     purple100,
     red,
-    sl10,
+    grey10,
 } from '../colors/colors';
 import { PLACEMENTS, STATUSES } from '../../utils/constants';
 import { css } from 'styled-components';
@@ -14,7 +14,7 @@ const getStatusColor = (status) => {
             return purple100;
 
         case STATUSES.DISABLED:
-            return sl10;
+            return grey10;
 
         case STATUSES.ERROR:
             return red;

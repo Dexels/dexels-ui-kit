@@ -1,14 +1,14 @@
 import {
     blue100,
-    sl10,
-    sl100,
+    grey10,
+    grey100,
 } from '../../../styles/colors/colors';
 
 export const GENERIC_DROPDOWN_THEME = {
     activeInputColor: blue100,
     backgroundColor: 'transparent',
-    disabledColor: sl10,
-    dividerColor: sl100,
+    disabledColor: grey10,
+    dividerColor: grey100,
 };
 
 export default GENERIC_DROPDOWN_THEME;

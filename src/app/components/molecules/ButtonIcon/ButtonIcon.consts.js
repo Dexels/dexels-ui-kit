@@ -1,17 +1,17 @@
 import {
     blue100,
     purple100,
-    sl10,
-    sl2,
+    grey10,
+    grey2,
 } from '../../../styles/colors/colors';
 import { SIZES } from '../../../utils/constants';
 
 export const BUTTON_ICON_SIZES = SIZES;
 
 export const BUTTON_ICON_THEME = {
-    backgroundColorHover: sl2,
+    backgroundColorHover: grey2,
     colorDefault: purple100,
-    colorDisabled: sl10,
+    colorDisabled: grey10,
     colorHover: blue100,
     sizeLarge: '20px',
     sizeSmall: '14px',

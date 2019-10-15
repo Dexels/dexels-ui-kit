@@ -1,13 +1,18 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
 import { BUTTON_EASINGS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import {
+    buttonBorderRadius,
+    buttonColorDisabled,
+    buttonColorHover,
+    colorButtonDark,
+    colorButtonLight,
+    colorDisabled,
+    colorPrimary,
+} from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
-import { getThemeComponent } from '../../../styles/theme/themeFunctions';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
-
-const theme = getThemeComponent('button');
-console.log('************************** button')
 
 export const StyledButton = styled.button`
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
@@ -17,12 +22,12 @@ export const StyledButton = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid ${theme.borderColor};
-    background-color: ${theme.backgroundColor};
+    border: 1px solid ${colorPrimary};
+    background-color: ${colorPrimary};
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
-    color: ${theme.color};
+    color: ${colorButtonLight};
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
@@ -31,72 +36,73 @@ export const StyledButton = styled.button`
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
-        background-color: ${theme.backgroundColorDisabled};
-        border-color: ${theme.borderColorDisabled};
+        background-color: ${colorDisabled};
+        border-color: ${colorDisabled};
     `};
 
     ${({ size }) => size === BUTTON_SIZES.SMALL && css`
         ${textStyling(availableTextStyles().buttonSmall)};
-        min-height: ${theme.variant.small.height};
+        ${'' /* min-height: ${variant.small.height}; */}
         min-width: 80px;
-        border-radius: ${theme.variant.small.borderRadius};
+        border-radius: ${buttonBorderRadius};
         padding: 4px 16px;
     `};
 
     ${({ size }) => size === BUTTON_SIZES.LARGE && css`
         ${textStyling(availableTextStyles().buttonLarge)};
-        min-height: ${theme.variant.large.height};
+        ${'' /* min-height: ${variant.large.height}; */}
         min-width: 100px;
-        border-radius: ${theme.variant.large.borderRadius};
+        border-radius: ${buttonBorderRadius};
         padding: 8px 16px;
     `};
 
     ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.FILLED && css`
-        background-color: ${theme.filled.backgroundColor};
-        color: ${theme.filled.color};
+        background-color: ${colorPrimary};
+        color: ${colorButtonLight};
 
         &:focus,
         &:hover {
-            color: ${theme.filled.colorHover};
+            background-color: ${buttonColorHover},
+            color: ${colorButtonLight};
         }
 
         ${isDisabled && css`
-            background-color: ${theme.filled.backgroundColorDisabled};
-            border-color: ${theme.filled.borderColorDisabled};
-            color: ${theme.filled.colorDisabled};
+            background-color: ${colorDisabled};
+            border-color: ${colorDisabled};
+            color: ${buttonColorDisabled};
         `};
     `};
 
     ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
-        color: ${theme.outline.color};
+        color: ${colorButtonDark};
 
         &:focus,
         &:hover {
-            color: ${theme.outline.colorHover};
+            color: ${buttonColorHover};
         }
 
         ${isDisabled && css`
-            background-color: ${theme.outline.backgroundColorDisabled};
-            border-color: ${theme.outline.borderColorDisabled};
-            color: ${theme.outline.colorDisabled};
+            background-color: ${colorDisabled};
+            border-color: ${colorDisabled};
+            color: ${buttonColorDisabled};
         `};
     `};
 
     ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         background-color: transparent !important;
-        color: ${theme.textonly.color};
+        color: ${colorButtonDark};
         padding: 0;
         min-height: 0;
         border: 0;
 
         &:focus,
         &:hover {
-            color: ${theme.textonly.colorHover};
+            color: ${buttonColorHover};
         }
 
         ${isDisabled && css`
-            color: ${theme.outline.colorDisabled};
+            color: ${buttonColorDisabled};
         `};
     `};
 
@@ -106,8 +112,8 @@ export const StyledButton = styled.button`
 
     &:active,
     &:hover {
-        border-color: ${theme.borderColorHover};
-        background-color: ${theme.backgroundColorHover};
+        border-color: ${buttonColorHover};
+        background-color: ${buttonColorHover};
     }
 
     &:active:after {

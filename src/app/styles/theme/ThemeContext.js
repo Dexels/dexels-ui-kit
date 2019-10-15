@@ -6,13 +6,13 @@ const ThemeToggleContext = React.createContext();
 
 export const useTheme = () => React.useContext(ThemeToggleContext);
 
-export const MyThemeProvider = ({ children }) => {
+export const MyThemeProvider = ({ children, theme }) => {
     const [themeLayout, setThemeLayout] = React.useState({
-        layout: 'basic',
+        layout: theme.mode,
     });
 
     const [themeMode, setThemeMode] = React.useState({
-        mode: 'basic',
+        mode: theme.layout,
     });
 
     const setLayout = (layout) => {
@@ -43,6 +43,7 @@ export const MyThemeProvider = ({ children }) => {
 
 MyThemeProvider.propTypes = {
     children: PropTypes.node.isRequired,
+    theme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
 };
 
 export default ThemeProvider;

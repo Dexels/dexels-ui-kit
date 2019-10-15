@@ -1,26 +1,24 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { colorBodyDark, colorDisabled, colorSecondary } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
 import getElevation from '../../../styles/mixins/getElevation';
-import { getThemeComponent } from '../../../styles/theme/themeFunctions';
 import PropTypes from 'prop-types';
-
-const theme = getThemeComponent('dropdown');
 
 export const DisplayListButton = styled.div`
     position: absolute;
     float: right;
-    color: ${theme.colorDivider};
+    color: ${colorBodyDark};
 
     ${({ iconSize }) => iconSize && css`
         font-size: ${iconSize};
     `};
 
     ${({ isListCollapsed }) => isListCollapsed && css`
-        color: ${theme.colorActiveInput};
+        color: ${colorSecondary};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
-        color: ${theme.colorDisabled};
+        color: ${colorDisabled};
     `};
 `;
 
@@ -40,11 +38,11 @@ export const Select = styled.select`
     position: relative;
     outline: none;
     border: 0;
-    background: ${theme.backgroundColor};
+    background: 'transparent';
     width: 100%;
 
     ${({ isDisabled }) => isDisabled && css`
-        color: ${theme.colorDisabled};
+        color: ${colorDisabled};
     `};
 `;
 
@@ -56,15 +54,15 @@ export const StyledGenericDropdown = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-direction: row-reverse;
-    border-bottom: 2px solid ${theme.colorDivider};
+    border-bottom: 2px solid ${colorBodyDark};
 
     ${({ isListCollapsed }) => isListCollapsed && css`
-        border-bottom: 2px solid ${theme.colorActiveInput};
+        border-bottom: 2px solid ${colorSecondary};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
-        color: ${theme.colorDisabled};
-        border-bottom: 2px solid ${theme.colorDisabled};
+        color: ${colorDisabled};
+        border-bottom: 2px solid ${colorDisabled};
         pointer-events: none;
     `};
 `;

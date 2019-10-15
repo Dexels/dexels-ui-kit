@@ -1,68 +1,10 @@
-import * as themes from './themes';
+import * as colors from '../colors/colors';
 import { textStyles } from './textStyles';
 import theme from 'styled-theming';
 
-const getThemeProp = (themeObject, themeProp) => {
-    const prop = {};
-
-    Object.keys(themeObject).forEach((themeKey) => {
-        prop[themeKey] = themeObject[themeKey][themeProp];
-    });
-
-    // console.log('************************ getThemeProp (themeObject)', themeObject);
-    // console.log('************************ getThemeProp (themeProp)', themeProp);
-    // console.log('************************ getThemeProp', prop);
-
-    return prop;
+export const getAvailableThemes = () => {
+    return ['basic', 'dark', 'light'];
 };
-
-const getProp = (propSource, propObject) => {
-    const prop = {};
-
-    Object.keys(propSource).forEach((propKey) => {
-        prop[propKey] = propSource[propKey][propObject];
-    });
-
-    console.log('************************ getProp', propSource, propObject, prop);
-
-    return prop;
-};
-
-const generateTheme = (themeObject) => {
-    const generatedTheme = {};
-    const firstTheme = themeObject[Object.keys(themeObject)[0]];
-
-    Object.keys(firstTheme).forEach((themeProp) => {
-        let prop = getThemeProp(themeObject, themeProp);
-
-        if (typeof prop === 'object') {
-            console.log('************************ typeof 1', prop);
-            // prop = getProp(firstTheme, prop);
-            // console.log('************************ typeof 2', prop);
-        }
-
-        generatedTheme[themeProp] = prop;
-    });
-
-    // console.log('************************ generatedTheme (themeObject)', themeObject);
-    console.log('************************ generatedTheme', generatedTheme);
-
-    return generatedTheme;
-};
-
-// export const activeTheme = generateTheme(themes);
-
-// export const buttonTheme = theme('mode', generateTheme(themes).button);
-export const buttonTheme = theme('mode', {
-    basic: generateTheme(themes).button.basic,
-    dark: generateTheme(themes).button.dark,
-    light: generateTheme(themes).button.light,
-});
-// export const buttonTheme = generateTheme(themes).button;
-console.log('************************ buttonTheme 1', generateTheme(themes).button);
-// console.log('************************ buttonTheme 1', JSON.stringify(generateTheme(themes).button));
-// console.log('************************ buttonTheme 2', generateTheme(themes).button.basic);
-console.log('************************ buttonTheme 3', buttonTheme);
 
 export const typography = theme('mode', {
     basic: textStyles,
@@ -73,6 +15,11 @@ export const typography = theme('mode', {
 export const padding = theme('layout', {
     basic: '8px',
     compact: '4px',
+});
+
+export const buttonBorderRadius = theme('layout', {
+    basic: '50px',
+    compact: '25px',
 });
 
 export const buttonFontSize = theme.variants('layout', 'kind', {
@@ -88,4 +35,147 @@ export const buttonFontSize = theme.variants('layout', 'kind', {
         basic: '1.2rem',
         compact: '0.9rem',
     },
+});
+
+/* BASIC / ROOT */
+export const colorPrimary = theme('mode', {
+    basic: colors.purple100,
+    dark: colors.white,
+    light: colors.black,
+});
+
+export const colorSecondary = theme('mode', {
+    basic: colors.blue100,
+    dark: colors.grey2,
+    light: colors.grey100,
+});
+
+export const colorTertiary = theme('mode', {
+    basic: colors.blue50,
+    dark: colors.grey2,
+    light: colors.grey100,
+});
+
+export const colorDisabled = theme('mode', {
+    basic: colors.grey10,
+    dark: colors.grey10,
+    light: colors.grey10,
+});
+
+export const backgroundColorPrimary = theme('mode', {
+    basic: colors.white,
+    dark: colors.black,
+    light: colors.white,
+});
+
+export const backgroundColorSecondary = theme('mode', {
+    basic: colors.grey2,
+    dark: colors.grey100,
+    light: colors.grey2,
+});
+
+/* INPUT */
+export const colorInputEnabled = theme('mode', {
+    basic: colors.purple100,
+    dark: colors.black,
+    light: colors.grey2,
+});
+
+export const colorInputHover = theme('mode', {
+    basic: colors.blue50,
+    dark: colors.grey50,
+    light: colors.grey10,
+});
+
+export const colorInputSelected = theme('mode', {
+    basic: colors.blue25,
+    dark: colors.grey75,
+    light: colors.grey25,
+});
+
+export const colorInputDisabled = theme('mode', {
+    basic: colors.grey10,
+    dark: colors.grey10,
+    light: colors.grey10,
+});
+
+/* TEXT / ICON */
+export const colorHeadingDark = theme('mode', {
+    basic: colors.purple100,
+    dark: colors.black,
+    light: colors.grey2,
+});
+
+export const colorHeadingLight = theme('mode', {
+    basic: colors.white,
+    dark: colors.grey2,
+    light: colors.white,
+});
+
+export const colorBodyDark = theme('mode', {
+    basic: colors.grey100,
+    dark: colors.black,
+    light: colors.grey2,
+});
+
+export const colorBodyLight = theme('mode', {
+    basic: colors.grey50,
+    dark: colors.grey100,
+    light: colors.white,
+});
+
+export const colorButtonDark = theme('mode', {
+    basic: colors.purple100,
+    dark: colors.black,
+    light: colors.grey10,
+});
+
+export const colorButtonLight = theme('mode', {
+    basic: colors.white,
+    dark: colors.grey100,
+    light: colors.black,
+});
+
+/* SIGNAL / ACCENT */
+export const colorSignalStandard = theme('mode', {
+    basic: colors.purple100,
+    dark: colors.purple100,
+    light: colors.purple100,
+});
+
+export const colorSignalOk = theme('mode', {
+    basic: colors.green,
+    dark: colors.green,
+    light: colors.green,
+});
+
+export const colorSignalWarning = theme('mode', {
+    basic: colors.orange,
+    dark: colors.orange,
+    light: colors.orange,
+});
+
+export const colorSignalError = theme('mode', {
+    basic: colors.red,
+    dark: colors.red,
+    light: colors.red,
+});
+
+export const colorSignalDisabled = theme('mode', {
+    basic: colors.grey10,
+    dark: colors.grey10,
+    light: colors.grey10,
+});
+
+/* BUTTON SPECIFICS */
+export const buttonColorDisabled = theme('mode', {
+    basic: colors.white,
+    dark: colors.white,
+    light: colors.grey100,
+});
+
+export const buttonColorHover = theme('mode', {
+    basic: colors.blue100,
+    dark: colors.grey100,
+    light: colors.grey5,
 });
