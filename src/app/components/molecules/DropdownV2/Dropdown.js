@@ -6,21 +6,26 @@ import React from 'react';
 const Dropdown = ({
     children,
     isDisabled,
-    isPlaceholderSelected,
     isRequired,
     name,
     onChange,
+    placeholder,
     value,
 }) => (
     <StyledDropdown>
         <Select
             isDisabled={isDisabled}
-            isPlaceholderSelected={isPlaceholderSelected}
+            isPlaceholderSelected={placeholder === value}
             isRequired={isRequired}
             name={name}
             onChange={onChange}
             value={value}
         >
+            {placeholder && (
+                <option disabled hidden value={placeholder}>
+                    {placeholder}
+                </option>
+            )}
             {children}
         </Select>
         <IconWrapper isDisabled={isDisabled}>
@@ -32,17 +37,17 @@ const Dropdown = ({
 Dropdown.propTypes = {
     children: PropTypes.node.isRequired,
     isDisabled: PropTypes.bool,
-    isPlaceholderSelected: PropTypes.bool,
     isRequired: PropTypes.bool,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
     value: PropTypes.string.isRequired,
 };
 
 Dropdown.defaultProps = {
     isDisabled: false,
-    isPlaceholderSelected: false,
     isRequired: true,
+    placeholder: '',
 };
 
 export default Dropdown;

@@ -23,16 +23,13 @@ export const Configurable = () => {
             <Dropdown
                 defaultValue="placeholder-value"
                 isDisabled={boolean('Is disabled', Dropdown.defaultProps.isDisabled)}
-                isPlaceholderSelected={placeholder === selectedValue}
                 name="the-best-fruit"
                 onChange={(event) => {
                     setSelectedValue(event.currentTarget.value);
                 }}
+                placeholder={placeholder}
                 value={selectedValue}
             >
-                <option disabled hidden value={placeholder}>
-                    {placeholder}
-                </option>
                 {optionArray}
             </Dropdown>
             <p>

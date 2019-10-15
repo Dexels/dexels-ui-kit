@@ -1,8 +1,8 @@
 import {
     blue100,
     sl10,
-    sl50,
     sl100,
+    sl50,
     white,
 } from '../../../styles/colors/colors';
 
