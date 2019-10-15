@@ -2,11 +2,13 @@ import defaultTheme from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledTooltip = styled.div`
+    ${setBoxSizing()};
     position: relative;
 
     &::after,
