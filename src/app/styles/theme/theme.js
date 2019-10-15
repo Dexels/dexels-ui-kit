@@ -7,8 +7,8 @@ import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
 import { css } from 'styled-components';
 import { DIALOG_ALERT_THEME } from '../../components/organisms/DialogAlert/DialogAlert.consts';
 import { DIALOG_FOOTER_THEME } from '../../components/molecules/DialogFooter/DialogFooter.consts';
+import { DROPDOWN_THEME } from '../../components/molecules/Dropdown/Dropdown.consts';
 import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
-import { GENERIC_DROPDOWN_THEME } from '../../components/molecules/GenericDropdown/GenericDropdown.consts';
 import { INPUT_PASSWORD_THEME } from '../../components/organisms/InputPassword/InputPassword.consts';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
@@ -30,10 +30,10 @@ const theme = {
     chip: CHIP_THEME,
     dialogAlert: DIALOG_ALERT_THEME,
     dialogFooter: DIALOG_FOOTER_THEME,
+    dropdown: DROPDOWN_THEME,
     errorMessage: ERROR_MESSAGE_THEME,
     fontFamilyPrimary: FONT_FAMILY_PRIMARY,
     fontFamilySecondary: FONT_FAMILY_SECONDARY,
-    genericDropdown: GENERIC_DROPDOWN_THEME,
     input: INPUT_THEME,
     inputPassword: INPUT_PASSWORD_THEME,
     label: LABEL_THEME,

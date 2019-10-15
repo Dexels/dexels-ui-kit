@@ -2,15 +2,15 @@ import {
     DisplayListButton,
     Option,
     Select,
-    StyledGenericDropdown,
-} from './GenericDropdown.sc';
+    StyledDropdown,
+} from './Dropdown.sc';
 import React, { useEffect, useRef, useState } from 'react';
 import Card from '../../atoms/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
 import { IconWrapper } from '../TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
 
-const GenericDropdown = ({
+const Dropdown = ({
     elevation,
     iconSize,
     isDisabled,
@@ -36,7 +36,7 @@ const GenericDropdown = ({
     useOutsideAlerter(wrapperRef);
 
     return (
-        <StyledGenericDropdown
+        <StyledDropdown
             elevation={elevation}
             isDisabled={isDisabled}
             isListCollapsed={isListCollapsed}
@@ -63,24 +63,24 @@ const GenericDropdown = ({
                     </Option>
                 ))}
             </Select>
-        </StyledGenericDropdown>
+        </StyledDropdown>
     );
 };
 
-GenericDropdown.elevations = Card.elevations;
-GenericDropdown.iconTypes = Icon.types;
+Dropdown.elevations = Card.elevations;
+Dropdown.iconTypes = Icon.types;
 
-GenericDropdown.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(GenericDropdown.elevations)),
+Dropdown.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(Dropdown.elevations)),
     iconSize: PropTypes.string,
     isDisabled: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-GenericDropdown.defaultProps = {
-    elevation: GenericDropdown.elevations.LEVEL_0,
+Dropdown.defaultProps = {
+    elevation: Dropdown.elevations.LEVEL_0,
     iconSize: '24px',
     isDisabled: false,
 };
 
-export default GenericDropdown;
+export default Dropdown;

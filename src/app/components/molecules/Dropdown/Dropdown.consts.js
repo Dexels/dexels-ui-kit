@@ -4,11 +4,11 @@ import {
     sl100,
 } from '../../../styles/colors/colors';
 
-export const GENERIC_DROPDOWN_THEME = {
+export const DROPDOWN_THEME = {
     activeInputColor: blue100,
     backgroundColor: 'transparent',
     disabledColor: sl10,
     dividerColor: sl100,
 };
 
-export default GENERIC_DROPDOWN_THEME;
+export default DROPDOWN_THEME;

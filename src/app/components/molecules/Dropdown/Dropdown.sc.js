@@ -7,14 +7,14 @@ import validateThemePropTypes from '../../../utils/validators/validateThemePropT
 export const DisplayListButton = styled.div`
     position: absolute;
     float: right;
-    color: ${({ theme }) => theme.genericDropdown.dividerColor};
+    color: ${({ theme }) => theme.dropdown.dividerColor};
 
     ${({ isListCollapsed, theme }) => isListCollapsed && css`
-        color: ${theme.genericDropdown.activeInputColor};
+        color: ${theme.dropdown.activeInputColor};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.genericDropdown.disabledColor};
+        color: ${theme.dropdown.disabledColor};
     `};
 `;
 
@@ -22,7 +22,7 @@ DisplayListButton.propTypes = {
     isDisabled: PropTypes.bool,
     isListCollapsed: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
-        genericDropdown: PropTypes.objectOf((propValue, key, componentName) => (
+        dropdown: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -39,7 +39,7 @@ export const Option = styled.option`
 
 Option.propTypes = {
     theme: PropTypes.shape({
-        genericDropdown: PropTypes.objectOf((propValue, key, componentName) => (
+        dropdown: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -55,18 +55,18 @@ export const Select = styled.select`
     position: relative;
     outline: none;
     border: unset;
-    background: ${({ theme }) => theme.genericDropdown.backgroundColor};
+    background: ${({ theme }) => theme.dropdown.backgroundColor};
     width: 100%;
 
     ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.genericDropdown.disabledColor};
+        color: ${theme.dropdown.disabledColor};
     `};
 `;
 
 Select.propTypes = {
     isDisabled: PropTypes.bool,
     theme: PropTypes.shape({
-        genericDropdown: PropTypes.objectOf((propValue, key, componentName) => (
+        dropdown: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
@@ -77,34 +77,34 @@ Select.defaultProps = {
     theme: defaultTheme,
 };
 
-export const StyledGenericDropdown = styled.div`
+export const StyledDropdown = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-direction: row-reverse;
-    border-bottom: 2px solid ${({ theme }) => theme.genericDropdown.dividerColor};
+    border-bottom: 2px solid ${({ theme }) => theme.dropdown.dividerColor};
 
     ${({ isListCollapsed, theme }) => isListCollapsed && css`
-        border-bottom: 2px solid ${theme.genericDropdown.activeInputColor};
+        border-bottom: 2px solid ${theme.dropdown.activeInputColor};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.genericDropdown.disabledColor};
-        border-bottom: 2px solid ${theme.genericDropdown.disabledColor};
+        color: ${theme.dropdown.disabledColor};
+        border-bottom: 2px solid ${theme.dropdown.disabledColor};
         pointer-events: none;
     `};
 `;
 
-StyledGenericDropdown.propTypes = {
+StyledDropdown.propTypes = {
     isDisabled: PropTypes.bool,
     isListCollapsed: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
-        genericDropdown: PropTypes.objectOf((propValue, key, componentName) => (
+        dropdown: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
 };
 
-StyledGenericDropdown.defaultProps = {
+StyledDropdown.defaultProps = {
     isDisabled: false,
     theme: defaultTheme,
 };
