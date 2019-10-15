@@ -8,6 +8,7 @@ import { css } from 'styled-components';
 import { DIALOG_ALERT_THEME } from '../../components/organisms/DialogAlert/DialogAlert.consts';
 import { DIALOG_FOOTER_THEME } from '../../components/molecules/DialogFooter/DialogFooter.consts';
 import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
+import { HEADER_THEME } from '../../components/organisms/Header/Header.consts';
 import { INPUT_PASSWORD_THEME } from '../../components/organisms/InputPassword/InputPassword.consts';
 import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
 import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
@@ -32,6 +33,7 @@ const theme = {
     errorMessage: ERROR_MESSAGE_THEME,
     fontFamilyPrimary: FONT_FAMILY_PRIMARY,
     fontFamilySecondary: FONT_FAMILY_SECONDARY,
+    header: HEADER_THEME,
     input: INPUT_THEME,
     inputPassword: INPUT_PASSWORD_THEME,
     label: LABEL_THEME,
