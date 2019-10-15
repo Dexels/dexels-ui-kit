@@ -15,3 +15,5 @@ Publishing a new version of the Dexels UI kit package actually is pretty easy:
 - https://webpack.js.org/guides/author-libraries/
 - https://parastudios.de/create-a-react-component-as-npm-module/
 - https://semver.org/
+- https://docs.npmjs.com/misc/scripts
+- https://webpack.js.org/configuration/externals/
