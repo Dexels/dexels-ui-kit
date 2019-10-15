@@ -3,12 +3,7 @@
         "@babel/preset-env",
         "@babel/preset-react"
     ],
-    "env": {
-        "dev": {
-            "plugins": [
-                "babel-plugin-styled-components",
-                "react-hot-loader/babel"
-            ]
-        }
-    }
+    "plugins": [
+        "babel-plugin-styled-components"
+    ]
 }
