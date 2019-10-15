@@ -4,10 +4,9 @@ import {
     LeftContainer,
     RightContainer,
     StyledHeader,
-    TitleWrapper,
+    Title,
 } from './Header.sc';
 import { ELEVATIONS } from '../../../utils/constants';
-import Label from '../../atoms/Label/Label';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -23,11 +22,9 @@ const Header = ({
             {leftSideIcons.length > 0 && leftSideIcons.map((leftSideIcon) => (
                 leftSideIcon
             ))}
-            <TitleWrapper>
-                <Label>
-                    {title}
-                </Label>
-            </TitleWrapper>
+            <Title>
+                {title}
+            </Title>
         </LeftContainer>
         <RightContainer>
             {rightSideIcons.length > 0 && rightSideIcons.map((rightSideIcon) => (

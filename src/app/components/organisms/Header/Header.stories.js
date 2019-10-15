@@ -8,16 +8,48 @@ import React from 'react';
 export default { title: 'organisms/Header' };
 
 const leftSideIcons = [
-    <ButtonIcon iconType={Icon.types.MENU} key={1} onClick={() => {}} />,
-    <ButtonIcon iconType={Icon.types.CHEVRON_LEFT} key={2} onClick={() => {}} />,
+    <ButtonIcon
+        iconType={Icon.types.MENU}
+        key={1} onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.CHEVRON_LEFT}
+        key={2}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
 ];
 
 const rightSideIcons = [
-    <ButtonIcon iconType={Icon.types.PLUS} key={1} onClick={() => {}} />,
-    <ButtonIcon iconType={Icon.types.SEARCH} key={2} onClick={() => {}} />,
-    <ButtonIcon iconType={Icon.types.SHARE} key={3} onClick={() => {}} />,
-    <ButtonIcon iconType={Icon.types.SETTINGS} key={4} onClick={() => {}} />,
-    <ButtonIcon iconType={Icon.types.HELP} key={5} onClick={() => {}} />,
+    <ButtonIcon
+        iconType={Icon.types.PLUS}
+        key={1}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.SEARCH} key={2}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.SHARE}
+        key={3} onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.SETTINGS}
+        key={4}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.HELP}
+        key={5}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
 ];
 
 const rightSideButtons = [

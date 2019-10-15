@@ -40,12 +40,13 @@ ButtonsWrapper.defaultProps = {
     theme: defaultTheme,
 };
 
-export const TitleWrapper = styled.div`
+export const Title = styled.div`
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     margin:auto;
     color: ${({ theme }) => theme.header.headerColor};
 `;
 
-TitleWrapper.propTypes = {
+Title.propTypes = {
     theme: PropTypes.shape({
         header: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -53,12 +54,11 @@ TitleWrapper.propTypes = {
     }),
 };
 
-TitleWrapper.defaultProps = {
+Title.defaultProps = {
     theme: defaultTheme,
 };
 
 export const RightContainer = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
     flex-wrap: nowrap;
     align-self: center;
@@ -102,9 +102,9 @@ LeftContainer.defaultProps = {
 
 export const StyledHeader = styled.div`
     ${({ elevation }) => getElevation(elevation)};
-    /* background: ${({ theme }) => theme.header.headerBackgroundColor}; */
     display: flex;
     flex-direction:row;
+    background: ${({ theme }) => theme.header.headerBackgroundColor};
     height: 52px;
     color: ${({ theme }) => theme.header.headerColor};
 `;
