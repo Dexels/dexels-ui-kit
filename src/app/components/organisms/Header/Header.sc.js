@@ -25,7 +25,6 @@ export const ButtonsWrapper = styled.div`
     display: flex;
     flex-direction:row;
     align-self: center;
-    height:30px;
 `;
 
 ButtonsWrapper.propTypes = {
@@ -62,7 +61,6 @@ export const RightContainer = styled.div`
     display: flex;
     flex-wrap: nowrap;
     align-self: center;
-    height: 40px;
     color: ${({ theme }) => theme.header.headerColor};
     margin-inline-start: auto;
 `;
@@ -84,7 +82,6 @@ export const LeftContainer = styled.div`
     display: flex;
     flex-wrap: nowrap;
     align-self: center;
-    height: 40px;
     color: ${({ theme }) => theme.header.headerColor};
 `;
 
