@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledButton } from './Button.sc';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
-import { withTheme } from 'styled-components';
 
 const Button = ({
     autoFocus,
@@ -71,4 +70,4 @@ Button.defaultProps = {
     variant: Button.variants.FILLED,
 };
 
-export default withTheme(Button);
+export default Button;
