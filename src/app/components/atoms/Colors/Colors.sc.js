@@ -1,37 +1,37 @@
 import * as colors from '../../../styles/colors/colors';
 import { invertColor } from '../../../utils/invertColor';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledColorWrapper = styled.div`
+    ${setBoxSizing()};
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: transparent;
 `;
 
 export const StyledColorText = styled.span`
-    text-align: center;
     color: ${({ color }) => invertColor(color, true)};
 `;
 
 StyledColorText.propTypes = {
-    color: PropTypes.oneOf(Object.values(colors)),
+    color: PropTypes.oneOf(Object.values(colors)).isRequired,
 };
 
 export const StyledColor = styled.div`
     display: flex;
-    flex-direction: column;
     flex-wrap: nowrap;
+    align-items: center;
     justify-content: center;
     margin: 8px;
-    border: 1px solid black;
-    border-radius: 50px;
+    border: 1px solid #000;
+    border-radius: 100%;
     background-color: ${({ color }) => color};
     width: 100px;
     height: 100px;
 `;
 
 StyledColor.propTypes = {
-    color: PropTypes.oneOf(Object.values(colors)),
+    color: PropTypes.oneOf(Object.values(colors)).isRequired,
 };

@@ -2,8 +2,10 @@ import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledInputPassword = styled.div`
+    ${setBoxSizing()};
     position: relative;
 `;
 
@@ -11,6 +13,7 @@ export const VisibilitySwitch = styled.button`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     appearance: none;
     position: absolute;
+    margin: 0;
     outline: none;
     border: 0;
     background-color: transparent;
