@@ -6,10 +6,12 @@ import {
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledSelectionControl = styled.div`
+    ${setBoxSizing()};
     display: flex;
     flex-wrap: nowrap;
 `;
@@ -47,14 +49,12 @@ export const InputWrapper = styled.div`
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
             &::after {
+                ${setCentered()};
                 position: absolute;
-                top: 50%;
-                left: 50%;
                 width:  ${theme.selectionControl.radioButtonDotSize};
                 height:  ${theme.selectionControl.radioButtonDotSize};
                 background-color: ${theme.selectionControl.iconColor};
                 content: '';
-                transform: translate3d(-50%, -50%, 0);
                 border-radius: 100%;
             }
         `};
@@ -157,10 +157,8 @@ InputWrapper.defaultProps = {
 };
 
 export const IconWrapper = styled.div`
+    ${setCentered()};
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
     z-index: 2;
     color: ${({ theme }) => theme.selectionControl.iconColor};
     font-size: ${({ theme }) => theme.selectionControl.iconSize};

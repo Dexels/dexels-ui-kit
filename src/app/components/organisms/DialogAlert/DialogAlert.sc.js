@@ -1,9 +1,33 @@
+import { DIALOG_ALERT_ALIGNMENTS, DIALOG_ALERT_DIRECTIONS, DIALOG_ALERT_ELEVATIONS } from './DialogAlert.consts';
 import styled, { css } from 'styled-components';
 import defaultTheme from '../../../styles/theme/theme';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
+
+export const StyledDialogAlert = styled.div`
+    ${setBoxSizing()};
+    ${({ elevation }) => getElevation(elevation)};
+    margin: auto;
+    border-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
+    width: ${({ width }) => width};
+`;
+
+StyledDialogAlert.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(DIALOG_ALERT_ELEVATIONS)).isRequired,
+    theme: PropTypes.shape({
+        dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
+            validateThemePropTypes(propValue, key, componentName)
+        )).isRequired,
+    }),
+    width: PropTypes.string.isRequired,
+};
+
+StyledDialogAlert.defaultProps = {
+    theme: defaultTheme,
+};
 
 export const ButtonWrapper = styled.div`
     margin: 0 16px 0 0;
@@ -11,25 +35,38 @@ export const ButtonWrapper = styled.div`
 
 export const ButtonClose = styled.button`
     position: fixed;
-    top: 10px;
+    top: 2px;
     z-index: 2;
+    outline: none;
     border: 0;
     background-color: ${({ theme }) => theme.dialogAlert.buttonCloseBackgroundColor};
-    ${({ buttonClosePosition }) => buttonClosePosition === 'RTL' && css`
-        width: 100%;
-    `};
-    text-align: ${({ buttonClosePosition }) => (buttonClosePosition === 'LTR' ? 'left' : 'right')};
+    cursor: pointer;
+    padding: 8px;
+    text-align: ${({ position }) => (position === DIALOG_ALERT_DIRECTIONS.LTR ? 'left' : 'right')};
     color: ${({ theme }) => theme.dialogAlert.buttonCloseColor};
     font-size: ${({ theme }) => theme.dialogAlert.buttonCloseSize};
+
+    ${({ position }) => position === DIALOG_ALERT_DIRECTIONS.LTR && css`
+        left: 2px;
+    `};
+
+    ${({ position }) => position === DIALOG_ALERT_DIRECTIONS.RTL && css`
+        right: 2px;
+    `};
 
     &:active,
     &:hover {
         background-color: ${({ theme }) => theme.dialogAlert.buttonCloseBackgroundColorHover};
         color: ${({ theme }) => theme.dialogAlert.buttonCloseColorHover};
     }
+
+    span {
+        display: block;
+    }
 `;
 
 ButtonClose.propTypes = {
+    position: PropTypes.oneOf(Object.values(DIALOG_ALERT_DIRECTIONS)).isRequired,
     theme: PropTypes.shape({
         dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -42,7 +79,7 @@ ButtonClose.defaultProps = {
 };
 
 export const Header = styled.header`
-    ${({ headerAlignment }) => getAlignment(headerAlignment)};
+    ${({ alignment }) => getAlignment(alignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     display: flex;
     align-items: center;
@@ -50,11 +87,12 @@ export const Header = styled.header`
     border-top-right-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
     background-color: ${({ theme }) => theme.dialogAlert.headerBackgroundColor};
     padding: 16px;
-    height: ${({ headerHeight }) => headerHeight};
+    min-height: 56px;
     color: ${({ theme }) => theme.dialogAlert.headerColor};
 `;
 
 Header.propTypes = {
+    alignment: PropTypes.oneOf(Object.values(DIALOG_ALERT_ALIGNMENTS)).isRequired,
     theme: PropTypes.shape({
         dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -67,17 +105,20 @@ Header.defaultProps = {
 };
 
 export const Body = styled.div`
-    ${({ bodyAlignment }) => getAlignment(bodyAlignment)};
+    ${({ alignment }) => getAlignment(alignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    border-top-left-radius: ${({ hasHeader, theme }) => !hasHeader && theme.dialogAlert.borderRadius};
-    border-top-right-radius: ${({ hasHeader, theme }) => !hasHeader && theme.dialogAlert.borderRadius};
     background-color: ${({ theme }) => theme.dialogAlert.bodyBackgroundColor};
     padding: 16px;
-    height: 100%;
     color: ${({ theme }) => theme.dialogAlert.bodyColor};
+
+    ${({ hasHeader, theme }) => !hasHeader && css`
+        border-radius: ${theme.dialogAlert.borderRadius} ${theme.dialogAlert.borderRadius} 0 0;
+    `};
 `;
 
 Body.propTypes = {
+    alignment: PropTypes.oneOf(Object.values(DIALOG_ALERT_ALIGNMENTS)).isRequired,
+    hasHeader: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
             validateThemePropTypes(propValue, key, componentName)
@@ -86,54 +127,5 @@ Body.propTypes = {
 };
 
 Body.defaultProps = {
-    theme: defaultTheme,
-};
-
-export const Footer = styled.footer`
-    ${({ footerAlignment }) => getAlignment(footerAlignment)};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    display: flex;
-    align-items: center;
-    border-bottom-left-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
-    border-bottom-right-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
-    background-color: ${({ theme }) => theme.dialogAlert.footerBackgroundColor};
-    padding: 16px;
-    height: ${({ footerHeight }) => footerHeight};
-`;
-
-Footer.propTypes = {
-    theme: PropTypes.shape({
-        dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-Footer.defaultProps = {
-    theme: defaultTheme,
-};
-
-export const StyledDialogAlert = styled.div`
-    ${({ elevation }) => getElevation(elevation)};
-    display: flex;
-    flex-direction: column;
-    z-index: 999;
-    margin: auto;
-    border-radius: ${({ theme }) => theme.dialogAlert.borderRadius};
-    width: ${({ dialogWidth }) => dialogWidth};
-    max-width: ${({ dialogWidth }) => dialogWidth};
-    height: ${({ dialogHeight }) => dialogHeight};
-    max-height: ${({ dialogHeight }) => dialogHeight};
-`;
-
-StyledDialogAlert.propTypes = {
-    theme: PropTypes.shape({
-        dialogAlert: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-StyledDialogAlert.defaultProps = {
     theme: defaultTheme,
 };

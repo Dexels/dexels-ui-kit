@@ -56,11 +56,7 @@ CardNoResults.propTypes = {
     iconSize: PropTypes.string,
     iconType: PropTypes.oneOf(Object.values(CardNoResults.iconTypes)),
     itemPrefix: PropTypes.string,
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            text: PropTypes.string,
-        }),
-    ),
+    items: PropTypes.arrayOf(PropTypes.node),
     title: PropTypes.string.isRequired,
 };
 
