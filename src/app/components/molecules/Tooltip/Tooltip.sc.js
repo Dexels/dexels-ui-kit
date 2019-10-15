@@ -2,16 +2,22 @@ import defaultTheme from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledTooltip = styled.div`
+    ${setBoxSizing()};
     position: relative;
 
     &::after,
     &::before {
-        ${({ transitionDuration, transitionType }) => transitionType !== 'NONE' && transitionEffect('all', transitionType, transitionDuration, 0)};
+        /* This weird indent is a bug in ESLint */
+        ${({ transitionDuration, transitionEasing }) => transitionEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+    })};
         position: absolute;
         visibility: hidden;
         opacity: 0;
