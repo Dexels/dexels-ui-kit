@@ -8,9 +8,9 @@ import {
 import { ELEVATIONS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 
-function setInitiallyActiveTabIndex(tab) {
-    return !tab.isDisabled && tab;
-}
+const setInitiallyActiveTabIndex = (tab) => (
+    !tab.isDisabled && tab
+);
 
 const Tabs = ({
     elevation,
@@ -18,8 +18,9 @@ const Tabs = ({
     initiallyActiveTabIndex,
     tabs,
 }) => {
-    const [activeTabIndex, setActiveTabIndex] = initiallyActiveTabIndex ? useState(initiallyActiveTabIndex)
-        : useState(tabs.findIndex(setInitiallyActiveTabIndex));
+    const [activeTabIndex, setActiveTabIndex] = useState(
+        initiallyActiveTabIndex || tabs.findIndex(setInitiallyActiveTabIndex),
+    );
 
     return (
         <StyledTabs elevation={elevation}>
