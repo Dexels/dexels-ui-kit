@@ -2,9 +2,9 @@ import * as colors from '../colors/colors';
 import { textStyles } from './textStyles';
 import theme from 'styled-theming';
 
-export const getAvailableThemes = () => {
-    return ['basic', 'dark', 'light'];
-};
+export const getAvailableThemes = () => (
+    ['basic', 'dark', 'light']
+);
 
 export const typography = theme('mode', {
     basic: textStyles,
