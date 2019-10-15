@@ -8,14 +8,14 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
     margin: 10px;
-    background: ${buttonBackgroundColor};
     border: none;
     border-radius: 0.3em;
     box-shadow: none;
-    color: ${buttonColor};
+    background: ${buttonBackgroundColor};
     cursor: pointer;
-    font-size: ${buttonFontSize};
     padding: ${padding};
+    color: ${buttonColor};
+    font-size: ${buttonFontSize};
 `;
 
 export const StyledThemeSwitcher = styled.div`

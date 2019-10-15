@@ -4,12 +4,16 @@ import getElevation from '../../../styles/mixins/getElevation';
 import { getThemeComponent } from '../../../styles/theme/themeFunctions';
 import PropTypes from 'prop-types';
 
-const theme = getThemeComponent('button');
+const theme = getThemeComponent('dropdown');
 
 export const DisplayListButton = styled.div`
     position: absolute;
     float: right;
-    color: ${theme.colorDividerColor};
+    color: ${theme.colorDivider};
+
+    ${({ iconSize }) => iconSize && css`
+        font-size: ${iconSize};
+    `};
 
     ${({ isListCollapsed }) => isListCollapsed && css`
         color: ${theme.colorActiveInput};
@@ -21,12 +25,9 @@ export const DisplayListButton = styled.div`
 `;
 
 DisplayListButton.propTypes = {
-    isDisabled: PropTypes.bool,
+    iconSize: PropTypes.string.isRequired,
+    isDisabled: PropTypes.bool.isRequired,
     isListCollapsed: PropTypes.bool.isRequired,
-};
-
-DisplayListButton.defaultProps = {
-    isDisabled: false,
 };
 
 export const Option = styled.option`
@@ -38,7 +39,7 @@ export const Select = styled.select`
     appearance: none;
     position: relative;
     outline: none;
-    border: unset;
+    border: 0;
     background: ${theme.backgroundColor};
     width: 100%;
 
@@ -48,11 +49,7 @@ export const Select = styled.select`
 `;
 
 Select.propTypes = {
-    isDisabled: PropTypes.bool,
-};
-
-Select.defaultProps = {
-    isDisabled: false,
+    isDisabled: PropTypes.bool.isRequired,
 };
 
 export const StyledGenericDropdown = styled.div`
@@ -73,10 +70,6 @@ export const StyledGenericDropdown = styled.div`
 `;
 
 StyledGenericDropdown.propTypes = {
-    isDisabled: PropTypes.bool,
+    isDisabled: PropTypes.bool.isRequired,
     isListCollapsed: PropTypes.bool.isRequired,
-};
-
-StyledGenericDropdown.defaultProps = {
-    isDisabled: false,
 };

@@ -7,7 +7,6 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import Card from '../../atoms/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
-import { IconWrapper } from '../TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
 
 const GenericDropdown = ({
@@ -51,7 +50,6 @@ const GenericDropdown = ({
         const index = e.options[e.selectedIndex].value;
         const value = e.options[e.selectedIndex].text;
         setSelectedItem(value);
-        console.log('****************************** ', index, value)
 
         return {
             index,
@@ -74,10 +72,8 @@ const GenericDropdown = ({
             }}
             ref={wrapperRef}
         >
-            <DisplayListButton isDisabled={isDisabled} isListCollapsed={isListCollapsed}>
-                <IconWrapper iconSize={iconSize}>
-                    <Icon type={isListCollapsed ? Icon.types.DROP_DOWN : Icon.types.DROP_UP} />
-                </IconWrapper>
+            <DisplayListButton iconSize={iconSize} isDisabled={isDisabled} isListCollapsed={isListCollapsed}>
+                <Icon type={isListCollapsed ? Icon.types.DROP_DOWN : Icon.types.DROP_UP} />
             </DisplayListButton>
             <Select
                 id="GENERIC_DROPDOWN"
@@ -86,11 +82,11 @@ const GenericDropdown = ({
                 onChange={() => {
                     handleOnChange(!isListCollapsed);
                 }}
+                value={selectedItem}
             >
                 {items.length > 0 && items.map((item) => (
                     <Option
                         key={item}
-                        selected={item === selectedItem}
                         value={item}
                     >
                         {item}

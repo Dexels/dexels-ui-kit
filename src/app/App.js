@@ -1,5 +1,6 @@
 import styled, { withTheme } from 'styled-components';
 import BaseStyles from './styles/base';
+import Button from './components/molecules/Button/Button';
 import { getThemeComponent } from './styles/theme/themeFunctions';
 import { hot } from 'react-hot-loader/root';
 import PropTypes from 'prop-types';
@@ -23,6 +24,12 @@ const App = ({ theme }) => (
         <StyledApp>
             {'Hello World!'}
             <ThemeSwitcher theme={theme} />
+            <Button onClick={() => {}}>
+                {'TESTBUTTON'}
+            </Button>
+            <Button onClick={() => {}} variant={'OUTLINE'}>
+                {'TESTBUTTON'}
+            </Button>
         </StyledApp>
         <span className="icon-Cards" />
     </>

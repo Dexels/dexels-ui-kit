@@ -7,6 +7,7 @@ import rippleEffect from '../../../styles/mixins/rippleEffect';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 const theme = getThemeComponent('button');
+console.log('************************** button')
 
 export const StyledButton = styled.button`
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
@@ -22,12 +23,6 @@ export const StyledButton = styled.button`
     overflow: hidden;
     text-transform: uppercase;
     color: ${theme.color};
-
-    &:active,
-    &:hover {
-        border-color: ${theme.borderColorHover};
-        background-color: ${theme.backgroundColorHover};
-    }
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
@@ -107,6 +102,12 @@ export const StyledButton = styled.button`
 
     &:after {
         ${rippleEffect()}
+    }
+
+    &:active,
+    &:hover {
+        border-color: ${theme.borderColorHover};
+        background-color: ${theme.backgroundColorHover};
     }
 
     &:active:after {
