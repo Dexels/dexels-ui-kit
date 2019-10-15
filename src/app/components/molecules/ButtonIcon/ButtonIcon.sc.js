@@ -1,5 +1,5 @@
+import { BUTTON_ICON_SIZES, BUTTON_ICON_VARIANTS } from './ButtonIcon.consts';
 import styled, { css } from 'styled-components';
-import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
@@ -44,6 +44,10 @@ export const StyledButtonIcon = styled.button`
     &:active:after {
         border: 0;
     }
+
+    ${({ variant }) => variant === BUTTON_ICON_VARIANTS.HEADER && css`
+        color: inherit;
+    `};
 `;
 
 StyledButtonIcon.propTypes = {
@@ -54,6 +58,7 @@ StyledButtonIcon.propTypes = {
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
     }),
+    variant: PropTypes.string.isRequired,
 };
 
 StyledButtonIcon.defaultProps = {
