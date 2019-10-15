@@ -19,17 +19,17 @@ export const Configurable = () => (
         hasFullWidthTabHeaders={boolean('Has fullwidth tab headers', Tabs.defaultProps.hasFullWidthTabHeaders)}
         tabs={[{
             content: comp,
-            disabled: true,
+            isDisabled: true,
             title: 'Tab 1',
         },
         {
             content: 'Tab2 content',
-            disabled: false,
+            isDisabled: false,
             title: 'Tab 2',
         },
         {
             content: 'Tab3 content',
-            disabled: false,
+            isDisabled: false,
             title: 'Tab 3',
         }]}
     />

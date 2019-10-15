@@ -8,23 +8,18 @@ import {
 import { ELEVATIONS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 
-const Tabs = ({ elevation, hasFullWidthTabHeaders, tabs }) => {
-    let initiallyActiveTabIndex = null;
+function setInitiallyActiveTabIndex(tab) {
+    return !tab.isDisabled && tab;
+}
 
-    (function setInitiallyActiveTabIndex() {
-        let isTabSet = false;
-
-        tabs.map((tab, index) => {
-            if (!tab.disabled && !isTabSet) {
-                isTabSet = true;
-                initiallyActiveTabIndex = index;
-            }
-
-            return initiallyActiveTabIndex;
-        });
-    }());
-
-    const [activeTabIndex, setActiveTabIndex] = useState(initiallyActiveTabIndex);
+const Tabs = ({
+    elevation,
+    hasFullWidthTabHeaders,
+    initiallyActiveTabIndex,
+    tabs,
+}) => {
+    const [activeTabIndex, setActiveTabIndex] = initiallyActiveTabIndex ? useState(initiallyActiveTabIndex)
+        : useState(tabs.findIndex(setInitiallyActiveTabIndex));
 
     return (
         <StyledTabs elevation={elevation}>
@@ -32,7 +27,7 @@ const Tabs = ({ elevation, hasFullWidthTabHeaders, tabs }) => {
                 {tabs.length > 0 && tabs.map((tab, index) => (
                     <TabHeader
                         isActive={activeTabIndex === index}
-                        isDisabled={tab.disabled}
+                        isDisabled={tab.isDisabled}
                         isFullWidth={hasFullWidthTabHeaders}
                         key={tab.title}
                         onClick={() => {
@@ -57,9 +52,10 @@ Tabs.elevations = ELEVATIONS;
 Tabs.propTypes = {
     elevation: PropTypes.oneOf(Object.values(Tabs.elevations)),
     hasFullWidthTabHeaders: PropTypes.bool,
+    initiallyActiveTabIndex: PropTypes.number,
     tabs: PropTypes.arrayOf(PropTypes.shape({
         content: PropTypes.node.isRequired,
-        disabled: PropTypes.node.isRequired,
+        isDisabled: PropTypes.bool,
         title: PropTypes.node.isRequired,
     })).isRequired,
 };
@@ -67,6 +63,7 @@ Tabs.propTypes = {
 Tabs.defaultProps = {
     elevation: Tabs.elevations.LEVEL_1,
     hasFullWidthTabHeaders: true,
+    initiallyActiveTabIndex: null,
 };
 
 export default Tabs;
