@@ -4,10 +4,10 @@ import {
     Select,
     StyledDropdown,
 } from './Dropdown.sc';
+import React, { useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const Dropdown = ({
     children,
@@ -20,39 +20,69 @@ const Dropdown = ({
     onChange,
     placeholder,
     value,
-}) => (
-    <>
-        <StyledDropdown>
-            <Select
+}) => {
+    const [isFocussed, setIsFocussed] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <>
+            <StyledDropdown
                 hasError={hasError}
                 isDisabled={isDisabled}
-                isPlaceholderSelected={placeholder === value}
-                isRequired={isRequired}
+                isFocussed={isFocussed}
                 isValid={isValid}
-                name={name}
-                onChange={onChange}
-                value={value}
             >
-                {placeholder && (
-                    <option disabled hidden value={placeholder}>
-                        {placeholder}
-                    </option>
-                )}
-                {children}
-            </Select>
-            <IconWrapper hasError={hasError} isDisabled={isDisabled} isValid={isValid}>
-                <Icon type={Icon.types.DROP_DOWN} />
-            </IconWrapper>
-        </StyledDropdown>
-        {errorMessage && hasError && (
-            <ErrorMessageWrapper>
-                <ErrorMessage>
-                    {errorMessage}
-                </ErrorMessage>
-            </ErrorMessageWrapper>
-        )}
-    </>
-);
+                <Select
+                    hasError={hasError}
+                    isDisabled={isDisabled}
+                    isFocussed={isFocussed}
+                    isHovered={isHovered}
+                    isPlaceholderSelected={placeholder === value}
+                    isValid={isValid}
+                    name={name}
+                    onBlur={() => {
+                        setIsFocussed(false);
+                    }}
+                    onChange={onChange}
+                    onFocus={() => {
+                        setIsFocussed(true);
+                    }}
+                    onMouseEnter={() => {
+                        setIsHovered(true);
+                    }}
+                    onMouseLeave={() => {
+                        setIsHovered(false);
+                    }}
+                    required={isRequired}
+                    value={value}
+                >
+                    {placeholder && (
+                        <option disabled hidden value={placeholder}>
+                            {placeholder}
+                        </option>
+                    )}
+                    {children}
+                </Select>
+                <IconWrapper
+                    hasError={hasError}
+                    isDisabled={isDisabled}
+                    isFocussed={isFocussed}
+                    isHovered={isHovered}
+                    isValid={isValid}
+                >
+                    <Icon type={Icon.types.DROP_DOWN} />
+                </IconWrapper>
+            </StyledDropdown>
+            {errorMessage && hasError && !isDisabled && (
+                <ErrorMessageWrapper>
+                    <ErrorMessage>
+                        {errorMessage}
+                    </ErrorMessage>
+                </ErrorMessageWrapper>
+            )}
+        </>
+    );
+};
 
 Dropdown.propTypes = {
     children: PropTypes.node.isRequired,
@@ -71,7 +101,7 @@ Dropdown.defaultProps = {
     errorMessage: '',
     hasError: false,
     isDisabled: false,
-    isRequired: true,
+    isRequired: false,
     isValid: false,
     placeholder: '',
 };

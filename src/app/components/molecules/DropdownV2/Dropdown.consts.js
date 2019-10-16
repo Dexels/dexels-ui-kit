@@ -14,6 +14,7 @@ export const DROPDOWN_THEME = {
     colorDisabled: sl10,
     colorError: red,
     colorFocus: blue100,
+    colorHover: blue100,
     colorValid: green,
     placeholderColor: sl50,
 };
