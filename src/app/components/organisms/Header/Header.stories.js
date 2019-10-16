@@ -10,7 +10,8 @@ export default { title: 'organisms/Header' };
 const leftSideIcons = [
     <ButtonIcon
         iconType={Icon.types.MENU}
-        key={1} onClick={() => {}}
+        key={1}
+        onClick={() => {}}
         variant={ButtonIcon.variants.HEADER}
     />,
     <ButtonIcon
@@ -35,7 +36,8 @@ const rightSideIcons = [
     />,
     <ButtonIcon
         iconType={Icon.types.SHARE}
-        key={3} onClick={() => {}}
+        key={3}
+        onClick={() => {}}
         variant={ButtonIcon.variants.HEADER}
     />,
     <ButtonIcon

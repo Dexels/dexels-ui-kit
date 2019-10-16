@@ -1,6 +1,5 @@
 import {
     ButtonContainer,
-    ButtonsWrapper,
     LeftContainer,
     RightContainer,
     StyledHeader,
@@ -30,13 +29,11 @@ const Header = ({
             {rightSideIcons.length > 0 && rightSideIcons.map((rightSideIcon) => (
                 rightSideIcon
             ))}
-            <ButtonsWrapper>
-                {rightSideButtons.length > 0 && rightSideButtons.map((rightSideButton) => (
-                    <ButtonContainer key={rightSideButton.key}>
-                        {rightSideButton}
-                    </ButtonContainer>
-                ))}
-            </ButtonsWrapper>
+            {rightSideButtons.length > 0 && rightSideButtons.map((rightSideButton) => (
+                <ButtonContainer key={rightSideButton.key}>
+                    {rightSideButton}
+                </ButtonContainer>
+            ))}
         </RightContainer>
     </StyledHeader>
 );

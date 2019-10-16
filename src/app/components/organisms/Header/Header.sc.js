@@ -7,6 +7,9 @@ import validateThemePropTypes from '../../../utils/validators/validateThemePropT
 
 export const ButtonContainer = styled.div`
     margin-right: 15px;
+    display: flex;
+    flex-direction:row;
+    align-self: center;
 `;
 
 ButtonContainer.propTypes = {
@@ -18,24 +21,6 @@ ButtonContainer.propTypes = {
 };
 
 ButtonContainer.defaultProps = {
-    theme: defaultTheme,
-};
-
-export const ButtonsWrapper = styled.div`
-    display: flex;
-    flex-direction:row;
-    align-self: center;
-`;
-
-ButtonsWrapper.propTypes = {
-    theme: PropTypes.shape({
-        header: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-ButtonsWrapper.defaultProps = {
     theme: defaultTheme,
 };
 
