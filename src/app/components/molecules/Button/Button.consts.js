@@ -11,4 +11,4 @@ export const BUTTON_EASINGS = EASINGS;
 
 export const BUTTON_SIZES = SIZES;
 
-export const BUTTON_VARIANTS = mapArrayToObject(['FILLED', 'OUTLINE', 'TEXT_ONLY']);
+export const BUTTON_VARIANTS = mapArrayToObject(['FILLED', 'OUTLINE', 'OUTLINE_HEADER', 'TEXT_ONLY']);

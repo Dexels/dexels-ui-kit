@@ -1,14 +1,16 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import { BUTTON_EASINGS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
 import {
-    buttonBorderRadius,
-    buttonColorDisabled,
-    buttonColorHover,
+    backgroundColorPrimary,
+    backgroundColorTertiary,
+    buttonTextColorDisabled,
     colorButtonDark,
     colorButtonLight,
     colorDisabled,
     colorPrimary,
+    colorPrimaryHover,
 } from '../../../styles/theme/theme';
+import { BUTTON_EASINGS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
+import { buttonBorderRadius, buttonHeight } from '../../../styles/theme/layout';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
@@ -42,7 +44,7 @@ export const StyledButton = styled.button`
 
     ${({ size }) => size === BUTTON_SIZES.SMALL && css`
         ${textStyling(availableTextStyles().buttonSmall)};
-        ${'' /* min-height: ${variant.small.height}; */}
+        min-height: ${buttonHeight};
         min-width: 80px;
         border-radius: ${buttonBorderRadius};
         padding: 4px 16px;
@@ -50,42 +52,60 @@ export const StyledButton = styled.button`
 
     ${({ size }) => size === BUTTON_SIZES.LARGE && css`
         ${textStyling(availableTextStyles().buttonLarge)};
-        ${'' /* min-height: ${variant.large.height}; */}
+        min-height: ${buttonHeight};
         min-width: 100px;
         border-radius: ${buttonBorderRadius};
         padding: 8px 16px;
     `};
 
     ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.FILLED && css`
-        background-color: ${colorPrimary};
+        background-color: ${backgroundColorTertiary};
         color: ${colorButtonLight};
 
         &:focus,
         &:hover {
-            background-color: ${buttonColorHover},
+            background-color: ${colorPrimaryHover},
             color: ${colorButtonLight};
         }
 
         ${isDisabled && css`
             background-color: ${colorDisabled};
             border-color: ${colorDisabled};
-            color: ${buttonColorDisabled};
+            color: ${buttonTextColorDisabled};
         `};
     `};
 
     ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
+        border-color: ${colorButtonDark};
         color: ${colorButtonDark};
 
         &:focus,
         &:hover {
-            color: ${buttonColorHover};
+            color: ${colorPrimaryHover};
         }
 
         ${isDisabled && css`
             background-color: ${colorDisabled};
             border-color: ${colorDisabled};
-            color: ${buttonColorDisabled};
+            color: ${buttonTextColorDisabled};
+        `};
+    `};
+
+    ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.OUTLINE_HEADER && css`
+        background-color: transparent !important;
+        border-color: ${backgroundColorPrimary};
+        color: ${backgroundColorPrimary};
+
+        &:focus,
+        &:hover {
+            color: ${colorPrimaryHover};
+        }
+
+        ${isDisabled && css`
+            background-color: ${colorDisabled};
+            border-color: ${colorDisabled};
+            color: ${buttonTextColorDisabled};
         `};
     `};
 
@@ -98,11 +118,11 @@ export const StyledButton = styled.button`
 
         &:focus,
         &:hover {
-            color: ${buttonColorHover};
+            color: ${colorPrimaryHover};
         }
 
         ${isDisabled && css`
-            color: ${buttonColorDisabled};
+            color: ${buttonTextColorDisabled};
         `};
     `};
 
@@ -112,8 +132,8 @@ export const StyledButton = styled.button`
 
     &:active,
     &:hover {
-        border-color: ${buttonColorHover};
-        background-color: ${buttonColorHover};
+        border-color: ${colorPrimaryHover};
+        background-color: ${colorPrimaryHover};
     }
 
     &:active:after {

@@ -1,26 +1,19 @@
-import defaultTheme from '../../../styles/theme/theme';
+// import {
+//     colorSignalDisabled,
+//     colorSignalError,
+//     colorSignalOk,
+//     colorSignalStandard,
+//     colorSignalWarning,
+// } from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import { getStatus } from '../../../styles/mixins/getStatus';
-import PropTypes from 'prop-types';
+import { spacingUnit } from '../../../styles/theme/layout';
 import styled from 'styled-components';
-import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledCardStatusWrapper = styled.div`
     ${({ elevation }) => getElevation(elevation)};
 `;
 
 export const StyledCardStatus = styled.div`
-    ${({ status, statusPlacement, theme }) => getStatus(status, theme.statusIndicator.size, statusPlacement)};
+    ${({ status, statusPlacement, theme }) => getStatus(status, spacingUnit, statusPlacement, theme)};
 `;
-
-StyledCardStatus.propTypes = {
-    theme: PropTypes.shape({
-        cardNoResults: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-StyledCardStatus.defaultProps = {
-    theme: defaultTheme,
-};

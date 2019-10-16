@@ -1,41 +1,50 @@
+import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import {
+    colorBodyLight,
+    colorDisabled,
+    colorPrimary,
+    colorSecondary,
+    colorSignalError,
+    colorSignalOk,
+    labelTextColor,
+} from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
-import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 
 export const StyledLabel = styled.label`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    ${textStyling(availableTextStyles().body1)};
     cursor: inherit;
-    color: ${({ theme }) => theme.label.colorDefault};
+    color: ${colorBodyLight};
 
-    ${({ isCheckboxLabel, theme }) => isCheckboxLabel && css`
-        color: ${theme.label.colorCheckboxLabel};
+    ${({ isCheckboxLabel }) => isCheckboxLabel && css`
+        color: ${labelTextColor};
     `};
 
-    ${({ isHovered, theme }) => isHovered && css`
-        color: ${theme.label.colorHover};
+    ${({ isHovered }) => isHovered && css`
+        color: ${colorBodyLight};
     `};
 
-    ${({ isActive, theme }) => isActive && css`
-        color: ${theme.label.colorActive};
+    ${({ isActive }) => isActive && css`
+        color: ${colorPrimary};
     `};
 
-    ${({ isFocussed, theme }) => isFocussed && css`
-        color: ${theme.label.colorFocus};
+    ${({ isFocussed }) => isFocussed && css`
+        color: ${colorSecondary};
     `};
 
-    ${({ isValid, theme }) => isValid && css`
-        color: ${theme.label.colorValid};
+    ${({ isValid }) => isValid && css`
+        color: ${colorSignalOk};
     `};
 
-    ${({ hasError, theme }) => hasError && css`
-        color: ${theme.label.colorError};
+    ${({ hasError }) => hasError && css`
+        color: ${colorSignalError};
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.label.colorDisabled};
+    ${({ isDisabled }) => isDisabled && css`
+        color: ${colorDisabled};
     `};
 
-    ${({ isSmall, theme }) => isSmall && theme.textStyling(theme.availableTextStyles().caption)};
+    ${({ isSmall }) => isSmall && textStyling(availableTextStyles().caption)};
 `;
 
 StyledLabel.propTypes = {
@@ -46,23 +55,6 @@ StyledLabel.propTypes = {
     isFocussed: PropTypes.bool.isRequired,
     isSmall: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        availableTextStyles: PropTypes.func.isRequired,
-        label: PropTypes.shape({
-            colorActive: PropTypes.string.isRequired,
-            colorCheckboxLabel: PropTypes.string.isRequired,
-            colorDefault: PropTypes.string.isRequired,
-            colorDisabled: PropTypes.string.isRequired,
-            colorError: PropTypes.string.isRequired,
-            colorHover: PropTypes.string.isRequired,
-            colorValid: PropTypes.string.isRequired,
-        }),
-        textStyling: PropTypes.func.isRequired,
-    }),
-};
-
-StyledLabel.defaultProps = {
-    theme: defaultTheme,
 };
 
 export default StyledLabel;

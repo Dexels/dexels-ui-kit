@@ -1,4 +1,5 @@
 import * as colors from '../colors/colors';
+import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constants';
 import { textStyles } from './textStyles';
 import theme from 'styled-theming';
 
@@ -12,29 +13,17 @@ export const typography = theme('mode', {
     light: textStyles,
 });
 
-export const padding = theme('layout', {
-    basic: '8px',
-    compact: '4px',
+/* FONTS */
+export const fontPrimary = theme('mode', {
+    basic: FONT_FAMILY_PRIMARY,
+    dark: FONT_FAMILY_SECONDARY,
+    light: FONT_FAMILY_PRIMARY,
 });
 
-export const buttonBorderRadius = theme('layout', {
-    basic: '50px',
-    compact: '25px',
-});
-
-export const buttonFontSize = theme.variants('layout', 'kind', {
-    LARGE: {
-        basic: '1.4rem',
-        compact: '1.1rem',
-    },
-    MEDIUM: {
-        basic: '1.3rem',
-        compact: '1rem',
-    },
-    SMALL: {
-        basic: '1.2rem',
-        compact: '0.9rem',
-    },
+export const fontSecondary = theme('mode', {
+    basic: FONT_FAMILY_SECONDARY,
+    dark: FONT_FAMILY_PRIMARY,
+    light: FONT_FAMILY_SECONDARY,
 });
 
 /* BASIC / ROOT */
@@ -44,16 +33,52 @@ export const colorPrimary = theme('mode', {
     light: colors.black,
 });
 
+export const colorPrimaryHover = theme('mode', {
+    basic: colors.blue100,
+    dark: colors.grey50,
+    light: colors.grey25,
+});
+
+export const colorPrimarySelected = theme('mode', {
+    basic: colors.blue100,
+    dark: colors.grey50,
+    light: colors.grey25,
+});
+
 export const colorSecondary = theme('mode', {
     basic: colors.blue100,
     dark: colors.grey2,
     light: colors.grey100,
 });
 
+export const colorSecondaryHover = theme('mode', {
+    basic: colors.blue50,
+    dark: colors.grey50,
+    light: colors.grey10,
+});
+
+export const colorSecondarySelected = theme('mode', {
+    basic: colors.blue25,
+    dark: colors.grey75,
+    light: colors.grey25,
+});
+
 export const colorTertiary = theme('mode', {
     basic: colors.blue50,
     dark: colors.grey2,
     light: colors.grey100,
+});
+
+export const colorTertiaryHover = theme('mode', {
+    basic: colors.blue50,
+    dark: colors.grey50,
+    light: colors.grey10,
+});
+
+export const colorTertiarySelected = theme('mode', {
+    basic: colors.blue25,
+    dark: colors.grey75,
+    light: colors.grey25,
 });
 
 export const colorDisabled = theme('mode', {
@@ -74,29 +99,10 @@ export const backgroundColorSecondary = theme('mode', {
     light: colors.grey2,
 });
 
-/* INPUT */
-export const colorInputEnabled = theme('mode', {
+export const backgroundColorTertiary = theme('mode', {
     basic: colors.purple100,
     dark: colors.black,
-    light: colors.grey2,
-});
-
-export const colorInputHover = theme('mode', {
-    basic: colors.blue50,
-    dark: colors.grey50,
-    light: colors.grey10,
-});
-
-export const colorInputSelected = theme('mode', {
-    basic: colors.blue25,
-    dark: colors.grey75,
-    light: colors.grey25,
-});
-
-export const colorInputDisabled = theme('mode', {
-    basic: colors.grey10,
-    dark: colors.grey10,
-    light: colors.grey10,
+    light: colors.white,
 });
 
 /* TEXT / ICON */
@@ -127,12 +133,12 @@ export const colorBodyLight = theme('mode', {
 export const colorButtonDark = theme('mode', {
     basic: colors.purple100,
     dark: colors.black,
-    light: colors.grey10,
+    light: colors.grey50,
 });
 
 export const colorButtonLight = theme('mode', {
     basic: colors.white,
-    dark: colors.grey100,
+    dark: colors.white,
     light: colors.black,
 });
 
@@ -168,14 +174,21 @@ export const colorSignalDisabled = theme('mode', {
 });
 
 /* BUTTON SPECIFICS */
-export const buttonColorDisabled = theme('mode', {
+export const buttonTextColorDisabled = theme('mode', {
     basic: colors.white,
     dark: colors.white,
-    light: colors.grey100,
+    light: colors.grey50,
 });
 
-export const buttonColorHover = theme('mode', {
-    basic: colors.blue100,
-    dark: colors.grey100,
-    light: colors.grey5,
+export const buttonIconBackgroundColorHover = theme('mode', {
+    basic: colors.grey2,
+    dark: colors.grey2,
+    light: colors.grey2,
+});
+
+/* LABEL SPECIFICS */
+export const labelTextColor = theme('mode', {
+    basic: colors.grey100,
+    dark: colors.white,
+    light: colors.black,
 });

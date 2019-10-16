@@ -11,5 +11,6 @@ export const Configurable = () => (
         isDisabled={boolean('Is disabled', ButtonIcon.defaultProps.isDisabled)}
         onClick={action('On click')}
         size={select('Size', ButtonIcon.sizes, ButtonIcon.defaultProps.size)}
+        variant={select('Variant', ButtonIcon.variants, ButtonIcon.defaultProps.variant)}
     />
 );
