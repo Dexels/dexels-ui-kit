@@ -11,7 +11,6 @@ import Label from '../../atoms/Label/Label';
 import PropTypes from 'prop-types';
 
 const Input = ({
-    defaultValue,
     errorMessage,
     hasError,
     isDisabled,
@@ -19,17 +18,14 @@ const Input = ({
     isValid,
     label,
     name,
+    onChange,
     type,
+    value,
     variant,
 }) => {
-    const [value, setValue] = useState(defaultValue);
     const [isFocussed, setIsFocussed] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const hasValue = value.length > 0;
-
-    const handleOnChange = (event) => {
-        setValue(event.target.value);
-    };
 
     return (
         <>
@@ -52,7 +48,7 @@ const Input = ({
                     onBlur={() => {
                         setIsFocussed(false);
                     }}
-                    onChange={handleOnChange}
+                    onChange={onChange}
                     onFocus={() => {
                         setIsFocussed(true);
                     }}
@@ -99,7 +95,6 @@ Input.types = INPUT_TYPES;
 Input.variants = INPUT_VARIANTS;
 
 Input.propTypes = {
-    defaultValue: PropTypes.string,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
@@ -107,18 +102,20 @@ Input.propTypes = {
     isValid: PropTypes.bool,
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
     type: PropTypes.oneOf(Object.values(Input.types)),
+    value: PropTypes.string,
     variant: PropTypes.oneOf(Object.values(Input.variants)),
 };
 
 Input.defaultProps = {
-    defaultValue: '',
     errorMessage: '',
     hasError: false,
     isDisabled: false,
     isTextarea: false,
     isValid: false,
     type: Input.types.TEXT,
+    value: '',
     variant: Input.variants.FULL_SIZE,
 };
 
