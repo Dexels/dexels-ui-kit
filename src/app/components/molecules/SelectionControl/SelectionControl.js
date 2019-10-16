@@ -53,14 +53,9 @@ const SelectionControl = ({
                     type={type}
                     value={value}
                 />
-                {isChecked && type === SelectionControl.types.CHECKBOX && (
+                {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
                     <IconWrapper>
-                        <Icon type={Icon.types.CHECK} />
-                    </IconWrapper>
-                )}
-                {isIndeterminate && type === SelectionControl.types.CHECKBOX && (
-                    <IconWrapper>
-                        <Icon type={Icon.types.MINUS} />
+                        <Icon type={isChecked ? Icon.types.CHECK : Icon.types.MINUS} />
                     </IconWrapper>
                 )}
             </InputWrapper>
