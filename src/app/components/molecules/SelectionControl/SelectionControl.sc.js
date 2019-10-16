@@ -44,7 +44,12 @@ export const InputWrapper = styled.div`
         border-radius: 100%;
     `};
 
-    ${({ isChecked, theme, type }) => isChecked && css`
+    ${({
+        isChecked,
+        isIndeterminate,
+        theme,
+        type,
+    }) => (isChecked || isIndeterminate) && css`
         background-color: ${theme.selectionControl.colorDefault};
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
@@ -60,18 +65,12 @@ export const InputWrapper = styled.div`
         `};
     `};
 
-    ${({ isIndeterminate, theme, type }) => isIndeterminate && css`
-        ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
-            background-color: ${theme.selectionControl.colorDefault};
-        `};
-    `};
-
     ${({
         isChecked,
         isIndeterminate,
         isValid,
         theme,
-        }) => isValid && css`
+    }) => isValid && css`
         border-color: ${theme.selectionControl.colorValid};
 
         ${(isChecked || isIndeterminate) && css`
@@ -84,7 +83,7 @@ export const InputWrapper = styled.div`
         isChecked,
         isIndeterminate,
         theme,
-        }) => hasError && css`
+    }) => hasError && css`
         border-color: ${theme.selectionControl.colorError};
 
         ${(isChecked || isIndeterminate) && css`
@@ -97,7 +96,7 @@ export const InputWrapper = styled.div`
         isDisabled,
         isIndeterminate,
         theme,
-        }) => isDisabled && css`
+    }) => isDisabled && css`
         border-color: ${theme.selectionControl.colorDisabled};
 
         ${(isChecked || isIndeterminate) && css`
@@ -110,6 +109,7 @@ export const InputWrapper = styled.div`
     `};
 
     &::before {
+        ${setCentered()};
         ${({ transitionDuration, transitionEasing }) => transitionEffect({
             duration: transitionDuration,
             easing: transitionEasing,
@@ -118,7 +118,6 @@ export const InputWrapper = styled.div`
             width: calc(${theme.selectionControl.size} * (1 + 2/3));
             height: calc(${theme.selectionControl.size} * (1 + 2/3));
         `};
-        ${setCentered()};
         display: block;
         position: absolute;
         opacity: 0;
