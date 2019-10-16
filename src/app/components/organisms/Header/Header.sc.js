@@ -42,6 +42,7 @@ ButtonsWrapper.defaultProps = {
 export const Title = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     margin:auto;
+    padding-left:12px;
     color: ${({ theme }) => theme.header.headerColor};
 `;
 
