@@ -44,7 +44,12 @@ export const InputWrapper = styled.div`
         border-radius: 100%;
     `};
 
-    ${({ isChecked, theme, type }) => isChecked && css`
+    ${({
+        isChecked,
+        isIndeterminate,
+        theme,
+        type,
+    }) => (isChecked || isIndeterminate) && css`
         background-color: ${theme.selectionControl.colorDefault};
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
@@ -60,26 +65,41 @@ export const InputWrapper = styled.div`
         `};
     `};
 
-    ${({ isChecked, isValid, theme }) => isValid && css`
+    ${({
+        isChecked,
+        isIndeterminate,
+        isValid,
+        theme,
+    }) => isValid && css`
         border-color: ${theme.selectionControl.colorValid};
 
-        ${isChecked && css`
+        ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.selectionControl.colorValid};
         `};
     `};
 
-    ${({ hasError, isChecked, theme }) => hasError && css`
+    ${({
+        hasError,
+        isChecked,
+        isIndeterminate,
+        theme,
+    }) => hasError && css`
         border-color: ${theme.selectionControl.colorError};
 
-        ${isChecked && css`
+        ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.selectionControl.colorError};
         `};
     `};
 
-    ${({ isChecked, isDisabled, theme }) => isDisabled && css`
+    ${({
+        isChecked,
+        isDisabled,
+        isIndeterminate,
+        theme,
+    }) => isDisabled && css`
         border-color: ${theme.selectionControl.colorDisabled};
 
-        ${isChecked && css`
+        ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.selectionControl.colorDisabled};
         `};
 
@@ -89,6 +109,7 @@ export const InputWrapper = styled.div`
     `};
 
     &::before {
+        ${setCentered()};
         ${({ transitionDuration, transitionEasing }) => transitionEffect({
             duration: transitionDuration,
             easing: transitionEasing,
@@ -97,7 +118,6 @@ export const InputWrapper = styled.div`
             width: calc(${theme.selectionControl.size} * (1 + 2/3));
             height: calc(${theme.selectionControl.size} * (1 + 2/3));
         `};
-        ${setCentered()};
         display: block;
         position: absolute;
         opacity: 0;
@@ -133,6 +153,7 @@ InputWrapper.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isChecked: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
+    isIndeterminate: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         selectionControl: PropTypes.shape({
@@ -163,6 +184,10 @@ export const IconWrapper = styled.div`
     color: ${({ theme }) => theme.selectionControl.iconColor};
     font-size: ${({ theme }) => theme.selectionControl.iconSize};
     pointer-events: none;
+
+    span {
+        display: block;
+    }
 `;
 
 IconWrapper.propTypes = {
