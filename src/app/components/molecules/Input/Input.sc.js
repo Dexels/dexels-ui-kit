@@ -14,10 +14,58 @@ export const StyledInput = styled.div`
             pointer-events: none;
         }
     `};
+
+    ${({
+        hasError,
+        isDisabled,
+        isFocussed,
+        isValid,
+        variant,
+        theme,
+    }) => variant === INPUT_VARIANTS.COMPACT && css`
+        &::after {
+            display: block;
+            content: '';
+            height: 1px;
+
+            ${isFocussed && css`
+                background-color: ${theme.input.colorFocus};
+            `};
+
+            ${isValid && css`
+                background-color: ${theme.input.colorValid};
+            `};
+
+            ${hasError && css`
+                background-color: ${theme.input.colorError};
+            `};
+
+            ${isDisabled && css`
+                background-color: transparent;
+            `};
+        }
+    `};
 `;
 
 StyledInput.propTypes = {
+    hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
+    isFocussed: PropTypes.bool.isRequired,
+    isValid: PropTypes.bool.isRequired,
+    theme: PropTypes.shape({
+        availableTextStyles: PropTypes.func.isRequired,
+        input: PropTypes.shape({
+            colorError: PropTypes.string.isRequired,
+            colorFocus: PropTypes.string.isRequired,
+            colorValid: PropTypes.string.isRequired,
+        }).isRequired,
+        textStyling: PropTypes.func.isRequired,
+    }).isRequired,
+    variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
+};
+
+StyledInput.defaultProps = {
+    theme: defaultTheme,
 };
 
 export const LabelWrapper = styled.div`
@@ -81,32 +129,33 @@ export const TextField = styled.input`
         resize: none;
     `};
 
-    ${({ hasError, theme }) => hasError && css`
-        border-color: ${theme.input.colorError};
-    `};
-
-    ${({ isValid, theme }) => isValid && css`
-        border-color: ${theme.input.colorValid};
+    ${({ isHovered, theme }) => isHovered && css`
+        border-color: ${theme.input.colorHover};
     `};
 
     ${({ isFocussed, theme }) => isFocussed && css`
         border-color: ${theme.input.colorFocus};
     `};
 
+    ${({ isValid, theme }) => isValid && css`
+        border-color: ${theme.input.colorValid};
+    `};
+
+    ${({ hasError, theme }) => hasError && css`
+        border-color: ${theme.input.colorError};
+    `};
+
     ${({ isDisabled, theme }) => isDisabled && css`
         border-color: ${theme.input.colorDisabled};
         color: ${theme.input.colorDisabled};
     `};
-
-    &:hover {
-        border-color: ${({ theme }) => theme.input.colorHover};
-    }
 `;
 
 TextField.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isFocussed: PropTypes.bool.isRequired,
+    isHovered: PropTypes.bool.isRequired,
     isTextarea: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
@@ -115,7 +164,7 @@ TextField.propTypes = {
             validateThemePropTypes(propValue, key, componentName)
         )).isRequired,
         textStyling: PropTypes.func.isRequired,
-    }),
+    }).isRequired,
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
 };
 

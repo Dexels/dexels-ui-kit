@@ -32,57 +32,66 @@ const Input = ({
     };
 
     return (
-        <StyledInput isDisabled={isDisabled}>
-            <TextField
-                as={isTextarea ? 'textarea' : 'input'}
+        <>
+            <StyledInput
                 hasError={hasError}
                 isDisabled={isDisabled}
                 isFocussed={isFocussed}
-                isTextarea={isTextarea}
                 isValid={isValid}
-                name={name}
-                onBlur={() => {
-                    setIsFocussed(false);
-                }}
-                onChange={handleOnChange}
-                onFocus={() => {
-                    setIsFocussed(true);
-                }}
-                onMouseEnter={() => {
-                    setIsHovered(true);
-                }}
-                onMouseLeave={() => {
-                    setIsHovered(false);
-                }}
-                type={type}
-                value={value}
-                variant={variant}
-            />
-            <LabelWrapper
-                hasValue={hasValue}
-                isFocussed={isFocussed}
                 variant={variant}
             >
-                <Label
+                <TextField
+                    as={isTextarea ? 'textarea' : 'input'}
                     hasError={hasError}
-                    isActive={hasValue}
                     isDisabled={isDisabled}
                     isFocussed={isFocussed}
                     isHovered={isHovered}
-                    isSmall={hasValue || isFocussed}
+                    isTextarea={isTextarea}
                     isValid={isValid}
+                    name={name}
+                    onBlur={() => {
+                        setIsFocussed(false);
+                    }}
+                    onChange={handleOnChange}
+                    onFocus={() => {
+                        setIsFocussed(true);
+                    }}
+                    onMouseEnter={() => {
+                        setIsHovered(true);
+                    }}
+                    onMouseLeave={() => {
+                        setIsHovered(false);
+                    }}
+                    type={type}
+                    value={value}
+                    variant={variant}
+                />
+                <LabelWrapper
+                    hasValue={hasValue}
+                    isFocussed={isFocussed}
+                    variant={variant}
                 >
-                    {label}
-                </Label>
-            </LabelWrapper>
-            {errorMessage && hasError && (
+                    <Label
+                        hasError={hasError}
+                        isActive={hasValue}
+                        isDisabled={isDisabled}
+                        isFocussed={isFocussed}
+                        isHovered={isHovered}
+                        isSmall={hasValue || isFocussed}
+                        isValid={isValid}
+                    >
+                        {label}
+                    </Label>
+                </LabelWrapper>
+            </StyledInput>
+            {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>
                     <ErrorMessage>
                         {errorMessage}
                     </ErrorMessage>
                 </ErrorMessageWrapper>
             )}
-        </StyledInput>
+        </>
     );
 };
 
