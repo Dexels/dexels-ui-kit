@@ -1,14 +1,14 @@
-import { BUTTON_ICON_SIZES, BUTTON_ICON_VARIANTS } from './ButtonIcon.consts';
+import { BUTTON_ICON_VARIANTS, buttonIconFontSize } from './ButtonIcon.consts';
 import {
     buttonIconBackgroundColorHover,
+    colorButtonLight,
     colorDisabled,
-    colorHeadingLight,
     colorPrimary,
     colorPrimaryHover,
 } from '../../../styles/theme/theme';
-import { buttonIconFontSize, spacingUnit } from '../../../styles/theme/layout';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { spacingUnit } from '../../../styles/theme/layout';
 
 export const StyledButtonIcon = styled.button`
     display: flex;
@@ -18,20 +18,12 @@ export const StyledButtonIcon = styled.button`
     border-radius: 100%;
     background-color: transparent;
     cursor: pointer;
+    padding: calc(${spacingUnit} * 1.5);
+    font-size: ${buttonIconFontSize};
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
         color: ${colorDisabled};
-    `};
-
-    ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
-        font-size: ${buttonIconFontSize};
-        padding: calc(${spacingUnit} * 1.5);
-    `};
-
-    ${({ size }) => size === BUTTON_ICON_SIZES.LARGE && css`
-        font-size: ${buttonIconFontSize};
-        padding: calc(${spacingUnit} * 1.5);
     `};
 
     ${({ variant }) => variant === BUTTON_ICON_VARIANTS.DEFAULT && css`
@@ -45,11 +37,11 @@ export const StyledButtonIcon = styled.button`
     `};
 
     ${({ variant }) => variant === BUTTON_ICON_VARIANTS.HEADER && css`
-        color: ${colorHeadingLight};
+        color: ${colorButtonLight};
 
         &:focus,
         &:hover {
-            background-color: ${colorHeadingLight};
+            background-color: ${colorButtonLight};
             color: ${colorPrimaryHover};
         }
     `};
@@ -66,7 +58,6 @@ export const StyledButtonIcon = styled.button`
 
 StyledButtonIcon.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
-    size: PropTypes.oneOf(Object.values(BUTTON_ICON_SIZES)).isRequired,
     variant: PropTypes.oneOf(Object.values(BUTTON_ICON_VARIANTS)).isRequired,
 };
 

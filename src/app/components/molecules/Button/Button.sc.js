@@ -9,8 +9,13 @@ import {
     colorPrimary,
     colorPrimaryHover,
 } from '../../../styles/theme/theme';
-import { BUTTON_EASINGS, BUTTON_SIZES, BUTTON_VARIANTS } from './Button.consts';
-import { buttonBorderRadius, buttonHeight } from '../../../styles/theme/layout';
+import {
+    BUTTON_EASINGS,
+    BUTTON_SIZES,
+    BUTTON_VARIANTS,
+    buttonBorderRadius,
+    buttonHeight,
+} from './Button.consts';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
@@ -25,10 +30,12 @@ export const StyledButton = styled.button`
     position: relative;
     outline: none;
     border: 1px solid ${colorPrimary};
+    border-radius: ${buttonBorderRadius};
     background-color: ${colorPrimary};
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
+    min-height: ${buttonHeight};
     color: ${colorButtonLight};
 
     ${({ isFullWidth }) => isFullWidth && css`
@@ -44,17 +51,19 @@ export const StyledButton = styled.button`
 
     ${({ size }) => size === BUTTON_SIZES.SMALL && css`
         ${textStyling(availableTextStyles().buttonSmall)};
-        min-height: ${buttonHeight};
         min-width: 80px;
-        border-radius: ${buttonBorderRadius};
         padding: 4px 16px;
+    `};
+
+    ${({ size }) => size === BUTTON_SIZES.MEDIUM && css`
+        ${textStyling(availableTextStyles().buttonMedium)};
+        min-width: 90px;
+        padding: 6px 16px;
     `};
 
     ${({ size }) => size === BUTTON_SIZES.LARGE && css`
         ${textStyling(availableTextStyles().buttonLarge)};
-        min-height: ${buttonHeight};
         min-width: 100px;
-        border-radius: ${buttonBorderRadius};
         padding: 8px 16px;
     `};
 

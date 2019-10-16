@@ -63,6 +63,7 @@ export const PLACEMENTS = mapArrayToObject([
 
 export const SIZES = mapArrayToObject([
     'LARGE',
+    'MEDIUM',
     'SMALL',
 ]);
 

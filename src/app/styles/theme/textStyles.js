@@ -21,6 +21,12 @@ export const textStyles = ({
         fontWeight: '600',
         lineHeight: '22px',
     },
+    buttonMedium: {
+        fontFamily: FONT_FAMILY_SECONDARY,
+        fontSize: '14px',
+        fontWeight: '600',
+        lineHeight: '22px',
+    },
     buttonSmall: {
         fontFamily: FONT_FAMILY_SECONDARY,
         fontSize: '14px',
