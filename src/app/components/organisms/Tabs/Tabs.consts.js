@@ -1,8 +1,14 @@
-import { blue100, purple100, grey25 } from '../../../styles/colors/colors';
+import {
+    blue100,
+    grey10,
+    grey25,
+    purple100,
+} from '../../../styles/colors/colors';
 
 export const TABS_THEME = {
     hoverColor: blue100,
     tabHeaderColor: purple100,
+    tabHeaderDisabledColor: grey10,
     tabHeaderListBorderColor: grey25,
 };
 
