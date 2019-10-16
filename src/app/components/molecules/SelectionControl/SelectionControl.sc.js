@@ -185,6 +185,10 @@ export const IconWrapper = styled.div`
     color: ${({ theme }) => theme.selectionControl.iconColor};
     font-size: ${({ theme }) => theme.selectionControl.iconSize};
     pointer-events: none;
+
+    span {
+        display: block;
+    }
 `;
 
 IconWrapper.propTypes = {
