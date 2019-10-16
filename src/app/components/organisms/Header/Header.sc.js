@@ -6,10 +6,10 @@ import styled from 'styled-components';
 import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const ButtonContainer = styled.div`
-    margin-right: 15px;
     display: flex;
     flex-direction:row;
     align-self: center;
+    margin-right: 15px;
 `;
 
 ButtonContainer.propTypes = {
