@@ -24,10 +24,16 @@ export const TabHeader = styled.button`
     ${({ isActive, theme }) => isActive && css`
         border-bottom-color: ${theme.tabs.tabHeaderColor};
     `};
+
+    ${({ isDisabled, theme }) => isDisabled && css`
+        pointer-events: none;
+        color: ${theme.tabs.tabHeaderDisabledColor};
+    `};
 `;
 
 TabHeader.propTypes = {
     isActive: PropTypes.bool.isRequired,
+    isDisabled: PropTypes.bool.isRequired,
     isFullWidth: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         tabs: PropTypes.objectOf((propValue, key, componentName) => (
