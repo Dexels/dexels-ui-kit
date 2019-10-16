@@ -1,5 +1,5 @@
+import { boolean, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
-import { boolean } from '@storybook/addon-knobs';
 import Dropdown from './Dropdown';
 
 export default { title: 'molecules/DropdownV2' };
@@ -22,7 +22,10 @@ export const Configurable = () => {
             </p>
             <Dropdown
                 defaultValue="placeholder-value"
+                errorMessage={text('Error message', 'Everything is broken, oops')}
+                hasError={boolean('Has error', Dropdown.defaultProps.hasError)}
                 isDisabled={boolean('Is disabled', Dropdown.defaultProps.isDisabled)}
+                isValid={boolean('Is valid', Dropdown.defaultProps.isValid)}
                 name="the-best-fruit"
                 onChange={(event) => {
                     setSelectedValue(event.currentTarget.value);

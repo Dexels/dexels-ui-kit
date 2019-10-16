@@ -17,6 +17,14 @@ export const IconWrapper = styled.div`
     color: ${({ theme }) => theme.dropdown.colorDefault};
     pointer-events: none;
 
+    ${({ hasError, theme }) => hasError && css`
+        color: ${theme.dropdown.colorError};
+    `};
+
+    ${({ isValid, theme }) => isValid && css`
+        color: ${theme.dropdown.colorValid};
+    `};
+
     ${({ isDisabled, theme }) => isDisabled && css`
         color: ${theme.dropdown.colorDisabled};
     `};
@@ -27,7 +35,9 @@ export const IconWrapper = styled.div`
 `;
 
 IconWrapper.propTypes = {
+    hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
+    isValid: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         availableTextStyles: PropTypes.func.isRequired,
         dropdown: PropTypes.shape({
@@ -61,25 +71,37 @@ export const Select = styled.select`
         color: ${theme.dropdown.placeholderColor};
     `};
 
+    ${({ hasError, theme }) => hasError && css`
+        border-color: ${theme.dropdown.colorError};
+        color: ${theme.dropdown.colorError};
+    `};
+
+    ${({ isValid, theme }) => isValid && css`
+        border-color: ${theme.dropdown.colorValid};
+        color: ${theme.dropdown.colorValid};
+    `};
+
     ${({ isDisabled, theme }) => isDisabled && css`
         border-color: ${theme.dropdown.colorDisabled};
         color: ${theme.dropdown.colorDisabled};
         pointer-events: none;
     `};
 
-
     &:focus {
         border-color: ${({ theme }) => theme.dropdown.colorFocus};
 
         + ${IconWrapper} {
             transform: rotate(180deg);
+            color: ${({ theme }) => theme.dropdown.colorFocus};
         }
     }
 `;
 
 Select.propTypes = {
+    hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isPlaceholderSelected: PropTypes.bool.isRequired,
+    isValid: PropTypes.bool.isRequired,
     theme: PropTypes.shape({
         availableTextStyles: PropTypes.func.isRequired,
         dropdown: PropTypes.shape({
@@ -96,3 +118,7 @@ Select.propTypes = {
 Select.defaultProps = {
     theme: defaultTheme,
 };
+
+export const ErrorMessageWrapper = styled.div`
+    margin: 4px 0 0;
+`;

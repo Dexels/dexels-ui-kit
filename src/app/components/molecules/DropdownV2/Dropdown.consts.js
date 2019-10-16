@@ -1,5 +1,7 @@
 import {
     blue100,
+    green,
+    red,
     sl10,
     sl100,
     sl50,
@@ -10,7 +12,9 @@ export const DROPDOWN_THEME = {
     backgroundColor: white,
     colorDefault: sl100,
     colorDisabled: sl10,
+    colorError: red,
     colorFocus: blue100,
+    colorValid: green,
     placeholderColor: sl50,
 };
 
