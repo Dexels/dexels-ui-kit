@@ -7,10 +7,10 @@ import {
 } from '../../../styles/colors/colors';
 
 export const DROPDOWN_THEME = {
-    activeInputColor: blue100,
     backgroundColor: white,
     colorDefault: sl100,
     colorDisabled: sl10,
+    colorFocus: blue100,
     placeholderColor: sl50,
 };
 
