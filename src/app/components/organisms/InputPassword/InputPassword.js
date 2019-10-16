@@ -13,6 +13,8 @@ const InputPassword = ({
     isVisibleDefault,
     label,
     name,
+    onChange,
+    value,
     variant,
 }) => {
     const [isVisible, setIsVisible] = useState(isVisibleDefault);
@@ -26,7 +28,9 @@ const InputPassword = ({
                 isValid={isValid}
                 label={label}
                 name={name}
+                onChange={onChange}
                 type={isVisible ? Input.types.TEXT : Input.types.PASSWORD}
+                value={value}
                 variant={variant}
             />
             <VisibilitySwitch
@@ -52,6 +56,8 @@ InputPassword.propTypes = {
     isVisibleDefault: PropTypes.bool,
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string,
     variant: PropTypes.oneOf(Object.values(InputPassword.variants)),
 };
 
@@ -61,6 +67,7 @@ InputPassword.defaultProps = {
     isDisabled: false,
     isValid: false,
     isVisibleDefault: false,
+    value: '',
     variant: InputPassword.variants.FULL_SIZE,
 };
 
