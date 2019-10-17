@@ -8,7 +8,7 @@ import {
     grey75,
     white,
 } from '../../../styles/colors/colors';
-import { borderRadius, themeLayouts } from '../../../styles/theme/layout';
+import { borderRadius, spacingUnit, themeLayouts } from '../../../styles/theme/layout';
 import {
     colorPrimaryHover,
     themeModes,
@@ -43,16 +43,6 @@ const chipColor = theme('mode', {
     [themeModes.light]: black,
 });
 
-const chipHeight = theme('layout', {
-    [themeLayouts.basic]: '32px',
-    [themeLayouts.compact]: '30px',
-});
-
-const chipPadding = theme('layout', {
-    [themeLayouts.basic]: '4px 8px',
-    [themeLayouts.compact]: '2px 6px',
-});
-
 export const StyledChip = styled.button`
     ${setBoxSizing()};
     ${textStyling(availableTextStyles().body2)};
@@ -67,8 +57,8 @@ export const StyledChip = styled.button`
     border-radius: ${borderRadius};
     background-color: ${chipBackgroundColorDeselected};
     cursor: pointer;
-    padding: ${chipPadding};
-    min-height: ${chipHeight};
+    padding: calc(${spacingUnit} / 2) ${spacingUnit};
+    min-height: calc(${spacingUnit} * 4);
     overflow: hidden;
     color: ${chipColor};
 

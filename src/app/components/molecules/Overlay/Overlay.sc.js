@@ -30,7 +30,7 @@ export const StyledOverlay = styled.div`
     `};
 
     ${({ isVisible }) => isVisible && css`
-        background-color: rgba(0, 0, 0, ${overlayOpacity})
+        background-color: rgba(0, 0, 0, ${overlayOpacity});
     `};
 `;
 
