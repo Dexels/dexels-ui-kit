@@ -23,7 +23,7 @@ export const StyledDropdown = styled.div`
         height: 1px;
         content: '';
 
-        ${({ isFocussed }) => isFocussed && css`
+        ${({ isFocused }) => isFocused && css`
             background-color: ${colorPrimarySelected};
         `};
 
@@ -44,7 +44,7 @@ export const StyledDropdown = styled.div`
 StyledDropdown.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocussed: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
 };
 
@@ -71,7 +71,7 @@ export const Select = styled.select`
         border-color: ${colorPrimaryHover};
     `};
 
-    ${({ isFocussed }) => isFocussed && css`
+    ${({ isFocused }) => isFocused && css`
         border-color: ${colorPrimarySelected};
     `};
 
@@ -95,7 +95,7 @@ export const Select = styled.select`
 Select.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocussed: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     isHovered: PropTypes.bool.isRequired,
     isPlaceholderSelected: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
@@ -114,7 +114,7 @@ export const IconWrapper = styled.div`
         color: ${colorPrimaryHover};
     `};
 
-    ${({ isFocussed }) => isFocussed && css`
+    ${({ isFocused }) => isFocused && css`
         color: ${colorPrimarySelected};
         transform: rotate(180deg);
     `};
@@ -139,7 +139,7 @@ export const IconWrapper = styled.div`
 IconWrapper.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocussed: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     isHovered: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
 };

@@ -23,7 +23,7 @@ const Input = ({
     value,
     variant,
 }) => {
-    const [isFocussed, setIsFocussed] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const hasValue = value.length > 0;
 
@@ -32,7 +32,7 @@ const Input = ({
             <StyledInput
                 hasError={hasError}
                 isDisabled={isDisabled}
-                isFocussed={isFocussed}
+                isFocused={isFocused}
                 isValid={isValid}
                 variant={variant}
             >
@@ -40,17 +40,17 @@ const Input = ({
                     as={isTextarea ? 'textarea' : 'input'}
                     hasError={hasError}
                     isDisabled={isDisabled}
-                    isFocussed={isFocussed}
+                    isFocused={isFocused}
                     isHovered={isHovered}
                     isTextarea={isTextarea}
                     isValid={isValid}
                     name={name}
                     onBlur={() => {
-                        setIsFocussed(false);
+                        setIsFocused(false);
                     }}
                     onChange={onChange}
                     onFocus={() => {
-                        setIsFocussed(true);
+                        setIsFocused(true);
                     }}
                     onMouseEnter={() => {
                         setIsHovered(true);
@@ -64,16 +64,16 @@ const Input = ({
                 />
                 <LabelWrapper
                     hasValue={hasValue}
-                    isFocussed={isFocussed}
+                    isFocused={isFocused}
                     variant={variant}
                 >
                     <Label
                         hasError={hasError}
                         isActive={hasValue}
                         isDisabled={isDisabled}
-                        isFocussed={isFocussed}
+                        isFocused={isFocused}
                         isHovered={isHovered}
-                        isSmall={hasValue || isFocussed}
+                        isSmall={hasValue || isFocused}
                         isValid={isValid}
                     >
                         {label}

@@ -27,7 +27,7 @@ export const StyledInput = styled.div`
     ${({
         hasError,
         isDisabled,
-        isFocussed,
+        isFocused,
         isValid,
         variant,
     }) => variant === INPUT_VARIANTS.COMPACT && css`
@@ -36,7 +36,7 @@ export const StyledInput = styled.div`
             content: '';
             height: 1px;
 
-            ${isFocussed && css`
+            ${isFocused && css`
                 background-color: ${colorPrimarySelected};
             `};
 
@@ -58,7 +58,7 @@ export const StyledInput = styled.div`
 StyledInput.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocussed: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
 };
@@ -67,23 +67,23 @@ export const LabelWrapper = styled.div`
     position: absolute;
     pointer-events: none;
 
-    ${({ hasValue, isFocussed, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
+    ${({ hasValue, isFocused, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
         top: 0;
         left: 0;
 
-        ${(hasValue || isFocussed) && css`
+        ${(hasValue || isFocused) && css`
             top: calc(-${spacingUnit} * 2);
             left: 0;
             padding: 0;
         `};
     `};
 
-    ${({ hasValue, isFocussed, variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
+    ${({ hasValue, isFocused, variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
         top: calc(${spacingUnit} * 1.5);
         left: calc(${spacingUnit} * 1.5);
         background-color: white;
 
-        ${(hasValue || isFocussed) && css`
+        ${(hasValue || isFocused) && css`
             top: calc(-${spacingUnit} * 1);
             left: calc(${spacingUnit} * 2.5);
             padding: 0 calc(${spacingUnit} / 2);
@@ -93,7 +93,7 @@ export const LabelWrapper = styled.div`
 
 LabelWrapper.propTypes = {
     hasValue: PropTypes.bool.isRequired,
-    isFocussed: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
 };
 
@@ -128,7 +128,7 @@ export const TextField = styled.input`
         border-color: ${colorPrimaryHover};
     `};
 
-    ${({ isFocussed }) => isFocussed && css`
+    ${({ isFocused }) => isFocused && css`
         border-color: ${colorPrimarySelected};
     `};
 
@@ -149,7 +149,7 @@ export const TextField = styled.input`
 TextField.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocussed: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     isHovered: PropTypes.bool.isRequired,
     isTextarea: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,

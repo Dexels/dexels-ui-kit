@@ -21,7 +21,7 @@ const Dropdown = ({
     placeholder,
     value,
 }) => {
-    const [isFocussed, setIsFocussed] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -29,23 +29,23 @@ const Dropdown = ({
             <StyledDropdown
                 hasError={hasError}
                 isDisabled={isDisabled}
-                isFocussed={isFocussed}
+                isFocused={isFocused}
                 isValid={isValid}
             >
                 <Select
                     hasError={hasError}
                     isDisabled={isDisabled}
-                    isFocussed={isFocussed}
+                    isFocused={isFocused}
                     isHovered={isHovered}
                     isPlaceholderSelected={placeholder === value}
                     isValid={isValid}
                     name={name}
                     onBlur={() => {
-                        setIsFocussed(false);
+                        setIsFocused(false);
                     }}
                     onChange={onChange}
                     onFocus={() => {
-                        setIsFocussed(true);
+                        setIsFocused(true);
                     }}
                     onMouseEnter={() => {
                         setIsHovered(true);
@@ -66,7 +66,7 @@ const Dropdown = ({
                 <IconWrapper
                     hasError={hasError}
                     isDisabled={isDisabled}
-                    isFocussed={isFocussed}
+                    isFocused={isFocused}
                     isHovered={isHovered}
                     isValid={isValid}
                 >
