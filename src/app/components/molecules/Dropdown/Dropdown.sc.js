@@ -1,5 +1,15 @@
+import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import {
+    backgroundColorPrimary,
+    colorBodyDark,
+    colorBodyLight,
+    colorDisabled,
+    colorPrimaryHover,
+    colorPrimarySelected,
+    colorSignalError,
+    colorSignalValid,
+} from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
-import defaultTheme from '../../../styles/theme/theme';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
@@ -12,16 +22,16 @@ export const StyledDropdown = styled.div`
         height: 1px;
         content: '';
 
-        ${({ isFocussed, theme }) => isFocussed && css`
-            background-color: ${theme.dropdown.colorFocus};
+        ${({ isFocussed }) => isFocussed && css`
+            background-color: ${colorPrimarySelected};
         `};
 
-        ${({ isValid, theme }) => isValid && css`
-            background-color: ${theme.dropdown.colorValid};
+        ${({ isValid }) => isValid && css`
+            background-color: ${colorSignalValid};
         `};
 
-        ${({ hasError, theme }) => hasError && css`
-            background-color: ${theme.dropdown.colorError};
+        ${({ hasError }) => hasError && css`
+            background-color: ${colorSignalError};
         `};
 
         ${({ isDisabled }) => isDisabled && css`
@@ -35,59 +45,48 @@ StyledDropdown.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFocussed: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        dropdown: PropTypes.shape({
-            colorError: PropTypes.string.isRequired,
-            colorFocus: PropTypes.string.isRequired,
-            colorValid: PropTypes.string.isRequired,
-        }).isRequired,
-    }).isRequired,
-};
-
-StyledDropdown.defaultProps = {
-    theme: defaultTheme,
 };
 
 export const Select = styled.select`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    ${textStyling(availableTextStyles().body1)};
     appearance: none;
     display: block;
     outline: none;
     border: 0;
-    border-bottom: 1px solid ${({ theme }) => theme.dropdown.colorDefault};
+    border-bottom: 1px solid ${colorBodyDark};
     border-radius: 0;
-    background-color: ${({ theme }) => theme.dropdown.backgroundColor};
+    background-color: ${backgroundColorPrimary};
     cursor: pointer;
     padding: 0;
     width: 100%;
     height: 28px;
-    color: ${({ theme }) => theme.dropdown.colorDefault};
+    color: ${colorBodyDark};
 
-    ${({ isPlaceholderSelected, theme }) => isPlaceholderSelected && css`
-        color: ${theme.dropdown.placeholderColor};
+    ${({ isPlaceholderSelected }) => isPlaceholderSelected && css`
+        color: ${colorBodyLight};
     `};
 
-    ${({ isHovered, theme }) => isHovered && css`
-        border-color: ${theme.dropdown.colorHover};
+    ${({ isHovered }) => isHovered && css`
+        border-color: ${colorPrimaryHover};
     `};
 
-    ${({ isFocussed, theme }) => isFocussed && css`
-        border-color: ${theme.dropdown.colorFocus};
+    ${({ isFocussed }) => isFocussed && css`
+        border-color: ${colorPrimarySelected};
     `};
 
-    ${({ isValid, theme }) => isValid && css`
-        border-color: ${theme.dropdown.colorValid};
-        color: ${theme.dropdown.colorValid};
+    ${({ isValid }) => isValid && css`
+        border-color: ${colorSignalValid};
+        color: ${colorSignalValid};
     `};
 
-    ${({ hasError, theme }) => hasError && css`
-        border-color: ${theme.dropdown.colorError};
-        color: ${theme.dropdown.colorError};
+    ${({ hasError }) => hasError && css`
+        border-color: ${colorSignalError};
+        color: ${colorSignalError};
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
-        border-color: ${theme.dropdown.colorDisabled};
-        color: ${theme.dropdown.colorDisabled};
+    ${({ isDisabled }) => isDisabled && css`
+        border-color: ${colorDisabled};
+        color: ${colorDisabled};
         pointer-events: none;
     `};
 `;
@@ -99,53 +98,36 @@ Select.propTypes = {
     isHovered: PropTypes.bool.isRequired,
     isPlaceholderSelected: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        availableTextStyles: PropTypes.func.isRequired,
-        dropdown: PropTypes.shape({
-            backgroundColor: PropTypes.string.isRequired,
-            colorDefault: PropTypes.string.isRequired,
-            colorDisabled: PropTypes.string.isRequired,
-            colorError: PropTypes.string.isRequired,
-            colorFocus: PropTypes.string.isRequired,
-            colorHover: PropTypes.string.isRequired,
-            placeholderColor: PropTypes.string.isRequired,
-        }).isRequired,
-        textStyling: PropTypes.func.isRequired,
-    }).isRequired,
-};
-
-Select.defaultProps = {
-    theme: defaultTheme,
 };
 
 export const IconWrapper = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
+    ${textStyling(availableTextStyles().h1)};
     position: absolute;
     top: 0;
     right: 0;
     line-height: 1;
-    color: ${({ theme }) => theme.dropdown.colorDefault};
+    color: ${colorBodyDark};
     pointer-events: none;
 
-    ${({ isHovered, theme }) => isHovered && css`
-        color: ${theme.dropdown.colorHover};
+    ${({ isHovered }) => isHovered && css`
+        color: ${colorPrimaryHover};
     `};
 
-    ${({ isFocussed, theme }) => isFocussed && css`
-        color: ${theme.dropdown.colorFocus};
+    ${({ isFocussed }) => isFocussed && css`
+        color: ${colorPrimarySelected};
         transform: rotate(180deg);
     `};
 
-    ${({ isValid, theme }) => isValid && css`
-        color: ${theme.dropdown.colorValid};
+    ${({ isValid }) => isValid && css`
+        color: ${colorSignalValid};
     `};
 
-    ${({ hasError, theme }) => hasError && css`
-        color: ${theme.dropdown.colorError};
+    ${({ hasError }) => hasError && css`
+        color: ${colorSignalError};
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.dropdown.colorDisabled};
+    ${({ isDisabled }) => isDisabled && css`
+        color: ${colorDisabled};
     `};
 
     span {
@@ -159,21 +141,6 @@ IconWrapper.propTypes = {
     isFocussed: PropTypes.bool.isRequired,
     isHovered: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        availableTextStyles: PropTypes.func.isRequired,
-        dropdown: PropTypes.shape({
-            colorDefault: PropTypes.string.isRequired,
-            colorDisabled: PropTypes.string.isRequired,
-            colorError: PropTypes.string.isRequired,
-            colorFocus: PropTypes.string.isRequired,
-            colorHover: PropTypes.string.isRequired,
-        }).isRequired,
-        textStyling: PropTypes.func.isRequired,
-    }).isRequired,
-};
-
-IconWrapper.defaultProps = {
-    theme: defaultTheme,
 };
 
 export const ErrorMessageWrapper = styled.div`
