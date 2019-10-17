@@ -9,6 +9,7 @@ export const StyledColorWrapper = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    max-width: 1100px;
 `;
 
 export const StyledColorText = styled.span`

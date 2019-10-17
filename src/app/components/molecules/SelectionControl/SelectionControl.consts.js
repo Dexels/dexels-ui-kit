@@ -1,9 +1,9 @@
 import {
     blue10,
     green,
+    grey10,
     purple100,
     red,
-    sl10,
     white,
 } from '../../../styles/colors/colors';
 import { DIRECTIONS, EASINGS } from '../../../utils/constants';
@@ -16,7 +16,7 @@ export const SELECTION_CONTROL_EASINGS = EASINGS;
 export const SELECTION_CONTROL_THEME = {
     checkboxBorderRadius: '5px',
     colorDefault: purple100,
-    colorDisabled: sl10,
+    colorDisabled: grey10,
     colorError: red,
     colorHover: blue10,
     colorValid: green,

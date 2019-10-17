@@ -18,19 +18,19 @@ const orange = '#EB6500';
 
 const red = '#F94E4E';
 
-const sl2 = '#FAFBFC';
+const grey2 = '#FAFBFC';
 
-const sl5 = '#F2F4F6';
+const grey5 = '#F2F4F6';
 
-const sl10 = '#E5E9ED';
+const grey10 = '#E5E9ED';
 
-const sl25 = '#BFC8D3';
+const grey25 = '#BFC8D3';
 
-const sl50 = '#7F91A8';
+const grey50 = '#7F91A8';
 
-const sl75 = '#3F5A7C';
+const grey75 = '#3F5A7C';
 
-const sl100 = '#002451';
+const grey100 = '#002451';
 
 const white = '#FFFFFF';
 
@@ -45,12 +45,12 @@ export {
     green,
     orange,
     red,
-    sl2,
-    sl5,
-    sl10,
-    sl25,
-    sl50,
-    sl75,
-    sl100,
+    grey2,
+    grey5,
+    grey10,
+    grey25,
+    grey50,
+    grey75,
+    grey100,
     white,
 };

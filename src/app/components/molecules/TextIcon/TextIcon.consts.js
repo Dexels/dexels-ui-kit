@@ -1,7 +1,7 @@
-import { sl50, white } from '../../../styles/colors/colors';
+import { grey50, white } from '../../../styles/colors/colors';
 
 export const TEXT_ICON_THEME = {
-    backgroundColor: sl50,
+    backgroundColor: grey50,
     colorDefault: white,
     size: '24px',
 };

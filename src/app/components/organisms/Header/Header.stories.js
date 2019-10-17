@@ -7,7 +7,7 @@ import React from 'react';
 
 export default { title: 'organisms/Header' };
 
-const leftSideIcons = [
+const navigationIcons = [
     <ButtonIcon
         iconType={Icon.types.MENU}
         key={1}
@@ -22,7 +22,7 @@ const leftSideIcons = [
     />,
 ];
 
-const rightSideIcons = [
+const functionalIcons = [
     <ButtonIcon
         iconType={Icon.types.PLUS}
         key={1}
@@ -54,13 +54,13 @@ const rightSideIcons = [
     />,
 ];
 
-const rightSideButtons = [
+const functionalButtons = [
     <Button
         iconType={Icon.types.INFO}
         key={1}
         onClick={() => {}}
         size={Button.sizes.SMALL}
-        variant={Button.variants.OUTLINE}
+        variant={Button.variants.OUTLINE_HEADER}
     >
         {'label'}
     </Button>,
@@ -69,7 +69,7 @@ const rightSideButtons = [
         key={2}
         onClick={() => {}}
         size={Button.sizes.SMALL}
-        variant={Button.variants.OUTLINE}
+        variant={Button.variants.OUTLINE_HEADER}
     >
         {'label'}
     </Button>,
@@ -78,9 +78,9 @@ const rightSideButtons = [
 export const Configurable = () => (
     <Header
         elevation={select('Elevation', Header.elevations, Header.defaultProps.elevation)}
-        leftSideIcons={leftSideIcons}
-        rightSideButtons={rightSideButtons}
-        rightSideIcons={rightSideIcons}
+        functionalButtons={functionalButtons}
+        functionalIcons={functionalIcons}
+        navigationIcons={navigationIcons}
         title={text('Header title', 'Wedstrijden')}
     />
 );
