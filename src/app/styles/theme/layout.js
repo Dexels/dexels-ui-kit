@@ -1,10 +1,16 @@
+import mapArrayToObject from '../../utils/mapArrayToObject';
 import theme from 'styled-theming';
 
+export const themeLayouts = mapArrayToObject([
+    'basic',
+    'compact',
+]);
+
 export const getAvailableThemeLayouts = () => (
-    ['basic', 'compact']
+    Object.values(themeLayouts)
 );
 
 export const spacingUnit = theme('layout', {
-    basic: '8px',
-    compact: '4px',
+    [themeLayouts.basic]: '8px',
+    [themeLayouts.compact]: '4px',
 });

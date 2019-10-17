@@ -5,24 +5,24 @@ import {
     colorPrimary,
     colorPrimaryHover,
 } from '../../../styles/theme/theme';
+import { spacingUnit, themeLayouts } from '../../../styles/theme/layout';
 import styled, { css } from 'styled-components';
 import { grey2 } from '../../../styles/colors/colors';
 import PropTypes from 'prop-types';
-import { spacingUnit } from '../../../styles/theme/layout';
-import { theme } from 'styled-theming';
+import theme from 'styled-theming';
 
 const fontSize = theme.variants('layout', 'size', {
     [BUTTON_ICON_SIZES.LARGE]: {
-        basic: '20px',
-        compact: '18px',
+        [themeLayouts.basic]: '20px',
+        [themeLayouts.compact]: '18px',
     },
     [BUTTON_ICON_SIZES.MEDIUM]: {
-        basic: '18px',
-        compact: '16px',
+        [themeLayouts.basic]: '18px',
+        [themeLayouts.compact]: '16px',
     },
     [BUTTON_ICON_SIZES.SMALL]: {
-        basic: '14px',
-        compact: '12px',
+        [themeLayouts.basic]: '14px',
+        [themeLayouts.compact]: '12px',
     },
 });
 

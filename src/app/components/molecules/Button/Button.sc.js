@@ -17,7 +17,7 @@ import { grey50, white } from '../../../styles/colors/colors';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
-import { theme } from 'styled-theming';
+import theme from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 const borderRadius = theme('layout', {
