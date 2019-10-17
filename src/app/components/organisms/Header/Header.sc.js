@@ -10,19 +10,19 @@ import styled from 'styled-components';
 
 export const ButtonContainer = styled.div`
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-self: center;
     margin-right: 16px;
 `;
 
 export const Title = styled.div`
     ${textStyling(availableTextStyles().body1)};
-    margin:auto;
-    padding-left:16px;
+    margin: auto;
+    padding-left: 16px;
     color: ${colorHeadingLight};
 `;
 
-export const RightContainer = styled.div`
+export const FunctionalWrapper = styled.div`
     display: flex;
     flex-wrap: nowrap;
     align-self: center;
@@ -30,7 +30,7 @@ export const RightContainer = styled.div`
     margin-inline-start: auto;
 `;
 
-export const LeftContainer = styled.div`
+export const NavigationWrapper = styled.div`
     display: flex;
     flex-wrap: nowrap;
     align-self: center;
@@ -40,7 +40,7 @@ export const LeftContainer = styled.div`
 export const StyledHeader = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     background: ${backgroundColorTertiary};
     height: 52px;
     color: ${colorHeadingLight};

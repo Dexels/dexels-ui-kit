@@ -22,38 +22,6 @@ const navigationIcons = [
     />,
 ];
 
-const functionalIcons = [
-    <ButtonIcon
-        iconType={Icon.types.PLUS}
-        key={1}
-        onClick={() => {}}
-        variant={ButtonIcon.variants.HEADER}
-    />,
-    <ButtonIcon
-        iconType={Icon.types.SEARCH} key={2}
-        onClick={() => {}}
-        variant={ButtonIcon.variants.HEADER}
-    />,
-    <ButtonIcon
-        iconType={Icon.types.SHARE}
-        key={3}
-        onClick={() => {}}
-        variant={ButtonIcon.variants.HEADER}
-    />,
-    <ButtonIcon
-        iconType={Icon.types.SETTINGS}
-        key={4}
-        onClick={() => {}}
-        variant={ButtonIcon.variants.HEADER}
-    />,
-    <ButtonIcon
-        iconType={Icon.types.HELP}
-        key={5}
-        onClick={() => {}}
-        variant={ButtonIcon.variants.HEADER}
-    />,
-];
-
 const functionalButtons = [
     <Button
         iconType={Icon.types.INFO}
@@ -79,8 +47,37 @@ export const Configurable = () => (
     <Header
         elevation={select('Elevation', Header.elevations, Header.defaultProps.elevation)}
         functionalButtons={functionalButtons}
-        functionalIcons={functionalIcons}
         navigationIcons={navigationIcons}
         title={text('Header title', 'Wedstrijden')}
-    />
+    >
+        <ButtonIcon
+            iconType={Icon.types.PLUS}
+            key={1}
+            onClick={() => {}}
+            variant={ButtonIcon.variants.HEADER}
+        />
+        <ButtonIcon
+            iconType={Icon.types.SEARCH} key={2}
+            onClick={() => {}}
+            variant={ButtonIcon.variants.HEADER}
+        />
+        <ButtonIcon
+            iconType={Icon.types.SHARE}
+            key={3}
+            onClick={() => {}}
+            variant={ButtonIcon.variants.HEADER}
+        />
+        <ButtonIcon
+            iconType={Icon.types.SETTINGS}
+            key={4}
+            onClick={() => {}}
+            variant={ButtonIcon.variants.HEADER}
+        />
+        <ButtonIcon
+            iconType={Icon.types.HELP}
+            key={5}
+            onClick={() => {}}
+            variant={ButtonIcon.variants.HEADER}
+        />
+    </Header>
 );
