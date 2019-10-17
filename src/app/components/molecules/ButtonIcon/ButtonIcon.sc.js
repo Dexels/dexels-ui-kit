@@ -69,10 +69,6 @@ export const StyledButtonIcon = styled.button`
         }
     `};
 
-    ${({ variant }) => variant === BUTTON_ICON_VARIANTS.HEADER && css`
-        color: inherit;
-    `};
-
     &:after {
         border: 0;
         pointer-events: none;
@@ -81,7 +77,6 @@ export const StyledButtonIcon = styled.button`
     &:active:after {
         border: 0;
     }
-
 `;
 
 StyledButtonIcon.propTypes = {
