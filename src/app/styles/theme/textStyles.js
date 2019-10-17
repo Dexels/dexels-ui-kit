@@ -2,7 +2,7 @@ import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constant
 import { css } from 'styled-components';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 
-export const textStyles = ({
+export const textStyles = {
     body1: {
         fontFamily: FONT_FAMILY_PRIMARY,
         fontSize: '16px',
@@ -57,7 +57,7 @@ export const textStyles = ({
         fontWeight: '600',
         lineHeight: '24px',
     },
-});
+};
 
 export const textStyling = (textStyleSelector = 'body1') => {
     const validTextStylingSelectors = Object.keys(textStyles);
@@ -76,6 +76,6 @@ export const textStyling = (textStyleSelector = 'body1') => {
     `;
 };
 
-export const availableTextStyles = () => {
-    return mapArrayToObject(Object.keys(textStyles));
-};
+export const availableTextStyles = () => (
+    mapArrayToObject(Object.keys(textStyles))
+);
