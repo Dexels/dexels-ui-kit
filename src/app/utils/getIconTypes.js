@@ -11,4 +11,4 @@ iconFontData.icons.forEach(({ properties: { name } }) => {
 });
 
 /* eslint-disable-next-line */
-console.log(JSON.stringify(ICON_TYPES));
+console.log(JSON.stringify(ICON_TYPES, Object.keys(ICON_TYPES).sort()));

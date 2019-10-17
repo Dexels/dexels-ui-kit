@@ -1,116 +1,174 @@
+import * as colors from '../colors/colors';
 import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constants';
-import { BUTTON_ICON_THEME } from '../../components/molecules/ButtonIcon/ButtonIcon.consts';
-import { BUTTON_THEME } from '../../components/molecules/Button/Button.consts';
-import { CARD_NO_RESULTS_THEME } from '../../components/molecules/CardNoResults/CardNoResults.consts';
-import { CARD_THEME } from '../../components/atoms/Card/Card.consts';
-import { CHIP_THEME } from '../../components/molecules/Chip/Chip.consts';
-import { css } from 'styled-components';
-import { DIALOG_ALERT_THEME } from '../../components/organisms/DialogAlert/DialogAlert.consts';
-import { DIALOG_FOOTER_THEME } from '../../components/molecules/DialogFooter/DialogFooter.consts';
-import { DROPDOWN_THEME } from '../../components/molecules/Dropdown/Dropdown.consts';
-import { ERROR_MESSAGE_THEME } from '../../components/atoms/ErrorMessage/ErrorMessage.consts';
-import { INPUT_PASSWORD_THEME } from '../../components/organisms/InputPassword/InputPassword.consts';
-import { INPUT_THEME } from '../../components/molecules/Input/Input.consts';
-import { LABEL_THEME } from '../../components/atoms/Label/Label.consts';
 import mapArrayToObject from '../../utils/mapArrayToObject';
-import { OVERLAY_THEME } from '../../components/molecules/Overlay/Overlay.consts';
-import { SELECTION_CONTROL_THEME } from '../../components/molecules/SelectionControl/SelectionControl.consts';
-import { TABS_THEME } from '../../components/organisms/Tabs/Tabs.consts';
-import { TEXT_ICON_THEME } from '../../components/molecules/TextIcon/TextIcon.consts';
-import { TOOLTIP_THEME } from '../../components/molecules/Tooltip/Tooltip.consts';
+import theme from 'styled-theming';
 
-const theme = {
-    availableTextStyles() {
-        return mapArrayToObject(Object.keys(this.textStyles));
-    },
-    button: BUTTON_THEME,
-    buttonIcon: BUTTON_ICON_THEME,
-    card: CARD_THEME,
-    cardNoResults: CARD_NO_RESULTS_THEME,
-    chip: CHIP_THEME,
-    dialogAlert: DIALOG_ALERT_THEME,
-    dialogFooter: DIALOG_FOOTER_THEME,
-    dropdown: DROPDOWN_THEME,
-    errorMessage: ERROR_MESSAGE_THEME,
-    fontFamilyPrimary: FONT_FAMILY_PRIMARY,
-    fontFamilySecondary: FONT_FAMILY_SECONDARY,
-    input: INPUT_THEME,
-    inputPassword: INPUT_PASSWORD_THEME,
-    label: LABEL_THEME,
-    overlay: OVERLAY_THEME,
-    selectionControl: SELECTION_CONTROL_THEME,
-    statusIndicator: {
-        size: '8px',
-    },
-    tabs: TABS_THEME,
-    textIcon: TEXT_ICON_THEME,
-    textStyles: {
-        body1: {
-            fontFamily: FONT_FAMILY_PRIMARY,
-            fontSize: '16px',
-            fontWeight: '400',
-            lineHeight: '22px',
-        },
-        body2: {
-            fontFamily: FONT_FAMILY_PRIMARY,
-            fontSize: '14px',
-            fontWeight: '400',
-            lineHeight: '18px',
-        },
-        buttonLarge: {
-            fontFamily: FONT_FAMILY_SECONDARY,
-            fontSize: '16px',
-            fontWeight: '600',
-            lineHeight: '22px',
-        },
-        buttonSmall: {
-            fontFamily: FONT_FAMILY_SECONDARY,
-            fontSize: '14px',
-            fontWeight: '600',
-            lineHeight: '22px',
-        },
-        caption: {
-            fontFamily: FONT_FAMILY_PRIMARY,
-            fontSize: '12px',
-            fontWeight: '400',
-            lineHeight: '16px',
-        },
-        h1: {
-            fontFamily: FONT_FAMILY_SECONDARY,
-            fontSize: '24px',
-            fontWeight: '500',
-            lineHeight: '34px',
-        },
-        h2: {
-            fontFamily: FONT_FAMILY_SECONDARY,
-            fontSize: '20px',
-            fontWeight: '500',
-            lineHeight: '28px',
-        },
-        h3: {
-            fontFamily: FONT_FAMILY_SECONDARY,
-            fontSize: '16px',
-            fontWeight: '600',
-            lineHeight: '24px',
-        },
-    },
-    textStyling(textStyleSelector = 'body1') {
-        const validTextStylingSelectors = Object.keys(this.textStyles);
+export const themeModes = mapArrayToObject([
+    'basic',
+    'dark',
+    'light',
+]);
 
-        if (!validTextStylingSelectors.includes(textStyleSelector)) {
-            throw new Error(`${textStyleSelector} is not a valid text styling selector. Please use one the following: ${validTextStylingSelectors}`);
-        }
+export const getAvailableThemeModes = () => (
+    Object.values(themeModes)
+);
 
-        const textStyle = this.textStyles[textStyleSelector];
+/* FONTS */
+export const fontPrimary = theme('mode', {
+    [themeModes.basic]: FONT_FAMILY_PRIMARY,
+    [themeModes.dark]: FONT_FAMILY_SECONDARY,
+    [themeModes.light]: FONT_FAMILY_PRIMARY,
+});
 
-        return css`
-            line-height: ${textStyle.lineHeight};
-            font-family: ${textStyle.fontFamily ? textStyle.fontFamily : FONT_FAMILY_PRIMARY};
-            font-size: ${textStyle.fontSize};
-            font-weight: ${textStyle.fontWeight};
-        `;
-    },
-    tooltip: TOOLTIP_THEME,
-};
+export const fontSecondary = theme('mode', {
+    [themeModes.basic]: FONT_FAMILY_SECONDARY,
+    [themeModes.dark]: FONT_FAMILY_PRIMARY,
+    [themeModes.light]: FONT_FAMILY_SECONDARY,
+});
 
-export default theme;
+/* BASIC / ROOT */
+export const colorPrimary = theme('mode', {
+    [themeModes.basic]: colors.purple100,
+    [themeModes.dark]: colors.white,
+    [themeModes.light]: colors.black,
+});
+
+export const colorPrimaryHover = theme('mode', {
+    [themeModes.basic]: colors.blue100,
+    [themeModes.dark]: colors.grey50,
+    [themeModes.light]: colors.grey25,
+});
+
+export const colorPrimarySelected = theme('mode', {
+    [themeModes.basic]: colors.blue100,
+    [themeModes.dark]: colors.grey50,
+    [themeModes.light]: colors.grey25,
+});
+
+export const colorSecondary = theme('mode', {
+    [themeModes.basic]: colors.blue100,
+    [themeModes.dark]: colors.grey2,
+    [themeModes.light]: colors.grey100,
+});
+
+export const colorSecondaryHover = theme('mode', {
+    [themeModes.basic]: colors.blue50,
+    [themeModes.dark]: colors.grey50,
+    [themeModes.light]: colors.grey10,
+});
+
+export const colorSecondarySelected = theme('mode', {
+    [themeModes.basic]: colors.blue25,
+    [themeModes.dark]: colors.grey75,
+    [themeModes.light]: colors.grey25,
+});
+
+export const colorTertiary = theme('mode', {
+    [themeModes.basic]: colors.blue50,
+    [themeModes.dark]: colors.grey2,
+    [themeModes.light]: colors.grey100,
+});
+
+export const colorTertiaryHover = theme('mode', {
+    [themeModes.basic]: colors.blue50,
+    [themeModes.dark]: colors.grey50,
+    [themeModes.light]: colors.grey10,
+});
+
+export const colorTertiarySelected = theme('mode', {
+    [themeModes.basic]: colors.blue25,
+    [themeModes.dark]: colors.grey75,
+    [themeModes.light]: colors.grey25,
+});
+
+export const colorDisabled = theme('mode', {
+    [themeModes.basic]: colors.grey10,
+    [themeModes.dark]: colors.grey10,
+    [themeModes.light]: colors.grey10,
+});
+
+export const backgroundColorPrimary = theme('mode', {
+    [themeModes.basic]: colors.white,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.white,
+});
+
+export const backgroundColorSecondary = theme('mode', {
+    [themeModes.basic]: colors.grey2,
+    [themeModes.dark]: colors.grey100,
+    [themeModes.light]: colors.grey2,
+});
+
+export const backgroundColorTertiary = theme('mode', {
+    [themeModes.basic]: colors.purple100,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.white,
+});
+
+/* TEXT / ICON */
+export const colorHeadingDark = theme('mode', {
+    [themeModes.basic]: colors.purple100,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.grey2,
+});
+
+export const colorHeadingLight = theme('mode', {
+    [themeModes.basic]: colors.white,
+    [themeModes.dark]: colors.grey2,
+    [themeModes.light]: colors.white,
+});
+
+export const colorBodyDark = theme('mode', {
+    [themeModes.basic]: colors.grey100,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.grey2,
+});
+
+export const colorBodyLight = theme('mode', {
+    [themeModes.basic]: colors.grey50,
+    [themeModes.dark]: colors.grey100,
+    [themeModes.light]: colors.white,
+});
+
+export const colorButtonDark = theme('mode', {
+    [themeModes.basic]: colors.purple100,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.grey50,
+});
+
+export const colorButtonLight = theme('mode', {
+    [themeModes.basic]: colors.white,
+    [themeModes.dark]: colors.white,
+    [themeModes.light]: colors.black,
+});
+
+/* SIGNAL / ACCENT */
+export const colorSignalStandard = theme('mode', {
+    [themeModes.basic]: colors.purple100,
+    [themeModes.dark]: colors.purple100,
+    [themeModes.light]: colors.purple100,
+});
+
+export const colorSignalValid = theme('mode', {
+    [themeModes.basic]: colors.green,
+    [themeModes.dark]: colors.green,
+    [themeModes.light]: colors.green,
+});
+
+export const colorSignalWarning = theme('mode', {
+    [themeModes.basic]: colors.orange,
+    [themeModes.dark]: colors.orange,
+    [themeModes.light]: colors.orange,
+});
+
+export const colorSignalError = theme('mode', {
+    [themeModes.basic]: colors.red,
+    [themeModes.dark]: colors.red,
+    [themeModes.light]: colors.red,
+});
+
+export const colorSignalDisabled = theme('mode', {
+    [themeModes.basic]: colors.grey10,
+    [themeModes.dark]: colors.grey10,
+    [themeModes.light]: colors.grey10,
+});

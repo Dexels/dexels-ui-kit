@@ -8,13 +8,13 @@ export default { title: 'molecules/CardStatus' };
 export const Configurable = () => (
     <CardStatus
         elevation={select('Elevation', CardStatus.elevations, CardStatus.defaultProps.elevation)}
+        placement={select(
+            'Status placement',
+            CardStatus.placements,
+            CardStatus.defaultProps.placement,
+        )}
         position={select('Position', CardStatus.positions, CardStatus.defaultProps.position)}
         status={select('Status', CardStatus.statuses, CardStatus.defaultProps.status)}
-        statusPlacement={select(
-            'Status placement',
-            CardStatus.statusPlacements,
-            CardStatus.defaultProps.statusPlacement,
-        )}
     >
         {text('Text', 'Configure me!')}
     </CardStatus>
@@ -23,13 +23,13 @@ export const Configurable = () => (
 export const ConfigurableWithComponent = () => (
     <CardStatus
         elevation={select('Elevation', CardStatus.elevations, CardStatus.defaultProps.elevation)}
+        placement={select(
+            'Status placement',
+            CardStatus.placements,
+            CardStatus.defaultProps.placement,
+        )}
         position={select('Position', CardStatus.positions, CardStatus.defaultProps.position)}
         status={select('Status', CardStatus.statuses, CardStatus.defaultProps.status)}
-        statusPlacement={select(
-            'Status placement',
-            CardStatus.statusPlacements,
-            CardStatus.defaultProps.statusPlacement,
-        )}
     >
         <Button
             onClick={() => {}}

@@ -1,10 +1,10 @@
 import {
     blue100,
     green,
+    grey10,
+    grey100,
     purple100,
     red,
-    sl10,
-    sl100,
 } from '../../../styles/colors/colors';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import mapArrayToObject from '../../../utils/mapArrayToObject';
@@ -12,7 +12,7 @@ import mapArrayToObject from '../../../utils/mapArrayToObject';
 export const INPUT_THEME = {
     borderRadius: '8px',
     colorDefault: purple100,
-    colorDisabled: sl10,
+    colorDisabled: grey10,
     colorError: red,
     colorFocus: blue100,
     colorHover: blue100,
@@ -20,7 +20,7 @@ export const INPUT_THEME = {
     heightCompact: '24px',
     heightFullSize: '48px',
     heightTextarea: '126px',
-    textColor: sl100,
+    textColor: grey100,
 };
 
 export const INPUT_TYPES = mapArrayToObject([

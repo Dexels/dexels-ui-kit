@@ -63,6 +63,7 @@ export const PLACEMENTS = mapArrayToObject([
 
 export const SIZES = mapArrayToObject([
     'LARGE',
+    'MEDIUM',
     'SMALL',
 ]);
 
@@ -71,6 +72,6 @@ export const STATUSES = mapArrayToObject([
     'DISABLED',
     'ERROR',
     'NONE',
-    'OK',
+    'VALID',
     'WARNING',
 ]);
