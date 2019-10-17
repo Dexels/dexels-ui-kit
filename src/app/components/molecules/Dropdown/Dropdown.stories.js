@@ -2,7 +2,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import Dropdown from './Dropdown';
 
-export default { title: 'molecules/DropdownV2' };
+export default { title: 'molecules/Dropdown' };
 
 export const Configurable = () => {
     const placeholder = 'Select your fruit';
