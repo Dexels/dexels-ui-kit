@@ -78,7 +78,7 @@ export const LabelWrapper = styled.div`
         `};
     `};
 
-    ${({ hasValue, isFocused, variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
+    ${({ hasValue, isFocused, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
         top: calc(${spacingUnit} * 1.5);
         left: calc(${spacingUnit} * 1.5);
         background-color: white;
@@ -111,7 +111,7 @@ export const TextField = styled.input`
         height: calc(${spacingUnit} * 3);
     `};
 
-    ${({ variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
+    ${({ variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
         border: 1px solid ${colorPrimary};
         border-radius: 8px;
         padding: 0 calc(${spacingUnit} * 1.5);
@@ -157,7 +157,7 @@ TextField.propTypes = {
 };
 
 export const ErrorMessageWrapper = styled.div`
-    ${({ variant }) => variant === INPUT_VARIANTS.FULL_SIZE && css`
+    ${({ variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
         margin: calc(${spacingUnit} / 2) 0 0 calc(${spacingUnit} * 1.5);
     `};
 `;

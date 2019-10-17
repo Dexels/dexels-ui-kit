@@ -68,7 +68,7 @@ InputPassword.defaultProps = {
     isValid: false,
     isVisibleDefault: false,
     value: '',
-    variant: InputPassword.variants.FULL_SIZE,
+    variant: InputPassword.variants.OUTLINE,
 };
 
 export default InputPassword;

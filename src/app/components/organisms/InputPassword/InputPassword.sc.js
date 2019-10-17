@@ -28,7 +28,7 @@ export const VisibilitySwitch = styled.button`
         padding: 0 0 0 ${spacingUnit};
     `};
 
-    ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.FULL_SIZE && css`
+    ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.OUTLINE && css`
         top: ${spacingUnit};
         right: ${spacingUnit};
         padding: calc(${spacingUnit} / 2) ${spacingUnit};

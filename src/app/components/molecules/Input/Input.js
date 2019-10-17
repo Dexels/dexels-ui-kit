@@ -116,7 +116,7 @@ Input.defaultProps = {
     isValid: false,
     type: Input.types.TEXT,
     value: '',
-    variant: Input.variants.FULL_SIZE,
+    variant: Input.variants.OUTLINE,
 };
 
 export default Input;
