@@ -1,10 +1,10 @@
 import {
     blue100,
     green,
-    purple100,
-    red,
     grey10,
     grey100,
+    purple100,
+    red,
 } from '../../../styles/colors/colors';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import mapArrayToObject from '../../../utils/mapArrayToObject';

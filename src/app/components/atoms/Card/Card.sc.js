@@ -2,8 +2,8 @@ import { availableTextStyles, textStyling } from '../../../styles/theme/textStyl
 import { backgroundColorPrimary, colorPrimary } from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
-import { spacingUnit } from '../../../styles/theme/layout';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { spacingUnit } from '../../../styles/theme/layout';
 import styled from 'styled-components';
 
 export const StyledCard = styled.div`

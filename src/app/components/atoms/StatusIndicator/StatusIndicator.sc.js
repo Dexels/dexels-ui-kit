@@ -1,8 +1,8 @@
 import {
     colorSignalDisabled,
     colorSignalError,
-    colorSignalValid,
     colorSignalStandard,
+    colorSignalValid,
     colorSignalWarning,
 } from '../../../styles/theme/theme';
 import {

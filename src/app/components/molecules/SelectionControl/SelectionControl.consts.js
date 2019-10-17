@@ -1,9 +1,9 @@
 import {
     blue10,
     green,
+    grey10,
     purple100,
     red,
-    grey10,
     white,
 } from '../../../styles/colors/colors';
 import { DIRECTIONS, EASINGS } from '../../../utils/constants';

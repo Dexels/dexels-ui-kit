@@ -1,9 +1,9 @@
 import { ALIGNMENTS, DIRECTIONS, ELEVATIONS } from '../../../utils/constants';
 import {
     black,
-    purple100,
     grey100,
     grey5,
+    purple100,
     white,
 } from '../../../styles/colors/colors';
 
