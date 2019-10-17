@@ -20,7 +20,10 @@ const DialogFooter = ({
             {message}
         </TextWrapper>
         <ButtonBarWrapper>
-            {onCancel && (
+            {/* Check both the handler and the buttonText,
+                because in the stoires there is no way to show the footer without the cancel button
+            */}
+            {onCancel && buttonCancelText && (
                 <ButtonWrapper>
                     <Button
                         iconType={Button.iconTypes.CLOSE}
