@@ -5,7 +5,7 @@ import {
     colorPrimary,
     colorSecondary,
     colorSignalError,
-    colorSignalOk,
+    colorSignalValid,
     labelTextColor,
 } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
@@ -33,7 +33,7 @@ export const StyledLabel = styled.label`
     `};
 
     ${({ isValid }) => isValid && css`
-        color: ${colorSignalOk};
+        color: ${colorSignalValid};
     `};
 
     ${({ hasError }) => hasError && css`

@@ -72,6 +72,6 @@ export const STATUSES = mapArrayToObject([
     'DISABLED',
     'ERROR',
     'NONE',
-    'OK',
+    'VALID',
     'WARNING',
 ]);

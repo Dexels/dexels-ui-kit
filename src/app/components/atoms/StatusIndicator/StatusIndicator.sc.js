@@ -1,7 +1,7 @@
 import {
     colorSignalDisabled,
     colorSignalError,
-    colorSignalOk,
+    colorSignalValid,
     colorSignalStandard,
     colorSignalWarning,
 } from '../../../styles/theme/theme';
@@ -29,8 +29,8 @@ export const StyledStatusIndicator = styled.div`
         border-color: ${colorSignalError};
     `};
 
-    ${({ status }) => status === STATUS_INDICATOR_STATUSES.OK && css`
-        border-color: ${colorSignalOk};
+    ${({ status }) => status === STATUS_INDICATOR_STATUSES.VALID && css`
+        border-color: ${colorSignalValid};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DEFAULT && css`

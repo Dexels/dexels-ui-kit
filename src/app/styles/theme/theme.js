@@ -1,17 +1,10 @@
 import * as colors from '../colors/colors';
 import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constants';
-import { textStyles } from './textStyles';
 import theme from 'styled-theming';
 
 export const getAvailableThemeModes = () => (
     ['basic', 'dark', 'light']
 );
-
-export const typography = theme('mode', {
-    basic: textStyles,
-    dark: textStyles,
-    light: textStyles,
-});
 
 /* FONTS */
 export const fontPrimary = theme('mode', {
@@ -149,7 +142,7 @@ export const colorSignalStandard = theme('mode', {
     light: colors.purple100,
 });
 
-export const colorSignalOk = theme('mode', {
+export const colorSignalValid = theme('mode', {
     basic: colors.green,
     dark: colors.green,
     light: colors.green,
