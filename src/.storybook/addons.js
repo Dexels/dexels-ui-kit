@@ -2,3 +2,4 @@
 // (for those that appear there).
 import '@storybook/addon-knobs/register';
 import '@storybook/addon-actions/register';
+import 'storybook-addon-styled-component-theme/dist/src/register';

@@ -1,21 +1,10 @@
-import defaulTheme from '../../../styles/theme/theme';
-import PropTypes from 'prop-types';
+import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { colorSignalError } from '../../../styles/theme/theme';
 import styled from 'styled-components';
 
 export const StyledErrorMessage = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
-    color: ${({ theme }) => theme.errorMessage.color};
+    ${textStyling(availableTextStyles().caption)};
+    color: ${colorSignalError};
 `;
-
-StyledErrorMessage.propTypes = {
-    theme: PropTypes.shape({
-        availableTextStyles: PropTypes.func.isRequired,
-        textStyling: PropTypes.func.isRequired,
-    }).isRequired,
-};
-
-StyledErrorMessage.defaultProps = {
-    theme: defaulTheme,
-};
 
 export default StyledErrorMessage;
