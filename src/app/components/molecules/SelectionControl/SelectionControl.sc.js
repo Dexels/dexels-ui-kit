@@ -1,14 +1,30 @@
 import {
+    colorButtonLight,
+    colorPrimary,
+    colorSignalDisabled,
+    colorSignalError,
+    colorSignalValid,
+    themeModes,
+} from '../../../styles/theme/theme';
+import {
     SELECTION_CONTROL_DIRECTIONS,
     SELECTION_CONTROL_EASINGS,
     SELECTION_CONTROL_TYPES,
 } from './SelectionControl.consts';
 import styled, { css } from 'styled-components';
-import defaultTheme from '../../../styles/theme/theme';
+import { blue10 } from '../../../styles/colors/colors';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
+import { spacingUnit } from '../../../styles/theme/layout';
+import theme from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
+
+const selectionControlBackgroundColorHover = theme('mode', {
+    [themeModes.basic]: blue10,
+    [themeModes.dark]: blue10,
+    [themeModes.light]: blue10,
+});
 
 export const StyledSelectionControl = styled.div`
     ${setBoxSizing()};
@@ -21,86 +37,66 @@ export const StyledSelectionControl = styled.div`
 export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
-    border: 1px solid ${({ theme }) => theme.selectionControl.colorDefault};
-    width: ${({ theme }) => theme.selectionControl.size};
-    height: ${({ theme }) => theme.selectionControl.size};
+    border: 1px solid ${colorPrimary};
+    width: calc(${spacingUnit} * 3);
+    height: calc(${spacingUnit} * 3);
     pointer-events: none;
 
     ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        margin: 0 18px 0 0;
+        margin: 0 calc(${spacingUnit} * 2.25) 0 0;
         order: 1;
     `};
 
     ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        margin: 0 0 0 18px;
+        margin: 0 0 0 calc(${spacingUnit} * 2.25);
         order: 2;
     `};
 
     ${({ type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
-        border-radius: ${({ theme }) => theme.selectionControl.checkboxBorderRadius};
+        border-radius: 5px;
     `};
 
     ${({ type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
         border-radius: 100%;
     `};
 
-    ${({
-        isChecked,
-        isIndeterminate,
-        theme,
-        type,
-    }) => (isChecked || isIndeterminate) && css`
-        background-color: ${theme.selectionControl.colorDefault};
+    ${({ isChecked, isIndeterminate, type }) => (isChecked || isIndeterminate) && css`
+        background-color: ${colorPrimary};
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
             &::after {
                 ${setCentered()};
                 position: absolute;
-                width:  ${theme.selectionControl.radioButtonDotSize};
-                height:  ${theme.selectionControl.radioButtonDotSize};
-                background-color: ${theme.selectionControl.iconColor};
+                width: 60%;
+                height: 60%;
+                background-color: ${colorButtonLight};
                 content: '';
                 border-radius: 100%;
             }
         `};
     `};
 
-    ${({
-        isChecked,
-        isIndeterminate,
-        isValid,
-        theme,
-    }) => isValid && css`
-        border-color: ${theme.selectionControl.colorValid};
+    ${({ isChecked, isIndeterminate, isValid }) => isValid && css`
+        border-color: ${colorSignalValid};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.selectionControl.colorValid};
+            background-color: ${colorSignalValid};
         `};
     `};
 
-    ${({
-        hasError,
-        isChecked,
-        isIndeterminate,
-        theme,
-    }) => hasError && css`
-        border-color: ${theme.selectionControl.colorError};
+    ${({ hasError, isChecked, isIndeterminate }) => hasError && css`
+        border-color: ${colorSignalError};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.selectionControl.colorError};
+            background-color: ${colorSignalError};
         `};
     `};
 
-    ${({
-        isChecked,
-        isDisabled,
-        isIndeterminate,
-        theme,
-    }) => isDisabled && css`
-        border-color: ${theme.selectionControl.colorDisabled};
+    ${({ isChecked, isDisabled, isIndeterminate }) => isDisabled && css`
+        border-color: ${colorSignalDisabled};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.selectionControl.colorDisabled};
+            background-color: ${colorSignalDisabled};
         `};
 
         input {
@@ -114,16 +110,14 @@ export const InputWrapper = styled.div`
             duration: transitionDuration,
             easing: transitionEasing,
         })};
-        ${({ theme }) => css`
-            width: calc(${theme.selectionControl.size} * (1 + 2/3));
-            height: calc(${theme.selectionControl.size} * (1 + 2/3));
-        `};
         display: block;
         position: absolute;
         opacity: 0;
         z-index: -1;
         border-radius: 100%;
-        background-color: ${({ theme }) => theme.selectionControl.colorHover};
+        background-color: ${selectionControlBackgroundColorHover};
+        width: calc(calc(${spacingUnit} * 3) * (1 + 2 / 3));
+        height: calc(calc(${spacingUnit} * 3) * (1 + 2 / 3));
         content: '';
     }
 
@@ -142,8 +136,8 @@ export const InputWrapper = styled.div`
         margin: 0;
         border: 0;
         cursor: pointer;
-        width: ${({ theme }) => theme.selectionControl.size};
-        height: ${({ theme }) => theme.selectionControl.size};
+        width: calc(${spacingUnit} * 3);
+        height: calc(${spacingUnit} * 3);
         pointer-events: auto;
     }
 `;
@@ -155,53 +149,23 @@ InputWrapper.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isIndeterminate: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        selectionControl: PropTypes.shape({
-            checkboxBorderRadius: PropTypes.string.isRequired,
-            colorDefault: PropTypes.string.isRequired,
-            colorDisabled: PropTypes.string.isRequired,
-            colorError: PropTypes.string.isRequired,
-            colorValid: PropTypes.string.isRequired,
-            iconColor: PropTypes.string.isRequired,
-            iconSize: PropTypes.string.isRequired,
-            radioButtonDotSize: PropTypes.string.isRequired,
-            size: PropTypes.string.isRequired,
-        }).isRequired,
-    }),
     transitionDuration: PropTypes.number.isRequired,
     transitionEasing: PropTypes.oneOf(Object.values(SELECTION_CONTROL_EASINGS)),
     type: PropTypes.oneOf(Object.values(SELECTION_CONTROL_TYPES)).isRequired,
-};
-
-InputWrapper.defaultProps = {
-    theme: defaultTheme,
 };
 
 export const IconWrapper = styled.div`
     ${setCentered()};
     position: absolute;
     z-index: 2;
-    color: ${({ theme }) => theme.selectionControl.iconColor};
-    font-size: ${({ theme }) => theme.selectionControl.iconSize};
+    color: ${colorButtonLight};
+    font-size: calc(${spacingUnit} * 2.5);
     pointer-events: none;
 
     span {
         display: block;
     }
 `;
-
-IconWrapper.propTypes = {
-    theme: PropTypes.shape({
-        selectionControl: PropTypes.shape({
-            iconColor: PropTypes.string.isRequired,
-            iconSize: PropTypes.string.isRequired,
-        }).isRequired,
-    }),
-};
-
-IconWrapper.defaultProps = {
-    theme: defaultTheme,
-};
 
 export const LabelWrapper = styled.button`
     flex: 0 1 auto;
@@ -231,5 +195,5 @@ LabelWrapper.propTypes = {
 };
 
 export const ErrorMessageWrapper = styled.div`
-    margin: 2px 0 0 0;
+    margin: calc(${spacingUnit} / 4) 0 0 0;
 `;
