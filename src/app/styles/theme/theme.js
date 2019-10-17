@@ -172,10 +172,3 @@ export const colorSignalDisabled = theme('mode', {
     [themeModes.dark]: colors.grey10,
     [themeModes.light]: colors.grey10,
 });
-
-/* LABEL SPECIFICS */
-export const labelTextColor = theme('mode', {
-    [themeModes.basic]: colors.grey100,
-    [themeModes.dark]: colors.white,
-    [themeModes.light]: colors.black,
-});

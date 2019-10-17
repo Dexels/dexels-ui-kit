@@ -20,12 +20,12 @@ import rippleEffect from '../../../styles/mixins/rippleEffect';
 import theme from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
-const borderRadius = theme('layout', {
+const buttonBorderRadius = theme('layout', {
     basic: '50px',
     compact: '4px',
 });
 
-const height = theme.variants('layout', 'size', {
+const buttonHeight = theme.variants('layout', 'size', {
     [BUTTON_SIZES.LARGE]: {
         basic: '48px',
         compact: '46px',
@@ -40,7 +40,7 @@ const height = theme.variants('layout', 'size', {
     },
 });
 
-const textColorDisabled = theme('mode', {
+const buttonColorDisabled = theme('mode', {
     basic: white,
     dark: white,
     light: grey50,
@@ -55,12 +55,12 @@ export const StyledButton = styled.button`
     position: relative;
     outline: none;
     border: 1px solid ${colorPrimary};
-    border-radius: ${borderRadius};
+    border-radius: ${buttonBorderRadius};
     background-color: ${colorPrimary};
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
-    min-height: ${height};
+    min-height: ${buttonHeight};
     color: ${colorButtonLight};
 
     ${({ isFullWidth }) => isFullWidth && css`
@@ -105,7 +105,7 @@ export const StyledButton = styled.button`
         ${isDisabled && css`
             background-color: ${colorDisabled};
             border-color: ${colorDisabled};
-            color: ${textColorDisabled};
+            color: ${buttonColorDisabled};
         `};
     `};
 
@@ -122,7 +122,7 @@ export const StyledButton = styled.button`
         ${isDisabled && css`
             background-color: ${colorDisabled};
             border-color: ${colorDisabled};
-            color: ${textColorDisabled};
+            color: ${buttonColorDisabled};
         `};
     `};
 
@@ -139,7 +139,7 @@ export const StyledButton = styled.button`
         ${isDisabled && css`
             background-color: ${colorDisabled};
             border-color: ${colorDisabled};
-            color: ${textColorDisabled};
+            color: ${buttonColorDisabled};
         `};
     `};
 
@@ -156,7 +156,7 @@ export const StyledButton = styled.button`
         }
 
         ${isDisabled && css`
-            color: ${textColorDisabled};
+            color: ${buttonColorDisabled};
         `};
     `};
 

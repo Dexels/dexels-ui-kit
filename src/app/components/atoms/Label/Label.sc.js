@@ -1,4 +1,5 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { black, grey100, white } from '../../../styles/colors/colors';
 import {
     colorBodyLight,
     colorDisabled,
@@ -6,10 +7,17 @@ import {
     colorSecondary,
     colorSignalError,
     colorSignalValid,
-    labelTextColor,
+    themeModes,
 } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import theme from 'styled-theming';
+
+const labelColor = theme('mode', {
+    [themeModes.basic]: grey100,
+    [themeModes.dark]: white,
+    [themeModes.light]: black,
+});
 
 export const StyledLabel = styled.label`
     ${textStyling(availableTextStyles().body1)};
@@ -17,7 +25,7 @@ export const StyledLabel = styled.label`
     color: ${colorBodyLight};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
-        color: ${labelTextColor};
+        color: ${labelColor};
     `};
 
     ${({ isHovered }) => isHovered && css`
