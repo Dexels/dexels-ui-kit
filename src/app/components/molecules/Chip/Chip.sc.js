@@ -8,7 +8,7 @@ import {
     grey75,
     white,
 } from '../../../styles/colors/colors';
-import { borderRadius, spacingUnit, themeLayouts } from '../../../styles/theme/layout';
+import { borderRadius, spacingUnit } from '../../../styles/theme/layout';
 import {
     colorPrimaryHover,
     themeModes,
