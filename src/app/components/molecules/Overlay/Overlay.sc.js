@@ -1,8 +1,13 @@
 import styled, { css } from 'styled-components';
-import defaultTheme from '../../../styles/theme/theme';
-import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
+import theme from 'styled-theming';
+import { themeModes } from '../../../styles/theme/theme';
+
+const overlayOpacity = theme('mode', {
+    [themeModes.basic]: 0.4,
+    [themeModes.dark]: 0.6,
+    [themeModes.light]: 0.3,
+});
 
 export const StyledOverlay = styled.div`
     ${setBoxSizing()};
@@ -24,21 +29,9 @@ export const StyledOverlay = styled.div`
         height: ${height};
     `};
 
-    ${({ isVisible, theme }) => isVisible && css`
-        background-color: ${`rgba(0, 0, 0, ${theme.overlay.opacity})`}
+    ${({ isVisible }) => isVisible && css`
+        background-color: rgba(0, 0, 0, ${overlayOpacity})
     `};
 `;
-
-StyledOverlay.propTypes = {
-    theme: PropTypes.shape({
-        overlay: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-StyledOverlay.defaultProps = {
-    theme: defaultTheme,
-};
 
 export default StyledOverlay;

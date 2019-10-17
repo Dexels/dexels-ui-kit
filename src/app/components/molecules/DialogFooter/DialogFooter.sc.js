@@ -1,20 +1,8 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import {
-    grey2,
-    grey25,
-    grey5,
-} from '../../../styles/colors/colors';
+import { backgroundColorFooter } from '../../../styles/theme/theme';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { spacingUnit } from '../../../styles/theme/layout';
 import styled from 'styled-components';
-import theme from 'styled-theming';
-import { themeModes } from '../../../styles/theme/theme';
-
-const dialogFooterBackgroundColor = theme('mode', {
-    [themeModes.basic]: grey5,
-    [themeModes.dark]: grey25,
-    [themeModes.light]: grey2,
-});
 
 export const StyledDialogFooter = styled.footer`
     ${setBoxSizing()};
@@ -24,14 +12,14 @@ export const StyledDialogFooter = styled.footer`
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
-    background-color: ${dialogFooterBackgroundColor};
+    background-color: ${backgroundColorFooter};
     padding: calc(${spacingUnit} * 2);
 `;
 
 export const TextWrapper = styled.div`
     ${textStyling(availableTextStyles().body2)};
     flex: 1 1 auto;
-    padding: 0 8px 0 0;
+    padding: 0 ${spacingUnit} 0 0;
     word-break: break-all;
 `;
 
@@ -43,5 +31,5 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: 0 16px 0 0;
+    margin: 0 calc(${spacingUnit} * 2) 0 0;
 `;

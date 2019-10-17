@@ -105,6 +105,25 @@ export const backgroundColorTertiary = theme('mode', {
     [themeModes.light]: colors.white,
 });
 
+/* HEADERS / FOOTERS */
+export const backgroundColorFooter = theme('mode', {
+    [themeModes.basic]: colors.grey5,
+    [themeModes.dark]: colors.grey25,
+    [themeModes.light]: colors.grey5,
+});
+
+export const backgroundColorHeader = theme('mode', {
+    [themeModes.basic]: colors.purple100,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.grey10,
+});
+
+export const colorHeader = theme('mode', {
+    [themeModes.basic]: colors.white,
+    [themeModes.dark]: colors.white,
+    [themeModes.light]: colors.black,
+});
+
 /* TEXT / ICON */
 export const colorHeadingDark = theme('mode', {
     [themeModes.basic]: colors.purple100,
@@ -121,13 +140,13 @@ export const colorHeadingLight = theme('mode', {
 export const colorBodyDark = theme('mode', {
     [themeModes.basic]: colors.grey100,
     [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.grey2,
+    [themeModes.light]: colors.grey75,
 });
 
 export const colorBodyLight = theme('mode', {
     [themeModes.basic]: colors.grey50,
     [themeModes.dark]: colors.grey100,
-    [themeModes.light]: colors.white,
+    [themeModes.light]: colors.grey50,
 });
 
 export const colorButtonDark = theme('mode', {

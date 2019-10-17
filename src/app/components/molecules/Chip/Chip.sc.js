@@ -8,6 +8,7 @@ import {
     grey75,
     white,
 } from '../../../styles/colors/colors';
+import { borderRadius, themeLayouts } from '../../../styles/theme/layout';
 import {
     colorPrimaryHover,
     themeModes,
@@ -16,7 +17,6 @@ import styled, { css } from 'styled-components';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import theme from 'styled-theming';
-import { themeLayouts } from '../../../styles/theme/layout';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 const chipBackgroundColor = theme('mode', {
@@ -64,7 +64,7 @@ export const StyledChip = styled.button`
     position: relative;
     outline: none;
     border: 1px solid ${chipColor};
-    border-radius: 8px;
+    border-radius: ${borderRadius};
     background-color: ${chipBackgroundColorDeselected};
     cursor: pointer;
     padding: ${chipPadding};

@@ -7,6 +7,7 @@ import {
     colorDisabled,
     colorPrimary,
     colorPrimaryHover,
+    themeModes,
 } from '../../../styles/theme/theme';
 import {
     BUTTON_EASINGS,
@@ -18,32 +19,33 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
 import theme from 'styled-theming';
+import { themeLayouts } from '../../../styles/theme/layout';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 const buttonBorderRadius = theme('layout', {
-    basic: '50px',
-    compact: '4px',
+    [themeLayouts.basic]: '50px',
+    [themeLayouts.compact]: '4px',
 });
 
 const buttonHeight = theme.variants('layout', 'size', {
     [BUTTON_SIZES.LARGE]: {
-        basic: '48px',
-        compact: '46px',
+        [themeLayouts.basic]: '48px',
+        [themeLayouts.compact]: '46px',
     },
     [BUTTON_SIZES.MEDIUM]: {
-        basic: '32px',
-        compact: '30px',
+        [themeLayouts.basic]: '32px',
+        [themeLayouts.compact]: '30px',
     },
     [BUTTON_SIZES.SMALL]: {
-        basic: '30px',
-        compact: '28px',
+        [themeLayouts.basic]: '30px',
+        [themeLayouts.compact]: '28px',
     },
 });
 
 const buttonColorDisabled = theme('mode', {
-    basic: white,
-    dark: white,
-    light: grey50,
+    [themeModes.basic]: white,
+    [themeModes.dark]: white,
+    [themeModes.light]: grey50,
 });
 
 export const StyledButton = styled.button`
