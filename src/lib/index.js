@@ -28,7 +28,7 @@ import Tooltip from '../app/components/molecules/Tooltip/Tooltip';
 // Organisms
 import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
 import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
-import DialogAlert from '../app/components/organisms/DialogAlert/DialogAlert';
+import Dialog from '../app/components/organisms/Dialog/Dialog';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
 
 export {
@@ -52,6 +52,6 @@ export {
     // Export organisms
     ChipStatus,
     ContainerContent,
-    DialogAlert,
+    Dialog,
     InputPassword,
 };

@@ -14,3 +14,8 @@ export const spacingUnit = theme('layout', {
     [themeLayouts.basic]: '8px',
     [themeLayouts.compact]: '4px',
 });
+
+export const borderRadius = theme('layout', {
+    [themeLayouts.basic]: '8px',
+    [themeLayouts.compact]: '6px',
+});

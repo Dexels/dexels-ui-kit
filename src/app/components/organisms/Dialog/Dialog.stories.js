@@ -2,32 +2,32 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
-import DialogAlert from './DialogAlert';
+import Dialog from './Dialog';
 import PropTypes from 'prop-types';
 
-export default { title: 'organisms/DialogAlert' };
+export default { title: 'organisms/Dialog' };
 
 const ConfigurableDialog = ({ onCancel, onClose, onConfirm }) => (
-    <DialogAlert
-        bodyAlignment={select('Body alignment', DialogAlert.alignments, DialogAlert.defaultProps.bodyAlignment)}
+    <Dialog
+        bodyAlignment={select('Body alignment', Dialog.alignments, Dialog.defaultProps.bodyAlignment)}
         buttonCancelText={text('ButtonCancel text', 'Cancel')}
         buttonClosePosition={select(
-            'ButtonClose position', DialogAlert.directions, DialogAlert.defaultProps.buttonClosePosition,
+            'ButtonClose position', Dialog.directions, Dialog.defaultProps.buttonClosePosition,
         )}
         buttonConfirmText={text('Button confirm text', 'Ok')}
-        elevation={select('Elevation', DialogAlert.elevations, DialogAlert.defaultProps.elevation)}
+        elevation={select('Elevation', Dialog.elevations, Dialog.defaultProps.elevation)}
         footerMessage={text('Message in footer', '')}
-        hasButtonClose={boolean('Show close button', DialogAlert.defaultProps.hasButtonClose)}
-        hasOverlay={boolean('Has overlay', DialogAlert.defaultProps.hasOverlay)}
+        hasButtonClose={boolean('Show close button', Dialog.defaultProps.hasButtonClose)}
+        hasOverlay={boolean('Has overlay', Dialog.defaultProps.hasOverlay)}
         header={text('Header', '')}
-        headerAlignment={select('Align header', DialogAlert.alignments, DialogAlert.defaultProps.headerAlignment)}
+        headerAlignment={select('Align header', Dialog.alignments, Dialog.defaultProps.headerAlignment)}
         onCancel={onCancel}
         onClose={onClose}
         onConfirm={onConfirm}
-        width={text('Set width in px or %', DialogAlert.defaultProps.width)}
+        width={text('Set width in px or %', Dialog.defaultProps.width)}
     >
         {text('Body', 'Some body text')}
-    </DialogAlert>
+    </Dialog>
 );
 
 ConfigurableDialog.propTypes = {
@@ -61,7 +61,7 @@ export const ConfigurableAlert = () => {
                 }}
                 variant={Button.variants.FILLED}
             >
-                {isVisible ? 'ALERT DIALOG IS SHOWING' : 'SHOW ALERT DIALOG'}
+                {isVisible ? 'DIALOG IS SHOWING' : 'SHOW DIALOG'}
             </Button>
             {isVisible && (
                 <ConfigurableDialog

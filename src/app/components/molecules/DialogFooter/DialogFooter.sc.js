@@ -1,51 +1,27 @@
-import defaultTheme from '../../../styles/theme/theme';
-import PropTypes from 'prop-types';
+import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { backgroundColorFooter } from '../../../styles/theme/theme';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { spacingUnit } from '../../../styles/theme/layout';
 import styled from 'styled-components';
-import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledDialogFooter = styled.footer`
     ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${textStyling(availableTextStyles().body2)};
     display: flex;
     flex-direction: row;
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
-    background-color: ${({ theme }) => theme.dialogFooter.backgroundColor};
-    padding: 16px;
+    background-color: ${backgroundColorFooter};
+    padding: calc(${spacingUnit} * 2);
 `;
-
-StyledDialogFooter.propTypes = {
-    theme: PropTypes.shape({
-        dialogFooter: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-StyledDialogFooter.defaultProps = {
-    theme: defaultTheme,
-};
 
 export const TextWrapper = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${textStyling(availableTextStyles().body2)};
     flex: 1 1 auto;
-    padding: 0 8px 0 0;
+    padding: 0 ${spacingUnit} 0 0;
     word-break: break-all;
 `;
-
-TextWrapper.propTypes = {
-    theme: PropTypes.shape({
-        dialogFooter: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-TextWrapper.defaultProps = {
-    theme: defaultTheme,
-};
 
 export const ButtonBarWrapper = styled.div`
     display: flex;
@@ -55,5 +31,5 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: 0 16px 0 0;
+    margin: 0 calc(${spacingUnit} * 2) 0 0;
 `;
