@@ -1,14 +1,36 @@
-import { BUTTON_ICON_VARIANTS, buttonIconFontSize } from './ButtonIcon.consts';
+import { BUTTON_ICON_SIZES, BUTTON_ICON_VARIANTS } from './ButtonIcon.consts';
 import {
-    buttonIconBackgroundColorHover,
     colorButtonLight,
     colorDisabled,
     colorPrimary,
     colorPrimaryHover,
 } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
+import { grey2 } from '../../../styles/colors/colors';
 import PropTypes from 'prop-types';
 import { spacingUnit } from '../../../styles/theme/layout';
+import { theme } from 'styled-theming';
+
+const fontSize = theme.variants('layout', 'size', {
+    [BUTTON_ICON_SIZES.LARGE]: {
+        basic: '20px',
+        compact: '18px',
+    },
+    [BUTTON_ICON_SIZES.MEDIUM]: {
+        basic: '18px',
+        compact: '16px',
+    },
+    [BUTTON_ICON_SIZES.SMALL]: {
+        basic: '14px',
+        compact: '12px',
+    },
+});
+
+const backgroundColorHover = theme('mode', {
+    basic: grey2,
+    dark: grey2,
+    light: grey2,
+});
 
 export const StyledButtonIcon = styled.button`
     display: flex;
@@ -19,7 +41,7 @@ export const StyledButtonIcon = styled.button`
     background-color: transparent;
     cursor: pointer;
     padding: calc(${spacingUnit} * 1.5);
-    font-size: ${buttonIconFontSize};
+    font-size: ${fontSize};
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
@@ -31,7 +53,7 @@ export const StyledButtonIcon = styled.button`
 
         &:focus,
         &:hover {
-            background-color: ${buttonIconBackgroundColorHover};
+            background-color: ${backgroundColorHover};
             color: ${colorPrimaryHover};
         }
     `};

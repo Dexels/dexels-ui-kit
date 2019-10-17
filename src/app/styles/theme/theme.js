@@ -166,19 +166,6 @@ export const colorSignalDisabled = theme('mode', {
     light: colors.grey10,
 });
 
-/* BUTTON SPECIFICS */
-export const buttonTextColorDisabled = theme('mode', {
-    basic: colors.white,
-    dark: colors.white,
-    light: colors.grey50,
-});
-
-export const buttonIconBackgroundColorHover = theme('mode', {
-    basic: colors.grey2,
-    dark: colors.grey2,
-    light: colors.grey2,
-});
-
 /* LABEL SPECIFICS */
 export const labelTextColor = theme('mode', {
     basic: colors.grey100,

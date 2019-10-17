@@ -2,7 +2,6 @@ import { availableTextStyles, textStyling } from '../../../styles/theme/textStyl
 import {
     backgroundColorPrimary,
     backgroundColorTertiary,
-    buttonTextColorDisabled,
     colorButtonDark,
     colorButtonLight,
     colorDisabled,
@@ -13,13 +12,39 @@ import {
     BUTTON_EASINGS,
     BUTTON_SIZES,
     BUTTON_VARIANTS,
-    buttonBorderRadius,
-    buttonHeight,
 } from './Button.consts';
+import { grey50, white } from '../../../styles/colors/colors';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
+import { theme } from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
+
+const borderRadius = theme('layout', {
+    basic: '50px',
+    compact: '4px',
+});
+
+const height = theme.variants('layout', 'size', {
+    [BUTTON_SIZES.LARGE]: {
+        basic: '48px',
+        compact: '46px',
+    },
+    [BUTTON_SIZES.MEDIUM]: {
+        basic: '32px',
+        compact: '30px',
+    },
+    [BUTTON_SIZES.SMALL]: {
+        basic: '30px',
+        compact: '28px',
+    },
+});
+
+const textColorDisabled = theme('mode', {
+    basic: white,
+    dark: white,
+    light: grey50,
+});
 
 export const StyledButton = styled.button`
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
@@ -30,12 +55,12 @@ export const StyledButton = styled.button`
     position: relative;
     outline: none;
     border: 1px solid ${colorPrimary};
-    border-radius: ${buttonBorderRadius};
+    border-radius: ${borderRadius};
     background-color: ${colorPrimary};
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
-    min-height: ${buttonHeight};
+    min-height: ${height};
     color: ${colorButtonLight};
 
     ${({ isFullWidth }) => isFullWidth && css`
@@ -80,7 +105,7 @@ export const StyledButton = styled.button`
         ${isDisabled && css`
             background-color: ${colorDisabled};
             border-color: ${colorDisabled};
-            color: ${buttonTextColorDisabled};
+            color: ${textColorDisabled};
         `};
     `};
 
@@ -97,7 +122,7 @@ export const StyledButton = styled.button`
         ${isDisabled && css`
             background-color: ${colorDisabled};
             border-color: ${colorDisabled};
-            color: ${buttonTextColorDisabled};
+            color: ${textColorDisabled};
         `};
     `};
 
@@ -114,7 +139,7 @@ export const StyledButton = styled.button`
         ${isDisabled && css`
             background-color: ${colorDisabled};
             border-color: ${colorDisabled};
-            color: ${buttonTextColorDisabled};
+            color: ${textColorDisabled};
         `};
     `};
 
@@ -131,7 +156,7 @@ export const StyledButton = styled.button`
         }
 
         ${isDisabled && css`
-            color: ${buttonTextColorDisabled};
+            color: ${textColorDisabled};
         `};
     `};
 
