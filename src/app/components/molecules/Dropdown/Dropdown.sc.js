@@ -12,6 +12,7 @@ import {
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { spacingUnit } from '../../../styles/theme/layout';
 
 export const StyledDropdown = styled.div`
     ${setBoxSizing()};
@@ -59,7 +60,7 @@ export const Select = styled.select`
     cursor: pointer;
     padding: 0;
     width: 100%;
-    height: 28px;
+    height: calc(${spacingUnit} * 3.5);
     color: ${colorBodyDark};
 
     ${({ isPlaceholderSelected }) => isPlaceholderSelected && css`
@@ -144,5 +145,5 @@ IconWrapper.propTypes = {
 };
 
 export const ErrorMessageWrapper = styled.div`
-    margin: 4px 0 0;
+    margin: calc(${spacingUnit} / 2) 0 0;
 `;
