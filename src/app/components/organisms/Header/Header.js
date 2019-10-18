@@ -1,5 +1,5 @@
 import {
-    ButtonContainer,
+    FunctionalContainer,
     FunctionalWrapper,
     NavigationWrapper,
     StyledHeader,
@@ -10,27 +10,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Header = ({
-    children,
     elevation,
-    navigationIcons,
-    functionalButtons,
+    navigationItems,
+    functionalItems,
     title,
 }) => (
     <StyledHeader elevation={elevation}>
         <NavigationWrapper>
-            {navigationIcons.length > 0 && navigationIcons.map((navigationIcon) => (
-                navigationIcon
+            {navigationItems.length > 0 && navigationItems.map((navigationItem) => (
+                navigationItem
             ))}
             <Title>
                 {title}
             </Title>
         </NavigationWrapper>
         <FunctionalWrapper>
-            {children}
-            {functionalButtons.length > 0 && functionalButtons.map((functionalButton) => (
-                <ButtonContainer key={functionalButton.key}>
-                    {functionalButton}
-                </ButtonContainer>
+            {functionalItems.length > 0 && functionalItems.map((functionalItem) => (
+                <FunctionalContainer key={functionalItem.key}>
+                    {functionalItem}
+                </FunctionalContainer>
             ))}
         </FunctionalWrapper>
     </StyledHeader>
@@ -39,17 +37,17 @@ const Header = ({
 Header.elevations = ELEVATIONS;
 
 Header.propTypes = {
-    children: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(Header.elevations)),
-    functionalButtons: PropTypes.arrayOf(PropTypes.object),
-    navigationIcons: PropTypes.arrayOf(PropTypes.object),
-    title: PropTypes.string.isRequired,
+    functionalItems: PropTypes.arrayOf(PropTypes.object),
+    navigationItems: PropTypes.arrayOf(PropTypes.object),
+    title: PropTypes.string,
 };
 
 Header.defaultProps = {
     elevation: Header.elevations.LEVEL_1,
-    functionalButtons: [],
-    navigationIcons: [],
+    functionalItems: [],
+    navigationItems: [],
+    title: 'Header',
 };
 
 export default Header;
