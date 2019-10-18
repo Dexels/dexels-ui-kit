@@ -1,85 +1,87 @@
+import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import {
+    backgroundColorPrimary,
+    colorDisabled,
+    colorPrimary,
+    colorPrimaryHover,
+    themeModes,
+} from '../../../styles/theme/theme';
+import {
+    grey10,
+    grey2,
+    grey25,
+} from '../../../styles/colors/colors';
 import styled, { css } from 'styled-components';
-import defaultTheme from '../../../styles/theme/theme';
 import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
-import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
+import rippleEffect from '../../../styles/mixins/rippleEffect';
+import theme from 'styled-theming';
+
+const tabsHeaderListDividerColor = theme('mode', {
+    [themeModes.basic]: grey25,
+    [themeModes.dark]: grey2,
+    [themeModes.light]: grey10,
+});
 
 export const TabHeader = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    ${textStyling(availableTextStyles().h3)};
     outline: none;
     border: 0;
-    border-bottom: 2px solid transparent;
-    background-color: transparent;
+    border-bottom: 2px solid ${backgroundColorPrimary};
+    background-color: ${backgroundColorPrimary};
     cursor: pointer;
     padding: 0 8px;
     width: fit-content;
     text-align: center;
-    color: ${({ theme }) => theme.tabs.tabHeaderColor};
+    color: ${colorPrimary};
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
     `};
 
-    ${({ isActive, theme }) => isActive && css`
-        border-bottom-color: ${theme.tabs.tabHeaderColor};
+    ${({ isActive }) => isActive && css`
+        border-bottom-color: ${colorPrimary};
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
+    ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
-        color: ${theme.tabs.tabHeaderDisabledColor};
+        color: ${colorDisabled};
     `};
+
+    &:after {
+        ${rippleEffect(colorPrimaryHover)}
+    }
+
+    &:active,
+    &:hover {
+        border-bottom-color: ${colorPrimaryHover};
+        color: ${colorPrimaryHover};
+    }
+
+    &:active:after {
+        transform: scale(0, 0);
+        transition: none;
+        opacity: .2;
+    }
 `;
 
 TabHeader.propTypes = {
     isActive: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isFullWidth: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        tabs: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-TabHeader.defaultProps = {
-    theme: defaultTheme,
 };
 
 export const TabHeaderList = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${textStyling(availableTextStyles().body2)};
     display: flex;
     flex-wrap: nowrap;
-    border-bottom: 1px solid ${({ theme }) => theme.tabs.tabHeaderListBorderColor};
+    border-bottom: 1px solid ${tabsHeaderListDividerColor};
 `;
-
-TabHeaderList.propTypes = {
-    theme: PropTypes.shape({
-        tabs: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-TabHeaderList.defaultProps = {
-    theme: defaultTheme,
-};
 
 export const TabPanel = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${textStyling(availableTextStyles().body2)};
 `;
-
-TabPanel.propTypes = {
-    theme: PropTypes.shape({
-        tabs: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-TabPanel.defaultProps = {
-    theme: defaultTheme,
-};
 
 export const StyledTabs = styled.div`
     ${({ elevation }) => getElevation(elevation)};

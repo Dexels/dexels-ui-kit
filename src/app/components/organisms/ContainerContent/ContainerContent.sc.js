@@ -1,10 +1,8 @@
-import defaultTheme from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
-import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { spacingUnit } from '../../../styles/theme/layout';
 import styled from 'styled-components';
-import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
 
 export const StyledContainerContent = styled.div`
     ${setBoxSizing()};
@@ -13,19 +11,7 @@ export const StyledContainerContent = styled.div`
     display: flex;
     border: 0;
     background-color: transparent;
-    padding: 8px;
+    padding: ${spacingUnit};
 `;
-
-StyledContainerContent.propTypes = {
-    theme: PropTypes.shape({
-        chip: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-StyledContainerContent.defaultProps = {
-    theme: defaultTheme,
-};
 
 export default StyledContainerContent;
