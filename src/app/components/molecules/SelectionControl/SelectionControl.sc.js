@@ -1,9 +1,9 @@
 import {
     colorButtonLight,
+    colorDisabled,
+    colorError,
     colorPrimary,
-    colorSignalDisabled,
-    colorSignalError,
-    colorSignalValid,
+    colorValid,
     themeModes,
 } from '../../../styles/theme/theme';
 import {
@@ -77,26 +77,26 @@ export const InputWrapper = styled.div`
     `};
 
     ${({ isChecked, isIndeterminate, isValid }) => isValid && css`
-        border-color: ${colorSignalValid};
+        border-color: ${colorValid};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${colorSignalValid};
+            background-color: ${colorValid};
         `};
     `};
 
     ${({ hasError, isChecked, isIndeterminate }) => hasError && css`
-        border-color: ${colorSignalError};
+        border-color: ${colorError};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${colorSignalError};
+            background-color: ${colorError};
         `};
     `};
 
     ${({ isChecked, isDisabled, isIndeterminate }) => isDisabled && css`
-        border-color: ${colorSignalDisabled};
+        border-color: ${colorDisabled};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${colorSignalDisabled};
+            background-color: ${colorDisabled};
         `};
 
         input {

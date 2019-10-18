@@ -1,9 +1,9 @@
 import {
-    colorSignalDisabled,
-    colorSignalError,
-    colorSignalStandard,
-    colorSignalValid,
-    colorSignalWarning,
+    colorDisabled,
+    colorError,
+    colorPrimary,
+    colorValid,
+    colorWarning,
 } from '../../../styles/theme/theme';
 import {
     STATUS_INDICATOR_PLACEMENTS,
@@ -13,6 +13,8 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 export const StyledStatusIndicator = styled.div`
+    border-radius: inherit;
+
     ${({ placement }) => css`
         border-${placement.toLowerCase()}: 8px solid;
     `};
@@ -22,23 +24,23 @@ export const StyledStatusIndicator = styled.div`
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DISABLED && css`
-        border-color: ${colorSignalDisabled};
+        border-color: ${colorDisabled};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.ERROR && css`
-        border-color: ${colorSignalError};
+        border-color: ${colorError};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.VALID && css`
-        border-color: ${colorSignalValid};
+        border-color: ${colorValid};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DEFAULT && css`
-        border-color: ${colorSignalStandard};
+        border-color: ${colorPrimary};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.WARNING && css`
-        border-color: ${colorSignalWarning};
+        border-color: ${colorWarning};
     `};
 
 `;

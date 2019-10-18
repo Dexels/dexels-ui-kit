@@ -4,10 +4,10 @@ import {
     colorBodyDark,
     colorBodyLight,
     colorDisabled,
+    colorError,
     colorPrimaryHover,
     colorPrimarySelected,
-    colorSignalError,
-    colorSignalValid,
+    colorValid,
 } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
@@ -28,11 +28,11 @@ export const StyledDropdown = styled.div`
         `};
 
         ${({ isValid }) => isValid && css`
-            background-color: ${colorSignalValid};
+            background-color: ${colorValid};
         `};
 
         ${({ hasError }) => hasError && css`
-            background-color: ${colorSignalError};
+            background-color: ${colorError};
         `};
 
         ${({ isDisabled }) => isDisabled && css`
@@ -76,13 +76,13 @@ export const Select = styled.select`
     `};
 
     ${({ isValid }) => isValid && css`
-        border-color: ${colorSignalValid};
-        color: ${colorSignalValid};
+        border-color: ${colorValid};
+        color: ${colorValid};
     `};
 
     ${({ hasError }) => hasError && css`
-        border-color: ${colorSignalError};
-        color: ${colorSignalError};
+        border-color: ${colorError};
+        color: ${colorError};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
@@ -120,11 +120,11 @@ export const IconWrapper = styled.div`
     `};
 
     ${({ isValid }) => isValid && css`
-        color: ${colorSignalValid};
+        color: ${colorValid};
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${colorSignalError};
+        color: ${colorError};
     `};
 
     ${({ isDisabled }) => isDisabled && css`

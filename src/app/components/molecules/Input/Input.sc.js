@@ -1,12 +1,12 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
 import {
     colorBodyDark,
+    colorDisabled,
+    colorError,
     colorPrimary,
     colorPrimaryHover,
     colorPrimarySelected,
-    colorSignalDisabled,
-    colorSignalError,
-    colorSignalValid,
+    colorValid,
 } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
 import { INPUT_VARIANTS } from '../../../utils/constants';
@@ -41,11 +41,11 @@ export const StyledInput = styled.div`
             `};
 
             ${isValid && css`
-                background-color: ${colorSignalValid};
+                background-color: ${colorValid};
             `};
 
             ${hasError && css`
-                background-color: ${colorSignalError};
+                background-color: ${colorError};
             `};
 
             ${isDisabled && css`
@@ -133,16 +133,16 @@ export const TextField = styled.input`
     `};
 
     ${({ isValid }) => isValid && css`
-        border-color: ${colorSignalValid};
+        border-color: ${colorValid};
     `};
 
     ${({ hasError }) => hasError && css`
-        border-color: ${colorSignalError};
+        border-color: ${colorError};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
-        border-color: ${colorSignalDisabled};
-        color: ${colorSignalDisabled};
+        border-color: ${colorDisabled};
+        color: ${colorDisabled};
     `};
 `;
 
