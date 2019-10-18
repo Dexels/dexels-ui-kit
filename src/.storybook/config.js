@@ -1,7 +1,7 @@
 import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
-import { addDecorator, configure } from '@storybook/react';
+import { addDecorator, addParameters, configure } from '@storybook/react';
 import { getAvailableThemeLayouts } from '../app/styles/theme/layout';
 import { getAvailableThemeModes } from '../app/styles/theme/theme';
 import React from 'react';
@@ -33,6 +33,24 @@ addDecorator((storyFn) => (
         {storyFn()}
     </div>
 ));
+
+addParameters({
+    backgrounds: [
+        {
+            default: true,
+            name: 'light',
+            value: '#FFFFFF',
+        },
+        {
+            name: 'intermediate',
+            value: '#BFC8D3',
+        },
+        {
+            name: 'dark',
+            value: '#212121',
+        },
+    ],
+});
 
 // Import all stories
 configure(require.context('../app', true, /\.stories\.js$/), module);
