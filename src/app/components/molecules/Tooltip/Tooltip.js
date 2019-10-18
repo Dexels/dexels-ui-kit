@@ -36,10 +36,10 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
-    elevation: Tooltip.elevations.LEVEL_1,
+    elevation: Tooltip.elevations.LEVEL_6,
     placement: Tooltip.placements.BOTTOM,
-    transitionDuration: 400,
-    transitionEasing: Tooltip.transitionEasings.EASE_IN_OUT,
+    transitionDuration: 300,
+    transitionEasing: Tooltip.transitionEasings.EASE,
 };
 
 export default Tooltip;
