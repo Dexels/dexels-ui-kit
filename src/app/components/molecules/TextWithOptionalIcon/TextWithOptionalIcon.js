@@ -16,8 +16,8 @@ const TextWithOptionalIcon = ({
             {children}
         </Text>
         {iconType && (
-            <IconWrapper iconColor={iconColor} iconSize={iconSize}>
-                <Icon type={iconType} />
+            <IconWrapper>
+                <Icon color={iconColor} size={iconSize} type={iconType} />
             </IconWrapper>
         )}
     </StyledTextWithOptionalIcon>
