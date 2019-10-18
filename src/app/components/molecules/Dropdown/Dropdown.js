@@ -1,48 +1,43 @@
 import {
     ErrorMessageWrapper,
-    LabelWrapper,
-    StyledInput,
-    TextField,
-} from './Input.sc';
-import { INPUT_TYPES, INPUT_VARIANTS } from './Input.consts';
+    IconWrapper,
+    Select,
+    StyledDropdown,
+} from './Dropdown.sc';
 import React, { useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
-import Label from '../../atoms/Label/Label';
+import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 
-const Input = ({
+const Dropdown = ({
+    children,
     errorMessage,
     hasError,
     isDisabled,
-    isTextarea,
+    isRequired,
     isValid,
-    label,
     name,
     onChange,
-    type,
+    placeholder,
     value,
-    variant,
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const hasValue = value.length > 0;
 
     return (
         <>
-            <StyledInput
+            <StyledDropdown
                 hasError={hasError}
                 isDisabled={isDisabled}
                 isFocused={isFocused}
                 isValid={isValid}
-                variant={variant}
             >
-                <TextField
-                    as={isTextarea ? 'textarea' : 'input'}
+                <Select
                     hasError={hasError}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
-                    isTextarea={isTextarea}
+                    isPlaceholderSelected={placeholder === value}
                     isValid={isValid}
                     name={name}
                     onBlur={() => {
@@ -58,30 +53,28 @@ const Input = ({
                     onMouseLeave={() => {
                         setIsHovered(false);
                     }}
-                    type={type}
+                    required={isRequired}
                     value={value}
-                    variant={variant}
-                />
-                <LabelWrapper
-                    hasValue={hasValue}
-                    isFocused={isFocused}
-                    variant={variant}
                 >
-                    <Label
-                        hasError={hasError}
-                        isActive={hasValue}
-                        isDisabled={isDisabled}
-                        isFocused={isFocused}
-                        isHovered={isHovered}
-                        isSmall={hasValue || isFocused}
-                        isValid={isValid}
-                    >
-                        {label}
-                    </Label>
-                </LabelWrapper>
-            </StyledInput>
+                    {placeholder && (
+                        <option disabled hidden value={placeholder}>
+                            {placeholder}
+                        </option>
+                    )}
+                    {children}
+                </Select>
+                <IconWrapper
+                    hasError={hasError}
+                    isDisabled={isDisabled}
+                    isFocused={isFocused}
+                    isHovered={isHovered}
+                    isValid={isValid}
+                >
+                    <Icon type={Icon.types.DROP_DOWN} />
+                </IconWrapper>
+            </StyledDropdown>
             {errorMessage && hasError && !isDisabled && (
-                <ErrorMessageWrapper variant={variant}>
+                <ErrorMessageWrapper>
                     <ErrorMessage>
                         {errorMessage}
                     </ErrorMessage>
@@ -91,32 +84,26 @@ const Input = ({
     );
 };
 
-Input.types = INPUT_TYPES;
-Input.variants = INPUT_VARIANTS;
-
-Input.propTypes = {
+Dropdown.propTypes = {
+    children: PropTypes.node.isRequired,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
-    isTextarea: PropTypes.bool,
+    isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
-    label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    type: PropTypes.oneOf(Object.values(Input.types)),
-    value: PropTypes.string,
-    variant: PropTypes.oneOf(Object.values(Input.variants)),
+    placeholder: PropTypes.string,
+    value: PropTypes.string.isRequired,
 };
 
-Input.defaultProps = {
+Dropdown.defaultProps = {
     errorMessage: '',
     hasError: false,
     isDisabled: false,
-    isTextarea: false,
+    isRequired: false,
     isValid: false,
-    type: Input.types.TEXT,
-    value: '',
-    variant: Input.variants.OUTLINE,
+    placeholder: '',
 };
 
-export default Input;
+export default Dropdown;

@@ -9,7 +9,7 @@ const Label = ({
     isCheckboxLabel,
     isHovered,
     isDisabled,
-    isFocussed,
+    isFocused,
     isSmall,
     isValid,
 }) => (
@@ -18,7 +18,7 @@ const Label = ({
         isActive={isActive}
         isCheckboxLabel={isCheckboxLabel}
         isDisabled={isDisabled}
-        isFocussed={isFocussed}
+        isFocused={isFocused}
         isHovered={isHovered}
         isSmall={isSmall}
         isValid={isValid}
@@ -33,7 +33,7 @@ Label.propTypes = {
     isActive: PropTypes.bool,
     isCheckboxLabel: PropTypes.bool,
     isDisabled: PropTypes.bool,
-    isFocussed: PropTypes.bool,
+    isFocused: PropTypes.bool,
     isHovered: PropTypes.bool,
     isSmall: PropTypes.bool,
     isValid: PropTypes.bool,
@@ -44,7 +44,7 @@ Label.defaultProps = {
     isActive: false,
     isCheckboxLabel: false,
     isDisabled: false,
-    isFocussed: false,
+    isFocused: false,
     isHovered: false,
     isSmall: false,
     isValid: false,

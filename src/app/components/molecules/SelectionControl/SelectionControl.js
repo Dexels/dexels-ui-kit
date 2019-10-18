@@ -70,7 +70,7 @@ const SelectionControl = ({
                 </Label>
             </LabelWrapper>
         </StyledSelectionControl>
-        {errorMessage && hasError && (
+        {errorMessage && hasError && !isDisabled && (
             <ErrorMessageWrapper>
                 <ErrorMessage>
                     {errorMessage}
