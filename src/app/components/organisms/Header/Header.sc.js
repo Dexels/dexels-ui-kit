@@ -44,12 +44,11 @@ export const FunctionalWrapper = styled.div`
     flex-grow: 1;
     flex-wrap: nowrap;
     justify-content: flex-end;
+    margin: 0 ${spacingUnit} 0 0;
     color: ${colorHeadingLight};
 `;
 
 export const FunctionalContainer = styled.div`
-    display: flex;
-    flex-direction: row;
     align-self: center;
-    margin: 0 calc(${spacingUnit} * 2) 0 0;
+    padding: 0 ${spacingUnit} 0 ${spacingUnit};
 `;
