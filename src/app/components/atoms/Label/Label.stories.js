@@ -9,7 +9,7 @@ export const Configurable = () => (
         hasError={boolean('Has error', Label.defaultProps.hasError)}
         isActive={boolean('Is active', Label.defaultProps.isActive)}
         isDisabled={boolean('Is disabled', Label.defaultProps.isDisabled)}
-        isFocussed={boolean('Is focussed', Label.defaultProps.isFocussed)}
+        isFocused={boolean('Is focused', Label.defaultProps.isFocused)}
         isHovered={boolean('Is hovered', Label.defaultProps.isHovered)}
         isSmall={boolean('Is small', Label.defaultProps.isSmall)}
         isValid={boolean('Is valid', Label.defaultProps.isValid)}

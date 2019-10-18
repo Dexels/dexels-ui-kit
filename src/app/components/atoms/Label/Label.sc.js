@@ -3,10 +3,10 @@ import { black, grey100, white } from '../../../styles/colors/colors';
 import {
     colorBodyLight,
     colorDisabled,
+    colorError,
     colorPrimary,
     colorSecondary,
-    colorSignalError,
-    colorSignalValid,
+    colorValid,
     themeModes,
 } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
@@ -36,16 +36,16 @@ export const StyledLabel = styled.label`
         color: ${colorPrimary};
     `};
 
-    ${({ isFocussed }) => isFocussed && css`
+    ${({ isFocused }) => isFocused && css`
         color: ${colorSecondary};
     `};
 
     ${({ isValid }) => isValid && css`
-        color: ${colorSignalValid};
+        color: ${colorValid};
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${colorSignalError};
+        color: ${colorError};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
@@ -60,7 +60,7 @@ StyledLabel.propTypes = {
     isActive: PropTypes.bool.isRequired,
     isCheckboxLabel: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocussed: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     isSmall: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
 };

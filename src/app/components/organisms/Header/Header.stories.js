@@ -7,7 +7,7 @@ import React from 'react';
 
 export default { title: 'organisms/Header' };
 
-const navigationIcons = [
+const navigationItems = [
     <ButtonIcon
         iconType={Icon.types.MENU}
         key={1}
@@ -22,10 +22,40 @@ const navigationIcons = [
     />,
 ];
 
-const functionalButtons = [
+const functionalItems = [
+    <ButtonIcon
+        iconType={Icon.types.PLUS}
+        key={1}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.SEARCH}
+        key={2}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.SHARE}
+        key={3}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.SETTINGS}
+        key={4}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
+    <ButtonIcon
+        iconType={Icon.types.HELP}
+        key={5}
+        onClick={() => {}}
+        variant={ButtonIcon.variants.HEADER}
+    />,
     <Button
         iconType={Icon.types.INFO}
-        key={1}
+        key={6}
         onClick={() => {}}
         size={Button.sizes.SMALL}
         variant={Button.variants.OUTLINE_HEADER}
@@ -34,7 +64,7 @@ const functionalButtons = [
     </Button>,
     <Button
         iconType={Icon.types.INFO}
-        key={2}
+        key={7}
         onClick={() => {}}
         size={Button.sizes.SMALL}
         variant={Button.variants.OUTLINE_HEADER}
@@ -46,38 +76,8 @@ const functionalButtons = [
 export const Configurable = () => (
     <Header
         elevation={select('Elevation', Header.elevations, Header.defaultProps.elevation)}
-        functionalButtons={functionalButtons}
-        navigationIcons={navigationIcons}
+        functionalItems={functionalItems}
+        navigationItems={navigationItems}
         title={text('Header title', 'Wedstrijden')}
-    >
-        <ButtonIcon
-            iconType={Icon.types.PLUS}
-            key={1}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SEARCH} key={2}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SHARE}
-            key={3}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SETTINGS}
-            key={4}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <ButtonIcon
-            iconType={Icon.types.HELP}
-            key={5}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-    </Header>
+    />
 );

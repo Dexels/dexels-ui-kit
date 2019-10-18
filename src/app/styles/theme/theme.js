@@ -26,7 +26,7 @@ export const fontSecondary = theme('mode', {
     [themeModes.light]: FONT_FAMILY_SECONDARY,
 });
 
-/* BASIC / ROOT */
+/* PRIMARY */
 export const colorPrimary = theme('mode', {
     [themeModes.basic]: colors.purple100,
     [themeModes.dark]: colors.white,
@@ -45,6 +45,13 @@ export const colorPrimarySelected = theme('mode', {
     [themeModes.light]: colors.grey25,
 });
 
+export const backgroundColorPrimary = theme('mode', {
+    [themeModes.basic]: colors.white,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.white,
+});
+
+/* SECONDARY */
 export const colorSecondary = theme('mode', {
     [themeModes.basic]: colors.blue100,
     [themeModes.dark]: colors.grey2,
@@ -63,6 +70,13 @@ export const colorSecondarySelected = theme('mode', {
     [themeModes.light]: colors.grey25,
 });
 
+export const backgroundColorSecondary = theme('mode', {
+    [themeModes.basic]: colors.grey2,
+    [themeModes.dark]: colors.grey100,
+    [themeModes.light]: colors.grey2,
+});
+
+/* TERTIARY */
 export const colorTertiary = theme('mode', {
     [themeModes.basic]: colors.blue50,
     [themeModes.dark]: colors.grey2,
@@ -81,28 +95,54 @@ export const colorTertiarySelected = theme('mode', {
     [themeModes.light]: colors.grey25,
 });
 
+export const backgroundColorTertiary = theme('mode', {
+    [themeModes.basic]: colors.purple100,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.white,
+});
+
+/* COLORS */
 export const colorDisabled = theme('mode', {
     [themeModes.basic]: colors.grey10,
     [themeModes.dark]: colors.grey10,
     [themeModes.light]: colors.grey10,
 });
 
-export const backgroundColorPrimary = theme('mode', {
-    [themeModes.basic]: colors.white,
-    [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.white,
+export const colorError = theme('mode', {
+    [themeModes.basic]: colors.red,
+    [themeModes.dark]: colors.red,
+    [themeModes.light]: colors.red,
 });
 
-export const backgroundColorSecondary = theme('mode', {
-    [themeModes.basic]: colors.grey2,
-    [themeModes.dark]: colors.grey100,
-    [themeModes.light]: colors.grey2,
+export const colorValid = theme('mode', {
+    [themeModes.basic]: colors.green,
+    [themeModes.dark]: colors.green,
+    [themeModes.light]: colors.green,
 });
 
-export const backgroundColorTertiary = theme('mode', {
+export const colorWarning = theme('mode', {
+    [themeModes.basic]: colors.orange,
+    [themeModes.dark]: colors.orange,
+    [themeModes.light]: colors.orange,
+});
+
+/* HEADERS / FOOTERS */
+export const backgroundColorFooter = theme('mode', {
+    [themeModes.basic]: colors.grey5,
+    [themeModes.dark]: colors.grey25,
+    [themeModes.light]: colors.grey5,
+});
+
+export const backgroundColorHeader = theme('mode', {
     [themeModes.basic]: colors.purple100,
     [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.white,
+    [themeModes.light]: colors.grey10,
+});
+
+export const colorHeader = theme('mode', {
+    [themeModes.basic]: colors.white,
+    [themeModes.dark]: colors.white,
+    [themeModes.light]: colors.black,
 });
 
 /* TEXT / ICON */
@@ -121,13 +161,13 @@ export const colorHeadingLight = theme('mode', {
 export const colorBodyDark = theme('mode', {
     [themeModes.basic]: colors.grey100,
     [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.grey2,
+    [themeModes.light]: colors.grey75,
 });
 
 export const colorBodyLight = theme('mode', {
     [themeModes.basic]: colors.grey50,
     [themeModes.dark]: colors.grey100,
-    [themeModes.light]: colors.white,
+    [themeModes.light]: colors.grey50,
 });
 
 export const colorButtonDark = theme('mode', {
@@ -140,35 +180,4 @@ export const colorButtonLight = theme('mode', {
     [themeModes.basic]: colors.white,
     [themeModes.dark]: colors.white,
     [themeModes.light]: colors.black,
-});
-
-/* SIGNAL / ACCENT */
-export const colorSignalStandard = theme('mode', {
-    [themeModes.basic]: colors.purple100,
-    [themeModes.dark]: colors.purple100,
-    [themeModes.light]: colors.purple100,
-});
-
-export const colorSignalValid = theme('mode', {
-    [themeModes.basic]: colors.green,
-    [themeModes.dark]: colors.green,
-    [themeModes.light]: colors.green,
-});
-
-export const colorSignalWarning = theme('mode', {
-    [themeModes.basic]: colors.orange,
-    [themeModes.dark]: colors.orange,
-    [themeModes.light]: colors.orange,
-});
-
-export const colorSignalError = theme('mode', {
-    [themeModes.basic]: colors.red,
-    [themeModes.dark]: colors.red,
-    [themeModes.light]: colors.red,
-});
-
-export const colorSignalDisabled = theme('mode', {
-    [themeModes.basic]: colors.grey10,
-    [themeModes.dark]: colors.grey10,
-    [themeModes.light]: colors.grey10,
 });

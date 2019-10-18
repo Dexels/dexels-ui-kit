@@ -1,35 +1,43 @@
-import defaultTheme from '../../../styles/theme/theme';
-import PropTypes from 'prop-types';
+import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import {
+    black,
+    grey100,
+    grey2,
+    grey50,
+    white,
+} from '../../../styles/colors/colors';
+import { defaultIconSize } from '../../../styles/theme/layout';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
-import validateThemePropTypes from '../../../utils/validators/validateThemePropTypes';
+import theme from 'styled-theming';
+import { themeModes } from '../../../styles/theme/theme';
+
+const textIconBackgroundColor = theme('mode', {
+    [themeModes.basic]: grey50,
+    [themeModes.dark]: grey100,
+    [themeModes.light]: grey2,
+});
+
+const textIconColor = theme('mode', {
+    [themeModes.basic]: white,
+    [themeModes.dark]: white,
+    [themeModes.light]: black,
+});
 
 export const StyledTextIcon = styled.div`
     ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${textStyling(availableTextStyles().body2)};
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     border: 0;
     border-radius: 100%;
-    background-color: ${({ theme }) => theme.textIcon.backgroundColor};
+    background-color: ${textIconBackgroundColor};
     padding: 8px;
-    width: ${({ theme }) => theme.textIcon.size};
-    height: ${({ theme }) => theme.textIcon.size};
-    color: ${({ theme }) => theme.textIcon.colorDefault};
+    width: ${defaultIconSize};
+    height: ${defaultIconSize};
+    color: ${textIconColor};
 `;
-
-StyledTextIcon.propTypes = {
-    theme: PropTypes.shape({
-        textIcon: PropTypes.objectOf((propValue, key, componentName) => (
-            validateThemePropTypes(propValue, key, componentName)
-        )).isRequired,
-    }),
-};
-
-StyledTextIcon.defaultProps = {
-    theme: defaultTheme,
-};
 
 export default StyledTextIcon;

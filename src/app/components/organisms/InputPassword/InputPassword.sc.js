@@ -1,8 +1,10 @@
+import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { colorBodyDark, colorDisabled } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
-import defaultTheme from '../../../styles/theme/theme';
 import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { spacingUnit } from '../../../styles/theme/layout';
 
 export const StyledInputPassword = styled.div`
     ${setBoxSizing()};
@@ -10,7 +12,7 @@ export const StyledInputPassword = styled.div`
 `;
 
 export const VisibilitySwitch = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
+    ${textStyling(availableTextStyles().h1)};
     appearance: none;
     position: absolute;
     margin: 0;
@@ -18,22 +20,22 @@ export const VisibilitySwitch = styled.button`
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    color: ${({ theme }) => theme.inputPassword.visibilitySwitchColorDefault};
+    color: ${colorBodyDark};
 
     ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
         top: 0;
         right: 0;
-        padding: 0 0 0 8px;
+        padding: 0 0 0 ${spacingUnit};
     `};
 
-    ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.FULL_SIZE && css`
-        top: 8px;
-        right: 8px;
-        padding: 4px 8px;
+    ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.OUTLINE && css`
+        top: ${spacingUnit};
+        right: ${spacingUnit};
+        padding: calc(${spacingUnit} / 2) ${spacingUnit};
     `};
 
-    ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.inputPassword.visibilitySwitchColorDisabled};
+    ${({ isDisabled }) => isDisabled && css`
+        color: ${colorDisabled};
         pointer-events: none;
     `};
 
@@ -44,17 +46,5 @@ export const VisibilitySwitch = styled.button`
 
 VisibilitySwitch.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
-    theme: PropTypes.shape({
-        availableTextStyles: PropTypes.func.isRequired,
-        inputPassword: PropTypes.shape({
-            visibilitySwitchColorDefault: PropTypes.string.isRequired,
-            visibilitySwitchColorDisabled: PropTypes.string.isRequired,
-        }).isRequired,
-        textStyling: PropTypes.func.isRequired,
-    }).isRequired,
     variant: PropTypes.oneOf(Object.values(INPUT_PASSWORD_VARIANTS)).isRequired,
-};
-
-VisibilitySwitch.defaultProps = {
-    theme: defaultTheme,
 };

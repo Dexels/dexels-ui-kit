@@ -8,13 +8,14 @@ import { StyledCardStatusWrapper } from './CardStatus.sc';
 const CardStatus = ({
     children,
     elevation,
+    hasBorderRadius,
     placement,
     position,
     status,
 }) => (
-    <StyledCardStatusWrapper elevation={elevation}>
+    <StyledCardStatusWrapper elevation={elevation} hasBorderRadius={hasBorderRadius} placement={placement}>
         <StatusIndicator placement={placement} status={status}>
-            <Card elevation={Card.elevations.LEVEL_0} position={position}>
+            <Card elevation={Card.elevations.LEVEL_0} hasBorderRadius={false} position={position}>
                 {children}
             </Card>
         </StatusIndicator>
@@ -29,6 +30,7 @@ CardStatus.statuses = CARD_STATUS_STATUSES;
 CardStatus.propTypes = {
     children: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(CardStatus.elevations)),
+    hasBorderRadius: PropTypes.bool,
     placement: PropTypes.oneOf(Object.values(CardStatus.placements)),
     position: PropTypes.oneOf(Object.values(CardStatus.positions)),
     status: PropTypes.oneOf(Object.values(CardStatus.statuses)),
@@ -36,6 +38,7 @@ CardStatus.propTypes = {
 
 CardStatus.defaultProps = {
     elevation: Card.defaultProps.elevation,
+    hasBorderRadius: false,
     placement: CardStatus.placements.TOP,
     position: Card.defaultProps.position,
     status: CardStatus.statuses.DEFAULT,

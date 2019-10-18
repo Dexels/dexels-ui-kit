@@ -1,4 +1,4 @@
-import { select, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import Button from '../Button/Button';
 import CardStatus from './CardStatus';
 import React from 'react';
@@ -8,6 +8,7 @@ export default { title: 'molecules/CardStatus' };
 export const Configurable = () => (
     <CardStatus
         elevation={select('Elevation', CardStatus.elevations, CardStatus.defaultProps.elevation)}
+        hasBorderRadius={boolean('Has border radius', CardStatus.defaultProps.hasBorderRadius)}
         placement={select(
             'Status placement',
             CardStatus.placements,
@@ -23,6 +24,7 @@ export const Configurable = () => (
 export const ConfigurableWithComponent = () => (
     <CardStatus
         elevation={select('Elevation', CardStatus.elevations, CardStatus.defaultProps.elevation)}
+        hasBorderRadius={boolean('Has border radius', CardStatus.defaultProps.hasBorderRadius)}
         placement={select(
             'Status placement',
             CardStatus.placements,
