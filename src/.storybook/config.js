@@ -2,6 +2,12 @@ import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
 import { addDecorator, addParameters, configure } from '@storybook/react';
+import {
+    blue100,
+    grey25,
+    purple100,
+    white,
+} from '../app/styles/colors/colors';
 import { getAvailableThemeLayouts } from '../app/styles/theme/layout';
 import { getAvailableThemeModes } from '../app/styles/theme/theme';
 import React from 'react';
@@ -34,20 +40,29 @@ addDecorator((storyFn) => (
     </div>
 ));
 
+// Make it possible to switch between background-colors
 addParameters({
     backgrounds: [
         {
             default: true,
             name: 'light',
-            value: '#FFFFFF',
+            value: white,
         },
         {
             name: 'intermediate',
-            value: '#BFC8D3',
+            value: grey25,
         },
         {
             name: 'dark',
             value: '#212121',
+        },
+        {
+            name: 'blue',
+            value: blue100,
+        },
+        {
+            name: 'purple',
+            value: purple100,
         },
     ],
 });
