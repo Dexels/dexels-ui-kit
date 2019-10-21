@@ -18,16 +18,16 @@ import { grey50, white } from '../../../styles/colors/colors';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 import { themeLayouts } from '../../../styles/theme/layout';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
-const buttonBorderRadius = theme('layout', {
+const buttonBorderRadius = styledTheming('layout', {
     [themeLayouts.basic]: '50px',
     [themeLayouts.compact]: '4px',
 });
 
-const buttonHeight = theme.variants('layout', 'size', {
+const buttonHeight = styledTheming.variants('layout', 'size', {
     [BUTTON_SIZES.LARGE]: {
         [themeLayouts.basic]: '48px',
         [themeLayouts.compact]: '46px',
@@ -42,8 +42,8 @@ const buttonHeight = theme.variants('layout', 'size', {
     },
 });
 
-const buttonColorDisabled = theme('mode', {
-    [themeModes.basic]: white,
+const buttonColorDisabled = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.buttonColorDisabled || white,
     [themeModes.dark]: white,
     [themeModes.light]: grey50,
 });

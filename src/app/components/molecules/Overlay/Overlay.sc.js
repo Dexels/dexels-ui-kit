@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 import { themeModes } from '../../../styles/theme/theme';
 
-const overlayOpacity = theme('mode', {
-    [themeModes.basic]: 0.4,
+const overlayOpacity = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.overlayOpacity || 0.4,
     [themeModes.dark]: 0.6,
     [themeModes.light]: 0.3,
 });

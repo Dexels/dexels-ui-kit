@@ -16,29 +16,29 @@ import {
 import styled, { css } from 'styled-components';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
-const chipBackgroundColor = theme('mode', {
-    [themeModes.basic]: grey10,
+const chipBackgroundColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.chipBackgroundColor || grey10,
     [themeModes.dark]: black,
     [themeModes.light]: grey2,
 });
 
-const chipBackgroundColorDeselected = theme('mode', {
-    [themeModes.basic]: 'transparent',
+const chipBackgroundColorDeselected = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.chipBackgroundColorDeselected || 'transparent',
     [themeModes.dark]: grey75,
     [themeModes.light]: 'transparent',
 });
 
-const chipBackgroundColorHover = theme('mode', {
-    [themeModes.basic]: grey5,
+const chipBackgroundColorHover = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.chipBackgroundColorHover || grey5,
     [themeModes.dark]: grey75,
     [themeModes.light]: grey10,
 });
 
-const chipColor = theme('mode', {
-    [themeModes.basic]: grey100,
+const chipColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.chipColor || grey100,
     [themeModes.dark]: white,
     [themeModes.light]: black,
 });

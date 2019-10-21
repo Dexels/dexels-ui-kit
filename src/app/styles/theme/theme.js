@@ -1,7 +1,7 @@
 import * as colors from '../colors/colors';
 import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from './textStyles';
 import mapArrayToObject from '../../utils/mapArrayToObject';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 
 export const themeModes = mapArrayToObject([
     'basic',
@@ -14,169 +14,169 @@ export const getAvailableThemeModes = () => (
 );
 
 /* FONTS */
-export const fontPrimary = theme('mode', {
+export const fontPrimary = styledTheming('mode', {
     [themeModes.basic]: FONT_FAMILY_PRIMARY,
     [themeModes.dark]: FONT_FAMILY_SECONDARY,
     [themeModes.light]: FONT_FAMILY_PRIMARY,
 });
 
-export const fontSecondary = theme('mode', {
+export const fontSecondary = styledTheming('mode', {
     [themeModes.basic]: FONT_FAMILY_SECONDARY,
     [themeModes.dark]: FONT_FAMILY_PRIMARY,
     [themeModes.light]: FONT_FAMILY_SECONDARY,
 });
 
 /* PRIMARY */
-export const colorPrimary = theme('mode', {
+export const colorPrimary = styledTheming('mode', {
     [themeModes.basic]: colors.purple100,
     [themeModes.dark]: colors.white,
     [themeModes.light]: colors.black,
 });
 
-export const colorPrimaryHover = theme('mode', {
+export const colorPrimaryHover = styledTheming('mode', {
     [themeModes.basic]: colors.blue100,
     [themeModes.dark]: colors.grey50,
     [themeModes.light]: colors.grey25,
 });
 
-export const colorPrimarySelected = theme('mode', {
+export const colorPrimarySelected = styledTheming('mode', {
     [themeModes.basic]: colors.blue100,
     [themeModes.dark]: colors.grey50,
     [themeModes.light]: colors.grey25,
 });
 
-export const backgroundColorPrimary = theme('mode', {
+export const backgroundColorPrimary = styledTheming('mode', {
     [themeModes.basic]: colors.white,
     [themeModes.dark]: colors.black,
     [themeModes.light]: colors.white,
 });
 
 /* SECONDARY */
-export const colorSecondary = theme('mode', {
+export const colorSecondary = styledTheming('mode', {
     [themeModes.basic]: colors.blue100,
     [themeModes.dark]: colors.grey2,
     [themeModes.light]: colors.grey100,
 });
 
-export const colorSecondaryHover = theme('mode', {
+export const colorSecondaryHover = styledTheming('mode', {
     [themeModes.basic]: colors.blue50,
     [themeModes.dark]: colors.grey50,
     [themeModes.light]: colors.grey10,
 });
 
-export const colorSecondarySelected = theme('mode', {
+export const colorSecondarySelected = styledTheming('mode', {
     [themeModes.basic]: colors.blue25,
     [themeModes.dark]: colors.grey75,
     [themeModes.light]: colors.grey25,
 });
 
-export const backgroundColorSecondary = theme('mode', {
+export const backgroundColorSecondary = styledTheming('mode', {
     [themeModes.basic]: colors.grey2,
     [themeModes.dark]: colors.grey100,
     [themeModes.light]: colors.grey2,
 });
 
 /* TERTIARY */
-export const colorTertiary = theme('mode', {
+export const colorTertiary = styledTheming('mode', {
     [themeModes.basic]: colors.blue50,
     [themeModes.dark]: colors.grey2,
     [themeModes.light]: colors.grey100,
 });
 
-export const colorTertiaryHover = theme('mode', {
+export const colorTertiaryHover = styledTheming('mode', {
     [themeModes.basic]: colors.blue50,
     [themeModes.dark]: colors.grey50,
     [themeModes.light]: colors.grey10,
 });
 
-export const colorTertiarySelected = theme('mode', {
+export const colorTertiarySelected = styledTheming('mode', {
     [themeModes.basic]: colors.blue25,
     [themeModes.dark]: colors.grey75,
     [themeModes.light]: colors.grey25,
 });
 
-export const backgroundColorTertiary = theme('mode', {
+export const backgroundColorTertiary = styledTheming('mode', {
     [themeModes.basic]: colors.purple100,
     [themeModes.dark]: colors.black,
     [themeModes.light]: colors.white,
 });
 
 /* COLORS */
-export const colorDisabled = theme('mode', {
+export const colorDisabled = styledTheming('mode', {
     [themeModes.basic]: colors.grey10,
     [themeModes.dark]: colors.grey10,
     [themeModes.light]: colors.grey10,
 });
 
-export const colorError = theme('mode', {
+export const colorError = styledTheming('mode', {
     [themeModes.basic]: colors.red,
     [themeModes.dark]: colors.red,
     [themeModes.light]: colors.red,
 });
 
-export const colorValid = theme('mode', {
+export const colorValid = styledTheming('mode', {
     [themeModes.basic]: colors.green,
     [themeModes.dark]: colors.green,
     [themeModes.light]: colors.green,
 });
 
-export const colorWarning = theme('mode', {
+export const colorWarning = styledTheming('mode', {
     [themeModes.basic]: colors.orange,
     [themeModes.dark]: colors.orange,
     [themeModes.light]: colors.orange,
 });
 
 /* HEADERS / FOOTERS */
-export const backgroundColorFooter = theme('mode', {
+export const backgroundColorFooter = styledTheming('mode', {
     [themeModes.basic]: colors.grey5,
     [themeModes.dark]: colors.grey25,
     [themeModes.light]: colors.grey5,
 });
 
-export const backgroundColorHeader = theme('mode', {
+export const backgroundColorHeader = styledTheming('mode', {
     [themeModes.basic]: colors.purple100,
     [themeModes.dark]: colors.black,
     [themeModes.light]: colors.grey10,
 });
 
-export const colorHeader = theme('mode', {
+export const colorHeader = styledTheming('mode', {
     [themeModes.basic]: colors.white,
     [themeModes.dark]: colors.white,
     [themeModes.light]: colors.black,
 });
 
 /* TEXT / ICON */
-export const colorHeadingDark = theme('mode', {
+export const colorHeadingDark = styledTheming('mode', {
     [themeModes.basic]: colors.purple100,
     [themeModes.dark]: colors.black,
     [themeModes.light]: colors.grey2,
 });
 
-export const colorHeadingLight = theme('mode', {
+export const colorHeadingLight = styledTheming('mode', {
     [themeModes.basic]: colors.white,
     [themeModes.dark]: colors.grey2,
     [themeModes.light]: colors.white,
 });
 
-export const colorBodyDark = theme('mode', {
+export const colorBodyDark = styledTheming('mode', {
     [themeModes.basic]: colors.grey100,
     [themeModes.dark]: colors.black,
     [themeModes.light]: colors.grey75,
 });
 
-export const colorBodyLight = theme('mode', {
+export const colorBodyLight = styledTheming('mode', {
     [themeModes.basic]: colors.grey50,
     [themeModes.dark]: colors.grey100,
     [themeModes.light]: colors.grey50,
 });
 
-export const colorButtonDark = theme('mode', {
+export const colorButtonDark = styledTheming('mode', {
     [themeModes.basic]: colors.purple100,
     [themeModes.dark]: colors.black,
     [themeModes.light]: colors.grey50,
 });
 
-export const colorButtonLight = theme('mode', {
+export const colorButtonLight = styledTheming('mode', {
     [themeModes.basic]: colors.white,
     [themeModes.dark]: colors.white,
     [themeModes.light]: colors.black,

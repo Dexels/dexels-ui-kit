@@ -17,15 +17,15 @@ import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 
-const dialogBodyBackgroundColor = theme('mode', {
+const dialogBodyBackgroundColor = styledTheming('mode', {
     [themeModes.basic]: white,
     [themeModes.dark]: grey100,
     [themeModes.light]: white,
 });
 
-const dialogBodyColor = theme('mode', {
+const dialogBodyColor = styledTheming('mode', {
     [themeModes.basic]: colorBodyDark,
     [themeModes.dark]: white,
     [themeModes.light]: colorBodyDark,

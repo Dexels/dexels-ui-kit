@@ -16,9 +16,9 @@ import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 
-const tabsHeaderListDividerColor = theme('mode', {
+const tabsHeaderListDividerColor = styledTheming('mode', {
     [themeModes.basic]: grey25,
     [themeModes.dark]: grey2,
     [themeModes.light]: grey10,
