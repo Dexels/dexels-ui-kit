@@ -19,7 +19,7 @@ import rippleEffect from '../../../styles/mixins/rippleEffect';
 import styledTheming from 'styled-theming';
 
 const tabsHeaderListDividerColor = styledTheming('mode', {
-    [themeModes.basic]: grey25,
+    [themeModes.basic]: ({ theme }) => theme.tabsHeaderListDividerColor || grey25,
     [themeModes.dark]: grey2,
     [themeModes.light]: grey10,
 });

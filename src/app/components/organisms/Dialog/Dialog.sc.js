@@ -19,14 +19,14 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styledTheming from 'styled-theming';
 
-const dialogBodyBackgroundColor = styledTheming('mode', {
-    [themeModes.basic]: white,
+const dialogBackgroundColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.dialogBackgroundColor || white,
     [themeModes.dark]: grey100,
     [themeModes.light]: white,
 });
 
-const dialogBodyColor = styledTheming('mode', {
-    [themeModes.basic]: colorBodyDark,
+const dialogColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.dialogColor || colorBodyDark,
     [themeModes.dark]: white,
     [themeModes.light]: colorBodyDark,
 });
@@ -104,9 +104,9 @@ Header.propTypes = {
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
     ${textStyling(availableTextStyles().body1)};
-    background-color: ${dialogBodyBackgroundColor};
+    background-color: ${dialogBackgroundColor};
     padding: calc(${spacingUnit} * 2);
-    color: ${dialogBodyColor};
+    color: ${dialogColor};
 
     ${({ hasHeader }) => !hasHeader && css`
         border-radius: ${borderRadius} ${borderRadius} 0 0;
