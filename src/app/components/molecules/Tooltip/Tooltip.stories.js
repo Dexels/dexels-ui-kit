@@ -12,11 +12,12 @@ export const Configurable = () => (
         transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
         transitionEasing={select('Transition type', Tooltip.transitionEasings, Tooltip.defaultProps.transitionEasing)}
     >
-        <span style={{
-            backgroundColor: 'yellow',
-            borderRadius: '50px',
-            padding: '12px',
-        }}
+        <span
+            style={{
+                backgroundColor: 'yellow',
+                borderRadius: '50px',
+                padding: '12px',
+            }}
         >
             {'Hover me'}
         </span>
@@ -31,12 +32,13 @@ export const ConfigurableWithLongText = () => (
         transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
         transitionEasing={select('Transition type', Tooltip.transitionEasings, Tooltip.defaultProps.transitionEasing)}
     >
-        <span style={{
-            backgroundColor: 'red',
-            borderRadius: '50px',
-            color: 'white',
-            padding: '4px',
-        }}
+        <span
+            style={{
+                backgroundColor: 'red',
+                borderRadius: '50px',
+                color: 'white',
+                padding: '4px',
+            }}
         >
             {'Hover me, but this time with some long text'}
         </span>

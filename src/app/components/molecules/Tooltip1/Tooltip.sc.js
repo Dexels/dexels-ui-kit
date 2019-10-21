@@ -27,10 +27,30 @@ const tooltipColor = theme('mode', {
     [themeModes.light]: black,
 });
 
+export const StyledTooltipWrapper = styled.div`
+    position: relative;
+    display: inline-block;
+`;
+
 /* eslint-disable indent */
 // The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
 export const StyledTooltip = styled.div`
     ${setBoxSizing()};
+    visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+
     position: relative;
     display: inline-block;
 

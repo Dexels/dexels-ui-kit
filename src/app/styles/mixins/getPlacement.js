@@ -1,6 +1,17 @@
 import { css } from 'styled-components';
 import { PLACEMENTS } from '../../utils/constants';
 
+export const getDimensions = (elementId) => {
+    console.log('********************* elementId', elementId, document.getElementById(elementId));
+    const rectangle = document.getElementById(elementId).getBoundingClientRect();
+    console.log('********************* dimensions', rectangle);
+
+    return {
+        left: rectangle.left + window.scrollX,
+        top: rectangle.top + window.scrollY,
+    };
+};
+
 const getHorizontalOffset = (placement) => {
     switch (placement) {
         case PLACEMENTS.LEFT:
@@ -39,9 +50,9 @@ const getVerticalOffset = (placement) => {
     }
 };
 
-const getPlacement = (placement) => (css`
+export const getPlacement = (placement) => (css`
     top: ${getHorizontalOffset(placement)};
     left: ${getVerticalOffset(placement)};
 `);
 
-export default getPlacement;
+// export default getPlacement;
