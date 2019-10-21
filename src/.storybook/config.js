@@ -1,6 +1,8 @@
 import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
+import 'react-dates/lib/css/_datepicker.css';
+import 'react-dates/initialize';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import {
     blue100,
