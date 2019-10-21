@@ -20,7 +20,6 @@ Card.positions = CARD_POSITIONS;
 Card.propTypes = {
     children: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(Card.elevations)),
-    // This is used in CardStatus to be able to remove the borderradius when a wrapper is applied
     hasBorderRadius: PropTypes.bool,
     position: PropTypes.oneOf(Object.values(Card.positions)),
 };
