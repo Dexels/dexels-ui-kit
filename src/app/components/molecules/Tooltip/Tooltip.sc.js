@@ -2,7 +2,6 @@ import { availableTextStyles, textStyling } from '../../../styles/theme/textStyl
 import {
     black,
     grey100,
-    grey2,
     grey25,
     white,
 } from '../../../styles/colors/colors';
@@ -18,7 +17,7 @@ import transitionEffect from '../../../styles/mixins/transitionEffect';
 const tooltipBackgroundColor = theme('mode', {
     [themeModes.basic]: grey100,
     [themeModes.dark]: black,
-    [themeModes.light]: grey2,
+    [themeModes.light]: grey25,
 });
 
 const tooltipColor = theme('mode', {
@@ -27,116 +26,48 @@ const tooltipColor = theme('mode', {
     [themeModes.light]: black,
 });
 
-/* eslint-disable indent */
-// The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
 export const StyledTooltip = styled.span`
     ${setBoxSizing()};
     ${textStyling(availableTextStyles().body2)};
     ${({ placement }) => getPlacement(placement)};
     ${({ elevation }) => getElevation(elevation)};
+    ${({ transitionDuration, transitionEasing }) => transitionEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+    })};
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
     z-index: 99999999;
     border-radius: 15px;
+    background-color: ${tooltipBackgroundColor};
     padding: calc(${spacingUnit} / 2) ${spacingUnit} calc(${spacingUnit} / 2) ${spacingUnit};
     text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
-    background-color: ${tooltipBackgroundColor};
     color: ${tooltipColor};
-    visibility: hidden;
 
-    /* width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s; */
-/*
-    &::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: #555 transparent transparent transparent;
-    }
+    /* top: 100%;
+    left: 30%;
+    transform: translateX(50px); */
 
-    &:hover {
-        visibility: visible;
-        opacity: 1;
-    } */
-
-    /* position: relative;
-    display: inline-block;
-
-    &::after,
-    &::before {
-        ${({ transitionDuration, transitionEasing }) => transitionEffect({
-            duration: transitionDuration,
-            easing: transitionEasing,
-        })};
-        position: absolute;
-        visibility: hidden;
-        opacity: 0;
-        background-color: ${tooltipBackgroundColor};
-    }
-
-    &::before {
-        z-index: 2;
-        content: '';
-    }
-
-    &::after {
-        ${textStyling(availableTextStyles().body2)};
-        ${({ placement }) => getPlacement(placement)};
-        ${({ elevation }) => getElevation(elevation)};
-        z-index: 99999999;
-        border-radius: 15px;
-        padding: calc(${spacingUnit} / 2) ${spacingUnit} calc(${spacingUnit} / 2) ${spacingUnit};
-        text-align: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: ${tooltipColor};
-        content: attr(data-tooltip);
-    }
-
-    &:hover {
-        &::after,
-        &::before {
-            visibility: visible;
-            opacity: 1;
-        }
-    } */
 `;
-/* eslint-enable */
 
 export const StyledTooltipWrapper = styled.div`
-    position: relative;
     display: inline-block;
-
-    ${StyledTooltip} {
-        &::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-        }
-    }
+    position: relative;
 
     &:active,
     &:hover {
         span {
             visibility: visible;
             opacity: 1;
+        }
+    }
+
+    ${StyledTooltip} {
+        &::after {
+            content: "";
         }
     }
 `;

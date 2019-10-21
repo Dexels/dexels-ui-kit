@@ -37,7 +37,7 @@ export const ConfigurableWithLongText = () => (
                 backgroundColor: 'red',
                 borderRadius: '50px',
                 color: 'white',
-                padding: '4px',
+                padding: '8px',
             }}
         >
             {'Hover me, but this time with some long text'}
