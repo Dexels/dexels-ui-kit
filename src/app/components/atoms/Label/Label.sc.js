@@ -11,10 +11,10 @@ import {
 } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 
-const labelColor = theme('mode', {
-    [themeModes.basic]: grey100,
+const labelColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => theme.labelColor || grey100,
     [themeModes.dark]: white,
     [themeModes.light]: black,
 });
