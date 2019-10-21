@@ -1,7 +1,7 @@
+import { StyledTooltip, StyledTooltipWrapper } from './Tooltip.sc';
 import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS, TOOLTIP_PLACEMENTS } from './Tooltip.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyledTooltip } from './Tooltip.sc';
 
 const Tooltip = ({
     children,
@@ -11,15 +11,18 @@ const Tooltip = ({
     transitionDuration,
     transitionEasing,
 }) => (
-    <StyledTooltip
-        data-tooltip={title}
-        elevation={elevation}
-        placement={placement}
-        transitionDuration={transitionDuration}
-        transitionEasing={transitionEasing}
-    >
+    <StyledTooltipWrapper>
         {children}
-    </StyledTooltip>
+        <StyledTooltip
+            // data-tooltip={title}
+            elevation={elevation}
+            placement={placement}
+            transitionDuration={transitionDuration}
+            transitionEasing={transitionEasing}
+        >
+            {title}
+        </StyledTooltip>
+    </StyledTooltipWrapper>
 );
 
 Tooltip.elevations = TOOLTIP_ELEVATIONS;

@@ -29,9 +29,52 @@ const tooltipColor = theme('mode', {
 
 /* eslint-disable indent */
 // The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
-export const StyledTooltip = styled.div`
+export const StyledTooltip = styled.span`
     ${setBoxSizing()};
-    position: relative;
+    ${textStyling(availableTextStyles().body2)};
+    ${({ placement }) => getPlacement(placement)};
+    ${({ elevation }) => getElevation(elevation)};
+    z-index: 99999999;
+    border-radius: 15px;
+    padding: calc(${spacingUnit} / 2) ${spacingUnit} calc(${spacingUnit} / 2) ${spacingUnit};
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: ${tooltipBackgroundColor};
+    color: ${tooltipColor};
+    visibility: hidden;
+
+    /* width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s; */
+/*
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
+
+    &:hover {
+        visibility: visible;
+        opacity: 1;
+    } */
+
+    /* position: relative;
     display: inline-block;
 
     &::after,
@@ -71,8 +114,29 @@ export const StyledTooltip = styled.div`
             visibility: visible;
             opacity: 1;
         }
-    }
+    } */
 `;
 /* eslint-enable */
 
-export default StyledTooltip;
+export const StyledTooltipWrapper = styled.div`
+    position: relative;
+    display: inline-block;
+
+    ${StyledTooltip} {
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+        }
+    }
+
+    &:active,
+    &:hover {
+        span {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+`;
