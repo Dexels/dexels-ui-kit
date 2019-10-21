@@ -26,7 +26,7 @@ export const StyledColor = styled.div`
     align-items: center;
     justify-content: center;
     margin: 8px;
-    border: 1px solid #000;
+    border: 1px solid ${colors.black};
     border-radius: 100%;
     background-color: ${({ color }) => color};
     width: 100px;
