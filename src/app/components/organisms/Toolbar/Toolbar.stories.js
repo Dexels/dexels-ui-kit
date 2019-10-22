@@ -13,36 +13,42 @@ export const Configurable = () => (
     >
         <ButtonIcon
             iconType={Icon.types.PLUS}
+            isInverted={Toolbar.isInverted}
             key={1}
             onClick={() => {}}
             variant={ButtonIcon.variants.DEFAULT}
         />
         <ButtonIcon
             iconType={Icon.types.SEARCH}
+            isInverted={Toolbar.isInverted}
             key={2}
             onClick={() => {}}
             variant={ButtonIcon.variants.DEFAULT}
         />
         <ButtonIcon
             iconType={Icon.types.SHARE}
+            isInverted={Toolbar.isInverted}
             key={3}
             onClick={() => {}}
             variant={ButtonIcon.variants.DEFAULT}
         />
         <ButtonIcon
             iconType={Icon.types.SETTINGS}
+            isInverted={Toolbar.isInverted}
             key={4}
             onClick={() => {}}
             variant={ButtonIcon.variants.DEFAULT}
         />
         <ButtonIcon
             iconType={Icon.types.HELP}
+            isInverted={Toolbar.isInverted}
             key={5}
             onClick={() => {}}
             variant={ButtonIcon.variants.DEFAULT}
         />
         <Button
             iconType={Icon.types.INFO}
+            isInverted={Toolbar.isInverted}
             key={6}
             onClick={() => {}}
             size={Button.sizes.SMALL}
@@ -52,6 +58,7 @@ export const Configurable = () => (
         </Button>
         <Button
             iconType={Icon.types.INFO}
+            isInverted={Toolbar.isInverted}
             key={7}
             onClick={() => {}}
             size={Button.sizes.SMALL}

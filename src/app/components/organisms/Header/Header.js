@@ -27,6 +27,7 @@ const Header = ({
             {hasMenuOption && (
                 <ButtonIcon
                     iconType={Icon.types.MENU}
+                    isInverted={isInverted}
                     key={1}
                     onClick={() => {}}
                     variant={ButtonIcon.variants.HEADER}
@@ -35,14 +36,17 @@ const Header = ({
             {hasNavigateBackOption && (
                 <ButtonIcon
                     iconType={Icon.types.CHEVRON_LEFT}
+                    isInverted={isInverted}
                     key={2}
                     onClick={() => {}}
                     variant={ButtonIcon.variants.HEADER}
                 />
             )}
-            <Title>
-                {title}
-            </Title>
+            {title && (
+                <Title>
+                    {title}
+                </Title>
+            )}
         </NavigationWrapper>
         <FunctionalWrapper>
             <Toolbar>

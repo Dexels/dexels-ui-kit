@@ -14,6 +14,7 @@ export const StyledHeader = styled.div`
     display: flex;
     flex-direction: row;
     background: ${backgroundColorTertiary};
+    width: 100%;
     height: calc(${spacingUnit} * 6.5);
     color: ${colorHeadingLight};
 

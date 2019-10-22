@@ -8,10 +8,6 @@ export const StyledToolbar = styled.div`
     align-items: center;
 `;
 
-StyledToolbar.propTypes = {
-    isInverted: PropTypes.bool.isRequired,
-};
-
 export const ButtonWrapper = styled.div`
     margin: 0 ${spacingUnit} 0 ${spacingUnit};
 `;

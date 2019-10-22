@@ -17,36 +17,42 @@ export const Configurable = () => (
     >
         <ButtonIcon
             iconType={Icon.types.PLUS}
+            isInverted={Header.isInverted}
             key={1}
             onClick={() => {}}
             variant={ButtonIcon.variants.HEADER}
         />
         <ButtonIcon
             iconType={Icon.types.SEARCH}
+            isInverted={Header.isInverted}
             key={2}
             onClick={() => {}}
             variant={ButtonIcon.variants.HEADER}
         />
         <ButtonIcon
             iconType={Icon.types.SHARE}
+            isInverted={Header.isInverted}
             key={3}
             onClick={() => {}}
             variant={ButtonIcon.variants.HEADER}
         />
         <ButtonIcon
             iconType={Icon.types.SETTINGS}
+            isInverted={Header.isInverted}
             key={4}
             onClick={() => {}}
             variant={ButtonIcon.variants.HEADER}
         />
         <ButtonIcon
             iconType={Icon.types.HELP}
+            isInverted={Header.isInverted}
             key={5}
             onClick={() => {}}
             variant={ButtonIcon.variants.HEADER}
         />
         <Button
             iconType={Icon.types.INFO}
+            isInverted={Header.isInverted}
             key={6}
             onClick={() => {}}
             size={Button.sizes.SMALL}
