@@ -13,19 +13,6 @@ export const getAvailableThemeModes = () => (
     Object.values(themeModes)
 );
 
-/* FONTS */
-export const fontPrimary = styledTheming('mode', {
-    [themeModes.basic]: FONT_FAMILY_PRIMARY,
-    [themeModes.dark]: FONT_FAMILY_SECONDARY,
-    [themeModes.light]: FONT_FAMILY_PRIMARY,
-});
-
-export const fontSecondary = styledTheming('mode', {
-    [themeModes.basic]: FONT_FAMILY_SECONDARY,
-    [themeModes.dark]: FONT_FAMILY_PRIMARY,
-    [themeModes.light]: FONT_FAMILY_SECONDARY,
-});
-
 /* PRIMARY */
 export const colorPrimary = styledTheming('mode', {
     [themeModes.basic]: colors.purple100,
