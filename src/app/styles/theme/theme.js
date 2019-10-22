@@ -1,5 +1,4 @@
 import * as colors from '../colors/colors';
-import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from './textStyles';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import styledTheming from 'styled-theming';
 
