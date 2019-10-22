@@ -3,11 +3,11 @@ import {
     backgroundColorTertiary,
     colorHeadingLight,
 } from '../../../styles/theme/theme';
+import styled, { css } from 'styled-components';
 import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import { spacingUnit } from '../../../styles/theme/layout';
-import styled from 'styled-components';
 
 export const StyledHeader = styled.div`
     ${({ elevation }) => getElevation(elevation)};
@@ -16,17 +16,22 @@ export const StyledHeader = styled.div`
     background: ${backgroundColorTertiary};
     height: calc(${spacingUnit} * 6.5);
     color: ${colorHeadingLight};
+
+    ${({ isInverted }) => isInverted && css`
+        background-color: ${colorHeadingLight};
+        color: ${backgroundColorTertiary};
+    `};
 `;
 
 StyledHeader.propTypes = {
     elevation: PropTypes.oneOf(Object.values(ELEVATIONS)).isRequired,
+    isInverted: PropTypes.bool.isRequired,
 };
 
 export const NavigationWrapper = styled.div`
     display: flex;
     flex-grow: 2;
     flex-wrap: nowrap;
-    color: ${colorHeadingLight};
 `;
 
 export const Title = styled.div`
@@ -35,20 +40,9 @@ export const Title = styled.div`
     flex-direction: column;
     justify-content: center;
     margin: 0 0 0 calc(${spacingUnit} * 2);
-    color: ${colorHeadingLight};
 `;
 
 export const FunctionalWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    margin: 0 ${spacingUnit} 0 0;
-    color: ${colorHeadingLight};
-`;
-
-export const FunctionalContainer = styled.div`
     align-self: center;
     padding: 0 ${spacingUnit} 0 ${spacingUnit};
 `;
