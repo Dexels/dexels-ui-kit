@@ -14,6 +14,7 @@ export const Configurable = () => (
     <Button
         isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
         isFullWidth={boolean('Is full width', Button.defaultProps.isFullWidth)}
+        isInverted={boolean('Is inverted', Button.defaultProps.isInverted)}
         onClick={action('On click')}
         size={select('Size', Button.sizes, Button.defaultProps.size)}
         transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
@@ -30,6 +31,7 @@ export const ConfigurableWithIcon = () => (
         iconType={select('Icon type', Button.iconTypes, Button.iconTypes.CHECK)}
         isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
         isFullWidth={boolean('Use full width', Button.defaultProps.isFullWidth)}
+        isInverted={boolean('Is inverted', Button.defaultProps.isInverted)}
         onClick={action('On click')}
         size={select('Size', Button.sizes, Button.defaultProps.size)}
         transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}

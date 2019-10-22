@@ -51,6 +51,31 @@ export const backgroundColorPrimary = theme('mode', {
     [themeModes.light]: colors.white,
 });
 
+/* PRIMARY INVERTED */
+export const colorPrimaryInverted = theme('mode', {
+    [themeModes.basic]: colors.white,
+    [themeModes.dark]: colors.black,
+    [themeModes.light]: colors.white,
+});
+
+export const colorPrimaryHoverInverted = theme('mode', {
+    [themeModes.basic]: colors.blue100,
+    [themeModes.dark]: colors.white,
+    [themeModes.light]: colors.black,
+});
+
+export const colorPrimarySelectedInverted = theme('mode', {
+    [themeModes.basic]: colors.blue100,
+    [themeModes.dark]: colors.grey50,
+    [themeModes.light]: colors.grey25,
+});
+
+export const backgroundColorPrimaryInverted = theme('mode', {
+    [themeModes.basic]: colors.purple100,
+    [themeModes.dark]: colors.white,
+    [themeModes.light]: colors.black,
+});
+
 /* SECONDARY */
 export const colorSecondary = theme('mode', {
     [themeModes.basic]: colors.blue100,
@@ -101,11 +126,24 @@ export const backgroundColorTertiary = theme('mode', {
     [themeModes.light]: colors.white,
 });
 
+/* TERTIARY INVERTED */
+export const backgroundColorTertiaryInverted = theme('mode', {
+    [themeModes.basic]: colors.white,
+    [themeModes.dark]: colors.white,
+    [themeModes.light]: colors.black,
+});
+
 /* COLORS */
 export const colorDisabled = theme('mode', {
     [themeModes.basic]: colors.grey10,
     [themeModes.dark]: colors.grey10,
     [themeModes.light]: colors.grey10,
+});
+
+export const colorDisabledInverted = theme('mode', {
+    [themeModes.basic]: colors.grey100,
+    [themeModes.dark]: colors.grey100,
+    [themeModes.light]: colors.grey100,
 });
 
 export const colorError = theme('mode', {
