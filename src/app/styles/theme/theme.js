@@ -1,4 +1,21 @@
-import * as colors from '../colors/colors';
+import {
+    black,
+    blue100,
+    blue25,
+    blue50,
+    green,
+    grey10,
+    grey100,
+    grey2,
+    grey25,
+    grey5,
+    grey50,
+    grey75,
+    orange,
+    purple100,
+    red,
+    white,
+} from '../colors/colors';
 import mapArrayToObject from '../../utils/mapArrayToObject';
 import styledTheming from 'styled-theming';
 
@@ -14,156 +31,156 @@ export const getAvailableThemeModes = () => (
 
 /* PRIMARY */
 export const colorPrimary = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorPrimary || colors.purple100,
-    [themeModes.dark]: colors.white,
-    [themeModes.light]: colors.black,
+    [themeModes.basic]: ({ theme }) => theme.colorPrimary || purple100,
+    [themeModes.dark]: white,
+    [themeModes.light]: black,
 });
 
 export const colorPrimaryHover = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorPrimaryHover || colors.blue100,
-    [themeModes.dark]: colors.grey50,
-    [themeModes.light]: colors.grey25,
+    [themeModes.basic]: ({ theme }) => theme.colorPrimaryHover || blue100,
+    [themeModes.dark]: grey50,
+    [themeModes.light]: grey25,
 });
 
 export const colorPrimarySelected = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorPrimarySelected || colors.blue100,
-    [themeModes.dark]: colors.grey50,
-    [themeModes.light]: colors.grey25,
+    [themeModes.basic]: ({ theme }) => theme.colorPrimarySelected || blue100,
+    [themeModes.dark]: grey50,
+    [themeModes.light]: grey25,
 });
 
 export const backgroundColorPrimary = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.backgroundColorPrimary || colors.white,
-    [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.white,
+    [themeModes.basic]: ({ theme }) => theme.backgroundColorPrimary || white,
+    [themeModes.dark]: black,
+    [themeModes.light]: white,
 });
 
 /* SECONDARY */
 export const colorSecondary = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorSecondary || colors.blue100,
-    [themeModes.dark]: colors.grey2,
-    [themeModes.light]: colors.grey100,
+    [themeModes.basic]: ({ theme }) => theme.colorSecondary || blue100,
+    [themeModes.dark]: grey2,
+    [themeModes.light]: grey100,
 });
 
 export const colorSecondaryHover = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorSecondaryHover || colors.blue50,
-    [themeModes.dark]: colors.grey50,
-    [themeModes.light]: colors.grey10,
+    [themeModes.basic]: ({ theme }) => theme.colorSecondaryHover || blue50,
+    [themeModes.dark]: grey50,
+    [themeModes.light]: grey10,
 });
 
 export const colorSecondarySelected = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorSecondarySelected || colors.blue25,
-    [themeModes.dark]: colors.grey75,
-    [themeModes.light]: colors.grey25,
+    [themeModes.basic]: ({ theme }) => theme.colorSecondarySelected || blue25,
+    [themeModes.dark]: grey75,
+    [themeModes.light]: grey25,
 });
 
 export const backgroundColorSecondary = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.backgroundColorSecondary || colors.grey2,
-    [themeModes.dark]: colors.grey100,
-    [themeModes.light]: colors.grey2,
+    [themeModes.basic]: ({ theme }) => theme.backgroundColorSecondary || grey2,
+    [themeModes.dark]: grey100,
+    [themeModes.light]: grey2,
 });
 
 /* TERTIARY */
 export const colorTertiary = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorTertiary || colors.blue50,
-    [themeModes.dark]: colors.grey2,
-    [themeModes.light]: colors.grey100,
+    [themeModes.basic]: ({ theme }) => theme.colorTertiary || blue50,
+    [themeModes.dark]: grey2,
+    [themeModes.light]: grey100,
 });
 
 export const colorTertiaryHover = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorTertiaryHover || colors.blue50,
-    [themeModes.dark]: colors.grey50,
-    [themeModes.light]: colors.grey10,
+    [themeModes.basic]: ({ theme }) => theme.colorTertiaryHover || blue50,
+    [themeModes.dark]: grey50,
+    [themeModes.light]: grey10,
 });
 
 export const colorTertiarySelected = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorTertiarySelected || colors.blue25,
-    [themeModes.dark]: colors.grey75,
-    [themeModes.light]: colors.grey25,
+    [themeModes.basic]: ({ theme }) => theme.colorTertiarySelected || blue25,
+    [themeModes.dark]: grey75,
+    [themeModes.light]: grey25,
 });
 
 export const backgroundColorTertiary = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.backgroundColorTertiary || colors.purple100,
-    [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.white,
+    [themeModes.basic]: ({ theme }) => theme.backgroundColorTertiary || purple100,
+    [themeModes.dark]: black,
+    [themeModes.light]: white,
 });
 
 /* COLORS */
 export const colorDisabled = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorDisabled || colors.grey10,
-    [themeModes.dark]: colors.grey10,
-    [themeModes.light]: colors.grey10,
+    [themeModes.basic]: ({ theme }) => theme.colorDisabled || grey10,
+    [themeModes.dark]: grey10,
+    [themeModes.light]: grey10,
 });
 
 export const colorError = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorError || colors.red,
-    [themeModes.dark]: colors.red,
-    [themeModes.light]: colors.red,
+    [themeModes.basic]: ({ theme }) => theme.colorError || red,
+    [themeModes.dark]: red,
+    [themeModes.light]: red,
 });
 
 export const colorValid = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorValid || colors.green,
-    [themeModes.dark]: colors.green,
-    [themeModes.light]: colors.green,
+    [themeModes.basic]: ({ theme }) => theme.colorValid || green,
+    [themeModes.dark]: green,
+    [themeModes.light]: green,
 });
 
 export const colorWarning = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorWarning || colors.orange,
-    [themeModes.dark]: colors.orange,
-    [themeModes.light]: colors.orange,
+    [themeModes.basic]: ({ theme }) => theme.colorWarning || orange,
+    [themeModes.dark]: orange,
+    [themeModes.light]: orange,
 });
 
 /* HEADERS / FOOTERS */
 export const backgroundColorFooter = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.backgroundColorFooter || colors.grey5,
-    [themeModes.dark]: colors.grey25,
-    [themeModes.light]: colors.grey5,
+    [themeModes.basic]: ({ theme }) => theme.backgroundColorFooter || grey5,
+    [themeModes.dark]: grey25,
+    [themeModes.light]: grey5,
 });
 
 export const backgroundColorHeader = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.backgroundColorHeader || colors.purple100,
-    [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.grey10,
+    [themeModes.basic]: ({ theme }) => theme.backgroundColorHeader || purple100,
+    [themeModes.dark]: black,
+    [themeModes.light]: grey10,
 });
 
 export const colorHeader = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorHeader || colors.white,
-    [themeModes.dark]: colors.white,
-    [themeModes.light]: colors.black,
+    [themeModes.basic]: ({ theme }) => theme.colorHeader || white,
+    [themeModes.dark]: white,
+    [themeModes.light]: black,
 });
 
 /* TEXT / ICON */
 export const colorHeadingDark = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorHeadingDark || colors.purple100,
-    [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.grey2,
+    [themeModes.basic]: ({ theme }) => theme.colorHeadingDark || purple100,
+    [themeModes.dark]: black,
+    [themeModes.light]: grey2,
 });
 
 export const colorHeadingLight = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorHeadingLight || colors.white,
-    [themeModes.dark]: colors.grey2,
-    [themeModes.light]: colors.white,
+    [themeModes.basic]: ({ theme }) => theme.colorHeadingLight || white,
+    [themeModes.dark]: grey2,
+    [themeModes.light]: white,
 });
 
 export const colorBodyDark = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorBodyDark || colors.grey100,
-    [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.grey75,
+    [themeModes.basic]: ({ theme }) => theme.colorBodyDark || grey100,
+    [themeModes.dark]: black,
+    [themeModes.light]: grey75,
 });
 
 export const colorBodyLight = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorBodyLight || colors.grey50,
-    [themeModes.dark]: colors.grey100,
-    [themeModes.light]: colors.grey50,
+    [themeModes.basic]: ({ theme }) => theme.colorBodyLight || grey50,
+    [themeModes.dark]: grey100,
+    [themeModes.light]: grey50,
 });
 
 export const colorButtonDark = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorButtonDark || colors.purple100,
-    [themeModes.dark]: colors.black,
-    [themeModes.light]: colors.grey50,
+    [themeModes.basic]: ({ theme }) => theme.colorButtonDark || purple100,
+    [themeModes.dark]: black,
+    [themeModes.light]: grey50,
 });
 
 export const colorButtonLight = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.colorButtonLight || colors.white,
-    [themeModes.dark]: colors.white,
-    [themeModes.light]: colors.black,
+    [themeModes.basic]: ({ theme }) => theme.colorButtonLight || white,
+    [themeModes.dark]: white,
+    [themeModes.light]: black,
 });
