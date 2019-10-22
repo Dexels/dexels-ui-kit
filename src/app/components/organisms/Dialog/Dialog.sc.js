@@ -3,6 +3,7 @@ import {
     backgroundColorHeader,
     colorBodyDark,
     colorHeader,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import {
@@ -20,13 +21,13 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styledTheming from 'styled-theming';
 
 const dialogBackgroundColor = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.dialogBackgroundColor || white,
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'dialogBackgroundColor', white),
     [themeModes.dark]: grey100,
     [themeModes.light]: white,
 });
 
 const dialogColor = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.dialogColor || colorBodyDark,
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'dialogColor', colorBodyDark),
     [themeModes.dark]: white,
     [themeModes.light]: colorBodyDark,
 });

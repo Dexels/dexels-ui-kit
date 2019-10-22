@@ -6,20 +6,20 @@ import {
     grey50,
     white,
 } from '../../../styles/colors/colors';
+import { getThemeValue, themeModes } from '../../../styles/theme/theme';
 import { defaultIconSize } from '../../../styles/theme/layout';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import styledTheming from 'styled-theming';
-import { themeModes } from '../../../styles/theme/theme';
 
 const textIconBackgroundColor = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.textIconBackgroundColor || grey50,
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'textIconBackgroundColor', grey50),
     [themeModes.dark]: grey100,
     [themeModes.light]: grey2,
 });
 
 const textIconColor = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.textIconColor || white,
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'textIconColor', white),
     [themeModes.dark]: white,
     [themeModes.light]: black,
 });

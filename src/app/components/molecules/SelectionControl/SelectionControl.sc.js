@@ -4,6 +4,7 @@ import {
     colorError,
     colorPrimary,
     colorValid,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import {
@@ -21,7 +22,7 @@ import styledTheming from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 const selectionControlBackgroundColorHover = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.selectionControlBackgroundColorHover || blue10,
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'selectionControlBackgroundColorHover', blue10),
     [themeModes.dark]: blue10,
     [themeModes.light]: blue10,
 });

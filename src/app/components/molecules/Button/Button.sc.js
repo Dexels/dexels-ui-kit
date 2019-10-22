@@ -7,6 +7,7 @@ import {
     colorDisabled,
     colorPrimary,
     colorPrimaryHover,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import {
@@ -43,7 +44,7 @@ const buttonHeight = styledTheming.variants('layout', 'size', {
 });
 
 const buttonColorDisabled = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.buttonColorDisabled || white,
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'buttonColorDisabled', white),
     [themeModes.dark]: white,
     [themeModes.light]: grey50,
 });

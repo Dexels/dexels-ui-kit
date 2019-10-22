@@ -7,6 +7,7 @@ import {
     colorPrimary,
     colorSecondary,
     colorValid,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
@@ -14,7 +15,7 @@ import PropTypes from 'prop-types';
 import styledTheming from 'styled-theming';
 
 const labelColor = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => theme.labelColor || grey100,
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'labelColor', grey100),
     [themeModes.dark]: white,
     [themeModes.light]: black,
 });
