@@ -20,9 +20,11 @@ const Header = ({
             {navigationItems.length > 0 && navigationItems.map((navigationItem) => (
                 navigationItem
             ))}
-            <Title>
-                {title}
-            </Title>
+            {title && (
+                <Title>
+                    {title}
+                </Title>
+            )}
         </NavigationWrapper>
         <FunctionalWrapper>
             {functionalItems.length > 0 && functionalItems.map((functionalItem) => (
