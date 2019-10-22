@@ -131,7 +131,7 @@ export const StyledButton = styled.button`
 
             ${isInverted && css`
                 background-color: ${colorPrimaryHoverInverted};
-                color: ${colorButtonDark};
+                color: ${colorButtonLight};
             `};
         }
 
@@ -210,7 +210,12 @@ export const StyledButton = styled.button`
     `};
 
     &:after {
-        ${rippleEffect()}
+        ${({ variant }) => variant === BUTTON_VARIANTS.FILLED && css`
+            ${rippleEffect()}
+        `};
+        ${({ variant }) => variant !== BUTTON_VARIANTS.FILLED && css`
+            ${rippleEffect('blue')} /* @TODO swap for blue100 theme variant */
+        `};
     }
 
     &:active,

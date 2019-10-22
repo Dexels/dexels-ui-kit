@@ -1,13 +1,16 @@
-import { BUTTON_ICON_SIZES, BUTTON_ICON_VARIANTS } from './ButtonIcon.consts';
 import {
+    colorButtonDark,
     colorButtonLight,
     colorDisabled,
+    colorDisabledInverted,
     colorPrimary,
     colorPrimaryHover,
+    colorPrimaryInverted,
     themeModes,
 } from '../../../styles/theme/theme';
 import { spacingUnit, themeLayouts } from '../../../styles/theme/layout';
 import styled, { css } from 'styled-components';
+import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import { grey2 } from '../../../styles/colors/colors';
 import PropTypes from 'prop-types';
 import theme from 'styled-theming';
@@ -40,34 +43,36 @@ export const StyledButtonIcon = styled.button`
     border: 0;
     border-radius: 100%;
     background-color: transparent;
+    color: ${colorPrimary};
     cursor: pointer;
     padding: calc(${spacingUnit} * 1.5);
     font-size: ${buttonIconFontSize};
 
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ isInverted }) => isInverted && css`
+        background-color: ${colorPrimaryInverted};
+        color: ${colorButtonDark};
+    `};
+
+    ${({ isDisabled, isInverted }) => isDisabled && css`
         pointer-events: none;
         color: ${colorDisabled};
+
+        ${isInverted && css`
+            background-color: ${colorDisabledInverted};
+            color: ${colorButtonLight};
+        `};
     `};
 
-    ${({ variant }) => variant === BUTTON_ICON_VARIANTS.DEFAULT && css`
-        color: ${colorPrimary};
+    &:focus,
+    &:hover {
+        background-color: ${buttonBackgroundColorHover};
+        color: ${colorPrimaryHover};
 
-        &:focus,
-        &:hover {
-            background-color: ${buttonBackgroundColorHover};
-            color: ${colorPrimaryHover};
-        }
-    `};
-
-    ${({ variant }) => variant === BUTTON_ICON_VARIANTS.HEADER && css`
-        color: ${colorButtonLight};
-
-        &:focus,
-        &:hover {
-            background-color: ${colorButtonLight};
-            color: ${colorPrimaryHover};
-        }
-    `};
+        ${({ isInverted }) => isInverted && css`
+            background-color: ${colorDisabledInverted};
+            color: ${colorButtonLight};
+        `};
+    }
 
     &:after {
         border: 0;
@@ -81,7 +86,7 @@ export const StyledButtonIcon = styled.button`
 
 StyledButtonIcon.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
-    variant: PropTypes.oneOf(Object.values(BUTTON_ICON_VARIANTS)).isRequired,
+    isInverted: PropTypes.bool.isRequired,
 };
 
 export default StyledButtonIcon;
