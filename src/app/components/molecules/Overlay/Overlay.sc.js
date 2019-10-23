@@ -19,9 +19,8 @@ export const StyledOverlay = styled.div`
         height: ${height}%;
     `)};
 
-    ${({ isVisible, theme }) => isVisible && css`
-        background-color: ${theme.colorDark.dark};
-        opacity: 0.4;
+    ${({ isVisible }) => isVisible && css`
+        background-color: rgba(0, 0, 0, 0.4);
     `};
 `;
 

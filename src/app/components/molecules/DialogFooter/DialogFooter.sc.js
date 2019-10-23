@@ -29,5 +29,5 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: 0 ${({ theme }) => `calc(${theme.spacingUnit * 2}`} 0 0;
+    margin: 0 ${({ theme }) => `calc(${theme.spacingUnit} * 2)`} 0 0;
 `;
