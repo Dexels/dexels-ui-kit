@@ -1,7 +1,5 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import { backgroundColorFooter } from '../../../styles/theme/theme';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { spacingUnit } from '../../../styles/theme/layout';
 import styled from 'styled-components';
 
 export const StyledDialogFooter = styled.footer`
@@ -12,14 +10,14 @@ export const StyledDialogFooter = styled.footer`
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
-    background-color: ${backgroundColorFooter};
-    padding: calc(${spacingUnit} * 2);
+    background-color: ${({ theme }) => theme.colorLight.dark};
+    padding: ${({ theme }) => `calc(${theme.spacingUnit} * 2)`};
 `;
 
 export const TextWrapper = styled.div`
     ${textStyling(availableTextStyles().body2)};
     flex: 1 1 auto;
-    padding: 0 ${spacingUnit} 0 0;
+    padding: 0 ${({ theme }) => theme.spacingUnit} 0 0;
     word-break: break-all;
 `;
 
@@ -31,5 +29,5 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: 0 calc(${spacingUnit} * 2) 0 0;
+    margin: 0 ${({ theme }) => `calc(${theme.spacingUnit * 2}`} 0 0;
 `;
