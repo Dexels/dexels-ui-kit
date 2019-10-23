@@ -1,4 +1,4 @@
-// Since we don't want to include a selection.json in our distribution bundle we've come up with the following solution:
+// Since we don't want to include a selection.json in our distribution bundle we've came up with the following solution:
 // - If the contents of selection.json ever change just uncomment the import below and start Storybook
 // - Open the console, the generated icon types should be logged there
 // - Copy these to this file and outcomment the import again
@@ -7,7 +7,6 @@
 // I know this solution is a little bit weird but it's still better than including a 40 kb JSON file in our bundle
 // If you manage to come up with a better solution don't hesitate to implement it!
 // import '../../../utils/getIconTypes';
-
 export const ICON_TYPES = {
     ADD: 'Add',
     ALERT: 'Alert',

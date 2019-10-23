@@ -43,6 +43,15 @@ export const Left = styled.div`
     width: 48px;
 `;
 
+export const IconWrapper = styled.div`
+    color: ${colorPrimary};
+    font-size: 30px; /* @TODO: this should be something like availableTextStyles().icon1  */
+
+    span {
+        display: block;
+    }
+`;
+
 export const Right = styled.div`
     flex: 1 1 auto;
 `;

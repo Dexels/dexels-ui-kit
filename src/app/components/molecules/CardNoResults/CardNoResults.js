@@ -1,5 +1,6 @@
 import {
     Header,
+    IconWrapper,
     Item,
     Left,
     Right,
@@ -9,15 +10,12 @@ import {
 import Card from '../../atoms/Card/Card';
 import Colors from '../../atoms/Colors/Colors';
 import Icon from '../../atoms/Icon/Icon';
-import { IconWrapper } from '../TextWithOptionalIcon/TextWithOptionalIcon.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const CardNoResults = ({
     elevation,
     header,
-    iconColor,
-    iconSize,
     iconType,
     itemPrefix,
     items,
@@ -25,7 +23,7 @@ const CardNoResults = ({
 }) => (
     <StyledCardNoResults elevation={elevation}>
         <Left>
-            <IconWrapper iconColor={iconColor} iconSize={iconSize}>
+            <IconWrapper>
                 <Icon type={iconType} />
             </IconWrapper>
         </Left>
@@ -52,8 +50,6 @@ CardNoResults.iconTypes = Icon.types;
 CardNoResults.propTypes = {
     elevation: PropTypes.oneOf(Object.values(CardNoResults.elevations)),
     header: PropTypes.string.isRequired,
-    iconColor: PropTypes.oneOf(Object.values(CardNoResults.iconColors)),
-    iconSize: PropTypes.string,
     iconType: PropTypes.oneOf(Object.values(CardNoResults.iconTypes)),
     itemPrefix: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.node),
@@ -62,8 +58,6 @@ CardNoResults.propTypes = {
 
 CardNoResults.defaultProps = {
     elevation: CardNoResults.elevations.LEVEL_1,
-    iconColor: CardNoResults.iconColors.purple100,
-    iconSize: '30px',
     iconType: CardNoResults.iconTypes.SEARCH,
     itemPrefix: '-',
     items: null,
