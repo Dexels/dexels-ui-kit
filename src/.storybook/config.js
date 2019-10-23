@@ -65,4 +65,5 @@ addParameters({
 });
 
 // Import all stories
-configure(require.context('../app', true, /\.stories\.js$/), module);
+configure(require.context('../app/components/organisms/Tabs', true, /\.stories\.js$/), module);
+// configure(require.context('../app', true, /\.stories\.js$/), module);
