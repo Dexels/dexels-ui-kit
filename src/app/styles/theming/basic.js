@@ -56,6 +56,34 @@ const themeBasic = {
         main: '#FAFBFC',
         light: '#FFFFFF',
     },
+    spacing(factor1, factor2, factor3, factor4, ...rest) {
+        const [spacing, unit] = this.spacingValue.match(/[a-z]+|[^a-z]+/gi);
+        let css = '';
+
+        if (rest.length) {
+            throw Error('The spacing function excepts between one and four arguments.');
+        }
+
+        if (factor1 === undefined) {
+            throw Error('You should atleast require one factor.');
+        } else {
+            css += `${spacing * factor1}${unit}`;
+        }
+
+        if (factor2 !== undefined) {
+            css += ` ${spacing * factor2}${unit}`;
+        }
+
+        if (factor3 !== undefined) {
+            css += ` ${spacing * factor3}${unit}`;
+        }
+
+        if (factor4 !== undefined) {
+            css += ` ${spacing * factor4}${unit}`;
+        }
+
+        return css;
+    },
     spacingValue: '8px',
 };
 
