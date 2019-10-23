@@ -5,11 +5,11 @@ import {
     grey25,
     white,
 } from '../../../styles/colors/colors';
+import styled, { css } from 'styled-components';
 import getElevation from '../../../styles/mixins/getElevation';
-import { getPlacement } from '../../../styles/mixins/getPlacement';
+import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { spacingUnit } from '../../../styles/theme/layout';
-import styled from 'styled-components';
 import theme from 'styled-theming';
 import { themeModes } from '../../../styles/theme/theme';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
@@ -21,7 +21,7 @@ const tooltipBackgroundColor = theme('mode', {
 });
 
 const tooltipColor = theme('mode', {
-    [themeModes.basic]: grey25,
+    [themeModes.basic]: white,
     [themeModes.dark]: white,
     [themeModes.light]: black,
 });
@@ -29,29 +29,37 @@ const tooltipColor = theme('mode', {
 export const StyledTooltip = styled.span`
     ${setBoxSizing()};
     ${textStyling(availableTextStyles().body2)};
-    ${({ placement }) => getPlacement(placement)};
     ${({ elevation }) => getElevation(elevation)};
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
     })};
+    ${({ tooltipPosition }) => tooltipPosition === 'top' && css`
+        margin: calc((${spacingUnit} * -8)) 0 0 0;
+    `};
+
+    ${({ tooltipPosition }) => tooltipPosition === 'bottom' && css`
+        margin: calc((${spacingUnit} * 2)) 0 0 0;
+    `};
+
     position: absolute;
     visibility: hidden;
     opacity: 0;
     z-index: 99999999;
     border-radius: 15px;
     background-color: ${tooltipBackgroundColor};
-    padding: calc(${spacingUnit} / 2) ${spacingUnit} calc(${spacingUnit} / 2) ${spacingUnit};
+    padding: calc((${spacingUnit} / 2)) ${spacingUnit} calc((${spacingUnit} / 2)) ${spacingUnit};
     text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: ${tooltipColor};
-
-    /* top: 100%;
-    left: 30%;
-    transform: translateX(50px); */
+    display: flex;
 
 `;
+
+StyledTooltip.propTypes = {
+    tooltipPosition: PropTypes.string.isRequired,
+};
 
 export const StyledTooltipWrapper = styled.div`
     display: inline-block;

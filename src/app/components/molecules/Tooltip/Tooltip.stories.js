@@ -7,7 +7,6 @@ export default { title: 'molecules/Tooltip' };
 export const Configurable = () => (
     <Tooltip
         elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
-        placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
         title={text('Title', 'Configure me!')}
         transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
         transitionEasing={select('Transition type', Tooltip.transitionEasings, Tooltip.defaultProps.transitionEasing)}
@@ -27,7 +26,6 @@ export const Configurable = () => (
 export const ConfigurableWithLongText = () => (
     <Tooltip
         elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
-        placement={select('Placement', Tooltip.placements, Tooltip.defaultProps.placement)}
         title={text('Title', 'Configure me!')}
         transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
         transitionEasing={select('Transition type', Tooltip.transitionEasings, Tooltip.defaultProps.transitionEasing)}
