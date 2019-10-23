@@ -67,7 +67,12 @@ export const StyledButton = styled.button`
         min-height: 48px;
     `};
 
-    ${({ isDisabled, isInverted, theme, variant }) => variant === BUTTON_VARIANTS.FILLED && css`
+    ${({
+        isDisabled,
+        isInverted,
+        theme,
+        variant,
+    }) => variant === BUTTON_VARIANTS.FILLED && css`
         background-color: ${theme.colorPrimary.dark};
         color: ${theme.colorLight.light};
 
@@ -100,7 +105,12 @@ export const StyledButton = styled.button`
         `};
     `};
 
-    ${({ isDisabled, isInverted, theme, variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
+    ${({
+        isDisabled,
+        isInverted,
+        theme,
+        variant,
+    }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
         border-color: ${theme.colorPrimary.dark};
         color: ${theme.colorPrimary.dark};
@@ -130,7 +140,12 @@ export const StyledButton = styled.button`
         `};
     `};
 
-    ${({ isDisabled, isInverted, theme, variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
+    ${({
+        isDisabled,
+        isInverted,
+        theme,
+        variant,
+    }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         background-color: transparent !important;
         color: ${theme.colorPrimary.dark};
         padding: 0;
