@@ -15,8 +15,8 @@ export const StyledOverlay = styled.div`
         height: 100%;
     ` : css`
         margin: auto;
-        width: ${width};
-        height: ${height};
+        width: ${width}%;
+        height: ${height}%;
     `)};
 
     ${({ isVisible, theme }) => isVisible && css`
