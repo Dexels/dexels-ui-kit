@@ -21,17 +21,17 @@ export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
     border: 1px solid ${({ theme }) => theme.colorPrimary.dark};
-    width: ${({ theme }) => `calc(${theme.spacingUnit} * 3)`};
-    height: ${({ theme }) => `calc(${theme.spacingUnit} * 3)`};
+    width: ${({ theme }) => `calc(${theme.spacingValue} * 3)`};
+    height: ${({ theme }) => `calc(${theme.spacingValue} * 3)`};
     pointer-events: none;
 
     ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        margin: 0 calc(${theme.spacingUnit} * 2.25) 0 0;
+        margin: 0 calc(${theme.spacingValue} * 2.25) 0 0;
         order: 1;
     `};
 
     ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        margin: 0 0 0 calc(${theme.spacingUnit} * 2.25);
+        margin: 0 0 0 calc(${theme.spacingValue} * 2.25);
         order: 2;
     `};
 
@@ -119,8 +119,8 @@ export const InputWrapper = styled.div`
         z-index: -1;
         border-radius: 100%;
         background-color: ${({ theme }) => theme.colorSecondary.light};
-        width: ${({ theme }) => `calc(calc(${theme.spacingUnit} * 3) * (1 + 2 / 3))`};
-        height: ${({ theme }) => `calc(calc(${theme.spacingUnit} * 3) * (1 + 2 / 3))`};
+        width: ${({ theme }) => `calc(calc(${theme.spacingValue} * 3) * (1 + 2 / 3))`};
+        height: ${({ theme }) => `calc(calc(${theme.spacingValue} * 3) * (1 + 2 / 3))`};
         content: '';
     }
 
@@ -139,8 +139,8 @@ export const InputWrapper = styled.div`
         margin: 0;
         border: 0;
         cursor: pointer;
-        width: ${({ theme }) => `calc(${theme.spacingUnit} * 3)`};
-        height: ${({ theme }) => `calc(${theme.spacingUnit} * 3)`};
+        width: ${({ theme }) => `calc(${theme.spacingValue} * 3)`};
+        height: ${({ theme }) => `calc(${theme.spacingValue} * 3)`};
         pointer-events: auto;
     }
 `;
@@ -162,7 +162,7 @@ export const IconWrapper = styled.div`
     position: absolute;
     z-index: 2;
     color: ${({ theme }) => theme.colorLight.light};
-    font-size: ${({ theme }) => `calc(${theme.spacingUnit} * 2.5)`};
+    font-size: ${({ theme }) => `calc(${theme.spacingValue} * 2.5)`};
     pointer-events: none;
 
     span {
@@ -198,5 +198,5 @@ LabelWrapper.propTypes = {
 };
 
 export const ErrorMessageWrapper = styled.div`
-    margin: ${({ theme }) => `calc(${theme.spacingUnit} / 4)`} 0 0 0;
+    margin: ${({ theme }) => `calc(${theme.spacingValue} / 4)`} 0 0 0;
 `;

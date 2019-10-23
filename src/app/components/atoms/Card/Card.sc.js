@@ -16,7 +16,7 @@ export const StyledCard = styled.div`
     `}
     display: flex;
     background-color: ${({ theme }) => theme.colorLight.light};
-    padding: ${({ theme }) => theme.spacingUnit};
+    padding: ${({ theme }) => theme.spacingValue};
     word-break: break-word;
     color: ${({ theme }) => theme.colorPrimary.dark};
 `;

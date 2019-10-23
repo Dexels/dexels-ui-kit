@@ -68,7 +68,7 @@ export const LabelWrapper = styled.div`
         left: 0;
 
         ${(hasValue || isFocused) && css`
-            top: calc(-${theme.spacingUnit} * 2);
+            top: calc(-${theme.spacingValue} * 2);
             left: 0;
             padding: 0;
         `};
@@ -80,14 +80,14 @@ export const LabelWrapper = styled.div`
         theme,
         variant,
     }) => variant === INPUT_VARIANTS.OUTLINE && css`
-        top: calc(${theme.spacingUnit} * 1.5);
-        left: calc(${theme.spacingUnit} * 1.5);
+        top: calc(${theme.spacingValue} * 1.5);
+        left: calc(${theme.spacingValue} * 1.5);
         background-color: ${theme.colorLight.light};
 
         ${(hasValue || isFocused) && css`
-            top: calc(-${theme.spacingUnit});
-            left: calc(${theme.spacingUnit} * 2.5);
-            padding: 0 calc(${theme.spacingUnit} / 2);
+            top: calc(-${theme.spacingValue});
+            left: calc(${theme.spacingValue} * 2.5);
+            padding: 0 calc(${theme.spacingValue} / 2);
         `};
     `};
 `;
@@ -110,19 +110,19 @@ export const TextField = styled.input`
         border: 0;
         border-bottom: 1px solid ${theme.colorPrimary.dark};
         padding: 0;
-        height: calc(${theme.spacingUnit} * 3);
+        height: calc(${theme.spacingValue} * 3);
     `};
 
     ${({ theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
         border: 1px solid ${theme.colorPrimary.dark};
         border-radius: 8px;
-        padding: 0 calc(${theme.spacingUnit} * 1.5);
-        height: calc(${theme.spacingUnit} * 6);
+        padding: 0 calc(${theme.spacingValue} * 1.5);
+        height: calc(${theme.spacingValue} * 6);
     `};
 
     ${({ isTextarea, theme }) => isTextarea && css`
-        height: calc(${theme.spacingUnit} * 16);
-        padding: calc(${theme.spacingUnit} * 1.5);
+        height: calc(${theme.spacingValue} * 16);
+        padding: calc(${theme.spacingValue} * 1.5);
         resize: none;
     `};
 
@@ -156,7 +156,7 @@ TextField.propTypes = {
 
 export const ErrorMessageWrapper = styled.div`
     ${({ theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
-        margin: calc(${theme.spacingUnit} / 2) 0 0 calc(${theme.spacingUnit} * 1.5);
+        margin: calc(${theme.spacingValue} / 2) 0 0 calc(${theme.spacingValue} * 1.5);
     `};
 `;
 

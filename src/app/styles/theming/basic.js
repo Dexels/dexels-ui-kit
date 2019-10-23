@@ -56,7 +56,7 @@ const themeBasic = {
         main: '#FAFBFC',
         light: '#FFFFFF',
     },
-    spacingUnit: '8px',
+    spacingValue: '8px',
 };
 
 export default themeBasic;

@@ -18,8 +18,8 @@ export const StyledChip = styled.button`
     border-radius: 8px;
     background-color: transparent;
     cursor: pointer;
-    padding: ${({ theme }) => `calc(${theme.spacingUnit} / 2) ${theme.spacingUnit}`};
-    min-height: ${({ theme }) => `calc(${(theme.spacingUnit)} * 4)`};
+    padding: ${({ theme }) => `calc(${theme.spacingValue} / 2) ${theme.spacingValue}`};
+    min-height: ${({ theme }) => `calc(${(theme.spacingValue)} * 4)`};
     overflow: hidden;
     color: ${({ theme }) => theme.colorDark.light};
 

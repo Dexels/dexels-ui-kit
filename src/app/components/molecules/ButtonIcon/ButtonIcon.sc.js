@@ -13,7 +13,7 @@ export const StyledButtonIcon = styled.button`
     border-radius: 100%;
     background-color: transparent;
     cursor: pointer;
-    padding: ${({ theme }) => `calc(${(theme.spacingUnit)} * 1.5)`};
+    padding: ${({ theme }) => `calc(${(theme.spacingValue)} * 1.5)`};
     overflow: hidden;
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorLight.light : theme.colorPrimary.dark)};
 
