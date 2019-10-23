@@ -2,12 +2,6 @@ import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
 import { addDecorator, addParameters, configure } from '@storybook/react';
-import {
-    blue100,
-    grey25,
-    purple100,
-    white,
-} from '../app/styles/colors/colors';
 import React from 'react';
 import themeBasic from '../app/styles/theming/basic';
 import themeLight from '../app/styles/theming/light';
@@ -49,11 +43,11 @@ addParameters({
         {
             default: true,
             name: 'light',
-            value: white,
+            value: themeBasic.colorLight.light,
         },
         {
             name: 'intermediate',
-            value: grey25,
+            value: themeBasic.colorMedium.main,
         },
         {
             name: 'dark',
@@ -61,11 +55,11 @@ addParameters({
         },
         {
             name: 'blue',
-            value: blue100,
+            value: themeBasic.colorSecondary.dark,
         },
         {
             name: 'purple',
-            value: purple100,
+            value: themeBasic.colorPrimary.dark,
         },
     ],
 });
