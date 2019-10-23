@@ -11,14 +11,15 @@ export const StyledCard = styled.div`
     ${textStyling(availableTextStyles().body1)};
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
-    ${({ hasBorderRadius }) => hasBorderRadius && css`
-        border-radius: 4px;
-    `}
     display: flex;
     background-color: ${({ theme }) => theme.colorLight.light};
     padding: ${({ theme }) => theme.spacingValue};
     word-break: break-word;
     color: ${({ theme }) => theme.colorPrimary.dark};
+
+    ${({ hasBorderRadius }) => hasBorderRadius && css`
+        border-radius: 4px;
+    `}
 `;
 
 StyledCard.propTypes = {
