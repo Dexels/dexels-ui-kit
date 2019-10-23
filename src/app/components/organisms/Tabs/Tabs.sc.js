@@ -12,11 +12,11 @@ import {
     grey2,
     grey25,
 } from '../../../styles/colors/colors';
+import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
-import rippleEffect from '../../../styles/mixins/rippleEffect';
 import styledTheming from 'styled-theming';
 
 const tabsHeaderListDividerColor = styledTheming('mode', {
@@ -51,7 +51,7 @@ export const TabHeader = styled.button`
     `};
 
     &:after {
-        ${rippleEffect(colorPrimaryHover)}
+        ${({ theme }) => rippleEffect(theme.colorSecondary.dark)};
     }
 
     &:active,
@@ -61,9 +61,7 @@ export const TabHeader = styled.button`
     }
 
     &:active:after {
-        transform: scale(0, 0);
-        transition: none;
-        opacity: .2;
+        ${rippleEffectReset()};
     }
 `;
 

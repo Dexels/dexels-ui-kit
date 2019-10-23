@@ -1,6 +1,6 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import rippleEffect from '../../../styles/mixins/rippleEffect';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
@@ -45,9 +45,7 @@ export const StyledChip = styled.button`
     }
 
     &:active:after {
-        transform: scale(0, 0);
-        transition: none;
-        opacity: .2;
+        ${rippleEffectReset()};
     }
 `;
 

@@ -11,7 +11,7 @@ export const StyledButtonIcon = styled.button`
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => `calc(${(theme.spacingUnit)} * 1.5)`};
-    color: ${({ theme }) => theme.colorPrimary.dark};
+    color: ${({ isInverted, theme }) => (isInverted ? theme.colorLight.light : theme.colorPrimary.dark)};
 
     ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
         font-size: 14px;
@@ -25,28 +25,15 @@ export const StyledButtonIcon = styled.button`
         font-size: 20px;
     `};
 
-    ${({ isInverted, theme }) => isInverted && css`
-        color: ${theme.colorLight.light};
-    `};
-
     ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        color: ${theme.colorDisabled.main};
-
-        ${isInverted && css`
-            color: ${theme.colorLight.dark};
-        `};
+        color: ${isInverted ? theme.colorLight.dark : theme.colorDisabled.main};
     `};
 
     &:focus,
     &:hover {
-        background-color: ${({ theme }) => theme.colorLight.dark};
-        color: ${({ theme }) => theme.colorSecondary.dark};
-
-        ${({ isInverted, theme }) => isInverted && css`
-            background-color: ${theme.colorSecondary.dark};
-            color: ${theme.colorLight.light};
-        `};
+        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary.dark : theme.colorLight.dark)};
+        color: ${({ isInverted, theme }) => (isInverted ? theme.colorLight.light : theme.colorSecondary.dark)};
     }
 
     &:after {
