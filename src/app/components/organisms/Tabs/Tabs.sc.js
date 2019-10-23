@@ -1,54 +1,44 @@
 import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import {
-    backgroundColorPrimary,
-    colorDisabled,
-    colorPrimary,
-    colorPrimaryHover,
-    getThemeValue,
-    themeModes,
-} from '../../../styles/theme/theme';
-import {
-    grey10,
-    grey2,
-    grey25,
-} from '../../../styles/colors/colors';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
-import styledTheming from 'styled-theming';
 
-const tabsHeaderListDividerColor = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'tabsHeaderListDividerColor', grey25),
-    [themeModes.dark]: grey2,
-    [themeModes.light]: grey10,
-});
+export const StyledTabs = styled.div`
+    ${({ elevation }) => getElevation(elevation)};
+`;
+
+StyledTabs.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(ELEVATIONS)).isRequired,
+};
 
 export const TabHeader = styled.button`
     ${textStyling(availableTextStyles().h3)};
+    appearance: none;
+    position: relative;
     outline: none;
     border: 0;
-    border-bottom: 2px solid ${backgroundColorPrimary};
-    background-color: ${backgroundColorPrimary};
+    border-bottom: 2px solid ${({ theme }) => theme.colorLight.light};
+    background-color: ${({ theme }) => theme.colorLight.light};
     cursor: pointer;
-    padding: 0 8px;
-    width: fit-content;
+    padding: 0 ${({ theme }) => `calc(${theme.spacingUnit} * 3)`};
+    height: 48px;
     overflow: hidden;
     text-align: center;
-    color: ${colorPrimary};
+    color: ${({ theme }) => theme.colorPrimary.dark};
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
     `};
 
-    ${({ isActive }) => isActive && css`
-        border-bottom-color: ${colorPrimary};
+    ${({ isActive, theme }) => isActive && css`
+        border-bottom-color: ${theme.colorPrimary.dark};
     `};
 
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;
-        color: ${colorDisabled};
+        color: ${theme.colorDisabled.main};
     `};
 
     &:after {
@@ -57,8 +47,8 @@ export const TabHeader = styled.button`
 
     &:active,
     &:hover {
-        border-bottom-color: ${colorPrimaryHover};
-        color: ${colorPrimaryHover};
+        border-bottom-color: ${({ theme }) => theme.colorSecondary.dark};
+        color: ${({ theme }) => theme.colorSecondary.dark};
     }
 
     &:active:after {
@@ -76,17 +66,9 @@ export const TabHeaderList = styled.div`
     ${textStyling(availableTextStyles().body2)};
     display: flex;
     flex-wrap: nowrap;
-    border-bottom: 1px solid ${tabsHeaderListDividerColor};
+    border-bottom: 1px solid ${({ theme }) => theme.colorMedium.main};
 `;
 
 export const TabPanel = styled.div`
     ${textStyling(availableTextStyles().body2)};
 `;
-
-export const StyledTabs = styled.div`
-    ${({ elevation }) => getElevation(elevation)};
-`;
-
-StyledTabs.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(ELEVATIONS)).isRequired,
-};
