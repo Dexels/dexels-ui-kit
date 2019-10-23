@@ -17,7 +17,7 @@ export const StyledButton = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: ${({ isInverted, theme }) => (isInverted ? `1px solid ${theme.colorLight.light}` : `1px solid ${theme.colorPrimary.dark}`)};
+    border: 1px solid;
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
