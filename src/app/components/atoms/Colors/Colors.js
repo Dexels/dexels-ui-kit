@@ -23,6 +23,8 @@ const Colors = () => {
                         <Color color={theme[colorGroup][colorName]} key={colorName}>
                             <ColorName color={theme[colorGroup][colorName]}>
                                 {colorName}
+                                <br />
+                                {theme[colorGroup][colorName]}
                             </ColorName>
                         </Color>
                     ))}
