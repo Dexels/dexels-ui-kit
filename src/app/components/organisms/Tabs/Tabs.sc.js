@@ -4,6 +4,7 @@ import {
     colorDisabled,
     colorPrimary,
     colorPrimaryHover,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import {
@@ -16,10 +17,10 @@ import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 
-const tabsHeaderListDividerColor = theme('mode', {
-    [themeModes.basic]: grey25,
+const tabsHeaderListDividerColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'tabsHeaderListDividerColor', grey25),
     [themeModes.dark]: grey2,
     [themeModes.light]: grey10,
 });

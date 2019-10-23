@@ -3,6 +3,7 @@ import {
     backgroundColorHeader,
     colorBodyDark,
     colorHeader,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import {
@@ -17,16 +18,16 @@ import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 
-const dialogBodyBackgroundColor = theme('mode', {
-    [themeModes.basic]: white,
+const dialogBackgroundColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'dialogBackgroundColor', white),
     [themeModes.dark]: grey100,
     [themeModes.light]: white,
 });
 
-const dialogBodyColor = theme('mode', {
-    [themeModes.basic]: colorBodyDark,
+const dialogColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'dialogColor', colorBodyDark),
     [themeModes.dark]: white,
     [themeModes.light]: colorBodyDark,
 });
@@ -104,9 +105,9 @@ Header.propTypes = {
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
     ${textStyling(availableTextStyles().body1)};
-    background-color: ${dialogBodyBackgroundColor};
+    background-color: ${dialogBackgroundColor};
     padding: calc(${spacingUnit} * 2);
-    color: ${dialogBodyColor};
+    color: ${dialogColor};
 
     ${({ hasHeader }) => !hasHeader && css`
         border-radius: ${borderRadius} ${borderRadius} 0 0;

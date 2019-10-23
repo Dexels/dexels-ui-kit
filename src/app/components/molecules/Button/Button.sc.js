@@ -12,6 +12,7 @@ import {
     colorPrimaryHover,
     colorPrimaryInverted,
     colorPrimaryHoverInverted,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import {
@@ -23,16 +24,11 @@ import { grey100, grey50, white } from '../../../styles/colors/colors';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import rippleEffect from '../../../styles/mixins/rippleEffect';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 import { themeLayouts } from '../../../styles/theme/layout';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
-const buttonBorderRadius = theme('layout', {
-    [themeLayouts.basic]: '50px',
-    [themeLayouts.compact]: '4px',
-});
-
-const buttonHeight = theme.variants('layout', 'size', {
+const buttonHeight = styledTheming.variants('layout', 'size', {
     [BUTTON_SIZES.LARGE]: {
         [themeLayouts.basic]: '48px',
         [themeLayouts.compact]: '46px',
@@ -47,8 +43,8 @@ const buttonHeight = theme.variants('layout', 'size', {
     },
 });
 
-const buttonColorDisabled = theme('mode', {
-    [themeModes.basic]: white,
+const buttonColorDisabled = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'buttonColorDisabled', white),
     [themeModes.dark]: white,
     [themeModes.light]: grey50,
 });
@@ -67,18 +63,18 @@ export const StyledButton = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid ${colorPrimary};
-    border-radius: ${buttonBorderRadius};
-    background-color: ${colorPrimary};
+    border: ${({ theme }) => `1px solid ${theme.colorPrimary.main}`};
+    border-radius: 50px;
+    background-color: ${({ theme }) => theme.colorPrimary.main};;
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
     min-height: ${buttonHeight};
     color: ${colorButtonLight};
 
-    ${({ isInverted }) => isInverted && css`
-        border: 1px solid ${colorPrimaryInverted};
-        background-color: ${colorPrimaryInverted};
+    ${({ isInverted, theme }) => isInverted && css`
+        border: 1px solid ${theme.colorLight.light};
+        background-color: ${theme.colorLight.light};
     `};
 
     ${({ isFullWidth }) => isFullWidth && css`
@@ -86,10 +82,10 @@ export const StyledButton = styled.button`
         justify-content: center;
     `};
 
-    ${({ isDisabled, isInverted }) => isDisabled && css`
+    ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        background-color: ${colorDisabled};
-        border-color: ${colorDisabled};
+        background-color: ${theme.colorDisabled.main};
+        border-color: ${theme.colorDisabled.main};
 
         ${isInverted && css`
             background-color: ${colorDisabledInverted};

@@ -4,6 +4,7 @@ import {
     colorError,
     colorPrimary,
     colorValid,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import {
@@ -17,11 +18,11 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
 import { spacingUnit } from '../../../styles/theme/layout';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
-const selectionControlBackgroundColorHover = theme('mode', {
-    [themeModes.basic]: blue10,
+const selectionControlBackgroundColorHover = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'selectionControlBackgroundColorHover', blue10),
     [themeModes.dark]: blue10,
     [themeModes.light]: blue10,
 });

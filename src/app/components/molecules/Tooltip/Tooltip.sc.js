@@ -6,22 +6,22 @@ import {
     grey25,
     white,
 } from '../../../styles/colors/colors';
+import { getThemeValue, themeModes } from '../../../styles/theme/theme';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
-import theme from 'styled-theming';
-import { themeModes } from '../../../styles/theme/theme';
+import styledTheming from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
-const tooltipBackgroundColor = theme('mode', {
-    [themeModes.basic]: grey100,
+const tooltipBackgroundColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'tooltipBackgroundColor', grey100),
     [themeModes.dark]: black,
     [themeModes.light]: grey2,
 });
 
-const tooltipColor = theme('mode', {
-    [themeModes.basic]: grey25,
+const tooltipColor = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'tooltipColor', grey25),
     [themeModes.dark]: white,
     [themeModes.light]: black,
 });

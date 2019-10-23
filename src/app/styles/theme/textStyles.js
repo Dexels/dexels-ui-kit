@@ -1,6 +1,9 @@
-import { FONT_FAMILY_PRIMARY, FONT_FAMILY_SECONDARY } from '../../utils/constants';
 import { css } from 'styled-components';
 import mapArrayToObject from '../../utils/mapArrayToObject';
+
+export const FONT_FAMILY_PRIMARY = "'Open Sans', arial, sans-serif";
+
+export const FONT_FAMILY_SECONDARY = "'Exo 2', sans-serif";
 
 export const textStyles = {
     body1: {

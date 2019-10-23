@@ -6,6 +6,7 @@ import {
     colorPrimary,
     colorPrimaryHover,
     colorPrimaryInverted,
+    getThemeValue,
     themeModes,
 } from '../../../styles/theme/theme';
 import { spacingUnit, themeLayouts } from '../../../styles/theme/layout';
@@ -13,9 +14,9 @@ import styled, { css } from 'styled-components';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import { grey2 } from '../../../styles/colors/colors';
 import PropTypes from 'prop-types';
-import theme from 'styled-theming';
+import styledTheming from 'styled-theming';
 
-const buttonIconFontSize = theme.variants('layout', 'size', {
+const buttonIconFontSize = styledTheming.variants('layout', 'size', {
     [BUTTON_ICON_SIZES.LARGE]: {
         [themeLayouts.basic]: '20px',
         [themeLayouts.compact]: '18px',
@@ -30,8 +31,8 @@ const buttonIconFontSize = theme.variants('layout', 'size', {
     },
 });
 
-const buttonBackgroundColorHover = theme('mode', {
-    [themeModes.basic]: grey2,
+const buttonBackgroundColorHover = styledTheming('mode', {
+    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'buttonBackgroundColorHover', grey2),
     [themeModes.dark]: grey2,
     [themeModes.light]: grey2,
 });
