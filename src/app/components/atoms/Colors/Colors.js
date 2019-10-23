@@ -1,19 +1,35 @@
-import * as colors from '../../../styles/colors/colors';
-import { StyledColor, StyledColorText, StyledColorWrapper } from './Colors.sc';
-import React from 'react';
+import {
+    Color,
+    ColorGroup,
+    ColorGroupName,
+    ColorName,
+    StyledColors,
+} from './Colors.sc';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 
-const Colors = () => (
-    <StyledColorWrapper>
-        {Object.keys(colors).map((colorName) => (
-            <StyledColor color={colors[colorName]} key={colorName}>
-                <StyledColorText color={colors[colorName]}>
-                    {colorName}
-                </StyledColorText>
-            </StyledColor>
-        ))}
-    </StyledColorWrapper>
-);
+const Colors = () => {
+    const theme = useContext(ThemeContext);
+    const colorGroups = Object.keys(theme).filter((themeKey) => typeof theme[themeKey] === 'object');
 
-Colors.colors = colors;
+    return (
+        <StyledColors>
+            {colorGroups.map((colorGroup) => (
+                <ColorGroup key={colorGroup}>
+                    <ColorGroupName>
+                        {colorGroup}
+                    </ColorGroupName>
+                    {Object.keys(theme[colorGroup]).map((colorName) => (
+                        <Color color={theme[colorGroup][colorName]} key={colorName}>
+                            <ColorName color={theme[colorGroup][colorName]}>
+                                {colorName}
+                            </ColorName>
+                        </Color>
+                    ))}
+                </ColorGroup>
+            ))}
+        </StyledColors>
+    );
+};
 
 export default Colors;
