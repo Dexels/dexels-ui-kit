@@ -1,9 +1,12 @@
+import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import PropTypes from 'prop-types';
 
 export const StyledButtonIcon = styled.button`
+    appearance: none;
     display: flex;
+    position: relative;
     align-items: center;
     outline: none;
     border: 0;
@@ -11,6 +14,7 @@ export const StyledButtonIcon = styled.button`
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => `calc(${(theme.spacingUnit)} * 1.5)`};
+    overflow: hidden;
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorLight.light : theme.colorPrimary.dark)};
 
     ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
@@ -39,9 +43,12 @@ export const StyledButtonIcon = styled.button`
     &:after {
         border: 0;
         pointer-events: none;
+
+        ${({ isInverted, theme }) => (isInverted ? rippleEffect() : rippleEffect(theme.colorSecondary.dark))};
     }
 
     &:active:after {
+        ${rippleEffectReset()};
         border: 0;
     }
 `;

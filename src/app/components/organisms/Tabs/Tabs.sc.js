@@ -34,6 +34,7 @@ export const TabHeader = styled.button`
     cursor: pointer;
     padding: 0 8px;
     width: fit-content;
+    overflow: hidden;
     text-align: center;
     color: ${colorPrimary};
 
