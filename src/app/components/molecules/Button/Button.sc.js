@@ -41,8 +41,8 @@ export const StyledButton = styled.button`
         border-color: ${theme.colorDisabled.main};
 
         ${isInverted && css`
-            background-color: ${theme.colorDark.main};
-            border-color: ${theme.colorDark.main};
+            background-color: ${theme.colorLight.dark};
+            border-color: ${theme.colorLight.dark};
         `};
     `};
 
@@ -93,9 +93,9 @@ export const StyledButton = styled.button`
             color: ${theme.colorLight.light};
 
             ${isInverted && css`
-                background-color: ${theme.colorDisabled.mainInverted};
-                border-color: ${theme.colorDark.main};
-                color: ${theme.colorDark.main};
+                background-color: ${theme.colorLight.dark};
+                border-color: ${theme.colorLight.dark};
+                color: ${theme.colorMedium.main};
             `};
         `};
     `};
@@ -120,14 +120,12 @@ export const StyledButton = styled.button`
         }
 
         ${isDisabled && css`
-            background-color: ${theme.colorDisabled.main};
             border-color: ${theme.colorDisabled.main};
             color: ${theme.colorLight.light};
 
             ${isInverted && css`
-                background-color: ${theme.colorDark.light};
-                border-color: ${theme.colorDark.light};
-                color: ${theme.colorDark.main};
+                border-color: ${theme.colorLight.dark};
+                color: ${theme.colorLight.dark};
             `};
         `};
     `};
@@ -156,7 +154,7 @@ export const StyledButton = styled.button`
             color: ${theme.colorLight.light};
 
             ${isInverted && css`
-                color: ${theme.colorDark.main};
+                color: ${theme.colorLight.dark};
             `};
         `};
     `};

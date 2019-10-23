@@ -65,5 +65,4 @@ addParameters({
 });
 
 // Import all stories
-configure(require.context('../app/components/molecules/Button', true, /\.stories\.js$/), module);
-// configure(require.context('../app', true, /\.stories\.js$/), module);
+configure(require.context('../app', true, /\.stories\.js$/), module);

@@ -1,41 +1,6 @@
-import {
-    colorButtonDark,
-    colorButtonLight,
-    colorDisabled,
-    colorDisabledInverted,
-    colorPrimary,
-    colorPrimaryHover,
-    colorPrimaryInverted,
-    getThemeValue,
-    themeModes,
-} from '../../../styles/theme/theme';
-import { spacingUnit, themeLayouts } from '../../../styles/theme/layout';
 import styled, { css } from 'styled-components';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
-import { grey2 } from '../../../styles/colors/colors';
 import PropTypes from 'prop-types';
-import styledTheming from 'styled-theming';
-
-const buttonIconFontSize = styledTheming.variants('layout', 'size', {
-    [BUTTON_ICON_SIZES.LARGE]: {
-        [themeLayouts.basic]: '20px',
-        [themeLayouts.compact]: '18px',
-    },
-    [BUTTON_ICON_SIZES.MEDIUM]: {
-        [themeLayouts.basic]: '18px',
-        [themeLayouts.compact]: '16px',
-    },
-    [BUTTON_ICON_SIZES.SMALL]: {
-        [themeLayouts.basic]: '14px',
-        [themeLayouts.compact]: '12px',
-    },
-});
-
-const buttonBackgroundColorHover = styledTheming('mode', {
-    [themeModes.basic]: ({ theme }) => getThemeValue(theme, 'buttonBackgroundColorHover', grey2),
-    [themeModes.dark]: grey2,
-    [themeModes.light]: grey2,
-});
 
 export const StyledButtonIcon = styled.button`
     display: flex;
@@ -44,34 +9,43 @@ export const StyledButtonIcon = styled.button`
     border: 0;
     border-radius: 100%;
     background-color: transparent;
-    color: ${colorPrimary};
     cursor: pointer;
-    padding: calc(${spacingUnit} * 1.5);
-    font-size: ${buttonIconFontSize};
+    padding: ${({ theme }) => `calc(${(theme.spacingUnit)} * 1.5)`};
+    color: ${({ theme }) => theme.colorPrimary.dark};
 
-    ${({ isInverted }) => isInverted && css`
-        background-color: ${colorPrimaryInverted};
-        color: ${colorButtonDark};
+    ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
+        font-size: 14px;
     `};
 
-    ${({ isDisabled, isInverted }) => isDisabled && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.MEDIUM && css`
+        font-size: 18px;
+    `};
+
+    ${({ size }) => size === BUTTON_ICON_SIZES.LARGE && css`
+        font-size: 20px;
+    `};
+
+    ${({ isInverted, theme }) => isInverted && css`
+        color: ${theme.colorLight.light};
+    `};
+
+    ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        color: ${colorDisabled};
+        color: ${theme.colorDisabled.main};
 
         ${isInverted && css`
-            background-color: ${colorDisabledInverted};
-            color: ${colorButtonLight};
+            color: ${theme.colorLight.dark};
         `};
     `};
 
     &:focus,
     &:hover {
-        background-color: ${buttonBackgroundColorHover};
-        color: ${colorPrimaryHover};
+        background-color: ${({ theme }) => theme.colorLight.dark};
+        color: ${({ theme }) => theme.colorSecondary.dark};
 
-        ${({ isInverted }) => isInverted && css`
-            background-color: ${colorDisabledInverted};
-            color: ${colorButtonLight};
+        ${({ isInverted, theme }) => isInverted && css`
+            background-color: ${theme.colorSecondary.dark};
+            color: ${theme.colorLight.light};
         `};
     }
 
@@ -88,6 +62,7 @@ export const StyledButtonIcon = styled.button`
 StyledButtonIcon.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isInverted: PropTypes.bool.isRequired,
+    size: PropTypes.oneOf(Object.values(BUTTON_ICON_SIZES)).isRequired,
 };
 
 export default StyledButtonIcon;
