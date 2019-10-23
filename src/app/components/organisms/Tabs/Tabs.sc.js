@@ -5,19 +5,27 @@ import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 
+export const StyledTabs = styled.div`
+    ${({ elevation }) => getElevation(elevation)};
+`;
+
+StyledTabs.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(ELEVATIONS)).isRequired,
+};
+
 export const TabHeader = styled.button`
     ${textStyling(availableTextStyles().h3)};
     appearance: none;
+    position: relative;
     outline: none;
     border: 0;
     border-bottom: 2px solid ${({ theme }) => theme.colorLight.light};
     background-color: ${({ theme }) => theme.colorLight.light};
     cursor: pointer;
-    padding: ${({ theme }) => `0 ${theme.spacingUnit} 0 0`};
+    padding: 0 ${({ theme }) => `calc(${theme.spacingUnit} * 3)`};
+    height: 48px;
     overflow: hidden;
     text-align: center;
-    height: 48px;
-    min-width: 100px;
     color: ${({ theme }) => theme.colorPrimary.dark};
 
     ${({ isFullWidth }) => isFullWidth && css`
@@ -64,11 +72,3 @@ export const TabHeaderList = styled.div`
 export const TabPanel = styled.div`
     ${textStyling(availableTextStyles().body2)};
 `;
-
-export const StyledTabs = styled.div`
-    ${({ elevation }) => getElevation(elevation)};
-`;
-
-StyledTabs.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(ELEVATIONS)).isRequired,
-};
