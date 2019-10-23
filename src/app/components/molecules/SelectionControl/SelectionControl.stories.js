@@ -86,7 +86,7 @@ export const ConfigurableCheckbox = () => {
             isDisabled={boolean('Is disabled', SelectionControl.defaultProps.isDisabled)}
             isIndeterminate={boolean('Is indeterminate', SelectionControl.defaultProps.isIndeterminate)}
             isValid={boolean('Is valid', SelectionControl.defaultProps.isValid)}
-            label={text('Label 1', 'Im a girl')}
+            label={text('Label', 'Im a girl')}
             name="a-checkbox-name"
             onChange={() => {
                 setIsChecked(!isChecked);

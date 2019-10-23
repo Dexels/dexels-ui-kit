@@ -21,17 +21,17 @@ const Overlay = ({
 
 Overlay.propTypes = {
     children: PropTypes.node.isRequired,
-    height: PropTypes.number,
+    height: PropTypes.string,
     isFullscreen: PropTypes.bool,
     isVisible: PropTypes.bool,
-    width: PropTypes.number,
+    width: PropTypes.string,
 };
 
 Overlay.defaultProps = {
-    height: 80,
+    height: '80px',
     isFullscreen: true,
     isVisible: true,
-    width: 80,
+    width: '80px',
 };
 
 export default Overlay;
