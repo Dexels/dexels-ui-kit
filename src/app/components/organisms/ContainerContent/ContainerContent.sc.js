@@ -1,7 +1,6 @@
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { spacingUnit } from '../../../styles/theme/layout';
 import styled from 'styled-components';
 
 export const StyledContainerContent = styled.div`
@@ -11,7 +10,7 @@ export const StyledContainerContent = styled.div`
     display: flex;
     border: 0;
     background-color: transparent;
-    padding: ${spacingUnit};
+    padding: ${({ theme }) => theme.spacingUnit};
 `;
 
 export default StyledContainerContent;
