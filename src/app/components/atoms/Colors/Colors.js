@@ -2,7 +2,7 @@ import {
     Color,
     ColorGroup,
     ColorGroupName,
-    ColorName,
+    ColorText,
     StyledColors,
 } from './Colors.sc';
 import React, { useContext } from 'react';
@@ -21,11 +21,12 @@ const Colors = () => {
                     </ColorGroupName>
                     {Object.keys(theme[colorGroup]).map((colorName) => (
                         <Color color={theme[colorGroup][colorName]} key={colorName}>
-                            <ColorName color={theme[colorGroup][colorName]}>
+                            <ColorText color={theme[colorGroup][colorName]}>
                                 {colorName}
-                                <br />
+                            </ColorText>
+                            <ColorText color={theme[colorGroup][colorName]}>
                                 {theme[colorGroup][colorName]}
-                            </ColorName>
+                            </ColorText>
                         </Color>
                     ))}
                 </ColorGroup>
