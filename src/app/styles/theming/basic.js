@@ -1,60 +1,60 @@
-import {
-    black,
-    blue100,
-    blue25,
-    blue50,
-    green,
-    grey10,
-    grey100,
-    grey2,
-    grey25,
-    grey5,
-    grey50,
-    grey75,
-    orange,
-    purple100,
-    purple50,
-    red,
-    white,
-} from '../colors/colors';
+// This is how the colors are being called in the design:
+// black = #000000
+// blue10 = #DFF3FE
+// blue25 = #BFE7FE
+// blue50 = #80CFFE
+// blue100 = #009FFD
+// purple50 = #9BA1C9
+// purple100 = #3D4A9A
+// green = #2DD67B
+// orange = #EB6500
+// red = #F94E4E
+// sl2 = #FAFBFC
+// sl5 = #F2F4F6
+// sl10 = #E5E9ED
+// sl25 = #BFC8D3
+// sl50 = #7F91A8
+// sl75 = #3F5A7C
+// sl100 = #002451
+// white = #FFFFFF
 
 /* eslint-disable sort-keys */
 const themeBasic = {
     colorPrimary: {
-        light: purple50,
-        main: purple100,
+        dark: '#3D4A9A',
+        main: '#9BA1C9',
     },
     colorSecondary: {
-        dark: blue50,
-        light: blue25,
-        main: blue100,
+        dark: '#009FFD',
+        main: '#80CFFE',
+        light: '#BFE7FE',
     },
     colorDisabled: {
-        main: grey10,
+        main: '#E5E9ED',
     },
     colorError: {
-        main: red,
+        main: '#F94E4E',
     },
     colorValid: {
-        main: green,
+        main: '#2DD67B',
     },
     colorWarning: {
-        main: orange,
+        main: '#EB6500',
     },
     colorDark: {
-        dark: black,
-        light: grey100,
-        main: grey75,
+        dark: '#000000',
+        main: '#002451',
+        light: '#3F5A7C',
     },
     colorMedium: {
-        dark: grey50,
-        light: grey10, // @TODO discuss this with Marrick since this is the same color as the colorDisabled.main
-        main: grey25,
+        dark: '#7F91A8',
+        main: '#BFC8D3',
+        light: '#E5E9ED', // @TODO discuss this with Marrick since this is the same color as the colorDisabled.main
     },
     colorLight: {
-        dark: grey5,
-        light: white,
-        main: grey2,
+        dark: '#F2F4F6',
+        main: '#FAFBFC',
+        light: '#FFFFFF',
     },
     spacingUnit: '8px',
 };
