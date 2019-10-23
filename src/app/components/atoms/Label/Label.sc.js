@@ -11,7 +11,7 @@ export const StyledLabel = styled.label`
         color: ${({ theme }) => theme.colorDark.main};
     `};
 
-    ${({ isHovered }) => isHovered && css`
+    ${({ isHovered }) => isHovered && css` /* @TODO this prop can be removed */
         color: ${({ theme }) => theme.colorMedium.dark};
     `};
 
