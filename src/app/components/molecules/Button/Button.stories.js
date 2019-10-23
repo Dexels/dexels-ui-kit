@@ -19,7 +19,7 @@ export const Configurable = () => (
         size={select('Size', Button.sizes, Button.defaultProps.size)}
         transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
         transitionEasing={select('Transition type', Button.transitionEasings, Button.defaultProps.transitionEasing)}
-        variant={select('Type', Button.variants, Button.defaultProps.variant)}
+        variant={select('Variant', Button.variants, Button.defaultProps.variant)}
     >
         {text('Text', 'Configure me!')}
     </Button>
@@ -36,7 +36,7 @@ export const ConfigurableWithIcon = () => (
         size={select('Size', Button.sizes, Button.defaultProps.size)}
         transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
         transitionEasing={select('Transition type', Button.transitionEasings, Button.defaultProps.transitionEasing)}
-        variant={select('Type', Button.variants, Button.defaultProps.variant)}
+        variant={select('Variant', Button.variants, Button.defaultProps.variant)}
     >
         {text('Text', 'Configure me!')}
     </Button>
