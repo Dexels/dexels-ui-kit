@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
-import { white } from '../colors/colors';
 
-const rippleEffect = (backgroundColor = white) => (css`
+/* @TODO: use a theme color as dfault value */
+const rippleEffect = (backgroundColor = '#FFFFFF') => (css`
     display: block;
     position: absolute;
     top: 0;

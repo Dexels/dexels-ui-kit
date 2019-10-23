@@ -2,12 +2,6 @@ import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
 import { addDecorator, addParameters, configure } from '@storybook/react';
-import {
-    blue100,
-    grey25,
-    purple100,
-    white,
-} from '../app/styles/colors/colors';
 import React from 'react';
 import themeBasic from '../app/styles/theming/basic';
 import themeLight from '../app/styles/theming/light';
@@ -49,11 +43,11 @@ addParameters({
         {
             default: true,
             name: 'light',
-            value: white,
+            value: '#FFFFFF',
         },
         {
             name: 'intermediate',
-            value: grey25,
+            value: '#BFC8D3',
         },
         {
             name: 'dark',
@@ -61,14 +55,15 @@ addParameters({
         },
         {
             name: 'blue',
-            value: blue100,
+            value: '#009FFD',
         },
         {
             name: 'purple',
-            value: purple100,
+            value: '#3D4A9A',
         },
     ],
 });
 
 // Import all stories
-configure(require.context('../app', true, /\.stories\.js$/), module);
+configure(require.context('../app/components/molecules/Button', true, /\.stories\.js$/), module);
+// configure(require.context('../app', true, /\.stories\.js$/), module);
