@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyledTooltip, StyledTooltipWrapper } from './Tooltip.sc';
-import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS, TOOLTIP_PLACEMENTS } from './Tooltip.consts';
+import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS } from './Tooltip.consts';
 import PropTypes from 'prop-types';
 
 const Tooltip = ({
@@ -14,10 +14,15 @@ const Tooltip = ({
 
     const findTooltipPosition = () => {
         const component = document.getElementById('StyledTooltipWrapper');
-        const space = window.innerHeight - component.offsetTop + component.offsetHeight;
+        const spaceFromBottom = window.innerHeight - component.offsetTop + component.offsetHeight;
+        const spaceFromTop = component.offsetTop;
 
-        if (space < 150) {
+        if (spaceFromBottom < 150) {
             setTooltipPosition('top');
+        }
+
+        if (spaceFromTop < 50 && spaceFromBottom < 150) {
+            setTooltipPosition('right');
         }
     };
 

@@ -36,10 +36,16 @@ export const StyledTooltip = styled.span`
     })};
     ${({ tooltipPosition }) => tooltipPosition === 'top' && css`
         margin: calc((${spacingUnit} * -8)) 0 0 0;
+        display: flex;
     `};
 
     ${({ tooltipPosition }) => tooltipPosition === 'bottom' && css`
         margin: calc((${spacingUnit} * 2)) 0 0 0;
+        display: flex;
+    `};
+
+    ${({ tooltipPosition }) => tooltipPosition === 'right' && css`
+        margin: 0 0 0 calc((${spacingUnit} * 2));
     `};
 
     position: absolute;
@@ -53,8 +59,6 @@ export const StyledTooltip = styled.span`
     text-overflow: ellipsis;
     white-space: nowrap;
     color: ${tooltipColor};
-    display: flex;
-
 `;
 
 StyledTooltip.propTypes = {
