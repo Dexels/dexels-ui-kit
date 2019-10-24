@@ -1,4 +1,4 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import { CARD_ELEVATIONS, CARD_POSITIONS } from './Card.consts';
 import styled, { css } from 'styled-components';
 import getElevation from '../../../styles/mixins/getElevation';

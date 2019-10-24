@@ -1,4 +1,4 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';

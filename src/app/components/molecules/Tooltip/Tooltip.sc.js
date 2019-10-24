@@ -1,4 +1,4 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';

@@ -1,4 +1,4 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import styled, { css } from 'styled-components';
 import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 import PropTypes from 'prop-types';

@@ -1,4 +1,4 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import styled, { css } from 'styled-components';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';

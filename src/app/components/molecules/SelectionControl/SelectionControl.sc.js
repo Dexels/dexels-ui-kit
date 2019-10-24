@@ -140,7 +140,7 @@ export const InputWrapper = styled.div`
         border: 0;
         cursor: pointer;
         width: ${({ theme }) => theme.spacing(3)};
-        height: ${({ theme }) => theme.spacing(3)}};
+        height: ${({ theme }) => theme.spacing(3)};
         pointer-events: auto;
     }
 `;

@@ -1,4 +1,4 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
+import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import { CARD_ELEVATIONS } from '../../atoms/Card/Card.consts';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
