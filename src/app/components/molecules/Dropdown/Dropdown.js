@@ -70,7 +70,7 @@ const Dropdown = ({
                     isHovered={isHovered}
                     isValid={isValid}
                 >
-                    <Icon type={Icon.types.DROP_DOWN} />
+                    <Icon type={Icon.types.DROPDOWN} />
                 </IconWrapper>
             </StyledDropdown>
             {errorMessage && hasError && !isDisabled && (
