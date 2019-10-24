@@ -38,7 +38,6 @@ const Tooltip = ({
         <StyledTooltipWrapper id={'StyledTooltipWrapper'}>
             {children}
             <StyledTooltip
-                // data-tooltip={title}
                 elevation={elevation}
                 tooltipPosition={tooltipPosition}
                 transitionDuration={transitionDuration}
