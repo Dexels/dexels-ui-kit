@@ -1,5 +1,5 @@
 import basicTheme from './basic';
-import createDuiTheme from './createDuiTheme';
+import createDuiTheme from '../createDuiTheme';
 
 const themeLight = createDuiTheme(basicTheme, {
     colorDark: {

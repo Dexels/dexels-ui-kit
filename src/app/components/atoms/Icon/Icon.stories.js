@@ -1,4 +1,4 @@
-import basicTheme from '../../../styles/theming/basic';
+import basicTheme from '../../../styles/theming/themes/basic';
 import flattenTheme from '../../../styles/theming/flattenTheme';
 import Icon from './Icon';
 import React from 'react';
@@ -8,6 +8,8 @@ export default { title: 'atoms/Icon' };
 
 /* eslint-disable sort-keys */
 // The sort-keys ESLint rule is disabled so that we can order the sizes from small to large
+// @TODO try to use the ThemeContext here, doesn't work atm
+// Already opened an issue: https://github.com/storybookjs/storybook/issues/8531
 export const Configurable = () => {
     const colors = flattenTheme(basicTheme);
 
