@@ -1,47 +1,8 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import {
-    black,
-    grey10,
-    grey100,
-    grey2,
-    grey5,
-    grey75,
-    white,
-} from '../../../styles/colors/colors';
-import { borderRadius, spacingUnit } from '../../../styles/theme/layout';
-import {
-    colorPrimaryHover,
-    themeModes,
-} from '../../../styles/theme/theme';
+import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
+import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import rippleEffect from '../../../styles/mixins/rippleEffect';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import theme from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
-
-const chipBackgroundColor = theme('mode', {
-    [themeModes.basic]: grey10,
-    [themeModes.dark]: black,
-    [themeModes.light]: grey2,
-});
-
-const chipBackgroundColorDeselected = theme('mode', {
-    [themeModes.basic]: 'transparent',
-    [themeModes.dark]: grey75,
-    [themeModes.light]: 'transparent',
-});
-
-const chipBackgroundColorHover = theme('mode', {
-    [themeModes.basic]: grey5,
-    [themeModes.dark]: grey75,
-    [themeModes.light]: grey10,
-});
-
-const chipColor = theme('mode', {
-    [themeModes.basic]: grey100,
-    [themeModes.dark]: white,
-    [themeModes.light]: black,
-});
 
 export const StyledChip = styled.button`
     ${setBoxSizing()};
@@ -53,42 +14,38 @@ export const StyledChip = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid ${chipColor};
-    border-radius: ${borderRadius};
-    background-color: ${chipBackgroundColorDeselected};
+    border: 1px solid ${({ theme }) => theme.colorDark.light};
+    border-radius: 8px;
+    background-color: transparent;
     cursor: pointer;
-    padding: calc(${spacingUnit} / 2) ${spacingUnit};
-    min-height: calc(${spacingUnit} * 4);
+    padding: ${({ theme }) => theme.spacing(0.5, 1)};
+    min-height: ${({ theme }) => theme.spacing(4)};
     overflow: hidden;
-    color: ${chipColor};
+    color: ${({ theme }) => theme.colorDark.light};
 
     ${({ isSelected }) => isSelected && css`
-        background-color: ${chipBackgroundColor};
+        background-color: ${({ theme }) => theme.colorMedium.main};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
-        color: ${chipColor};
     `};
 
     &:after {
-        ${rippleEffect(colorPrimaryHover)}
+        ${({ theme }) => rippleEffect(theme.colorSecondary.main)};
     }
 
     &:active,
     &:hover {
-        background-color: ${chipBackgroundColor};
-        color: ${chipColor};
+        background-color: ${({ theme }) => theme.colorMedium.main};
 
         ${({ isSelected }) => isSelected && css`
-            background-color: ${chipBackgroundColorHover};
+            background-color: ${({ theme }) => theme.colorLight.dark};
         `};
     }
 
     &:active:after {
-        transform: scale(0, 0);
-        transition: none;
-        opacity: .2;
+        ${rippleEffectReset()};
     }
 `;
 

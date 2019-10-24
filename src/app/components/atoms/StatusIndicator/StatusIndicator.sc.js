@@ -1,14 +1,4 @@
-import {
-    colorDisabled,
-    colorError,
-    colorPrimary,
-    colorValid,
-    colorWarning,
-} from '../../../styles/theme/theme';
-import {
-    STATUS_INDICATOR_PLACEMENTS,
-    STATUS_INDICATOR_STATUSES,
-} from './StatusIndicator.consts';
+import { STATUS_INDICATOR_PLACEMENTS, STATUS_INDICATOR_STATUSES } from './StatusIndicator.consts';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -24,25 +14,24 @@ export const StyledStatusIndicator = styled.div`
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DISABLED && css`
-        border-color: ${colorDisabled};
+        border-color: ${({ theme }) => theme.colorDisabled.main};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.ERROR && css`
-        border-color: ${colorError};
+        border-color: ${({ theme }) => theme.colorError.main};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.VALID && css`
-        border-color: ${colorValid};
+        border-color: ${({ theme }) => theme.colorValid.main};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DEFAULT && css`
-        border-color: ${colorPrimary};
+        border-color: ${({ theme }) => theme.colorPrimary.dark};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.WARNING && css`
-        border-color: ${colorWarning};
+        border-color: ${({ theme }) => theme.colorWarning.main};
     `};
-
 `;
 
 StyledStatusIndicator.propTypes = {

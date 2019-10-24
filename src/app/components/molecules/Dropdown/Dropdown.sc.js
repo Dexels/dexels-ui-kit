@@ -1,18 +1,7 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import {
-    backgroundColorPrimary,
-    colorBodyDark,
-    colorBodyLight,
-    colorDisabled,
-    colorError,
-    colorPrimaryHover,
-    colorPrimarySelected,
-    colorValid,
-} from '../../../styles/theme/theme';
+import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { spacingUnit } from '../../../styles/theme/layout';
 
 export const StyledDropdown = styled.div`
     ${setBoxSizing()};
@@ -24,15 +13,15 @@ export const StyledDropdown = styled.div`
         content: '';
 
         ${({ isFocused }) => isFocused && css`
-            background-color: ${colorPrimarySelected};
+            background-color: ${({ theme }) => theme.colorSecondary.dark};
         `};
 
         ${({ isValid }) => isValid && css`
-            background-color: ${colorValid};
+            background-color: ${({ theme }) => theme.colorValid.main};
         `};
 
         ${({ hasError }) => hasError && css`
-            background-color: ${colorError};
+            background-color: ${({ theme }) => theme.colorError.main};
         `};
 
         ${({ isDisabled }) => isDisabled && css`
@@ -54,40 +43,36 @@ export const Select = styled.select`
     display: block;
     outline: none;
     border: 0;
-    border-bottom: 1px solid ${colorBodyDark};
+    border-bottom: 1px solid ${({ theme }) => theme.colorDark.main};
     border-radius: 0;
-    background-color: ${backgroundColorPrimary};
+    background-color: ${({ theme }) => theme.colorLight.light};
     cursor: pointer;
     padding: 0;
     width: 100%;
-    height: calc(${spacingUnit} * 3.5);
-    color: ${colorBodyDark};
+    height: ${({ theme }) => theme.spacing(3.5)};
+    color: ${({ theme }) => theme.colorDark.main};
 
     ${({ isPlaceholderSelected }) => isPlaceholderSelected && css`
-        color: ${colorBodyLight};
+        color: ${({ theme }) => theme.colorMedium.dark};
     `};
 
-    ${({ isHovered }) => isHovered && css`
-        border-color: ${colorPrimaryHover};
-    `};
-
-    ${({ isFocused }) => isFocused && css`
-        border-color: ${colorPrimarySelected};
+    ${({ isFocused, isHovered }) => (isFocused || isHovered) && css`
+        border-color: ${({ theme }) => theme.colorSecondary.dark};
     `};
 
     ${({ isValid }) => isValid && css`
-        border-color: ${colorValid};
-        color: ${colorValid};
+        border-color: ${({ theme }) => theme.colorValid.main};
+        color: ${({ theme }) => theme.colorValid.main};
     `};
 
     ${({ hasError }) => hasError && css`
-        border-color: ${colorError};
-        color: ${colorError};
+        border-color: ${({ theme }) => theme.colorError.main};
+        color: ${({ theme }) => theme.colorError.main};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
-        border-color: ${colorDisabled};
-        color: ${colorDisabled};
+        border-color: ${({ theme }) => theme.colorDisabled.main};
+        color: ${({ theme }) => theme.colorDisabled.main};
         pointer-events: none;
     `};
 `;
@@ -107,28 +92,23 @@ export const IconWrapper = styled.div`
     top: 0;
     right: 0;
     line-height: 1;
-    color: ${colorBodyDark};
+    color: ${({ theme }) => theme.colorPrimary.dark};
     pointer-events: none;
 
-    ${({ isHovered }) => isHovered && css`
-        color: ${colorPrimaryHover};
-    `};
-
     ${({ isFocused }) => isFocused && css`
-        color: ${colorPrimarySelected};
         transform: rotate(180deg);
     `};
 
     ${({ isValid }) => isValid && css`
-        color: ${colorValid};
+        color: ${({ theme }) => theme.colorValid.main};
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${colorError};
+        color: ${({ theme }) => theme.colorError.main};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
-        color: ${colorDisabled};
+        color: ${({ theme }) => theme.colorDisabled.main};
     `};
 
     span {
@@ -140,10 +120,9 @@ IconWrapper.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
-    isHovered: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
 };
 
 export const ErrorMessageWrapper = styled.div`
-    margin: calc(${spacingUnit} / 2) 0 0;
+    margin: ${({ theme }) => theme.spacing(0.5, 0, 0)};
 `;
