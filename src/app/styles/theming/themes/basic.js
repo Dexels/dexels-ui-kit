@@ -1,3 +1,4 @@
+import mapArrayToObject from '../../../utils/mapArrayToObject';
 // This is how the colors are being called in the design:
 // black = #000000
 // blue10 = #DFF3FE
@@ -56,6 +57,13 @@ const themeBasic = {
         main: '#FAFBFC',
         light: '#FFFFFF',
     },
+    fontFamilyPrimary: "'Open Sans', arial, sans-serif",
+    fontFamilySecondary: "'Exo 2', sans-serif",
+    spacingValue: '8px',
+    textStyles: {},
+    availableTextStyles() {
+        return mapArrayToObject(Object.keys(this.textStyles));
+    },
     spacing(factor1, factor2, factor3, factor4, ...rest) {
         const [spacing, unit] = this.spacingValue.match(/[a-z]+|[^a-z]+/gi);
         let css = '';
@@ -84,7 +92,85 @@ const themeBasic = {
 
         return css;
     },
-    spacingValue: '8px',
+    textStyling(textStyleSelector = 'body1') {
+        const validTextStylingSelectors = Object.keys(this.textStyles);
+
+        if (!validTextStylingSelectors.includes(textStyleSelector)) {
+            throw new Error(`${textStyleSelector} is not a valid text styling selector. Please use one the following: ${validTextStylingSelectors}`);
+        }
+
+        const textStyle = this.textStyles[textStyleSelector];
+
+        return (`
+            line-height: ${textStyle.lineHeight};
+            font-family: ${textStyle.fontFamily};
+            font-size: ${textStyle.fontSize};
+            font-weight: ${textStyle.fontWeight};
+        `);
+    },
+};
+
+themeBasic.textStyles.body1 = {
+    fontFamily: themeBasic.fontFamilyPrimary,
+    fontSize: '16px',
+    fontWeight: '400',
+    lineHeight: '22px',
+};
+
+themeBasic.textStyles.body2 = {
+    fontFamily: themeBasic.fontFamilyPrimary,
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '18px',
+};
+
+themeBasic.textStyles.buttonLarge = {
+    fontFamily: themeBasic.fontFamilySecondary,
+    fontSize: '16px',
+    fontWeight: '600',
+    lineHeight: '22px',
+};
+
+themeBasic.textStyles.buttonMedium = {
+    fontFamily: themeBasic.fontFamilySecondary,
+    fontSize: '14px',
+    fontWeight: '600',
+    lineHeight: '22px',
+};
+
+themeBasic.textStyles.buttonSmall = {
+    fontFamily: themeBasic.fontFamilySecondary,
+    fontSize: '14px',
+    fontWeight: '600',
+    lineHeight: '22px',
+};
+
+themeBasic.textStyles.caption = {
+    fontFamily: themeBasic.fontFamilyPrimary,
+    fontSize: '12px',
+    fontWeight: '400',
+    lineHeight: '16px',
+};
+
+themeBasic.textStyles.h1 = {
+    fontFamily: themeBasic.fontFamilySecondary,
+    fontSize: '24px',
+    fontWeight: '500',
+    lineHeight: '34px',
+};
+
+themeBasic.textStyles.h2 = {
+    fontFamily: themeBasic.fontFamilySecondary,
+    fontSize: '20px',
+    fontWeight: '500',
+    lineHeight: '28px',
+};
+
+themeBasic.textStyles.h3 = {
+    fontFamily: themeBasic.fontFamilySecondary,
+    fontSize: '16px',
+    fontWeight: '600',
+    lineHeight: '24px',
 };
 
 export default themeBasic;
