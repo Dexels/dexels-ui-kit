@@ -60,7 +60,7 @@ ButtonClose.propTypes = {
 
 export const Header = styled.header`
     ${({ alignment }) => getAlignment(alignment)};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     display: flex;
     align-items: center;
     border-top-left-radius: 8px;
@@ -77,7 +77,7 @@ Header.propTypes = {
 
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     background-color: ${({ theme }) => theme.colorLight.light};
     padding: ${({ theme }) => theme.spacing(2)};
     color: ${({ theme }) => theme.colorDark.main};

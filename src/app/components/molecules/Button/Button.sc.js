@@ -33,7 +33,7 @@ export const StyledButton = styled.button`
     `};
 
     ${({ size }) => size === BUTTON_SIZES.SMALL && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles.buttonSmall)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonSmall)};
         border-radius: 20px;
         min-width: 80px;
         padding: 4px 16px;
@@ -41,7 +41,7 @@ export const StyledButton = styled.button`
     `};
 
     ${({ size }) => size === BUTTON_SIZES.MEDIUM && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles.buttonMedium)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonMedium)};
         border-radius: 20px;
         min-width: 90px;
         padding: 6px 16px;
@@ -49,7 +49,7 @@ export const StyledButton = styled.button`
     `};
 
     ${({ size }) => size === BUTTON_SIZES.LARGE && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles.buttonLarge)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonLarge)};
         border-radius: 25px;
         min-width: 100px;
         padding: 8px 16px;

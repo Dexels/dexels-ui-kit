@@ -9,7 +9,7 @@ export const StyledInputPassword = styled.div`
 `;
 
 export const VisibilitySwitch = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     appearance: none;
     position: absolute;
     margin: 0;

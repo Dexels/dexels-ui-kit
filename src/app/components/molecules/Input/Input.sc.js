@@ -98,7 +98,7 @@ LabelWrapper.propTypes = {
 };
 
 export const TextField = styled.input`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     display: block;
     outline: none;
     background-color: ${({ theme }) => theme.colorLight.light};

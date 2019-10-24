@@ -37,7 +37,7 @@ StyledDropdown.propTypes = {
 };
 
 export const Select = styled.select`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     appearance: none;
     display: block;
     outline: none;
@@ -86,7 +86,7 @@ Select.propTypes = {
 };
 
 export const IconWrapper = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     position: absolute;
     top: 0;
     right: 0;

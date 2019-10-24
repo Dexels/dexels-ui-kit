@@ -7,7 +7,7 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledCard = styled.div`
     ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
     display: flex;

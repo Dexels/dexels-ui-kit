@@ -5,7 +5,7 @@ import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledChip = styled.button`
     ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
