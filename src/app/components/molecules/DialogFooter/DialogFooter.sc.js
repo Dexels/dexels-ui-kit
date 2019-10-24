@@ -1,10 +1,9 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledDialogFooter = styled.footer`
     ${setBoxSizing()};
-    ${textStyling(availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,7 +14,7 @@ export const StyledDialogFooter = styled.footer`
 `;
 
 export const TextWrapper = styled.div`
-    ${textStyling(availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
     flex: 1 1 auto;
     padding: ${({ theme }) => theme.spacing(0, 1, 0, 0)};
     word-break: break-all;

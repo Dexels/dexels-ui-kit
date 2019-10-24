@@ -1,4 +1,3 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
@@ -6,7 +5,7 @@ import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledChip = styled.button`
     ${setBoxSizing()};
-    ${textStyling(availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,

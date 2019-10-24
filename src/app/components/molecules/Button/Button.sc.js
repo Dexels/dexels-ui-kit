@@ -1,4 +1,3 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import {
     BUTTON_EASINGS,
     BUTTON_SIZES,
@@ -34,7 +33,7 @@ export const StyledButton = styled.button`
     `};
 
     ${({ size }) => size === BUTTON_SIZES.SMALL && css`
-        ${textStyling(availableTextStyles().buttonSmall)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles.buttonSmall)};
         border-radius: 20px;
         min-width: 80px;
         padding: 4px 16px;
@@ -42,7 +41,7 @@ export const StyledButton = styled.button`
     `};
 
     ${({ size }) => size === BUTTON_SIZES.MEDIUM && css`
-        ${textStyling(availableTextStyles().buttonMedium)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles.buttonMedium)};
         border-radius: 20px;
         min-width: 90px;
         padding: 6px 16px;
@@ -50,7 +49,7 @@ export const StyledButton = styled.button`
     `};
 
     ${({ size }) => size === BUTTON_SIZES.LARGE && css`
-        ${textStyling(availableTextStyles().buttonLarge)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles.buttonLarge)};
         border-radius: 25px;
         min-width: 100px;
         padding: 8px 16px;

@@ -1,4 +1,3 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import { CARD_ELEVATIONS, CARD_POSITIONS } from './Card.consts';
 import styled, { css } from 'styled-components';
 import getElevation from '../../../styles/mixins/getElevation';
@@ -8,7 +7,7 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledCard = styled.div`
     ${setBoxSizing()};
-    ${textStyling(availableTextStyles().body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
     display: flex;

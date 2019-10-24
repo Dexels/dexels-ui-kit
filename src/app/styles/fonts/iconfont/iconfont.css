@@ -1,271 +1,222 @@
 @font-face {
-    font-family: 'IconFont';
-    src: url('~fonts/iconfont/iconfont.eot?yipcys');
-    src: url('~fonts/iconfont/iconfont.eot?yipcys#iefix') format('embedded-opentype'), url('~fonts/iconfont/iconfont.ttf?yipcys') format('truetype'), url('~fonts/iconfont/iconfont.woff?yipcys') format('woff'), url('~fonts/iconfont/iconfont.svg?yipcys#iconfont') format('svg');
+    font-family: 'SL-Small-Icons';
+    src:  url('~fonts/iconfont/SL-Small-Icons.eot?joeozn');
+    src:  url('~fonts/iconfont/SL-Small-Icons.eot?joeozn#iefix') format('embedded-opentype'),
+      url('~fonts/iconfont/SL-Small-Icons.ttf?joeozn') format('truetype'),
+      url('~fonts/iconfont/SL-Small-Icons.woff?joeozn') format('woff'),
+      url('~fonts/iconfont/SL-Small-Icons.svg?joeozn#SL-Small-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
-}
+  }
 
-[class^="icon-"], [class*=" icon-"] {
-    font-family: 'IconFont' !important;
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'SL-Small-Icons' !important;
+    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
     line-height: 1;
+
+    /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-Allocate:before {
-    content: "\e907";
-}
-
-.icon-Options:before {
-    content: "\e93e";
-}
-
-.icon-Concept:before {
-    content: "\e938";
-}
-
-.icon-ConceptAlert:before {
-    content: "\e939";
-}
-
-.icon-Cards:before {
-    content: "\e93a";
-}
-
-.icon-Change:before {
-    content: "\e93b";
-}
-
-.icon-PostboxOut:before {
-    content: "\e93c";
-}
-
-.icon-PostboxIn:before {
-    content: "\e93d";
-}
-
-.icon-Suspended:before {
-    content: "\e937";
-}
-
-.icon-Error:before {
-    content: "\e936";
-}
-
-.icon-Indicator:before {
-    content: "\e935";
-}
-
-.icon-Match-A-comp:before {
-    content: "\e931";
-}
-
-.icon-Match-B-comp:before {
-    content: "\e932";
-}
-
-.icon-Match-Cone:before {
-    content: "\e933";
-}
-
-.icon-Match-Cup:before {
-    content: "\e934";
-}
-
-.icon-Alert:before {
-    content: "\e900";
-}
-
-.icon-Add:before {
-    content: "\e901";
-}
-
-.icon-Arrow-Down:before {
-    content: "\e902";
-}
-
-.icon-Arrow-Left:before {
-    content: "\e903";
-}
-
-.icon-Arrow-Right:before {
-    content: "\e904";
-}
-
-.icon-Arrow-Up:before {
-    content: "\e905";
-}
+  }
 
 .icon-Calendar:before {
+    content: "\e900";
+}
+.icon-Cards:before {
+    content: "\e901";
+}
+.icon-Change:before {
+    content: "\e902";
+}
+.icon-Check:before {
+    content: "\e903";
+}
+.icon-ChevronDown:before {
+    content: "\e904";
+}
+.icon-ChevronLeft:before {
+    content: "\e905";
+}
+.icon-ChevronRight:before {
     content: "\e906";
 }
-
-.icon-Car:before {
+.icon-ChevronUp:before {
+    content: "\e907";
+}
+.icon-Clock:before {
     content: "\e908";
 }
-
-.icon-Check:before {
+.icon-Mail:before {
     content: "\e909";
 }
-
-.icon-Chevron-Down:before {
+.icon-Question:before {
     content: "\e90a";
 }
-
-.icon-Chevron-Left:before {
+.icon-Share:before {
     content: "\e90b";
 }
-
-.icon-Chevron-Right:before {
+.icon-User:before {
     content: "\e90c";
 }
-
-.icon-Chevron-Up:before {
+.icon-Cross:before {
     content: "\e90d";
 }
-
-.icon-Clock:before {
+.icon-DropDown:before {
     content: "\e90e";
 }
-
-.icon-Close:before {
+.icon-DropLeft:before {
     content: "\e90f";
 }
-
-.icon-Club-Shield:before {
+.icon-DropRight:before {
     content: "\e910";
 }
-
-.icon-Club-Shirt:before {
+.icon-DropUp:before {
     content: "\e911";
 }
-
-.icon-Done:before {
+.icon-EventGeneric:before {
     content: "\e912";
 }
-
-.icon-Drop-Down:before {
+.icon-EventRedCard:before {
     content: "\e913";
 }
-
-.icon-Drop-Up:before {
+.icon-EventYellowCard:before {
     content: "\e914";
 }
-
-.icon-Help:before {
+.icon-Flag:before {
     content: "\e915";
 }
-
-.icon-Home:before {
+.icon-Gear:before {
     content: "\e916";
 }
-
-.icon-Info:before {
+.icon-Indicator:before {
     content: "\e917";
 }
-
-.icon-Locked:before {
+.icon-Lightbulb:before {
     content: "\e918";
 }
-
-.icon-Logout:before {
+.icon-LockOff:before {
     content: "\e919";
 }
-
-.icon-Mail:before {
+.icon-LockOn:before {
     content: "\e91a";
 }
-
-.icon-Menu:before {
+.icon-Logout:before {
     content: "\e91b";
 }
-
-.icon-Minus:before {
+.icon-MatchCancel:before {
     content: "\e91c";
 }
-
-.icon-Move-All:before {
+.icon-MatchCompA:before {
     content: "\e91d";
 }
-
-.icon-Move-LeftRight:before {
+.icon-MatchCompB:before {
     content: "\e91e";
 }
-
-.icon-Move-UpDown:before {
+.icon-MatchCup:before {
     content: "\e91f";
 }
-
-.icon-Notification:before {
+.icon-MatchDelete:before {
     content: "\e920";
 }
-
-.icon-Pencil:before {
+.icon-MatchOwn:before {
     content: "\e921";
 }
-
-.icon-Pin:before {
+.icon-Menu:before {
     content: "\e922";
 }
-
-.icon-Plus:before {
+.icon-Minus:before {
     content: "\e923";
 }
-
-.icon-Remove:before {
+.icon-MoveAll:before {
     content: "\e924";
 }
-
-.icon-Search:before {
+.icon-MoveLeftRight:before {
     content: "\e925";
 }
-
-.icon-Send:before {
+.icon-MoveUpDown:before {
     content: "\e926";
 }
-
-.icon-Settings:before {
+.icon-Options:before {
     content: "\e927";
 }
-
-.icon-Share:before {
+.icon-Pencil:before {
     content: "\e928";
 }
-
-.icon-Tip:before {
+.icon-Placeholder:before {
     content: "\e929";
 }
-
-.icon-Trash:before {
+.icon-Plane:before {
     content: "\e92a";
 }
-
-.icon-Unlocked:before {
+.icon-Plus:before {
     content: "\e92b";
 }
-
-.icon-User:before {
+.icon-PostboxIn:before {
     content: "\e92c";
 }
-
-.icon-UserCircle:before {
+.icon-PostboxOut:before {
     content: "\e92d";
 }
-
-.icon-Visibility-On:before {
+.icon-RoundHelp:before {
     content: "\e92e";
 }
-
-.icon-Visibility-Off:before {
+.icon-RoundInfo:before {
     content: "\e92f";
 }
-
-.icon-World:before {
+.icon-RoundMinus:before {
     content: "\e930";
+}
+.icon-RoundPlus:before {
+    content: "\e931";
+}
+.icon-Search:before {
+    content: "\e932";
+}
+.icon-Select:before {
+    content: "\e933";
+}
+.icon-Shield:before {
+    content: "\e934";
+}
+.icon-Shirt:before {
+    content: "\e935";
+}
+.icon-StatusAlert:before {
+    content: "\e936";
+}
+.icon-StatusCanceled:before {
+    content: "\e937";
+}
+.icon-StatusConcept:before {
+    content: "\e938";
+}
+.icon-StatusConceptAlert:before {
+    content: "\e939";
+}
+.icon-StatusDone:before {
+    content: "\e93a";
+}
+.icon-StatusError:before {
+    content: "\e93b";
+}
+.icon-StatusSuspended:before {
+    content: "\e93c";
+}
+.icon-Trashcan:before {
+    content: "\e93d";
+}
+.icon-VisibilityOff:before {
+    content: "\e93e";
+}
+.icon-VisibilityOn:before {
+    content: "\e93f";
+}
+.icon-World:before {
+    content: "\e940";
 }
