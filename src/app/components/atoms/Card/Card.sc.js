@@ -13,7 +13,7 @@ export const StyledCard = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     background-color: ${({ theme }) => theme.colorLight.light};
-    padding: ${({ theme }) => theme.spacingValue};
+    padding: ${({ theme }) => theme.spacing(1)};
     word-break: break-word;
     color: ${({ theme }) => theme.colorPrimary.dark};
 

@@ -10,7 +10,7 @@ export const StyledDialog = styled.div`
     ${setBoxSizing()};
     ${({ elevation }) => getElevation(elevation)};
     margin: auto;
-    border-radius: ${({ theme }) => theme.spacingValue};
+    border-radius: 8px;
     width: ${({ width }) => width};
 `;
 
@@ -20,7 +20,7 @@ StyledDialog.propTypes = {
 };
 
 export const ButtonWrapper = styled.div`
-    margin: 0 ${({ theme }) => `calc(${theme.spacingValue} * 2)`} 0 0;
+    margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
 `;
 
 export const ButtonClose = styled.button`
@@ -31,10 +31,10 @@ export const ButtonClose = styled.button`
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    padding: ${({ theme }) => theme.spacingValue};
+    padding: ${({ theme }) => theme.spacing(1)};
     text-align: ${({ position }) => (position === DIALOG_DIRECTIONS.LTR ? 'left' : 'right')};
     color: ${({ theme }) => theme.colorDark.dark};
-    font-size: ${({ theme }) => `calc(${theme.spacingValue} * 3)`};
+    font-size: ${({ theme }) => theme.spacing(3)};
 
     ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`
         left: 2px;
@@ -67,7 +67,7 @@ export const Header = styled.header`
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     background-color: ${({ theme }) => theme.colorPrimary.dark};
-    padding: ${({ theme }) => `calc(${theme.spacingValue} * 2)`};
+    padding: ${({ theme }) => theme.spacing(2)};
     min-height: 56px;
     color: ${({ theme }) => theme.colorLight.light};
 `;
@@ -80,7 +80,7 @@ export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
     ${textStyling(availableTextStyles().body1)};
     background-color: ${({ theme }) => theme.colorLight.light};
-    padding: ${({ theme }) => `calc(${theme.spacingValue} * 2)`};
+    padding: ${({ theme }) => theme.spacing(2)};
     color: ${({ theme }) => theme.colorDark.main};
 
     ${({ hasHeader }) => !hasHeader && css`

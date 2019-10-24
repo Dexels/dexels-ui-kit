@@ -10,7 +10,7 @@ export const StyledContainerContent = styled.div`
     display: flex;
     border: 0;
     background-color: transparent;
-    padding: ${({ theme }) => theme.spacingValue};
+    padding: ${({ theme }) => theme.spacing(1)};
 `;
 
 export default StyledContainerContent;

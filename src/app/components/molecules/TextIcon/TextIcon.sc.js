@@ -8,10 +8,10 @@ export const StyledTextIcon = styled.div`
     border: 0;
     border-radius: 100%;
     background-color: ${({ theme }) => theme.colorMedium.dark};
-    width: ${({ theme }) => `calc(${theme.spacingValue} * 3)`};
-    height: ${({ theme }) => `calc(${theme.spacingValue} * 3)`};
+    width: ${({ theme }) => theme.spacing(3)};
+    height: ${({ theme }) => theme.spacing(3)};
     text-align: center;
-    line-height: ${({ theme }) => `calc(${theme.spacingValue} * 3)`};
+    line-height: ${({ theme }) => theme.spacing(3)};
     color: ${({ theme }) => theme.colorLight.light};
 `;
 

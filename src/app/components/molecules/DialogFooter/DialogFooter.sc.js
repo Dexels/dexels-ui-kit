@@ -11,13 +11,13 @@ export const StyledDialogFooter = styled.footer`
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
     background-color: ${({ theme }) => theme.colorLight.dark};
-    padding: ${({ theme }) => `calc(${theme.spacingValue} * 2)`};
+    padding: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const TextWrapper = styled.div`
     ${textStyling(availableTextStyles().body2)};
     flex: 1 1 auto;
-    padding: 0 ${({ theme }) => theme.spacingValue} 0 0;
+    padding: ${({ theme }) => theme.spacing(0, 1, 0, 0)};
     word-break: break-all;
 `;
 
@@ -29,5 +29,5 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: 0 ${({ theme }) => `calc(${theme.spacingValue} * 2)`} 0 0;
+    margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
 `;

@@ -68,7 +68,7 @@ export const LabelWrapper = styled.div`
         left: 0;
 
         ${(hasValue || isFocused) && css`
-            top: calc(-${theme.spacingValue} * 2);
+            top: -${theme.spacing(2)};
             left: 0;
             padding: 0;
         `};
@@ -80,14 +80,14 @@ export const LabelWrapper = styled.div`
         theme,
         variant,
     }) => variant === INPUT_VARIANTS.OUTLINE && css`
-        top: calc(${theme.spacingValue} * 1.5);
-        left: calc(${theme.spacingValue} * 1.5);
+        top: ${theme.spacing(1.5)};
+        left: ${theme.spacing(1.5)};
         background-color: ${theme.colorLight.light};
 
         ${(hasValue || isFocused) && css`
-            top: calc(-${theme.spacingValue});
-            left: calc(${theme.spacingValue} * 2.5);
-            padding: 0 calc(${theme.spacingValue} / 2);
+            top: -${theme.spacing(1)};
+            left: ${theme.spacing(2.5)};
+            padding: ${theme.spacing(0, 0.5)};
         `};
     `};
 `;
@@ -110,19 +110,19 @@ export const TextField = styled.input`
         border: 0;
         border-bottom: 1px solid ${theme.colorPrimary.dark};
         padding: 0;
-        height: calc(${theme.spacingValue} * 3);
+        height: ${theme.spacing(3)};
     `};
 
     ${({ theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
         border: 1px solid ${theme.colorPrimary.dark};
         border-radius: 8px;
-        padding: 0 calc(${theme.spacingValue} * 1.5);
-        height: calc(${theme.spacingValue} * 6);
+        padding: ${theme.spacing(0, 1.5)};
+        height: ${theme.spacing(6)};
     `};
 
     ${({ isTextarea, theme }) => isTextarea && css`
-        height: calc(${theme.spacingValue} * 16);
-        padding: calc(${theme.spacingValue} * 1.5);
+        height: ${theme.spacing(16)};
+        padding: ${theme.spacing(1.5)};
         resize: none;
     `};
 
@@ -156,7 +156,7 @@ TextField.propTypes = {
 
 export const ErrorMessageWrapper = styled.div`
     ${({ theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
-        margin: calc(${theme.spacingValue} / 2) 0 0 calc(${theme.spacingValue} * 1.5);
+        margin: ${theme.spacing(0.5, 0, 0, 1.5)};
     `};
 `;
 

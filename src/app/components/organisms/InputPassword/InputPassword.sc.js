@@ -23,13 +23,13 @@ export const VisibilitySwitch = styled.button`
     ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
         top: 0;
         right: 0;
-        padding: 0 0 0 ${theme.spacingValue};
+        padding: ${theme.spacing(0, 0, 0, 1)};
     `};
 
     ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.OUTLINE && css`
-        top: ${theme.spacingValue};
-        right: ${theme.spacingValue};
-        padding: calc(${theme.spacingValue} / 2) ${theme.spacingValue};
+        top: ${theme.spacing(1)};
+        right: ${theme.spacing(1)};
+        padding: ${theme.spacing(0.5, 1)};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`

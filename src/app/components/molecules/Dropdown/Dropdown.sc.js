@@ -49,7 +49,7 @@ export const Select = styled.select`
     cursor: pointer;
     padding: 0;
     width: 100%;
-    height: ${({ theme }) => `calc(${theme.spacingValue} * 3.5)`};
+    height: ${({ theme }) => theme.spacing(3.5)};
     color: ${({ theme }) => theme.colorDark.main};
 
     ${({ isPlaceholderSelected }) => isPlaceholderSelected && css`
@@ -124,5 +124,5 @@ IconWrapper.propTypes = {
 };
 
 export const ErrorMessageWrapper = styled.div`
-    margin: ${({ theme }) => `calc(${theme.spacingValue} / 2)`} 0 0;
+    margin: ${({ theme }) => theme.spacing(0.5, 0, 0)};
 `;

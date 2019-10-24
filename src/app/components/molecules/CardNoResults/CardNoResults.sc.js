@@ -12,7 +12,7 @@ export const StyledCardNoResults = styled.div`
     flex-wrap: nowrap;
     justify-content: flex-start;
     background-color: transparent;
-    padding: ${({ theme }) => `calc(${(theme.spacingValue)} * 3)`};
+    padding: ${({ theme }) => theme.spacing(3)};
 `;
 
 StyledCardNoResults.propTypes = {
