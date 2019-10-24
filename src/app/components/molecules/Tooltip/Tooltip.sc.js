@@ -1,4 +1,3 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
@@ -28,7 +27,7 @@ export const StyledTooltip = styled.div`
     }
 
     &::after {
-        ${textStyling(availableTextStyles().body2)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
         ${({ placement }) => getPlacement(placement)};
         ${({ elevation }) => getElevation(elevation)};
         z-index: 99999999;

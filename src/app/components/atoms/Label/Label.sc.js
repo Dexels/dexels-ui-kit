@@ -1,9 +1,8 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 export const StyledLabel = styled.label`
-    ${textStyling(availableTextStyles().body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
     cursor: inherit;
     color: ${({ theme }) => theme.colorMedium.dark};
 
@@ -35,7 +34,7 @@ export const StyledLabel = styled.label`
         color: ${({ theme }) => theme.colorDisabled.main};
     `};
 
-    ${({ isSmall }) => isSmall && textStyling(availableTextStyles().caption)};
+    ${({ isSmall, theme }) => isSmall && theme.textStyling(theme.availableTextStyles.caption)};
 `;
 
 StyledLabel.propTypes = {

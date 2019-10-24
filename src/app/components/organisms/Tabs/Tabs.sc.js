@@ -1,4 +1,3 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { ELEVATIONS } from '../../../utils/constants';
@@ -14,7 +13,7 @@ StyledTabs.propTypes = {
 };
 
 export const TabHeader = styled.button`
-    ${textStyling(availableTextStyles().h3)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.h3)};
     appearance: none;
     position: relative;
     outline: none;
@@ -63,12 +62,12 @@ TabHeader.propTypes = {
 };
 
 export const TabHeaderList = styled.div`
-    ${textStyling(availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
     display: flex;
     flex-wrap: nowrap;
     border-bottom: 1px solid ${({ theme }) => theme.colorMedium.main};
 `;
 
 export const TabPanel = styled.div`
-    ${textStyling(availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
 `;

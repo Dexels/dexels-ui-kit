@@ -1,4 +1,3 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import styled, { css } from 'styled-components';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
@@ -99,7 +98,7 @@ LabelWrapper.propTypes = {
 };
 
 export const TextField = styled.input`
-    ${textStyling(availableTextStyles().body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
     display: block;
     outline: none;
     background-color: ${({ theme }) => theme.colorLight.light};

@@ -1,4 +1,3 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
@@ -38,7 +37,7 @@ StyledDropdown.propTypes = {
 };
 
 export const Select = styled.select`
-    ${textStyling(availableTextStyles().body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
     appearance: none;
     display: block;
     outline: none;
@@ -87,7 +86,7 @@ Select.propTypes = {
 };
 
 export const IconWrapper = styled.div`
-    ${textStyling(availableTextStyles().h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.h1)};
     position: absolute;
     top: 0;
     right: 0;

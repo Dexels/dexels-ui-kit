@@ -1,4 +1,3 @@
-import { availableTextStyles, textStyling } from '../../../styles/theming/textStyles';
 import styled, { css } from 'styled-components';
 import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 import PropTypes from 'prop-types';
@@ -10,7 +9,7 @@ export const StyledInputPassword = styled.div`
 `;
 
 export const VisibilitySwitch = styled.button`
-    ${textStyling(availableTextStyles().h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles.h1)};
     appearance: none;
     position: absolute;
     margin: 0;
