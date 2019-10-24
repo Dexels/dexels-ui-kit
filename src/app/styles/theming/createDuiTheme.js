@@ -5,7 +5,11 @@ const createDuiTheme = (baseTheme, overrides) => {
 
     Object.keys(overrides).forEach((overrideKey) => {
         if (!Object.prototype.hasOwnProperty.call(baseTheme, overrideKey)) {
-            throw Error(`The theme you provided doesn't have a ${overrideKey} on it`);
+            throw Error(`The theme you provided doesn't have a '${overrideKey}' key on it`);
+        }
+
+        if (typeof theme[overrideKey] === 'function') {
+            throw Error(`You're not allowed to overwrite the '${overrideKey}' function`);
         }
 
         theme[overrideKey] = {
