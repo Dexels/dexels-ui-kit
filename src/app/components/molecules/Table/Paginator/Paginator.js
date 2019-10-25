@@ -22,11 +22,11 @@ const Paginator = ({
         totalPages={totalPages}
     >
         {onFirstPage
-        && <StyledPagingButton iconType={StyledPagingButton.types.CHEVRON_LEFT} onClick={onFirstPage} />}
-        <StyledPagingButton iconType={StyledPagingButton.types.CHEVRON_LEFT} onClick={onPreviousPage} />
-        <StyledPagingButton iconType={StyledPagingButton.types.CHEVRON_RIGHT} onClick={onNextPage} />
+        && <StyledPagingButton iconType={StyledPagingButton.types.CHEVRONLEFT} onClick={onFirstPage} />}
+        <StyledPagingButton iconType={StyledPagingButton.types.CHEVRONLEFT} onClick={onPreviousPage} />
+        <StyledPagingButton iconType={StyledPagingButton.types.CHEVRONRIGHT} onClick={onNextPage} />
         {onLastPage
-        && <StyledPagingButton iconType={StyledPagingButton.types.CHEVRON_RIGHT} onClick={onLastPage} />}
+        && <StyledPagingButton iconType={StyledPagingButton.types.CHEVRONRIGHT} onClick={onLastPage} />}
     </StyledPaginator>
 );
 
