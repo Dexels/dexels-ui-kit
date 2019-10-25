@@ -3,19 +3,31 @@ const createDuiTheme = (baseTheme, overrides) => {
         ...baseTheme,
     };
 
-    Object.keys(overrides).forEach((overrideKey) => {
-        if (!Object.prototype.hasOwnProperty.call(baseTheme, overrideKey)) {
-            throw Error(`The theme you provided doesn't have a '${overrideKey}' key on it`);
+    Object.keys(overrides).forEach((override) => {
+        if (!Object.prototype.hasOwnProperty.call(baseTheme, override)) {
+            throw Error(`The theme you provided doesn't have a '${override}' key on it`);
         }
 
-        if (typeof theme[overrideKey] === 'function') {
-            throw Error(`You're not allowed to overwrite the '${overrideKey}' function`);
+        if (typeof theme[override] === 'function') {
+            throw Error(`You're not allowed to overwrite the '${override}' function`);
         }
 
-        theme[overrideKey] = {
-            ...theme[overrideKey],
-            ...overrides[overrideKey],
-        };
+        if (typeof theme[override] === 'string') {
+            theme[override] = overrides[override];
+        }
+
+        if (typeof overrides[override] === 'object') {
+            Object.keys(overrides[override]).forEach((nestedOverride) => {
+                if (typeof overrides[override][nestedOverride] === 'object') {
+                    theme[override][nestedOverride] = {
+                        ...theme[override][nestedOverride],
+                        ...overrides[override][nestedOverride],
+                    };
+                } else {
+                    theme[override] = overrides[override];
+                }
+            });
+        }
     });
 
     return theme;
