@@ -28,7 +28,6 @@ const themeBasic = {
     colorSecondary: {
         dark: '#009FFD',
         main: '#80CFFE',
-        light: '#BFE7FE',
     },
     colorDisabled: {
         main: '#E5E9ED',

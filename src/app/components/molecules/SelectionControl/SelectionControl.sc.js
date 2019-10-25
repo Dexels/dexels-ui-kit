@@ -118,7 +118,7 @@ export const InputWrapper = styled.div`
         opacity: 0;
         z-index: -1;
         border-radius: 100%;
-        background-color: ${({ theme }) => theme.colorSecondary.light};
+        background-color: ${({ theme }) => theme.colorSecondary.main};
         width: ${({ theme }) => `calc(${theme.spacing(3)} * (1 + 2 / 3))`};
         height: ${({ theme }) => `calc(${theme.spacing(3)} * (1 + 2 / 3))`};
         content: '';
