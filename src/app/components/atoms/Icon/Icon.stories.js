@@ -27,7 +27,7 @@ export const Configurable = () => {
                 }, '24px'),
             }}
         >
-            <Icon type={select('Type', Icon.types, Icon.types.ARROW_DOWN)} />
+            <Icon type={select('Type', Icon.types, Icon.types.CALENDAR)} />
         </div>
     );
 };

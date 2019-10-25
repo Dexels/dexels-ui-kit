@@ -33,7 +33,7 @@ ButtonIcon.propTypes = {
 };
 
 ButtonIcon.defaultProps = {
-    iconType: ButtonIcon.types.CHEVRON_DOWN,
+    iconType: ButtonIcon.types.CHEVRONDOWN,
     isDisabled: false,
     isInverted: false,
     size: ButtonIcon.sizes.LARGE,
