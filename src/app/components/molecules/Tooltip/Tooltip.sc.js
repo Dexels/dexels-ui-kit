@@ -27,7 +27,7 @@ export const StyledTooltip = styled.div`
     }
 
     &::after {
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
         ${({ placement }) => getPlacement(placement)};
         ${({ elevation }) => getElevation(elevation)};
         z-index: 99999999;

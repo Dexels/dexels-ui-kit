@@ -13,7 +13,7 @@ StyledTabs.propTypes = {
 };
 
 export const TabHeader = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.h3)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
     appearance: none;
     position: relative;
     outline: none;
@@ -62,12 +62,12 @@ TabHeader.propTypes = {
 };
 
 export const TabHeaderList = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
     flex-wrap: nowrap;
     border-bottom: 1px solid ${({ theme }) => theme.colorMedium.main};
 `;
 
 export const TabPanel = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
 `;

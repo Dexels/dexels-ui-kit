@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 export const StyledLabel = styled.label`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles.body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     cursor: inherit;
     color: ${({ theme }) => theme.colorMedium.dark};
 
@@ -34,7 +34,9 @@ export const StyledLabel = styled.label`
         color: ${({ theme }) => theme.colorDisabled.main};
     `};
 
-    ${({ isSmall, theme }) => isSmall && theme.textStyling(theme.availableTextStyles.caption)};
+    ${({ isSmall, theme }) => isSmall && css`
+        ${theme.textStyling(theme.availableTextStyles().caption)};
+    `};
 `;
 
 StyledLabel.propTypes = {
