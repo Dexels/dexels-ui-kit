@@ -23,7 +23,7 @@ const DialogFooter = ({
             {onCancel && buttonCancelText && (
                 <ButtonWrapper>
                     <Button
-                        iconType={Button.iconTypes.CLOSE}
+                        iconType={Button.iconTypes.CROSS}
                         onClick={onCancel}
                         size={Button.sizes.SMALL}
                         variant={Button.variants.TEXT_ONLY}
