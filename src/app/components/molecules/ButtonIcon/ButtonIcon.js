@@ -36,7 +36,7 @@ ButtonIcon.defaultProps = {
     iconType: ButtonIcon.types.CHEVRONDOWN,
     isDisabled: false,
     isInverted: false,
-    size: ButtonIcon.sizes.LARGE,
+    size: ButtonIcon.sizes.L,
 };
 
 export default ButtonIcon;

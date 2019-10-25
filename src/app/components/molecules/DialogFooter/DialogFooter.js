@@ -25,7 +25,7 @@ const DialogFooter = ({
                     <Button
                         iconType={Button.iconTypes.CROSS}
                         onClick={onCancel}
-                        size={Button.sizes.SMALL}
+                        size={Button.sizes.S}
                         variant={Button.variants.TEXT_ONLY}
                     >
                         {buttonCancelText}
@@ -36,7 +36,7 @@ const DialogFooter = ({
                 autoFocus
                 iconType={Button.iconTypes.CHECK}
                 onClick={onConfirm}
-                size={Button.sizes.SMALL}
+                size={Button.sizes.S}
                 variant={Button.variants.OUTLINE}
             >
                 {buttonConfirmText}

@@ -17,16 +17,20 @@ export const StyledButtonIcon = styled.button`
     overflow: hidden;
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorLight.light : theme.colorPrimary.dark)};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.S && css`
         font-size: 14px;
     `};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.MEDIUM && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.M && css`
         font-size: 18px;
     `};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.LARGE && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.L && css`
         font-size: 20px;
+    `};
+
+    ${({ size }) => size === BUTTON_ICON_SIZES.XL && css`
+        font-size: 24px;
     `};
 
     ${({ isDisabled, isInverted, theme }) => isDisabled && css`

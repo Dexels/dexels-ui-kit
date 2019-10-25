@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import ButtonIcon from '../../ButtonIcon/ButtonIcon';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 
 export const StyledPaginator = styled.div`
@@ -10,6 +9,4 @@ export const StyledPaginator = styled.div`
     overflow: auto;
 `;
 
-export const StyledPagingButton = styled(ButtonIcon)`
-    font-size: 24px;
-`;
+export default StyledPaginator;

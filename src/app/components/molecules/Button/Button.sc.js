@@ -32,7 +32,7 @@ export const StyledButton = styled.button`
         border-color: ${isInverted ? theme.colorLight.dark : theme.colorDisabled.main};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.SMALL && css`
+    ${({ size }) => size === BUTTON_SIZES.S && css`
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonSmall)};
         border-radius: 20px;
         min-width: 80px;
@@ -40,7 +40,7 @@ export const StyledButton = styled.button`
         min-height: 28px;
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.MEDIUM && css`
+    ${({ size }) => size === BUTTON_SIZES.M && css`
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonMedium)};
         border-radius: 20px;
         min-width: 90px;
@@ -48,12 +48,20 @@ export const StyledButton = styled.button`
         min-height: 32px;
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.LARGE && css`
+    ${({ size }) => size === BUTTON_SIZES.L && css`
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonLarge)};
         border-radius: 25px;
         min-width: 100px;
         padding: 8px 16px;
         min-height: 48px;
+    `};
+
+    ${({ size }) => size === BUTTON_SIZES.XL && css`
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonLarge)};
+        border-radius: 25px;
+        min-width: 150px;
+        padding: 12px 20px;
+        min-height: 52px;
     `};
 
     ${({
