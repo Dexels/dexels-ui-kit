@@ -1,30 +1,8 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import {
-    black,
-    grey100,
-    grey2,
-    grey25,
-    white,
-} from '../../../styles/colors/colors';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
-import theme from 'styled-theming';
-import { themeModes } from '../../../styles/theme/theme';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
-
-const tooltipBackgroundColor = theme('mode', {
-    [themeModes.basic]: grey100,
-    [themeModes.dark]: black,
-    [themeModes.light]: grey2,
-});
-
-const tooltipColor = theme('mode', {
-    [themeModes.basic]: grey25,
-    [themeModes.dark]: white,
-    [themeModes.light]: black,
-});
 
 export const StyledTooltip = styled.div`
     ${setBoxSizing()};
@@ -40,7 +18,7 @@ export const StyledTooltip = styled.div`
         position: absolute;
         visibility: hidden;
         opacity: 0;
-        background-color: ${tooltipBackgroundColor};
+        background-color: ${({ theme }) => theme.colorDark.main};
     }
 
     &::before {
@@ -49,7 +27,7 @@ export const StyledTooltip = styled.div`
     }
 
     &::after {
-        ${textStyling(availableTextStyles().body2)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
         ${({ placement }) => getPlacement(placement)};
         ${({ elevation }) => getElevation(elevation)};
         z-index: 99999999;
@@ -58,7 +36,7 @@ export const StyledTooltip = styled.div`
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: ${tooltipColor};
+        color: ${({ theme }) => theme.colorLight.light};
         content: attr(data-tooltip);
     }
 
