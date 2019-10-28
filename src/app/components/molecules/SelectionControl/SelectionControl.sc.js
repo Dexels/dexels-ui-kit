@@ -161,7 +161,7 @@ export const IconWrapper = styled.div`
     ${setCentered()};
     position: absolute;
     z-index: 2;
-    color: ${({ theme }) => theme.shade9};
+    color: ${({ theme }) => theme.colorContrastText.primary};
     font-size: ${({ theme }) => theme.spacing(2.5)};
     pointer-events: none;
 

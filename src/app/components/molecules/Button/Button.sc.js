@@ -64,19 +64,19 @@ export const StyledButton = styled.button`
     }) => variant === BUTTON_VARIANTS.FILLED && css`
         background-color: ${isInverted ? theme.shade9 : theme.colorPrimary};
         border-color: ${isInverted ? theme.shade9 : theme.colorPrimary};
-        color: ${isInverted ? theme.colorHeaderText.primary : theme.shade9};
+        color: ${isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary};
 
         &:focus,
         &:hover {
             background-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
             border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
-            color: ${isInverted ? theme.shade9 : theme.shade9};
+            color: ${isInverted ? theme.colorContrastText.primary : theme.colorContrastText.primary};
         }
 
         ${isDisabled && css`
             background-color: ${isInverted ? theme.shade7 : theme.colorDisabled};
             border-color: ${isInverted ? theme.shade7 : theme.colorDisabled};
-            color: ${isInverted ? theme.shade5 : theme.shade9};
+            color: ${isInverted ? theme.shade5 : theme.colorContrastText.primary};
         `};
     `};
 
@@ -88,7 +88,7 @@ export const StyledButton = styled.button`
     }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
         border-color: ${isInverted ? theme.shade9 : theme.colorPrimary};
-        color: ${isInverted ? theme.shade9 : theme.colorHeaderText.primary};
+        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
 
         &:focus,
         &:hover {
@@ -98,7 +98,7 @@ export const StyledButton = styled.button`
 
         ${isDisabled && css`
             border-color: ${isInverted ? theme.shade7 : theme.colorDisabled};
-            color: ${isInverted ? theme.shade7 : theme.shade9};
+            color: ${isInverted ? theme.shade7 : theme.colorContrastText.primary};
         `};
     `};
 
@@ -109,7 +109,7 @@ export const StyledButton = styled.button`
         variant,
     }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         background-color: transparent !important;
-        color: ${isInverted ? theme.shade9 : theme.colorHeaderText.primary};
+        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
         padding: 0;
         min-height: 0;
         border: 0;
@@ -120,7 +120,7 @@ export const StyledButton = styled.button`
         }
 
         ${isDisabled && css`
-            color: ${isInverted ? theme.shade7 : theme.shade9};
+            color: ${isInverted ? theme.shade7 : theme.colorContrastText.primary};
         `};
     `};
 

@@ -46,7 +46,7 @@ export const ButtonClose = styled.button`
     &:active,
     &:hover {
         background-color: transparent;
-        color: ${({ theme }) => theme.shade9};
+        color: ${({ theme }) => theme.colorContrastText.primary};
     }
 
     span {
@@ -68,7 +68,7 @@ export const Header = styled.header`
     background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(2)};
     min-height: 56px;
-    color: ${({ theme }) => theme.shade9};
+    color: ${({ theme }) => theme.colorContrastText.primary};
 `;
 
 Header.propTypes = {

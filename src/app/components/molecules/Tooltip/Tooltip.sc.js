@@ -36,7 +36,7 @@ export const StyledTooltip = styled.div`
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: ${({ theme }) => theme.shade9};
+        color: ${({ theme }) => theme.colorContrastText.primary};
         content: attr(data-tooltip);
     }
 

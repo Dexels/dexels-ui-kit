@@ -37,6 +37,7 @@ const themeBasic = {
     colorValid: '#2DD67B',
     colorWarning: '#EB6500',
     background: {},
+    colorContrastText: {},
     colorHeaderText: {},
     colorBodyText: {},
     colorMedium: {
@@ -101,14 +102,16 @@ themeBasic.background = {
 
 themeBasic.colorDisabled = themeBasic.shade6;
 
+themeBasic.colorContrast = {
+    primary: themeBasic.shade9,
+};
+
 themeBasic.colorHeaderText = {
-    contrast: themeBasic.shade9,
     primary: themeBasic.colorPrimary,
     secondary: themeBasic.colorSecondary,
 };
 
 themeBasic.colorBodyText = {
-    contrast: themeBasic.shade9,
     primary: themeBasic.shade1,
     secondary: themeBasic.shade4,
 };
