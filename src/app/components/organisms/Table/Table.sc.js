@@ -8,6 +8,7 @@ export const StyledTable = styled.table`
     ${setBoxSizing()};
     ${({ elevation }) => getElevation(elevation)};
     background-color: transparent;
+    border-spacing: 0;
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
@@ -30,6 +31,7 @@ export const StyledTableHeaderCell = styled.th`
     border-bottom: 4px solid;
     border-color: ${({ theme }) => theme.colorPrimary.dark};
     background-color: ${({ theme }) => theme.colorLight.light};
+    padding: ${({ theme }) => theme.spacing(1)};
     text-overflow: ellipsis;
     white-space: nowrap;
     color: ${({ theme }) => theme.colorDark.main};
@@ -39,11 +41,11 @@ export const StyledTableBody = styled.tbody`
     ${setBoxSizing()};
     background-color: green;
     color: white;
-    background-color: transparent;
 `;
 
 export const StyledTableRow = styled.tr`
     ${setBoxSizing()};
+    height: 36px;
     /* display: flex;
     position: fixed;
     z-index: 1;
@@ -54,6 +56,7 @@ export const StyledTableCell = styled.td`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     background-color: ${({ theme }) => theme.colorLight.light};
+    padding: ${({ theme }) => theme.spacing(1)};
     text-overflow: ellipsis;
     white-space: nowrap;
     color: ${({ theme }) => theme.colorDark.main};

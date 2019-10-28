@@ -6,6 +6,18 @@ import { useTable } from 'react-table';
 
 export default { title: 'organisms/Table' };
 
+const rowColorInfo = (value) => {
+    if (value > 66) {
+        return '#85cc00';
+    }
+
+    if (value > 33) {
+        return '#ffbf00';
+    }
+
+    return '#ff2e00';
+};
+
 function tableData() {
     return React.useMemo(
         () => [
@@ -13,49 +25,49 @@ function tableData() {
                 companyName: 'Dexels',
                 firstName: 'Erik',
                 infix: null,
-                info: 'Builds stuff',
+                info: 66,
                 lastName: 'Versteeg',
             },
             {
                 companyName: 'Dexels',
                 firstName: 'Maria',
                 infix: null,
-                info: 'Builds other stuff',
+                info: 45,
                 lastName: 'Papadaki',
             },
             {
                 companyName: 'Cygni',
                 firstName: 'David',
                 infix: 'de',
-                info: 'Builds stuff but temporarily',
+                info: 30,
                 lastName: 'Lusenet',
             },
             {
                 companyName: 'Dexels',
                 firstName: 'Firstname',
                 infix: null,
-                info: null,
+                info: 1,
                 lastName: 'Lastname 1',
             },
             {
                 companyName: 'Dexels',
                 firstName: 'Firstname',
                 infix: null,
-                info: null,
+                info: 15,
                 lastName: 'Lastname 2',
             },
             {
                 companyName: 'Dexels',
                 firstName: 'Firstname',
                 infix: null,
-                info: null,
+                info: 90,
                 lastName: 'Lastname 3',
             },
             {
                 companyName: 'Dexels',
                 firstName: 'Firstname',
                 infix: null,
-                info: null,
+                info: 120,
                 lastName: 'Lastname 4',
             },
             {
@@ -128,6 +140,26 @@ function tableColumns() {
                 accessor: 'companyName',
             },
             {
+                Cell: (row) => (
+                    <div
+                        style={{
+                            backgroundColor: '#dadada',
+                            borderRadius: '2px',
+                            height: '100%',
+                            width: '100%',
+                        }}
+                    >
+                        <div
+                            style={{
+                                backgroundColor: rowColorInfo(row.value),
+                                borderRadius: '2px',
+                                height: '100%',
+                                transition: 'all .2s ease-out',
+                                width: `${row.value}%`,
+                            }}
+                        />
+                    </div>
+                ),
                 Header: 'Info',
                 accessor: 'info',
             },

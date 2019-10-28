@@ -16,6 +16,8 @@ const Table = ({
     instance,
     isFullWidth,
 }) => (
+    // console.log('*********************** rows', instance.rows);
+
     /* eslint-disable-next-line */
     <StyledTable elevation={elevation} isFullWidth={isFullWidth} {...instance.getTableProps()}>
         <StyledTableHead>
@@ -39,7 +41,8 @@ const Table = ({
                     {row.cells.map((cell) => (
                         /* eslint-disable-next-line */
                         <StyledTableCell key={cell} {...cell.getCellProps()}>
-                            {cell.render('Cell')}
+                            {/* {console.log(cell, cell.render('Cell'))} */}
+                            {cell.render('Cell') !== null ? cell.render('Cell') : ''}
                         </StyledTableCell>
                     ))}
                 </StyledTableRow>
