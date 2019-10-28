@@ -102,7 +102,7 @@ themeBasic.background = {
 
 themeBasic.colorDisabled = themeBasic.shade6;
 
-themeBasic.colorContrast = {
+themeBasic.colorContrastText = {
     primary: themeBasic.shade9,
 };
 
