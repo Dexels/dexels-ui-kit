@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
-// @TODO add text styling after its added to the theming setup
 export const StyledColors = styled.div`
     ${setBoxSizing()};
     display: flex;
