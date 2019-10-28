@@ -1,30 +1,36 @@
+const checkIfPropertyExists = (object, property, completePropertyName) => {
+    if (!Object.prototype.hasOwnProperty.call(object, property)) {
+        throw Error(`The theme you provided doesn't have a '${completePropertyName || property}' property on it`);
+    }
+};
+
 const createDuiTheme = (baseTheme, overrides) => {
     const theme = {
         ...baseTheme,
     };
 
-    Object.keys(overrides).forEach((override) => {
-        if (!Object.prototype.hasOwnProperty.call(baseTheme, override)) {
-            throw Error(`The theme you provided doesn't have a '${override}' key on it`);
+    Object.keys(overrides).forEach((property1) => {
+        checkIfPropertyExists(baseTheme, property1);
+
+        if (typeof theme[property1] === 'function') {
+            throw Error(`You're not allowed to overwrite the '${property1}' function`);
         }
 
-        if (typeof theme[override] === 'function') {
-            throw Error(`You're not allowed to overwrite the '${override}' function`);
+        if (typeof theme[property1] === 'string') {
+            theme[property1] = overrides[property1];
         }
 
-        if (typeof theme[override] === 'string') {
-            theme[override] = overrides[override];
-        }
+        if (typeof overrides[property1] === 'object') {
+            Object.keys(overrides[property1]).forEach((property2) => {
+                checkIfPropertyExists(baseTheme[property1], property2, `${property1}.${property2}`);
 
-        if (typeof overrides[override] === 'object') {
-            Object.keys(overrides[override]).forEach((nestedOverride) => {
-                if (typeof overrides[override][nestedOverride] === 'object') {
-                    theme[override][nestedOverride] = {
-                        ...theme[override][nestedOverride],
-                        ...overrides[override][nestedOverride],
-                    };
+                if (typeof overrides[property1][property2] === 'object') {
+                    Object.keys(overrides[property1][property2]).forEach((property3) => {
+                        checkIfPropertyExists(baseTheme[property1][property2], property3, `${property1}.${property2}.${property3}`);
+                        theme[property1][property2][property3] = overrides[property1][property2][property3];
+                    });
                 } else {
-                    theme[override] = overrides[override];
+                    theme[property1][property2] = overrides[property1][property2];
                 }
             });
         }
