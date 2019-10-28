@@ -23,9 +23,6 @@ const themeBasic = {
     colorContrastText: {},
     colorHeaderText: {},
     colorBodyText: {},
-    colorMedium: {
-        dark: '#7F91A8', // @TODO discuss this with Marrick since this color isn't present in the color overview
-    },
     fontFamilyPrimary: "'Open Sans', arial, sans-serif",
     fontFamilySecondary: "'Exo 2', sans-serif",
     spacingValue: '8px',

@@ -52,7 +52,7 @@ export const Select = styled.select`
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ isPlaceholderSelected }) => isPlaceholderSelected && css`
-        color: ${({ theme }) => theme.colorMedium.dark};
+        color: ${({ theme }) => theme.shades.four};
     `};
 
     ${({ isFocused, isHovered }) => (isFocused || isHovered) && css`

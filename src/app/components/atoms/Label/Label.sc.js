@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const StyledLabel = styled.label`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     cursor: inherit;
-    color: ${({ theme }) => theme.colorMedium.dark};
+    color: ${({ theme }) => theme.shades.four};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
         color: ${({ theme }) => theme.colorHeaderText.primary};
