@@ -15,7 +15,7 @@ export const StyledButtonIcon = styled.button`
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1.5)};
     overflow: hidden;
-    color: ${({ isInverted, theme }) => (isInverted ? theme.colorLight.light : theme.colorPrimary.dark)};
+    color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary)};
 
     ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
         font-size: 14px;
@@ -31,20 +31,20 @@ export const StyledButtonIcon = styled.button`
 
     ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        color: ${isInverted ? theme.colorLight.dark : theme.colorDisabled.main};
+        color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
     `};
 
     &:focus,
     &:hover {
-        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary.dark : theme.colorLight.dark)};
-        color: ${({ isInverted, theme }) => (isInverted ? theme.colorLight.light : theme.colorSecondary.dark)};
+        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.shades.seven)};
+        color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
     }
 
     &:after {
         border: 0;
         pointer-events: none;
 
-        ${({ isInverted, theme }) => (isInverted ? rippleEffect() : rippleEffect(theme.colorSecondary.dark))};
+        ${({ isInverted, theme }) => (isInverted ? rippleEffect() : rippleEffect(theme.colorSecondary))};
     }
 
     &:active:after {

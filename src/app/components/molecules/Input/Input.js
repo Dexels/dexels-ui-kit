@@ -72,7 +72,6 @@ const Input = ({
                         isActive={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
-                        isHovered={isHovered}
                         isSmall={hasValue || isFocused}
                         isValid={isValid}
                     >

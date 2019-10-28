@@ -28,32 +28,32 @@ export const StyledButton = styled.button`
 
     ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        background-color: ${isInverted ? theme.colorLight.dark : theme.colorDisabled.main};
-        border-color: ${isInverted ? theme.colorLight.dark : theme.colorDisabled.main};
+        background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+        border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.SMALL && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonSmall)};
-        border-radius: 20px;
-        min-width: 80px;
-        padding: 4px 16px;
-        min-height: 28px;
+    ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
+        border-radius: ${theme.spacing(2)};
+        min-width: ${theme.spacing(10)};
+        padding: ${theme.spacing(0.5, 2)};
+        min-height: ${theme.spacing(4)};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.MEDIUM && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonMedium)};
-        border-radius: 20px;
-        min-width: 90px;
-        padding: 6px 16px;
-        min-height: 32px;
+    ${({ size, theme }) => size === BUTTON_SIZES.MEDIUM && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonMedium)};
+        border-radius: ${theme.spacing(2.5)};
+        min-width: ${theme.spacing(12)};
+        padding: ${theme.spacing(1, 2)};
+        min-height: ${theme.spacing(5)};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.LARGE && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonLarge)};
-        border-radius: 25px;
-        min-width: 100px;
-        padding: 8px 16px;
-        min-height: 48px;
+    ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
+        border-radius: ${theme.spacing(3)};
+        min-width: ${theme.spacing(14)};
+        padding: ${theme.spacing(1, 2)};
+        min-height: ${theme.spacing(6)};
     `};
 
     ${({
@@ -62,21 +62,21 @@ export const StyledButton = styled.button`
         theme,
         variant,
     }) => variant === BUTTON_VARIANTS.FILLED && css`
-        background-color: ${isInverted ? theme.colorLight.light : theme.colorPrimary.dark};
-        border-color: ${isInverted ? theme.colorLight.light : theme.colorPrimary.dark};
-        color: ${isInverted ? theme.colorPrimary.dark : theme.colorLight.light};
+        background-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        color: ${isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary};
 
         &:focus,
         &:hover {
-            background-color: ${isInverted ? theme.colorSecondary.dark : theme.colorSecondary.dark};
-            border-color: ${isInverted ? theme.colorSecondary.dark : theme.colorSecondary.dark};
-            color: ${isInverted ? theme.colorLight.light : theme.colorLight.light};
+            background-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
+            border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
+            color: ${isInverted ? theme.colorContrastText.primary : theme.colorContrastText.primary};
         }
 
         ${isDisabled && css`
-            background-color: ${isInverted ? theme.colorLight.dark : theme.colorDisabled.main};
-            border-color: ${isInverted ? theme.colorLight.dark : theme.colorDisabled.main};
-            color: ${isInverted ? theme.colorMedium.main : theme.colorLight.light};
+            background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            color: ${isInverted ? theme.shades.five : theme.colorContrastText.primary};
         `};
     `};
 
@@ -87,18 +87,18 @@ export const StyledButton = styled.button`
         variant,
     }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
-        border-color: ${isInverted ? theme.colorLight.light : theme.colorPrimary.dark};
-        color: ${isInverted ? theme.colorLight.light : theme.colorPrimary.dark};
+        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
 
         &:focus,
         &:hover {
-            border-color: ${isInverted ? theme.colorSecondary.dark : theme.colorSecondary.dark};
-            color: ${isInverted ? theme.colorSecondary.dark : theme.colorSecondary.dark};
+            border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
+            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorHeaderText.secondary};
         }
 
         ${isDisabled && css`
-            border-color: ${isInverted ? theme.colorLight.dark : theme.colorDisabled.main};
-            color: ${isInverted ? theme.colorLight.dark : theme.colorLight.light};
+            border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
         `};
     `};
 
@@ -109,23 +109,23 @@ export const StyledButton = styled.button`
         variant,
     }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         background-color: transparent !important;
-        color: ${isInverted ? theme.colorLight.light : theme.colorPrimary.dark};
+        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
         padding: 0;
         min-height: 0;
         border: 0;
 
         &:focus,
         &:hover {
-            color: ${isInverted ? theme.colorSecondary.dark : theme.colorSecondary.dark};
+            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorSecondary};
         }
 
         ${isDisabled && css`
-            color: ${isInverted ? theme.colorLight.dark : theme.colorLight.light};
+            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
         `};
     `};
 
     &:after {
-        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.colorSecondary.dark) : rippleEffect())};
+        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.colorSecondary) : rippleEffect())};
     }
 
     &:active:after {

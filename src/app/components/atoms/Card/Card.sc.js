@@ -11,13 +11,13 @@ export const StyledCard = styled.div`
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
-    background-color: ${({ theme }) => theme.colorLight.light};
+    background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(1)};
     word-break: break-word;
-    color: ${({ theme }) => theme.colorPrimary.dark};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
-    ${({ hasBorderRadius }) => hasBorderRadius && css`
-        border-radius: 4px;
+    ${({ hasBorderRadius, theme }) => hasBorderRadius && css`
+        border-radius: ${theme.spacing(0.5)};
     `}
 `;
 

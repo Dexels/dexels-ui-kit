@@ -14,23 +14,23 @@ export const StyledStatusIndicator = styled.div`
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DISABLED && css`
-        border-color: ${({ theme }) => theme.colorDisabled.main};
+        border-color: ${({ theme }) => theme.colorDisabled};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.ERROR && css`
-        border-color: ${({ theme }) => theme.colorError.main};
+        border-color: ${({ theme }) => theme.colorError};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.VALID && css`
-        border-color: ${({ theme }) => theme.colorValid.main};
+        border-color: ${({ theme }) => theme.colorValid};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DEFAULT && css`
-        border-color: ${({ theme }) => theme.colorPrimary.dark};
+        border-color: ${({ theme }) => theme.colorPrimary};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.WARNING && css`
-        border-color: ${({ theme }) => theme.colorWarning.main};
+        border-color: ${({ theme }) => theme.colorWarning};
     `};
 `;
 

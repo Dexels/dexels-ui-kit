@@ -17,7 +17,7 @@ export const VisibilitySwitch = styled.button`
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    color: ${({ theme }) => theme.colorPrimary.dark};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
         top: 0;
@@ -32,7 +32,7 @@ export const VisibilitySwitch = styled.button`
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.colorDisabled.main};
+        color: ${theme.colorDisabled};
         pointer-events: none;
     `};
 

@@ -9,7 +9,7 @@ export const StyledDialogFooter = styled.footer`
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
-    background-color: ${({ theme }) => theme.colorLight.dark};
+    background-color: ${({ theme }) => theme.shades.seven};
     padding: ${({ theme }) => theme.spacing(2)};
 `;
 
@@ -17,7 +17,7 @@ export const TextWrapper = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     flex: 1 1 auto;
     padding: ${({ theme }) => theme.spacing(0, 1, 0, 0)};
-    word-break: break-all;
+    word-break: break-word;
 `;
 
 export const ButtonBarWrapper = styled.div`
