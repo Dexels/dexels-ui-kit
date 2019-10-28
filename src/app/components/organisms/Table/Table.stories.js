@@ -1,5 +1,6 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import Table from './Table';
 import { useTable } from 'react-table';
@@ -17,6 +18,41 @@ const rowColorInfo = (value) => {
 
     return '#ff2e00';
 };
+
+function getInfo(row) {
+    return (
+        <div
+            style={{
+                backgroundColor: '#dadada',
+                borderRadius: '2px',
+                height: '100%',
+                width: '100%',
+            }}
+        >
+            <div
+                style={{
+                    backgroundColor: rowColorInfo(row.value),
+                    borderRadius: '2px',
+                    height: '100%',
+                    transition: 'all .2s ease-out',
+                    width: `${row.value}%`,
+                }}
+            />
+        </div>
+    );
+}
+
+function getButton(row) {
+    return (
+        <Button
+            onClick={action('On click => '.concat(row.cell.row.index))}
+            size={Button.sizes.S}
+            variant={Button.variants.OUTLINE}
+        >
+            {'BUTTON '.concat(row.cell.row.index)}
+        </Button>
+    );
+}
 
 function tableData() {
     return React.useMemo(
@@ -103,15 +139,21 @@ function tableColumnsWithGroupHeader() {
                 ],
             },
             {
-                Header: 'Info',
+                Header: 'InfoGroup',
                 columns: [
                     {
                         Header: 'Company',
                         accessor: 'companyName',
                     },
                     {
+                        Cell: (row) => getInfo(row),
                         Header: 'Info',
                         accessor: 'info',
+                    },
+                    {
+                        Cell: (row) => getButton(row),
+                        Header: 'Action',
+                        accessor: 'action',
                     },
                 ],
             },
@@ -140,28 +182,14 @@ function tableColumns() {
                 accessor: 'companyName',
             },
             {
-                Cell: (row) => (
-                    <div
-                        style={{
-                            backgroundColor: '#dadada',
-                            borderRadius: '2px',
-                            height: '100%',
-                            width: '100%',
-                        }}
-                    >
-                        <div
-                            style={{
-                                backgroundColor: rowColorInfo(row.value),
-                                borderRadius: '2px',
-                                height: '100%',
-                                transition: 'all .2s ease-out',
-                                width: `${row.value}%`,
-                            }}
-                        />
-                    </div>
-                ),
+                Cell: (row) => getInfo(row),
                 Header: 'Info',
                 accessor: 'info',
+            },
+            {
+                Cell: (row) => getButton(row),
+                Header: 'Action',
+                accessor: 'action',
             },
         ],
         [],

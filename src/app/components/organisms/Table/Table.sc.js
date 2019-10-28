@@ -45,10 +45,6 @@ export const StyledTableBody = styled.tbody`
 export const StyledTableRow = styled.tr`
     ${setBoxSizing()};
     height: 36px;
-    /* display: flex;
-    position: fixed;
-    z-index: 1;
-    overflow: auto; */
 
     &:nth-child(odd) {
         background-color: ${({ theme }) => theme.colorLight.light};
@@ -57,11 +53,17 @@ export const StyledTableRow = styled.tr`
     &:nth-child(even) {
         background-color: ${({ theme }) => theme.colorLight.main};
     }
+
+    &:hover {
+        ${getElevation(TABLE_ELEVATIONS.LEVEL_3)};
+    }
 `;
 
 export const StyledTableCell = styled.td`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    border-bottom: 1px solid;
+    border-color: ${({ theme }) => theme.colorLight.dark};
     padding: ${({ theme }) => theme.spacing(1)};
     text-overflow: ellipsis;
     white-space: nowrap;
