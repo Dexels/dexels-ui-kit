@@ -15,7 +15,7 @@ export const StyledLabel = styled.label`
     `};
 
     ${({ isFocused }) => isFocused && css`
-        color: ${({ theme }) => theme.colorSecondary};
+        color: ${({ theme }) => theme.colorHeaderText.secondary};
     `};
 
     ${({ isValid }) => isValid && css`

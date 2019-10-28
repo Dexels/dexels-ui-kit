@@ -27,7 +27,7 @@ export const Header = styled.div`
 export const Title = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
     margin: 4px 4px 4px 0;
-    color: ${({ theme }) => theme.colorSecondary};
+    color: ${({ theme }) => theme.colorHeaderText.secondary};
 `;
 
 export const Item = styled.p`

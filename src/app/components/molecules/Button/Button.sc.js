@@ -93,7 +93,7 @@ export const StyledButton = styled.button`
         &:focus,
         &:hover {
             border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
-            color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
+            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorHeaderText.secondary};
         }
 
         ${isDisabled && css`
@@ -116,7 +116,7 @@ export const StyledButton = styled.button`
 
         &:focus,
         &:hover {
-            color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
+            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorSecondary};
         }
 
         ${isDisabled && css`

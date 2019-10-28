@@ -47,7 +47,7 @@ export const TabHeader = styled.button`
     &:active,
     &:hover {
         border-bottom-color: ${({ theme }) => theme.colorSecondary};
-        color: ${({ theme }) => theme.colorSecondary};
+        color: ${({ theme }) => theme.colorHeaderText.secondary};
     }
 
     &:active:after {
