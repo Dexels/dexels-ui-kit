@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
 
 export const Text = styled.p`
-    flex: 0 0 auto;
+    flex: 0 1 auto;
     order: 2;
     margin: 0;
+    word-break: break-word;
 `;
 
 export const IconWrapper = styled.div`
