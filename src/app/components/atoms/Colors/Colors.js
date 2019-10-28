@@ -10,25 +10,53 @@ import { ThemeContext } from 'styled-components';
 
 const Colors = () => {
     const theme = useContext(ThemeContext);
-    const colorGroups = Object.keys(theme).filter((themeKey) => typeof theme[themeKey] === 'object');
+
+    const colorKeys = [
+        'colorBodyText',
+        'colorDisabled',
+        'colorError',
+        'colorHeaderText',
+        'colorPrimary',
+        'colorSecondary',
+        'colorTertiary',
+        'colorValid',
+        'colorWarning',
+        'shade1',
+        'shade2',
+        'shade3',
+        'shade4',
+        'shade5',
+        'shade6',
+        'shade7',
+        'shade8',
+        'shade9',
+    ];
 
     return (
         <StyledColors>
-            {colorGroups.map((colorGroup) => (
-                <ColorGroup key={colorGroup}>
+            {colorKeys.map((colorKey) => (
+                <ColorGroup key={colorKey}>
                     <ColorGroupName>
-                        {colorGroup}
+                        {colorKey}
                     </ColorGroupName>
-                    {Object.keys(theme[colorGroup]).map((colorName) => (
-                        <Color color={theme[colorGroup][colorName]} key={colorName}>
-                            <ColorText color={theme[colorGroup][colorName]}>
-                                {colorName}
-                            </ColorText>
-                            <ColorText color={theme[colorGroup][colorName]}>
-                                {theme[colorGroup][colorName]}
+                    {typeof theme[colorKey] === 'object' ? (
+                        Object.keys(theme[colorKey]).map((colorName) => (
+                            <Color color={theme[colorKey][colorName]} key={colorName}>
+                                <ColorText color={theme[colorKey][colorName]}>
+                                    {colorName}
+                                </ColorText>
+                                <ColorText color={theme[colorKey][colorName]}>
+                                    {theme[colorKey][colorName]}
+                                </ColorText>
+                            </Color>
+                        ))
+                    ) : (
+                        <Color color={theme[colorKey]} key={theme[colorKey]}>
+                            <ColorText color={theme[colorKey]}>
+                                {theme[colorKey]}
                             </ColorText>
                         </Color>
-                    ))}
+                    )}
                 </ColorGroup>
             ))}
         </StyledColors>
