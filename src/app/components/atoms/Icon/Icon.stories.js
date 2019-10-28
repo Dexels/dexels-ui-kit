@@ -1,5 +1,6 @@
 import basicTheme from '../../../styles/theming/themes/basic';
-import flattenTheme from '../../../styles/theming/flattenTheme';
+import { colorKeys } from '../../../styles/theming/colorKeys';
+import getColorsFromTheme from '../../../styles/theming/getColorsFromTheme';
 import Icon from './Icon';
 import React from 'react';
 import { select } from '@storybook/addon-knobs';
@@ -11,12 +12,12 @@ export default { title: 'atoms/Icon' };
 // @TODO try to use the ThemeContext here, doesn't work atm
 // Already opened an issue: https://github.com/storybookjs/storybook/issues/8531
 export const Configurable = () => {
-    const colors = flattenTheme(basicTheme);
+    const colors = getColorsFromTheme(basicTheme, colorKeys);
 
     return (
         <div
             style={{
-                color: select('Color', colors, colors['colorPrimary-dark']),
+                color: select('Color', colors, colors['colorHeaderText-primary']),
                 fontSize: select('Size', {
                     XS: '12px',
                     S: '16px',

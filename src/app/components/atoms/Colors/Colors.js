@@ -6,31 +6,11 @@ import {
     StyledColors,
 } from './Colors.sc';
 import React, { useContext } from 'react';
+import { colorKeys } from '../../../styles/theming/colorKeys';
 import { ThemeContext } from 'styled-components';
 
 const Colors = () => {
     const theme = useContext(ThemeContext);
-
-    const colorKeys = [
-        'colorBodyText',
-        'colorDisabled',
-        'colorError',
-        'colorHeaderText',
-        'colorPrimary',
-        'colorSecondary',
-        'colorTertiary',
-        'colorValid',
-        'colorWarning',
-        'shade1',
-        'shade2',
-        'shade3',
-        'shade4',
-        'shade5',
-        'shade6',
-        'shade7',
-        'shade8',
-        'shade9',
-    ];
 
     return (
         <StyledColors>
