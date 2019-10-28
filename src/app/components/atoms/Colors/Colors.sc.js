@@ -9,7 +9,7 @@ export const StyledColors = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0 auto;
+    margin: 80px auto 0;
     max-width: 1200px;
 `;
 
