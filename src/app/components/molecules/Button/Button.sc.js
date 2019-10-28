@@ -34,23 +34,23 @@ export const StyledButton = styled.button`
 
     ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
         ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
-        border-radius: 20px;
+        border-radius: ${theme.spacing(2)};
         min-width: ${theme.spacing(10)};
         padding: ${theme.spacing(0.5, 2)};
-        min-height: ${theme.spacing(3.5)};
+        min-height: ${theme.spacing(4)};
     `};
 
     ${({ size, theme }) => size === BUTTON_SIZES.MEDIUM && css`
         ${theme.textStyling(theme.availableTextStyles().buttonMedium)};
-        border-radius: 20px;
+        border-radius: ${theme.spacing(2.5)};
         min-width: ${theme.spacing(12)};
-        padding: ${theme.spacing(0.75, 2)};
-        min-height: ${theme.spacing(4)};
+        padding: ${theme.spacing(1, 2)};
+        min-height: ${theme.spacing(5)};
     `};
 
     ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
         ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
-        border-radius: 25px;
+        border-radius: ${theme.spacing(3)};
         min-width: ${theme.spacing(14)};
         padding: ${theme.spacing(1, 2)};
         min-height: ${theme.spacing(6)};

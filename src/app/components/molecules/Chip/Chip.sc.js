@@ -14,7 +14,7 @@ export const StyledChip = styled.button`
     position: relative;
     outline: none;
     border: 1px solid ${({ theme }) => theme.shades.two};
-    border-radius: 8px;
+    border-radius: ${({ theme }) => theme.spacing(1)};
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(0.5, 1)};

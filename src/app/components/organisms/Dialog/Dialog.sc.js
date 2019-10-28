@@ -9,7 +9,7 @@ export const StyledDialog = styled.div`
     ${setBoxSizing()};
     ${({ elevation }) => getElevation(elevation)};
     margin: auto;
-    border-radius: 8px;
+    border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
 `;
 
@@ -63,11 +63,11 @@ export const Header = styled.header`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     display: flex;
     align-items: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: ${({ theme }) => theme.spacing(1)};
+    border-top-right-radius: ${({ theme }) => theme.spacing(1)};
     background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(2)};
-    min-height: 56px;
+    min-height: ${({ theme }) => theme.spacing(7)};
     color: ${({ theme }) => theme.colorContrastText.primary};
 `;
 
@@ -82,8 +82,8 @@ export const Body = styled.div`
     padding: ${({ theme }) => theme.spacing(2)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
-    ${({ hasHeader }) => !hasHeader && css`
-        border-radius: 8px 8px 0 0;
+    ${({ hasHeader, theme }) => !hasHeader && css`
+        border-radius: ${theme.spacing(1, 1, 0, 0)};
     `};
 `;
 

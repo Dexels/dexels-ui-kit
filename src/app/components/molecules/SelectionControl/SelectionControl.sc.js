@@ -35,8 +35,8 @@ export const InputWrapper = styled.div`
         order: 2;
     `};
 
-    ${({ type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
-        border-radius: 5px;
+    ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+        border-radius: ${theme.spacing(0.5)};
     `};
 
     ${({ type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`

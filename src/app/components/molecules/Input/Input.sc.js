@@ -114,7 +114,7 @@ export const TextField = styled.input`
 
     ${({ theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
         border: 1px solid ${theme.colorPrimary};
-        border-radius: 8px;
+        border-radius: ${theme.spacing(1)};
         padding: ${theme.spacing(0, 1.5)};
         height: ${theme.spacing(6)};
     `};

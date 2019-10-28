@@ -16,8 +16,8 @@ export const StyledCard = styled.div`
     word-break: break-word;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
-    ${({ hasBorderRadius }) => hasBorderRadius && css`
-        border-radius: 4px;
+    ${({ hasBorderRadius, theme }) => hasBorderRadius && css`
+        border-radius: ${theme.spacing(0.5)};
     `}
 `;
 
