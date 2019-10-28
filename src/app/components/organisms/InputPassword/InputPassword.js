@@ -40,7 +40,7 @@ const InputPassword = ({
                 }}
                 variant={variant}
             >
-                <Icon type={isVisible ? Icon.types.VISIBILITY_ON : Icon.types.VISIBILITY_OFF} />
+                <Icon type={isVisible ? Icon.types.VISIBILITYON : Icon.types.VISIBILITYOFF} />
             </VisibilitySwitch>
         </StyledInputPassword>
     );

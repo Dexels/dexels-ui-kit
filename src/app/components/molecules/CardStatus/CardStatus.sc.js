@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 export const StyledCardStatusWrapper = styled.div`
     ${({ elevation }) => getElevation(elevation)};
 
-    ${({ hasBorderRadius }) => hasBorderRadius && css`
-        border-radius: 4px;
+    ${({ hasBorderRadius, theme }) => hasBorderRadius && css`
+        border-radius: ${theme.spacing(0.5)};
     `};
 `;
 
