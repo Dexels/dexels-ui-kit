@@ -20,26 +20,26 @@ StyledCardNoResults.propTypes = {
 
 export const Header = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
-    margin: 0 0 16px;
+    margin: ${({ theme }) => theme.spacing(0, 0, 2)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
 export const Title = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
-    margin: 4px 4px 4px 0;
+    margin: ${({ theme }) => theme.spacing(0.5, 0.5, 0.5, 0)};
     color: ${({ theme }) => theme.colorHeaderText.secondary};
 `;
 
 export const Item = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    margin: 0 0 4px;
+    margin: ${({ theme }) => theme.spacing(0, 0, 0.5)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
 export const Left = styled.div`
     flex: 0 0 auto;
     margin-top: 4px; /* Correction for line-height Title element */
-    width: 48px;
+    width: ${({ theme }) => theme.spacing(6)};
 `;
 
 export const IconWrapper = styled.div`

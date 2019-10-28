@@ -22,7 +22,7 @@ export const TabHeader = styled.button`
     background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(0, 3)};
-    height: 48px;
+    height: ${({ theme }) => theme.spacing(6)};
     overflow: hidden;
     text-align: center;
     color: ${({ theme }) => theme.colorHeaderText.primary};

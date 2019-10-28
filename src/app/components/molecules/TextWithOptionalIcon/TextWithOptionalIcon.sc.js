@@ -11,7 +11,7 @@ export const Text = styled.p`
 
 export const IconWrapper = styled.div`
     order: 1;
-    margin: 0 6px 0 0;
+    margin: ${({ theme }) => theme.spacing(0, 0.75, 0, 0)};
 
     span {
         display: block;
@@ -24,14 +24,14 @@ export const StyledTextWithOptionalIcon = styled.div`
     align-items: center;
     justify-content: center;
 
-    ${({ direction }) => direction === TEXT_WITH_OPTIONAL_ICON_DIRECTIONS.RTL && css`
+    ${({ direction, theme }) => direction === TEXT_WITH_OPTIONAL_ICON_DIRECTIONS.RTL && css`
         ${Text} {
             order: 1;
         }
 
         ${IconWrapper} {
             order: 2;
-            margin: 0 0 0 6px;
+            margin: ${theme.spacing(0, 0, 0, 0.75)};
         }
     `};
 `;
