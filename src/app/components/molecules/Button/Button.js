@@ -16,6 +16,7 @@ const Button = ({
     iconType,
     isDisabled,
     isFullWidth,
+    isInverted,
     onClick,
     size,
     transitionDuration,
@@ -26,6 +27,7 @@ const Button = ({
         autoFocus={autoFocus}
         isDisabled={isDisabled}
         isFullWidth={isFullWidth}
+        isInverted={isInverted}
         onClick={onClick}
         size={size}
         transitionDuration={transitionDuration}
@@ -51,6 +53,7 @@ Button.propTypes = {
     iconType: PropTypes.oneOf(Object.values(Button.iconTypes)),
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
+    isInverted: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     size: PropTypes.oneOf(Object.values(Button.sizes)),
     transitionDuration: PropTypes.number,
@@ -64,6 +67,7 @@ Button.defaultProps = {
     iconType: null,
     isDisabled: false,
     isFullWidth: false,
+    isInverted: false,
     size: Button.sizes.LARGE,
     transitionDuration: 300,
     transitionEasing: Button.transitionEasings.EASE,

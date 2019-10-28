@@ -1,58 +1,42 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import { black, grey100, white } from '../../../styles/colors/colors';
-import {
-    colorBodyLight,
-    colorDisabled,
-    colorError,
-    colorPrimary,
-    colorSecondary,
-    colorValid,
-    themeModes,
-} from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import theme from 'styled-theming';
-
-const labelColor = theme('mode', {
-    [themeModes.basic]: grey100,
-    [themeModes.dark]: white,
-    [themeModes.light]: black,
-});
 
 export const StyledLabel = styled.label`
-    ${textStyling(availableTextStyles().body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     cursor: inherit;
-    color: ${colorBodyLight};
+    color: ${({ theme }) => theme.colorMedium.dark};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
-        color: ${labelColor};
+        color: ${({ theme }) => theme.colorDark.main};
     `};
 
-    ${({ isHovered }) => isHovered && css`
-        color: ${colorBodyLight};
+    ${({ isHovered }) => isHovered && css` /* @TODO this prop can be removed */
+        color: ${({ theme }) => theme.colorMedium.dark};
     `};
 
     ${({ isActive }) => isActive && css`
-        color: ${colorPrimary};
+        color: ${({ theme }) => theme.colorPrimary.dark};
     `};
 
     ${({ isFocused }) => isFocused && css`
-        color: ${colorSecondary};
+        color: ${({ theme }) => theme.colorSecondary.dark};
     `};
 
     ${({ isValid }) => isValid && css`
-        color: ${colorValid};
+        color: ${({ theme }) => theme.colorValid.main};
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${colorError};
+        color: ${({ theme }) => theme.colorError.main};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
-        color: ${colorDisabled};
+        color: ${({ theme }) => theme.colorDisabled.main};
     `};
 
-    ${({ isSmall }) => isSmall && textStyling(availableTextStyles().caption)};
+    ${({ isSmall, theme }) => isSmall && css`
+        ${theme.textStyling(theme.availableTextStyles().caption)};
+    `};
 `;
 
 StyledLabel.propTypes = {
