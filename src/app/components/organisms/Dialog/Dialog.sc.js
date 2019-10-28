@@ -78,7 +78,7 @@ Header.propTypes = {
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    background-color: ${({ theme }) => theme.shade9};
+    background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(2)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 

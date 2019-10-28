@@ -81,7 +81,7 @@ export const LabelWrapper = styled.div`
     }) => variant === INPUT_VARIANTS.OUTLINE && css`
         top: ${theme.spacing(1.5)};
         left: ${theme.spacing(1.5)};
-        background-color: ${theme.shade9};
+        background-color: ${theme.shades.nine};
 
         ${(hasValue || isFocused) && css`
             top: -${theme.spacing(1)};
@@ -101,7 +101,7 @@ export const TextField = styled.input`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     display: block;
     outline: none;
-    background-color: ${({ theme }) => theme.shade9};
+    background-color: ${({ theme }) => theme.shades.nine};
     width: 100%;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 

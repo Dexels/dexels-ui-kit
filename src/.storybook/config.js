@@ -43,11 +43,11 @@ addParameters({
         {
             default: true,
             name: 'light',
-            value: themeBasic.shade9,
+            value: themeBasic.shades.nine,
         },
         {
             name: 'intermediate',
-            value: themeBasic.shade5,
+            value: themeBasic.shades.five,
         },
         {
             name: 'dark',

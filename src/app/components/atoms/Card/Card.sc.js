@@ -11,7 +11,7 @@ export const StyledCard = styled.div`
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
-    background-color: ${({ theme }) => theme.shade9};
+    background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(1)};
     word-break: break-word;
     color: ${({ theme }) => theme.colorHeaderText.primary};

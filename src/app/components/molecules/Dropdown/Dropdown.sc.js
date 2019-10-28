@@ -44,7 +44,7 @@ export const Select = styled.select`
     border: 0;
     border-bottom: 1px solid ${({ theme }) => theme.colorHeaderText.primary};
     border-radius: 0;
-    background-color: ${({ theme }) => theme.shade9};
+    background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
     padding: 0;
     width: 100%;

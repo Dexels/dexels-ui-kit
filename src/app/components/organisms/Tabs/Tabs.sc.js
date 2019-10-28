@@ -18,8 +18,8 @@ export const TabHeader = styled.button`
     position: relative;
     outline: none;
     border: 0;
-    border-bottom: 2px solid ${({ theme }) => theme.shade9};
-    background-color: ${({ theme }) => theme.shade9};
+    border-bottom: 2px solid ${({ theme }) => theme.shades.nine};
+    background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(0, 3)};
     height: 48px;
@@ -65,7 +65,7 @@ export const TabHeaderList = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
     flex-wrap: nowrap;
-    border-bottom: 1px solid ${({ theme }) => theme.shade5};
+    border-bottom: 1px solid ${({ theme }) => theme.shades.five};
 `;
 
 export const TabPanel = styled.div`

@@ -2,15 +2,17 @@ import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 /* eslint-disable sort-keys */
 const themeBasic = {
-    shade1: '#002451',
-    shade2: '#324F73',
-    shade3: '#647B96',
-    shade4: '#96A5B8',
-    shade5: '#BFC8D3',
-    shade6: '#E5E9ED',
-    shade7: '#F2F4F6',
-    shade8: '#FAFBFC',
-    shade9: '#FFFFFF',
+    shades: {
+        one: '#002451',
+        two: '#324F73',
+        three: '#647B96',
+        four: '#96A5B8',
+        five: '#BFC8D3',
+        six: '#E5E9ED',
+        seven: '#F2F4F6',
+        eight: '#FAFBFC',
+        nine: '#FFFFFF',
+    },
     colorPrimary: '#3D4A9A',
     colorSecondary: '#009FFD',
     colorTertiary: '#80CFFE',
@@ -78,13 +80,13 @@ const themeBasic = {
 };
 
 themeBasic.background = {
-    primary: themeBasic.shade8,
+    primary: themeBasic.shades.eight,
 };
 
-themeBasic.colorDisabled = themeBasic.shade6;
+themeBasic.colorDisabled = themeBasic.shades.six;
 
 themeBasic.colorContrastText = {
-    primary: themeBasic.shade9,
+    primary: themeBasic.shades.nine,
 };
 
 themeBasic.colorHeaderText = {
@@ -93,8 +95,8 @@ themeBasic.colorHeaderText = {
 };
 
 themeBasic.colorBodyText = {
-    primary: themeBasic.shade1,
-    secondary: themeBasic.shade4,
+    primary: themeBasic.shades.one,
+    secondary: themeBasic.shades.four,
 };
 
 themeBasic.textStyles.body1 = {

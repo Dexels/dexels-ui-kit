@@ -28,32 +28,32 @@ export const StyledButton = styled.button`
 
     ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        background-color: ${isInverted ? theme.shade7 : theme.colorDisabled};
-        border-color: ${isInverted ? theme.shade7 : theme.colorDisabled};
+        background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+        border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.SMALL && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonSmall)};
+    ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
         border-radius: 20px;
-        min-width: 80px;
-        padding: 4px 16px;
-        min-height: 28px;
+        min-width: ${theme.spacing(10)};
+        padding: ${theme.spacing(0.5, 2)};
+        min-height: ${theme.spacing(3.5)};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.MEDIUM && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonMedium)};
+    ${({ size, theme }) => size === BUTTON_SIZES.MEDIUM && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonMedium)};
         border-radius: 20px;
-        min-width: 90px;
-        padding: 6px 16px;
-        min-height: 32px;
+        min-width: ${theme.spacing(12)};
+        padding: ${theme.spacing(0.75, 2)};
+        min-height: ${theme.spacing(4)};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.LARGE && css`
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().buttonLarge)};
+    ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
         border-radius: 25px;
-        min-width: 100px;
-        padding: 8px 16px;
-        min-height: 48px;
+        min-width: ${theme.spacing(14)};
+        padding: ${theme.spacing(1, 2)};
+        min-height: ${theme.spacing(6)};
     `};
 
     ${({
@@ -62,8 +62,8 @@ export const StyledButton = styled.button`
         theme,
         variant,
     }) => variant === BUTTON_VARIANTS.FILLED && css`
-        background-color: ${isInverted ? theme.shade9 : theme.colorPrimary};
-        border-color: ${isInverted ? theme.shade9 : theme.colorPrimary};
+        background-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
         color: ${isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary};
 
         &:focus,
@@ -74,9 +74,9 @@ export const StyledButton = styled.button`
         }
 
         ${isDisabled && css`
-            background-color: ${isInverted ? theme.shade7 : theme.colorDisabled};
-            border-color: ${isInverted ? theme.shade7 : theme.colorDisabled};
-            color: ${isInverted ? theme.shade5 : theme.colorContrastText.primary};
+            background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            color: ${isInverted ? theme.shades.five : theme.colorContrastText.primary};
         `};
     `};
 
@@ -87,7 +87,7 @@ export const StyledButton = styled.button`
         variant,
     }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
-        border-color: ${isInverted ? theme.shade9 : theme.colorPrimary};
+        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
         color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
 
         &:focus,
@@ -97,8 +97,8 @@ export const StyledButton = styled.button`
         }
 
         ${isDisabled && css`
-            border-color: ${isInverted ? theme.shade7 : theme.colorDisabled};
-            color: ${isInverted ? theme.shade7 : theme.colorContrastText.primary};
+            border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
         `};
     `};
 
@@ -120,7 +120,7 @@ export const StyledButton = styled.button`
         }
 
         ${isDisabled && css`
-            color: ${isInverted ? theme.shade7 : theme.colorContrastText.primary};
+            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
         `};
     `};
 

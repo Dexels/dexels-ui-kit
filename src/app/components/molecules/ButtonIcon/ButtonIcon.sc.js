@@ -31,12 +31,12 @@ export const StyledButtonIcon = styled.button`
 
     ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        color: ${isInverted ? theme.shade7 : theme.colorDisabled};
+        color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
     `};
 
     &:focus,
     &:hover {
-        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.shade7)};
+        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.shades.seven)};
         color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
     }
 

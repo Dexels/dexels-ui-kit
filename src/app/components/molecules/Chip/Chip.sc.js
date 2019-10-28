@@ -13,7 +13,7 @@ export const StyledChip = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.shade2};
+    border: 1px solid ${({ theme }) => theme.shades.two};
     border-radius: 8px;
     background-color: transparent;
     cursor: pointer;
@@ -23,7 +23,7 @@ export const StyledChip = styled.button`
     color: ${({ theme }) => theme.colorBodyText.primary};
 
     ${({ isSelected }) => isSelected && css`
-        background-color: ${({ theme }) => theme.shade5};
+        background-color: ${({ theme }) => theme.shades.five};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
@@ -36,10 +36,10 @@ export const StyledChip = styled.button`
 
     &:active,
     &:hover {
-        background-color: ${({ theme }) => theme.shade5};
+        background-color: ${({ theme }) => theme.shades.five};
 
         ${({ isSelected }) => isSelected && css`
-            background-color: ${({ theme }) => theme.shade7};
+            background-color: ${({ theme }) => theme.shades.seven};
         `};
     }
 

@@ -57,7 +57,7 @@ export const InputWrapper = styled.div`
                 position: absolute;
                 width: 60%;
                 height: 60%;
-                background-color: ${theme.shade9};
+                background-color: ${theme.shades.nine};
                 content: '';
                 border-radius: 100%;
             }
