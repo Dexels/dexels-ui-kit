@@ -21,19 +21,19 @@ StyledCardNoResults.propTypes = {
 export const Header = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     margin: 0 0 16px;
-    color: ${({ theme }) => theme.colorPrimary.dark};
+    color: ${({ theme }) => theme.colorPrimary};
 `;
 
 export const Title = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
     margin: 4px 4px 4px 0;
-    color: ${({ theme }) => theme.colorSecondary.dark};
+    color: ${({ theme }) => theme.colorSecondary};
 `;
 
 export const Item = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     margin: 0 0 4px;
-    color: ${({ theme }) => theme.colorDark.main};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
 export const Left = styled.div`
@@ -43,7 +43,7 @@ export const Left = styled.div`
 `;
 
 export const IconWrapper = styled.div`
-    color: ${({ theme }) => theme.colorPrimary.dark};
+    color: ${({ theme }) => theme.colorPrimary};
     font-size: 30px; /* @TODO: this should be something like theme.availableTextStyles().icon1  */
 
     span {

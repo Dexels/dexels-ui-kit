@@ -21,40 +21,26 @@ import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 /* eslint-disable sort-keys */
 const themeBasic = {
-    colorPrimary: {
-        dark: '#3D4A9A',
-        main: '#9BA1C9',
-    },
-    colorSecondary: {
-        dark: '#009FFD',
-        main: '#80CFFE',
-    },
-    colorDisabled: {
-        main: '#E5E9ED',
-    },
-    colorError: {
-        main: '#F94E4E',
-    },
-    colorValid: {
-        main: '#2DD67B',
-    },
-    colorWarning: {
-        main: '#EB6500',
-    },
-    colorDark: {
-        dark: '#000000',
-        main: '#002451',
-        light: '#3F5A7C',
-    },
+    shade1: '#002451',
+    shade2: '#324F73',
+    shade3: '#647B96',
+    shade4: '#96A5B8',
+    shade5: '#BFC8D3',
+    shade6: '#E5E9ED',
+    shade7: '#F2F4F6',
+    shade8: '#FAFBFC',
+    shade9: '#FFFFFF',
+    colorPrimary: '#3D4A9A',
+    colorSecondary: '#009FFD',
+    colorTertiary: '#80CFFE',
+    colorError: '#F94E4E',
+    colorValid: '#2DD67B',
+    colorWarning: '#EB6500',
+    background: {},
+    colorHeaderText: {},
+    colorBodyText: {},
     colorMedium: {
-        dark: '#7F91A8',
-        main: '#BFC8D3',
-        light: '#E5E9ED', // @TODO discuss this with Marrick since this is the same color as the colorDisabled.main
-    },
-    colorLight: {
-        dark: '#F2F4F6',
-        main: '#FAFBFC',
-        light: '#FFFFFF',
+        dark: '#7F91A8', // @TODO discuss this with Marrick since this color isn't present in the color overview
     },
     fontFamilyPrimary: "'Open Sans', arial, sans-serif",
     fontFamilySecondary: "'Exo 2', sans-serif",
@@ -107,6 +93,24 @@ const themeBasic = {
             font-weight: ${textStyle.fontWeight};
         `);
     },
+};
+
+themeBasic.background = {
+    primary: themeBasic.shade8,
+};
+
+themeBasic.colorDisabled = themeBasic.shade6;
+
+themeBasic.colorHeaderText = {
+    contrast: themeBasic.shade9,
+    primary: themeBasic.colorPrimary,
+    secondary: themeBasic.colorSecondary,
+};
+
+themeBasic.colorBodyText = {
+    contrast: themeBasic.shade9,
+    primary: themeBasic.shade1,
+    secondary: themeBasic.shade4,
 };
 
 themeBasic.textStyles.body1 = {

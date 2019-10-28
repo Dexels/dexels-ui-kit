@@ -20,7 +20,7 @@ export const StyledSelectionControl = styled.div`
 export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
-    border: 1px solid ${({ theme }) => theme.colorPrimary.dark};
+    border: 1px solid ${({ theme }) => theme.colorPrimary};
     width: ${({ theme }) => theme.spacing(3)};
     height: ${({ theme }) => theme.spacing(3)};
     pointer-events: none;
@@ -49,7 +49,7 @@ export const InputWrapper = styled.div`
         theme,
         type,
     }) => (isChecked || isIndeterminate) && css`
-        background-color: ${theme.colorPrimary.dark};
+        background-color: ${theme.colorPrimary};
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
             &::after {
@@ -57,7 +57,7 @@ export const InputWrapper = styled.div`
                 position: absolute;
                 width: 60%;
                 height: 60%;
-                background-color: ${theme.colorLight.light};
+                background-color: ${theme.shade9};
                 content: '';
                 border-radius: 100%;
             }
@@ -70,10 +70,10 @@ export const InputWrapper = styled.div`
         isValid,
         theme,
     }) => isValid && css`
-        border-color: ${theme.colorValid.main};
+        border-color: ${theme.colorValid};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.colorValid.main};
+            background-color: ${theme.colorValid};
         `};
     `};
 
@@ -83,10 +83,10 @@ export const InputWrapper = styled.div`
         isIndeterminate,
         theme,
     }) => hasError && css`
-        border-color: ${theme.colorError.main};
+        border-color: ${theme.colorError};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.colorError.main};
+            background-color: ${theme.colorError};
         `};
     `};
 
@@ -96,10 +96,10 @@ export const InputWrapper = styled.div`
         isIndeterminate,
         theme,
     }) => isDisabled && css`
-        border-color: ${theme.colorDisabled.main};
+        border-color: ${theme.colorDisabled};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.colorDisabled.main};
+            background-color: ${theme.colorDisabled};
         `};
 
         input {
@@ -118,7 +118,7 @@ export const InputWrapper = styled.div`
         opacity: 0;
         z-index: -1;
         border-radius: 100%;
-        background-color: ${({ theme }) => theme.colorSecondary.main};
+        background-color: ${({ theme }) => theme.colorTertiary};
         width: ${({ theme }) => `calc(${theme.spacing(3)} * (1 + 2 / 3))`};
         height: ${({ theme }) => `calc(${theme.spacing(3)} * (1 + 2 / 3))`};
         content: '';
@@ -161,7 +161,7 @@ export const IconWrapper = styled.div`
     ${setCentered()};
     position: absolute;
     z-index: 2;
-    color: ${({ theme }) => theme.colorLight.light};
+    color: ${({ theme }) => theme.shade9};
     font-size: ${({ theme }) => theme.spacing(2.5)};
     pointer-events: none;
 

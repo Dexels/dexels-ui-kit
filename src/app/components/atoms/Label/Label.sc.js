@@ -7,31 +7,27 @@ export const StyledLabel = styled.label`
     color: ${({ theme }) => theme.colorMedium.dark};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
-        color: ${({ theme }) => theme.colorDark.main};
-    `};
-
-    ${({ isHovered }) => isHovered && css` /* @TODO this prop can be removed */
-        color: ${({ theme }) => theme.colorMedium.dark};
+        color: ${({ theme }) => theme.colorHeaderText.primary};
     `};
 
     ${({ isActive }) => isActive && css`
-        color: ${({ theme }) => theme.colorPrimary.dark};
+        color: ${({ theme }) => theme.colorPrimary};
     `};
 
     ${({ isFocused }) => isFocused && css`
-        color: ${({ theme }) => theme.colorSecondary.dark};
+        color: ${({ theme }) => theme.colorSecondary};
     `};
 
     ${({ isValid }) => isValid && css`
-        color: ${({ theme }) => theme.colorValid.main};
+        color: ${({ theme }) => theme.colorValid};
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${({ theme }) => theme.colorError.main};
+        color: ${({ theme }) => theme.colorError};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
-        color: ${({ theme }) => theme.colorDisabled.main};
+        color: ${({ theme }) => theme.colorDisabled};
     `};
 
     ${({ isSmall, theme }) => isSmall && css`

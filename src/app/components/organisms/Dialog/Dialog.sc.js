@@ -32,7 +32,7 @@ export const ButtonClose = styled.button`
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
     text-align: ${({ position }) => (position === DIALOG_DIRECTIONS.LTR ? 'left' : 'right')};
-    color: ${({ theme }) => theme.colorDark.dark};
+    color: ${({ theme }) => theme.colorPrimary};
     font-size: ${({ theme }) => theme.spacing(3)};
 
     ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`
@@ -46,7 +46,7 @@ export const ButtonClose = styled.button`
     &:active,
     &:hover {
         background-color: transparent;
-        color: ${({ theme }) => theme.colorLight.light};
+        color: ${({ theme }) => theme.shade9};
     }
 
     span {
@@ -65,10 +65,10 @@ export const Header = styled.header`
     align-items: center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    background-color: ${({ theme }) => theme.colorPrimary.dark};
+    background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(2)};
     min-height: 56px;
-    color: ${({ theme }) => theme.colorLight.light};
+    color: ${({ theme }) => theme.shade9};
 `;
 
 Header.propTypes = {
@@ -78,9 +78,9 @@ Header.propTypes = {
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    background-color: ${({ theme }) => theme.colorLight.light};
+    background-color: ${({ theme }) => theme.shade9};
     padding: ${({ theme }) => theme.spacing(2)};
-    color: ${({ theme }) => theme.colorDark.main};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ hasHeader }) => !hasHeader && css`
         border-radius: 8px 8px 0 0;

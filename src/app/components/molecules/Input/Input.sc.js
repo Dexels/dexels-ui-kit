@@ -27,15 +27,15 @@ export const StyledInput = styled.div`
             height: 1px;
 
             ${isFocused && css`
-                background-color: ${theme.colorSecondary.dark};
+                background-color: ${theme.colorSecondary};
             `};
 
             ${isValid && css`
-                background-color: ${theme.colorValid.main};
+                background-color: ${theme.colorValid};
             `};
 
             ${hasError && css`
-                background-color: ${theme.colorError.main};
+                background-color: ${theme.colorError};
             `};
 
             ${isDisabled && css`
@@ -81,7 +81,7 @@ export const LabelWrapper = styled.div`
     }) => variant === INPUT_VARIANTS.OUTLINE && css`
         top: ${theme.spacing(1.5)};
         left: ${theme.spacing(1.5)};
-        background-color: ${theme.colorLight.light};
+        background-color: ${theme.shade9};
 
         ${(hasValue || isFocused) && css`
             top: -${theme.spacing(1)};
@@ -101,19 +101,19 @@ export const TextField = styled.input`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     display: block;
     outline: none;
-    background-color: ${({ theme }) => theme.colorLight.light};
+    background-color: ${({ theme }) => theme.shade9};
     width: 100%;
-    color: ${({ theme }) => theme.colorDark.main};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ theme, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
         border: 0;
-        border-bottom: 1px solid ${theme.colorPrimary.dark};
+        border-bottom: 1px solid ${theme.colorPrimary};
         padding: 0;
         height: ${theme.spacing(3)};
     `};
 
     ${({ theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
-        border: 1px solid ${theme.colorPrimary.dark};
+        border: 1px solid ${theme.colorPrimary};
         border-radius: 8px;
         padding: ${theme.spacing(0, 1.5)};
         height: ${theme.spacing(6)};
@@ -126,20 +126,20 @@ export const TextField = styled.input`
     `};
 
     ${({ isFocused, isHovered, theme }) => (isFocused || isHovered) && css`
-        border-color: ${theme.colorSecondary.dark};
+        border-color: ${theme.colorSecondary};
     `};
 
     ${({ isValid, theme }) => isValid && css`
-        border-color: ${theme.colorValid.main};
+        border-color: ${theme.colorValid};
     `};
 
     ${({ hasError, theme }) => hasError && css`
-        border-color: ${theme.colorError.main};
+        border-color: ${theme.colorError};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
-        border-color: ${theme.colorDisabled.main};
-        color: ${theme.colorDisabled.main};
+        border-color: ${theme.colorDisabled};
+        color: ${theme.colorDisabled};
     `};
 `;
 

@@ -18,36 +18,36 @@ export const TabHeader = styled.button`
     position: relative;
     outline: none;
     border: 0;
-    border-bottom: 2px solid ${({ theme }) => theme.colorLight.light};
-    background-color: ${({ theme }) => theme.colorLight.light};
+    border-bottom: 2px solid ${({ theme }) => theme.shade9};
+    background-color: ${({ theme }) => theme.shade9};
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(0, 3)};
     height: 48px;
     overflow: hidden;
     text-align: center;
-    color: ${({ theme }) => theme.colorPrimary.dark};
+    color: ${({ theme }) => theme.colorPrimary};
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
     `};
 
     ${({ isActive, theme }) => isActive && css`
-        border-bottom-color: ${theme.colorPrimary.dark};
+        border-bottom-color: ${theme.colorPrimary};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
         pointer-events: none;
-        color: ${theme.colorDisabled.main};
+        color: ${theme.colorDisabled};
     `};
 
     &:after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary.dark)};
+        ${({ theme }) => rippleEffect(theme.colorSecondary)};
     }
 
     &:active,
     &:hover {
-        border-bottom-color: ${({ theme }) => theme.colorSecondary.dark};
-        color: ${({ theme }) => theme.colorSecondary.dark};
+        border-bottom-color: ${({ theme }) => theme.colorSecondary};
+        color: ${({ theme }) => theme.colorSecondary};
     }
 
     &:active:after {
@@ -65,7 +65,7 @@ export const TabHeaderList = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     display: flex;
     flex-wrap: nowrap;
-    border-bottom: 1px solid ${({ theme }) => theme.colorMedium.main};
+    border-bottom: 1px solid ${({ theme }) => theme.shade5};
 `;
 
 export const TabPanel = styled.div`

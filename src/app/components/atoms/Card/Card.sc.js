@@ -11,10 +11,10 @@ export const StyledCard = styled.div`
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
-    background-color: ${({ theme }) => theme.colorLight.light};
+    background-color: ${({ theme }) => theme.shade9};
     padding: ${({ theme }) => theme.spacing(1)};
     word-break: break-word;
-    color: ${({ theme }) => theme.colorPrimary.dark};
+    color: ${({ theme }) => theme.colorPrimary};
 
     ${({ hasBorderRadius }) => hasBorderRadius && css`
         border-radius: 4px;

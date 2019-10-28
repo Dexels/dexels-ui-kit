@@ -34,7 +34,7 @@ export const Color = styled.div`
     flex-direction: column;
     justify-content: center;
     margin: 0 8px;
-    border: 1px solid ${({ theme }) => theme.colorDark.dark};
+    border: 1px solid #000;
     border-radius: 100%;
     background-color: ${({ color }) => color};
     width: 100px;

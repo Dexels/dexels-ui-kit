@@ -11,7 +11,7 @@ export const StyledTextIcon = styled.div`
     height: ${({ theme }) => theme.spacing(3)};
     text-align: center;
     line-height: ${({ theme }) => theme.spacing(3)};
-    color: ${({ theme }) => theme.colorLight.light};
+    color: ${({ theme }) => theme.shade9};
 `;
 
 export default StyledTextIcon;

@@ -9,7 +9,7 @@ export const StyledDialogFooter = styled.footer`
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
-    background-color: ${({ theme }) => theme.colorLight.dark};
+    background-color: ${({ theme }) => theme.shade7};
     padding: ${({ theme }) => theme.spacing(2)};
 `;
 

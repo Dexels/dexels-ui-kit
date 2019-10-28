@@ -13,17 +13,17 @@ export const StyledChip = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.colorDark.light};
+    border: 1px solid ${({ theme }) => theme.shade2};
     border-radius: 8px;
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(0.5, 1)};
     min-height: ${({ theme }) => theme.spacing(4)};
     overflow: hidden;
-    color: ${({ theme }) => theme.colorDark.light};
+    color: ${({ theme }) => theme.colorBodyText.primary};
 
     ${({ isSelected }) => isSelected && css`
-        background-color: ${({ theme }) => theme.colorMedium.main};
+        background-color: ${({ theme }) => theme.shade5};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
@@ -31,15 +31,15 @@ export const StyledChip = styled.button`
     `};
 
     &:after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary.main)};
+        ${({ theme }) => rippleEffect(theme.colorTertiary)};
     }
 
     &:active,
     &:hover {
-        background-color: ${({ theme }) => theme.colorMedium.main};
+        background-color: ${({ theme }) => theme.shade5};
 
         ${({ isSelected }) => isSelected && css`
-            background-color: ${({ theme }) => theme.colorLight.dark};
+            background-color: ${({ theme }) => theme.shade7};
         `};
     }
 
