@@ -39,7 +39,6 @@ export const StyledTableHeaderCell = styled.th`
 
 export const StyledTableBody = styled.tbody`
     ${setBoxSizing()};
-    background-color: green;
     color: white;
 `;
 
@@ -50,12 +49,19 @@ export const StyledTableRow = styled.tr`
     position: fixed;
     z-index: 1;
     overflow: auto; */
+
+    &:nth-child(odd) {
+        background-color: ${({ theme }) => theme.colorLight.light};
+    }
+
+    &:nth-child(even) {
+        background-color: ${({ theme }) => theme.colorLight.main};
+    }
 `;
 
 export const StyledTableCell = styled.td`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    background-color: ${({ theme }) => theme.colorLight.light};
     padding: ${({ theme }) => theme.spacing(1)};
     text-overflow: ellipsis;
     white-space: nowrap;
