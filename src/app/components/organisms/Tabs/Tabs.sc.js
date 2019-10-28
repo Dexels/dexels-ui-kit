@@ -25,7 +25,7 @@ export const TabHeader = styled.button`
     height: 48px;
     overflow: hidden;
     text-align: center;
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;

@@ -32,7 +32,7 @@ export const ButtonClose = styled.button`
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
     text-align: ${({ position }) => (position === DIALOG_DIRECTIONS.LTR ? 'left' : 'right')};
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
     font-size: ${({ theme }) => theme.spacing(3)};
 
     ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`

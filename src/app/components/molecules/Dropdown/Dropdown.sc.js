@@ -91,7 +91,7 @@ export const IconWrapper = styled.div`
     top: 0;
     right: 0;
     line-height: 1;
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
     pointer-events: none;
 
     ${({ isFocused }) => isFocused && css`

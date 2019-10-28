@@ -15,7 +15,7 @@ export const StyledButtonIcon = styled.button`
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1.5)};
     overflow: hidden;
-    color: ${({ isInverted, theme }) => (isInverted ? theme.shade9 : theme.colorPrimary)};
+    color: ${({ isInverted, theme }) => (isInverted ? theme.shade9 : theme.colorHeaderText.primary)};
 
     ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
         font-size: 14px;

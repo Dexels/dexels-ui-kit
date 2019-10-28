@@ -14,7 +14,7 @@ export const StyledCard = styled.div`
     background-color: ${({ theme }) => theme.shade9};
     padding: ${({ theme }) => theme.spacing(1)};
     word-break: break-word;
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ hasBorderRadius }) => hasBorderRadius && css`
         border-radius: 4px;

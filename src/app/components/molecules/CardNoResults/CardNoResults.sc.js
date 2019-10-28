@@ -21,7 +21,7 @@ StyledCardNoResults.propTypes = {
 export const Header = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     margin: 0 0 16px;
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
 export const Title = styled.p`
@@ -43,7 +43,7 @@ export const Left = styled.div`
 `;
 
 export const IconWrapper = styled.div`
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
     font-size: 30px; /* @TODO: this should be something like theme.availableTextStyles().icon1  */
 
     span {
