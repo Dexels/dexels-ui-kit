@@ -4,15 +4,9 @@ import '../app/styles/fonts/opensans/opensans.css';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import { addDecorator, addParameters, configure } from '@storybook/react';
-import {
-    blue100,
-    grey25,
-    purple100,
-    white,
-} from '../app/styles/colors/colors';
-import { getAvailableThemeLayouts } from '../app/styles/theme/layout';
-import { getAvailableThemeModes } from '../app/styles/theme/theme';
 import React from 'react';
+import themeBasic from '../app/styles/theming/themes/basic';
+import themeLight from '../app/styles/theming/themes/light';
 // This seems like a ESLint bug
 // eslint-disable-next-line import/no-unresolved
 import { withInfo } from '@storybook/addon-info';
@@ -23,13 +17,16 @@ import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 addDecorator(withInfo);
 addDecorator(withKnobs);
 
-const themes = getAvailableThemeModes().map((themeMode) => ({
-    layout: getAvailableThemeLayouts()[0],
-    mode: themeMode,
-    name: themeMode,
-}));
-
-addDecorator(withThemesProvider(themes));
+addDecorator(withThemesProvider([
+    {
+        ...themeBasic,
+        name: 'Basic',
+    },
+    {
+        ...themeLight,
+        name: 'Light',
+    },
+]));
 
 // Wrap all stories in the ThemeProvider and render the BaseStyling
 addDecorator((storyFn) => (
@@ -48,11 +45,11 @@ addParameters({
         {
             default: true,
             name: 'light',
-            value: white,
+            value: themeBasic.shades.nine,
         },
         {
             name: 'intermediate',
-            value: grey25,
+            value: themeBasic.shades.five,
         },
         {
             name: 'dark',
@@ -60,11 +57,11 @@ addParameters({
         },
         {
             name: 'blue',
-            value: blue100,
+            value: themeBasic.colorSecondary,
         },
         {
             name: 'purple',
-            value: purple100,
+            value: themeBasic.colorPrimary,
         },
     ],
 });

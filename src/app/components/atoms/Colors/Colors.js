@@ -1,19 +1,46 @@
-import * as colors from '../../../styles/colors/colors';
-import { StyledColor, StyledColorText, StyledColorWrapper } from './Colors.sc';
-import React from 'react';
+import {
+    Color,
+    ColorGroup,
+    ColorGroupName,
+    ColorText,
+    StyledColors,
+} from './Colors.sc';
+import React, { useContext } from 'react';
+import { colorKeys } from '../../../styles/theming/colorKeys';
+import { ThemeContext } from 'styled-components';
 
-const Colors = () => (
-    <StyledColorWrapper>
-        {Object.keys(colors).map((colorName) => (
-            <StyledColor color={colors[colorName]} key={colorName}>
-                <StyledColorText color={colors[colorName]}>
-                    {colorName}
-                </StyledColorText>
-            </StyledColor>
-        ))}
-    </StyledColorWrapper>
-);
+const Colors = () => {
+    const theme = useContext(ThemeContext);
 
-Colors.colors = colors;
+    return (
+        <StyledColors>
+            {colorKeys.map((colorKey) => (
+                <ColorGroup key={colorKey}>
+                    <ColorGroupName>
+                        {colorKey}
+                    </ColorGroupName>
+                    {typeof theme[colorKey] === 'object' ? (
+                        Object.keys(theme[colorKey]).map((colorName) => (
+                            <Color color={theme[colorKey][colorName]} key={colorName}>
+                                <ColorText color={theme[colorKey][colorName]}>
+                                    {colorName}
+                                </ColorText>
+                                <ColorText color={theme[colorKey][colorName]}>
+                                    {theme[colorKey][colorName]}
+                                </ColorText>
+                            </Color>
+                        ))
+                    ) : (
+                        <Color color={theme[colorKey]} key={theme[colorKey]}>
+                            <ColorText color={theme[colorKey]}>
+                                {theme[colorKey]}
+                            </ColorText>
+                        </Color>
+                    )}
+                </ColorGroup>
+            ))}
+        </StyledColors>
+    );
+};
 
 export default Colors;

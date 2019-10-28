@@ -1,87 +1,62 @@
-import { BUTTON_ICON_SIZES, BUTTON_ICON_VARIANTS } from './ButtonIcon.consts';
-import {
-    colorButtonLight,
-    colorDisabled,
-    colorPrimary,
-    colorPrimaryHover,
-    themeModes,
-} from '../../../styles/theme/theme';
-import { spacingUnit, themeLayouts } from '../../../styles/theme/layout';
+import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { grey2 } from '../../../styles/colors/colors';
+import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import PropTypes from 'prop-types';
-import theme from 'styled-theming';
-
-const buttonIconFontSize = theme.variants('layout', 'size', {
-    [BUTTON_ICON_SIZES.LARGE]: {
-        [themeLayouts.basic]: '20px',
-        [themeLayouts.compact]: '18px',
-    },
-    [BUTTON_ICON_SIZES.MEDIUM]: {
-        [themeLayouts.basic]: '18px',
-        [themeLayouts.compact]: '16px',
-    },
-    [BUTTON_ICON_SIZES.SMALL]: {
-        [themeLayouts.basic]: '14px',
-        [themeLayouts.compact]: '12px',
-    },
-});
-
-const buttonBackgroundColorHover = theme('mode', {
-    [themeModes.basic]: grey2,
-    [themeModes.dark]: grey2,
-    [themeModes.light]: grey2,
-});
 
 export const StyledButtonIcon = styled.button`
+    appearance: none;
     display: flex;
+    position: relative;
     align-items: center;
     outline: none;
     border: 0;
     border-radius: 100%;
     background-color: transparent;
     cursor: pointer;
-    padding: calc(${spacingUnit} * 1.5);
-    font-size: ${buttonIconFontSize};
+    padding: ${({ theme }) => theme.spacing(1.5)};
+    overflow: hidden;
+    color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary)};
 
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
+        font-size: 14px;
+    `};
+
+    ${({ size }) => size === BUTTON_ICON_SIZES.MEDIUM && css`
+        font-size: 18px;
+    `};
+
+    ${({ size }) => size === BUTTON_ICON_SIZES.LARGE && css`
+        font-size: 20px;
+    `};
+
+    ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        color: ${colorDisabled};
+        color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
     `};
 
-    ${({ variant }) => variant === BUTTON_ICON_VARIANTS.DEFAULT && css`
-        color: ${colorPrimary};
-
-        &:focus,
-        &:hover {
-            background-color: ${buttonBackgroundColorHover};
-            color: ${colorPrimaryHover};
-        }
-    `};
-
-    ${({ variant }) => variant === BUTTON_ICON_VARIANTS.HEADER && css`
-        color: ${colorButtonLight};
-
-        &:focus,
-        &:hover {
-            background-color: ${colorButtonLight};
-            color: ${colorPrimaryHover};
-        }
-    `};
+    &:focus,
+    &:hover {
+        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.shades.seven)};
+        color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
+    }
 
     &:after {
         border: 0;
         pointer-events: none;
+
+        ${({ isInverted, theme }) => (isInverted ? rippleEffect() : rippleEffect(theme.colorSecondary))};
     }
 
     &:active:after {
+        ${rippleEffectReset()};
         border: 0;
     }
 `;
 
 StyledButtonIcon.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
-    variant: PropTypes.oneOf(Object.values(BUTTON_ICON_VARIANTS)).isRequired,
+    isInverted: PropTypes.bool.isRequired,
+    size: PropTypes.oneOf(Object.values(BUTTON_ICON_SIZES)).isRequired,
 };
 
 export default StyledButtonIcon;
