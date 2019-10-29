@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { TABLE_ELEVATIONS } from './Table.consts';
 
+export const StyledTableCaption = styled.div`
+    ${setBoxSizing()};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
+    padding-bottom: ${({ theme }) => theme.spacing(4)};
+    color: ${({ theme }) => theme.colorPrimary.dark};
+`;
+
 export const StyledTable = styled.table`
     ${setBoxSizing()};
     ${({ elevation }) => getElevation(elevation)};
@@ -39,12 +46,12 @@ export const StyledTableHeaderCell = styled.th`
 
 export const StyledTableBody = styled.tbody`
     ${setBoxSizing()};
-    color: white;
+    color: ${({ theme }) => theme.colorLight.light};
 `;
 
 export const StyledTableRow = styled.tr`
     ${setBoxSizing()};
-    height: 36px;
+    height: ${({ theme }) => theme.spacing(4.5)};
 
     &:nth-child(odd) {
         background-color: ${({ theme }) => theme.colorLight.light};

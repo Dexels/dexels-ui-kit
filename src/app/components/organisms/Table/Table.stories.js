@@ -1,44 +1,28 @@
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
+import StatusIndicator from '../../atoms/StatusIndicator/StatusIndicator';
 import Table from './Table';
 import { useTable } from 'react-table';
 
 export default { title: 'organisms/Table' };
 
-const rowColorInfo = (value) => {
-    if (value > 66) {
-        return '#85cc00';
+const cellValue = (row) => {
+    if (row.cell.value && row.cell.value !== null && row.cell.value !== undefined) {
+        return row.cell.value;
     }
 
-    if (value > 33) {
-        return '#ffbf00';
-    }
-
-    return '#ff2e00';
+    return '';
 };
 
-function getInfo(row) {
+function getStatus(row) {
     return (
-        <div
-            style={{
-                backgroundColor: '#dadada',
-                borderRadius: '2px',
-                height: '100%',
-                width: '100%',
-            }}
-        >
-            <div
-                style={{
-                    backgroundColor: rowColorInfo(row.value),
-                    borderRadius: '2px',
-                    height: '100%',
-                    transition: 'all .2s ease-out',
-                    width: `${row.value}%`,
-                }}
-            />
-        </div>
+        <StatusIndicator placement={StatusIndicator.placements.LEFT} status={row.cell.value ? row.cell.value : 'NONE'}>
+            <div>
+                {row.cell.value ? row.cell.value : 'NONE'}
+            </div>
+        </StatusIndicator>
     );
 }
 
@@ -63,6 +47,7 @@ function tableData() {
                 infix: null,
                 info: 66,
                 lastName: 'Versteeg',
+                status: 'VALID',
             },
             {
                 companyName: 'Dexels',
@@ -70,6 +55,7 @@ function tableData() {
                 infix: null,
                 info: 45,
                 lastName: 'Papadaki',
+                status: 'WARNING',
             },
             {
                 companyName: 'Cygni',
@@ -77,6 +63,7 @@ function tableData() {
                 infix: 'de',
                 info: 30,
                 lastName: 'Lusenet',
+                status: 'ERROR',
             },
             {
                 companyName: 'Dexels',
@@ -84,6 +71,7 @@ function tableData() {
                 infix: null,
                 info: 1,
                 lastName: 'Lastname 1',
+                status: null,
             },
             {
                 companyName: 'Dexels',
@@ -91,6 +79,7 @@ function tableData() {
                 infix: null,
                 info: 15,
                 lastName: 'Lastname 2',
+                status: 'DEFAULT',
             },
             {
                 companyName: 'Dexels',
@@ -98,6 +87,7 @@ function tableData() {
                 infix: null,
                 info: 90,
                 lastName: 'Lastname 3',
+                status: 'DISABLED',
             },
             {
                 companyName: 'Dexels',
@@ -105,6 +95,7 @@ function tableData() {
                 infix: null,
                 info: 120,
                 lastName: 'Lastname 4',
+                status: 'NONE',
             },
             {
                 companyName: 'Dexels',
@@ -112,6 +103,7 @@ function tableData() {
                 infix: null,
                 info: null,
                 lastName: 'Lastname 5',
+                status: 'VALID',
             },
         ],
         [],
@@ -125,14 +117,22 @@ function tableColumnsWithGroupHeader() {
                 Header: 'Name',
                 columns: [
                     {
+                        Cell: (row) => getStatus(row),
+                        Header: 'Status',
+                        accessor: 'status',
+                    },
+                    {
+                        Cell: (row) => cellValue(row),
                         Header: 'First Name',
                         accessor: 'firstName',
                     },
                     {
+                        Cell: (row) => cellValue(row),
                         Header: 'Last Name',
                         accessor: 'lastName',
                     },
                     {
+                        Cell: (row) => cellValue(row),
                         Header: 'Infix',
                         accessor: 'infix',
                     },
@@ -142,11 +142,12 @@ function tableColumnsWithGroupHeader() {
                 Header: 'InfoGroup',
                 columns: [
                     {
+                        Cell: (row) => cellValue(row),
                         Header: 'Company',
                         accessor: 'companyName',
                     },
                     {
-                        Cell: (row) => getInfo(row),
+                        Cell: (row) => cellValue(row),
                         Header: 'Info',
                         accessor: 'info',
                     },
@@ -166,23 +167,32 @@ function tableColumns() {
     return React.useMemo(
         () => [
             {
+                Cell: (row) => getStatus(row),
+                Header: 'Status',
+                accessor: 'status',
+            },
+            {
+                Cell: (row) => cellValue(row),
                 Header: 'First Name',
                 accessor: 'firstName',
             },
             {
+                Cell: (row) => cellValue(row),
                 Header: 'Last Name',
                 accessor: 'lastName',
             },
             {
+                Cell: (row) => cellValue(row),
                 Header: 'Infix',
                 accessor: 'infix',
             },
             {
+                Cell: (row) => cellValue(row),
                 Header: 'Company',
                 accessor: 'companyName',
             },
             {
-                Cell: (row) => getInfo(row),
+                Cell: (row) => cellValue(row),
                 Header: 'Info',
                 accessor: 'info',
             },
@@ -204,7 +214,7 @@ function myTable(columns, data) {
 }
 
 export const Configurable = () => {
-    const [hasGroupHeader, setHasGroupHeader] = useState(true);
+    const [hasGroupHeader, setHasGroupHeader] = useState(false);
 
     return (
         /* @TODO: figure out how to rerender with the correct columns. Most likely with React.useEffect */
@@ -217,6 +227,7 @@ export const Configurable = () => {
             </Button>
             <div style={{ height: '20px' }} />
             <Table
+                caption={text('Table caption', 'Table caption')}
                 elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
                 instance={myTable(hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(), tableData())}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
