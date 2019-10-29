@@ -35,7 +35,7 @@ export const StyledInput = styled.div`
             `};
 
             ${hasError && css`
-                background-color: ${theme.colorError};
+                background-color: ${theme.colorInvalid};
             `};
 
             ${isDisabled && css`
@@ -134,7 +134,7 @@ export const TextField = styled.input`
     `};
 
     ${({ hasError, theme }) => hasError && css`
-        border-color: ${theme.colorError};
+        border-color: ${theme.colorInvalid};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`

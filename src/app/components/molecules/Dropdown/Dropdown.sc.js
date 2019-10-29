@@ -20,7 +20,7 @@ export const StyledDropdown = styled.div`
         `};
 
         ${({ hasError }) => hasError && css`
-            background-color: ${({ theme }) => theme.colorError};
+            background-color: ${({ theme }) => theme.colorInvalid};
         `};
 
         ${({ isDisabled }) => isDisabled && css`
@@ -65,8 +65,8 @@ export const Select = styled.select`
     `};
 
     ${({ hasError }) => hasError && css`
-        border-color: ${({ theme }) => theme.colorError};
-        color: ${({ theme }) => theme.colorError};
+        border-color: ${({ theme }) => theme.colorInvalid};
+        color: ${({ theme }) => theme.colorInvalid};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
@@ -103,7 +103,7 @@ export const IconWrapper = styled.div`
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${({ theme }) => theme.colorError};
+        color: ${({ theme }) => theme.colorInvalid};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
