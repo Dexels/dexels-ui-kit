@@ -8,7 +8,7 @@ export const StyledTableCaption = styled.div`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     padding-bottom: ${({ theme }) => theme.spacing(4)};
-    color: ${({ theme }) => theme.colorPrimary.dark};
+    color: ${({ theme }) => theme.colorPrimary};
 `;
 
 export const StyledTable = styled.table`
@@ -41,17 +41,17 @@ export const StyledTableHeaderCell = styled.th`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     border-bottom: 4px solid;
-    border-color: ${({ theme }) => theme.colorPrimary.dark};
-    background-color: ${({ theme }) => theme.colorLight.light};
+    border-color: ${({ theme }) => theme.colorPrimary};
+    background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(1)};
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${({ theme }) => theme.colorDark.main};
+    color: ${({ theme }) => theme.colorPrimary};
 `;
 
 export const StyledTableBody = styled.tbody`
     ${setBoxSizing()};
-    color: ${({ theme }) => theme.colorLight.light};
+    color: ${({ theme }) => theme.shades.nine};
 `;
 
 export const StyledTableRow = styled.tr`
@@ -59,11 +59,11 @@ export const StyledTableRow = styled.tr`
     height: ${({ theme }) => theme.spacing(4.5)};
 
     &:nth-child(odd) {
-        background-color: ${({ theme }) => theme.colorLight.light};
+        background-color: ${({ theme }) => theme.shades.nine};
     }
 
     &:nth-child(even) {
-        background-color: ${({ theme }) => theme.colorLight.main};
+        background-color: ${({ theme }) => theme.shades.eight};
     }
 
     &:hover {
@@ -75,9 +75,9 @@ export const StyledTableCell = styled.td`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     border-bottom: 1px solid;
-    border-color: ${({ theme }) => theme.colorLight.dark};
+    border-color: ${({ theme }) => theme.shades.seven};
     padding: ${({ theme }) => theme.spacing(1)};
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${({ theme }) => theme.colorDark.main};
+    color: ${({ theme }) => theme.colorPrimary};
 `;
