@@ -6,12 +6,12 @@ export const StyledTextIcon = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     border: 0;
     border-radius: 100%;
-    background-color: ${({ theme }) => theme.colorMedium.dark};
+    background-color: ${({ theme }) => theme.shades.four};
     width: ${({ theme }) => theme.spacing(3)};
     height: ${({ theme }) => theme.spacing(3)};
     text-align: center;
     line-height: ${({ theme }) => theme.spacing(3)};
-    color: ${({ theme }) => theme.colorLight.light};
+    color: ${({ theme }) => theme.colorContrastText.primary};
 `;
 
 export default StyledTextIcon;

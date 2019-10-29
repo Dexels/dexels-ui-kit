@@ -4,34 +4,30 @@ import PropTypes from 'prop-types';
 export const StyledLabel = styled.label`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     cursor: inherit;
-    color: ${({ theme }) => theme.colorMedium.dark};
+    color: ${({ theme }) => theme.shades.four};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
-        color: ${({ theme }) => theme.colorDark.main};
-    `};
-
-    ${({ isHovered }) => isHovered && css` /* @TODO this prop can be removed */
-        color: ${({ theme }) => theme.colorMedium.dark};
+        color: ${({ theme }) => theme.colorHeaderText.primary};
     `};
 
     ${({ isActive }) => isActive && css`
-        color: ${({ theme }) => theme.colorPrimary.dark};
+        color: ${({ theme }) => theme.colorHeaderText.primary};
     `};
 
     ${({ isFocused }) => isFocused && css`
-        color: ${({ theme }) => theme.colorSecondary.dark};
+        color: ${({ theme }) => theme.colorHeaderText.secondary};
     `};
 
     ${({ isValid }) => isValid && css`
-        color: ${({ theme }) => theme.colorValid.main};
+        color: ${({ theme }) => theme.colorValid};
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${({ theme }) => theme.colorError.main};
+        color: ${({ theme }) => theme.colorError};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
-        color: ${({ theme }) => theme.colorDisabled.main};
+        color: ${({ theme }) => theme.colorDisabled};
     `};
 
     ${({ isSmall, theme }) => isSmall && css`

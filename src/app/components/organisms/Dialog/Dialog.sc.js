@@ -9,7 +9,7 @@ export const StyledDialog = styled.div`
     ${setBoxSizing()};
     ${({ elevation }) => getElevation(elevation)};
     margin: auto;
-    border-radius: 8px;
+    border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
 `;
 
@@ -32,7 +32,7 @@ export const ButtonClose = styled.button`
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
     text-align: ${({ position }) => (position === DIALOG_DIRECTIONS.LTR ? 'left' : 'right')};
-    color: ${({ theme }) => theme.colorDark.dark};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
     font-size: ${({ theme }) => theme.spacing(3)};
 
     ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`
@@ -46,7 +46,7 @@ export const ButtonClose = styled.button`
     &:active,
     &:hover {
         background-color: transparent;
-        color: ${({ theme }) => theme.colorLight.light};
+        color: ${({ theme }) => theme.colorContrastText.primary};
     }
 
     span {
@@ -63,12 +63,12 @@ export const Header = styled.header`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     display: flex;
     align-items: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    background-color: ${({ theme }) => theme.colorPrimary.dark};
+    border-top-left-radius: ${({ theme }) => theme.spacing(1)};
+    border-top-right-radius: ${({ theme }) => theme.spacing(1)};
+    background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(2)};
-    min-height: 56px;
-    color: ${({ theme }) => theme.colorLight.light};
+    min-height: ${({ theme }) => theme.spacing(7)};
+    color: ${({ theme }) => theme.colorContrastText.primary};
 `;
 
 Header.propTypes = {
@@ -78,12 +78,12 @@ Header.propTypes = {
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    background-color: ${({ theme }) => theme.colorLight.light};
+    background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(2)};
-    color: ${({ theme }) => theme.colorDark.main};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
-    ${({ hasHeader }) => !hasHeader && css`
-        border-radius: 8px 8px 0 0;
+    ${({ hasHeader, theme }) => !hasHeader && css`
+        border-radius: ${theme.spacing(1, 1, 0, 0)};
     `};
 `;
 

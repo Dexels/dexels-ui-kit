@@ -43,11 +43,11 @@ addParameters({
         {
             default: true,
             name: 'light',
-            value: themeBasic.colorLight.light,
+            value: themeBasic.shades.nine,
         },
         {
             name: 'intermediate',
-            value: themeBasic.colorMedium.main,
+            value: themeBasic.shades.five,
         },
         {
             name: 'dark',
@@ -55,11 +55,11 @@ addParameters({
         },
         {
             name: 'blue',
-            value: themeBasic.colorSecondary.dark,
+            value: themeBasic.colorSecondary,
         },
         {
             name: 'purple',
-            value: themeBasic.colorPrimary.dark,
+            value: themeBasic.colorPrimary,
         },
     ],
 });
