@@ -32,6 +32,11 @@ export const StyledTableHead = styled.thead`
     background-color: transparent;
 `;
 
+export const StyledTableHeaderRow = styled.tr`
+    ${setBoxSizing()};
+    height: ${({ theme }) => theme.spacing(4.5)};
+`;
+
 export const StyledTableHeaderCell = styled.th`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};

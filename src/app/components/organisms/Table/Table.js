@@ -5,6 +5,7 @@ import {
     StyledTableCell,
     StyledTableHead,
     StyledTableHeaderCell,
+    StyledTableHeaderRow,
     StyledTableRow,
 } from './Table.sc';
 import PropTypes from 'prop-types';
@@ -33,14 +34,14 @@ const Table = ({
             <StyledTableHead>
                 {instance.headerGroups.map((headerGroup) => (
                     /* eslint-disable-next-line */
-                    <StyledTableRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
+                    <StyledTableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map((column) => (
                             /* eslint-disable-next-line */
                             <StyledTableHeaderCell key={column} {...column.getHeaderProps()}>
                                 {column.render('Header')}
                             </StyledTableHeaderCell>
                         ))}
-                    </StyledTableRow>
+                    </StyledTableHeaderRow>
                 ))}
             </StyledTableHead>
             {/* eslint-disable-next-line */}
