@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { DROPDOWN_VARIANTS } from './Dropdown.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
@@ -6,27 +7,36 @@ export const StyledDropdown = styled.div`
     ${setBoxSizing()};
     position: relative;
 
-    &::after {
-        display: block;
-        height: 1px;
-        content: '';
+    ${({
+        hasError,
+        isDisabled,
+        isFocused,
+        isValid,
+        theme,
+        variant,
+    }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
+        &::after {
+            display: block;
+            height: 1px;
+            content: '';
 
-        ${({ isFocused }) => isFocused && css`
-            background-color: ${({ theme }) => theme.colorSecondary};
-        `};
+            ${isFocused && css`
+                background-color: ${theme.colorSecondary};
+            `};
 
-        ${({ isValid }) => isValid && css`
-            background-color: ${({ theme }) => theme.colorValid};
-        `};
+            ${isValid && css`
+                background-color: ${theme.colorValid};
+            `};
 
-        ${({ hasError }) => hasError && css`
-            background-color: ${({ theme }) => theme.colorError};
-        `};
+            ${hasError && css`
+                background-color: ${theme.colorError};
+            `};
 
-        ${({ isDisabled }) => isDisabled && css`
-            background-color: transparent;
-        `};
-    }
+            ${isDisabled && css`
+                background-color: transparent;
+            `};
+        }
+    `};
 `;
 
 StyledDropdown.propTypes = {
@@ -34,6 +44,7 @@ StyledDropdown.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    variant: PropTypes.oneOf(Object.values(DROPDOWN_VARIANTS)).isRequired,
 };
 
 export const Select = styled.select`
@@ -41,37 +52,47 @@ export const Select = styled.select`
     appearance: none;
     display: block;
     outline: none;
-    border: 0;
-    border-bottom: 1px solid ${({ theme }) => theme.colorHeaderText.primary};
     border-radius: 0;
     background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
     padding: 0;
     width: 100%;
-    height: ${({ theme }) => theme.spacing(3.5)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
-    ${({ isPlaceholderSelected }) => isPlaceholderSelected && css`
-        color: ${({ theme }) => theme.shades.four};
+    ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
+        border: 0;
+        border-bottom: 1px solid ${theme.colorHeaderText.primary};
+        height: ${theme.spacing(3.5)};
     `};
 
-    ${({ isFocused, isHovered }) => (isFocused || isHovered) && css`
-        border-color: ${({ theme }) => theme.colorSecondary};
+    ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.OUTLINE && css`
+        border-radius: ${theme.spacing(1)};
+        padding: ${theme.spacing(0, 1.5)};
+        border: 1px solid ${theme.colorHeaderText.primary};
+        height: ${theme.spacing(6)};
     `};
 
-    ${({ isValid }) => isValid && css`
-        border-color: ${({ theme }) => theme.colorValid};
-        color: ${({ theme }) => theme.colorValid};
+    ${({ isPlaceholderSelected, theme }) => isPlaceholderSelected && css`
+        color: ${theme.shades.four};
     `};
 
-    ${({ hasError }) => hasError && css`
-        border-color: ${({ theme }) => theme.colorError};
-        color: ${({ theme }) => theme.colorError};
+    ${({ isFocused, isHovered, theme }) => (isFocused || isHovered) && css`
+        border-color: ${theme.colorSecondary};
     `};
 
-    ${({ isDisabled }) => isDisabled && css`
-        border-color: ${({ theme }) => theme.colorDisabled};
-        color: ${({ theme }) => theme.colorDisabled};
+    ${({ isValid, theme }) => isValid && css`
+        border-color: ${theme.colorValid};
+        color: ${theme.colorValid};
+    `};
+
+    ${({ hasError, theme }) => hasError && css`
+        border-color: ${theme.colorError};
+        color: ${theme.colorError};
+    `};
+
+    ${({ isDisabled, theme }) => isDisabled && css`
+        border-color: ${theme.colorDisabled};
+        color: ${theme.colorDisabled};
         pointer-events: none;
     `};
 `;
@@ -83,35 +104,43 @@ Select.propTypes = {
     isHovered: PropTypes.bool.isRequired,
     isPlaceholderSelected: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    variant: PropTypes.oneOf(Object.values(DROPDOWN_VARIANTS)).isRequired,
 };
 
 export const IconWrapper = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     position: absolute;
-    top: 0;
-    right: 0;
-    line-height: 1;
     color: ${({ theme }) => theme.colorHeaderText.primary};
     pointer-events: none;
+    font-size: 24px;
 
-    ${({ isFocused, isHovered }) => (isFocused || isHovered) && css`
-        color: ${({ theme }) => theme.colorSecondary};
+    ${({ variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
+        top: 0;
+        right: 0;
+    `};
+
+    ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.OUTLINE && css`
+        top: ${theme.spacing(1.5)};
+        right: ${theme.spacing(1.5)};
+    `};
+
+    ${({ isFocused, isHovered, theme }) => (isFocused || isHovered) && css`
+        color: ${theme.colorSecondary};
     `};
 
     ${({ isFocused }) => isFocused && css`
         transform: rotate(180deg);
     `};
 
-    ${({ isValid }) => isValid && css`
-        color: ${({ theme }) => theme.colorValid};
+    ${({ isValid, theme }) => isValid && css`
+        color: ${theme.colorValid};
     `};
 
-    ${({ hasError }) => hasError && css`
-        color: ${({ theme }) => theme.colorError};
+    ${({ hasError, theme }) => hasError && css`
+        color: ${theme.colorError};
     `};
 
-    ${({ isDisabled }) => isDisabled && css`
-        color: ${({ theme }) => theme.colorDisabled};
+    ${({ isDisabled, theme }) => isDisabled && css`
+        color: ${theme.colorDisabled};
     `};
 
     span {
@@ -125,6 +154,7 @@ IconWrapper.propTypes = {
     isFocused: PropTypes.bool.isRequired,
     isHovered: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    variant: PropTypes.oneOf(Object.values(DROPDOWN_VARIANTS)).isRequired,
 };
 
 export const ErrorMessageWrapper = styled.div`

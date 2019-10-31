@@ -5,6 +5,7 @@ import {
     StyledDropdown,
 } from './Dropdown.sc';
 import React, { useState } from 'react';
+import { DROPDOWN_VARIANTS } from './Dropdown.consts';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
@@ -20,6 +21,7 @@ const Dropdown = ({
     onChange,
     placeholder,
     value,
+    variant,
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -31,6 +33,7 @@ const Dropdown = ({
                 isDisabled={isDisabled}
                 isFocused={isFocused}
                 isValid={isValid}
+                variant={variant}
             >
                 <Select
                     hasError={hasError}
@@ -55,6 +58,7 @@ const Dropdown = ({
                     }}
                     required={isRequired}
                     value={value}
+                    variant={variant}
                 >
                     {placeholder && (
                         <option disabled hidden value={placeholder}>
@@ -69,6 +73,7 @@ const Dropdown = ({
                     isFocused={isFocused}
                     isHovered={isHovered}
                     isValid={isValid}
+                    variant={variant}
                 >
                     <Icon type={Icon.types.DROPDOWN} />
                 </IconWrapper>
@@ -84,6 +89,8 @@ const Dropdown = ({
     );
 };
 
+Dropdown.variants = DROPDOWN_VARIANTS;
+
 Dropdown.propTypes = {
     children: PropTypes.node.isRequired,
     errorMessage: PropTypes.string,
@@ -98,6 +105,7 @@ Dropdown.propTypes = {
         PropTypes.number,
         PropTypes.string,
     ]).isRequired,
+    variant: PropTypes.oneOf(Object.values(Dropdown.variants)),
 };
 
 Dropdown.defaultProps = {
@@ -107,6 +115,7 @@ Dropdown.defaultProps = {
     isRequired: false,
     isValid: false,
     placeholder: '',
+    variant: Dropdown.variants.COMPACT,
 };
 
 export default Dropdown;
