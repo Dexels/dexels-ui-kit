@@ -1,21 +1,8 @@
-/* body {
-    background: #20262E;
-    padding: 0px;
-    font-family: Helvetica;
-  } */
-
-  #app {
-    background: #fff;
-    border-radius: 0px;
-    padding: 0px;
-    width: 100%;
-    height: 768px;
-  }
 
   #btnLeft
   {
     position: absolute;
-    top:60px;
+    top:0px;
     left: -60px;
   }
 

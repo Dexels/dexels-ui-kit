@@ -1,44 +1,34 @@
-import { number, select, text } from '@storybook/addon-knobs';
+import './Tooltip.css';
 import React from 'react';
 import Tooltip from './Tooltip';
 
 export default { title: 'molecules/Tooltip' };
 
-export const Configurable = () => (
-    <Tooltip
-        elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
-        title={text('Title', 'Configure me!')}
-        transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
-        transitionEasing={select('Transition type', Tooltip.transitionEasings, Tooltip.defaultProps.transitionEasing)}
-    >
-        <span
-            style={{
-                backgroundColor: 'yellow',
-                borderRadius: '50px',
-                padding: '12px',
-            }}
+export const Configurable = () => {
+    const createBtn = (id, text, delay = false) => (
+        <button
+            data-tooltip-component={text}
+            data-tooltip-delay={delay}
+            id={id}
+            onBlur={() => {}}
+            onFocus={() => {}}
+            type={'button'}
         >
-            {'Hover me'}
-        </span>
-    </Tooltip>
-);
+            {text}
+        </button>
+    );
 
-export const ConfigurableWithLongText = () => (
-    <Tooltip
-        elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
-        title={text('Title', 'Configure me!')}
-        transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
-        transitionEasing={select('Transition type', Tooltip.transitionEasings, Tooltip.defaultProps.transitionEasing)}
-    >
-        <span
-            style={{
-                backgroundColor: 'red',
-                borderRadius: '50px',
-                color: 'white',
-                padding: '8px',
-            }}
-        >
-            {'Hover me, but this time with some long text'}
-        </span>
-    </Tooltip>
-);
+    return (
+        <>
+            {createBtn('btnLeft', 'click 1', true)}
+            {createBtn('btnRight', 'click 2')}
+            {createBtn('btnBtmR', 'click 3')}
+            {createBtn('btnCenter', 'click 4')}
+            <Tooltip
+                elevation={Tooltip.defaultProps.elevation}
+                transitionDuration={Tooltip.defaultProps.transitionDuration}
+                transitionEasing={Tooltip.defaultProps.transitionEasing}
+            />
+        </>
+    );
+};
