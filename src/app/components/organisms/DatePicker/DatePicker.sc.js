@@ -109,7 +109,8 @@ export const StyledDatePicker = styled.div`
         color: ${({ theme }) => theme.shades.one};
 
         &:hover {
-            background-color: ${({ theme }) => theme.shades.six};
+            background-color: ${({ theme }) => theme.colorPrimary};
+            color: ${({ theme }) => theme.colorContrastText.primary};
         }
     }
 
@@ -126,6 +127,12 @@ export const StyledDatePicker = styled.div`
             width: 100%;
             height: 4px;
             content: '';
+        }
+
+        &:hover {
+            &::after {
+                background-color: ${({ theme }) => theme.colorSecondary};
+            }
         }
     }
 
