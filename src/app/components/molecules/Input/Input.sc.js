@@ -55,6 +55,7 @@ StyledInput.propTypes = {
 
 export const LabelWrapper = styled.div`
     position: absolute;
+    z-index: 1;
     pointer-events: none;
 
     ${({
@@ -81,12 +82,23 @@ export const LabelWrapper = styled.div`
     }) => variant === INPUT_VARIANTS.OUTLINE && css`
         top: ${theme.spacing(1.5)};
         left: ${theme.spacing(1.5)};
-        background-color: ${theme.shades.nine};
 
         ${(hasValue || isFocused) && css`
             top: -${theme.spacing(1)};
             left: ${theme.spacing(2.5)};
             padding: ${theme.spacing(0, 0.5)};
+
+            &::after {
+                display: block;
+                position: absolute;
+                top: ${theme.spacing(1)};
+                left: 0;
+                z-index: -1;
+                background-color: ${theme.shades.nine};
+                width: 100%;
+                height: 1px;
+                content: '';
+            }
         `};
     `};
 `;
