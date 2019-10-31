@@ -5,6 +5,8 @@ import React from 'react';
 import { tableData } from './tableData';
 
 function customComparator(a, b) {
+    console.log(a, b);
+
     // We find by key in orderValues the object which contains the value for ordering
     const orderValueA = tableData().find((item) => item.name === a.relationStart);
     const orderValueB = tableData().find((item) => item.name === b.relationStart);
@@ -120,8 +122,15 @@ export function tableColumns() {
                 Cell: (row) => renderCell(row),
                 Header: 'Startdate',
                 accessor: 'relationStart',
-                sortFunction: customComparator,
-                sortType: 'datetime',
+                sortMethod: (a, b) => customComparator(a, b),
+                // sortMethod: (a, b) => {
+                //     if (a.length === b.length) {
+                //         return a > b ? 1 : -1;
+                //     }
+
+                //     return a.length > b.length ? 1 : -1;
+                // },
+                // sortType: 'datetime',
                 // accessor: (row) => {
                 //     return sortDates(row.relationStart);
                 // },
