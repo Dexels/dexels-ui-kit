@@ -53,62 +53,6 @@ StyledInput.propTypes = {
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
 };
 
-export const LabelWrapper = styled.div`
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
-
-    ${({
-        hasValue,
-        isFocused,
-        theme,
-        variant,
-    }) => variant === INPUT_VARIANTS.COMPACT && css`
-        top: 0;
-        left: 0;
-
-        ${(hasValue || isFocused) && css`
-            top: -${theme.spacing(2)};
-            left: 0;
-            padding: 0;
-        `};
-    `};
-
-    ${({
-        hasValue,
-        isFocused,
-        theme,
-        variant,
-    }) => variant === INPUT_VARIANTS.OUTLINE && css`
-        top: ${theme.spacing(1.5)};
-        left: ${theme.spacing(1.5)};
-
-        ${(hasValue || isFocused) && css`
-            top: -${theme.spacing(1)};
-            left: ${theme.spacing(2.5)};
-            padding: ${theme.spacing(0, 0.5)};
-
-            &::after {
-                display: block;
-                position: absolute;
-                top: ${theme.spacing(1)};
-                left: 0;
-                z-index: -1;
-                background-color: ${theme.shades.nine};
-                width: 100%;
-                height: 1px;
-                content: '';
-            }
-        `};
-    `};
-`;
-
-LabelWrapper.propTypes = {
-    hasValue: PropTypes.bool.isRequired,
-    isFocused: PropTypes.bool.isRequired,
-    variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
-};
-
 export const TextField = styled.input`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     display: block;
