@@ -1,7 +1,7 @@
 import { STATUS_INDICATOR_PLACEMENTS, STATUS_INDICATOR_STATUSES } from './StatusIndicator.consts';
+import { StyledStatusIndicator, StyledStatusIndicatorText } from './StatusIndicator.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyledStatusIndicator } from './StatusIndicator.sc';
 
 const StatusIndicator = ({
     as,
@@ -10,7 +10,9 @@ const StatusIndicator = ({
     status,
 }) => (
     <StyledStatusIndicator as={as} placement={placement} status={status}>
-        {children}
+        <StyledStatusIndicatorText placement={placement}>
+            {children}
+        </StyledStatusIndicatorText>
     </StyledStatusIndicator>
 );
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { TABLE_ELEVATIONS } from './Table.consts';
 
-export const StyledTableCaption = styled.div`
+export const TableCaption = styled.div`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     padding-bottom: ${({ theme }) => theme.spacing(4)};
@@ -27,36 +27,34 @@ StyledTable.propTypes = {
     isFullWidth: PropTypes.bool.isRequired,
 };
 
-export const StyledTableHead = styled.thead`
-    ${setBoxSizing()};
+export const TableHead = styled.thead`
     background-color: transparent;
 `;
 
-export const StyledTableHeaderRow = styled.tr`
-    ${setBoxSizing()};
+export const TableHeaderRow = styled.tr`
     height: ${({ theme }) => theme.spacing(4.5)};
 `;
 
-export const StyledTableHeaderCell = styled.th`
-    ${setBoxSizing()};
+export const TableHeaderCell = styled.th`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     border-bottom: 4px solid;
     border-color: ${({ theme }) => theme.colorPrimary};
     background-color: ${({ theme }) => theme.shades.nine};
-    padding: ${({ theme }) => theme.spacing(1)};
+    /* padding: ${({ theme }) => theme.spacing(1)}; */
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align: left;
     color: ${({ theme }) => theme.colorPrimary};
 `;
 
-export const StyledTableBody = styled.tbody`
-    ${setBoxSizing()};
+export const TableBody = styled.tbody`
     color: ${({ theme }) => theme.shades.nine};
 `;
 
-export const StyledTableRow = styled.tr`
-    ${setBoxSizing()};
-    height: ${({ theme }) => theme.spacing(4.5)};
+export const TableRow = styled.tr`
+    position: relative;
+    /* border-spacing: ${({ theme }) => theme.spacing(0.125)}; */
+    z-index: 1;
 
     &:nth-child(odd) {
         background-color: ${({ theme }) => theme.shades.nine};
@@ -68,16 +66,18 @@ export const StyledTableRow = styled.tr`
 
     &:hover {
         ${getElevation(TABLE_ELEVATIONS.LEVEL_3)};
+        z-index: 2;
     }
 `;
 
-export const StyledTableCell = styled.td`
-    ${setBoxSizing()};
+export const TableCell = styled.td`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
     border-bottom: 1px solid;
     border-color: ${({ theme }) => theme.shades.seven};
-    padding: ${({ theme }) => theme.spacing(1)};
+    /* padding: ${({ theme }) => theme.spacing(1)}; */
+    padding: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
+    height: ${({ theme }) => theme.spacing(6)};
     color: ${({ theme }) => theme.colorPrimary};
 `;
