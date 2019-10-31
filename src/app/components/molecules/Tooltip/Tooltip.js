@@ -14,14 +14,14 @@ const Tooltip = ({
     const [hasTooltipDelay, setTooltipDelay] = useState(false);
     const [hoveredElement, setHoveredElement] = useState(null);
 
-    const pastShow = (hoveredItem) => {
+    const calculateTooltipPosition = (hoveredItem) => {
         const docWidth = document.documentElement.clientWidth;
         const docHeight = document.documentElement.clientHeight;
 
+        const spaceFromBottom = docHeight - hoveredItem.bottom;
+        const spaceFromTop = hoveredItem.top;
         const spaceFromRightSide = docWidth - hoveredItem.right;
         const spaceFromLeftSide = hoveredItem.left;
-        const spaceFromTop = hoveredItem.top;
-        const spaceFromBottom = docHeight - hoveredItem.bottom;
 
         if (spaceFromBottom < 100) {
             if (spaceFromTop < 100) {
@@ -45,8 +45,8 @@ const Tooltip = ({
     };
 
     const show = (hoveredItem) => {
+        calculateTooltipPosition(hoveredItem);
         setTooltipVisiblity(true);
-        pastShow(hoveredItem);
     };
 
     const hide = () => {
@@ -72,8 +72,8 @@ const Tooltip = ({
         hide();
     };
 
-    const handler = useCallback(({ clientX, clientY }) => {
-        const element = document.elementFromPoint(clientX, clientY);
+    const handler = useCallback(({ x, y }) => {
+        const element = document.elementFromPoint(x, y);
 
         if (element.getAttribute('data-tooltip-component')) {
             handleOnMouseOver(element);
@@ -90,8 +90,6 @@ const Tooltip = ({
         };
     }, [handler]);
 
-    const visibility = isTooltipVisible ? 'visible' : 'hidden';
-
     const style = {
         left: hoveredElement ? ((String(hoveredElement.x)).concat('px')) : 0,
         top: hoveredElement ? ((String(hoveredElement.y)).concat('px')) : 0,
@@ -104,7 +102,7 @@ const Tooltip = ({
             tooltipPosition={tooltipPosition}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
-            visibility={visibility}
+            visibility={isTooltipVisible ? 'visible' : 'hidden'}
         >
             {tooltipTitle}
         </StyledTooltip>
