@@ -7,6 +7,7 @@ import {
 import React, { useState } from 'react';
 import { DROPDOWN_VARIANTS } from './Dropdown.consts';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
+import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 
@@ -17,6 +18,7 @@ const Dropdown = ({
     isDisabled,
     isRequired,
     isValid,
+    label,
     name,
     onChange,
     placeholder,
@@ -35,6 +37,17 @@ const Dropdown = ({
                 isValid={isValid}
                 variant={variant}
             >
+                {label && (
+                    <FormElementLabel
+                        hasError={hasError}
+                        isActive
+                        isDisabled={isDisabled}
+                        isFocused={isFocused}
+                        isValid={isValid}
+                    >
+                        {label}
+                    </FormElementLabel>
+                )}
                 <Select
                     hasError={hasError}
                     isDisabled={isDisabled}
@@ -98,6 +111,7 @@ Dropdown.propTypes = {
     isDisabled: PropTypes.bool,
     isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
+    label: PropTypes.string,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
@@ -114,6 +128,7 @@ Dropdown.defaultProps = {
     isDisabled: false,
     isRequired: false,
     isValid: false,
+    label: '',
     placeholder: '',
     variant: Dropdown.variants.COMPACT,
 };
