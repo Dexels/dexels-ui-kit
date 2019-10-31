@@ -23,7 +23,7 @@ const iconType = (matchTaskStatus) => {
         default:
             return null;
     }
-}
+};
 
 const StatusCell = ({ matchTaskStatus, status }) => (
     <StyledStatusCell>

@@ -1,3 +1,5 @@
+// In this file we want to use prop spreading because React Table passes a lot of props
+/* eslint-disable react/jsx-props-no-spreading */
 import {
     StyledTable,
     TableBody,
@@ -13,8 +15,6 @@ import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
 import { TABLE_ELEVATIONS } from './Table.consts';
 
-/* DISABLE SOME LINES BECAUSE OF THE PROPS SPREADING LINT RULE */
-/* eslint-disable */
 const Table = ({
     caption,
     debug,
@@ -45,10 +45,13 @@ const Table = ({
                         {headerGroup.headers.map((column) => (
                             <TableHeaderCell
                                 key={column}
-                                {...column.getHeaderProps(column.getSortByToggleProps({ title: column.canSort ? localizedTexts.toggleSortTooltip : '' }))}
+                                {...column.getHeaderProps(column.getSortByToggleProps({
+                                    title: column.canSort ? localizedTexts.toggleSortTooltip : '',
+                                }))}
                             >
                                 {/* {console.log('********************** column', column)} */}
-                                {/* {console.log('********************** getSortByToggleProps', column.getSortByToggleProps())} */}
+                                {/* {console.log('********************** getSortByToggleProps',
+                                    column.getSortByToggleProps())} */}
                                 {column.render('Header')}
                                 {renderSortIcon(column)}
                             </TableHeaderCell>
