@@ -42,3 +42,16 @@ export const renderSortIcon = (column) => {
 
     return sortIcon;
 };
+
+export const customSortByDate = (a, b, propName) => {
+    const valueA = a.values[propName];
+    const valueB = b.values[propName];
+    // console.log('***************** a', valueA);
+    // console.log('***************** b', valueB);
+
+    if (!valueA) {
+        return -1;
+    }
+
+    return valueA < valueB ? -1 : 1;
+};

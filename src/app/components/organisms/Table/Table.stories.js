@@ -41,7 +41,7 @@ export const Configurable = () => {
             <div style={{ height: '20px' }} />
             <Table
                 caption={text('Table caption', 'Table caption')}
-                debug={boolean('Show debug info', Table.defaultProps.debug)}
+                debug={boolean('Show table debug info', Table.defaultProps.debug)}
                 elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
                 instance={myTable(hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(), tableData())}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
