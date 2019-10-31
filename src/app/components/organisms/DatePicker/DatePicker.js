@@ -54,6 +54,7 @@ const DatePicker = ({
                 hasYearSelector,
                 yearCount,
             })}
+            verticalSpacing={8}
         />
     </StyledDatePicker>
 );

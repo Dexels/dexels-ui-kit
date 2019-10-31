@@ -1,4 +1,4 @@
-import { boolean, text, number } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import DatePicker from './DatePicker';
 import moment from 'moment';
@@ -12,7 +12,7 @@ export const Configurable = () => {
     return (
         <DatePicker
             date={date}
-            hasYearSelector={boolean('hasYearSelector', DatePicker.defaultProps.hasYearSelector)}
+            hasYearSelector={boolean('Has year selector', DatePicker.defaultProps.hasYearSelector)}
             id="datepicker"
             isFocused={isFocused}
             label={text('Label', 'Speeldatum')}
