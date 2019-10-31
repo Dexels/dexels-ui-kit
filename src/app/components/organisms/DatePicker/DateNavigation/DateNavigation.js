@@ -46,6 +46,7 @@ const DateNavigation = ({
                         onMonthSelect(month, e.target.value);
                     }}
                     value={month.month()}
+                    variant={Dropdown.variants.OUTLINE}
                 >
                     {monthArray}
                 </Dropdown>
@@ -57,6 +58,7 @@ const DateNavigation = ({
                         onYearSelect(month, e.target.value);
                     }}
                     value={month.year()}
+                    variant={Dropdown.variants.OUTLINE}
                 >
                     {yearArray}
                 </Dropdown>

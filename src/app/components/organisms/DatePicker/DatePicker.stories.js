@@ -5,16 +5,37 @@ import moment from 'moment';
 
 export default { title: 'organisms/DatePicker' };
 
-export const Configurable = () => {
+export const Default = () => {
     const [date, setDate] = useState(moment());
     const [isFocused, setFocus] = useState(true);
 
     return (
         <DatePicker
             date={date}
-            hasYearSelector={boolean('Has year selector', DatePicker.defaultProps.hasYearSelector)}
             id="datepicker"
             isDayHighlighted={(day) => day.day() === 6}
+            isFocused={isFocused}
+            label={text('Label', 'Speeldatum')}
+            onDateChange={(newDate) => {
+                setDate(newDate);
+            }}
+            onFocusChange={({ focused }) => {
+                setFocus(focused);
+            }}
+        />
+    );
+};
+
+export const WithYearSelector = () => {
+    const [date, setDate] = useState(moment());
+    const [isFocused, setFocus] = useState(true);
+
+    return (
+        <DatePicker
+            date={date}
+            hasYearSelector
+            id="datepickerWithYearSelector"
+            isDayHighlighted={(day) => day.day() === 5}
             isFocused={isFocused}
             label={text('Label', 'Speeldatum')}
             onDateChange={(newDate) => {

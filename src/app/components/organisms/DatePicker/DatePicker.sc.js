@@ -79,6 +79,12 @@ export const StyledDatePicker = styled.div`
         border-radius: ${({ theme }) => theme.spacing(1)};
     }
 
+    .DayPicker_weekHeader {
+        ${({ hasYearSelector }) => hasYearSelector && css`
+            top: 80px;
+        `};
+    }
+
     .DayPicker_transitionContainer {
         border-radius: ${({ theme }) => theme.spacing(1)};
     }
