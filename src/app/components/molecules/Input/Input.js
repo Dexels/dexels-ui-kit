@@ -2,7 +2,7 @@ import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import { INPUT_TYPES, INPUT_VARIANTS } from './Input.consts';
 import React, { useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
-import InputLabel from '../InputLabel/InputLabel';
+import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import PropTypes from 'prop-types';
 
 const Input = ({
@@ -57,7 +57,7 @@ const Input = ({
                     value={value}
                     variant={variant}
                 />
-                <InputLabel
+                <FormElementLabel
                     hasError={hasError}
                     isActive={hasValue}
                     isDisabled={isDisabled}
@@ -67,7 +67,7 @@ const Input = ({
                     variant={variant}
                 >
                     {label}
-                </InputLabel>
+                </FormElementLabel>
             </StyledInput>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>

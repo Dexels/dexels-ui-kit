@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { INPUT_VARIANTS } from '../Input/Input.consts';
 import PropTypes from 'prop-types';
 
-export const StyledInputLabel = styled.div`
+export const StyledFormElementLabel = styled.div`
     position: absolute;
     z-index: 1;
     pointer-events: none;
@@ -42,9 +42,9 @@ export const StyledInputLabel = styled.div`
     `};
 `;
 
-StyledInputLabel.propTypes = {
+StyledFormElementLabel.propTypes = {
     isActive: PropTypes.bool.isRequired,
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
 };
 
-export default StyledInputLabel;
+export default StyledFormElementLabel;

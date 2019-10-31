@@ -110,8 +110,8 @@ Select.propTypes = {
 export const IconWrapper = styled.div`
     position: absolute;
     color: ${({ theme }) => theme.colorHeaderText.primary};
-    pointer-events: none;
     font-size: 24px;
+    pointer-events: none;
 
     ${({ variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
         top: 0;

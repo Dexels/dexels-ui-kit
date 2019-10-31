@@ -1,8 +1,8 @@
 import { ButtonNavigation, InputIcon, StyledDatePicker } from './DatePicker.sc';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import DateNavigation from './DateNavigation/DateNavigation';
+import FormElementLabel from '../../molecules/FormElementLabel/FormElementLabel';
 import Icon from '../../atoms/Icon/Icon';
-import InputLabel from '../../molecules/InputLabel/InputLabel';
 import momentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -21,9 +21,9 @@ const DatePicker = ({
     yearCount,
 }) => (
     <StyledDatePicker hasYearSelector={hasYearSelector}>
-        <InputLabel isActive isFocused={isFocused}>
+        <FormElementLabel isActive isFocused={isFocused}>
             {label}
-        </InputLabel>
+        </FormElementLabel>
         <SingleDatePicker
             customInputIcon={(
                 <InputIcon isFocused={isFocused}>

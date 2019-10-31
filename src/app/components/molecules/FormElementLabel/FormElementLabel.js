@@ -1,10 +1,10 @@
-import { INPUT_LABEL_VARIANTS } from './InputLabel.consts';
+import { FORM_ELEMENT_LABEL_VARIANTS } from './FormElementLabel.consts';
 import Label from '../../atoms/Label/Label';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyledInputLabel } from './InputLabel.sc';
+import { StyledFormElementLabel } from './FormElementLabel.sc';
 
-const InputLabel = ({
+const FormElementLabel = ({
     children,
     hasError,
     isActive,
@@ -13,7 +13,7 @@ const InputLabel = ({
     isValid,
     variant,
 }) => (
-    <StyledInputLabel isActive={isActive || isFocused} variant={variant}>
+    <StyledFormElementLabel isActive={isActive || isFocused} variant={variant}>
         <Label
             hasError={hasError}
             isActive={isActive}
@@ -24,26 +24,26 @@ const InputLabel = ({
         >
             {children}
         </Label>
-    </StyledInputLabel>
+    </StyledFormElementLabel>
 );
 
-InputLabel.variants = INPUT_LABEL_VARIANTS;
+FormElementLabel.variants = FORM_ELEMENT_LABEL_VARIANTS;
 
-InputLabel.propTypes = {
+FormElementLabel.propTypes = {
     children: PropTypes.node.isRequired,
     hasError: PropTypes.bool,
     isActive: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool,
     isFocused: PropTypes.bool.isRequired,
     isValid: PropTypes.bool,
-    variant: PropTypes.oneOf(Object.values(InputLabel.variants)),
+    variant: PropTypes.oneOf(Object.values(FormElementLabel.variants)),
 };
 
-InputLabel.defaultProps = {
+FormElementLabel.defaultProps = {
     hasError: false,
     isDisabled: false,
     isValid: false,
-    variant: InputLabel.variants.OUTLINE,
+    variant: FormElementLabel.variants.OUTLINE,
 };
 
-export default InputLabel;
+export default FormElementLabel;
