@@ -12,6 +12,7 @@ const DatePicker = ({
     date,
     hasYearSelector,
     id,
+    isDayHighlighted,
     isFocused,
     label,
     numberOfMonths,
@@ -35,6 +36,7 @@ const DatePicker = ({
             focused={isFocused}
             hideKeyboardShortcutsPanel
             id={id}
+            isDayHighlighted={isDayHighlighted}
             isOutsideRange={() => false}
             navNext={(
                 <ButtonNavigation isNext>
@@ -63,6 +65,7 @@ DatePicker.propTypes = {
     date: momentPropTypes.momentObj.isRequired,
     hasYearSelector: PropTypes.bool,
     id: PropTypes.string.isRequired,
+    isDayHighlighted: PropTypes.func,
     isFocused: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
     numberOfMonths: PropTypes.number,
@@ -73,6 +76,7 @@ DatePicker.propTypes = {
 
 DatePicker.defaultProps = {
     hasYearSelector: false,
+    isDayHighlighted: () => {},
     numberOfMonths: 1,
     yearCount: 100,
 };

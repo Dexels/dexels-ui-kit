@@ -14,6 +14,7 @@ export const Configurable = () => {
             date={date}
             hasYearSelector={boolean('Has year selector', DatePicker.defaultProps.hasYearSelector)}
             id="datepicker"
+            isDayHighlighted={(day) => day.day() === 6}
             isFocused={isFocused}
             label={text('Label', 'Speeldatum')}
             onDateChange={(newDate) => {

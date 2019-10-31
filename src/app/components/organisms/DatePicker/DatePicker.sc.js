@@ -103,6 +103,7 @@ export const StyledDatePicker = styled.div`
 
     .CalendarDay__default {
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+        position: relative;
         outline: none;
         border: 1px solid ${({ theme }) => theme.shades.nine};
         background-color: ${({ theme }) => theme.shades.seven};
@@ -115,10 +116,9 @@ export const StyledDatePicker = styled.div`
     }
 
     .CalendarDay__today {
-        position: relative;
         color: ${({ theme }) => theme.colorPrimary};
 
-        &::after {
+        &::before {
             display: block;
             position: absolute;
             top: 0;
@@ -130,7 +130,7 @@ export const StyledDatePicker = styled.div`
         }
 
         &:hover {
-            &::after {
+            &::before {
                 background-color: ${({ theme }) => theme.colorSecondary};
             }
         }
@@ -142,6 +142,27 @@ export const StyledDatePicker = styled.div`
 
         &:hover {
             background-color: ${({ theme }) => theme.colorSecondary};
+        }
+    }
+
+    .CalendarDay__highlighted_calendar {
+        &::after {
+            display: block;
+            position: absolute;
+            bottom: ${({ theme }) => theme.spacing(0.5)};
+            left: ${({ theme }) => theme.spacing(2.25)};
+            border-radius: 100%;
+            background-color: ${({ theme }) => theme.colorPrimary};
+            width: ${({ theme }) => theme.spacing(0.5)};
+            height: ${({ theme }) => theme.spacing(0.5)};
+            content: '';
+        }
+
+        &:hover,
+        &.CalendarDay__selected {
+            &::after {
+                background-color: ${({ theme }) => theme.shades.nine};
+            }
         }
     }
 `;
