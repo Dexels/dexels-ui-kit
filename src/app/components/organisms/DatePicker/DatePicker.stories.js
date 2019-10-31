@@ -1,3 +1,4 @@
+import { boolean, text, number } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import DatePicker from './DatePicker';
 import moment from 'moment';
@@ -11,14 +12,17 @@ export const Configurable = () => {
     return (
         <DatePicker
             date={date}
+            hasYearSelector={boolean('hasYearSelector', DatePicker.defaultProps.hasYearSelector)}
             id="datepicker"
             isFocused={isFocused}
+            label={text('Label', 'Speeldatum')}
             onDateChange={(newDate) => {
                 setDate(newDate);
             }}
             onFocusChange={({ focused }) => {
                 setFocus(focused);
             }}
+            yearCount={number('Year count', DatePicker.defaultProps.yearCount)}
         />
     );
 };
