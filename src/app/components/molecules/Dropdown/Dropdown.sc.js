@@ -94,6 +94,10 @@ export const IconWrapper = styled.div`
     color: ${({ theme }) => theme.colorHeaderText.primary};
     pointer-events: none;
 
+    ${({ isFocused, isHovered }) => (isFocused || isHovered) && css`
+        color: ${({ theme }) => theme.colorSecondary};
+    `};
+
     ${({ isFocused }) => isFocused && css`
         transform: rotate(180deg);
     `};
@@ -119,6 +123,7 @@ IconWrapper.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
+    isHovered: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
 };
 
