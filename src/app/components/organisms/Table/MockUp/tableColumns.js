@@ -4,12 +4,10 @@ import Button from '../../../molecules/Button/Button';
 import React from 'react';
 import { tableData } from './tableData';
 
-const data = tableData();
-
 function customComparator(a, b) {
     // We find by key in orderValues the object which contains the value for ordering
-    const orderValueA = data.find((item) => item.name === a.relationStart);
-    const orderValueB = data.find((item) => item.name === b.relationStart);
+    const orderValueA = tableData().find((item) => item.name === a.relationStart);
+    const orderValueB = tableData().find((item) => item.name === b.relationStart);
 
     // Order them
     return orderValueA.value > orderValueB.value ? -1 : 1;
