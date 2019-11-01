@@ -1,30 +1,13 @@
 import {
-    colorButtonLight,
-    colorDisabled,
-    colorError,
-    colorPrimary,
-    colorValid,
-    themeModes,
-} from '../../../styles/theme/theme';
-import {
     SELECTION_CONTROL_DIRECTIONS,
     SELECTION_CONTROL_EASINGS,
     SELECTION_CONTROL_TYPES,
 } from './SelectionControl.consts';
 import styled, { css } from 'styled-components';
-import { blue10 } from '../../../styles/colors/colors';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
-import { spacingUnit } from '../../../styles/theme/layout';
-import theme from 'styled-theming';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
-
-const selectionControlBackgroundColorHover = theme('mode', {
-    [themeModes.basic]: blue10,
-    [themeModes.dark]: blue10,
-    [themeModes.light]: blue10,
-});
 
 export const StyledSelectionControl = styled.div`
     ${setBoxSizing()};
@@ -37,31 +20,36 @@ export const StyledSelectionControl = styled.div`
 export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
-    border: 1px solid ${colorPrimary};
-    width: calc(${spacingUnit} * 3);
-    height: calc(${spacingUnit} * 3);
+    border: 1px solid ${({ theme }) => theme.colorPrimary};
+    width: ${({ theme }) => theme.spacing(3)};
+    height: ${({ theme }) => theme.spacing(3)};
     pointer-events: none;
 
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        margin: 0 calc(${spacingUnit} * 2.25) 0 0;
+    ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
+        margin: ${theme.spacing(0, 2.25, 0, 0)};
         order: 1;
     `};
 
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        margin: 0 0 0 calc(${spacingUnit} * 2.25);
+    ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
+        margin: ${theme.spacing(0, 0, 0, 2.25)};
         order: 2;
     `};
 
-    ${({ type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
-        border-radius: 5px;
+    ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+        border-radius: ${theme.spacing(0.5)};
     `};
 
     ${({ type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
         border-radius: 100%;
     `};
 
-    ${({ isChecked, isIndeterminate, type }) => (isChecked || isIndeterminate) && css`
-        background-color: ${colorPrimary};
+    ${({
+        isChecked,
+        isIndeterminate,
+        theme,
+        type,
+    }) => (isChecked || isIndeterminate) && css`
+        background-color: ${theme.colorPrimary};
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
             &::after {
@@ -69,34 +57,49 @@ export const InputWrapper = styled.div`
                 position: absolute;
                 width: 60%;
                 height: 60%;
-                background-color: ${colorButtonLight};
+                background-color: ${theme.shades.nine};
                 content: '';
                 border-radius: 100%;
             }
         `};
     `};
 
-    ${({ isChecked, isIndeterminate, isValid }) => isValid && css`
-        border-color: ${colorValid};
+    ${({
+        isChecked,
+        isIndeterminate,
+        isValid,
+        theme,
+    }) => isValid && css`
+        border-color: ${theme.colorValid};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${colorValid};
+            background-color: ${theme.colorValid};
         `};
     `};
 
-    ${({ hasError, isChecked, isIndeterminate }) => hasError && css`
-        border-color: ${colorError};
+    ${({
+        hasError,
+        isChecked,
+        isIndeterminate,
+        theme,
+    }) => hasError && css`
+        border-color: ${theme.colorError};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${colorError};
+            background-color: ${theme.colorError};
         `};
     `};
 
-    ${({ isChecked, isDisabled, isIndeterminate }) => isDisabled && css`
-        border-color: ${colorDisabled};
+    ${({
+        isChecked,
+        isDisabled,
+        isIndeterminate,
+        theme,
+    }) => isDisabled && css`
+        border-color: ${theme.colorDisabled};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${colorDisabled};
+            background-color: ${theme.colorDisabled};
         `};
 
         input {
@@ -115,9 +118,9 @@ export const InputWrapper = styled.div`
         opacity: 0;
         z-index: -1;
         border-radius: 100%;
-        background-color: ${selectionControlBackgroundColorHover};
-        width: calc(calc(${spacingUnit} * 3) * (1 + 2 / 3));
-        height: calc(calc(${spacingUnit} * 3) * (1 + 2 / 3));
+        background-color: ${({ theme }) => theme.colorTertiary};
+        width: ${({ theme }) => `calc(${theme.spacing(3)} * (1 + 2 / 3))`};
+        height: ${({ theme }) => `calc(${theme.spacing(3)} * (1 + 2 / 3))`};
         content: '';
     }
 
@@ -136,8 +139,8 @@ export const InputWrapper = styled.div`
         margin: 0;
         border: 0;
         cursor: pointer;
-        width: calc(${spacingUnit} * 3);
-        height: calc(${spacingUnit} * 3);
+        width: ${({ theme }) => theme.spacing(3)};
+        height: ${({ theme }) => theme.spacing(3)};
         pointer-events: auto;
     }
 `;
@@ -158,8 +161,8 @@ export const IconWrapper = styled.div`
     ${setCentered()};
     position: absolute;
     z-index: 2;
-    color: ${colorButtonLight};
-    font-size: calc(${spacingUnit} * 2.5);
+    color: ${({ theme }) => theme.colorContrastText.primary};
+    font-size: ${({ theme }) => theme.spacing(2.5)};
     pointer-events: none;
 
     span {
@@ -195,5 +198,5 @@ LabelWrapper.propTypes = {
 };
 
 export const ErrorMessageWrapper = styled.div`
-    margin: calc(${spacingUnit} / 4) 0 0 0;
+    margin: ${({ theme }) => theme.spacing(0.25, 0, 0, 0)};
 `;

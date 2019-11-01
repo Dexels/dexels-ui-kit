@@ -1,6 +1,4 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import { backgroundColorPrimary, colorPrimary } from '../../../styles/theme/theme';
-import { borderRadius, spacingUnit } from '../../../styles/theme/layout';
+import { CARD_ELEVATIONS, CARD_POSITIONS } from './Card.consts';
 import styled, { css } from 'styled-components';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
@@ -9,21 +7,24 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledCard = styled.div`
     ${setBoxSizing()};
-    ${textStyling(availableTextStyles().body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
     ${({ position }) => getPosition(position)};
     ${({ elevation }) => getElevation(elevation)};
-    ${({ hasBorderRadius }) => hasBorderRadius && css`
-        border-radius: calc(${borderRadius} / 2);
-    `}
     display: flex;
-    background-color: ${backgroundColorPrimary};
-    padding: ${spacingUnit};
+    background-color: ${({ theme }) => theme.shades.nine};
+    padding: ${({ theme }) => theme.spacing(1)};
     word-break: break-word;
-    color: ${colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
+
+    ${({ hasBorderRadius, theme }) => hasBorderRadius && css`
+        border-radius: ${theme.spacing(0.5)};
+    `}
 `;
 
 StyledCard.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)).isRequired,
     hasBorderRadius: PropTypes.bool.isRequired,
+    position: PropTypes.oneOf(Object.values(CARD_POSITIONS)).isRequired,
 };
 
 export default StyledCard;
