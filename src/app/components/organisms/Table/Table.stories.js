@@ -16,19 +16,20 @@ function createLocalizedTableTexts(language = 'nl') {
     return localizedTexts;
 }
 
-function myTable(columns, data) {
+function myTable(columns, data, disableSorting = false) {
     return useTable(
         {
             columns,
             data,
+            disableSorting,
         },
         useSortBy,
-        // { disableSorting: true },
     );
 }
 
 export const Configurable = () => {
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
+    const [disableSorting, setDisableSorting] = useState(false);
 
     return (
         /* @TODO: figure out how to rerender with the correct columns. Most likely with React.useEffect */
@@ -39,13 +40,22 @@ export const Configurable = () => {
             >
                 {hasGroupHeader ? 'WITH GROUP HEADER' : 'WITHOUT GROUP HEADER'}
             </Button>
+            <Button
+                onClick={() => setDisableSorting(!disableSorting)}
+                variant={Button.variants.FILLED}
+            >
+                {disableSorting ? 'ENABLE SORTING' : 'DISABLE SORTING'}
+            </Button>
             <div style={{ height: '20px' }} />
             <Table
                 caption={text('Table caption', 'Table caption')}
                 debug={boolean('Show table debug info', Table.defaultProps.debug)}
-                disableSorting={boolean('Disable sorting', Table.defaultProps.disableSorting)}
                 elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
-                instance={myTable(hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(), tableData())}
+                instance={myTable(
+                    hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(),
+                    tableData(),
+                    disableSorting,
+                )}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
                 localizedTexts={createLocalizedTableTexts()}
             />
