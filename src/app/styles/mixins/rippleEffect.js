@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
-import { white } from '../colors/colors';
 
-const rippleEffect = (backgroundColor = white) => (css`
+/* @TODO: use default theme color instead of hardcoded variant */
+export const rippleEffect = (backgroundColor = '#FFFFFF') => (css`
     display: block;
     position: absolute;
     top: 0;
@@ -18,4 +18,8 @@ const rippleEffect = (backgroundColor = white) => (css`
     pointer-events: none;
 `);
 
-export default rippleEffect;
+export const rippleEffectReset = () => (css`
+    transform: scale(0, 0);
+    transition: none;
+    opacity: .2;
+`);

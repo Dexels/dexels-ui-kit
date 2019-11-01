@@ -31,7 +31,7 @@ const Dialog = ({
     <Overlay isFullscreen isVisible={hasOverlay}>
         {hasButtonClose && hasOverlay && (
             <ButtonClose onClick={onClose} position={buttonClosePosition}>
-                <Icon type={Icon.types.CLOSE} />
+                <Icon type={Icon.types.CROSS} />
             </ButtonClose>
         )}
         <StyledDialog elevation={elevation} width={width}>

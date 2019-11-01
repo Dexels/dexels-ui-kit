@@ -1,10 +1,7 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import { colorBodyDark, colorDisabled } from '../../../styles/theme/theme';
 import styled, { css } from 'styled-components';
 import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { spacingUnit } from '../../../styles/theme/layout';
 
 export const StyledInputPassword = styled.div`
     ${setBoxSizing()};
@@ -12,7 +9,7 @@ export const StyledInputPassword = styled.div`
 `;
 
 export const VisibilitySwitch = styled.button`
-    ${textStyling(availableTextStyles().h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     appearance: none;
     position: absolute;
     margin: 0;
@@ -20,22 +17,22 @@ export const VisibilitySwitch = styled.button`
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    color: ${colorBodyDark};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
-    ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
+    ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
         top: 0;
         right: 0;
-        padding: 0 0 0 ${spacingUnit};
+        padding: ${theme.spacing(0, 0, 0, 1)};
     `};
 
-    ${({ variant }) => variant === INPUT_PASSWORD_VARIANTS.OUTLINE && css`
-        top: ${spacingUnit};
-        right: ${spacingUnit};
-        padding: calc(${spacingUnit} / 2) ${spacingUnit};
+    ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.OUTLINE && css`
+        top: ${theme.spacing(1)};
+        right: ${theme.spacing(1)};
+        padding: ${theme.spacing(0.5, 1)};
     `};
 
-    ${({ isDisabled }) => isDisabled && css`
-        color: ${colorDisabled};
+    ${({ isDisabled, theme }) => isDisabled && css`
+        color: ${theme.colorDisabled};
         pointer-events: none;
     `};
 
