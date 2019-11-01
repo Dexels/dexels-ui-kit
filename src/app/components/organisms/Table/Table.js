@@ -18,6 +18,7 @@ import { TABLE_ELEVATIONS } from './Table.consts';
 const Table = ({
     caption,
     debug,
+    disableSorting,
     elevation,
     instance,
     isFullWidth,
@@ -35,6 +36,7 @@ const Table = ({
 
         <StyledTable
             debug={debug}
+            disableSorting={disableSorting}
             elevation={elevation}
             isFullWidth={isFullWidth}
             {...instance.getTableProps()}
@@ -79,6 +81,7 @@ Table.elevations = TABLE_ELEVATIONS;
 Table.propTypes = {
     caption: PropTypes.string,
     debug: PropTypes.bool,
+    disableSorting: PropTypes.bool,
     elevation: PropTypes.oneOf(Object.values(Table.elevations)),
     instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
     isFullWidth: PropTypes.bool,
@@ -90,6 +93,7 @@ Table.propTypes = {
 Table.defaultProps = {
     caption: '',
     debug: false,
+    disableSorting: false,
     elevation: Table.elevations.LEVEL_1,
     isFullWidth: true,
     localizedTexts: {

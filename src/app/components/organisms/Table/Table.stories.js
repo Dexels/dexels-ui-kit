@@ -23,6 +23,7 @@ function myTable(columns, data) {
             data,
         },
         useSortBy,
+        // { disableSorting: true },
     );
 }
 
@@ -42,6 +43,7 @@ export const Configurable = () => {
             <Table
                 caption={text('Table caption', 'Table caption')}
                 debug={boolean('Show table debug info', Table.defaultProps.debug)}
+                disableSorting={boolean('Disable sorting', Table.defaultProps.disableSorting)}
                 elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
                 instance={myTable(hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(), tableData())}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
