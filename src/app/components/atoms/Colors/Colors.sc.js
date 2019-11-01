@@ -1,31 +1,42 @@
-import * as colors from '../../../styles/colors/colors';
 import { invertColor } from '../../../utils/invertColor';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
-export const StyledColorWrapper = styled.div`
+export const StyledColors = styled.div`
     ${setBoxSizing()};
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    max-width: 1100px;
-`;
-
-export const StyledColorText = styled.span`
-    color: ${({ color }) => invertColor(color, true)};
-`;
-
-StyledColorText.propTypes = {
-    color: PropTypes.oneOf(Object.values(colors)).isRequired,
-};
-
-export const StyledColor = styled.div`
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
     justify-content: center;
-    margin: 8px;
+    margin: 80px auto 0;
+    max-width: 1200px;
+`;
+
+export const ColorGroup = styled.div`
+    display: flex;
+    position: relative;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 24px 56px;
+`;
+
+export const ColorGroupName = styled.p`
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    margin: 0;
+    text-transform: capitalize;
+`;
+
+export const Color = styled.div`
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 8px 8px;
     border: 1px solid #000;
     border-radius: 100%;
     background-color: ${({ color }) => color};
@@ -33,6 +44,19 @@ export const StyledColor = styled.div`
     height: 100px;
 `;
 
-StyledColor.propTypes = {
-    color: PropTypes.oneOf(Object.values(colors)).isRequired,
+Color.propTypes = {
+    color: PropTypes.string.isRequired,
+};
+
+export const ColorText = styled.p`
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    flex: 0 0 auto;
+    margin: 0;
+    text-align: center;
+    text-transform: capitalize;
+    color: ${({ color }) => invertColor(color, true)};
+`;
+
+ColorText.propTypes = {
+    color: PropTypes.string.isRequired,
 };

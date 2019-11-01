@@ -33,10 +33,6 @@ export const ELEVATIONS = mapArrayToObject([
     'LEVEL_24',
 ]);
 
-export const FONT_FAMILY_PRIMARY = "'Open Sans', arial, sans-serif";
-
-export const FONT_FAMILY_SECONDARY = "'Exo 2', sans-serif";
-
 export const INPUT_VARIANTS = mapArrayToObject([
     'COMPACT',
     'OUTLINE',

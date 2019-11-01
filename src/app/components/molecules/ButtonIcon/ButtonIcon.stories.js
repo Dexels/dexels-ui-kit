@@ -9,8 +9,8 @@ export const Configurable = () => (
     <ButtonIcon
         iconType={select('Type', ButtonIcon.types, ButtonIcon.defaultProps.iconType)}
         isDisabled={boolean('Is disabled', ButtonIcon.defaultProps.isDisabled)}
+        isInverted={boolean('Is inverted', ButtonIcon.defaultProps.isInverted)}
         onClick={action('On click')}
         size={select('Size', ButtonIcon.sizes, ButtonIcon.defaultProps.size)}
-        variant={select('Variant', ButtonIcon.variants, ButtonIcon.defaultProps.variant)}
     />
 );

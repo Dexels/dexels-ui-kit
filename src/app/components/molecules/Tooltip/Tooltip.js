@@ -62,6 +62,7 @@ const Tooltip = ({
     };
 
     const handleOnMouseOver = (element) => {
+        console.log("HI :", element.getAttribute('data-tooltip-component')[0])
         setTooltipTitle(element.getAttribute('data-tooltip-component'));
         setTooltipDelay(element.getAttribute('data-tooltip-delay'));
         setHoveredElement(element.getBoundingClientRect());

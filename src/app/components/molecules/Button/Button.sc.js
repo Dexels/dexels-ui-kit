@@ -1,52 +1,12 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import {
-    backgroundColorPrimary,
-    backgroundColorTertiary,
-    colorButtonDark,
-    colorButtonLight,
-    colorDisabled,
-    colorPrimary,
-    colorPrimaryHover,
-    themeModes,
-} from '../../../styles/theme/theme';
 import {
     BUTTON_EASINGS,
     BUTTON_SIZES,
     BUTTON_VARIANTS,
 } from './Button.consts';
-import { grey50, white } from '../../../styles/colors/colors';
+import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import rippleEffect from '../../../styles/mixins/rippleEffect';
-import theme from 'styled-theming';
-import { themeLayouts } from '../../../styles/theme/layout';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
-
-const buttonBorderRadius = theme('layout', {
-    [themeLayouts.basic]: '50px',
-    [themeLayouts.compact]: '4px',
-});
-
-const buttonHeight = theme.variants('layout', 'size', {
-    [BUTTON_SIZES.LARGE]: {
-        [themeLayouts.basic]: '48px',
-        [themeLayouts.compact]: '46px',
-    },
-    [BUTTON_SIZES.MEDIUM]: {
-        [themeLayouts.basic]: '32px',
-        [themeLayouts.compact]: '30px',
-    },
-    [BUTTON_SIZES.SMALL]: {
-        [themeLayouts.basic]: '30px',
-        [themeLayouts.compact]: '28px',
-    },
-});
-
-const buttonColorDisabled = theme('mode', {
-    [themeModes.basic]: white,
-    [themeModes.dark]: white,
-    [themeModes.light]: grey50,
-});
 
 export const StyledButton = styled.button`
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
@@ -56,132 +16,127 @@ export const StyledButton = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid ${colorPrimary};
-    border-radius: ${buttonBorderRadius};
-    background-color: ${colorPrimary};
+    border: 1px solid;
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
-    min-height: ${buttonHeight};
-    color: ${colorButtonLight};
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
         justify-content: center;
     `};
 
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         pointer-events: none;
-        background-color: ${colorDisabled};
-        border-color: ${colorDisabled};
+        background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+        border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.SMALL && css`
-        ${textStyling(availableTextStyles().buttonSmall)};
-        min-width: 80px;
-        padding: 4px 16px;
+    ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
+        border-radius: ${theme.spacing(2)};
+        min-width: ${theme.spacing(10)};
+        padding: ${theme.spacing(0.5, 2)};
+        min-height: ${theme.spacing(4)};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.MEDIUM && css`
-        ${textStyling(availableTextStyles().buttonMedium)};
-        min-width: 90px;
-        padding: 6px 16px;
+    ${({ size, theme }) => size === BUTTON_SIZES.MEDIUM && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonMedium)};
+        border-radius: ${theme.spacing(2.5)};
+        min-width: ${theme.spacing(12)};
+        padding: ${theme.spacing(1, 2)};
+        min-height: ${theme.spacing(5)};
     `};
 
-    ${({ size }) => size === BUTTON_SIZES.LARGE && css`
-        ${textStyling(availableTextStyles().buttonLarge)};
-        min-width: 100px;
-        padding: 8px 16px;
+    ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
+        ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
+        border-radius: ${theme.spacing(3)};
+        min-width: ${theme.spacing(14)};
+        padding: ${theme.spacing(1, 2)};
+        min-height: ${theme.spacing(6)};
     `};
 
-    ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.FILLED && css`
-        background-color: ${backgroundColorTertiary};
-        color: ${colorButtonLight};
+    ${({
+        isDisabled,
+        isInverted,
+        theme,
+        variant,
+    }) => variant === BUTTON_VARIANTS.FILLED && css`
+        background-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        color: ${isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary};
 
         &:focus,
         &:hover {
-            background-color: ${colorPrimaryHover},
-            color: ${colorButtonLight};
+            background-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
+            border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
+            color: ${isInverted ? theme.colorContrastText.primary : theme.colorContrastText.primary};
         }
 
         ${isDisabled && css`
-            background-color: ${colorDisabled};
-            border-color: ${colorDisabled};
-            color: ${buttonColorDisabled};
+            background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            color: ${isInverted ? theme.shades.five : theme.colorContrastText.primary};
         `};
     `};
 
-    ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.OUTLINE && css`
+    ${({
+        isDisabled,
+        isInverted,
+        theme,
+        variant,
+    }) => variant === BUTTON_VARIANTS.OUTLINE && css`
         background-color: transparent !important;
-        border-color: ${colorButtonDark};
-        color: ${colorButtonDark};
+        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
 
         &:focus,
         &:hover {
-            color: ${colorPrimaryHover};
+            border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
+            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorHeaderText.secondary};
         }
 
         ${isDisabled && css`
-            background-color: ${colorDisabled};
-            border-color: ${colorDisabled};
-            color: ${buttonColorDisabled};
+            border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
+            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
         `};
     `};
 
-    ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.OUTLINE_HEADER && css`
+    ${({
+        isDisabled,
+        isInverted,
+        theme,
+        variant,
+    }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         background-color: transparent !important;
-        border-color: ${backgroundColorPrimary};
-        color: ${backgroundColorPrimary};
-
-        &:focus,
-        &:hover {
-            color: ${colorPrimaryHover};
-        }
-
-        ${isDisabled && css`
-            background-color: ${colorDisabled};
-            border-color: ${colorDisabled};
-            color: ${buttonColorDisabled};
-        `};
-    `};
-
-    ${({ isDisabled, variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
-        background-color: transparent !important;
-        color: ${colorButtonDark};
+        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
         padding: 0;
         min-height: 0;
         border: 0;
 
         &:focus,
         &:hover {
-            color: ${colorPrimaryHover};
+            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorSecondary};
         }
 
         ${isDisabled && css`
-            color: ${buttonColorDisabled};
+            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
         `};
     `};
 
     &:after {
-        ${rippleEffect()}
-    }
-
-    &:active,
-    &:hover {
-        border-color: ${colorPrimaryHover};
-        background-color: ${colorPrimaryHover};
+        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.colorSecondary) : rippleEffect())};
     }
 
     &:active:after {
-        transform: scale(0, 0);
-        transition: none;
-        opacity: .2;
+        ${rippleEffectReset()};
     }
 `;
 
 StyledButton.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFullWidth: PropTypes.bool.isRequired,
+    isInverted: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
     transitionDuration: PropTypes.number.isRequired,
     transitionEasing: PropTypes.oneOf(Object.values(BUTTON_EASINGS)).isRequired,

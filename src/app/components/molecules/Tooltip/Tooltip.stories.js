@@ -7,7 +7,14 @@ export default { title: 'molecules/Tooltip' };
 export const Configurable = () => (
     <>
         <button
-            data-tooltip-component={'click 1'}
+            data-tooltip-component={(
+                <span>
+                    {'HERE'}
+                    <a href="https://www.google.nl" rel="noopener noreferrer" target="_blank">
+                        {'SOME TEXT'}
+                    </a>
+                </span>
+            )}
             data-tooltip-delay
             id={'btnLeft'}
             onBlur={() => {}}
@@ -23,7 +30,6 @@ export const Configurable = () => (
         </button>
         <button
             data-tooltip-component={'click 2'}
-            data-tooltip-delay={false}
             id={'btnRight'}
             onBlur={() => {}}
             onFocus={() => {}}
@@ -37,25 +43,14 @@ export const Configurable = () => (
         >
             {'click 2'}
         </button>
-        <div
+        <Button
             data-tooltip-component={'tooltip'}
-            data-tooltip-delay={false}
-            style={{
-                left: '400px',
-                position: 'absolute',
-                top: '100px',
-            }}
+            onClick={() => {}}
         >
-            <Button
-                onClick={() => {}}
-                size="SMALL"
-            >
-                {'Click me!'}
-            </Button>
-        </div>
+            {'Click me!'}
+        </Button>
         <button
             data-tooltip-component={'click 3'}
-            data-tooltip-delay={false}
             id={'btnBtmR'}
             onBlur={() => {}}
             onFocus={() => {}}
@@ -69,7 +64,6 @@ export const Configurable = () => (
         </button>
         <button
             data-tooltip-component={'click 4'}
-            data-tooltip-delay={false}
             id={'btnCenter'}
             onBlur={() => {}}
             onFocus={() => {}}

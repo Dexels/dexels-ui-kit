@@ -1,41 +1,15 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import {
-    backgroundColorHeader,
-    colorBodyDark,
-    colorHeader,
-    themeModes,
-} from '../../../styles/theme/theme';
-import {
-    black,
-    grey100,
-    white,
-} from '../../../styles/colors/colors';
-import { borderRadius, spacingUnit } from '../../../styles/theme/layout';
 import { DIALOG_ALIGNMENTS, DIALOG_DIRECTIONS, DIALOG_ELEVATIONS } from './Dialog.consts';
 import styled, { css } from 'styled-components';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import theme from 'styled-theming';
-
-const dialogBodyBackgroundColor = theme('mode', {
-    [themeModes.basic]: white,
-    [themeModes.dark]: grey100,
-    [themeModes.light]: white,
-});
-
-const dialogBodyColor = theme('mode', {
-    [themeModes.basic]: colorBodyDark,
-    [themeModes.dark]: white,
-    [themeModes.light]: colorBodyDark,
-});
 
 export const StyledDialog = styled.div`
     ${setBoxSizing()};
     ${({ elevation }) => getElevation(elevation)};
     margin: auto;
-    border-radius: ${spacingUnit};
+    border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
 `;
 
@@ -45,7 +19,7 @@ StyledDialog.propTypes = {
 };
 
 export const ButtonWrapper = styled.div`
-    margin: 0 calc(${spacingUnit} * 2) 0 0;
+    margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
 `;
 
 export const ButtonClose = styled.button`
@@ -56,10 +30,10 @@ export const ButtonClose = styled.button`
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    padding: ${spacingUnit};
+    padding: ${({ theme }) => theme.spacing(1)};
     text-align: ${({ position }) => (position === DIALOG_DIRECTIONS.LTR ? 'left' : 'right')};
-    color: ${black};
-    font-size: calc(${spacingUnit} * 3);
+    color: ${({ theme }) => theme.colorHeaderText.primary};
+    font-size: ${({ theme }) => theme.spacing(3)};
 
     ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`
         left: 2px;
@@ -72,7 +46,7 @@ export const ButtonClose = styled.button`
     &:active,
     &:hover {
         background-color: transparent;
-        color: ${white};
+        color: ${({ theme }) => theme.colorContrastText.primary};
     }
 
     span {
@@ -86,15 +60,15 @@ ButtonClose.propTypes = {
 
 export const Header = styled.header`
     ${({ alignment }) => getAlignment(alignment)};
-    ${textStyling(availableTextStyles().h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     display: flex;
     align-items: center;
-    border-top-left-radius: ${borderRadius};
-    border-top-right-radius: ${borderRadius};
-    background-color: ${backgroundColorHeader};
-    padding: calc(${spacingUnit} * 2);
-    min-height: 56px;
-    color: ${colorHeader};
+    border-top-left-radius: ${({ theme }) => theme.spacing(1)};
+    border-top-right-radius: ${({ theme }) => theme.spacing(1)};
+    background-color: ${({ theme }) => theme.colorPrimary};
+    padding: ${({ theme }) => theme.spacing(2)};
+    min-height: ${({ theme }) => theme.spacing(7)};
+    color: ${({ theme }) => theme.colorContrastText.primary};
 `;
 
 Header.propTypes = {
@@ -103,13 +77,13 @@ Header.propTypes = {
 
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
-    ${textStyling(availableTextStyles().body1)};
-    background-color: ${dialogBodyBackgroundColor};
-    padding: calc(${spacingUnit} * 2);
-    color: ${dialogBodyColor};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    background-color: ${({ theme }) => theme.shades.nine};
+    padding: ${({ theme }) => theme.spacing(2)};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 
-    ${({ hasHeader }) => !hasHeader && css`
-        border-radius: ${borderRadius} ${borderRadius} 0 0;
+    ${({ hasHeader, theme }) => !hasHeader && css`
+        border-radius: ${theme.spacing(1, 1, 0, 0)};
     `};
 `;
 
