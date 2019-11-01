@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { spacingUnit } from '../../../styles/theme/layout';
 import styled from 'styled-components';
 
 export const StyledToolbar = styled.div`
@@ -9,7 +8,7 @@ export const StyledToolbar = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: 0 ${spacingUnit} 0 ${spacingUnit};
+    margin: ${({ theme }) => theme.spacing(0, 1, 0, 1)};
 `;
 
 ButtonWrapper.propTypes = {

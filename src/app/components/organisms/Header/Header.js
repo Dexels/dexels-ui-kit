@@ -17,6 +17,7 @@ const Header = ({
     hasMenuOption,
     hasNavigateBackOption,
     isInverted,
+    onClick,
     title,
 }) => (
     <StyledHeader
@@ -27,19 +28,15 @@ const Header = ({
             {hasMenuOption && (
                 <ButtonIcon
                     iconType={Icon.types.MENU}
-                    isInverted={isInverted}
-                    key={1}
-                    onClick={() => {}}
-                    variant={ButtonIcon.variants.HEADER}
+                    isInverted={!isInverted}
+                    onClick={onClick}
                 />
             )}
             {hasNavigateBackOption && (
                 <ButtonIcon
-                    iconType={Icon.types.CHEVRON_LEFT}
-                    isInverted={isInverted}
-                    key={2}
-                    onClick={() => {}}
-                    variant={ButtonIcon.variants.HEADER}
+                    iconType={Icon.types.CHEVRONLEFT}
+                    isInverted={!isInverted}
+                    onClick={onClick}
                 />
             )}
             {title && (
@@ -49,7 +46,7 @@ const Header = ({
             )}
         </NavigationWrapper>
         <FunctionalWrapper>
-            <Toolbar>
+            <Toolbar isInverted={!isInverted}>
                 {children}
             </Toolbar>
         </FunctionalWrapper>
@@ -64,6 +61,7 @@ Header.propTypes = {
     hasMenuOption: PropTypes.bool,
     hasNavigateBackOption: PropTypes.bool,
     isInverted: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
     title: PropTypes.string,
 };
 
@@ -72,7 +70,7 @@ Header.defaultProps = {
     hasMenuOption: true,
     hasNavigateBackOption: true,
     isInverted: false,
-    title: 'Header',
+    title: '',
 };
 
 export default Header;

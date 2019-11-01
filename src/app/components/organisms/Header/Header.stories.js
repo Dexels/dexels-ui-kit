@@ -1,4 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import Header from './Header';
@@ -7,67 +8,66 @@ import React from 'react';
 
 export default { title: 'organisms/Header' };
 
-export const Configurable = () => (
-    <Header
-        elevation={select('Elevation', Header.elevations, Header.defaultProps.elevation)}
-        hasMenuOption={boolean('Has menu option', Header.defaultProps.hasMenuOption)}
-        hasNavigateBackOption={boolean('Has navigate back option', Header.defaultProps.hasNavigateBackOption)}
-        isInverted={boolean('Is inverted', Header.defaultProps.isInverted)}
-        title={text('Header title', 'Wedstrijden')}
-    >
-        <ButtonIcon
-            iconType={Icon.types.PLUS}
-            isInverted={Header.isInverted}
-            key={1}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SEARCH}
-            isInverted={Header.isInverted}
-            key={2}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SHARE}
-            isInverted={Header.isInverted}
-            key={3}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SETTINGS}
-            isInverted={Header.isInverted}
-            key={4}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <ButtonIcon
-            iconType={Icon.types.HELP}
-            isInverted={Header.isInverted}
-            key={5}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
-        />
-        <Button
-            iconType={Icon.types.INFO}
-            isInverted={Header.isInverted}
-            key={6}
-            onClick={() => {}}
-            size={Button.sizes.SMALL}
-            variant={Button.variants.OUTLINE_HEADER}
+export const Configurable = () => {
+    const elevation = select('Elevation', Header.elevations, Header.defaultProps.elevation);
+    const hasMenuOption = boolean('Has menu option', Header.defaultProps.hasMenuOption);
+    const hasNavigateBackOption = boolean('Has navigate back option', Header.defaultProps.hasNavigateBackOption);
+    const isInverted = boolean('Is inverted', Header.defaultProps.isInverted);
+    const onClick = action('On click');
+    const title = text('Header title', 'Wedstrijden');
+
+    return (
+        <Header
+            elevation={elevation}
+            hasMenuOption={hasMenuOption}
+            hasNavigateBackOption={hasNavigateBackOption}
+            isInverted={isInverted}
+            onClick={onClick}
+            title={title}
         >
-            {'label'}
-        </Button>
-        <Button
-            iconType={Icon.types.INFO}
-            key={7}
-            onClick={() => {}}
-            size={Button.sizes.SMALL}
-            variant={Button.variants.OUTLINE_HEADER}
-        >
-            {'label'}
-        </Button>
-    </Header>
-);
+            <ButtonIcon
+                iconType={Icon.types.PLUS}
+                key={1}
+                onClick={() => {}}
+            />
+            <ButtonIcon
+                iconType={Icon.types.SEARCH}
+                key={2}
+                onClick={() => {}}
+            />
+            <ButtonIcon
+                iconType={Icon.types.SHARE}
+                key={3}
+                onClick={() => {}}
+            />
+            <ButtonIcon
+                iconType={Icon.types.GEAR}
+                key={4}
+                onClick={() => {}}
+            />
+            <ButtonIcon
+                iconType={Icon.types.ROUNDHELP}
+                key={5}
+                onClick={() => {}}
+            />
+            <Button
+                iconType={Icon.types.ROUNDINFO}
+                key={6}
+                onClick={() => {}}
+                size={Button.sizes.SMALL}
+                variant={Button.variants.OUTLINE}
+            >
+                {'label'}
+            </Button>
+            <Button
+                iconType={Icon.types.ROUNDINFO}
+                key={7}
+                onClick={() => {}}
+                size={Button.sizes.SMALL}
+                variant={Button.variants.OUTLINE}
+            >
+                {'label'}
+            </Button>
+        </Header>
+    );
+};

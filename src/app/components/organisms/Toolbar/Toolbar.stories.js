@@ -7,64 +7,56 @@ import Toolbar from './Toolbar';
 
 export default { title: 'organisms/Toolbar' };
 
-export const Configurable = () => (
-    <Toolbar
-        isInverted={boolean('Is inverted', Toolbar.defaultProps.isInverted)}
-    >
-        <ButtonIcon
-            iconType={Icon.types.PLUS}
-            isInverted={Toolbar.isInverted}
-            key={1}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.DEFAULT}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SEARCH}
-            isInverted={Toolbar.isInverted}
-            key={2}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.DEFAULT}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SHARE}
-            isInverted={Toolbar.isInverted}
-            key={3}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.DEFAULT}
-        />
-        <ButtonIcon
-            iconType={Icon.types.SETTINGS}
-            isInverted={Toolbar.isInverted}
-            key={4}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.DEFAULT}
-        />
-        <ButtonIcon
-            iconType={Icon.types.HELP}
-            isInverted={Toolbar.isInverted}
-            key={5}
-            onClick={() => {}}
-            variant={ButtonIcon.variants.DEFAULT}
-        />
-        <Button
-            iconType={Icon.types.INFO}
-            isInverted={Toolbar.isInverted}
-            key={6}
-            onClick={() => {}}
-            size={Button.sizes.SMALL}
-            variant={Button.variants.OUTLINE}
+export const Configurable = () => {
+    const isInverted = boolean('Is inverted', Toolbar.defaultProps.isInverted);
+
+    return (
+        <Toolbar
+            isInverted={isInverted}
         >
-            {'label'}
-        </Button>
-        <Button
-            iconType={Icon.types.INFO}
-            isInverted={Toolbar.isInverted}
-            key={7}
-            onClick={() => {}}
-            size={Button.sizes.SMALL}
-            variant={Button.variants.OUTLINE}
-        >
-            {'label'}
-        </Button>
-    </Toolbar>
-);
+            <ButtonIcon
+                iconType={Icon.types.PLUS}
+                key={1}
+                onClick={() => {}}
+            />
+            <ButtonIcon
+                iconType={Icon.types.SEARCH}
+                key={2}
+                onClick={() => {}}
+            />
+            <ButtonIcon
+                iconType={Icon.types.SHARE}
+                key={3}
+                onClick={() => {}}
+            />
+            <ButtonIcon
+                iconType={Icon.types.GEAR}
+                key={4}
+                onClick={() => {}}
+            />
+            <ButtonIcon
+                iconType={Icon.types.ROUNDHELP}
+                key={5}
+                onClick={() => {}}
+            />
+            <Button
+                iconType={Icon.types.ROUNDINFO}
+                key={6}
+                onClick={() => {}}
+                size={Button.sizes.SMALL}
+                variant={Button.variants.OUTLINE}
+            >
+                {'label'}
+            </Button>
+            <Button
+                iconType={Icon.types.ROUNDINFO}
+                key={7}
+                onClick={() => {}}
+                size={Button.sizes.SMALL}
+                variant={Button.variants.OUTLINE}
+            >
+                {'label'}
+            </Button>
+        </Toolbar>
+    );
+};

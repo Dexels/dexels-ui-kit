@@ -12,12 +12,12 @@ const Toolbar = ({
             if (child.type === Button) {
                 return (
                     <ButtonWrapper key={child.key}>
-                        {child}
+                        {React.cloneElement(child, { isInverted })}
                     </ButtonWrapper>
                 );
             }
 
-            return child;
+            return React.cloneElement(child, { isInverted });
         })}
     </StyledToolbar>
 );
