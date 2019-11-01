@@ -1,39 +1,24 @@
+import { boolean, select, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
-import Header from '../Header/Header';
 import Icon from '../../atoms/Icon/Icon';
 import Modal from './Modal';
 import PropTypes from 'prop-types';
 
 export default { title: 'organisms/Modal' };
 
-const ModalHeader = ({ functionalItems, navigationItems }) => (
-    <Header
-        elevation={Modal.elevations.LEVEL_8}
-        functionalItems={functionalItems}
-        navigationItems={navigationItems}
-        title={'Wedstrijden'}
-    />
-);
-
-ModalHeader.propTypes = {
-    functionalItems: PropTypes.arrayOf(PropTypes.object),
-    navigationItems: PropTypes.arrayOf(PropTypes.object),
-};
-
-ModalHeader.defaultProps = {
-    functionalItems: [],
-    navigationItems: [],
-};
-
-const ConfigurableModal = ({ functionalItems, navigationItems }) => (
+const ConfigurableModal = ({ functionalItems }) => (
     <Modal
         bodyAlignment={select('Body alignment', Modal.alignments, Modal.defaultProps.bodyAlignment)}
         elevation={select('Elevation', Modal.elevations, Modal.defaultProps.elevation)}
-        header={<ModalHeader functionalItems={functionalItems} navigationItems={navigationItems} />}
+        hasMenuOption={boolean('Has menu option', Modal.defaultProps.hasMenuOption)}
+        hasNavigateBackOption={boolean('Has navigate back option', Modal.defaultProps.hasNavigateBackOption)}
+        headerContents={functionalItems}
+        headerTitle={text('Header title', 'Heading')}
+        menuAction={action('On click')}
+        navigateBackAction={action('On click')}
     >
         {text('Body', 'Some body text')}
     </Modal>
@@ -41,71 +26,54 @@ const ConfigurableModal = ({ functionalItems, navigationItems }) => (
 
 ConfigurableModal.propTypes = {
     functionalItems: PropTypes.arrayOf(PropTypes.object),
-    navigationItems: PropTypes.arrayOf(PropTypes.object),
 };
 
 ConfigurableModal.defaultProps = {
     functionalItems: [],
-    navigationItems: [],
 };
 
 export const Configurable = () => {
-    const navigationItems = [
-        <ButtonIcon
-            iconType={Icon.types.CHEVRON_LEFT}
-            key={2}
-            onClick={() => {
-            }}
-            variant={ButtonIcon.variants.HEADER}
-        />,
-    ];
-
     const functionalItems = [
         <ButtonIcon
             iconType={Icon.types.PLUS}
             key={1}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <ButtonIcon
             iconType={Icon.types.SEARCH}
             key={2}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <ButtonIcon
             iconType={Icon.types.SHARE}
             key={3}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <ButtonIcon
-            iconType={Icon.types.SETTINGS}
+            iconType={Icon.types.GEAR}
             key={4}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <ButtonIcon
-            iconType={Icon.types.HELP}
+            iconType={Icon.types.ROUNDHELP}
             key={5}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <Button
-            iconType={Icon.types.INFO}
+            iconType={Icon.types.ROUNDINFO}
             key={6}
             onClick={() => {}}
             size={Button.sizes.SMALL}
-            variant={Button.variants.OUTLINE_HEADER}
+            variant={Button.variants.OUTLINE}
         >
             {'label'}
         </Button>,
         <Button
-            iconType={Icon.types.INFO}
+            iconType={Icon.types.ROUNDINFO}
             key={7}
             onClick={() => {}}
             size={Button.sizes.SMALL}
-            variant={Button.variants.OUTLINE_HEADER}
+            variant={Button.variants.OUTLINE}
         >
             {'label'}
         </Button>,
@@ -114,7 +82,6 @@ export const Configurable = () => {
     return (
         <ConfigurableModal
             functionalItems={functionalItems}
-            navigationItems={navigationItems}
             onClose={action('OnClose click')}
         />
     );
@@ -123,64 +90,47 @@ export const Configurable = () => {
 export const ConfigurableAlert = () => {
     const [isVisible, setIsVisible] = useState(false);
 
-    const navigationItems = [
-        <ButtonIcon
-            iconType={Icon.types.CHEVRON_LEFT}
-            key={2}
-            onClick={() => {
-                action('onClose');
-                setIsVisible(false);
-            }}
-            variant={ButtonIcon.variants.HEADER}
-        />,
-    ];
-
     const functionalItems = [
         <ButtonIcon
             iconType={Icon.types.PLUS}
             key={1}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <ButtonIcon
             iconType={Icon.types.SEARCH}
             key={2}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <ButtonIcon
             iconType={Icon.types.SHARE}
             key={3}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <ButtonIcon
-            iconType={Icon.types.SETTINGS}
+            iconType={Icon.types.GEAR}
             key={4}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <ButtonIcon
-            iconType={Icon.types.HELP}
+            iconType={Icon.types.ROUNDHELP}
             key={5}
             onClick={() => {}}
-            variant={ButtonIcon.variants.HEADER}
         />,
         <Button
-            iconType={Icon.types.INFO}
+            iconType={Icon.types.ROUNDINFO}
             key={6}
             onClick={() => {}}
             size={Button.sizes.SMALL}
-            variant={Button.variants.OUTLINE_HEADER}
+            variant={Button.variants.OUTLINE}
         >
             {'label'}
         </Button>,
         <Button
-            iconType={Icon.types.INFO}
+            iconType={Icon.types.ROUNDINFO}
             key={7}
             onClick={() => {}}
             size={Button.sizes.SMALL}
-            variant={Button.variants.OUTLINE_HEADER}
+            variant={Button.variants.OUTLINE}
         >
             {'label'}
         </Button>,
@@ -199,7 +149,6 @@ export const ConfigurableAlert = () => {
             {isVisible && (
                 <ConfigurableModal
                     functionalItems={functionalItems}
-                    navigationItems={navigationItems}
                 />
             )}
         </>

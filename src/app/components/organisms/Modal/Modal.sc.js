@@ -1,34 +1,17 @@
-import { availableTextStyles, textStyling } from '../../../styles/theme/textStyles';
-import { borderRadius, spacingUnit } from '../../../styles/theme/layout';
-import { colorBodyDark, themeModes } from '../../../styles/theme/theme';
-import { grey100, white } from '../../../styles/colors/colors';
 import { MODAL_ALIGNMENTS, MODAL_ELEVATIONS } from './Modal.consts';
 import styled, { css } from 'styled-components';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
-import theme from 'styled-theming';
-
-const modalBodyBackgroundColor = theme('mode', {
-    [themeModes.basic]: white,
-    [themeModes.dark]: grey100,
-    [themeModes.light]: white,
-});
-
-const modalBodyColor = theme('mode', {
-    [themeModes.basic]: colorBodyDark,
-    [themeModes.dark]: white,
-    [themeModes.light]: colorBodyDark,
-});
 
 export const StyledModal = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 3;
     margin: auto;
-    border-radius: ${spacingUnit};
+    border-radius: ${({ theme }) => theme.spacing(1)};
     width: 100%;
     height: 100%;
 `;
@@ -43,14 +26,15 @@ export const HeaderWrapper = styled.header`
 
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)};
-    ${textStyling(availableTextStyles().body1)};
-    background-color: ${modalBodyBackgroundColor};
-    padding: calc(${spacingUnit} * 2);
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    background-color: ${({ theme }) => theme.shades.nine};
+    padding: ${({ theme }) => theme.spacing(2)};
     height: inherit;
-    color: ${modalBodyColor};
+    color: ${({ theme }) => theme.colorPrimary
+};
 
     ${({ hasHeader }) => !hasHeader && css`
-        border-radius: ${borderRadius} ${borderRadius} 0 0;
+        border-radius: ${({ theme }) => theme.spacing(1, 1, 0, 0)};
     `};
 `;
 
