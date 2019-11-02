@@ -23,6 +23,7 @@ export function tableColumns() {
                 Header: '',
                 accessor: 'status',
                 disableSorting: true,
+                show: true,
             },
             {
                 Cell: (row) => renderCell(row),

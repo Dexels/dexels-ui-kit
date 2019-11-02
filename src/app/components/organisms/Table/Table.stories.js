@@ -15,10 +15,13 @@ export default { title: 'organisms/Table' };
 
 function createLocalizedTableTexts(language = 'nl') {
     const localizedTexts = {
-        page: language === 'en' ? 'Page' : 'Pagina',
-        pageGoto: language === 'en' ? 'Go to page' : 'Ga naar pagina',
-        pageOf: language === 'en' ? 'Of' : 'Van',
-        pageShow: language === 'en' ? 'Show' : 'Toon',
+        paging: {
+            page: language === 'en' ? 'Page' : 'Pagina',
+            pageGoto: language === 'en' ? 'Go to page' : 'Ga naar pagina',
+            pageOf: language === 'en' ? 'Of' : 'Van',
+            pageShow: language === 'en' ? 'Show' : 'Toon',
+            resultsOf: language === 'en' ? 'Results of' : 'Resultaten van de',
+        },
         toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer',
     };
 
@@ -53,8 +56,9 @@ export const Configurable = () => {
                 elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
                 hasAllPagingButtons={boolean('Has all paging buttons', Table.defaultProps.hasAllPagingButtons)}
                 hasGoToPage={boolean('Has goto page', Table.defaultProps.hasGoToPage)}
-                hasPageSelector={boolean('Has page selector', Table.defaultProps.hasPageSelector)}
+                hasPageSizeSelector={boolean('Has pagesize selector', Table.defaultProps.hasPageSizeSelector)}
                 hasPaging={boolean('Has paging', Table.defaultProps.hasPaging)}
+                hasResultsOfText={boolean('Has results of text', Table.defaultProps.hasResultsOfText)}
                 instance={createTable(
                     hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(),
                     tableData(),

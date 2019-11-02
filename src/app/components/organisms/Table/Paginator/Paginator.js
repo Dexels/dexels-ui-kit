@@ -1,58 +1,82 @@
-import { BUTTON_ICON_SIZES } from '../../../molecules/ButtonIcon/ButtonIcon.consts';
+import {
+    Paging,
+    PagingButtons,
+    PagingText,
+    StyledPaginator,
+} from './Paginator.sc';
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
+import Input from '../../../molecules/Input/Input';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyledPaginator } from './Paginator.sc';
+
+const pagingResultsText = (pageIndex, pageSize, rowCount, localizedTexts) => {
+    let result = '';
+    let start = -1;
+    let end = -1;
+
+    if (pageIndex === 0) {
+        start = (pageIndex + 1);
+        end = pageSize <= rowCount ? pageSize : rowCount;
+    }
+
+    if (pageIndex !== 0) {
+        start = ((pageIndex * pageSize) + 1);
+        end = ((pageIndex + 1) * pageSize) <= rowCount ? ((pageIndex + 1) * pageSize) : rowCount;
+    }
+
+    result = start.toString().concat(' - ').concat(end.toString());
+
+    return result.concat(' ').concat(localizedTexts.resultsOf.toLowerCase()).concat(' ').concat(rowCount.toString());
+};
+
+const pagingText = (pageIndex, pageCount, localizedTexts) => (
+    ''
+        .concat(localizedTexts.page)
+        .concat(' ')
+        .concat(pageIndex + 1)
+        .concat(' ')
+        .concat(localizedTexts.pageOf.toLowerCase())
+        .concat(' ')
+        .concat(pageCount)
+);
 
 const Paginator = ({
     hasAllPagingButtons,
     hasGoToPage,
-    hasPageSelector,
+    hasPageSizeSelector,
+    hasResultsOfText,
     instance,
     localizedTexts,
     pageSizes,
 }) => (
     <>
         {/* {console.log('texts', localizedTexts)} */}
+        {/* {console.log('************* instance in paginator', instance)} */}
 
         <StyledPaginator>
-            <span>
-                {localizedTexts.page}
-                {' '}
-                <strong>
-                    {instance.pageIndex + 1}
-                    {' '}
-                    {localizedTexts.pageOf.toLowerCase()}
-                    {' '}
-                    {instance.pageOptions.length}
-                </strong>
-                {' '}
-            </span>
             {hasGoToPage
             && (
-                <span>
-                    {'| '}
-                    {localizedTexts.pageGoto}
-                    {': '}
-                    <input
-                        defaultValue={instance.pageIndex + 1}
-                        onChange={(e) => {
-                            const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                            instance.gotoPage(page);
-                        }}
-                        style={{ width: '100px' }}
-                        type="number"
-                    />
-                </span>
+                <Input
+                    label={localizedTexts.pageGoto}
+                    name="INPUT_PAGEINDEX"
+                    onChange={(event) => {
+                        const page = event.target.value ? Number(event.target.value) - 1 : 0;
+                        instance.gotoPage(page);
+                    }}
+                    type={Input.types.NUMBER}
+                    value={(instance.pageIndex + 1).toString()}
+                    variant={Input.variants.COMPACT}
+                />
             )}
-            {hasPageSelector
+            {hasPageSizeSelector
             && (
                 <Dropdown
+                    name="DROPDOWN_PAGESIZES"
                     onChange={(e) => {
                         instance.setPageSize(Number(e.target.value));
                     }}
-                    value={instance.pageSize}
+                    value={instance.pageSize.toString()}
                 >
                     {pageSizes.map((pageSize) => (
                         <option key={pageSize} value={pageSize}>
@@ -63,12 +87,45 @@ const Paginator = ({
                     ))}
                 </Dropdown>
             )}
-            {/* {hasAllPagingButtons
-            && <ButtonIcon iconType={ButtonIcon.types.CHEVRONLEFT} onClick={() => onGoToPage(1)} size={BUTTON_ICON_SIZES.XL} />}
-            <ButtonIcon iconType={ButtonIcon.types.CHEVRONLEFT} onClick={onPreviousPage} size={BUTTON_ICON_SIZES.XL} />
-            <ButtonIcon iconType={ButtonIcon.types.CHEVRONRIGHT} onClick={onNextPage} size={BUTTON_ICON_SIZES.XL} />
-            {hasAllPagingButtons
-            && <ButtonIcon iconType={ButtonIcon.types.CHEVRONRIGHT} onClick={() => onGoToPage(2)} size={BUTTON_ICON_SIZES.XL} />} */}
+            <Paging>
+                <PagingText>
+                    {hasResultsOfText
+                    && pagingResultsText(instance.pageIndex, instance.pageSize, instance.rows.length, localizedTexts)}
+                    {!hasResultsOfText && pagingText(instance.pageIndex, instance.pageCount, localizedTexts)}
+                </PagingText>
+                <PagingButtons>
+                    {hasAllPagingButtons
+                    && (
+                        <ButtonIcon
+                            iconType={ButtonIcon.types.CHEVRONLEFT}
+                            isDisabled={!instance.canPreviousPage}
+                            onClick={() => instance.gotoPage(0)}
+                            size={ButtonIcon.sizes.XL}
+                        />
+                    )}
+                    <ButtonIcon
+                        iconType={ButtonIcon.types.CHEVRONLEFT}
+                        isDisabled={!instance.canPreviousPage}
+                        onClick={() => instance.previousPage()}
+                        size={ButtonIcon.sizes.XL}
+                    />
+                    <ButtonIcon
+                        iconType={ButtonIcon.types.CHEVRONRIGHT}
+                        isDisabled={!instance.canNextPage}
+                        onClick={() => instance.nextPage()}
+                        size={ButtonIcon.sizes.XL}
+                    />
+                    {hasAllPagingButtons
+                    && (
+                        <ButtonIcon
+                            iconType={ButtonIcon.types.CHEVRONRIGHT}
+                            isDisabled={!instance.canNextPage}
+                            onClick={() => instance.gotoPage(instance.pageCount - 1)}
+                            size={ButtonIcon.sizes.XL}
+                        />
+                    )}
+                </PagingButtons>
+            </Paging>
         </StyledPaginator>
     </>
 );
@@ -76,13 +133,15 @@ const Paginator = ({
 Paginator.propTypes = {
     hasAllPagingButtons: PropTypes.bool,
     hasGoToPage: PropTypes.bool,
-    hasPageSelector: PropTypes.bool,
+    hasPageSizeSelector: PropTypes.bool,
+    hasResultsOfText: PropTypes.bool,
     instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
     localizedTexts: PropTypes.shape({
         page: PropTypes.string,
         pageGoto: PropTypes.string,
         pageOf: PropTypes.string,
         pageShow: PropTypes.string,
+        resultsOf: PropTypes.string,
     }).isRequired,
     pageSizes: PropTypes.array.isRequired,
 };
@@ -90,7 +149,8 @@ Paginator.propTypes = {
 Paginator.defaultProps = {
     hasAllPagingButtons: false,
     hasGoToPage: false,
-    hasPageSelector: false,
+    hasPageSizeSelector: false,
+    hasResultsOfText: true,
 };
 
 export default Paginator;

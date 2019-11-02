@@ -31,8 +31,9 @@ const Table = ({
     elevation,
     hasAllPagingButtons,
     hasGoToPage,
-    hasPageSelector,
+    hasPageSizeSelector,
     hasPaging,
+    hasResultsOfText,
     instance,
     isFullWidth,
     localizedTexts,
@@ -77,7 +78,7 @@ const Table = ({
                 ))}
             </TableHead>
             <TableBody {...instance.getTableBodyProps()}>
-                {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING */}
+                {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
                 {dataSource(instance, hasPaging).map((row) => instance.prepareRow(row) || (
                     <TableRow {...row.getRowProps()}>
                         {row.cells.map((cell) => (
@@ -96,13 +97,15 @@ const Table = ({
             <Paginator
                 hasAllPagingButtons={hasAllPagingButtons}
                 hasGoToPage={hasGoToPage}
-                hasPageSelector={hasPageSelector}
+                hasPageSizeSelector={hasPageSizeSelector}
+                hasResultsOfText={hasResultsOfText}
                 instance={instance}
                 localizedTexts={{
-                    page: localizedTexts.page,
-                    pageGoto: localizedTexts.pageGoto,
-                    pageOf: localizedTexts.pageOf,
-                    pageShow: localizedTexts.pageShow,
+                    page: localizedTexts.paging.page,
+                    pageGoto: localizedTexts.paging.pageGoto,
+                    pageOf: localizedTexts.paging.pageOf,
+                    pageShow: localizedTexts.paging.pageShow,
+                    resultsOf: localizedTexts.paging.resultsOf,
                 }}
                 pageSizes={pageSizes}
             />
@@ -119,19 +122,23 @@ Table.propTypes = {
     elevation: PropTypes.oneOf(Object.values(Table.elevations)),
     hasAllPagingButtons: PropTypes.bool,
     hasGoToPage: PropTypes.bool,
-    hasPageSelector: PropTypes.bool,
+    hasPageSizeSelector: PropTypes.bool,
     hasPaging: PropTypes.bool,
+    hasResultsOfText: PropTypes.bool,
     instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
     isFullWidth: PropTypes.bool,
     localizedTexts: PropTypes.shape({
-        page: PropTypes.string,
-        pageGoto: PropTypes.string,
-        pageOf: PropTypes.string,
-        pageShow: PropTypes.string,
+        paging: {
+            page: PropTypes.string,
+            pageGoto: PropTypes.string,
+            pageOf: PropTypes.string,
+            pageShow: PropTypes.string,
+            resultsOf: PropTypes.string,
+        },
         toggleSortTooltip: PropTypes.string,
     }),
     pageSizes: PropTypes.array,
-    // pageSizes: PropTypes.shape(PropTypes.array.isRequired),
+    // pageSizes: PropTypes.shape(PropTypes.array),
 };
 
 Table.defaultProps = {
@@ -140,14 +147,18 @@ Table.defaultProps = {
     elevation: Table.elevations.LEVEL_1,
     hasAllPagingButtons: true,
     hasGoToPage: true,
-    hasPageSelector: false,
+    hasPageSizeSelector: false,
     hasPaging: true,
+    hasResultsOfText: true,
     isFullWidth: true,
     localizedTexts: {
-        page: 'Page',
-        pageGoto: 'Go to page',
-        pageOf: 'Of',
-        pageShow: 'Show',
+        paging: {
+            page: 'Page',
+            pageGoto: 'Go to page',
+            pageOf: 'Of',
+            pageShow: 'Show',
+            resultsOf: 'Results of',
+        },
         toggleSortTooltip: 'Sort by',
     },
     pageSizes: Table.pageSizes,
