@@ -5,28 +5,43 @@ import {
     TableBody,
     TableCaption,
     TableCell,
+    TableFooter,
     TableHead,
     TableHeaderCell,
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
+import { TABLE_ELEVATIONS, TABLE_PAGE_SIZES } from './Table.consts';
+import Paginator from './Paginator/Paginator';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
-import { TABLE_ELEVATIONS } from './Table.consts';
+
+const dataSource = (instance, hasPaging) => {
+    if (hasPaging) {
+        return instance.page;
+    }
+
+    return instance.rows;
+};
 
 const Table = ({
     caption,
     debug,
-    disableSorting,
     elevation,
+    hasAllPagingButtons,
+    hasGoToPage,
+    hasPageSelector,
+    hasPaging,
     instance,
     isFullWidth,
     localizedTexts,
+    pageSizes,
 }) => (
-    // console.log('*********************** rows', instance.rows);
-
     <>
+        {/* {console.log('*********************** localizedTexts', localizedTexts)} */}
+        {/* {console.log('*********************** rows', instance.rows)} */}
+
         {caption
         && (
             <TableCaption>
@@ -36,9 +51,9 @@ const Table = ({
 
         <StyledTable
             debug={debug}
-            disableSorting={disableSorting}
             elevation={elevation}
             isFullWidth={isFullWidth}
+            pageSizes={pageSizes}
             {...instance.getTableProps()}
         >
             <TableHead>
@@ -62,43 +77,80 @@ const Table = ({
                 ))}
             </TableHead>
             <TableBody {...instance.getTableBodyProps()}>
-                {instance.rows.map((row) => instance.prepareRow(row) || (
+                {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING */}
+                {dataSource(instance, hasPaging).map((row) => instance.prepareRow(row) || (
                     <TableRow {...row.getRowProps()}>
                         {row.cells.map((cell) => (
                             <TableCell key={cell} {...cell.getCellProps()}>
-                                {cell.render('Cell') !== null ? cell.render('Cell') : ''}
+                                {cell.render('Cell')}
                             </TableCell>
                         ))}
                     </TableRow>
                 ))}
             </TableBody>
+            {/* <TableFooter>
+            </TableFooter> */}
         </StyledTable>
+        {hasPaging
+        && (
+            <Paginator
+                hasAllPagingButtons={hasAllPagingButtons}
+                hasGoToPage={hasGoToPage}
+                hasPageSelector={hasPageSelector}
+                instance={instance}
+                localizedTexts={{
+                    page: localizedTexts.page,
+                    pageGoto: localizedTexts.pageGoto,
+                    pageOf: localizedTexts.pageOf,
+                    pageShow: localizedTexts.pageShow,
+                }}
+                pageSizes={pageSizes}
+            />
+        )}
     </>
 );
 
 Table.elevations = TABLE_ELEVATIONS;
+Table.pageSizes = TABLE_PAGE_SIZES;
 
 Table.propTypes = {
     caption: PropTypes.string,
     debug: PropTypes.bool,
-    disableSorting: PropTypes.bool,
     elevation: PropTypes.oneOf(Object.values(Table.elevations)),
+    hasAllPagingButtons: PropTypes.bool,
+    hasGoToPage: PropTypes.bool,
+    hasPageSelector: PropTypes.bool,
+    hasPaging: PropTypes.bool,
     instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
     isFullWidth: PropTypes.bool,
     localizedTexts: PropTypes.shape({
+        page: PropTypes.string,
+        pageGoto: PropTypes.string,
+        pageOf: PropTypes.string,
+        pageShow: PropTypes.string,
         toggleSortTooltip: PropTypes.string,
     }),
+    pageSizes: PropTypes.array,
+    // pageSizes: PropTypes.shape(PropTypes.array.isRequired),
 };
 
 Table.defaultProps = {
     caption: '',
     debug: false,
-    disableSorting: false,
     elevation: Table.elevations.LEVEL_1,
+    hasAllPagingButtons: true,
+    hasGoToPage: true,
+    hasPageSelector: false,
+    hasPaging: true,
     isFullWidth: true,
     localizedTexts: {
+        page: 'Page',
+        pageGoto: 'Go to page',
+        pageOf: 'Of',
+        pageShow: 'Show',
         toggleSortTooltip: 'Sort by',
     },
+    pageSizes: Table.pageSizes,
 };
 
 export default Table;

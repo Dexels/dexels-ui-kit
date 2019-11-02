@@ -8,9 +8,9 @@ export const StyledStatusIndicator = styled.div`
     align-items: center;
     border-radius: inherit;
     border-color: ${({ status, theme }) => getStatusColor(status, theme)};
-    color: ${({ status, theme }) => getStatusColor(status, theme)};
     width: 100%;
     height: 100%;
+    color: ${({ status, theme }) => getStatusColor(status, theme)};
 
     ${({ placement }) => css`
         border-${placement.toLowerCase()}: 8px solid;

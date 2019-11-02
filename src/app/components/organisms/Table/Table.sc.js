@@ -8,7 +8,7 @@ export const TableCaption = styled.div`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     padding-bottom: ${({ theme }) => theme.spacing(4)};
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
 export const StyledTable = styled.table`
@@ -41,10 +41,10 @@ export const TableHeaderCell = styled.th`
     border-color: ${({ theme }) => theme.colorPrimary};
     background-color: ${({ theme }) => theme.shades.nine};
     /* padding: ${({ theme }) => theme.spacing(1)}; */
+    text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
-    text-align: left;
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
 export const TableBody = styled.tbody`
@@ -76,8 +76,12 @@ export const TableCell = styled.td`
     border-color: ${({ theme }) => theme.shades.seven};
     /* padding: ${({ theme }) => theme.spacing(1)}; */
     padding: 0;
+    height: ${({ theme }) => theme.spacing(6)};
     text-overflow: ellipsis;
     white-space: nowrap;
-    height: ${({ theme }) => theme.spacing(6)};
-    color: ${({ theme }) => theme.colorPrimary};
+    color: ${({ theme }) => theme.colorHeaderText.primary};
+`;
+
+export const TableFooter = styled.tfoot`
+    background-color: transparent;
 `;

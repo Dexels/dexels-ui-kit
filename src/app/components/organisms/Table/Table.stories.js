@@ -1,8 +1,13 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import {
+    array,
+    boolean,
+    select,
+    text,
+} from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './MockUp/tableColumns';
-import { useSortBy, useTable } from 'react-table';
-import Button from '../../molecules/Button/Button';
+import { createTable } from './MockUp/createTable';
+import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
 import { tableData } from './MockUp/tableData';
 
@@ -10,21 +15,14 @@ export default { title: 'organisms/Table' };
 
 function createLocalizedTableTexts(language = 'nl') {
     const localizedTexts = {
+        page: language === 'en' ? 'Page' : 'Pagina',
+        pageGoto: language === 'en' ? 'Go to page' : 'Ga naar pagina',
+        pageOf: language === 'en' ? 'Of' : 'Van',
+        pageShow: language === 'en' ? 'Show' : 'Toon',
         toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer',
     };
 
     return localizedTexts;
-}
-
-function myTable(columns, data, disableSorting = false) {
-    return useTable(
-        {
-            columns,
-            data,
-            disableSorting,
-        },
-        useSortBy,
-    );
 }
 
 export const Configurable = () => {
@@ -34,30 +32,37 @@ export const Configurable = () => {
     return (
         /* @TODO: figure out how to rerender with the correct columns. Most likely with React.useEffect */
         <>
-            <Button
-                onClick={() => setHasGroupHeader(!hasGroupHeader)}
-                variant={Button.variants.FILLED}
-            >
-                {hasGroupHeader ? 'WITH GROUP HEADER' : 'WITHOUT GROUP HEADER'}
-            </Button>
-            <Button
-                onClick={() => setDisableSorting(!disableSorting)}
-                variant={Button.variants.FILLED}
-            >
-                {disableSorting ? 'ENABLE SORTING' : 'DISABLE SORTING'}
-            </Button>
+            <SelectionControl
+                isChecked={hasGroupHeader}
+                label={hasGroupHeader ? 'WITH GROUP HEADER' : 'WITHOUT GROUP HEADER'}
+                name={'GROUPHEADER'}
+                onChange={() => setHasGroupHeader(!hasGroupHeader)}
+                value={'hasGroupHeader'}
+            />
+            <SelectionControl
+                isChecked={disableSorting}
+                label={disableSorting ? 'ENABLE SORTING' : 'DISABLE SORTING'}
+                name={'SORTING'}
+                onChange={() => setDisableSorting(!disableSorting)}
+                value={'disableSorting'}
+            />
             <div style={{ height: '20px' }} />
             <Table
                 caption={text('Table caption', 'Table caption')}
                 debug={boolean('Show table debug info', Table.defaultProps.debug)}
                 elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
-                instance={myTable(
+                hasAllPagingButtons={boolean('Has all paging buttons', Table.defaultProps.hasAllPagingButtons)}
+                hasGoToPage={boolean('Has goto page', Table.defaultProps.hasGoToPage)}
+                hasPageSelector={boolean('Has page selector', Table.defaultProps.hasPageSelector)}
+                hasPaging={boolean('Has paging', Table.defaultProps.hasPaging)}
+                instance={createTable(
                     hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(),
                     tableData(),
                     disableSorting,
                 )}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
                 localizedTexts={createLocalizedTableTexts()}
+                pageSizes={array('Page sizes', [5, 10, 20, 50])}
             />
         </>
     );
