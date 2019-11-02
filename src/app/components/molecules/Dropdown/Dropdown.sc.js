@@ -4,7 +4,12 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledDropdown = styled.div`
     ${setBoxSizing()};
+    display: flex;
     position: relative;
+    flex-direction: row;
+    flex-grow: auto;
+    /* @TODO: figure out how to not use 100%, but just add theme.spacing * 3 to the width */
+    width: ${({ theme }) => `calc(100% + ${theme.spacing(3)})`};
 
     &::after {
         display: block;
@@ -86,12 +91,12 @@ Select.propTypes = {
 };
 
 export const IconWrapper = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     position: absolute;
     top: 0;
     right: 0;
     line-height: 1;
     color: ${({ theme }) => theme.colorHeaderText.primary};
+    font-size: ${({ theme }) => theme.spacing(3)};
     pointer-events: none;
 
     ${({ isFocused }) => isFocused && css`
