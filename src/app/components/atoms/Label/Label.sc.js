@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import setTruncate from '../../../styles/mixins/setTruncate';
 
 export const StyledLabel = styled.label`
     ${({ isSmall, theme }) => theme.textStyling(
         isSmall ? theme.availableTextStyles().caption : theme.availableTextStyles().body1,
     )};
+    ${({ isTruncatable }) => isTruncatable && setTruncate()};
     display: block;
     cursor: inherit;
     color: ${({ theme }) => theme.shades.four};
@@ -41,6 +43,7 @@ StyledLabel.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
     isSmall: PropTypes.bool.isRequired,
+    isTruncatable: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
 };
 

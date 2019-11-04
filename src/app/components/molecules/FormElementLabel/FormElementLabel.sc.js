@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 export const StyledFormElementLabel = styled.div`
     position: absolute;
     z-index: 1;
+    max-width: 70%;
+    text-align: left;
     pointer-events: none;
 
     ${({ isActive, theme, variant }) => variant === INPUT_VARIANTS.COMPACT && css`

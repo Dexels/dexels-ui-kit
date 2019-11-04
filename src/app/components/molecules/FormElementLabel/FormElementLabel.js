@@ -20,6 +20,7 @@ const FormElementLabel = ({
             isDisabled={isDisabled}
             isFocused={isFocused}
             isSmall={isActive || isFocused}
+            isTruncatable
             isValid={isValid}
         >
             {children}

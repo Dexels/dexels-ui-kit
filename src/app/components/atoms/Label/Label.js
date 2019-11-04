@@ -10,6 +10,7 @@ const Label = ({
     isDisabled,
     isFocused,
     isSmall,
+    isTruncatable,
     isValid,
 }) => (
     <StyledLabel
@@ -19,6 +20,7 @@ const Label = ({
         isDisabled={isDisabled}
         isFocused={isFocused}
         isSmall={isSmall}
+        isTruncatable={isTruncatable}
         isValid={isValid}
     >
         {children}
@@ -33,6 +35,7 @@ Label.propTypes = {
     isDisabled: PropTypes.bool,
     isFocused: PropTypes.bool,
     isSmall: PropTypes.bool,
+    isTruncatable: PropTypes.bool,
     isValid: PropTypes.bool,
 };
 
@@ -43,6 +46,7 @@ Label.defaultProps = {
     isDisabled: false,
     isFocused: false,
     isSmall: false,
+    isTruncatable: false,
     isValid: false,
 };
 
