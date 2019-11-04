@@ -80,9 +80,7 @@ export const StyledDatePicker = styled.div`
     }
 
     .DayPicker_weekHeader {
-        ${({ hasYearSelector }) => hasYearSelector && css`
-            top: 80px;
-        `};
+        top: ${({ hasYearSelector }) => (hasYearSelector ? '80px' : '56px')};
     }
 
     .DayPicker_transitionContainer {
@@ -179,7 +177,7 @@ StyledDatePicker.propTypes = {
 
 export const ButtonNavigation = styled.div`
     position: absolute;
-    top: ${({ theme }) => theme.spacing(1.25)};
+    top: ${({ theme }) => theme.spacing(1.5)};
 
     ${({ isNext, theme }) => isNext && css`
         right: ${theme.spacing(0.75)};

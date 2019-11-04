@@ -15,6 +15,8 @@ const DatePicker = ({
     isDayHighlighted,
     isFocused,
     label,
+    labelMonth,
+    labelYear,
     numberOfMonths,
     onDateChange,
     onFocusChange,
@@ -54,6 +56,8 @@ const DatePicker = ({
             renderMonthElement={(props) => DateNavigation({
                 ...props,
                 hasYearSelector,
+                labelMonth,
+                labelYear,
                 yearCount,
             })}
             verticalSpacing={8}
@@ -68,6 +72,8 @@ DatePicker.propTypes = {
     isDayHighlighted: PropTypes.func,
     isFocused: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
+    labelMonth: PropTypes.string,
+    labelYear: PropTypes.string,
     numberOfMonths: PropTypes.number,
     onDateChange: PropTypes.func.isRequired,
     onFocusChange: PropTypes.func.isRequired,
@@ -77,6 +83,8 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
     hasYearSelector: false,
     isDayHighlighted: () => {},
+    labelMonth: '',
+    labelYear: '',
     numberOfMonths: 1,
     yearCount: 100,
 };

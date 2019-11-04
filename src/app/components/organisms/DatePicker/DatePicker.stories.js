@@ -1,4 +1,4 @@
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { number, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import DatePicker from './DatePicker';
 import moment from 'moment';
@@ -38,6 +38,8 @@ export const WithYearSelector = () => {
             isDayHighlighted={(day) => day.day() === 5}
             isFocused={isFocused}
             label={text('Label', 'Speeldatum')}
+            labelMonth={text('Label month', 'Maand')}
+            labelYear={text('Label year', 'Jaar')}
             onDateChange={(newDate) => {
                 setDate(newDate);
             }}

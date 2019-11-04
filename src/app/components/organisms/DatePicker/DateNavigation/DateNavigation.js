@@ -7,6 +7,8 @@ import React from 'react';
 
 const DateNavigation = ({
     hasYearSelector,
+    labelMonth,
+    labelYear,
     month,
     onMonthSelect,
     onYearSelect,
@@ -41,6 +43,7 @@ const DateNavigation = ({
         <StyledDateNavigation>
             <DropdownWrapper>
                 <Dropdown
+                    label={labelMonth}
                     name="month-dropdown"
                     onChange={(e) => {
                         onMonthSelect(month, e.target.value);
@@ -53,6 +56,7 @@ const DateNavigation = ({
             </DropdownWrapper>
             <DropdownWrapper>
                 <Dropdown
+                    label={labelYear}
                     name="year-dropdown"
                     onChange={(e) => {
                         onYearSelect(month, e.target.value);
@@ -69,10 +73,17 @@ const DateNavigation = ({
 
 DateNavigation.propTypes = {
     hasYearSelector: PropTypes.bool.isRequired,
+    labelMonth: PropTypes.string,
+    labelYear: PropTypes.string,
     month: momentPropTypes.momentObj.isRequired,
     onMonthSelect: PropTypes.func.isRequired,
     onYearSelect: PropTypes.func.isRequired,
     yearCount: PropTypes.number.isRequired,
+};
+
+DateNavigation.defaultProps = {
+    labelMonth: '',
+    labelYear: '',
 };
 
 export default DateNavigation;
