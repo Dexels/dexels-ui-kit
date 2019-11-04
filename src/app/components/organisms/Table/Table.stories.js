@@ -6,6 +6,7 @@ import {
 } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './MockUp/tableColumns';
+import { action } from '@storybook/addon-actions';
 import { createTable } from './MockUp/createTable';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
@@ -22,11 +23,23 @@ function createLocalizedTableTexts(language = 'nl') {
             pageShow: language === 'en' ? 'Show' : 'Toon',
             resultsOf: language === 'en' ? 'Results of' : 'Resultaten van de',
         },
-        toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer',
+        toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer op',
     };
 
     return localizedTexts;
 }
+
+const getTableCell = (event) => {
+    console.log('************************* cell event', event.currentTarget);
+
+    return event;
+};
+
+const getTableRow = (row) => {
+    console.log('************************* row event', row);
+
+    return row;
+};
 
 export const Configurable = () => {
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
@@ -66,6 +79,9 @@ export const Configurable = () => {
                 )}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
                 localizedTexts={createLocalizedTableTexts()}
+                onCellClick={(event) => getTableCell(event)}
+                onRowClick={getTableRow}
+                // onRowClick={action('On row click')}
                 pageSizes={array('Page sizes', [5, 10, 20, 50])}
             />
         </>

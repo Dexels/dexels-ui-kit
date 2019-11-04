@@ -6,7 +6,7 @@ export function createTable(
     data,
     disableMultiSort = false,
     disableSorting = false,
-    orderByFn = customSortByCaseInsensitive,
+    // orderByFn = customSortByCaseInsensitive,
 ) {
     return useTable(
         {
@@ -27,7 +27,7 @@ export function createTable(
                     },
                 ],
             },
-            orderByFn,
+            // orderByFn,
         },
         useSortBy,
         usePagination,

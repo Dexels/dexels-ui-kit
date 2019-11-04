@@ -6,7 +6,10 @@ import React from 'react';
 function renderButton(row) {
     return (
         <Button
-            onClick={action('On click => '.concat(row.cell.row.index))}
+            onClick={(event) => {
+                event.stopPropagation();
+                action('On click => '.concat(row.cell.row.index));
+            }}
             size={Button.sizes.S}
             variant={Button.variants.OUTLINE}
         >

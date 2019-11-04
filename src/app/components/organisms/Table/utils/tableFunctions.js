@@ -3,7 +3,7 @@ import Icon from '../../../atoms/Icon/Icon';
 import React from 'react';
 import StatusCell from '../StatusCell/StatusCell';
 
-export function compareValues(key, caseSensitive = false) {
+export function compareValues(key, desc = false, caseSensitive = false) {
     return ((a, b) => {
         // console.log('******************** a/b', a, b, key);
         // console.log('******************** a', a.values[key]);
@@ -29,9 +29,7 @@ export function compareValues(key, caseSensitive = false) {
             comparison = -1;
         }
 
-        console.log('******************** comparison', comparison, varA, varB);
-
-        return comparison;
+        return desc ? comparison * -1 : comparison;
     });
 }
 
@@ -51,7 +49,7 @@ export const customSortByDate = (a, b, key, emptyValuesAtEnd = true) => {
 };
 
 export function customSortByCaseInsensitive(rows, key) {
-    // @TODO: figure out how to get the active sortBy values/props and possibkly deal with paging?
+    // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     return rows.sort(compareValues('firstName'));
     // return React.useMemo(() => rows.sort(compareValues('firstName')), []);
 }

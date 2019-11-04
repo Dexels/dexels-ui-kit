@@ -37,6 +37,8 @@ const Table = ({
     instance,
     isFullWidth,
     localizedTexts,
+    onCellClick,
+    onRowClick,
     pageSizes,
 }) => (
     <>
@@ -64,7 +66,9 @@ const Table = ({
                             <TableHeaderCell
                                 key={column}
                                 {...column.getHeaderProps(column.getSortByToggleProps({
-                                    title: column.canSort ? localizedTexts.toggleSortTooltip : '',
+                                    title: column.canSort
+                                        ? localizedTexts.toggleSortTooltip.concat(' '.concat(column.render('Header')))
+                                        : '',
                                 }))}
                             >
                                 {/* {console.log('********************** column', column)} */}
@@ -80,17 +84,31 @@ const Table = ({
             <TableBody {...instance.getTableBodyProps()}>
                 {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
                 {dataSource(instance, hasPaging).map((row) => instance.prepareRow(row) || (
-                    <TableRow {...row.getRowProps()}>
+                    <TableRow
+                        onClick={(event) => {
+                            onRowClick(event, row);
+                        }}
+                        {...row.getRowProps()}
+                    >
+                        {/* {console.log('********************** instance row', row.index, row.values)} */}
+
                         {row.cells.map((cell) => (
-                            <TableCell key={cell} {...cell.getCellProps()}>
+                            <TableCell
+                                key={cell}
+                                onClick={(event) => {
+                                    onCellClick(event, cell);
+                                }}
+                                {...cell.getCellProps()}
+                            >
                                 {cell.render('Cell')}
                             </TableCell>
                         ))}
                     </TableRow>
                 ))}
             </TableBody>
-            {/* <TableFooter>
-            </TableFooter> */}
+            <TableFooter>
+                {/* @TODO: come up with something usefull here */}
+            </TableFooter>
         </StyledTable>
         {hasPaging
         && (
@@ -137,8 +155,9 @@ Table.propTypes = {
         },
         toggleSortTooltip: PropTypes.string,
     }),
-    pageSizes: PropTypes.array,
-    // pageSizes: PropTypes.shape(PropTypes.array),
+    onCellClick: PropTypes.func,
+    onRowClick: PropTypes.func,
+    pageSizes: PropTypes.arrayOf(PropTypes.number),
 };
 
 Table.defaultProps = {
@@ -146,7 +165,7 @@ Table.defaultProps = {
     debug: false,
     elevation: Table.elevations.LEVEL_1,
     hasAllPagingButtons: true,
-    hasGoToPage: true,
+    hasGoToPage: false,
     hasPageSizeSelector: false,
     hasPaging: true,
     hasResultsOfText: true,
@@ -161,6 +180,8 @@ Table.defaultProps = {
         },
         toggleSortTooltip: 'Sort by',
     },
+    onCellClick: () => {},
+    onRowClick: () => {},
     pageSizes: Table.pageSizes,
 };
 
