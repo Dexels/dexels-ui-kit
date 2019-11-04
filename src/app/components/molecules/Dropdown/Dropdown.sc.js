@@ -20,7 +20,7 @@ export const StyledDropdown = styled.div`
         `};
 
         ${({ hasError }) => hasError && css`
-            background-color: ${({ theme }) => theme.colorError};
+            background-color: ${({ theme }) => theme.colorInvalid};
         `};
 
         ${({ isDisabled }) => isDisabled && css`
@@ -46,7 +46,7 @@ export const Select = styled.select`
     border-radius: 0;
     background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0, 3, 0, 0)};
     width: 100%;
     height: ${({ theme }) => theme.spacing(3.5)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
@@ -65,8 +65,8 @@ export const Select = styled.select`
     `};
 
     ${({ hasError }) => hasError && css`
-        border-color: ${({ theme }) => theme.colorError};
-        color: ${({ theme }) => theme.colorError};
+        border-color: ${({ theme }) => theme.colorInvalid};
+        color: ${({ theme }) => theme.colorInvalid};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
@@ -86,12 +86,12 @@ Select.propTypes = {
 };
 
 export const IconWrapper = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
     position: absolute;
     top: 0;
     right: 0;
     line-height: 1;
     color: ${({ theme }) => theme.colorHeaderText.primary};
+    font-size: ${({ theme }) => theme.spacing(3)};
     pointer-events: none;
 
     ${({ isFocused }) => isFocused && css`
@@ -103,7 +103,7 @@ export const IconWrapper = styled.div`
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${({ theme }) => theme.colorError};
+        color: ${({ theme }) => theme.colorInvalid};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
