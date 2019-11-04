@@ -2,6 +2,7 @@ const { distPath, libPath, publicPath } = require('./paths');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { resolve } = require('path');
 const TerserJSPlugin = require('terser-webpack-plugin');
@@ -85,6 +86,7 @@ module.exports = (env = {}) => ({
         new MiniCSSExtractPlugin({
             filename: '[name].css',
         }),
+        new MomentLocalesPlugin(),
     ],
     resolve: {
         alias: {

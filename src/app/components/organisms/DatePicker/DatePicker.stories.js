@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import DatePicker from './DatePicker';
 import moment from 'moment';
 
-moment.locale('nl');
-
 export default { title: 'organisms/DatePicker' };
 
 export const Default = () => {
