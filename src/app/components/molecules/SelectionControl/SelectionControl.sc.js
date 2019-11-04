@@ -83,10 +83,10 @@ export const InputWrapper = styled.div`
         isIndeterminate,
         theme,
     }) => hasError && css`
-        border-color: ${theme.colorError};
+        border-color: ${theme.colorInvalid};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.colorError};
+            background-color: ${theme.colorInvalid};
         `};
     `};
 
