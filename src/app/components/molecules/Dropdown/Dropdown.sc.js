@@ -29,7 +29,7 @@ export const StyledDropdown = styled.div`
             `};
 
             ${hasError && css`
-                background-color: ${theme.colorError};
+                background-color: ${theme.colorInvalid};
             `};
 
             ${isDisabled && css`
@@ -55,7 +55,7 @@ export const Select = styled.select`
     border-radius: 0;
     background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0, 3, 0, 0)};
     width: 100%;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
@@ -86,8 +86,8 @@ export const Select = styled.select`
     `};
 
     ${({ hasError, theme }) => hasError && css`
-        border-color: ${theme.colorError};
-        color: ${theme.colorError};
+        border-color: ${theme.colorInvalid};
+        color: ${theme.colorInvalid};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
@@ -110,7 +110,7 @@ Select.propTypes = {
 export const IconWrapper = styled.div`
     position: absolute;
     color: ${({ theme }) => theme.colorHeaderText.primary};
-    font-size: 24px;
+    font-size: ${({ theme }) => theme.spacing(3)};
     pointer-events: none;
 
     ${({ variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
@@ -136,7 +136,7 @@ export const IconWrapper = styled.div`
     `};
 
     ${({ hasError, theme }) => hasError && css`
-        color: ${theme.colorError};
+        color: ${theme.colorInvalid};
     `};
 
     ${({ isDisabled, theme }) => isDisabled && css`
