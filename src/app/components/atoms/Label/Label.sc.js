@@ -2,7 +2,10 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 export const StyledLabel = styled.label`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    ${({ isSmall, theme }) => theme.textStyling(
+        isSmall ? theme.availableTextStyles().caption : theme.availableTextStyles().body1,
+    )};
+    display: block;
     cursor: inherit;
     color: ${({ theme }) => theme.shades.four};
 
@@ -28,10 +31,6 @@ export const StyledLabel = styled.label`
 
     ${({ isDisabled }) => isDisabled && css`
         color: ${({ theme }) => theme.colorDisabled};
-    `};
-
-    ${({ isSmall, theme }) => isSmall && css`
-        ${theme.textStyling(theme.availableTextStyles().caption)};
     `};
 `;
 
