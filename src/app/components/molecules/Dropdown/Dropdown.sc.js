@@ -51,7 +51,7 @@ export const Select = styled.select`
     border-radius: 0;
     background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0, 3, 0, 0)};
     width: 100%;
     height: ${({ theme }) => theme.spacing(3.5)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
