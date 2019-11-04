@@ -10,19 +10,13 @@ export const StyledFormElementLabel = styled.div`
     pointer-events: none;
 
     ${({ isActive, theme, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
-        top: 0;
+        top: ${isActive ? `-${theme.spacing(2)}` : 0};
         left: 0;
-
-        ${isActive && css`
-            top: -${theme.spacing(2)};
-            left: 0;
-            padding: 0;
-        `};
     `};
 
     ${({ isActive, theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
         top: ${isActive ? `-${theme.spacing(1)}` : theme.spacing(1.5)};
-        left: ${isActive ? theme.spacing(2.5) : theme.spacing(1.5)};
+        left: ${theme.spacing(isActive ? 2.5 : 1.5)};
 
         ${isActive && css`
             padding: ${theme.spacing(0, 0.5)};
