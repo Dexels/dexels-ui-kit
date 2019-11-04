@@ -31,8 +31,7 @@ const pagingResultsText = (pageIndex, pageSize, rowCount, localizedTexts) => {
 };
 
 const pagingText = (pageIndex, pageCount, localizedTexts) => (
-    ''
-        .concat(localizedTexts.page)
+    ''.concat(localizedTexts.page)
         .concat(' ')
         .concat(pageIndex + 1)
         .concat(' ')
@@ -45,7 +44,7 @@ const Paginator = ({
     hasAllPagingButtons,
     hasGoToPage,
     hasPageSizeSelector,
-    hasResultsOfText,
+    useResultsOfText,
     instance,
     localizedTexts,
     pageSizes,
@@ -59,7 +58,7 @@ const Paginator = ({
             && (
                 <Input
                     label={localizedTexts.pageGoto}
-                    name="INPUT_PAGEINDEX"
+                    name="INPUT_PAGE_INDEX"
                     onChange={(event) => {
                         const page = event.target.value ? Number(event.target.value) - 1 : 0;
                         instance.gotoPage(page);
@@ -72,7 +71,7 @@ const Paginator = ({
             {hasPageSizeSelector
             && (
                 <Dropdown
-                    name="DROPDOWN_PAGESIZES"
+                    name="DROPDOWN_PAGE_SIZES"
                     onChange={(e) => {
                         instance.setPageSize(Number(e.target.value));
                     }}
@@ -80,18 +79,16 @@ const Paginator = ({
                 >
                     {pageSizes.map((pageSize) => (
                         <option key={pageSize} value={pageSize}>
-                            {localizedTexts.pageShow}
-                            {' '}
-                            {pageSize}
+                            {localizedTexts.pageShow.concat(' ').concat(pageSize.toString())}
                         </option>
                     ))}
                 </Dropdown>
             )}
             <Paging>
                 <PagingText>
-                    {hasResultsOfText
+                    {useResultsOfText
                     && pagingResultsText(instance.pageIndex, instance.pageSize, instance.rows.length, localizedTexts)}
-                    {!hasResultsOfText && pagingText(instance.pageIndex, instance.pageCount, localizedTexts)}
+                    {!useResultsOfText && pagingText(instance.pageIndex, instance.pageCount, localizedTexts)}
                 </PagingText>
                 <PagingButtons>
                     {hasAllPagingButtons
@@ -131,10 +128,9 @@ const Paginator = ({
 );
 
 Paginator.propTypes = {
-    hasAllPagingButtons: PropTypes.bool,
-    hasGoToPage: PropTypes.bool,
-    hasPageSizeSelector: PropTypes.bool,
-    hasResultsOfText: PropTypes.bool,
+    hasAllPagingButtons: PropTypes.bool.isRequired,
+    hasGoToPage: PropTypes.bool.isRequired,
+    hasPageSizeSelector: PropTypes.bool.isRequired,
     instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
     localizedTexts: PropTypes.shape({
         page: PropTypes.string,
@@ -143,14 +139,8 @@ Paginator.propTypes = {
         pageShow: PropTypes.string,
         resultsOf: PropTypes.string,
     }).isRequired,
-    pageSizes: PropTypes.array.isRequired,
-};
-
-Paginator.defaultProps = {
-    hasAllPagingButtons: false,
-    hasGoToPage: false,
-    hasPageSizeSelector: false,
-    hasResultsOfText: true,
+    pageSizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+    useResultsOfText: PropTypes.bool.isRequired,
 };
 
 export default Paginator;

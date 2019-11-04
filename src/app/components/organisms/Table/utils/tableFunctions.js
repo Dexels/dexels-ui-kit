@@ -50,7 +50,7 @@ export const customSortByDate = (a, b, key, emptyValuesAtEnd = true) => {
 
 export function customSortByCaseInsensitive(rows, key) {
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
-    return rows.sort(compareValues('firstName'));
+    return rows.sort(compareValues(key));
     // return React.useMemo(() => rows.sort(compareValues('firstName')), []);
 }
 
@@ -70,8 +70,12 @@ export const renderCell = (row) => {
     return '';
 };
 
-export const renderSortIcon = (column) => {
+export const renderSortIcon = (column, hasUnsortedStateIcon = false) => {
     let sortIcon = '';
+
+    if (!column.canSort) {
+        return sortIcon;
+    }
 
     if (column.isSorted) {
         if (column.isSortedDesc) {
@@ -79,6 +83,10 @@ export const renderSortIcon = (column) => {
         } else {
             sortIcon = <Icon type={Icon.types.DROPUP} />;
         }
+    }
+
+    if (hasUnsortedStateIcon && !column.isSorted) {
+        sortIcon = <Icon type={Icon.types.DROPDOWN} />;
     }
 
     return sortIcon;

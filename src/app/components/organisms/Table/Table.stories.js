@@ -4,9 +4,9 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
+import { createLocalizedTableTexts, getTableCell, getTableRow } from './MockUp/tableFunctions';
 import React, { useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './MockUp/tableColumns';
-import { action } from '@storybook/addon-actions';
 import { createTable } from './MockUp/createTable';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
@@ -14,39 +14,12 @@ import { tableData } from './MockUp/tableData';
 
 export default { title: 'organisms/Table' };
 
-function createLocalizedTableTexts(language = 'nl') {
-    const localizedTexts = {
-        paging: {
-            page: language === 'en' ? 'Page' : 'Pagina',
-            pageGoto: language === 'en' ? 'Go to page' : 'Ga naar pagina',
-            pageOf: language === 'en' ? 'Of' : 'Van',
-            pageShow: language === 'en' ? 'Show' : 'Toon',
-            resultsOf: language === 'en' ? 'Results of' : 'Resultaten van de',
-        },
-        toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer op',
-    };
-
-    return localizedTexts;
-}
-
-const getTableCell = (event) => {
-    console.log('************************* cell event', event.currentTarget);
-
-    return event;
-};
-
-const getTableRow = (row) => {
-    console.log('************************* row event', row);
-
-    return row;
-};
-
+/* @TODO: figure out how to rerender the table instance after state changes. Most likely with React.useEffect */
 export const Configurable = () => {
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [disableSorting, setDisableSorting] = useState(false);
 
     return (
-        /* @TODO: figure out how to rerender with the correct columns. Most likely with React.useEffect */
         <>
             <SelectionControl
                 isChecked={hasGroupHeader}
@@ -67,11 +40,7 @@ export const Configurable = () => {
                 caption={text('Table caption', 'Table caption')}
                 debug={boolean('Show table debug info', Table.defaultProps.debug)}
                 elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
-                hasAllPagingButtons={boolean('Has all paging buttons', Table.defaultProps.hasAllPagingButtons)}
-                hasGoToPage={boolean('Has goto page', Table.defaultProps.hasGoToPage)}
-                hasPageSizeSelector={boolean('Has pagesize selector', Table.defaultProps.hasPageSizeSelector)}
-                hasPaging={boolean('Has paging', Table.defaultProps.hasPaging)}
-                hasResultsOfText={boolean('Has results of text', Table.defaultProps.hasResultsOfText)}
+                hasUnsortedStateIcon={boolean('Has unsorted state icon', Table.defaultProps.hasUnsortedStateIcon)}
                 instance={createTable(
                     hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(),
                     tableData(),
@@ -79,10 +48,22 @@ export const Configurable = () => {
                 )}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
                 localizedTexts={createLocalizedTableTexts()}
-                onCellClick={(event) => getTableCell(event)}
+                onCellClick={getTableCell}
                 onRowClick={getTableRow}
-                // onRowClick={action('On row click')}
-                pageSizes={array('Page sizes', [5, 10, 20, 50])}
+                pagingProps={{
+                    hasAllPagingButtons: boolean(
+                        'Has all paging buttons',
+                        Table.defaultProps.pagingProps.hasAllPagingButtons,
+                    ),
+                    hasGoToPage: boolean('Has goto page', Table.defaultProps.pagingProps.hasGoToPage),
+                    hasPageSizeSelector: boolean(
+                        'Has page size selector',
+                        Table.defaultProps.pagingProps.hasPageSizeSelector,
+                    ),
+                    hasPaging: boolean('Has paging', Table.defaultProps.pagingProps.hasPaging),
+                    pageSizes: array('Page sizes', [5, 10, 20, 50]),
+                    useResultsOfText: boolean('Use results of text', Table.defaultProps.pagingProps.useResultsOfText),
+                }}
             />
         </>
     );

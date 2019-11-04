@@ -1,29 +1,13 @@
 import { customSortByDate, renderCell, renderStatusCell } from '../utils/tableFunctions';
-import { action } from '@storybook/addon-actions';
-import Button from '../../../molecules/Button/Button';
 import React from 'react';
-
-function renderButton(row) {
-    return (
-        <Button
-            onClick={(event) => {
-                event.stopPropagation();
-                action('On click => '.concat(row.cell.row.index));
-            }}
-            size={Button.sizes.S}
-            variant={Button.variants.OUTLINE}
-        >
-            {'BUTTON '.concat(row.cell.row.index)}
-        </Button>
-    );
-}
+import { renderButton } from './tableFunctions';
 
 export function tableColumns() {
     return React.useMemo(
         () => [
             {
                 Cell: (row) => renderStatusCell(row.cell.row.original.matchTaskStatus, row.cell.value),
-                Header: '',
+                // Header: '',
                 accessor: 'status',
                 disableSorting: true,
                 show: true,
@@ -79,7 +63,7 @@ export function tableColumnsWithGroupHeader() {
                 columns: [
                     {
                         Cell: (row) => renderStatusCell(row.cell.row.original.matchTaskStatus, row.cell.value),
-                        Header: 'Status',
+                        // Header: 'Status',
                         accessor: 'status',
                         disableSorting: true,
                     },
@@ -130,5 +114,5 @@ export function tableColumnsWithGroupHeader() {
             },
         ],
         [],
-    )
+    );
 }

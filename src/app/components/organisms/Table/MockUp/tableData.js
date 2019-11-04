@@ -19,7 +19,7 @@ const makeTableData = (nrOfEntries = 15) => {
             status: `${STATUS_INDICATOR_STATUSES.VALID}`,
         });
 
-        i++;
+        i += 1;
     }
 
     return result;

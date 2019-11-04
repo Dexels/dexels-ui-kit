@@ -56,6 +56,11 @@ export const TableRow = styled.tr`
     /* border-spacing: ${({ theme }) => theme.spacing(0.125)}; */
     z-index: 1;
 
+    ${({ isClickable }) => isClickable && css`
+        pointer-events: auto;
+        cursor: pointer;
+    `};
+
     &:nth-child(odd) {
         background-color: ${({ theme }) => theme.shades.nine};
     }
@@ -70,17 +75,37 @@ export const TableRow = styled.tr`
     }
 `;
 
+TableRow.propTypes = {
+    isClickable: PropTypes.bool.isRequired,
+};
+
 export const TableCell = styled.td`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    border-bottom: 1px solid;
-    border-color: ${({ theme }) => theme.shades.seven};
     /* padding: ${({ theme }) => theme.spacing(1)}; */
     padding: 0;
     height: ${({ theme }) => theme.spacing(6)};
     text-overflow: ellipsis;
     white-space: nowrap;
     color: ${({ theme }) => theme.colorHeaderText.primary};
+
+    ${({ isClickable }) => isClickable && css`
+        pointer-events: auto;
+        cursor: pointer;
+    `};
 `;
+
+TableCell.propTypes = {
+    isClickable: PropTypes.bool.isRequired,
+};
+
+export const IconWrapper = styled.span`
+    padding-left: ${({ theme }) => theme.spacing(1)};
+    color: ${({ isUnsorted, theme }) => (isUnsorted ? theme.colorDisabled : theme.colorHeaderText.primary)};
+`;
+
+IconWrapper.propTypes = {
+    isUnsorted: PropTypes.bool.isRequired,
+};
 
 export const TableFooter = styled.tfoot`
     background-color: transparent;

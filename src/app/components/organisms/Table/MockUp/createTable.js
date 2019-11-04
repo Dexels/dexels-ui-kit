@@ -1,5 +1,5 @@
 import { usePagination, useSortBy, useTable } from 'react-table';
-import { customSortByCaseInsensitive } from '../utils/tableFunctions';
+// import { customSortByCaseInsensitive } from '../utils/tableFunctions';
 
 export function createTable(
     columns,

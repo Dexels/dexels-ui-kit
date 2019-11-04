@@ -1,6 +1,7 @@
 // In this file we want to use prop spreading because React Table passes a lot of props
 /* eslint-disable react/jsx-props-no-spreading */
 import {
+    IconWrapper,
     StyledTable,
     TableBody,
     TableCaption,
@@ -29,17 +30,13 @@ const Table = ({
     caption,
     debug,
     elevation,
-    hasAllPagingButtons,
-    hasGoToPage,
-    hasPageSizeSelector,
-    hasPaging,
-    hasResultsOfText,
+    hasUnsortedStateIcon,
     instance,
     isFullWidth,
     localizedTexts,
     onCellClick,
     onRowClick,
-    pageSizes,
+    pagingProps,
 }) => (
     <>
         {/* {console.log('*********************** localizedTexts', localizedTexts)} */}
@@ -56,7 +53,7 @@ const Table = ({
             debug={debug}
             elevation={elevation}
             isFullWidth={isFullWidth}
-            pageSizes={pageSizes}
+            pageSizes={pagingProps.pageSizes}
             {...instance.getTableProps()}
         >
             <TableHead>
@@ -75,7 +72,9 @@ const Table = ({
                                 {/* {console.log('********************** getSortByToggleProps',
                                     column.getSortByToggleProps())} */}
                                 {column.render('Header')}
-                                {renderSortIcon(column)}
+                                <IconWrapper isUnsorted={!column.isSorted}>
+                                    {renderSortIcon(column, hasUnsortedStateIcon)}
+                                </IconWrapper>
                             </TableHeaderCell>
                         ))}
                     </TableHeaderRow>
@@ -83,21 +82,27 @@ const Table = ({
             </TableHead>
             <TableBody {...instance.getTableBodyProps()}>
                 {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                {dataSource(instance, hasPaging).map((row) => instance.prepareRow(row) || (
+                {dataSource(instance, pagingProps.hasPaging).map((row) => instance.prepareRow(row) || (
                     <TableRow
-                        onClick={(event) => {
-                            onRowClick(event, row);
-                        }}
+                        isClickable={onRowClick !== undefined}
+                        onClick={onRowClick
+                            ? (event) => {
+                                onRowClick(event, row);
+                            }
+                            : undefined}
                         {...row.getRowProps()}
                     >
                         {/* {console.log('********************** instance row', row.index, row.values)} */}
 
                         {row.cells.map((cell) => (
                             <TableCell
+                                isClickable={onCellClick !== undefined}
                                 key={cell}
-                                onClick={(event) => {
-                                    onCellClick(event, cell);
-                                }}
+                                onClick={onCellClick
+                                    ? (event) => {
+                                        onCellClick(event, row);
+                                    }
+                                    : undefined}
                                 {...cell.getCellProps()}
                             >
                                 {cell.render('Cell')}
@@ -110,13 +115,18 @@ const Table = ({
                 {/* @TODO: come up with something usefull here */}
             </TableFooter>
         </StyledTable>
-        {hasPaging
+        {pagingProps.hasPaging
         && (
             <Paginator
-                hasAllPagingButtons={hasAllPagingButtons}
-                hasGoToPage={hasGoToPage}
-                hasPageSizeSelector={hasPageSizeSelector}
-                hasResultsOfText={hasResultsOfText}
+                hasAllPagingButtons={pagingProps.hasAllPagingButtons
+                    ? pagingProps.hasAllPagingButtons
+                    : Table.defaultProps.pagingProps.hasAllPagingButtons}
+                hasGoToPage={pagingProps.hasGoToPage
+                    ? pagingProps.hasGoToPage
+                    : Table.defaultProps.pagingProps.hasGoToPage}
+                hasPageSizeSelector={pagingProps.hasPageSizeSelector
+                    ? pagingProps.hasPageSizeSelector
+                    : Table.defaultProps.pagingProps.hasPageSizeSelector}
                 instance={instance}
                 localizedTexts={{
                     page: localizedTexts.paging.page,
@@ -125,7 +135,10 @@ const Table = ({
                     pageShow: localizedTexts.paging.pageShow,
                     resultsOf: localizedTexts.paging.resultsOf,
                 }}
-                pageSizes={pageSizes}
+                pageSizes={pagingProps.pageSizes}
+                useResultsOfText={pagingProps.useResultsOfText && localizedTexts.paging.resultsOf
+                    ? pagingProps.useResultsOfText
+                    : false}
             />
         )}
     </>
@@ -138,11 +151,7 @@ Table.propTypes = {
     caption: PropTypes.string,
     debug: PropTypes.bool,
     elevation: PropTypes.oneOf(Object.values(Table.elevations)),
-    hasAllPagingButtons: PropTypes.bool,
-    hasGoToPage: PropTypes.bool,
-    hasPageSizeSelector: PropTypes.bool,
-    hasPaging: PropTypes.bool,
-    hasResultsOfText: PropTypes.bool,
+    hasUnsortedStateIcon: PropTypes.bool,
     instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
     isFullWidth: PropTypes.bool,
     localizedTexts: PropTypes.shape({
@@ -157,18 +166,21 @@ Table.propTypes = {
     }),
     onCellClick: PropTypes.func,
     onRowClick: PropTypes.func,
-    pageSizes: PropTypes.arrayOf(PropTypes.number),
+    pagingProps: PropTypes.shape({
+        hasAllPagingButtons: PropTypes.bool,
+        hasGoToPage: PropTypes.bool,
+        hasPageSizeSelector: PropTypes.bool,
+        hasPaging: PropTypes.bool,
+        pageSizes: PropTypes.arrayOf(PropTypes.number),
+        useResultsOfText: PropTypes.bool,
+    }),
 };
 
 Table.defaultProps = {
     caption: '',
     debug: false,
     elevation: Table.elevations.LEVEL_1,
-    hasAllPagingButtons: true,
-    hasGoToPage: false,
-    hasPageSizeSelector: false,
-    hasPaging: true,
-    hasResultsOfText: true,
+    hasUnsortedStateIcon: true,
     isFullWidth: true,
     localizedTexts: {
         paging: {
@@ -180,9 +192,16 @@ Table.defaultProps = {
         },
         toggleSortTooltip: 'Sort by',
     },
-    onCellClick: () => {},
-    onRowClick: () => {},
-    pageSizes: Table.pageSizes,
+    onCellClick: undefined,
+    onRowClick: undefined,
+    pagingProps: {
+        hasAllPagingButtons: true,
+        hasGoToPage: false,
+        hasPageSizeSelector: false,
+        hasPaging: true,
+        pageSizes: Table.pageSizes,
+        useResultsOfText: true,
+    },
 };
 
 export default Table;

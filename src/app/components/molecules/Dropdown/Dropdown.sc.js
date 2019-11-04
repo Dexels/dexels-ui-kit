@@ -8,8 +8,6 @@ export const StyledDropdown = styled.div`
     position: relative;
     flex-direction: row;
     flex-grow: auto;
-    /* @TODO: figure out how to not use 100%, but just add theme.spacing * 3 to the width */
-    /* width: ${({ theme }) => `calc(100% + ${theme.spacing(3)})`}; */
 
     &::after {
         display: block;
