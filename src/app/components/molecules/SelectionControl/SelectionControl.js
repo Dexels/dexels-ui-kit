@@ -31,6 +31,7 @@ const SelectionControl = ({
     transitionEasing,
     type,
     value,
+    ...rest
 }) => (
     <>
         <StyledSelectionControl>
@@ -44,6 +45,7 @@ const SelectionControl = ({
                 transitionDuration={transitionDuration}
                 transitionEasing={transitionEasing}
                 type={type}
+                {...rest}
             >
                 <input
                     checked={isChecked}

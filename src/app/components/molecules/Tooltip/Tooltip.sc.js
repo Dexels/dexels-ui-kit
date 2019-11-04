@@ -12,20 +12,30 @@ export const StyledTooltip = styled.span`
         duration: transitionDuration,
         easing: transitionEasing,
     })};
+
+    ${({ correctionLeft }) => correctionLeft && css`
+        left: ${correctionLeft};
+    `};
+
+    ${({ correctionTop }) => correctionTop && css`
+        top: ${correctionTop};
+    `};
+
     ${({ tooltipPosition }) => tooltipPosition === 'top' && css`
         margin: ${({ theme }) => theme.spacing(-7, 0, 0, -1)};
     `};
 
     ${({ tooltipPosition }) => tooltipPosition === 'bottom' && css`
-        margin: calc((8px * 5)) 0 0 0;
+        margin: ${({ theme }) => theme.spacing(7, 0, 0, 0)};
     `};
 
     ${({ tooltipPosition }) => tooltipPosition === 'right' && css`
-        margin: 0 0 0 calc((8px * 9));
+        margin: ${({ theme }) => theme.spacing(0, 0, 0, 14)};
     `};
 
     ${({ tooltipPosition }) => tooltipPosition === 'left' && css`
-        margin: 0 0 0 calc((8px * -13));
+        margin: 0 0 0 calc((8px * -11));
+        margin: ${({ theme }) => theme.spacing(0, 0, 0, -11)};
     `};
 
     ${({ visibility }) => visibility === 'visible' && css`
@@ -50,6 +60,8 @@ export const StyledTooltip = styled.span`
 `;
 
 StyledTooltip.propTypes = {
+    correctionLeft: PropTypes.node.isRequired,
+    correctionTop: PropTypes.node.isRequired,
     tooltipPosition: PropTypes.string.isRequired,
     visibility: PropTypes.string.isRequired,
 };

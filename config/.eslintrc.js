@@ -88,6 +88,7 @@ module.exports = {
         'react/jsx-one-expression-per-line': ['error', {
             allow: 'literal',
         }],
+        'react/jsx-props-no-spreading': 'off',
         'react/jsx-sort-default-props': ['error', {
             ignoreCase: false,
         }],

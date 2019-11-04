@@ -20,6 +20,7 @@ const Dropdown = ({
     onChange,
     placeholder,
     value,
+    ...rest
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -31,6 +32,7 @@ const Dropdown = ({
                 isDisabled={isDisabled}
                 isFocused={isFocused}
                 isValid={isValid}
+                {...rest}
             >
                 <Select
                     hasError={hasError}

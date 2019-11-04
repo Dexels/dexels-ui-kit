@@ -22,6 +22,7 @@ const Input = ({
     type,
     value,
     variant,
+    ...rest
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -35,6 +36,7 @@ const Input = ({
                 isFocused={isFocused}
                 isValid={isValid}
                 variant={variant}
+                {...rest}
             >
                 <TextField
                     as={isTextarea ? 'textarea' : 'input'}

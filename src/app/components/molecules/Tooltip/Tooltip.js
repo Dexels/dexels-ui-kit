@@ -9,7 +9,7 @@ const Tooltip = ({
     transitionEasing,
 }) => {
     const [tooltipPosition, setTooltipPosition] = useState('bottom');
-    const [tooltipTitle, setTooltipTitle] = useState(null);
+    const [tooltipTitle, setTooltipTitle] = useState('some text');
     const [isTooltipVisible, setTooltipVisiblity] = useState(false);
     const [hasTooltipDelay, setTooltipDelay] = useState(false);
     const [hoveredElement, setHoveredElement] = useState(null);
@@ -41,6 +41,10 @@ const Tooltip = ({
             } else {
                 setTooltipPosition('bottom');
             }
+        } else if (spaceFromRightSide < 100) {
+            setTooltipPosition('left');
+        } else if (spaceFromLeftSide < 100) {
+            setTooltipPosition('right');
         }
     };
 
@@ -62,7 +66,6 @@ const Tooltip = ({
     };
 
     const handleOnMouseOver = (element) => {
-        console.log("HI :", element.getAttribute('data-tooltip-component')[0])
         setTooltipTitle(element.getAttribute('data-tooltip-component'));
         setTooltipDelay(element.getAttribute('data-tooltip-delay'));
         setHoveredElement(element.getBoundingClientRect());
@@ -91,22 +94,22 @@ const Tooltip = ({
         };
     }, [handler]);
 
-    const style = {
-        left: hoveredElement ? ((String(hoveredElement.x)).concat('px')) : 0,
-        top: hoveredElement ? ((String(hoveredElement.y)).concat('px')) : 0,
-    };
+    const correctionLeft = hoveredElement ? ((String(hoveredElement.x)).concat('px')) : 0;
+    const correctionTop = hoveredElement ? ((String(hoveredElement.y)).concat('px')) : 0;
 
     return (
         <StyledTooltip
+            correctionLeft={correctionLeft}
+            correctionTop={correctionTop}
+            dangerouslySetInnerHTML={{
+                __html: tooltipTitle,
+            }}
             elevation={elevation}
-            style={style}
             tooltipPosition={tooltipPosition}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
             visibility={isTooltipVisible ? 'visible' : 'hidden'}
-        >
-            {tooltipTitle}
-        </StyledTooltip>
+        />
     );
 };
 

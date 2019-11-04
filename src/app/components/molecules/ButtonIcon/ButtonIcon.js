@@ -10,12 +10,14 @@ const ButtonIcon = ({
     isInverted,
     onClick,
     size,
+    ...rest
 }) => (
     <StyledButtonIcon
         isDisabled={isDisabled}
         isInverted={isInverted}
         onClick={onClick}
         size={size}
+        {...rest}
     >
         <Icon type={iconType} />
     </StyledButtonIcon>

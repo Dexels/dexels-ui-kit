@@ -2,8 +2,8 @@ import React from 'react';
 import { StyledTextIcon } from './TextIcon.sc';
 import validateInputLength from '../../../utils/validators/validateInputLength';
 
-const TextIcon = ({ text }) => (
-    <StyledTextIcon>
+const TextIcon = ({ text, ...rest }) => (
+    <StyledTextIcon {...rest}>
         {text}
     </StyledTextIcon>
 );

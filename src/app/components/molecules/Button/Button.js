@@ -22,6 +22,7 @@ const Button = ({
     transitionDuration,
     transitionEasing,
     variant,
+    ...rest
 }) => (
     <StyledButton
         autoFocus={autoFocus}
@@ -33,6 +34,7 @@ const Button = ({
         transitionDuration={transitionDuration}
         transitionEasing={transitionEasing}
         variant={variant}
+        {...rest}
     >
         <TextWithOptionalIcon direction={direction} iconType={iconType}>
             {children}

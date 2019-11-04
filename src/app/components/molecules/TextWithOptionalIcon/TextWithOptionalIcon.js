@@ -4,8 +4,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
 
-const TextWithOptionalIcon = ({ children, direction, iconType }) => (
-    <StyledTextWithOptionalIcon direction={direction}>
+const TextWithOptionalIcon = ({
+    children,
+    direction,
+    iconType,
+    ...rest
+}) => (
+    <StyledTextWithOptionalIcon direction={direction} {...rest}>
         <Text>
             {children}
         </Text>
