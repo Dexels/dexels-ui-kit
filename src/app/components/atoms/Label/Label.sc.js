@@ -23,7 +23,7 @@ export const StyledLabel = styled.label`
     `};
 
     ${({ hasError }) => hasError && css`
-        color: ${({ theme }) => theme.colorError};
+        color: ${({ theme }) => theme.colorInvalid};
     `};
 
     ${({ isDisabled }) => isDisabled && css`
