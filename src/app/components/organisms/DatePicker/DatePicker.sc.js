@@ -169,6 +169,18 @@ export const StyledDatePicker = styled.div`
             }
         }
     }
+
+    .CalendarDay__blocked_out_of_range,
+    .CalendarDay__blocked_out_of_range:hover {
+        background-color: ${({ theme }) => theme.background.primary};
+        color: ${({ theme }) => theme.colorDisabled};
+
+        &.CalendarDay__highlighted_calendar {
+            &::after {
+                background-color: ${({ theme }) => theme.colorDisabled};
+            }
+        }
+    }
 `;
 
 StyledDatePicker.propTypes = {

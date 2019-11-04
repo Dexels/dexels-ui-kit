@@ -37,7 +37,8 @@ export const WithYearSelector = () => {
             id="datepickerWithYearSelector"
             isDayHighlighted={(day) => day.day() === 5}
             isFocused={isFocused}
-            label={text('Label', 'Speeldatum')}
+            isOutsideRange={(day) => day.isAfter(moment(), 'day')}
+            label={text('Label', 'Geboortedatum')}
             labelMonth={text('Label month', 'Maand')}
             labelYear={text('Label year', 'Jaar')}
             onDateChange={(newDate) => {

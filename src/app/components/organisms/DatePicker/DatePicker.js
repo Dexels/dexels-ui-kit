@@ -14,6 +14,7 @@ const DatePicker = ({
     id,
     isDayHighlighted,
     isFocused,
+    isOutsideRange,
     label,
     labelMonth,
     labelYear,
@@ -39,7 +40,7 @@ const DatePicker = ({
             hideKeyboardShortcutsPanel
             id={id}
             isDayHighlighted={isDayHighlighted}
-            isOutsideRange={() => false}
+            isOutsideRange={isOutsideRange}
             navNext={(
                 <ButtonNavigation isNext>
                     <ButtonIcon iconType={ButtonIcon.types.CHEVRONRIGHT} />
@@ -71,6 +72,7 @@ DatePicker.propTypes = {
     id: PropTypes.string.isRequired,
     isDayHighlighted: PropTypes.func,
     isFocused: PropTypes.bool.isRequired,
+    isOutsideRange: PropTypes.func,
     label: PropTypes.string.isRequired,
     labelMonth: PropTypes.string,
     labelYear: PropTypes.string,
@@ -83,6 +85,7 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
     hasYearSelector: false,
     isDayHighlighted: () => {},
+    isOutsideRange: SingleDatePicker.defaultProps.isOutsideRange,
     labelMonth: '',
     labelYear: '',
     numberOfMonths: 1,
