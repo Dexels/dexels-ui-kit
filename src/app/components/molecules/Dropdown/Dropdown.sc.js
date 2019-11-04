@@ -4,12 +4,7 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledDropdown = styled.div`
     ${setBoxSizing()};
-    display: flex;
     position: relative;
-    flex-direction: row;
-    flex-grow: auto;
-    /* @TODO: figure out how to not use 100%, but just add theme.spacing * 3 to the width */
-    width: ${({ theme }) => `calc(100% + ${theme.spacing(3)})`};
 
     &::after {
         display: block;
@@ -51,7 +46,7 @@ export const Select = styled.select`
     border-radius: 0;
     background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0, 3, 0, 0)};
     width: 100%;
     height: ${({ theme }) => theme.spacing(3.5)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
