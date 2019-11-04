@@ -28,6 +28,7 @@ import Tooltip from '../app/components/molecules/Tooltip/Tooltip';
 // Organisms
 import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
 import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
+import DatePicker from '../app/components/organisms/DatePicker/DatePicker';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
 
@@ -52,6 +53,7 @@ export {
     // Export organisms
     ChipStatus,
     ContainerContent,
+    DatePicker,
     Dialog,
     InputPassword,
 };
