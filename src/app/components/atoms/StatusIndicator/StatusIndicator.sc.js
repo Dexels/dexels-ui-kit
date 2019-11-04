@@ -18,7 +18,7 @@ export const StyledStatusIndicator = styled.div`
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.ERROR && css`
-        border-color: ${({ theme }) => theme.colorError};
+        border-color: ${({ theme }) => theme.colorInvalid};
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.VALID && css`
@@ -30,7 +30,7 @@ export const StyledStatusIndicator = styled.div`
     `};
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.WARNING && css`
-        border-color: ${({ theme }) => theme.colorWarning};
+        border-color: ${({ theme }) => theme.colorAlert};
     `};
 `;
 

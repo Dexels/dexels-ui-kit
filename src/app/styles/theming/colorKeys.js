@@ -1,13 +1,13 @@
 export const colorKeys = [
     'colorBodyText',
     'colorDisabled',
-    'colorError',
+    'colorInvalid',
     'colorHeaderText',
     'colorPrimary',
     'colorSecondary',
     'colorTertiary',
     'colorValid',
-    'colorWarning',
+    'colorAlert',
     'shades',
 ];
 
