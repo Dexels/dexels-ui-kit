@@ -65,7 +65,7 @@ export const Configurable = () => {
                 id={'btnBtmR'}
                 style={{
                     position: 'absolute',
-                    right: '70px',
+                    right: '190px',
                 }}
                 type={'button'}
             >
