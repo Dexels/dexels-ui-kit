@@ -52,6 +52,10 @@ export const StyledDatePicker = styled.div`
         height: ${({ theme }) => theme.spacing(6)};
         color: ${({ theme }) => theme.colorHeaderText.primary};
 
+        &::placeholder {
+            color: ${({ theme }) => theme.shades.four};
+        }
+
         &.DateInput_input__focused,
         &:hover {
             border-color: ${({ theme }) => theme.colorSecondary};

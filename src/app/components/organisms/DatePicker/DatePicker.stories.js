@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import DatePicker from './DatePicker';
 import moment from 'moment';
 
+moment.locale('nl');
+
 export default { title: 'organisms/DatePicker' };
 
 export const Default = () => {
@@ -22,12 +24,13 @@ export const Default = () => {
             onFocusChange={({ focused }) => {
                 setFocus(focused);
             }}
+            placeholder={text('Placeholder', 'Selecteer je datum')}
         />
     );
 };
 
 export const WithYearSelector = () => {
-    const [date, setDate] = useState(moment());
+    const [date, setDate] = useState(null);
     const [isFocused, setFocus] = useState(true);
 
     return (
@@ -47,6 +50,7 @@ export const WithYearSelector = () => {
             onFocusChange={({ focused }) => {
                 setFocus(focused);
             }}
+            placeholder={text('Placeholder', 'Selecteer je datum')}
             yearCount={number('Year count', DatePicker.defaultProps.yearCount)}
         />
     );

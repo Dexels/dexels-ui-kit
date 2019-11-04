@@ -21,6 +21,7 @@ const DatePicker = ({
     numberOfMonths,
     onDateChange,
     onFocusChange,
+    placeholder,
     yearCount,
 }) => (
     <StyledDatePicker hasYearSelector={hasYearSelector}>
@@ -54,6 +55,7 @@ const DatePicker = ({
             numberOfMonths={numberOfMonths}
             onDateChange={onDateChange}
             onFocusChange={onFocusChange}
+            placeholder={placeholder}
             renderMonthElement={(props) => DateNavigation({
                 ...props,
                 hasYearSelector,
@@ -67,7 +69,7 @@ const DatePicker = ({
 );
 
 DatePicker.propTypes = {
-    date: momentPropTypes.momentObj.isRequired,
+    date: momentPropTypes.momentObj,
     hasYearSelector: PropTypes.bool,
     id: PropTypes.string.isRequired,
     isDayHighlighted: PropTypes.func,
@@ -79,16 +81,19 @@ DatePicker.propTypes = {
     numberOfMonths: PropTypes.number,
     onDateChange: PropTypes.func.isRequired,
     onFocusChange: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
     yearCount: PropTypes.number,
 };
 
 DatePicker.defaultProps = {
+    date: null,
     hasYearSelector: false,
     isDayHighlighted: () => {},
     isOutsideRange: SingleDatePicker.defaultProps.isOutsideRange,
     labelMonth: '',
     labelYear: '',
     numberOfMonths: 1,
+    placeholder: SingleDatePicker.defaultProps.placeholder,
     yearCount: 100,
 };
 
