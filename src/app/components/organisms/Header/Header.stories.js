@@ -13,7 +13,8 @@ export const Configurable = () => {
     const hasMenuOption = boolean('Has menu option', Header.defaultProps.hasMenuOption);
     const hasNavigateBackOption = boolean('Has navigate back option', Header.defaultProps.hasNavigateBackOption);
     const isInverted = boolean('Is inverted', Header.defaultProps.isInverted);
-    const onClick = action('On click');
+    const menuAction = action('On click');
+    const navigateBackAction = action('On click');
     const title = text('Header title', 'Wedstrijden');
 
     return (
@@ -22,7 +23,8 @@ export const Configurable = () => {
             hasMenuOption={hasMenuOption}
             hasNavigateBackOption={hasNavigateBackOption}
             isInverted={isInverted}
-            onClick={onClick}
+            menuAction={menuAction}
+            navigateBackAction={navigateBackAction}
             title={title}
         >
             <ButtonIcon

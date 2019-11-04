@@ -17,7 +17,8 @@ const Header = ({
     hasMenuOption,
     hasNavigateBackOption,
     isInverted,
-    onClick,
+    menuAction,
+    navigateBackAction,
     title,
 }) => (
     <StyledHeader
@@ -29,14 +30,14 @@ const Header = ({
                 <ButtonIcon
                     iconType={Icon.types.MENU}
                     isInverted={!isInverted}
-                    onClick={onClick}
+                    onClick={menuAction}
                 />
             )}
             {hasNavigateBackOption && (
                 <ButtonIcon
                     iconType={Icon.types.CHEVRONLEFT}
                     isInverted={!isInverted}
-                    onClick={onClick}
+                    onClick={navigateBackAction}
                 />
             )}
             {title && (
@@ -61,7 +62,8 @@ Header.propTypes = {
     hasMenuOption: PropTypes.bool,
     hasNavigateBackOption: PropTypes.bool,
     isInverted: PropTypes.bool,
-    onClick: PropTypes.func.isRequired,
+    menuAction: PropTypes.func,
+    navigateBackAction: PropTypes.func,
     title: PropTypes.string,
 };
 
@@ -70,6 +72,8 @@ Header.defaultProps = {
     hasMenuOption: true,
     hasNavigateBackOption: true,
     isInverted: false,
+    menuAction: () => {},
+    navigateBackAction: () => {},
     title: '',
 };
 

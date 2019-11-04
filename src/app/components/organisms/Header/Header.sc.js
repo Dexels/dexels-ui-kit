@@ -7,7 +7,7 @@ export const StyledHeader = styled.div`
     ${({ elevation }) => getElevation(elevation)};
     display: flex;
     flex-direction: row;
-    background: ${({ isInverted, theme }) => (isInverted ? 'transparent' : theme.colorPrimary)};
+    background: ${({ isInverted, theme }) => (isInverted ? theme.shades.nine : theme.colorPrimary)};
     width: 100%;
     height: ${({ theme }) => theme.spacing(6.5)};
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary)};
