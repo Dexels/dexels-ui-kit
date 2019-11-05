@@ -3,10 +3,7 @@ import Button from '../../molecules/Button/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Toolbar = ({
-    children,
-    isInverted,
-}) => (
+const Toolbar = ({ children, isInverted }) => (
     <StyledToolbar isInverted={isInverted}>
         {React.Children.map(children, (child) => {
             if (child.type === Button) {

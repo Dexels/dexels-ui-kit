@@ -11,9 +11,7 @@ export const Configurable = () => {
     const isInverted = boolean('Is inverted', Toolbar.defaultProps.isInverted);
 
     return (
-        <Toolbar
-            isInverted={isInverted}
-        >
+        <Toolbar isInverted={isInverted}>
             <ButtonIcon
                 iconType={Icon.types.PLUS}
                 key={1}

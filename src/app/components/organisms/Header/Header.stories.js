@@ -10,21 +10,17 @@ export default { title: 'organisms/Header' };
 
 export const Configurable = () => {
     const elevation = select('Elevation', Header.elevations, Header.defaultProps.elevation);
-    const hasMenuOption = boolean('Has menu option', Header.defaultProps.hasMenuOption);
-    const hasNavigateBackOption = boolean('Has navigate back option', Header.defaultProps.hasNavigateBackOption);
     const isInverted = boolean('Is inverted', Header.defaultProps.isInverted);
-    const menuAction = action('On click');
-    const navigateBackAction = action('On click');
+    const onBack = action('On back');
+    const onToggleMenu = action('On toggle menu');
     const title = text('Header title', 'Wedstrijden');
 
     return (
         <Header
             elevation={elevation}
-            hasMenuOption={hasMenuOption}
-            hasNavigateBackOption={hasNavigateBackOption}
             isInverted={isInverted}
-            menuAction={menuAction}
-            navigateBackAction={navigateBackAction}
+            onBack={onBack}
+            onToggleMenu={onToggleMenu}
             title={title}
         >
             <ButtonIcon

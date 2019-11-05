@@ -14,38 +14,27 @@ import Toolbar from '../Toolbar/Toolbar';
 const Header = ({
     children,
     elevation,
-    hasMenuOption,
-    hasNavigateBackOption,
     isInverted,
-    menuAction,
-    navigateBackAction,
+    onBack,
+    onToggleMenu,
     title,
 }) => (
-    <StyledHeader
-        elevation={elevation}
-        isInverted={isInverted}
-    >
-        <NavigationWrapper>
-            {hasMenuOption && (
-                <ButtonIcon
-                    iconType={Icon.types.MENU}
-                    isInverted={!isInverted}
-                    onClick={menuAction}
-                />
-            )}
-            {hasNavigateBackOption && (
-                <ButtonIcon
-                    iconType={Icon.types.CHEVRONLEFT}
-                    isInverted={!isInverted}
-                    onClick={navigateBackAction}
-                />
-            )}
-            {title && (
-                <Title>
-                    {title}
-                </Title>
-            )}
-        </NavigationWrapper>
+    <StyledHeader elevation={elevation} isInverted={isInverted}>
+        {(onBack || onToggleMenu) && (
+            <NavigationWrapper>
+                {onToggleMenu && (
+                    <ButtonIcon iconType={Icon.types.MENU} isInverted={!isInverted} onClick={onToggleMenu} />
+                )}
+                {onBack && (
+                    <ButtonIcon iconType={Icon.types.CHEVRONLEFT} isInverted={!isInverted} onClick={onBack} />
+                )}
+            </NavigationWrapper>
+        )}
+        {title && (
+            <Title>
+                {title}
+            </Title>
+        )}
         <FunctionalWrapper>
             <Toolbar isInverted={!isInverted}>
                 {children}
@@ -59,21 +48,17 @@ Header.elevations = ELEVATIONS;
 Header.propTypes = {
     children: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(Header.elevations)),
-    hasMenuOption: PropTypes.bool,
-    hasNavigateBackOption: PropTypes.bool,
     isInverted: PropTypes.bool,
-    menuAction: PropTypes.func,
-    navigateBackAction: PropTypes.func,
+    onBack: PropTypes.func,
+    onToggleMenu: PropTypes.func,
     title: PropTypes.string,
 };
 
 Header.defaultProps = {
     elevation: Header.elevations.LEVEL_1,
-    hasMenuOption: true,
-    hasNavigateBackOption: true,
     isInverted: false,
-    menuAction: () => {},
-    navigateBackAction: () => {},
+    onBack: null,
+    onToggleMenu: null,
     title: '',
 };
 

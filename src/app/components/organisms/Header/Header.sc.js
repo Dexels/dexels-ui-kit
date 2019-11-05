@@ -8,7 +8,6 @@ export const StyledHeader = styled.div`
     display: flex;
     flex-direction: row;
     background: ${({ isInverted, theme }) => (isInverted ? theme.shades.nine : theme.colorPrimary)};
-    width: 100%;
     height: ${({ theme }) => theme.spacing(6.5)};
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary)};
 `;
@@ -20,8 +19,9 @@ StyledHeader.propTypes = {
 
 export const NavigationWrapper = styled.div`
     display: flex;
-    flex-grow: 2;
     flex-wrap: nowrap;
+    align-items: center;
+    padding: ${({ theme }) => theme.spacing(0, 0, 0, 2)};
 `;
 
 export const Title = styled.div`
@@ -34,5 +34,6 @@ export const Title = styled.div`
 
 export const FunctionalWrapper = styled.div`
     align-self: center;
+    margin: 0 0 0 auto;
     padding: ${({ theme }) => theme.spacing(0, 1, 0, 1)};
 `;
