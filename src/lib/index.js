@@ -31,6 +31,7 @@ import ContainerContent from '../app/components/organisms/ContainerContent/Conta
 import DatePicker from '../app/components/organisms/DatePicker/DatePicker';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
+import Tabs from '../app/components/organisms/Tabs/Tabs';
 
 export {
     // Export atoms
@@ -56,4 +57,5 @@ export {
     DatePicker,
     Dialog,
     InputPassword,
+    Tabs,
 };
