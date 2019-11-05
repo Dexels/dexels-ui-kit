@@ -7,13 +7,13 @@ export const StyledStatusCell = styled.div`
     height: 100%;
 `;
 
-export const StyledStatusCellIcon = styled.span`
+export const IconWrapper = styled.span`
     padding: ${({ theme }) => theme.spacing(1.5)};
     color: ${({ status, theme }) => getStatusColor(status, theme)};
     font-size: ${({ theme }) => theme.spacing(3)};
 `;
 
-StyledStatusCellIcon.propTypes = {
+IconWrapper.propTypes = {
     status: PropTypes.oneOf(Object.values(StatusIndicator.statuses)).isRequired,
 };
 

@@ -1,4 +1,4 @@
-import { StyledStatusCell, StyledStatusCellIcon } from './StatusCell.sc';
+import { StyledStatusCell, IconWrapper } from './StatusCell.sc';
 import Icon from '../../../atoms/Icon/Icon';
 import { ICON_TYPES } from '../../../atoms/Icon/Icon.consts';
 import { MATCH_TASK_STATUSES } from './StatusCell.consts';
@@ -31,9 +31,9 @@ const StatusCell = ({ matchTaskStatus, status }) => (
             placement={StatusIndicator.placements.LEFT}
             status={status}
         >
-            <StyledStatusCellIcon status={status}>
+            <IconWrapper status={status}>
                 <Icon type={iconType(matchTaskStatus)} />
-            </StyledStatusCellIcon>
+            </IconWrapper>
         </StatusIndicator>
     </StyledStatusCell>
 );

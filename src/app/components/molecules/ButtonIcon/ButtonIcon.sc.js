@@ -17,19 +17,19 @@ export const StyledButtonIcon = styled.button`
     overflow: hidden;
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary)};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.S && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
         font-size: 14px;
     `};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.M && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.MEDIUM && css`
         font-size: 18px;
     `};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.L && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.LARGE && css`
         font-size: 20px;
     `};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.XL && css`
+    ${({ size }) => size === BUTTON_ICON_SIZES.XLARGE && css`
         font-size: 24px;
     `};
 

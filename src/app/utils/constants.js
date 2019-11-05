@@ -58,10 +58,10 @@ export const PLACEMENTS = mapArrayToObject([
 ]);
 
 export const SIZES = mapArrayToObject([
-    'L',
-    'M',
-    'S',
-    'XL',
+    'LARGE',
+    'MEDIUM',
+    'SMALL',
+    'XLARGE',
 ]);
 
 export const STATUSES = mapArrayToObject([

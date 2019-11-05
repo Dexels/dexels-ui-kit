@@ -32,7 +32,7 @@ export const StyledButton = styled.button`
         border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
     `};
 
-    ${({ size, theme }) => size === BUTTON_SIZES.S && css`
+    ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
         ${theme.textStyling(theme.availableTextStyles().buttonSmall)};
         border-radius: ${theme.spacing(2)};
         min-width: ${theme.spacing(10)};
@@ -40,7 +40,7 @@ export const StyledButton = styled.button`
         min-height: ${theme.spacing(4)};
     `};
 
-    ${({ size, theme }) => size === BUTTON_SIZES.M && css`
+    ${({ size, theme }) => size === BUTTON_SIZES.MEDIUM && css`
         ${theme.textStyling(theme.availableTextStyles().buttonMedium)};
         border-radius: ${theme.spacing(2.5)};
         min-width: ${theme.spacing(12)};
@@ -48,7 +48,7 @@ export const StyledButton = styled.button`
         min-height: ${theme.spacing(5)};
     `};
 
-    ${({ size, theme }) => size === BUTTON_SIZES.L && css`
+    ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
         ${theme.textStyling(theme.availableTextStyles().buttonLarge)};
         border-radius: ${theme.spacing(3)};
         min-width: ${theme.spacing(14)};
@@ -56,7 +56,7 @@ export const StyledButton = styled.button`
         min-height: ${theme.spacing(6)};
     `};
 
-    ${({ size, theme }) => size === BUTTON_SIZES.XL && css`
+    ${({ size, theme }) => size === BUTTON_SIZES.XLARGE && css`
         ${theme.textStyling(theme.availableTextStyles().buttonXLarge)};
         border-radius: ${theme.spacing(3.5)};
         min-width: ${theme.spacing(20)};

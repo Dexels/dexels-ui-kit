@@ -8,8 +8,6 @@ export const StyledStatusIndicator = styled.div`
     align-items: center;
     border-radius: inherit;
     border-color: ${({ status, theme }) => getStatusColor(status, theme)};
-    width: 100%;
-    height: 100%;
     color: ${({ status, theme }) => getStatusColor(status, theme)};
 
     ${({ placement }) => css`
@@ -22,18 +20,16 @@ StyledStatusIndicator.propTypes = {
     status: PropTypes.oneOf(Object.values(STATUS_INDICATOR_STATUSES)).isRequired,
 };
 
-export const StyledStatusIndicatorText = styled.div`
+export const Text = styled.div`
     display: flex;
     align-items: center;
 
-    ${({ placement, theme }) => css`
-        ${placement === STATUS_INDICATOR_PLACEMENTS.LEFT && css`
-            padding-left: ${theme.spacing(1)};
-        `};
+    ${({ placement, theme }) => placement === STATUS_INDICATOR_PLACEMENTS.LEFT && css`
+        padding: 0 0 0 ${theme.spacing(1)};
     `};
 `;
 
-StyledStatusIndicatorText.propTypes = {
+Text.propTypes = {
     placement: PropTypes.oneOf(Object.values(STATUS_INDICATOR_PLACEMENTS)).isRequired,
 };
 
