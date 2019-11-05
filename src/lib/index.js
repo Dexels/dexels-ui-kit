@@ -30,6 +30,7 @@ import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
 import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
+import Table from '../app/components/organisms/Table/Table';
 
 export {
     // Export atoms
@@ -54,4 +55,5 @@ export {
     ContainerContent,
     Dialog,
     InputPassword,
+    Table,
 };

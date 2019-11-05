@@ -7,10 +7,13 @@ export const StyledPaginator = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: center;
-    padding-top: ${({ theme }) => theme.spacing(3)};
-    width: 100%;
+    align-items: flex-end;
+    padding: ${({ theme }) => theme.spacing(3, 0, 0, 0)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
+`;
+
+export const InputWrapper = styled.div`
+    margin: 0 0 -1px;
 `;
 
 export const Paging = styled.span`
@@ -24,13 +27,13 @@ export const Paging = styled.span`
 
 export const PagingText = styled.span`
     align-items: center;
-    padding-left: ${({ theme }) => theme.spacing(1)};
+    padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
 `;
 
 export const PagingButtons = styled.span`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding-left: ${({ theme }) => theme.spacing(1)};
+    padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
 `;
 

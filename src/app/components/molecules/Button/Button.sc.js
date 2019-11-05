@@ -19,7 +19,6 @@ export const StyledButton = styled.button`
     border: 2px solid;
     cursor: pointer;
     overflow: hidden;
-    text-transform: uppercase;
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
@@ -54,14 +53,6 @@ export const StyledButton = styled.button`
         min-width: ${theme.spacing(14)};
         padding: ${theme.spacing(1, 2)};
         min-height: ${theme.spacing(6)};
-    `};
-
-    ${({ size, theme }) => size === BUTTON_SIZES.XLARGE && css`
-        ${theme.textStyling(theme.availableTextStyles().buttonXLarge)};
-        border-radius: ${theme.spacing(3.5)};
-        min-width: ${theme.spacing(20)};
-        padding: ${theme.spacing(1.5, 2.5)};
-        min-height: ${theme.spacing(6.5)};
     `};
 
     ${({

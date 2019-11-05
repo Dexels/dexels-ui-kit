@@ -1,4 +1,5 @@
 import {
+    InputWrapper,
     Paging,
     PagingButtons,
     PagingText,
@@ -54,22 +55,22 @@ const Paginator = ({
         {/* {console.log('************* instance in paginator', instance)} */}
 
         <StyledPaginator>
-            {hasGoToPage
-            && (
-                <Input
-                    label={localizedTexts.pageGoto}
-                    name="INPUT_PAGE_INDEX"
-                    onChange={(event) => {
-                        const page = event.target.value ? Number(event.target.value) - 1 : 0;
-                        instance.gotoPage(page);
-                    }}
-                    type={Input.types.NUMBER}
-                    value={(instance.pageIndex + 1).toString()}
-                    variant={Input.variants.COMPACT}
-                />
+            {hasGoToPage && (
+                <InputWrapper>
+                    <Input
+                        label={localizedTexts.pageGoto}
+                        name="INPUT_PAGE_INDEX"
+                        onChange={(event) => {
+                            const page = event.target.value ? Number(event.target.value) - 1 : 0;
+                            instance.gotoPage(page);
+                        }}
+                        type={Input.types.NUMBER}
+                        value={(instance.pageIndex + 1).toString()}
+                        variant={Input.variants.COMPACT}
+                    />
+                </InputWrapper>
             )}
-            {hasPageSizeSelector
-            && (
+            {hasPageSizeSelector && (
                 <Dropdown
                     name="DROPDOWN_PAGE_SIZES"
                     onChange={(e) => {
