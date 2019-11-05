@@ -1,4 +1,4 @@
-import { StyledStatusCell, IconWrapper } from './StatusCell.sc';
+import { IconWrapper, StyledStatusCell } from './StatusCell.sc';
 import Icon from '../../../atoms/Icon/Icon';
 import { ICON_TYPES } from '../../../atoms/Icon/Icon.consts';
 import { MATCH_TASK_STATUSES } from './StatusCell.consts';

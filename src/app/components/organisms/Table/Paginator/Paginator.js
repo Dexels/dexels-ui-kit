@@ -26,19 +26,13 @@ const pagingResultsText = (pageIndex, pageSize, rowCount, localizedTexts) => {
         end = ((pageIndex + 1) * pageSize) <= rowCount ? ((pageIndex + 1) * pageSize) : rowCount;
     }
 
-    result = start.toString().concat(' - ').concat(end.toString());
+    result = `${start.toString()} - ${end.toString()}`;
 
-    return result.concat(' ').concat(localizedTexts.resultsOf.toLowerCase()).concat(' ').concat(rowCount.toString());
+    return `${result} ${localizedTexts.resultsOf.toLowerCase()} ${rowCount.toString()}`;
 };
 
 const pagingText = (pageIndex, pageCount, localizedTexts) => (
-    ''.concat(localizedTexts.page)
-        .concat(' ')
-        .concat(pageIndex + 1)
-        .concat(' ')
-        .concat(localizedTexts.pageOf.toLowerCase())
-        .concat(' ')
-        .concat(pageCount)
+    `${localizedTexts.page} ${pageIndex + 1} ${localizedTexts.pageOf.toLowerCase()} ${pageCount}`
 );
 
 const Paginator = ({
@@ -80,7 +74,7 @@ const Paginator = ({
                 >
                     {pageSizes.map((pageSize) => (
                         <option key={pageSize} value={pageSize}>
-                            {localizedTexts.pageShow.concat(' ').concat(pageSize.toString())}
+                            {`${localizedTexts.pageShow} ${pageSize.toString()}`}
                         </option>
                     ))}
                 </Dropdown>
@@ -95,7 +89,7 @@ const Paginator = ({
                     {hasAllPagingButtons
                     && (
                         <ButtonIcon
-                            iconType={ButtonIcon.types.CHEVRONLEFT}
+                            iconType={ButtonIcon.types.CHEVRONFIRST}
                             isDisabled={!instance.canPreviousPage}
                             onClick={() => instance.gotoPage(0)}
                             size={ButtonIcon.sizes.XLARGE}
@@ -116,7 +110,7 @@ const Paginator = ({
                     {hasAllPagingButtons
                     && (
                         <ButtonIcon
-                            iconType={ButtonIcon.types.CHEVRONRIGHT}
+                            iconType={ButtonIcon.types.CHEVRONLAST}
                             isDisabled={!instance.canNextPage}
                             onClick={() => instance.gotoPage(instance.pageCount - 1)}
                             size={ButtonIcon.sizes.XLARGE}

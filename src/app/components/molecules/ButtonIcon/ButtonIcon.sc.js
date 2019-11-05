@@ -13,7 +13,7 @@ export const StyledButtonIcon = styled.button`
     border-radius: 100%;
     background-color: transparent;
     cursor: pointer;
-    padding: ${({ theme }) => theme.spacing(1.5)};
+    padding: ${({ theme }) => theme.spacing(1)};
     overflow: hidden;
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary)};
 
@@ -40,7 +40,7 @@ export const StyledButtonIcon = styled.button`
 
     &:focus,
     &:hover {
-        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.shades.seven)};
+        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.colorTertiary)};
         color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
     }
 

@@ -64,7 +64,7 @@ const Table = ({
                                 key={column}
                                 {...column.getHeaderProps(column.getSortByToggleProps({
                                     title: column.canSort
-                                        ? localizedTexts.toggleSortTooltip.concat(' '.concat(column.render('Header')))
+                                        ? `${localizedTexts.toggleSortTooltip} ${column.render('Header')}`
                                         : '',
                                 }))}
                             >
@@ -152,16 +152,21 @@ Table.propTypes = {
     debug: PropTypes.bool,
     elevation: PropTypes.oneOf(Object.values(Table.elevations)),
     hasUnsortedStateIcon: PropTypes.bool,
-    instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
+    instance: PropTypes.shape({
+        getTableBodyProps: PropTypes.func.isRequired,
+        getTableProps: PropTypes.func.isRequired,
+        headerGroups: PropTypes.array.isRequired,
+        prepareRow: PropTypes.func.isRequired,
+    }).isRequired,
     isFullWidth: PropTypes.bool,
     localizedTexts: PropTypes.shape({
-        paging: {
+        paging: PropTypes.shape({
             page: PropTypes.string,
             pageGoto: PropTypes.string,
             pageOf: PropTypes.string,
             pageShow: PropTypes.string,
             resultsOf: PropTypes.string,
-        },
+        }),
         toggleSortTooltip: PropTypes.string,
     }),
     onCellClick: PropTypes.func,

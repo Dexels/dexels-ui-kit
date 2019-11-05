@@ -43,13 +43,14 @@ export const getTableRow = (event, row) => {
 
 export const renderButton = (row) => (
     <Button
+        iconType={Button.iconTypes.SELECT}
         onClick={(event) => {
             event.stopPropagation();
-            action('On click => '.concat(row.cell.row.index));
+            action(`On click => ${row.cell.row.index}`);
         }}
         size={Button.sizes.SMALL}
-        variant={Button.variants.OUTLINE}
+        variant={Button.variants.TEXT_ONLY}
     >
-        {'BUTTON '.concat(row.cell.row.index)}
+        {`BUTTON ${row.cell.row.index}`}
     </Button>
 );

@@ -7,19 +7,17 @@ const makeTableData = (nrOfEntries = 15) => {
     const result = [];
     let i = 1;
 
-    while (i <= nrOfEntries) {
+    for (i = 1; i <= nrOfEntries; i += 1) {
         result.push({
-            companyName: 'Dexels '.concat(i.toString()),
-            firstName: 'Firstname'.concat(i.toString()),
+            companyName: `Dexels ${i.toString()}`,
+            firstName: `Firstname ${i.toString()}`,
             infix: undefined,
             info: undefined,
-            lastName: 'Lastname '.concat(i.toString()),
+            lastName: `Lastname ${i.toString()}`,
             matchTaskStatus: `${MATCH_TASK_STATUSES.NO_FIELD}`,
             relationStart: moment(),
             status: `${STATUS_INDICATOR_STATUSES.VALID}`,
         });
-
-        i += 1;
     }
 
     return result;

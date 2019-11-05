@@ -1,8 +1,8 @@
 import moment from 'moment';
 
-export const isValidDate = (date) => {
-    return moment(date).isValid;
-};
+export const isValidDate = (date) => (
+    moment(date).isValid
+);
 
 export const formatDate = (date, format = 'DD-MMM-YYYY', lang = 'nl') => {
     if (isValidDate(date)) {
