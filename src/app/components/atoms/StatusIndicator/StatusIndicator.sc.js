@@ -25,7 +25,7 @@ export const Text = styled.div`
     align-items: center;
 
     ${({ placement, theme }) => placement === STATUS_INDICATOR_PLACEMENTS.LEFT && css`
-        padding: 0 0 0 ${theme.spacing(1)};
+        padding: ${theme.spacing(0, 0, 0, 1)};
     `};
 `;
 

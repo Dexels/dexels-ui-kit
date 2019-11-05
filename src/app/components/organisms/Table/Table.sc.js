@@ -7,7 +7,7 @@ import { TABLE_ELEVATIONS } from './Table.consts';
 export const TableCaption = styled.div`
     ${setBoxSizing()};
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
-    padding: 0 0 ${({ theme }) => theme.spacing(4)} 0;
+    padding: ${({ theme }) => theme.spacing(0, 0, 4, 0)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
@@ -99,7 +99,7 @@ TableCell.propTypes = {
 };
 
 export const IconWrapper = styled.span`
-    padding: 0 0 0 ${({ theme }) => theme.spacing(1)};
+    padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
     color: ${({ isUnsorted, theme }) => (isUnsorted ? theme.colorDisabled : theme.colorHeaderText.primary)};
 `;
 
