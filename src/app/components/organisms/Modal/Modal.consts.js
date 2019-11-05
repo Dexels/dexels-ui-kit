@@ -1,5 +1,5 @@
-import { ALIGNMENTS, ELEVATIONS } from '../../../utils/constants';
+import { ELEVATIONS } from '../../../utils/constants';
 
-export const MODAL_ALIGNMENTS = ALIGNMENTS;
+const MODAL_ELEVATIONS = ELEVATIONS;
 
-export const MODAL_ELEVATIONS = ELEVATIONS;
+export default MODAL_ELEVATIONS;

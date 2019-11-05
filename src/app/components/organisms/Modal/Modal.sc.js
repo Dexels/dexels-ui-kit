@@ -1,17 +1,19 @@
-import { MODAL_ALIGNMENTS, MODAL_ELEVATIONS } from './Modal.consts';
-import styled, { css } from 'styled-components';
-import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
+import MODAL_ELEVATIONS from './Modal.consts';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import styled from 'styled-components';
 
 export const StyledModal = styled.div`
+    ${setBoxSizing()};
     ${({ elevation }) => getElevation(elevation)};
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
     z-index: 3;
-    margin: auto;
-    border-radius: ${({ theme }) => theme.spacing(1)};
     width: 100%;
     height: 100%;
 `;
@@ -21,24 +23,13 @@ StyledModal.propTypes = {
 };
 
 export const HeaderWrapper = styled.header`
-    display: flex;
+    position: relative;
+    flex: 0 0 auto;
 `;
 
 export const Body = styled.div`
-    ${({ alignment }) => getAlignment(alignment)};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    flex: 1 1 auto;
     background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(2)};
-    height: inherit;
-    color: ${({ theme }) => theme.colorPrimary
-};
-
-    ${({ hasHeader }) => !hasHeader && css`
-        border-radius: ${({ theme }) => theme.spacing(1, 1, 0, 0)};
-    `};
+    overflow: auto;
 `;
-
-Body.propTypes = {
-    alignment: PropTypes.oneOf(Object.values(MODAL_ALIGNMENTS)).isRequired,
-    hasHeader: PropTypes.bool.isRequired,
-};

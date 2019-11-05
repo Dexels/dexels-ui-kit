@@ -18,6 +18,7 @@ import ButtonIcon from '../app/components/molecules/ButtonIcon/ButtonIcon';
 import CardNoResults from '../app/components/molecules/CardNoResults/CardNoResults';
 import CardStatus from '../app/components/molecules/CardStatus/CardStatus';
 import Chip from '../app/components/molecules/Chip/Chip';
+import Dropdown from '../app/components/molecules/Dropdown/Dropdown';
 import Input from '../app/components/molecules/Input/Input';
 import Overlay from '../app/components/molecules/Overlay/Overlay';
 import SelectionControl from '../app/components/molecules/SelectionControl/SelectionControl';
@@ -29,7 +30,11 @@ import Tooltip from '../app/components/molecules/Tooltip/Tooltip';
 import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
 import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
+import Header from '../app/components/organisms/Header/Header';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
+import Modal from '../app/components/organisms/Modal/Modal';
+import Tabs from '../app/components/organisms/Tabs/Tabs';
+import Toolbar from '../app/components/organisms/Toolbar/Toolbar';
 
 export {
     // Export atoms
@@ -43,6 +48,7 @@ export {
     CardNoResults,
     CardStatus,
     Chip,
+    Dropdown,
     Input,
     Overlay,
     SelectionControl,
@@ -53,5 +59,9 @@ export {
     ChipStatus,
     ContainerContent,
     Dialog,
+    Header,
     InputPassword,
+    Modal,
+    Tabs,
+    Toolbar,
 };
