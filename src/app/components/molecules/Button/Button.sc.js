@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
     appearance: none;
     position: relative;
     outline: none;
-    border: 1px solid;
+    border: 2px solid;
     cursor: pointer;
     overflow: hidden;
     text-transform: uppercase;
