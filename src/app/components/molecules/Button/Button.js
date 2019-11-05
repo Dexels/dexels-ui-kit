@@ -68,7 +68,7 @@ Button.defaultProps = {
     isDisabled: false,
     isFullWidth: false,
     isInverted: false,
-    size: Button.sizes.L,
+    size: Button.sizes.LARGE,
     transitionDuration: 300,
     transitionEasing: Button.transitionEasings.EASE,
     variant: Button.variants.FILLED,

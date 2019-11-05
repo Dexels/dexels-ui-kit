@@ -97,20 +97,20 @@ const Paginator = ({
                             iconType={ButtonIcon.types.CHEVRONLEFT}
                             isDisabled={!instance.canPreviousPage}
                             onClick={() => instance.gotoPage(0)}
-                            size={ButtonIcon.sizes.XL}
+                            size={ButtonIcon.sizes.XLARGE}
                         />
                     )}
                     <ButtonIcon
                         iconType={ButtonIcon.types.CHEVRONLEFT}
                         isDisabled={!instance.canPreviousPage}
                         onClick={() => instance.previousPage()}
-                        size={ButtonIcon.sizes.XL}
+                        size={ButtonIcon.sizes.XLARGE}
                     />
                     <ButtonIcon
                         iconType={ButtonIcon.types.CHEVRONRIGHT}
                         isDisabled={!instance.canNextPage}
                         onClick={() => instance.nextPage()}
-                        size={ButtonIcon.sizes.XL}
+                        size={ButtonIcon.sizes.XLARGE}
                     />
                     {hasAllPagingButtons
                     && (
@@ -118,7 +118,7 @@ const Paginator = ({
                             iconType={ButtonIcon.types.CHEVRONRIGHT}
                             isDisabled={!instance.canNextPage}
                             onClick={() => instance.gotoPage(instance.pageCount - 1)}
-                            size={ButtonIcon.sizes.XL}
+                            size={ButtonIcon.sizes.XLARGE}
                         />
                     )}
                 </PagingButtons>

@@ -47,7 +47,7 @@ export const renderButton = (row) => (
             event.stopPropagation();
             action('On click => '.concat(row.cell.row.index));
         }}
-        size={Button.sizes.S}
+        size={Button.sizes.SMALL}
         variant={Button.variants.OUTLINE}
     >
         {'BUTTON '.concat(row.cell.row.index)}
