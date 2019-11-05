@@ -6,8 +6,6 @@ export const StyledDropdown = styled.div`
     ${setBoxSizing()};
     display: flex;
     position: relative;
-    flex-direction: row;
-    flex-grow: auto;
 
     &::after {
         display: block;

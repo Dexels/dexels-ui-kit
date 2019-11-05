@@ -16,21 +16,20 @@ export const InputWrapper = styled.div`
     margin: 0 0 -1px;
 `;
 
-export const Paging = styled.span`
+export const Paging = styled.div`
     display: flex;
-    flex-direction: row;
-    flex-grow: 2;
+    flex: 2;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-end;
 `;
 
-export const PagingText = styled.span`
+export const PagingText = styled.div`
     align-items: center;
     padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
 `;
 
-export const PagingButtons = styled.span`
+export const PagingButtons = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

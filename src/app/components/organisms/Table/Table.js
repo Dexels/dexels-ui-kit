@@ -115,8 +115,7 @@ const Table = ({
                 {/* @TODO: come up with something usefull here */}
             </TableFooter>
         </StyledTable>
-        {pagingProps.hasPaging
-        && (
+        {pagingProps && pagingProps.hasPaging && pagingProps.pageSizes !== undefined && (
             <Paginator
                 hasAllPagingButtons={pagingProps.hasAllPagingButtons
                     ? pagingProps.hasAllPagingButtons
@@ -201,8 +200,8 @@ Table.defaultProps = {
     onRowClick: undefined,
     pagingProps: {
         hasAllPagingButtons: true,
-        hasGoToPage: false,
-        hasPageSizeSelector: false,
+        hasGoToPage: true,
+        hasPageSizeSelector: true,
         hasPaging: true,
         pageSizes: Table.pageSizes,
         useResultsOfText: true,

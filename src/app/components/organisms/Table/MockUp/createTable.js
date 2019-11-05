@@ -1,14 +1,14 @@
 import { usePagination, useSortBy, useTable } from 'react-table';
 // import { customSortByCaseInsensitive } from '../utils/tableFunctions';
 
-export function createTable(
+export const createTable = (
     columns,
     data,
     disableMultiSort = false,
     disableSorting = false,
     // orderByFn = customSortByCaseInsensitive,
-) {
-    return useTable(
+) => (
+    useTable(
         {
             columns,
             data,
@@ -31,7 +31,7 @@ export function createTable(
         },
         useSortBy,
         usePagination,
-    );
-}
+    )
+);
 
 export default createTable;
