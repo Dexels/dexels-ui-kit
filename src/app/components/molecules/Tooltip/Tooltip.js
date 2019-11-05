@@ -17,7 +17,6 @@ const Tooltip = ({
     const calculateTooltipPosition = (hoveredItem) => {
         const docWidth = document.documentElement.clientWidth;
         const docHeight = document.documentElement.clientHeight;
-
         const spaceFromBottom = docHeight - hoveredItem.bottom;
         const spaceFromTop = hoveredItem.top;
         const spaceFromRightSide = docWidth - hoveredItem.right;
@@ -48,12 +47,12 @@ const Tooltip = ({
         }
     };
 
-    const show = (hoveredItem) => {
+    const showTooltip = (hoveredItem) => {
         calculateTooltipPosition(hoveredItem);
         setTooltipVisiblity(true);
     };
 
-    const hide = () => {
+    const hideTooltip = () => {
         if (hasTooltipDelay) {
             setTimeout(() => {
                 setTooltipVisiblity(false);
@@ -69,33 +68,36 @@ const Tooltip = ({
         setTooltipTitle(element.getAttribute('data-tooltip-component'));
         setTooltipDelay(element.getAttribute('data-tooltip-delay'));
         setHoveredElement(element.getBoundingClientRect());
-        show(element.getBoundingClientRect());
     };
 
     const handleOnMouseOut = () => {
-        hide();
+        hideTooltip();
     };
 
-    const handler = useCallback(({ x, y }) => {
-        const element = document.elementFromPoint(x, y);
-
-        if (element.getAttribute('data-tooltip-component')) {
-            handleOnMouseOver(element);
+    const onMouseMove = useCallback(({ target }) => {
+        if (target.closest('[data-tooltip-component]')) {
+            handleOnMouseOver(target.closest('[data-tooltip-component]'));
         } else {
             handleOnMouseOut();
         }
-    });
+    }, [hasTooltipDelay]);
 
     useEffect(() => {
-        window.addEventListener('mousemove', handler);
+        window.addEventListener('mousemove', onMouseMove);
 
         return () => {
-            window.removeEventListener('mousemove', handler);
+            window.removeEventListener('mousemove', onMouseMove);
         };
-    }, [handler]);
+    }, [onMouseMove]);
 
-    const correctionLeft = hoveredElement ? ((String(hoveredElement.x)).concat('px')) : 0;
-    const correctionTop = hoveredElement ? ((String(hoveredElement.y)).concat('px')) : 0;
+    useEffect(() => {
+        if (hoveredElement) {
+            showTooltip(hoveredElement);
+        }
+    }, [hoveredElement]);
+
+    const correctionLeft = hoveredElement ? `${hoveredElement.x}px` : 0;
+    const correctionTop = hoveredElement ? `${hoveredElement.y}px` : 0;
 
     return (
         <StyledTooltip

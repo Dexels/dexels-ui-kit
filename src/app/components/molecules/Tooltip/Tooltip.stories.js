@@ -48,6 +48,7 @@ export const Configurable = () => {
             >
                 <Button
                     data-tooltip-component={'click 2'}
+                    data-tooltip-delay
                     onClick={() => {}}
                     size={'SMALL'}
                 >
@@ -71,6 +72,7 @@ export const Configurable = () => {
             >
                 <TextIcon
                     data-tooltip-component={'click 3'}
+                    data-tooltip-delay
                     text={'A'}
                 />
             </div>
