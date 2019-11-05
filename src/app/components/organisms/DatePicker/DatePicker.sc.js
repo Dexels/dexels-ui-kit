@@ -97,6 +97,7 @@ export const StyledDatePicker = styled.div`
 
     .DayPicker_weekHeader_li  {
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+        text-transform: capitalize;
         color: ${({ theme }) => theme.shades.one};
         font-weight: 600;
     }
@@ -196,11 +197,11 @@ export const ButtonNavigation = styled.div`
     top: ${({ theme }) => theme.spacing(1.5)};
 
     ${({ isNext, theme }) => isNext && css`
-        right: ${theme.spacing(0.75)};
+        right: ${theme.spacing(2.5)};
     `};
 
     ${({ isPrev, theme }) => isPrev && css`
-        left: ${theme.spacing(0.75)};
+        left: ${theme.spacing(2.5)};
     `};
 `;
 
