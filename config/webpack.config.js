@@ -10,34 +10,12 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 module.exports = (env = {}) => ({
     entry: resolve(__dirname, `${libPath}/index.js`),
     externals: {
-        'prop-types': {
-            amd: 'prop-types',
-            commonjs: 'prop-types',
-            commonjs2: 'prop-types',
-            root: 'PropTypes',
-            umd: 'prop-types',
-        },
-        react: {
-            amd: 'react',
-            commonjs: 'react',
-            commonjs2: 'react',
-            root: 'React',
-            umd: 'react',
-        },
-        'react-dom': {
-            amd: 'react-dom',
-            commonjs: 'react-dom',
-            commonjs2: 'react-dom',
-            root: 'ReactDOM',
-            umd: 'react-dom',
-        },
-        'styled-components': {
-            amd: 'styled-components',
-            commonjs: 'styled-components',
-            commonjs2: 'styled-components',
-            root: 'styled',
-            umd: 'styled-components',
-        },
+        moment: 'moment',
+        'prop-types': 'prop-types',
+        react: 'react',
+        'react-dates': 'react-dates',
+        'react-dom': 'react-dom',
+        'styled-components': 'styled-components',
     },
     mode: 'production',
     module: {
