@@ -61,6 +61,11 @@ const Tooltip = ({
 
         setTooltipTitle(element.getAttribute('data-tooltip-component'));
         setTooltipDelay(element.getAttribute('data-tooltip-delay'));
+
+        if (element.getAttribute('data-tooltip-position')) {
+            setTooltipPosition(element.getAttribute('data-tooltip-position'));
+        }
+
         setHoveredElement(element.getBoundingClientRect());
     };
 

@@ -57,6 +57,7 @@ export const Configurable = () => {
             </div>
             <Button
                 data-tooltip-component={'tooltip'}
+                data-tooltip-position={'right'}
                 onClick={() => {}}
                 size={'SMALL'}
             >
