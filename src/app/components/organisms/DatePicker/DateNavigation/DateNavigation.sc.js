@@ -1,3 +1,4 @@
+import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
 import styled from 'styled-components';
 
 export const StyledDateNavigation = styled.div`
@@ -18,8 +19,24 @@ export const DropdownWrapper = styled.div`
     }
 `;
 
+DropdownWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+DropdownWrapper.defaultProps = {
+    theme: themeBasic,
+};
+
 export const Date = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
     margin: 0;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
+
+Date.propTypes = {
+    theme: themePropTypes,
+};
+
+Date.defaultProps = {
+    theme: themeBasic,
+};
