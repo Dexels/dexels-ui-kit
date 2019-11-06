@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import Icon from '../../atoms/Icon/Icon';
 import Modal from './Modal';
+import { text } from '@storybook/addon-knobs';
 
 export default { title: 'organisms/Modal' };
 
@@ -56,18 +56,16 @@ const functionalItems = [
 
 const ConfigurableModal = () => (
     <Modal
-        elevation={select('Elevation', Modal.elevations, Modal.defaultProps.elevation)}
-        headerContents={functionalItems}
-        headerTitle={text('Header title', 'Heading')}
         onBack={action('On back')}
-        onToggleMenu={action('On toggle menu')}
+        options={functionalItems}
+        title={text('Header title', 'Heading')}
     >
         {text('Body', 'Some body text')}
     </Modal>
 );
 
 export const Configurable = () => (
-    <ConfigurableModal functionalItems={functionalItems} onClose={action('OnClose click')} />
+    <ConfigurableModal functionalItems={functionalItems} />
 );
 
 export const ConfigurableAlert = () => {
@@ -84,9 +82,7 @@ export const ConfigurableAlert = () => {
                 {isVisible ? 'MODAL IS SHOWING' : 'SHOW MODAL'}
             </Button>
             {isVisible && (
-                <ConfigurableModal
-                    functionalItems={functionalItems}
-                />
+                <ConfigurableModal functionalItems={functionalItems} />
             )}
         </>
     );

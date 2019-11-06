@@ -4,29 +4,24 @@ import {
     StyledModal,
 } from './Modal.sc';
 import Header from '../Header/Header';
-import MODAL_ELEVATIONS from './Modal.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const Modal = ({
     children,
-    elevation,
-    headerContents,
-    headerTitle,
+    options,
+    title,
     onBack,
-    onToggleMenu,
 }) => (
-    <StyledModal elevation={elevation}>
-        {headerContents && (
+    <StyledModal>
+        {options && (
             <HeaderWrapper>
                 <Header
-                    elevation={elevation.LEVEL_12}
                     isInverted
                     onBack={onBack}
-                    onToggleMenu={onToggleMenu}
-                    title={headerTitle}
+                    title={title}
                 >
-                    {headerContents}
+                    {options}
                 </Header>
             </HeaderWrapper>
         )}
@@ -36,23 +31,17 @@ const Modal = ({
     </StyledModal>
 );
 
-Modal.elevations = MODAL_ELEVATIONS;
-
 Modal.propTypes = {
     children: PropTypes.node.isRequired,
-    elevation: PropTypes.oneOf(Object.values(Modal.elevations)),
-    headerContents: PropTypes.node,
-    headerTitle: PropTypes.string,
     onBack: PropTypes.func,
-    onToggleMenu: PropTypes.func,
+    options: PropTypes.node,
+    title: PropTypes.string,
 };
 
 Modal.defaultProps = {
-    elevation: Modal.elevations.LEVEL_12,
-    headerContents: null,
-    headerTitle: '',
     onBack: null,
-    onToggleMenu: null,
+    options: null,
+    title: '',
 };
 
 export default Modal;
