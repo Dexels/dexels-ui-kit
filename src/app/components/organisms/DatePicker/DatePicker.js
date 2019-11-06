@@ -10,6 +10,7 @@ import { SingleDatePicker } from 'react-dates';
 
 const DatePicker = ({
     date,
+    displayFormat,
     hasYearSelector,
     id,
     isDayHighlighted,
@@ -36,7 +37,7 @@ const DatePicker = ({
             )}
             date={date}
             daySize={40}
-            displayFormat="ddd D MMM Y"
+            displayFormat={displayFormat}
             focused={isFocused}
             hideKeyboardShortcutsPanel
             id={id}
@@ -70,6 +71,7 @@ const DatePicker = ({
 
 DatePicker.propTypes = {
     date: momentPropTypes.momentObj,
+    displayFormat: PropTypes.string,
     hasYearSelector: PropTypes.bool,
     id: PropTypes.string.isRequired,
     isDayHighlighted: PropTypes.func,
@@ -87,6 +89,7 @@ DatePicker.propTypes = {
 
 DatePicker.defaultProps = {
     date: null,
+    displayFormat: 'ddd D MMM Y',
     hasYearSelector: false,
     isDayHighlighted: () => {},
     isOutsideRange: SingleDatePicker.defaultProps.isOutsideRange,
