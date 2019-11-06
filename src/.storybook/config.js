@@ -6,8 +6,8 @@ import 'react-dates/initialize';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import moment from 'moment';
 import React from 'react';
-import themeBasic from '../app/styles/theming/themes/basic';
-import themeLight from '../app/styles/theming/themes/light';
+import { themeBasic } from '../app/styles/theming/themes/basic';
+import { themeLight } from '../app/styles/theming/themes/light';
 // This seems like a ESLint bug
 // eslint-disable-next-line import/no-unresolved
 import { withInfo } from '@storybook/addon-info';
