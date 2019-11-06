@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -41,6 +41,7 @@
     },
     "homepage": "https://github.com/Dexels/dexels-ui-kit#readme",
     "peerDependencies": {
+        "@babel/runtime": "^7.7.1",
         "moment": "^2.24.0",
         "prop-types": "^15.7.2",
         "react": "^16.10.2",

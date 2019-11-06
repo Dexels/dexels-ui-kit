@@ -10,6 +10,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 module.exports = (env = {}) => ({
     entry: resolve(__dirname, `${libPath}/index.js`),
     externals: {
+        '@babel/runtime': '@babel/runtime',
         moment: 'moment',
         'prop-types': 'prop-types',
         react: 'react',
