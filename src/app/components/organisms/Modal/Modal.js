@@ -49,7 +49,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
     elevation: Modal.elevations.LEVEL_12,
-    headerContents: [],
+    headerContents: null,
     headerTitle: '',
     onBack: null,
     onToggleMenu: null,
