@@ -15,6 +15,7 @@ module.exports = (env = {}) => ({
         react: 'react',
         'react-dates': 'react-dates',
         'react-dom': 'react-dom',
+        'react-with-direction': 'react-with-direction',
         'styled-components': 'styled-components',
     },
     mode: 'production',
