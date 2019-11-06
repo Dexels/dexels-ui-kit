@@ -25,33 +25,27 @@ export const Configurable = () => {
         >
             <ButtonIcon
                 iconType={Icon.types.PLUS}
-                key={1}
-                onClick={() => {}}
+                onClick={action('On buttonicon PLUS')}
             />
             <ButtonIcon
                 iconType={Icon.types.SEARCH}
-                key={2}
-                onClick={() => {}}
+                onClick={action('On buttonicon SEARCH')}
             />
             <ButtonIcon
                 iconType={Icon.types.SHARE}
-                key={3}
-                onClick={() => {}}
+                onClick={action('On buttonicon SHARE')}
             />
             <ButtonIcon
                 iconType={Icon.types.GEAR}
-                key={4}
-                onClick={() => {}}
+                onClick={action('On buttonicon GEAR')}
             />
             <ButtonIcon
                 iconType={Icon.types.ROUNDHELP}
-                key={5}
-                onClick={() => {}}
+                onClick={action('On buttonicon ROUNDHELP')}
             />
             <Button
                 iconType={Icon.types.ROUNDINFO}
-                key={6}
-                onClick={() => {}}
+                onClick={action('On button ROUNDINFO 1')}
                 size={Button.sizes.SMALL}
                 variant={Button.variants.OUTLINE}
             >
@@ -59,8 +53,7 @@ export const Configurable = () => {
             </Button>
             <Button
                 iconType={Icon.types.ROUNDINFO}
-                key={7}
-                onClick={() => {}}
+                onClick={action('On button ROUNDINFO 2')}
                 size={Button.sizes.SMALL}
                 variant={Button.variants.OUTLINE}
             >
