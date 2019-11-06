@@ -28,8 +28,9 @@ DropdownWrapper.defaultProps = {
 };
 
 export const Date = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h2)};
     margin: 0;
+    text-transform: capitalize;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 

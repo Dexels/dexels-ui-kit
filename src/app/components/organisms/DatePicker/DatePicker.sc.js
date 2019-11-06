@@ -84,15 +84,6 @@ export const StyledDatePicker = styled.div`
     }
 
     /* Calendar styling */
-    .DayPicker__withBorder {
-        ${getElevation(ELEVATIONS.LEVEL_6)};
-        border-radius: ${({ theme }) => theme.spacing(1)};
-    }
-
-    .DayPicker_weekHeader {
-        top: ${({ hasYearSelector }) => (hasYearSelector ? '80px' : '56px')};
-    }
-
     .DayPicker_transitionContainer {
         border-radius: ${({ theme }) => theme.spacing(1)};
     }
@@ -101,11 +92,32 @@ export const StyledDatePicker = styled.div`
         display: none;
     }
 
+    .DayPicker__withBorder {
+        ${getElevation(ELEVATIONS.LEVEL_6)};
+        border-radius: ${({ theme }) => theme.spacing(1)};
+    }
+
+    .CalendarMonth_caption {
+        padding: ${({ theme }) => theme.spacing(3, 0, 5.75)};
+    }
+
+    .DayPicker_weekHeader {
+        top: ${({ hasYearSelector, theme }) => theme.spacing(hasYearSelector ? 11.5 : 9)};
+    }
+
+    .DayPicker_weekHeader_ul {
+        margin: 0;
+    }
+
     .DayPicker_weekHeader_li  {
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
         text-transform: capitalize;
         color: ${({ theme }) => theme.shades.one};
         font-weight: 600;
+
+        small {
+            font-size: inherit;
+        }
     }
 
     .DayPickerNavigation_button {
@@ -205,7 +217,7 @@ StyledDatePicker.defaultProps = {
 
 export const ButtonNavigation = styled.div`
     position: absolute;
-    top: ${({ theme }) => theme.spacing(1.5)};
+    top: ${({ theme }) => theme.spacing(2)};
 
     ${({ isNext, theme }) => isNext && css`
         right: ${theme.spacing(2.5)};
