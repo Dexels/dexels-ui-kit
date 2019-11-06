@@ -1,3 +1,4 @@
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { invertColor } from '../../../utils/invertColor';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
@@ -30,6 +31,14 @@ export const ColorGroupName = styled.p`
     margin: 0;
     text-transform: capitalize;
 `;
+
+ColorGroupName.propTypes = {
+    theme: themePropTypes,
+};
+
+ColorGroupName.defaultProps = {
+    theme: themeBasic,
+};
 
 export const Color = styled.div`
     display: flex;

@@ -1,5 +1,6 @@
 import { STATUS_INDICATOR_PLACEMENTS, STATUS_INDICATOR_STATUSES } from './StatusIndicator.consts';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 
 export const StyledStatusIndicator = styled.div`
@@ -37,6 +38,11 @@ export const StyledStatusIndicator = styled.div`
 StyledStatusIndicator.propTypes = {
     placement: PropTypes.oneOf(Object.values(STATUS_INDICATOR_PLACEMENTS)).isRequired,
     status: PropTypes.oneOf(Object.values(STATUS_INDICATOR_STATUSES)).isRequired,
+    theme: themePropTypes,
+};
+
+StyledStatusIndicator.defaultProps = {
+    theme: themeBasic,
 };
 
 export default StyledStatusIndicator;

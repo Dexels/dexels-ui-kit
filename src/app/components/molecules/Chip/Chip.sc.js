@@ -1,5 +1,7 @@
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
@@ -47,5 +49,15 @@ export const StyledChip = styled.button`
         ${rippleEffectReset()};
     }
 `;
+
+StyledChip.propTypes = {
+    isDisabled: PropTypes.bool.isRequired,
+    isSelected: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+StyledChip.defaultProps = {
+    theme: themeBasic,
+};
 
 export default StyledChip;

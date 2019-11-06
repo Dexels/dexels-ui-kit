@@ -5,6 +5,7 @@ import {
 } from './Button.consts';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
@@ -138,9 +139,14 @@ StyledButton.propTypes = {
     isFullWidth: PropTypes.bool.isRequired,
     isInverted: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
+    theme: themePropTypes,
     transitionDuration: PropTypes.number.isRequired,
     transitionEasing: PropTypes.oneOf(Object.values(BUTTON_EASINGS)).isRequired,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
+};
+
+StyledButton.defaultProps = {
+    theme: themeBasic,
 };
 
 export default StyledButton;

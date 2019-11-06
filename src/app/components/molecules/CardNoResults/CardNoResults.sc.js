@@ -1,3 +1,4 @@
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { CARD_ELEVATIONS } from '../../atoms/Card/Card.consts';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
@@ -16,6 +17,11 @@ export const StyledCardNoResults = styled.div`
 
 StyledCardNoResults.propTypes = {
     elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)).isRequired,
+    theme: themePropTypes,
+};
+
+StyledCardNoResults.defaultProps = {
+    theme: themeBasic,
 };
 
 export const Header = styled.div`
@@ -24,11 +30,27 @@ export const Header = styled.div`
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
+Header.propTypes = {
+    theme: themePropTypes,
+};
+
+Header.defaultProps = {
+    theme: themeBasic,
+};
+
 export const Title = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
     margin: ${({ theme }) => theme.spacing(0.5, 0.5, 0.5, 0)};
     color: ${({ theme }) => theme.colorHeaderText.secondary};
 `;
+
+Title.propTypes = {
+    theme: themePropTypes,
+};
+
+Title.defaultProps = {
+    theme: themeBasic,
+};
 
 export const Item = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
@@ -36,11 +58,27 @@ export const Item = styled.p`
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
+Item.propTypes = {
+    theme: themePropTypes,
+};
+
+Item.defaultProps = {
+    theme: themeBasic,
+};
+
 export const Left = styled.div`
     flex: 0 0 auto;
     margin-top: 4px; /* Correction for line-height Title element */
     width: ${({ theme }) => theme.spacing(6)};
 `;
+
+Left.propTypes = {
+    theme: themePropTypes,
+};
+
+Left.defaultProps = {
+    theme: themeBasic,
+};
 
 export const IconWrapper = styled.div`
     color: ${({ theme }) => theme.colorHeaderText.primary};
@@ -50,6 +88,14 @@ export const IconWrapper = styled.div`
         display: block;
     }
 `;
+
+IconWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
+};
 
 export const Right = styled.div`
     flex: 1 1 auto;

@@ -1,5 +1,4 @@
-import basicTheme from '../../../styles/theming/themes/basic';
-import PropTypes from 'prop-types';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import styled from 'styled-components';
 
 export const StyledErrorMessage = styled.div`
@@ -8,15 +7,11 @@ export const StyledErrorMessage = styled.div`
 `;
 
 StyledErrorMessage.propTypes = {
-    theme: PropTypes.shape({
-        availableTextStyles: PropTypes.func.isRequired,
-        colorInvalid: PropTypes.string.isRequired,
-        textStyling: PropTypes.func.isRequired,
-    }),
+    theme: themePropTypes,
 };
 
 StyledErrorMessage.defaultProps = {
-    theme: basicTheme,
+    theme: themeBasic,
 };
 
 export default StyledErrorMessage;

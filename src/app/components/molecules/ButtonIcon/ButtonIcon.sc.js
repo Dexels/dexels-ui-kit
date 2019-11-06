@@ -1,5 +1,6 @@
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import PropTypes from 'prop-types';
 
@@ -57,6 +58,11 @@ StyledButtonIcon.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isInverted: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_ICON_SIZES)).isRequired,
+    theme: themePropTypes,
+};
+
+StyledButtonIcon.defaultProps = {
+    theme: themeBasic,
 };
 
 export default StyledButtonIcon;

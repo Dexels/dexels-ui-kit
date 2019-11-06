@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
@@ -14,6 +15,11 @@ export const InputIcon = styled.div`
 
 InputIcon.propTypes = {
     isFocused: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+InputIcon.defaultProps = {
+    theme: themeBasic,
 };
 
 export const StyledDatePicker = styled.div`
@@ -190,6 +196,11 @@ export const StyledDatePicker = styled.div`
 
 StyledDatePicker.propTypes = {
     hasYearSelector: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+StyledDatePicker.defaultProps = {
+    theme: themeBasic,
 };
 
 export const ButtonNavigation = styled.div`
@@ -208,9 +219,11 @@ export const ButtonNavigation = styled.div`
 ButtonNavigation.propTypes = {
     isNext: PropTypes.bool,
     isPrev: PropTypes.bool,
+    theme: themePropTypes,
 };
 
 ButtonNavigation.defaultProps = {
     isNext: false,
     isPrev: false,
+    theme: themeBasic,
 };

@@ -1,5 +1,6 @@
 import { DIALOG_ALIGNMENTS, DIALOG_DIRECTIONS, DIALOG_ELEVATIONS } from './Dialog.consts';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
@@ -15,12 +16,25 @@ export const StyledDialog = styled.div`
 
 StyledDialog.propTypes = {
     elevation: PropTypes.oneOf(Object.values(DIALOG_ELEVATIONS)).isRequired,
+    theme: themePropTypes,
     width: PropTypes.string.isRequired,
+};
+
+StyledDialog.defaultProps = {
+    theme: themeBasic,
 };
 
 export const ButtonWrapper = styled.div`
     margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
 `;
+
+ButtonWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+ButtonWrapper.defaultProps = {
+    theme: themeBasic,
+};
 
 export const ButtonClose = styled.button`
     position: fixed;
@@ -56,6 +70,11 @@ export const ButtonClose = styled.button`
 
 ButtonClose.propTypes = {
     position: PropTypes.oneOf(Object.values(DIALOG_DIRECTIONS)).isRequired,
+    theme: themePropTypes,
+};
+
+ButtonClose.defaultProps = {
+    theme: themeBasic,
 };
 
 export const Header = styled.header`
@@ -73,6 +92,11 @@ export const Header = styled.header`
 
 Header.propTypes = {
     alignment: PropTypes.oneOf(Object.values(DIALOG_ALIGNMENTS)).isRequired,
+    theme: themePropTypes,
+};
+
+Header.defaultProps = {
+    theme: themeBasic,
 };
 
 export const Body = styled.div`
@@ -90,4 +114,9 @@ export const Body = styled.div`
 Body.propTypes = {
     alignment: PropTypes.oneOf(Object.values(DIALOG_ALIGNMENTS)).isRequired,
     hasHeader: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+Body.defaultProps = {
+    theme: themeBasic,
 };

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
@@ -43,5 +44,10 @@ export const VisibilitySwitch = styled.button`
 
 VisibilitySwitch.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(INPUT_PASSWORD_VARIANTS)).isRequired,
+};
+
+VisibilitySwitch.defaultProps = {
+    theme: themeBasic,
 };

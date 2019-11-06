@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { DROPDOWN_VARIANTS } from './Dropdown.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
@@ -44,7 +45,12 @@ StyledDropdown.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(DROPDOWN_VARIANTS)).isRequired,
+};
+
+StyledDropdown.defaultProps = {
+    theme: themeBasic,
 };
 
 export const Select = styled.select`
@@ -104,7 +110,12 @@ Select.propTypes = {
     isHovered: PropTypes.bool.isRequired,
     isPlaceholderSelected: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(DROPDOWN_VARIANTS)).isRequired,
+};
+
+Select.defaultProps = {
+    theme: themeBasic,
 };
 
 export const IconWrapper = styled.div`
@@ -154,9 +165,22 @@ IconWrapper.propTypes = {
     isFocused: PropTypes.bool.isRequired,
     isHovered: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(DROPDOWN_VARIANTS)).isRequired,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export const ErrorMessageWrapper = styled.div`
     margin: ${({ theme }) => theme.spacing(0.5, 0, 0)};
 `;
+
+ErrorMessageWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+ErrorMessageWrapper.defaultProps = {
+    theme: themeBasic,
+};

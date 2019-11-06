@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledOverlay = styled.div`
@@ -23,5 +25,17 @@ export const StyledOverlay = styled.div`
         background-color: rgba(0, 0, 0, 0.4);
     `};
 `;
+
+StyledOverlay.propTypes = {
+    height: PropTypes.number.isRequired,
+    isFullscreen: PropTypes.bool.isRequired,
+    isVisible: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+    width: PropTypes.number.isRequired,
+};
+
+StyledOverlay.defaultProps = {
+    theme: themeBasic,
+};
 
 export default StyledOverlay;

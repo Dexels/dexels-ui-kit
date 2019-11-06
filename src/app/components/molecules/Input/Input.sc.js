@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
@@ -50,7 +51,12 @@ StyledInput.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
+};
+
+StyledInput.defaultProps = {
+    theme: themeBasic,
 };
 
 export const TextField = styled.input`
@@ -106,7 +112,12 @@ TextField.propTypes = {
     isHovered: PropTypes.bool.isRequired,
     isTextarea: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
+};
+
+TextField.defaultProps = {
+    theme: themeBasic,
 };
 
 export const ErrorMessageWrapper = styled.div`
@@ -116,5 +127,10 @@ export const ErrorMessageWrapper = styled.div`
 `;
 
 ErrorMessageWrapper.propTypes = {
+    theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
+};
+
+ErrorMessageWrapper.defaultProps = {
+    theme: themeBasic,
 };

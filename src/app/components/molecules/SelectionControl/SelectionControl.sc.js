@@ -4,6 +4,7 @@ import {
     SELECTION_CONTROL_TYPES,
 } from './SelectionControl.consts';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
@@ -152,9 +153,14 @@ InputWrapper.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isIndeterminate: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     transitionDuration: PropTypes.number.isRequired,
     transitionEasing: PropTypes.oneOf(Object.values(SELECTION_CONTROL_EASINGS)),
     type: PropTypes.oneOf(Object.values(SELECTION_CONTROL_TYPES)).isRequired,
+};
+
+InputWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export const IconWrapper = styled.div`
@@ -169,6 +175,14 @@ export const IconWrapper = styled.div`
         display: block;
     }
 `;
+
+IconWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
+};
 
 export const LabelWrapper = styled.button`
     flex: 0 1 auto;
@@ -195,8 +209,21 @@ export const LabelWrapper = styled.button`
 LabelWrapper.propTypes = {
     direction: PropTypes.oneOf(Object.values(SELECTION_CONTROL_DIRECTIONS)).isRequired,
     isDisabled: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+LabelWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export const ErrorMessageWrapper = styled.div`
     margin: ${({ theme }) => theme.spacing(0.25, 0, 0, 0)};
 `;
+
+ErrorMessageWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+ErrorMessageWrapper.defaultProps = {
+    theme: themeBasic,
+};

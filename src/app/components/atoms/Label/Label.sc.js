@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import setTruncate from '../../../styles/mixins/setTruncate';
 
@@ -45,6 +46,11 @@ StyledLabel.propTypes = {
     isSmall: PropTypes.bool.isRequired,
     isTruncatable: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+StyledLabel.defaultProps = {
+    theme: themeBasic,
 };
 
 export default StyledLabel;

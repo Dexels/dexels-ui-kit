@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { INPUT_VARIANTS } from '../Input/Input.consts';
 import PropTypes from 'prop-types';
 
@@ -38,7 +39,12 @@ export const StyledFormElementLabel = styled.div`
 
 StyledFormElementLabel.propTypes = {
     isActive: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
+};
+
+StyledFormElementLabel.defaultProps = {
+    theme: themeBasic,
 };
 
 export default StyledFormElementLabel;
