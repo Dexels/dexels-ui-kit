@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
-import { INPUT_VARIANTS } from '../Input/Input.consts';
+import { FORM_ELEMENT_LABEL_VARIANTS } from './FormElementLabel.consts';
 import PropTypes from 'prop-types';
 
 export const StyledFormElementLabel = styled.div`
@@ -10,12 +10,12 @@ export const StyledFormElementLabel = styled.div`
     text-align: left;
     pointer-events: none;
 
-    ${({ isActive, theme, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
+    ${({ isActive, theme, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.COMPACT && css`
         top: ${isActive ? `-${theme.spacing(2)}` : 0};
         left: 0;
     `};
 
-    ${({ isActive, theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
+    ${({ isActive, theme, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.OUTLINE && css`
         top: ${isActive ? `-${theme.spacing(1)}` : theme.spacing(1.5)};
         left: ${theme.spacing(isActive ? 2.5 : 1.5)};
 
@@ -40,7 +40,7 @@ export const StyledFormElementLabel = styled.div`
 StyledFormElementLabel.propTypes = {
     isActive: PropTypes.bool.isRequired,
     theme: themePropTypes,
-    variant: PropTypes.oneOf(Object.values(INPUT_VARIANTS)).isRequired,
+    variant: PropTypes.oneOf(Object.values(FORM_ELEMENT_LABEL_VARIANTS)).isRequired,
 };
 
 StyledFormElementLabel.defaultProps = {
