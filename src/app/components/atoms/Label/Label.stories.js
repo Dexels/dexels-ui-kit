@@ -11,6 +11,7 @@ export const Configurable = () => (
         isDisabled={boolean('Is disabled', Label.defaultProps.isDisabled)}
         isFocused={boolean('Is focused', Label.defaultProps.isFocused)}
         isSmall={boolean('Is small', Label.defaultProps.isSmall)}
+        isTruncatable={boolean('Is truncatable', Label.defaultProps.isTruncatable)}
         isValid={boolean('Is valid', Label.defaultProps.isValid)}
     >
         {text('Label', 'This is a label, awesome!')}
