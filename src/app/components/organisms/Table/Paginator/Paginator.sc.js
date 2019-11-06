@@ -1,9 +1,10 @@
+import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
-import styled from 'styled-components';
 
 export const StyledPaginator = styled.div`
     ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -13,8 +14,32 @@ export const StyledPaginator = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-    margin: 0 0 -1px;
+    margin: 0 0 -1px; /* The -1px is a correction for the input components border */
+    padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
+
+    ${({ hasPageSizeSelector }) => hasPageSizeSelector && css`
+        padding: ${({ theme }) => theme.spacing(0, 0, 0, 3)};
+    `}
 `;
+
+InputWrapper.propTypes = {
+    hasPageSizeSelector: PropTypes.bool.isRequired,
+};
+
+export const DropdownWrapper = styled.div`
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+`;
+
+export const DropdownTextWrapper = styled.div`
+    padding: ${({ position, theme }) => (position === 'START' ? theme.spacing(0, 1) : theme.spacing(0, 0, 0, 1))};
+`;
+
+DropdownTextWrapper.propTypes = {
+    position: PropTypes.string.isRequired,
+};
 
 export const Paging = styled.div`
     display: flex;

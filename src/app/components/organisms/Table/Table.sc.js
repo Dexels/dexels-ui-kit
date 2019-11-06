@@ -110,3 +110,7 @@ IconWrapper.propTypes = {
 export const TableFooter = styled.tfoot`
     background-color: transparent;
 `;
+
+export const Paging = styled.div`
+    background-color: transparent;
+`;

@@ -1,4 +1,6 @@
 import {
+    DropdownTextWrapper,
+    DropdownWrapper,
     InputWrapper,
     Paging,
     PagingButtons,
@@ -8,10 +10,11 @@ import {
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
+import { PAGINATOR_PAGE_SIZES } from './Paginator.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const pagingResultsText = (pageIndex, pageSize, rowCount, localizedTexts) => {
+const pagingResultsText = (pageIndex, pageSize, rowCount, texts) => {
     let result = '';
     let start = -1;
     let end = -1;
@@ -28,31 +31,54 @@ const pagingResultsText = (pageIndex, pageSize, rowCount, localizedTexts) => {
 
     result = `${start.toString()} - ${end.toString()}`;
 
-    return `${result} ${localizedTexts.resultsOf.toLowerCase()} ${rowCount.toString()}`;
+    return `${result} ${texts.resultsOf.toLowerCase()} ${rowCount.toString()}`;
 };
 
-const pagingText = (pageIndex, pageCount, localizedTexts) => (
-    `${localizedTexts.page} ${pageIndex + 1} ${localizedTexts.pageOf.toLowerCase()} ${pageCount}`
+const pagingText = (pageIndex, pageCount, texts) => (
+    `${texts.page} ${pageIndex + 1} ${texts.pageOf.toLowerCase()} ${pageCount}`
 );
 
 const Paginator = ({
     hasAllPagingButtons,
     hasGoToPage,
     hasPageSizeSelector,
-    useResultsOfText,
     instance,
-    localizedTexts,
     pageSizes,
+    texts,
+    useResultsOfText,
 }) => (
     <>
-        {/* {console.log('texts', localizedTexts)} */}
+        {/* {console.log('texts', texts)} */}
         {/* {console.log('************* instance in paginator', instance)} */}
 
         <StyledPaginator>
+            {hasPageSizeSelector && (
+                <DropdownWrapper>
+                    <DropdownTextWrapper position={'START'}>
+                        {texts.show}
+                    </DropdownTextWrapper>
+                    <Dropdown
+                        name="DROPDOWN_PAGE_SIZES"
+                        onChange={(e) => {
+                            instance.setPageSize(Number(e.target.value));
+                        }}
+                        value={instance.pageSize.toString()}
+                    >
+                        {pageSizes.map((pageSize) => (
+                            <option key={pageSize} value={pageSize}>
+                                {pageSize.toString()}
+                            </option>
+                        ))}
+                    </Dropdown>
+                    <DropdownTextWrapper position={'END'}>
+                        {texts.rowsPerPage && texts.rowsPerPage.toLowerCase()}
+                    </DropdownTextWrapper>
+                </DropdownWrapper>
+            )}
             {hasGoToPage && (
-                <InputWrapper>
+                <InputWrapper hasPageSizeSelector={hasPageSizeSelector}>
                     <Input
-                        label={localizedTexts.pageGoto}
+                        label={texts.pageGoto}
                         name="INPUT_PAGE_INDEX"
                         onChange={(event) => {
                             const page = event.target.value ? Number(event.target.value) - 1 : 0;
@@ -64,26 +90,11 @@ const Paginator = ({
                     />
                 </InputWrapper>
             )}
-            {hasPageSizeSelector && (
-                <Dropdown
-                    name="DROPDOWN_PAGE_SIZES"
-                    onChange={(e) => {
-                        instance.setPageSize(Number(e.target.value));
-                    }}
-                    value={instance.pageSize.toString()}
-                >
-                    {pageSizes.map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            {`${localizedTexts.pageShow} ${pageSize.toString()}`}
-                        </option>
-                    ))}
-                </Dropdown>
-            )}
             <Paging>
                 <PagingText>
                     {useResultsOfText
-                    && pagingResultsText(instance.pageIndex, instance.pageSize, instance.rows.length, localizedTexts)}
-                    {!useResultsOfText && pagingText(instance.pageIndex, instance.pageCount, localizedTexts)}
+                    && pagingResultsText(instance.pageIndex, instance.pageSize, instance.rows.length, texts)}
+                    {!useResultsOfText && pagingText(instance.pageIndex, instance.pageCount, texts)}
                 </PagingText>
                 <PagingButtons>
                     {hasAllPagingButtons
@@ -122,20 +133,39 @@ const Paginator = ({
     </>
 );
 
+Paginator.pageSizes = PAGINATOR_PAGE_SIZES;
+
 Paginator.propTypes = {
-    hasAllPagingButtons: PropTypes.bool.isRequired,
-    hasGoToPage: PropTypes.bool.isRequired,
-    hasPageSizeSelector: PropTypes.bool.isRequired,
+    hasAllPagingButtons: PropTypes.bool,
+    hasGoToPage: PropTypes.bool,
+    hasPageSizeSelector: PropTypes.bool,
     instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
-    localizedTexts: PropTypes.shape({
+    pageSizes: PropTypes.arrayOf(PropTypes.number),
+    texts: PropTypes.shape({
         page: PropTypes.string,
         pageGoto: PropTypes.string,
         pageOf: PropTypes.string,
-        pageShow: PropTypes.string,
         resultsOf: PropTypes.string,
-    }).isRequired,
-    pageSizes: PropTypes.arrayOf(PropTypes.number).isRequired,
-    useResultsOfText: PropTypes.bool.isRequired,
+        rowsPerPage: PropTypes.string,
+        show: PropTypes.string,
+    }),
+    useResultsOfText: PropTypes.bool,
+};
+
+Paginator.defaultProps = {
+    hasAllPagingButtons: true,
+    hasGoToPage: false,
+    hasPageSizeSelector: true,
+    pageSizes: Paginator.pageSizes,
+    texts: {
+        page: 'Page',
+        pageGoto: 'Go to page',
+        pageOf: 'Of',
+        resultsOf: 'Results of',
+        rowsPerPage: 'Rows per page',
+        show: 'Show',
+    },
+    useResultsOfText: true,
 };
 
 export default Paginator;

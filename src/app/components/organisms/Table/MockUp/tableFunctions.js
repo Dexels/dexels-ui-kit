@@ -4,14 +4,20 @@ import React from 'react';
 
 export const createLocalizedTableTexts = (language = 'nl') => {
     const localizedTexts = {
-        paging: {
-            page: language === 'en' ? 'Page' : 'Pagina',
-            pageGoto: language === 'en' ? 'Go to page' : 'Ga naar pagina',
-            pageOf: language === 'en' ? 'Of' : 'Van',
-            pageShow: language === 'en' ? 'Show' : 'Toon',
-            resultsOf: language === 'en' ? 'Results of' : 'Resultaten van de',
-        },
         toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer op',
+    };
+
+    return localizedTexts;
+};
+
+export const createLocalizedPagingTexts = (language = 'nl') => {
+    const localizedTexts = {
+        page: language === 'en' ? 'Page' : 'Pagina',
+        pageGoto: language === 'en' ? 'Go to page' : 'Ga naar pagina',
+        pageOf: language === 'en' ? 'Of' : 'Van',
+        resultsOf: language === 'en' ? 'Results of' : 'Resultaten van de',
+        rowsPerPage: language === 'en' ? 'Rows per page' : 'Rijen per pagina',
+        show: language === 'en' ? 'Show' : 'Toon',
     };
 
     return localizedTexts;
@@ -20,11 +26,7 @@ export const createLocalizedTableTexts = (language = 'nl') => {
 export const getTableCell = (event, cell) => {
     // console.log('************************* cell event', event);
     // console.log('************************* cell value', cell);
-
-    // @TODO: implement some logic for this
-    if (event) {
-        return cell;
-    }
+    alert(`Clicked on cell: ${cell}`);
 
     return cell;
 };
@@ -32,11 +34,7 @@ export const getTableCell = (event, cell) => {
 export const getTableRow = (event, row) => {
     // console.log('************************* row event', event);
     // console.log('************************* row value', row);
-
-    // @TODO: implement some logic for this
-    if (event) {
-        return row;
-    }
+    alert(`Clicked on row: ${row}`);
 
     return row;
 };
