@@ -8,11 +8,12 @@ const Tooltip = ({
     transitionDuration,
     transitionEasing,
 }) => {
-    const [tooltipPosition, setTooltipPosition] = useState('bottom');
-    const [tooltipTitle, setTooltipTitle] = useState('some text');
-    const [isTooltipVisible, setTooltipVisiblity] = useState(false);
     const [hasTooltipDelay, setTooltipDelay] = useState(false);
     const [hoveredElement, setHoveredElement] = useState(null);
+    const [isTooltipVisible, setTooltipVisiblity] = useState(false);
+    const [timeoutId, setTimeoutId] = useState(null);
+    const [tooltipPosition, setTooltipPosition] = useState('bottom');
+    const [tooltipTitle, setTooltipTitle] = useState('some text');
 
     const calculateTooltipPosition = (hoveredItem) => {
         const docWidth = document.documentElement.clientWidth;
@@ -52,35 +53,36 @@ const Tooltip = ({
         setTooltipVisiblity(true);
     };
 
-    const hideTooltip = () => {
-        if (hasTooltipDelay) {
-            setTimeout(() => {
-                setTooltipVisiblity(false);
-                setTooltipDelay(false);
-            }, 4000);
-        } else {
-            setTooltipVisiblity(false);
-            setTooltipDelay(false);
-        }
-    };
-
     const handleOnMouseOver = (element) => {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            setTimeoutId(null);
+        }
+
         setTooltipTitle(element.getAttribute('data-tooltip-component'));
         setTooltipDelay(element.getAttribute('data-tooltip-delay'));
         setHoveredElement(element.getBoundingClientRect());
     };
 
     const handleOnMouseOut = () => {
-        hideTooltip();
+        if (hasTooltipDelay) {
+            setTimeoutId(setTimeout(() => {
+                setTooltipVisiblity(false);
+                setTooltipDelay(false);
+            }, 4000));
+        } else {
+            setTooltipVisiblity(false);
+            setTooltipDelay(false);
+        }
     };
 
     const onMouseMove = useCallback(({ target }) => {
-        if (target.closest('[data-tooltip-component]')) {
+        if (target.closest('[data-tooltip-component]') && (!isTooltipVisible || timeoutId)) {
             handleOnMouseOver(target.closest('[data-tooltip-component]'));
-        } else {
+        } else if (!target.closest('[data-tooltip-component]') && isTooltipVisible && !timeoutId) {
             handleOnMouseOut();
         }
-    }, [hasTooltipDelay]);
+    }, [hasTooltipDelay, isTooltipVisible, timeoutId]);
 
     useEffect(() => {
         window.addEventListener('mousemove', onMouseMove);
