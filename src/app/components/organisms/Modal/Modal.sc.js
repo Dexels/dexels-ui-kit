@@ -9,6 +9,7 @@ export const StyledModal = styled.div`
     left: 0;
     flex-direction: column;
     flex-wrap: nowrap;
+    z-index:3;
     width: 100%;
     height: 100%;
     animation: show .3s;
@@ -18,7 +19,6 @@ export const StyledModal = styled.div`
             transform: scale(0);
         } to{
             transform: scale(1);
-            z-index:3;
         }
     }
 `;
