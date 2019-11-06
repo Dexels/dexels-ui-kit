@@ -166,10 +166,6 @@ export const StyledDatePicker = styled.div`
     .CalendarDay__selected {
         background-color: ${({ theme }) => theme.colorSecondary};
         color: ${({ theme }) => theme.shades.nine};
-
-        &:hover {
-            background-color: ${({ theme }) => theme.colorSecondary};
-        }
     }
 
     .CalendarDay__highlighted_calendar {
