@@ -12,6 +12,7 @@ export const Default = () => {
     return (
         <DatePicker
             date={date}
+            displayFormat={text('Display format', DatePicker.defaultProps.displayFormat)}
             id="datepicker"
             isDayHighlighted={(day) => day.day() === 6}
             isFocused={isFocused}
@@ -34,6 +35,7 @@ export const WithYearSelector = () => {
     return (
         <DatePicker
             date={date}
+            displayFormat={text('Display format', DatePicker.defaultProps.displayFormat)}
             hasYearSelector
             id="datepickerWithYearSelector"
             isDayHighlighted={(day) => day.day() === 5}
