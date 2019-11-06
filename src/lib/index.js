@@ -33,6 +33,10 @@ import Dialog from '../app/components/organisms/Dialog/Dialog';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
 import Tabs from '../app/components/organisms/Tabs/Tabs';
 
+// Theming
+import { themeBasic, themePropTypes } from '../app/styles/theming/themes/basic';
+import createDuiTheme from '../app/styles/theming/createDuiTheme';
+
 export {
     // Export atoms
     Card,
@@ -58,4 +62,8 @@ export {
     Dialog,
     InputPassword,
     Tabs,
+    // Export theming
+    themeBasic,
+    themePropTypes,
+    createDuiTheme,
 };
