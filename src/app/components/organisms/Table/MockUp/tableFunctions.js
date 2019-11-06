@@ -23,10 +23,11 @@ export const createLocalizedPagingTexts = (language = 'nl') => {
     return localizedTexts;
 };
 
-export const getTableCell = (event, cell) => {
+export const getTableCell = (cell, row, event = null) => {
     // console.log('************************* cell event', event);
     // console.log('************************* cell value', cell);
-    alert(`Clicked on cell: ${cell}`);
+    // console.log('************************* row value', row);
+    alert(`Clicked on cell/row: ${cell} \n ${row} \n ${event}`);
 
     return cell;
 };

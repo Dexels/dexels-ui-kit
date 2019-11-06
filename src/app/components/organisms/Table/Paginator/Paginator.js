@@ -1,7 +1,7 @@
 import {
-    DropdownTextWrapper,
-    DropdownWrapper,
     InputWrapper,
+    PageSizeSelector,
+    PageSizeSelectorText,
     Paging,
     PagingButtons,
     PagingText,
@@ -20,22 +20,22 @@ const pagingResultsText = (pageIndex, pageSize, rowCount, texts) => {
     let end = -1;
 
     if (pageIndex === 0) {
-        start = (pageIndex + 1);
+        start = pageIndex + 1;
         end = pageSize <= rowCount ? pageSize : rowCount;
     }
 
     if (pageIndex !== 0) {
-        start = ((pageIndex * pageSize) + 1);
-        end = ((pageIndex + 1) * pageSize) <= rowCount ? ((pageIndex + 1) * pageSize) : rowCount;
+        start = (pageIndex * pageSize) + 1;
+        end = (pageIndex + 1) * pageSize <= rowCount ? (pageIndex + 1) * pageSize : rowCount;
     }
 
-    result = `${start.toString()} - ${end.toString()}`;
+    result = `${start} - ${end}`;
 
-    return `${result} ${texts.resultsOf.toLowerCase()} ${rowCount.toString()}`;
+    return `${result} ${texts.resultsOf} ${rowCount}`;
 };
 
 const pagingText = (pageIndex, pageCount, texts) => (
-    `${texts.page} ${pageIndex + 1} ${texts.pageOf.toLowerCase()} ${pageCount}`
+    `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`
 );
 
 const Paginator = ({
@@ -53,10 +53,10 @@ const Paginator = ({
 
         <StyledPaginator>
             {hasPageSizeSelector && (
-                <DropdownWrapper>
-                    <DropdownTextWrapper position={'START'}>
+                <PageSizeSelector>
+                    <PageSizeSelectorText>
                         {texts.show}
-                    </DropdownTextWrapper>
+                    </PageSizeSelectorText>
                     <Dropdown
                         name="DROPDOWN_PAGE_SIZES"
                         onChange={(e) => {
@@ -66,14 +66,14 @@ const Paginator = ({
                     >
                         {pageSizes.map((pageSize) => (
                             <option key={pageSize} value={pageSize}>
-                                {pageSize.toString()}
+                                {pageSize}
                             </option>
                         ))}
                     </Dropdown>
-                    <DropdownTextWrapper position={'END'}>
-                        {texts.rowsPerPage && texts.rowsPerPage.toLowerCase()}
-                    </DropdownTextWrapper>
-                </DropdownWrapper>
+                    <PageSizeSelectorText>
+                        {texts.rowsPerPage && texts.rowsPerPage}
+                    </PageSizeSelectorText>
+                </PageSizeSelector>
             )}
             {hasGoToPage && (
                 <InputWrapper hasPageSizeSelector={hasPageSizeSelector}>
@@ -85,7 +85,7 @@ const Paginator = ({
                             instance.gotoPage(page);
                         }}
                         type={Input.types.NUMBER}
-                        value={(instance.pageIndex + 1).toString()}
+                        value={(instance.pageIndex + 1)}
                         variant={Input.variants.COMPACT}
                     />
                 </InputWrapper>
@@ -93,12 +93,11 @@ const Paginator = ({
             <Paging>
                 <PagingText>
                     {useResultsOfText
-                    && pagingResultsText(instance.pageIndex, instance.pageSize, instance.rows.length, texts)}
-                    {!useResultsOfText && pagingText(instance.pageIndex, instance.pageCount, texts)}
+                        ? pagingResultsText(instance.pageIndex, instance.pageSize, instance.rows.length, texts)
+                        : pagingText(instance.pageIndex, instance.pageCount, texts)}
                 </PagingText>
                 <PagingButtons>
-                    {hasAllPagingButtons
-                    && (
+                    {hasAllPagingButtons && (
                         <ButtonIcon
                             iconType={ButtonIcon.types.CHEVRONFIRST}
                             isDisabled={!instance.canPreviousPage}
@@ -118,8 +117,7 @@ const Paginator = ({
                         onClick={() => instance.nextPage()}
                         size={ButtonIcon.sizes.XLARGE}
                     />
-                    {hasAllPagingButtons
-                    && (
+                    {hasAllPagingButtons && (
                         <ButtonIcon
                             iconType={ButtonIcon.types.CHEVRONLAST}
                             isDisabled={!instance.canNextPage}

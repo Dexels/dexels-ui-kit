@@ -57,7 +57,6 @@ export const TableRow = styled.tr`
     z-index: 1;
 
     ${({ isClickable }) => isClickable && css`
-        pointer-events: auto;
         cursor: pointer;
     `};
 
@@ -89,7 +88,6 @@ export const TableCell = styled.td`
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ isClickable }) => isClickable && css`
-        pointer-events: auto;
         cursor: pointer;
     `};
 `;
@@ -100,11 +98,11 @@ TableCell.propTypes = {
 
 export const IconWrapper = styled.span`
     padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
-    color: ${({ isUnsorted, theme }) => (isUnsorted ? theme.colorDisabled : theme.colorHeaderText.primary)};
+    color: ${({ isSorted, theme }) => (isSorted ? theme.colorHeaderText.primary : theme.colorDisabled)};
 `;
 
 IconWrapper.propTypes = {
-    isUnsorted: PropTypes.bool.isRequired,
+    isSorted: PropTypes.bool.isRequired,
 };
 
 export const TableFooter = styled.tfoot`

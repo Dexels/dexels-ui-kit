@@ -18,13 +18,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
 
-const dataSource = (instance, hasPaging) => {
-    if (hasPaging) {
-        return instance.page;
-    }
-
-    return instance.rows;
-};
+const dataSource = (instance, hasPaging) => (hasPaging ? instance.page : instance.rows);
 
 const Table = ({
     caption,
@@ -34,7 +28,6 @@ const Table = ({
     hasUnsortedStateIcon,
     instance,
     isFullWidth,
-    onCellClick,
     onRowClick,
     pagingComponent,
     texts,
@@ -43,8 +36,7 @@ const Table = ({
         {/* {console.log('*********************** texts', texts)} */}
         {/* {console.log('*********************** rows', instance.rows)} */}
 
-        {caption
-        && (
+        {caption && (
             <TableCaption>
                 {caption}
             </TableCaption>
@@ -72,7 +64,7 @@ const Table = ({
                                 {/* {console.log('********************** getSortByToggleProps',
                                     column.getSortByToggleProps())} */}
                                 {column.render('Header')}
-                                <IconWrapper isUnsorted={!column.isSorted}>
+                                <IconWrapper isSorted={column.isSorted}>
                                     {renderSortIcon(column, hasUnsortedStateIcon)}
                                 </IconWrapper>
                             </TableHeaderCell>
@@ -96,11 +88,11 @@ const Table = ({
 
                         {row.cells.map((cell) => (
                             <TableCell
-                                isClickable={onCellClick !== undefined}
+                                isClickable={cell.column.onClick !== undefined}
                                 key={cell}
-                                onClick={onCellClick
+                                onClick={cell.column.onClick
                                     ? (event) => {
-                                        onCellClick(event, row);
+                                        cell.column.onClick(cell, row, event);
                                     }
                                     : undefined}
                                 {...cell.getCellProps()}
@@ -141,7 +133,6 @@ Table.propTypes = {
         prepareRow: PropTypes.func.isRequired,
     }).isRequired,
     isFullWidth: PropTypes.bool,
-    onCellClick: PropTypes.func,
     onRowClick: PropTypes.func,
     pagingComponent: PropTypes.node,
     texts: PropTypes.shape({
@@ -156,7 +147,6 @@ Table.defaultProps = {
     footerComponent: undefined,
     hasUnsortedStateIcon: true,
     isFullWidth: true,
-    onCellClick: undefined,
     onRowClick: undefined,
     pagingComponent: undefined,
     texts: {

@@ -26,32 +26,36 @@ InputWrapper.propTypes = {
     hasPageSizeSelector: PropTypes.bool.isRequired,
 };
 
-export const DropdownWrapper = styled.div`
+export const PageSizeSelector = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
 `;
 
-export const DropdownTextWrapper = styled.div`
-    padding: ${({ position, theme }) => (position === 'START' ? theme.spacing(0, 1) : theme.spacing(0, 0, 0, 1))};
-`;
+export const PageSizeSelectorText = styled.div`
+    &:first-of-type {
+        padding: ${({ theme }) => theme.spacing(0, 1)};
+    }
 
-DropdownTextWrapper.propTypes = {
-    position: PropTypes.string.isRequired,
-};
+    &:last-of-type {
+        padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
+        text-transform: lowercase;
+    }
+`;
 
 export const Paging = styled.div`
     display: flex;
-    flex: 2;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-end;
+    margin: 0 0 0 auto;
 `;
 
 export const PagingText = styled.div`
     align-items: center;
     padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
+    text-transform: lowercase;
 `;
 
 export const PagingButtons = styled.div`

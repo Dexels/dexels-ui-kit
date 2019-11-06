@@ -1,10 +1,11 @@
 import { getStatusColor } from '../../../../styles/mixins/getStatusColor';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import StatusIndicator from '../../../atoms/StatusIndicator/StatusIndicator';
 import styled from 'styled-components';
 
 export const StyledStatusCell = styled.div`
-    height: 100%;
+    ${setBoxSizing()};
 `;
 
 export const IconWrapper = styled.div`

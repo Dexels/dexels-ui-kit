@@ -27,10 +27,7 @@ const iconType = (matchTaskStatus) => {
 
 const StatusCell = ({ matchTaskStatus, status }) => (
     <StyledStatusCell>
-        <StatusIndicator
-            placement={StatusIndicator.placements.LEFT}
-            status={status}
-        >
+        <StatusIndicator placement={StatusIndicator.placements.LEFT} status={status}>
             <IconWrapper status={status}>
                 <Icon type={iconType(matchTaskStatus)} />
             </IconWrapper>

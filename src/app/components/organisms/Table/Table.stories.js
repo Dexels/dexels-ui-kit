@@ -3,7 +3,7 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
-import { createLocalizedTableTexts, getTableCell, getTableRow } from './MockUp/tableFunctions';
+import { createLocalizedTableTexts, getTableRow } from './MockUp/tableFunctions';
 import React, { useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './MockUp/tableColumns';
 import { createTable } from './MockUp/createTable';
@@ -70,7 +70,6 @@ export const Configurable = () => {
                 hasUnsortedStateIcon={boolean('Has unsorted state icon', Table.defaultProps.hasUnsortedStateIcon)}
                 instance={instance}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
-                onCellClick={getTableCell}
                 onRowClick={getTableRow}
                 pagingComponent={(
                     <Paginator

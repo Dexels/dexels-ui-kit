@@ -1,6 +1,6 @@
 import { customSortByDate, renderCell, renderStatusCell } from '../utils/tableFunctions';
+import { getTableCell, renderButton } from './tableFunctions';
 import React from 'react';
-import { renderButton } from './tableFunctions';
 
 export const tableColumns = () => (
     React.useMemo(() => [
@@ -15,6 +15,8 @@ export const tableColumns = () => (
             Cell: (row) => renderCell(row),
             Header: 'First Name',
             accessor: 'firstName',
+            // TIP: event can be left out. Default = null
+            onClick: (cell, row, event) => getTableCell(cell, row, event),
         },
         {
             Cell: (row) => renderCell(row),
@@ -67,6 +69,8 @@ export const tableColumnsWithGroupHeader = () => (
                     Cell: (row) => renderCell(row),
                     Header: 'First Name',
                     accessor: 'firstName',
+                    // TIP: event can be left out. Default = null
+                    onClick: (cell, row, event) => getTableCell(cell, row, event),
                 },
                 {
                     Cell: (row) => renderCell(row),
