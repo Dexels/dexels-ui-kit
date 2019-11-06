@@ -1,4 +1,4 @@
-import { number, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import DatePicker from './DatePicker';
 import moment from 'moment';
@@ -16,6 +16,7 @@ export const Default = () => {
             id="datepicker"
             isDayHighlighted={(day) => day.day() === 6}
             isFocused={isFocused}
+            keepOpenOnDateSelect={boolean('Keep open on date select', DatePicker.defaultProps.keepOpenOnDateSelect)}
             label={text('Label', 'Speeldatum')}
             onDateChange={(newDate) => {
                 setDate(newDate);
@@ -41,6 +42,7 @@ export const WithYearSelector = () => {
             isDayHighlighted={(day) => day.day() === 5}
             isFocused={isFocused}
             isOutsideRange={(day) => day.isAfter(moment(), 'day')}
+            keepOpenOnDateSelect={boolean('Keep open on date select', DatePicker.defaultProps.keepOpenOnDateSelect)}
             label={text('Label', 'Geboortedatum')}
             labelMonth={text('Label month', 'Maand')}
             labelYear={text('Label year', 'Jaar')}

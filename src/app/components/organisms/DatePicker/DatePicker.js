@@ -16,6 +16,7 @@ const DatePicker = ({
     isDayHighlighted,
     isFocused,
     isOutsideRange,
+    keepOpenOnDateSelect,
     label,
     labelMonth,
     labelYear,
@@ -43,6 +44,7 @@ const DatePicker = ({
             id={id}
             isDayHighlighted={isDayHighlighted}
             isOutsideRange={isOutsideRange}
+            keepOpenOnDateSelect={keepOpenOnDateSelect}
             navNext={(
                 <ButtonNavigation isNext>
                     <ButtonIcon iconType={ButtonIcon.types.CHEVRONRIGHT} />
@@ -77,6 +79,7 @@ DatePicker.propTypes = {
     isDayHighlighted: PropTypes.func,
     isFocused: PropTypes.bool.isRequired,
     isOutsideRange: PropTypes.func,
+    keepOpenOnDateSelect: PropTypes.bool,
     label: PropTypes.string.isRequired,
     labelMonth: PropTypes.string,
     labelYear: PropTypes.string,
@@ -93,6 +96,7 @@ DatePicker.defaultProps = {
     hasYearSelector: false,
     isDayHighlighted: () => {},
     isOutsideRange: SingleDatePicker.defaultProps.isOutsideRange,
+    keepOpenOnDateSelect: SingleDatePicker.defaultProps.keepOpenOnDateSelect,
     labelMonth: '',
     labelYear: '',
     numberOfMonths: 1,
