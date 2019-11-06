@@ -60,7 +60,7 @@ export const themePropTypes = PropTypes.shape({
     textStyling: PropTypes.func.isRequired,
 });
 
-export const basicTheme = {
+export const themeBasic = {
     shades: {
         one: '#002451',
         two: '#324F73',
@@ -135,84 +135,84 @@ export const basicTheme = {
     },
 };
 
-basicTheme.background = {
-    primary: basicTheme.shades.eight,
+themeBasic.background = {
+    primary: themeBasic.shades.eight,
 };
 
-basicTheme.colorDisabled = basicTheme.shades.six;
+themeBasic.colorDisabled = themeBasic.shades.six;
 
-basicTheme.colorContrastText = {
-    primary: basicTheme.shades.nine,
+themeBasic.colorContrastText = {
+    primary: themeBasic.shades.nine,
 };
 
-basicTheme.colorHeaderText = {
-    primary: basicTheme.colorPrimary,
-    secondary: basicTheme.colorSecondary,
+themeBasic.colorHeaderText = {
+    primary: themeBasic.colorPrimary,
+    secondary: themeBasic.colorSecondary,
 };
 
-basicTheme.colorBodyText = {
-    primary: basicTheme.shades.one,
-    secondary: basicTheme.shades.four,
+themeBasic.colorBodyText = {
+    primary: themeBasic.shades.one,
+    secondary: themeBasic.shades.four,
 };
 
-basicTheme.textStyles.body1 = {
-    fontFamily: basicTheme.fontFamilyPrimary,
+themeBasic.textStyles.body1 = {
+    fontFamily: themeBasic.fontFamilyPrimary,
     fontSize: '16px',
     fontWeight: '400',
     lineHeight: '22px',
 };
 
-basicTheme.textStyles.body2 = {
-    fontFamily: basicTheme.fontFamilyPrimary,
+themeBasic.textStyles.body2 = {
+    fontFamily: themeBasic.fontFamilyPrimary,
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '18px',
 };
 
-basicTheme.textStyles.buttonLarge = {
-    fontFamily: basicTheme.fontFamilySecondary,
+themeBasic.textStyles.buttonLarge = {
+    fontFamily: themeBasic.fontFamilySecondary,
     fontSize: '16px',
     fontWeight: '600',
     lineHeight: '22px',
 };
 
-basicTheme.textStyles.buttonMedium = {
-    fontFamily: basicTheme.fontFamilySecondary,
+themeBasic.textStyles.buttonMedium = {
+    fontFamily: themeBasic.fontFamilySecondary,
     fontSize: '14px',
     fontWeight: '600',
     lineHeight: '22px',
 };
 
-basicTheme.textStyles.buttonSmall = {
-    fontFamily: basicTheme.fontFamilySecondary,
+themeBasic.textStyles.buttonSmall = {
+    fontFamily: themeBasic.fontFamilySecondary,
     fontSize: '14px',
     fontWeight: '600',
     lineHeight: '22px',
 };
 
-basicTheme.textStyles.caption = {
-    fontFamily: basicTheme.fontFamilyPrimary,
+themeBasic.textStyles.caption = {
+    fontFamily: themeBasic.fontFamilyPrimary,
     fontSize: '12px',
     fontWeight: '400',
     lineHeight: '16px',
 };
 
-basicTheme.textStyles.h1 = {
-    fontFamily: basicTheme.fontFamilySecondary,
+themeBasic.textStyles.h1 = {
+    fontFamily: themeBasic.fontFamilySecondary,
     fontSize: '24px',
     fontWeight: '500',
     lineHeight: '34px',
 };
 
-basicTheme.textStyles.h2 = {
-    fontFamily: basicTheme.fontFamilySecondary,
+themeBasic.textStyles.h2 = {
+    fontFamily: themeBasic.fontFamilySecondary,
     fontSize: '20px',
     fontWeight: '500',
     lineHeight: '28px',
 };
 
-basicTheme.textStyles.h3 = {
-    fontFamily: basicTheme.fontFamilySecondary,
+themeBasic.textStyles.h3 = {
+    fontFamily: themeBasic.fontFamilySecondary,
     fontSize: '16px',
     fontWeight: '600',
     lineHeight: '24px',
