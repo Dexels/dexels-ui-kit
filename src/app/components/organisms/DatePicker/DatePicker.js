@@ -21,6 +21,7 @@ const DatePicker = ({
     labelMonth,
     labelYear,
     numberOfMonths,
+    onClose,
     onDateChange,
     onFocusChange,
     placeholder,
@@ -56,6 +57,7 @@ const DatePicker = ({
                 </ButtonNavigation>
             )}
             numberOfMonths={numberOfMonths}
+            onClose={onClose}
             onDateChange={onDateChange}
             onFocusChange={onFocusChange}
             placeholder={placeholder}
@@ -84,6 +86,7 @@ DatePicker.propTypes = {
     labelMonth: PropTypes.string,
     labelYear: PropTypes.string,
     numberOfMonths: PropTypes.number,
+    onClose: PropTypes.func,
     onDateChange: PropTypes.func.isRequired,
     onFocusChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
@@ -94,12 +97,13 @@ DatePicker.defaultProps = {
     date: null,
     displayFormat: 'ddd D MMM Y',
     hasYearSelector: false,
-    isDayHighlighted: () => {},
+    isDayHighlighted: SingleDatePicker.defaultProps.isDayHighlighted,
     isOutsideRange: SingleDatePicker.defaultProps.isOutsideRange,
     keepOpenOnDateSelect: SingleDatePicker.defaultProps.keepOpenOnDateSelect,
     labelMonth: '',
     labelYear: '',
     numberOfMonths: 1,
+    onClose: SingleDatePicker.defaultProps.onClose,
     placeholder: SingleDatePicker.defaultProps.placeholder,
     yearCount: 100,
 };
