@@ -61,7 +61,7 @@ export const Configurable = () => {
                         height: '50px',
                     }}
                     >
-                        {/* JUST COUNT COLUMNS, BUT THIS DOESN'T MIND HIDDEN COLUMNS. OK WITH THAT */}
+                        {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT. OK WITH THAT FOR NOW IN HERE */}
                         <td colSpan={instance.columns.length}>
                             {'Some text'}
                         </td>

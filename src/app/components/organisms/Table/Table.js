@@ -33,9 +33,6 @@ const Table = ({
     texts,
 }) => (
     <>
-        {/* {console.log('*********************** texts', texts)} */}
-        {/* {console.log('*********************** rows', instance.rows)} */}
-
         {caption && (
             <TableCaption>
                 {caption}
@@ -60,9 +57,6 @@ const Table = ({
                                         : '',
                                 }))}
                             >
-                                {/* {console.log('********************** column', column)} */}
-                                {/* {console.log('********************** getSortByToggleProps',
-                                    column.getSortByToggleProps())} */}
                                 {column.render('Header')}
                                 <IconWrapper isSorted={column.isSorted}>
                                     {renderSortIcon(column, hasUnsortedStateIcon)}
@@ -84,8 +78,6 @@ const Table = ({
                             : undefined}
                         {...row.getRowProps()}
                     >
-                        {/* {console.log('********************** instance row', row.index, row.values)} */}
-
                         {row.cells.map((cell) => (
                             <TableCell
                                 isClickable={cell.column.onClick !== undefined}

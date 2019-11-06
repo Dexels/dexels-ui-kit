@@ -48,9 +48,6 @@ const Paginator = ({
     useResultsOfText,
 }) => (
     <>
-        {/* {console.log('texts', texts)} */}
-        {/* {console.log('************* instance in paginator', instance)} */}
-
         <StyledPaginator>
             {hasPageSizeSelector && (
                 <PageSizeSelector>
