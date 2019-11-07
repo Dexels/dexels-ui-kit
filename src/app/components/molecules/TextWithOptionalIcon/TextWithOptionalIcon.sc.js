@@ -13,7 +13,7 @@ export const Text = styled.p`
         &::first-letter {
             text-transform: uppercase;
         }
-    `};
+    `}
 `;
 
 Text.propTypes = {

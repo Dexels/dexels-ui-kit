@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 
 export const StyledPaginator = styled.div`
-    ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
+    ${setBoxSizing()}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)}
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -27,7 +27,7 @@ InputWrapper.propTypes = {
 };
 
 export const PageSizeSelector = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)}
     display: flex;
     flex-wrap: nowrap;
     align-items: center;

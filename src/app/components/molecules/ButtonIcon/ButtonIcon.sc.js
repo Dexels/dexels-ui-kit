@@ -32,7 +32,7 @@ export const StyledButtonIcon = styled.button`
 
     ${({ size }) => size === BUTTON_ICON_SIZES.XLARGE && css`
         font-size: 24px;
-    `};
+    `}
 
     ${({ isDisabled, isInverted, theme }) => isDisabled && css`
         color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
