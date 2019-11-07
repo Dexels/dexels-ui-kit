@@ -3,7 +3,7 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
-import { createLocalizedTableTexts, getTableRow } from './MockUp/tableFunctions';
+import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } from './MockUp/tableFunctions';
 import React, { useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './MockUp/tableColumns';
 import { createTable } from './MockUp/createTable';
@@ -19,10 +19,10 @@ export default {
     },
     title: 'organisms/Table',
 };
-export default { title: 'organisms/Table' };
 
 /* @TODO: figure out how to rerender the table instance after state changes. Most likely with React.useEffect */
 export const Configurable = () => {
+    const [isNL, setIsNL] = useState(true);
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [disableSorting, setDisableSorting] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
@@ -36,6 +36,13 @@ export const Configurable = () => {
     return (
         <>
             <div style={{ padding: '0 0 30px' }}>
+                <SelectionControl
+                    isChecked={isNL}
+                    label={isNL ? 'Is NL' : 'Is EN'}
+                    name={'LANGUAGE'}
+                    onChange={() => setIsNL(!isNL)}
+                    value={'isNL'}
+                />
                 <SelectionControl
                     isChecked={hasGroupHeader}
                     label={hasGroupHeader ? 'WITH GROUP HEADER' : 'WITHOUT GROUP HEADER'}
@@ -82,9 +89,10 @@ export const Configurable = () => {
                 pagingComponent={(
                     <Paginator
                         instance={instance}
+                        texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
                     />
                 )}
-                texts={createLocalizedTableTexts()}
+                texts={createLocalizedTableTexts(isNL ? 'nl' : 'en')}
             />
         </>
     );

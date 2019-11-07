@@ -5,7 +5,8 @@ The current table can handle paging, (multi)sorting and specific cell rendering.
 The latter can be established by using the Cell prop in the column definition.
 
 **Creating table columns example (based on the assumption that the data columns match the accessors)**:
-```
+
+```jsx
 export const tableColumns = () => (
     React.useMemo(() => [
         {
@@ -48,7 +49,8 @@ export const tableColumns = () => (
 
 
 **Creating a table instance example**:
-```
+
+```jsx
 export const createTable = (
     columns,
     data,

@@ -2,45 +2,53 @@ import {
     array,
     boolean,
 } from '@storybook/addon-knobs';
+import React, { useState } from 'react';
 import { createLocalizedPagingTexts } from '../MockUp/tableFunctions';
 import { createTable } from '../MockUp/createTable';
 import Paginator from './Paginator';
-import React from 'react';
+import SelectionControl from '../../../molecules/SelectionControl/SelectionControl';
 import { tableColumns } from '../MockUp/tableColumns';
 import { tableData } from '../MockUp/tableData';
 
 export default { title: 'organisms/Table/Paginator' };
 
 export const Configurable = () => {
-    const instance = createTable(
-        tableColumns(),
-        tableData(),
-    );
+    const [isNL, setIsNL] = useState(true);
 
-    const localizedTexts = createLocalizedPagingTexts();
+    const instance = createTable(tableColumns(), tableData());
+    const localizedTexts = createLocalizedPagingTexts(isNL ? 'nl' : 'en');
 
     return (
-        <Paginator
-            hasAllPagingButtons={boolean(
-                'Has all paging buttons',
-                Paginator.defaultProps.hasAllPagingButtons,
-            )}
-            hasGoToPage={boolean('Has goto page', Paginator.defaultProps.hasGoToPage)}
-            hasPageSizeSelector={boolean(
-                'Has page size selector',
-                Paginator.defaultProps.hasPageSizeSelector,
-            )}
-            instance={instance}
-            pageSizes={array('Page sizes', [5, 10, 20, 50])}
-            texts={{
-                page: localizedTexts.page,
-                pageGoto: localizedTexts.pageGoto,
-                pageOf: localizedTexts.pageOf,
-                resultsOf: localizedTexts.resultsOf,
-                rowsPerPage: localizedTexts.rowsPerPage,
-                show: localizedTexts.show,
-            }}
-            useResultsOfText={boolean('Use results of text', Paginator.defaultProps.useResultsOfText)}
-        />
+        <>
+            <SelectionControl
+                isChecked={isNL}
+                label={isNL ? 'Is NL' : 'Is EN'}
+                name={'LANGUAGE'}
+                onChange={() => setIsNL(!isNL)}
+                value={'isNL'}
+            />
+            <Paginator
+                hasAllPagingButtons={boolean(
+                    'Has all paging buttons',
+                    Paginator.defaultProps.hasAllPagingButtons,
+                )}
+                hasGoToPage={boolean('Has goto page', Paginator.defaultProps.hasGoToPage)}
+                hasPageSizeSelector={boolean(
+                    'Has page size selector',
+                    Paginator.defaultProps.hasPageSizeSelector,
+                )}
+                instance={instance}
+                pageSizes={array('Page sizes', [5, 10, 20, 50])}
+                texts={{
+                    page: localizedTexts.page,
+                    pageGoto: localizedTexts.pageGoto,
+                    pageOf: localizedTexts.pageOf,
+                    resultsOf: localizedTexts.resultsOf,
+                    rowsPerPage: localizedTexts.rowsPerPage,
+                    show: localizedTexts.show,
+                }}
+                useResultsOfText={boolean('Use results of text', Paginator.defaultProps.useResultsOfText)}
+            />
+        </>
     );
 };
