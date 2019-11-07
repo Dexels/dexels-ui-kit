@@ -23,28 +23,54 @@ const Tooltip = ({
         const spaceFromRightSide = docWidth - hoveredItem.right;
         const spaceFromLeftSide = hoveredItem.left;
 
-        if (spaceFromBottom < 100) {
-            if (spaceFromTop < 100) {
-                if (spaceFromRightSide < 100) {
-                    setTooltipPosition('left');
-                } else if (spaceFromLeftSide < 100) {
-                    setTooltipPosition('right');
+        if (tooltipPosition.toLowerCase() === 'bottom') {
+            if (spaceFromBottom < 100) {
+                if (spaceFromTop < 100) {
+                    if (spaceFromRightSide < 100) {
+                        setTooltipPosition('left');
+                    } else if (spaceFromLeftSide < 100) {
+                        setTooltipPosition('right');
+                    }
+                } else {
+                    setTooltipPosition('top');
                 }
-            } else {
-                setTooltipPosition('top');
             }
-        } else if (spaceFromTop < 100) {
+        } else if (tooltipPosition.toLowerCase() === 'top') {
+            if (spaceFromTop < 100) {
+                if (spaceFromBottom < 100) {
+                    if (spaceFromRightSide < 100) {
+                        setTooltipPosition('left');
+                    } else if (spaceFromBottom < 100) {
+                        setTooltipPosition('right');
+                    }
+                } else {
+                    setTooltipPosition('bottom');
+                }
+            }
+        } else if (tooltipPosition.toLowerCase() === 'right') {
             if (spaceFromRightSide < 100) {
-                setTooltipPosition('left');
-            } else if (spaceFromBottom < 100) {
-                setTooltipPosition('right');
-            } else {
-                setTooltipPosition('bottom');
+                if (spaceFromBottom < 100) {
+                    if (spaceFromTop < 100) {
+                        setTooltipPosition('left');
+                    } else {
+                        setTooltipPosition('top');
+                    }
+                } else {
+                    setTooltipPosition('bottom');
+                }
             }
-        } else if (spaceFromRightSide < 100) {
-            setTooltipPosition('left');
-        } else if (spaceFromLeftSide < 100) {
-            setTooltipPosition('right');
+        } else if (tooltipPosition.toLowerCase() === 'left') {
+            if (spaceFromLeftSide < 100) {
+                if (spaceFromBottom < 100) {
+                    if (spaceFromTop < 100) {
+                        setTooltipPosition('right');
+                    } else {
+                        setTooltipPosition('top');
+                    }
+                } else {
+                    setTooltipPosition('bottom');
+                }
+            }
         }
     };
 
@@ -54,6 +80,8 @@ const Tooltip = ({
     };
 
     const handleOnMouseOver = (element) => {
+        setTooltipPosition('bottom');
+
         if (timeoutId) {
             clearTimeout(timeoutId);
             setTimeoutId(null);

@@ -68,12 +68,13 @@ export const Configurable = () => {
                 style={{
                     position: 'absolute',
                     right: '190px',
+                    top: '100px',
                 }}
                 type={'button'}
             >
                 <TextIcon
                     data-tooltip-component={'click 3'}
-                    data-tooltip-delay
+                    data-tooltip-position={'left'}
                     text={'A'}
                 />
             </div>
