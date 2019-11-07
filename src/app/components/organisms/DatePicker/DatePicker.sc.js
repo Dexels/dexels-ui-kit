@@ -73,6 +73,10 @@ export const StyledDatePicker = styled.div`
         }
     }
 
+    .SingleDatePicker_picker {
+        background-color: transparent;
+    }
+
     .SingleDatePickerInput_calendarIcon {
         position: absolute;
         top: 0;
