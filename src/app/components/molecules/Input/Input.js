@@ -1,13 +1,8 @@
-import {
-    ErrorMessageWrapper,
-    LabelWrapper,
-    StyledInput,
-    TextField,
-} from './Input.sc';
+import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import { INPUT_TYPES, INPUT_VARIANTS } from './Input.consts';
 import React, { useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
-import Label from '../../atoms/Label/Label';
+import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import PropTypes from 'prop-types';
 
 const Input = ({
@@ -62,22 +57,17 @@ const Input = ({
                     value={value}
                     variant={variant}
                 />
-                <LabelWrapper
-                    hasValue={hasValue}
+                <FormElementLabel
+                    hasError={hasError}
+                    isActive={hasValue}
+                    isDisabled={isDisabled}
                     isFocused={isFocused}
+                    isSmall={hasValue || isFocused}
+                    isValid={isValid}
                     variant={variant}
                 >
-                    <Label
-                        hasError={hasError}
-                        isActive={hasValue}
-                        isDisabled={isDisabled}
-                        isFocused={isFocused}
-                        isSmall={hasValue || isFocused}
-                        isValid={isValid}
-                    >
-                        {label}
-                    </Label>
-                </LabelWrapper>
+                    {label}
+                </FormElementLabel>
             </StyledInput>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>

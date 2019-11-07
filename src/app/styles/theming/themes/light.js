@@ -1,6 +1,6 @@
-import basicTheme from './basic';
 import createDuiTheme from '../createDuiTheme';
+import { themeBasic } from './basic';
 
-const themeLight = createDuiTheme(basicTheme, {});
+export const themeLight = createDuiTheme(themeBasic, {});
 
 export default themeLight;

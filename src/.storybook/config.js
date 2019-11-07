@@ -1,15 +1,21 @@
 import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
+import 'react-dates/lib/css/_datepicker.css';
+import 'react-dates/initialize';
 import { addDecorator, addParameters, configure } from '@storybook/react';
+import moment from 'moment';
 import React from 'react';
-import themeBasic from '../app/styles/theming/themes/basic';
-import themeLight from '../app/styles/theming/themes/light';
+import { themeBasic } from '../app/styles/theming/themes/basic';
+import { themeLight } from '../app/styles/theming/themes/light';
 // This seems like a ESLint bug
 // eslint-disable-next-line import/no-unresolved
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
+
+// Set Moment locale to Dutch
+moment.locale('nl');
 
 // Make info and knobs addons available in all stories
 addDecorator(withInfo);
