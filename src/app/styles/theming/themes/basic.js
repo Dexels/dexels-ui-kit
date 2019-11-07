@@ -94,11 +94,11 @@ export const themeBasic = {
         let css = '';
 
         if (rest.length) {
-            throw Error('The spacing function excepts between one and four arguments.');
+            throw Error('The spacing function expects between one and four arguments.');
         }
 
         if (factor1 === undefined) {
-            throw Error('You should atleast require one factor.');
+            throw Error('You should atleast pass one factor.');
         } else {
             css += `${spacing * factor1}${unit}`;
         }
