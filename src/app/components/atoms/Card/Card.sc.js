@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledCard = styled.div`
-    ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
-    ${({ position }) => getPosition(position)};
-    ${({ elevation }) => getElevation(elevation)};
+    ${setBoxSizing()}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
+    ${({ position }) => getPosition(position)}
+    ${({ elevation }) => getElevation(elevation)}
     display: flex;
     background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(1)};

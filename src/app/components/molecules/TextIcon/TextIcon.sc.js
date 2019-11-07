@@ -3,8 +3,8 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledTextIcon = styled.div`
-    ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${setBoxSizing()}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     border: 0;
     border-radius: 100%;
     background-color: ${({ theme }) => theme.shades.four};

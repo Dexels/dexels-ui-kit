@@ -8,31 +8,31 @@ export const StyledStatusIndicator = styled.div`
 
     ${({ placement }) => css`
         border-${placement.toLowerCase()}: 8px solid;
-    `};
+    `}
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.NONE && css`
         border-color: transparent;
-    `};
+    `}
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DISABLED && css`
         border-color: ${({ theme }) => theme.colorDisabled};
-    `};
+    `}
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.ERROR && css`
         border-color: ${({ theme }) => theme.colorInvalid};
-    `};
+    `}
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.VALID && css`
         border-color: ${({ theme }) => theme.colorValid};
-    `};
+    `}
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.DEFAULT && css`
         border-color: ${({ theme }) => theme.colorPrimary};
-    `};
+    `}
 
     ${({ status }) => status === STATUS_INDICATOR_STATUSES.WARNING && css`
         border-color: ${({ theme }) => theme.colorAlert};
-    `};
+    `}
 `;
 
 StyledStatusIndicator.propTypes = {

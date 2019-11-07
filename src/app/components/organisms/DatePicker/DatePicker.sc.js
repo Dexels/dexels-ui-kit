@@ -10,11 +10,11 @@ export const InputIcon = styled.div`
 
     ${({ isFocused, theme }) => isFocused && css`
         color: ${theme.colorSecondary};
-    `};
+    `}
 
     ${({ isDisabled, theme }) => isDisabled && css`
         color: ${theme.colorDisabled};
-    `};
+    `}
 `;
 
 InputIcon.propTypes = {
@@ -28,7 +28,7 @@ InputIcon.defaultProps = {
 };
 
 export const StyledDatePicker = styled.div`
-    ${setBoxSizing()};
+    ${setBoxSizing()}
     position: relative;
 
     /* Input styling */
@@ -53,7 +53,7 @@ export const StyledDatePicker = styled.div`
     }
 
     .DateInput_input {
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
         display: block;
         outline: none;
         border: 1px solid ${({ theme }) => theme.colorPrimary};
@@ -102,7 +102,7 @@ export const StyledDatePicker = styled.div`
     }
 
     .DayPicker__withBorder {
-        ${getElevation(ELEVATIONS.LEVEL_6)};
+        ${getElevation(ELEVATIONS.LEVEL_6)}
         border-radius: ${({ theme }) => theme.spacing(1)};
     }
 
@@ -119,7 +119,7 @@ export const StyledDatePicker = styled.div`
     }
 
     .DayPicker_weekHeader_li  {
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
         text-transform: capitalize;
         color: ${({ theme }) => theme.shades.one};
         font-weight: 600;
@@ -134,11 +134,11 @@ export const StyledDatePicker = styled.div`
 
         ${({ hasYearSelector }) => hasYearSelector && css`
             display: none;
-        `};
+        `}
     }
 
     .CalendarDay__default {
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
         position: relative;
         outline: none;
         border: 1px solid ${({ theme }) => theme.shades.nine};
@@ -249,11 +249,11 @@ export const ButtonNavigation = styled.div`
 
     ${({ isNext }) => isNext && css`
         right: 20px
-    `};
+    `}
 
     ${({ isPrev }) => isPrev && css`
         left: 20px;
-    `};
+    `}
 `;
 
 ButtonNavigation.propTypes = {

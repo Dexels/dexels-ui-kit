@@ -6,7 +6,7 @@ import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 
 export const StyledTabs = styled.div`
-    ${({ elevation }) => getElevation(elevation)};
+    ${({ elevation }) => getElevation(elevation)}
 `;
 
 StyledTabs.propTypes = {
@@ -14,7 +14,7 @@ StyledTabs.propTypes = {
 };
 
 export const TabHeader = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
     appearance: none;
     position: relative;
     outline: none;
@@ -30,19 +30,19 @@ export const TabHeader = styled.button`
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
-    `};
+    `}
 
     ${({ isActive, theme }) => isActive && css`
         border-bottom-color: ${theme.colorPrimary};
-    `};
+    `}
 
     ${({ isDisabled, theme }) => isDisabled && css`
-        pointer-events: none;
         color: ${theme.colorDisabled};
-    `};
+        pointer-events: none;
+    `}
 
     &:after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)};
+        ${({ theme }) => rippleEffect(theme.colorSecondary)}
     }
 
     &:active,
@@ -52,7 +52,7 @@ export const TabHeader = styled.button`
     }
 
     &:active:after {
-        ${rippleEffectReset()};
+        ${rippleEffectReset()}
     }
 `;
 
@@ -68,7 +68,7 @@ TabHeader.defaultProps = {
 };
 
 export const TabHeaderList = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     display: flex;
     flex-wrap: nowrap;
     border-bottom: 1px solid ${({ theme }) => theme.shades.five};
@@ -83,7 +83,7 @@ TabHeaderList.defaultProps = {
 };
 
 export const TabPanel = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
 `;
 
 TabPanel.propTypes = {
