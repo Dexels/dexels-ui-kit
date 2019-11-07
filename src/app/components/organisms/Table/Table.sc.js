@@ -52,6 +52,7 @@ export const TableBody = styled.tbody`
 
 export const TableRow = styled.tr`
     position: relative;
+    /* border-spacing: ${({ theme }) => theme.spacing(0.125)}; */
     z-index: 1;
 
     ${({ isClickable }) => isClickable && css`

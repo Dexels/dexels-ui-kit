@@ -3,17 +3,16 @@ import moment from 'moment';
 import React from 'react';
 import { STATUS_INDICATOR_STATUSES } from '../../../atoms/StatusIndicator/StatusIndicator.consts';
 
-const makeTableData = (nrOfEntries = 15) => {
+const makeTableData = (amount = 15) => {
     const result = [];
-    let i = 1;
 
-    for (i = 1; i <= nrOfEntries; i += 1) {
+    for (let i = 1; i <= amount; i += 1) {
         result.push({
-            companyName: `Dexels ${i.toString()}`,
-            firstName: `Firstname ${i.toString()}`,
+            companyName: `Dexels ${i}`,
+            firstName: `Firstname ${i}`,
             infix: undefined,
             info: undefined,
-            lastName: `Lastname ${i.toString()}`,
+            lastName: `Lastname ${i}`,
             matchTaskStatus: `${MATCH_TASK_STATUSES.NO_FIELD}`,
             relationStart: moment(),
             status: `${STATUS_INDICATOR_STATUSES.VALID}`,

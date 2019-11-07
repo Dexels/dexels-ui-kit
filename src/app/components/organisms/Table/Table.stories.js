@@ -19,6 +19,7 @@ export default {
     },
     title: 'organisms/Table',
 };
+export default { title: 'organisms/Table' };
 
 /* @TODO: figure out how to rerender the table instance after state changes. Most likely with React.useEffect */
 export const Configurable = () => {

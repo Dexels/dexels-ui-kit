@@ -61,7 +61,6 @@ export const tableColumnsWithGroupHeader = () => (
             columns: [
                 {
                     Cell: (row) => renderStatusCell(row.cell.row.original.matchTaskStatus, row.cell.value),
-                    // The Header tag is not necessary so I left this to indicate that
                     // Header: 'Status',
                     accessor: 'status',
                     disableSorting: true,

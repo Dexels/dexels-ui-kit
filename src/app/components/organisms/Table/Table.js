@@ -38,7 +38,6 @@ const Table = ({
                 {caption}
             </TableCaption>
         )}
-
         <StyledTable
             debug={debug}
             elevation={elevation}
