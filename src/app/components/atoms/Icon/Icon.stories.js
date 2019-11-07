@@ -19,12 +19,12 @@ export const Configurable = () => {
             style={{
                 color: select('Color', colors, colors['colorHeaderText-primary']),
                 fontSize: select('Size', {
-                    XS: '12px',
-                    S: '16px',
-                    M: '20px',
-                    L: '24px',
-                    XL: '28px',
-                    XXL: '32px',
+                    XSMALL: '12px',
+                    SMALL: '16px',
+                    MEDIUM: '20px',
+                    LARGE: '24px',
+                    XLARGE: '28px',
+                    XXLARGE: '32px',
                 }, '24px'),
             }}
         >

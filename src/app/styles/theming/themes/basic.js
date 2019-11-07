@@ -193,6 +193,13 @@ themeBasic.textStyles.buttonSmall = {
     lineHeight: '22px',
 };
 
+themeBasic.textStyles.buttonXLarge = {
+    fontFamily: themeBasic.fontFamilySecondary,
+    fontSize: '18px',
+    fontWeight: '600',
+    lineHeight: '22px',
+};
+
 themeBasic.textStyles.caption = {
     fontFamily: themeBasic.fontFamilyPrimary,
     fontSize: '12px',

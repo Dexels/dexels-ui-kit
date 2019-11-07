@@ -13,7 +13,6 @@ import transitionEffect from '../../../styles/mixins/transitionEffect';
 export const StyledSelectionControl = styled.div`
     ${setBoxSizing()}
     display: flex;
-    flex-wrap: nowrap;
 `;
 
 /* eslint-disable indent */
