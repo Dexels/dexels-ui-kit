@@ -3,5 +3,6 @@
         "dbaeumer.vscode-eslint",
         "editorconfig.editorconfig",
         "jpoissonnier.vscode-styled-components",
+        "shinnn.stylelint",
     ],
 }
