@@ -6,7 +6,7 @@
     "files.associations": {
         "*.js": "javascriptreact",
     },
+    "files.eol": "\n",
     "files.trimTrailingWhitespace": true,
     "typescript.validate.enable": false,
-    "files.eol": "\n",
 }
