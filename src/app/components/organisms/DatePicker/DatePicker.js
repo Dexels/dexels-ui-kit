@@ -1,12 +1,13 @@
 import { ButtonNavigation, InputIcon, StyledDatePicker } from './DatePicker.sc';
+import React, { useContext } from 'react';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import DateNavigation from './DateNavigation/DateNavigation';
 import FormElementLabel from '../../molecules/FormElementLabel/FormElementLabel';
 import Icon from '../../atoms/Icon/Icon';
 import momentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { SingleDatePicker } from 'react-dates';
+import { ThemeContext } from 'styled-components';
 
 const DatePicker = ({
     date,
@@ -28,53 +29,57 @@ const DatePicker = ({
     onFocusChange,
     placeholder,
     yearCount,
-}) => (
-    <StyledDatePicker hasYearSelector={hasYearSelector}>
-        <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused}>
-            {label}
-        </FormElementLabel>
-        <SingleDatePicker
-            customInputIcon={(
-                <InputIcon isDisabled={isDisabled} isFocused={isFocused}>
-                    <Icon type={Icon.types.CALENDAR} />
-                </InputIcon>
-            )}
-            date={date}
-            daySize={daySize}
-            disabled={isDisabled}
-            displayFormat={displayFormat}
-            focused={isFocused}
-            hideKeyboardShortcutsPanel
-            id={id}
-            isDayHighlighted={isDayHighlighted}
-            isOutsideRange={isOutsideRange}
-            keepOpenOnDateSelect={keepOpenOnDateSelect}
-            navNext={(
-                <ButtonNavigation isNext>
-                    <ButtonIcon iconType={ButtonIcon.types.CHEVRONRIGHT} />
-                </ButtonNavigation>
-            )}
-            navPrev={(
-                <ButtonNavigation isPrev>
-                    <ButtonIcon iconType={ButtonIcon.types.CHEVRONLEFT} />
-                </ButtonNavigation>
-            )}
-            numberOfMonths={numberOfMonths}
-            onClose={onClose}
-            onDateChange={onDateChange}
-            onFocusChange={onFocusChange}
-            placeholder={placeholder}
-            renderMonthElement={(props) => DateNavigation({
-                ...props,
-                hasYearSelector,
-                labelMonth,
-                labelYear,
-                yearCount,
-            })}
-            verticalSpacing={8}
-        />
-    </StyledDatePicker>
-);
+}) => {
+    const { spacingValue } = useContext(ThemeContext);
+
+    return (
+        <StyledDatePicker hasYearSelector={hasYearSelector}>
+            <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused}>
+                {label}
+            </FormElementLabel>
+            <SingleDatePicker
+                customInputIcon={(
+                    <InputIcon isDisabled={isDisabled} isFocused={isFocused}>
+                        <Icon type={Icon.types.CALENDAR} />
+                    </InputIcon>
+                )}
+                date={date}
+                daySize={daySize}
+                disabled={isDisabled}
+                displayFormat={displayFormat}
+                focused={isFocused}
+                hideKeyboardShortcutsPanel
+                id={id}
+                isDayHighlighted={isDayHighlighted}
+                isOutsideRange={isOutsideRange}
+                keepOpenOnDateSelect={keepOpenOnDateSelect}
+                navNext={(
+                    <ButtonNavigation isNext>
+                        <ButtonIcon iconType={ButtonIcon.types.CHEVRONRIGHT} />
+                    </ButtonNavigation>
+                )}
+                navPrev={(
+                    <ButtonNavigation isPrev>
+                        <ButtonIcon iconType={ButtonIcon.types.CHEVRONLEFT} />
+                    </ButtonNavigation>
+                )}
+                numberOfMonths={numberOfMonths}
+                onClose={onClose}
+                onDateChange={onDateChange}
+                onFocusChange={onFocusChange}
+                placeholder={placeholder}
+                renderMonthElement={(props) => DateNavigation({
+                    ...props,
+                    hasYearSelector,
+                    labelMonth,
+                    labelYear,
+                    yearCount,
+                })}
+                verticalSpacing={(spacingValue * 6) - 40}
+            />
+        </StyledDatePicker>
+    );
+};
 
 DatePicker.propTypes = {
     date: momentPropTypes.momentObj,

@@ -73,10 +73,15 @@ export const StyledDatePicker = styled.div`
         }
     }
 
+    .SingleDatePicker_picker {
+        background-color: transparent;
+    }
+
     .SingleDatePickerInput_calendarIcon {
         position: absolute;
-        top: 0;
+        top: 50%;
         right: 0;
+        transform: translate3d(0, -50%, 0);
         z-index: 1;
         margin: 0;
         outline: none;
@@ -177,12 +182,12 @@ export const StyledDatePicker = styled.div`
         &::after {
             display: block;
             position: absolute;
-            bottom: ${({ theme }) => theme.spacing(0.5)};
-            left: ${({ theme }) => theme.spacing(2.25)};
+            bottom: 4px;
+            left: 18px;
             border-radius: 100%;
             background-color: ${({ theme }) => theme.colorPrimary};
-            width: ${({ theme }) => theme.spacing(0.5)};
-            height: ${({ theme }) => theme.spacing(0.5)};
+            width: 4px;
+            height: 4px;
             content: '';
         }
 
@@ -243,12 +248,12 @@ export const ButtonNavigation = styled.div`
     position: absolute;
     top: ${({ theme }) => theme.spacing(2)};
 
-    ${({ isNext, theme }) => isNext && css`
-        right: ${theme.spacing(2.5)};
+    ${({ isNext }) => isNext && css`
+        right: 20px
     `}
 
-    ${({ isPrev, theme }) => isPrev && css`
-        left: ${theme.spacing(2.5)};
+    ${({ isPrev }) => isPrev && css`
+        left: 20px;
     `}
 `;
 
