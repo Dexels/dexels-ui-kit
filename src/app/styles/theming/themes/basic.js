@@ -84,14 +84,17 @@ export const themeBasic = {
     colorBodyText: {},
     fontFamilyPrimary: "'Open Sans', arial, sans-serif",
     fontFamilySecondary: "'Exo 2', sans-serif",
-    spacingValue: '8px',
+    spacingValue: 16,
     textStyles: {},
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
     },
     spacing(factor1, factor2, factor3, factor4, ...rest) {
-        const [spacing, unit] = this.spacingValue.match(/[a-z]+|[^a-z]+/gi);
         let css = '';
+
+        if (typeof this.spacingValue !== 'number') {
+            throw Error(`The spacing value should a be number instead of a ${typeof this.spacingValue}`);
+        }
 
         if (rest.length) {
             throw Error('The spacing function expects between one and four arguments.');
@@ -100,19 +103,19 @@ export const themeBasic = {
         if (factor1 === undefined) {
             throw Error('You should atleast pass one factor.');
         } else {
-            css += `${spacing * factor1}${unit}`;
+            css += `${this.spacingValue * factor1}px`;
         }
 
         if (factor2 !== undefined) {
-            css += ` ${spacing * factor2}${unit}`;
+            css += ` ${this.spacingValue * factor2}px`;
         }
 
         if (factor3 !== undefined) {
-            css += ` ${spacing * factor3}${unit}`;
+            css += ` ${this.spacingValue * factor3}px`;
         }
 
         if (factor4 !== undefined) {
-            css += ` ${spacing * factor4}${unit}`;
+            css += ` ${this.spacingValue * factor4}px`;
         }
 
         return css;
