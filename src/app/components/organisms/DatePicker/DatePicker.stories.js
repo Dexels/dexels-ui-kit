@@ -19,6 +19,7 @@ export const Default = () => {
             isFocused={isFocused}
             keepOpenOnDateSelect={boolean('Keep open on date select', DatePicker.defaultProps.keepOpenOnDateSelect)}
             label={text('Label', 'Speeldatum')}
+            numberOfMonths={number('Number of months', DatePicker.defaultProps.numberOfMonths)}
             onDateChange={(newDate) => {
                 setDate(newDate);
             }}
@@ -48,6 +49,7 @@ export const WithYearSelector = () => {
             label={text('Label', 'Geboortedatum')}
             labelMonth={text('Label month', 'Maand')}
             labelYear={text('Label year', 'Jaar')}
+            numberOfMonths={number('Number of months', DatePicker.defaultProps.numberOfMonths)}
             onDateChange={(newDate) => {
                 setDate(newDate);
             }}
