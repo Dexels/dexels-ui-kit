@@ -5,7 +5,7 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledColors = styled.div`
-    ${setBoxSizing()};
+    ${setBoxSizing()}
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -23,7 +23,7 @@ export const ColorGroup = styled.div`
 `;
 
 export const ColorGroupName = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
     position: absolute;
     top: -32px;
     left: 50%;
@@ -58,7 +58,7 @@ Color.propTypes = {
 };
 
 export const ColorText = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     flex: 0 0 auto;
     margin: 0;
     text-align: center;

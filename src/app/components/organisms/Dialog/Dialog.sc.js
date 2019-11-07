@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledDialog = styled.div`
-    ${setBoxSizing()};
-    ${({ elevation }) => getElevation(elevation)};
+    ${setBoxSizing()}
+    ${({ elevation }) => getElevation(elevation)}
     margin: auto;
     border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
@@ -51,11 +51,11 @@ export const ButtonClose = styled.button`
 
     ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`
         left: 2px;
-    `};
+    `}
 
     ${({ position }) => position === DIALOG_DIRECTIONS.RTL && css`
         right: 2px;
-    `};
+    `}
 
     &:active,
     &:hover {
@@ -78,8 +78,8 @@ ButtonClose.defaultProps = {
 };
 
 export const Header = styled.header`
-    ${({ alignment }) => getAlignment(alignment)};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
+    ${({ alignment }) => getAlignment(alignment)}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
     display: flex;
     align-items: center;
     border-top-left-radius: ${({ theme }) => theme.spacing(1)};
@@ -100,15 +100,15 @@ Header.defaultProps = {
 };
 
 export const Body = styled.div`
-    ${({ alignment }) => getAlignment(alignment)};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    ${({ alignment }) => getAlignment(alignment)}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(2)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ hasHeader, theme }) => !hasHeader && css`
         border-radius: ${theme.spacing(1, 1, 0, 0)};
-    `};
+    `}
 `;
 
 Body.propTypes = {

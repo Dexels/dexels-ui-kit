@@ -42,7 +42,7 @@ export const StyledTextWithOptionalIcon = styled.div`
             order: 2;
             margin: ${theme.spacing(0, 0, 0, 0.75)};
         }
-    `};
+    `}
 `;
 
 StyledTextWithOptionalIcon.propTypes = {

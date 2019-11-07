@@ -5,11 +5,11 @@ import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 
 export const StyledCardStatusWrapper = styled.div`
-    ${({ elevation }) => getElevation(elevation)};
+    ${({ elevation }) => getElevation(elevation)}
 
     ${({ hasBorderRadius, theme }) => hasBorderRadius && css`
         border-radius: ${theme.spacing(0.5)};
-    `};
+    `}
 `;
 
 StyledCardStatusWrapper.propTypes = {
