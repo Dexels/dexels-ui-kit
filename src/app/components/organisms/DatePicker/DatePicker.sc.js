@@ -79,8 +79,9 @@ export const StyledDatePicker = styled.div`
 
     .SingleDatePickerInput_calendarIcon {
         position: absolute;
-        top: 0;
+        top: 50%;
         right: 0;
+        transform: translate3d(0, -50%, 0);
         z-index: 1;
         margin: 0;
         outline: none;
