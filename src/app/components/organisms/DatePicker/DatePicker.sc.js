@@ -181,12 +181,12 @@ export const StyledDatePicker = styled.div`
         &::after {
             display: block;
             position: absolute;
-            bottom: ${({ theme }) => theme.spacing(0.5)};
-            left: ${({ theme }) => theme.spacing(2.25)};
+            bottom: 4px;
+            left: 18px;
             border-radius: 100%;
             background-color: ${({ theme }) => theme.colorPrimary};
-            width: ${({ theme }) => theme.spacing(0.5)};
-            height: ${({ theme }) => theme.spacing(0.5)};
+            width: 4px;
+            height: 4px;
             content: '';
         }
 
@@ -247,12 +247,12 @@ export const ButtonNavigation = styled.div`
     position: absolute;
     top: ${({ theme }) => theme.spacing(2)};
 
-    ${({ isNext, theme }) => isNext && css`
-        right: ${theme.spacing(2.5)};
+    ${({ isNext }) => isNext && css`
+        right: 20px
     `};
 
-    ${({ isPrev, theme }) => isPrev && css`
-        left: ${theme.spacing(2.5)};
+    ${({ isPrev }) => isPrev && css`
+        left: 20px;
     `};
 `;
 
