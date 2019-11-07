@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const StyledHeader = styled.div`
-    ${({ elevation }) => getElevation(elevation)};
+    ${({ elevation }) => getElevation(elevation)}
     display: flex;
     flex-direction: row;
     background: ${({ isInverted, theme }) => (isInverted ? theme.shades.nine : theme.colorPrimary)};
@@ -25,7 +25,7 @@ export const NavigationWrapper = styled.div`
 `;
 
 export const Title = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     display: flex;
     flex-direction: column;
     justify-content: center;

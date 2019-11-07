@@ -6,8 +6,8 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledCardNoResults = styled.div`
-    ${setBoxSizing()};
-    ${({ elevation }) => getElevation(elevation)};
+    ${setBoxSizing()}
+    ${({ elevation }) => getElevation(elevation)}
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -25,7 +25,7 @@ StyledCardNoResults.defaultProps = {
 };
 
 export const Header = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
     margin: ${({ theme }) => theme.spacing(0, 0, 2)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
@@ -39,7 +39,7 @@ Header.defaultProps = {
 };
 
 export const Title = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
     margin: ${({ theme }) => theme.spacing(0.5, 0.5, 0.5, 0)};
     color: ${({ theme }) => theme.colorHeaderText.secondary};
 `;
@@ -53,7 +53,7 @@ Title.defaultProps = {
 };
 
 export const Item = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     margin: ${({ theme }) => theme.spacing(0, 0, 0.5)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
@@ -82,7 +82,7 @@ Left.defaultProps = {
 
 export const IconWrapper = styled.div`
     color: ${({ theme }) => theme.colorHeaderText.primary};
-    font-size: 30px; /* @TODO: this should be something like theme.availableTextStyles().icon1  */
+    font-size: 30px;
 
     span {
         display: block;

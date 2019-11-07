@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 
 export const StyledInputPassword = styled.div`
-    ${setBoxSizing()};
+    ${setBoxSizing()}
     position: relative;
 `;
 
 export const VisibilitySwitch = styled.button`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
     appearance: none;
     position: absolute;
     margin: 0;
@@ -20,26 +20,26 @@ export const VisibilitySwitch = styled.button`
     cursor: pointer;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
+    span {
+        display: block;
+    }
+
     ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
         top: 0;
         right: 0;
         padding: ${theme.spacing(0, 0, 0, 1)};
-    `};
+    `}
 
     ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.OUTLINE && css`
         top: ${theme.spacing(1)};
         right: ${theme.spacing(1)};
         padding: ${theme.spacing(0.5, 1)};
-    `};
+    `}
 
     ${({ isDisabled, theme }) => isDisabled && css`
         color: ${theme.colorDisabled};
         pointer-events: none;
-    `};
-
-    span {
-        display: block;
-    }
+    `}
 `;
 
 VisibilitySwitch.propTypes = {

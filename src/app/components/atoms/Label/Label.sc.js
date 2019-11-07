@@ -6,35 +6,35 @@ import setTruncate from '../../../styles/mixins/setTruncate';
 export const StyledLabel = styled.label`
     ${({ isSmall, theme }) => theme.textStyling(
         isSmall ? theme.availableTextStyles().caption : theme.availableTextStyles().body1,
-    )};
-    ${({ isTruncatable }) => isTruncatable && setTruncate()};
+    )}
+    ${({ isTruncatable }) => isTruncatable && setTruncate()}
     display: block;
     cursor: inherit;
     color: ${({ theme }) => theme.shades.four};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
         color: ${({ theme }) => theme.colorHeaderText.primary};
-    `};
+    `}
 
     ${({ isActive }) => isActive && css`
         color: ${({ theme }) => theme.colorHeaderText.primary};
-    `};
+    `}
 
     ${({ isFocused }) => isFocused && css`
         color: ${({ theme }) => theme.colorHeaderText.secondary};
-    `};
+    `}
 
     ${({ isValid }) => isValid && css`
         color: ${({ theme }) => theme.colorValid};
-    `};
+    `}
 
     ${({ hasError }) => hasError && css`
         color: ${({ theme }) => theme.colorInvalid};
-    `};
+    `}
 
     ${({ isDisabled }) => isDisabled && css`
         color: ${({ theme }) => theme.colorDisabled};
-    `};
+    `}
 `;
 
 StyledLabel.propTypes = {

@@ -3,8 +3,8 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledDialogFooter = styled.footer`
-    ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${setBoxSizing()}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -23,7 +23,7 @@ StyledDialogFooter.defaultProps = {
 };
 
 export const TextWrapper = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     flex: 1 1 auto;
     padding: ${({ theme }) => theme.spacing(0, 1, 0, 0)};
     word-break: break-word;

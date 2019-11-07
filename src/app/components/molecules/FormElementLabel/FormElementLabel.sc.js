@@ -13,7 +13,7 @@ export const StyledFormElementLabel = styled.div`
     ${({ isActive, theme, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.COMPACT && css`
         top: ${isActive ? `-${theme.spacing(2)}` : 0};
         left: 0;
-    `};
+    `}
 
     ${({ isActive, theme, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.OUTLINE && css`
         top: ${isActive ? `-${theme.spacing(1)}` : theme.spacing(1.5)};
@@ -33,8 +33,8 @@ export const StyledFormElementLabel = styled.div`
                 height: 1px;
                 content: '';
             }
-        `};
-    `};
+        `}
+    `}
 `;
 
 StyledFormElementLabel.propTypes = {
