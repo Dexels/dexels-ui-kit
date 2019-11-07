@@ -8,7 +8,17 @@ export const Text = styled.p`
     order: 2;
     margin: 0;
     word-break: break-word;
+
+    ${({ isCapitalized }) => isCapitalized && css`
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    `}
 `;
+
+Text.propTypes = {
+    isCapitalized: PropTypes.bool.isRequired,
+};
 
 export const IconWrapper = styled.div`
     order: 1;

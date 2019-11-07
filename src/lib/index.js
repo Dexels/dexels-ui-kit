@@ -31,6 +31,7 @@ import ContainerContent from '../app/components/organisms/ContainerContent/Conta
 import DatePicker from '../app/components/organisms/DatePicker/DatePicker';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
+import Table from '../app/components/organisms/Table/Table';
 import Tabs from '../app/components/organisms/Tabs/Tabs';
 
 // Theming
@@ -61,6 +62,7 @@ export {
     DatePicker,
     Dialog,
     InputPassword,
+    Table,
     Tabs,
     // Export theming
     themeBasic,

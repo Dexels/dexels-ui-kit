@@ -9,6 +9,10 @@ export const BUTTON_DIRECTIONS = DIRECTIONS;
 
 export const BUTTON_EASINGS = EASINGS;
 
-export const BUTTON_SIZES = SIZES;
+export const BUTTON_SIZES = {
+    ...SIZES,
+};
+
+delete BUTTON_SIZES.XLARGE;
 
 export const BUTTON_VARIANTS = mapArrayToObject(['FILLED', 'OUTLINE', 'TEXT_ONLY']);
