@@ -48,13 +48,13 @@ export const StyledDatePicker = styled.div`
     }
 
     .DateInput_input {
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)};
         display: block;
         outline: none;
         border: 1px solid ${({ theme }) => theme.colorPrimary};
         border-radius: ${({ theme }) => theme.spacing(1)};
         background-color: ${({ theme }) => theme.background.nine};
         padding: ${({ theme }) => theme.spacing(0, 1.5)};
-        width: 100%;
         height: ${({ theme }) => theme.spacing(6)};
         color: ${({ theme }) => theme.colorHeaderText.primary};
 
