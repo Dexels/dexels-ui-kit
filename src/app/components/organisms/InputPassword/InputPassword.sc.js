@@ -20,6 +20,10 @@ export const VisibilitySwitch = styled.button`
     cursor: pointer;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
+    span {
+        display: block;
+    }
+
     ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
         top: 0;
         right: 0;
@@ -36,14 +40,6 @@ export const VisibilitySwitch = styled.button`
         color: ${theme.colorDisabled};
         pointer-events: none;
     `}
-
-    &:hover {
-        background-color: red;
-    }
-
-    span {
-        display: block;
-    }
 `;
 
 VisibilitySwitch.propTypes = {
