@@ -1,15 +1,17 @@
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledChip = styled.button`
-    ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${setBoxSizing()}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
-    })};
+    })}
     appearance: none;
     position: relative;
     outline: none;
@@ -24,14 +26,14 @@ export const StyledChip = styled.button`
 
     ${({ isSelected }) => isSelected && css`
         background-color: ${({ theme }) => theme.shades.five};
-    `};
+    `}
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
-    `};
+    `}
 
     &:after {
-        ${({ theme }) => rippleEffect(theme.colorTertiary)};
+        ${({ theme }) => rippleEffect(theme.colorTertiary)}
     }
 
     &:active,
@@ -40,12 +42,22 @@ export const StyledChip = styled.button`
 
         ${({ isSelected }) => isSelected && css`
             background-color: ${({ theme }) => theme.shades.seven};
-        `};
+        `}
     }
 
     &:active:after {
-        ${rippleEffectReset()};
+        ${rippleEffectReset()}
     }
 `;
+
+StyledChip.propTypes = {
+    isDisabled: PropTypes.bool.isRequired,
+    isSelected: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+StyledChip.defaultProps = {
+    theme: themeBasic,
+};
 
 export default StyledChip;
