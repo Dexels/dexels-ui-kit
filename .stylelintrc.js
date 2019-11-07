@@ -8,4 +8,5 @@ module.exports = {
         indentation: 4,
         'length-zero-no-unit': true,
     },
+    syntax: 'css-in-js',
 };
