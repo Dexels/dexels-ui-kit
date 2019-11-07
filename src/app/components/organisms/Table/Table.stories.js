@@ -7,17 +7,17 @@ import { createLocalizedTableTexts, getTableRow } from './MockUp/tableFunctions'
 import React, { useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './MockUp/tableColumns';
 import { createTable } from './MockUp/createTable';
+import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
 import { tableData } from './MockUp/tableData';
-import notes from './notes.md';
 
 export default {
-    title: 'organisms/Table',
     parameters: {
         notes,
     },
+    title: 'organisms/Table',
 };
 
 /* @TODO: figure out how to rerender the table instance after state changes. Most likely with React.useEffect */

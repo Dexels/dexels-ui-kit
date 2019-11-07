@@ -5,21 +5,21 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { TABLE_ELEVATIONS } from './Table.consts';
 
 export const TableCaption = styled.div`
-    ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)};
+    ${setBoxSizing()}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
     padding: ${({ theme }) => theme.spacing(0, 0, 4, 0)};
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
 export const StyledTable = styled.table`
-    ${setBoxSizing()};
-    ${({ elevation }) => getElevation(elevation)};
+    ${setBoxSizing()}
+    ${({ elevation }) => getElevation(elevation)}
     background-color: transparent;
     border-spacing: 0;
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
-    `};
+    `}
 `;
 
 StyledTable.propTypes = {
@@ -36,7 +36,7 @@ export const TableHeaderRow = styled.tr`
 `;
 
 export const TableHeaderCell = styled.th`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     border-bottom: 4px solid;
     border-color: ${({ theme }) => theme.colorPrimary};
     background-color: ${({ theme }) => theme.shades.nine};
@@ -52,12 +52,11 @@ export const TableBody = styled.tbody`
 
 export const TableRow = styled.tr`
     position: relative;
-    /* border-spacing: ${({ theme }) => theme.spacing(0.125)}; */
     z-index: 1;
 
     ${({ isClickable }) => isClickable && css`
         cursor: pointer;
-    `};
+    `}
 
     &:nth-child(odd) {
         background-color: ${({ theme }) => theme.shades.nine};
@@ -68,7 +67,7 @@ export const TableRow = styled.tr`
     }
 
     &:hover {
-        ${getElevation(TABLE_ELEVATIONS.LEVEL_3)};
+        ${getElevation(TABLE_ELEVATIONS.LEVEL_3)}
         z-index: 2;
     }
 `;
@@ -78,7 +77,7 @@ TableRow.propTypes = {
 };
 
 export const TableCell = styled.td`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     padding: 0;
     height: ${({ theme }) => theme.spacing(6)};
     text-overflow: ellipsis;
@@ -87,7 +86,7 @@ export const TableCell = styled.td`
 
     ${({ isClickable }) => isClickable && css`
         cursor: pointer;
-    `};
+    `}
 `;
 
 TableCell.propTypes = {

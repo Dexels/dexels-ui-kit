@@ -13,7 +13,7 @@ export const StyledStatusIndicator = styled.div`
 
     ${({ placement }) => css`
         border-${placement.toLowerCase()}: 8px solid;
-    `};
+    `}
 `;
 
 StyledStatusIndicator.propTypes = {
