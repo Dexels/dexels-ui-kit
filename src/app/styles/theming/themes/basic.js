@@ -43,7 +43,7 @@ export const themePropTypes = PropTypes.shape({
     }).isRequired,
     fontFamilyPrimary: PropTypes.string.isRequired,
     fontFamilySecondary: PropTypes.string.isRequired,
-    spacingValue: PropTypes.string.isRequired,
+    spacingValue: PropTypes.number.isRequired,
     textStyles: PropTypes.shape({
         body1: textStylePropTypes.isRequired,
         body2: textStylePropTypes.isRequired,
@@ -84,7 +84,7 @@ export const themeBasic = {
     colorBodyText: {},
     fontFamilyPrimary: "'Open Sans', arial, sans-serif",
     fontFamilySecondary: "'Exo 2', sans-serif",
-    spacingValue: 16,
+    spacingValue: 8,
     textStyles: {},
     availableTextStyles() {
         return mapArrayToObject(Object.keys(this.textStyles));
