@@ -14,6 +14,7 @@ const DatePicker = ({
     hasYearSelector,
     id,
     isDayHighlighted,
+    isDisabled,
     isFocused,
     isOutsideRange,
     keepOpenOnDateSelect,
@@ -28,17 +29,18 @@ const DatePicker = ({
     yearCount,
 }) => (
     <StyledDatePicker hasYearSelector={hasYearSelector}>
-        <FormElementLabel isActive isFocused={isFocused}>
+        <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused}>
             {label}
         </FormElementLabel>
         <SingleDatePicker
             customInputIcon={(
-                <InputIcon isFocused={isFocused}>
+                <InputIcon isDisabled={isDisabled} isFocused={isFocused}>
                     <Icon type={Icon.types.CALENDAR} />
                 </InputIcon>
             )}
             date={date}
             daySize={40}
+            disabled={isDisabled}
             displayFormat={displayFormat}
             focused={isFocused}
             hideKeyboardShortcutsPanel
@@ -79,6 +81,7 @@ DatePicker.propTypes = {
     hasYearSelector: PropTypes.bool,
     id: PropTypes.string.isRequired,
     isDayHighlighted: PropTypes.func,
+    isDisabled: PropTypes.bool,
     isFocused: PropTypes.bool.isRequired,
     isOutsideRange: PropTypes.func,
     keepOpenOnDateSelect: PropTypes.bool,
@@ -98,6 +101,7 @@ DatePicker.defaultProps = {
     displayFormat: 'ddd D MMM Y',
     hasYearSelector: false,
     isDayHighlighted: SingleDatePicker.defaultProps.isDayHighlighted,
+    isDisabled: false,
     isOutsideRange: SingleDatePicker.defaultProps.isOutsideRange,
     keepOpenOnDateSelect: SingleDatePicker.defaultProps.keepOpenOnDateSelect,
     labelMonth: '',

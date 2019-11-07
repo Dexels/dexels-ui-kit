@@ -15,6 +15,7 @@ export const Default = () => {
             displayFormat={text('Display format', DatePicker.defaultProps.displayFormat)}
             id="datepicker"
             isDayHighlighted={(day) => day.day() === 6}
+            isDisabled={boolean('Is disabled', DatePicker.defaultProps.isDisabled)}
             isFocused={isFocused}
             keepOpenOnDateSelect={boolean('Keep open on date select', DatePicker.defaultProps.keepOpenOnDateSelect)}
             label={text('Label', 'Speeldatum')}
@@ -40,6 +41,7 @@ export const WithYearSelector = () => {
             hasYearSelector
             id="datepickerWithYearSelector"
             isDayHighlighted={(day) => day.day() === 5}
+            isDisabled={boolean('Is disabled', DatePicker.defaultProps.isDisabled)}
             isFocused={isFocused}
             isOutsideRange={(day) => day.isAfter(moment(), 'day')}
             keepOpenOnDateSelect={boolean('Keep open on date select', DatePicker.defaultProps.keepOpenOnDateSelect)}
