@@ -59,7 +59,7 @@ const Paginator = ({
                         onChange={(e) => {
                             instance.setPageSize(Number(e.target.value));
                         }}
-                        value={instance.pageSize.toString()}
+                        value={instance.pageSize}
                     >
                         {pageSizes.map((pageSize) => (
                             <option key={pageSize} value={pageSize}>
