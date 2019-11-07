@@ -11,8 +11,14 @@ import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
 import { tableData } from './MockUp/tableData';
+import notes from './notes.md';
 
-export default { title: 'organisms/Table' };
+export default {
+    title: 'organisms/Table',
+    parameters: {
+        notes,
+    },
+};
 
 /* @TODO: figure out how to rerender the table instance after state changes. Most likely with React.useEffect */
 export const Configurable = () => {

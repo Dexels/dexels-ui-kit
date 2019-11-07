@@ -1,7 +1,66 @@
 import mapArrayToObject from '../../../utils/mapArrayToObject';
+import PropTypes from 'prop-types';
+
+export const textStylePropTypes = PropTypes.shape({
+    fontFamily: PropTypes.string.isRequired,
+    fontSize: PropTypes.string.isRequired,
+    fontWeight: PropTypes.string.isRequired,
+    lineHeight: PropTypes.string.isRequired,
+});
 
 /* eslint-disable sort-keys */
-const themeBasic = {
+export const themePropTypes = PropTypes.shape({
+    shades: PropTypes.shape({
+        one: PropTypes.string.isRequired,
+        two: PropTypes.string.isRequired,
+        three: PropTypes.string.isRequired,
+        four: PropTypes.string.isRequired,
+        five: PropTypes.string.isRequired,
+        six: PropTypes.string.isRequired,
+        seven: PropTypes.string.isRequired,
+        eight: PropTypes.string.isRequired,
+        nine: PropTypes.string.isRequired,
+    }).isRequired,
+    colorPrimary: PropTypes.string.isRequired,
+    colorSecondary: PropTypes.string.isRequired,
+    colorTertiary: PropTypes.string.isRequired,
+    colorAlert: PropTypes.string.isRequired,
+    colorInvalid: PropTypes.string.isRequired,
+    colorValid: PropTypes.string.isRequired,
+    background: PropTypes.shape({
+        primary: PropTypes.string.isRequired,
+    }).isRequired,
+    colorContrastText: PropTypes.shape({
+        primary: PropTypes.string.isRequired,
+    }).isRequired,
+    colorHeaderText: PropTypes.shape({
+        primary: PropTypes.string.isRequired,
+        secondary: PropTypes.string.isRequired,
+    }).isRequired,
+    colorBodyText: PropTypes.shape({
+        primary: PropTypes.string.isRequired,
+        secondary: PropTypes.string.isRequired,
+    }).isRequired,
+    fontFamilyPrimary: PropTypes.string.isRequired,
+    fontFamilySecondary: PropTypes.string.isRequired,
+    spacingValue: PropTypes.string.isRequired,
+    textStyles: PropTypes.shape({
+        body1: textStylePropTypes.isRequired,
+        body2: textStylePropTypes.isRequired,
+        buttonLarge: textStylePropTypes.isRequired,
+        buttonMedium: textStylePropTypes.isRequired,
+        buttonSmall: textStylePropTypes.isRequired,
+        caption: textStylePropTypes.isRequired,
+        h1: textStylePropTypes.isRequired,
+        h2: textStylePropTypes.isRequired,
+        h3: textStylePropTypes.isRequired,
+    }).isRequired,
+    availableTextStyles: PropTypes.func.isRequired,
+    spacing: PropTypes.func.isRequired,
+    textStyling: PropTypes.func.isRequired,
+});
+
+export const themeBasic = {
     shades: {
         one: '#002451',
         two: '#324F73',
@@ -165,5 +224,3 @@ themeBasic.textStyles.h3 = {
     fontWeight: '600',
     lineHeight: '24px',
 };
-
-export default themeBasic;

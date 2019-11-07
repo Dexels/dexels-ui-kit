@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
 
@@ -28,6 +29,14 @@ export const IconWrapper = styled.div`
     }
 `;
 
+IconWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
+};
+
 export const StyledTextWithOptionalIcon = styled.div`
     display: flex;
     flex-wrap: nowrap;
@@ -43,9 +52,14 @@ export const StyledTextWithOptionalIcon = styled.div`
             order: 2;
             margin: ${theme.spacing(0, 0, 0, 0.75)};
         }
-    `};
+    `}
 `;
 
 StyledTextWithOptionalIcon.propTypes = {
     direction: PropTypes.oneOf(Object.values(TEXT_WITH_OPTIONAL_ICON_DIRECTIONS)).isRequired,
+    theme: themePropTypes,
+};
+
+StyledTextWithOptionalIcon.defaultProps = {
+    theme: themeBasic,
 };
