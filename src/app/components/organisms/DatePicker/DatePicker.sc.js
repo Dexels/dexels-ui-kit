@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { StyledDatePickerInputIcon } from '../../molecules/DatePickerInputIcon/DatePickerInputIcon.sc';
 
 export const StyledDatePicker = styled.div`
@@ -116,27 +116,4 @@ StyledDatePicker.defaultProps = {
     theme: themeBasic,
 };
 
-export const ButtonNavigation = styled.div`
-    position: absolute;
-    top: ${({ theme }) => theme.spacing(2.5)};
-
-    ${({ isNext }) => isNext && css`
-        right: 20px
-    `}
-
-    ${({ isPrev }) => isPrev && css`
-        left: 20px;
-    `}
-`;
-
-ButtonNavigation.propTypes = {
-    isNext: PropTypes.bool,
-    isPrev: PropTypes.bool,
-    theme: themePropTypes,
-};
-
-ButtonNavigation.defaultProps = {
-    isNext: false,
-    isPrev: false,
-    theme: themeBasic,
-};
+export default StyledDatePicker;

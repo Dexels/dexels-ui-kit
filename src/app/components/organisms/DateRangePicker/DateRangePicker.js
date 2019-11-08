@@ -2,6 +2,7 @@
 import { END_DATE, START_DATE } from 'react-dates/constants';
 import React, { useContext } from 'react';
 import { DateRangePicker as AirbnbDateRangePicker } from 'react-dates';
+import DatePickerButtonNavigation from '../../molecules/DatePickerButtonNavigation/DatePickerButtonNavigation';
 import DatePickerInputIcon from '../../molecules/DatePickerInputIcon/DatePickerInputIcon';
 import DatePickerNavigation from '../../molecules/DatePickerNavigation/DatePickerNavigation';
 import DatePickerWrapper from '../../molecules/DatePickerWrapper/DatePickerWrapper';
@@ -52,6 +53,8 @@ const DateRangePicker = ({
                     focusedInput={focusedInput}
                     hideKeyboardShortcutsPanel
                     keepOpenOnDateSelect={keepOpenOnDateSelect}
+                    navNext={<DatePickerButtonNavigation isNext />}
+                    navPrev={<DatePickerButtonNavigation isPrev />}
                     numberOfMonths={numberOfMonths}
                     onDatesChange={onDatesChange}
                     onFocusChange={onFocusChange}

@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
+// import PropTypes from 'prop-types';
 
 export const StyledDateRangePicker = styled.div`
 `;

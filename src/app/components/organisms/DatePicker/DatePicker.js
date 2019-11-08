@@ -1,7 +1,6 @@
 /* eslint react/jsx-props-no-spreading: 0 */
-import { ButtonNavigation, StyledDatePicker } from './DatePicker.sc';
 import React, { useContext } from 'react';
-import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
+import DatePickerButtonNavigation from '../../molecules/DatePickerButtonNavigation/DatePickerButtonNavigation';
 import DatePickerInputIcon from '../../molecules/DatePickerInputIcon/DatePickerInputIcon';
 import DatePickerNavigation from '../../molecules/DatePickerNavigation/DatePickerNavigation';
 import DatePickerWrapper from '../../molecules/DatePickerWrapper/DatePickerWrapper';
@@ -9,6 +8,7 @@ import FormElementLabel from '../../molecules/FormElementLabel/FormElementLabel'
 import momentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import { SingleDatePicker } from 'react-dates';
+import { StyledDatePicker } from './DatePicker.sc';
 import { ThemeContext } from 'styled-components';
 
 const DatePicker = ({
@@ -52,16 +52,8 @@ const DatePicker = ({
                     isDayHighlighted={isDayHighlighted}
                     isOutsideRange={isOutsideRange}
                     keepOpenOnDateSelect={keepOpenOnDateSelect}
-                    navNext={(
-                        <ButtonNavigation isNext>
-                            <ButtonIcon iconType={ButtonIcon.types.CHEVRONRIGHT} />
-                        </ButtonNavigation>
-                    )}
-                    navPrev={(
-                        <ButtonNavigation isPrev>
-                            <ButtonIcon iconType={ButtonIcon.types.CHEVRONLEFT} />
-                        </ButtonNavigation>
-                    )}
+                    navNext={<DatePickerButtonNavigation isNext />}
+                    navPrev={<DatePickerButtonNavigation isPrev />}
                     numberOfMonths={numberOfMonths}
                     onClose={onClose}
                     onDateChange={onDateChange}
