@@ -2,22 +2,22 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledModal = styled.div`
-    ${setBoxSizing()};
+    ${setBoxSizing()}
     display: flex;
     position: fixed;
     top: 0;
     left: 0;
     flex-direction: column;
     flex-wrap: nowrap;
-    z-index:3;
+    z-index: 3;
     width: 100%;
     height: 100%;
     animation: show .3s;
 
     @keyframes show {
-        from{
+        from {
             transform: scale(0);
-        } to{
+        } to {
             transform: scale(1);
         }
     }
