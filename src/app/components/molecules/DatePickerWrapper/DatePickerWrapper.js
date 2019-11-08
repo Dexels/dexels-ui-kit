@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledDatePickerWrapper } from './DatePickerWrapper.sc';
 
-const DatePickerWrapper = ({ children, hasYearSelector }) => (
-    <StyledDatePickerWrapper hasYearSelector={hasYearSelector}>
+const DatePickerWrapper = ({ children, hasYearSelector, isFocused }) => (
+    <StyledDatePickerWrapper hasYearSelector={hasYearSelector} isFocused={isFocused}>
         {children}
     </StyledDatePickerWrapper>
 );
@@ -11,6 +11,7 @@ const DatePickerWrapper = ({ children, hasYearSelector }) => (
 DatePickerWrapper.propTypes = {
     children: PropTypes.node.isRequired,
     hasYearSelector: PropTypes.bool,
+    isFocused: PropTypes.bool.isRequired,
 };
 
 DatePickerWrapper.defaultProps = {

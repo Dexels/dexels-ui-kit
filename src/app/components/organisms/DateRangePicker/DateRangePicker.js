@@ -36,7 +36,7 @@ const DateRangePicker = ({
     const { spacingValue } = useContext(ThemeContext);
 
     return (
-        <DatePickerWrapper>
+        <DatePickerWrapper isFocused={isFocused}>
             <StyledDateRangePicker>
                 <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused}>
                     {label}
