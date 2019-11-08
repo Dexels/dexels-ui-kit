@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 export const StyledDatePickerInputIcon = styled.div`
     color: ${({ theme }) => theme.colorPrimary};
 
+    span {
+        display: block;
+    }
+
     ${({ isFocused, theme }) => isFocused && css`
         color: ${theme.colorSecondary};
     `}
