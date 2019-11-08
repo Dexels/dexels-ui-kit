@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
 
-const TextWithOptionalIcon = ({ children, direction, iconType }) => (
+const TextWithOptionalIcon = ({
+    children,
+    direction,
+    iconType,
+    isCapitalized,
+}) => (
     <StyledTextWithOptionalIcon direction={direction}>
-        <Text>
+        <Text isCapitalized={isCapitalized}>
             {children}
         </Text>
         {iconType && (
@@ -24,11 +29,13 @@ TextWithOptionalIcon.propTypes = {
     children: PropTypes.node.isRequired,
     direction: PropTypes.oneOf(Object.values(TextWithOptionalIcon.directions)),
     iconType: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconTypes)),
+    isCapitalized: PropTypes.bool,
 };
 
 TextWithOptionalIcon.defaultProps = {
     direction: TextWithOptionalIcon.directions.LTR,
     iconType: null,
+    isCapitalized: false,
 };
 
 export default TextWithOptionalIcon;

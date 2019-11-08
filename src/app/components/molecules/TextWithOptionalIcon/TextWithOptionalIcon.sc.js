@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
 
@@ -7,7 +8,17 @@ export const Text = styled.p`
     order: 2;
     margin: 0;
     word-break: break-word;
+
+    ${({ isCapitalized }) => isCapitalized && css`
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    `}
 `;
+
+Text.propTypes = {
+    isCapitalized: PropTypes.bool.isRequired,
+};
 
 export const IconWrapper = styled.div`
     order: 1;
@@ -17,6 +28,14 @@ export const IconWrapper = styled.div`
         display: block;
     }
 `;
+
+IconWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
+};
 
 export const StyledTextWithOptionalIcon = styled.div`
     display: flex;
@@ -33,9 +52,14 @@ export const StyledTextWithOptionalIcon = styled.div`
             order: 2;
             margin: ${theme.spacing(0, 0, 0, 0.75)};
         }
-    `};
+    `}
 `;
 
 StyledTextWithOptionalIcon.propTypes = {
     direction: PropTypes.oneOf(Object.values(TEXT_WITH_OPTIONAL_ICON_DIRECTIONS)).isRequired,
+    theme: themePropTypes,
+};
+
+StyledTextWithOptionalIcon.defaultProps = {
+    theme: themeBasic,
 };

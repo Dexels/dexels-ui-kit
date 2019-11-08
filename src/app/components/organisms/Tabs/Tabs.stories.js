@@ -1,4 +1,5 @@
 import { boolean, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import React from 'react';
 import Tabs from './Tabs';
@@ -6,9 +7,7 @@ import Tabs from './Tabs';
 export default { title: 'organisms/Tabs' };
 
 const comp = (
-    <Button
-        onClick={() => {}}
-    >
+    <Button onClick={action('On click')}>
         {'Button for Panel 1'}
     </Button>
 );
