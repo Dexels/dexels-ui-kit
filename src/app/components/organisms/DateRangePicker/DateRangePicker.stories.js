@@ -12,6 +12,7 @@ export const Default = () => {
 
     return (
         <DateRangePicker
+            displayFormat={text('Display format', DateRangePicker.defaultProps.displayFormat)}
             endDate={endDate}
             endDateId="daterangepicker_start"
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}

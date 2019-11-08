@@ -14,6 +14,7 @@ import { ThemeContext } from 'styled-components';
 
 const DateRangePicker = ({
     daySize,
+    displayFormat,
     endDate,
     endDateId,
     endDatePlaceholderText,
@@ -47,6 +48,7 @@ const DateRangePicker = ({
                     )}
                     daySize={daySize}
                     disabled={isDisabled}
+                    displayFormat={displayFormat}
                     endDate={endDate}
                     endDateId={endDateId}
                     endDatePlaceholderText={endDatePlaceholderText}
@@ -79,6 +81,7 @@ const DateRangePicker = ({
 
 DateRangePicker.propTypes = {
     daySize: PropTypes.number,
+    displayFormat: PropTypes.string,
     endDate: momentPropTypes.momentObj,
     endDateId: PropTypes.string.isRequired,
     endDatePlaceholderText: PropTypes.string,
@@ -100,6 +103,7 @@ DateRangePicker.propTypes = {
 
 DateRangePicker.defaultProps = {
     daySize: 40,
+    displayFormat: 'ddd D MMM Y',
     endDate: null,
     endDatePlaceholderText: AirbnbDateRangePicker.defaultProps.endDatePlaceholderText,
     focusedInput: null,
