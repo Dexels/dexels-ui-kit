@@ -20,9 +20,7 @@ export const StyledSelectionControl = styled.div`
 export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
-    border: 1px solid ${({ theme }) => theme.colorPrimary};
-    width: ${({ theme }) => theme.spacing(3)};
-    height: ${({ theme }) => theme.spacing(3)};
+    border: 2px solid ${({ theme }) => theme.colorPrimary};
     pointer-events: none;
 
     ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
@@ -37,10 +35,14 @@ export const InputWrapper = styled.div`
 
     ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
         border-radius: ${theme.spacing(0.5)};
+        width: ${theme.spacing(3)};
+        height: ${theme.spacing(3)};
     `}
 
-    ${({ type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
+    ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
         border-radius: 100%;
+        width: ${theme.spacing(2.5)};
+        height: ${theme.spacing(2.5)};
     `}
 
     ${({
@@ -49,7 +51,6 @@ export const InputWrapper = styled.div`
         theme,
         type,
     }) => (isChecked || isIndeterminate) && css`
-        background-color: ${theme.colorPrimary};
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
             &::after {
@@ -119,15 +120,34 @@ export const InputWrapper = styled.div`
         z-index: -1;
         border-radius: 100%;
         background-color: ${({ theme }) => theme.colorTertiary};
-        width: ${({ theme }) => `calc(${theme.spacing(3)} * (1 + 2 / 3))`};
-        height: ${({ theme }) => `calc(${theme.spacing(3)} * (1 + 2 / 3))`};
+        width: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+        height: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
         content: '';
+    }
+
+    &::after {
+        ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
+            background-color: ${theme.colorSecondary};
+        `}
+        animation: pressed .2s;
+
+        @keyframes pressed{
+            from {
+                background-color: ${({ theme }) => theme.colorTertiary};
+            } to {
+                opacity: 0.7;
+                background-color: ${({ theme }) => theme.colorTertiary};
+                width: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+                height: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+            }
+        }
     }
 
     &:hover,
     &:focus {
+        border: 2px solid ${({ theme }) => theme.colorSecondary};
         &::before {
-            opacity: 1;
+            opacity: 0.25;
         }
     }
 
@@ -166,6 +186,8 @@ export const IconWrapper = styled.div`
     ${setCentered()}
     position: absolute;
     z-index: 2;
+    background-color: ${({ theme }) => theme.colorPrimary};
+    /* animation: pressed .3s; */
     color: ${({ theme }) => theme.colorContrastText.primary};
     font-size: ${({ theme }) => theme.spacing(2.5)};
     pointer-events: none;
@@ -173,6 +195,19 @@ export const IconWrapper = styled.div`
     span {
         display: block;
     }
+
+    /* @keyframes pressed{
+        from {
+            background-color: ${({ theme }) => theme.colorTertiary};
+
+        } to {
+            opacity: 0.6;
+            border-radius: 100%;
+            background-color: ${({ theme }) => theme.colorTertiary};
+            width: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+            height: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+        }
+    } */
 `;
 
 IconWrapper.propTypes = {

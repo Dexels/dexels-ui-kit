@@ -13,12 +13,13 @@ export const StyledFormElementLabel = styled.div`
     ${({ isActive, theme, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.COMPACT && css`
         top: ${isActive ? `-${theme.spacing(2)}` : 0};
         left: 0;
+        transform: ${isActive ? 'none; transition: ease 0.2s' : 'translate3d(0, -7%, 0); transition: ease 0.2s'};
     `}
 
     ${({ isActive, theme, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.OUTLINE && css`
-        top: ${isActive ? '-8px' : '50%'};
+        top: ${isActive ? `-${theme.spacing(1)}` : '50%'};
         left: ${theme.spacing(isActive ? 2.5 : 1.5)};
-        transform: ${isActive ? 'none' : 'translate3d(0, -50%, 0)'};
+        transform: ${isActive ? 'none; transition: ease 0.2s' : 'translate3d(0, -50%, 0); transition: ease 0.2s'};
 
         ${isActive && css`
             padding: ${theme.spacing(0, 0.5)};
