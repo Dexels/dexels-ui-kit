@@ -14,10 +14,7 @@ export const Default = () => {
         <DateRangePicker
             endDate={endDate}
             endDateId="daterangepicker_start"
-            endDatePlaceholderText={text(
-                'End date placeholder text',
-                DateRangePicker.defaultProps.endDatePlaceholderText,
-            )}
+            endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             isDisabled={boolean('Is disabled', DateRangePicker.defaultProps.isDisabled)}
             keepOpenOnDateSelect={boolean(
@@ -35,10 +32,7 @@ export const Default = () => {
             }}
             startDate={startDate}
             startDateId="daterangepicker_start"
-            startDatePlaceholderText={text(
-                'Start date placeholder text',
-                DateRangePicker.defaultProps.startDatePlaceholderText,
-            )}
+            startDatePlaceholderText={text('Start date placeholder text', 'Start datum')}
         />
     );
 };
