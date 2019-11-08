@@ -1,8 +1,5 @@
-import mapArrayToObject from '../../../utils/mapArrayToObject';
+import { INPUT_VARIANTS } from '../../../utils/constants';
 
-export const DROPDOWN_VARIANTS = mapArrayToObject([
-    'COMPACT',
-    'OUTLINE',
-]);
+export const DROPDOWN_VARIANTS = INPUT_VARIANTS;
 
 export default DROPDOWN_VARIANTS;
