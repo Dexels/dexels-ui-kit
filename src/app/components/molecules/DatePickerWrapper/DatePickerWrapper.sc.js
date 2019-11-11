@@ -172,11 +172,19 @@ export const StyledDatePickerWrapper = styled.div`
         }
 
         &:hover,
-        &.CalendarDay__selected {
+        &.CalendarDay__selected,
+        &.CalendarDay__selected_span {
             &::after {
                 background-color: ${({ theme }) => theme.shades.nine};
             }
         }
+    }
+
+    .CalendarDay__selected,
+    .CalendarDay__selected_start,
+    .CalendarDay__selected_end {
+        background-color: ${({ theme }) => theme.colorSecondary};
+        color: ${({ theme }) => theme.shades.nine};
     }
 
     .CalendarDay__blocked_out_of_range,

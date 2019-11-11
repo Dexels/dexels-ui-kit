@@ -20,7 +20,9 @@ const DateRangePicker = ({
     endDatePlaceholderText,
     focusedInput,
     hasYearSelector,
+    isDayHighlighted,
     isDisabled,
+    isOutsideRange,
     keepOpenOnDateSelect,
     label,
     labelMonth,
@@ -54,6 +56,8 @@ const DateRangePicker = ({
                     endDatePlaceholderText={endDatePlaceholderText}
                     focusedInput={focusedInput}
                     hideKeyboardShortcutsPanel
+                    isDayHighlighted={isDayHighlighted}
+                    isOutsideRange={isOutsideRange}
                     keepOpenOnDateSelect={keepOpenOnDateSelect}
                     navNext={<DatePickerButtonNavigation isNext />}
                     navPrev={<DatePickerButtonNavigation isPrev />}
@@ -87,7 +91,9 @@ DateRangePicker.propTypes = {
     endDatePlaceholderText: PropTypes.string,
     focusedInput: PropTypes.oneOf([END_DATE, START_DATE]),
     hasYearSelector: PropTypes.bool,
+    isDayHighlighted: PropTypes.func,
     isDisabled: PropTypes.bool,
+    isOutsideRange: PropTypes.func,
     keepOpenOnDateSelect: PropTypes.bool,
     label: PropTypes.string.isRequired,
     labelMonth: PropTypes.string,
@@ -108,7 +114,9 @@ DateRangePicker.defaultProps = {
     endDatePlaceholderText: AirbnbDateRangePicker.defaultProps.endDatePlaceholderText,
     focusedInput: null,
     hasYearSelector: false,
+    isDayHighlighted: AirbnbDateRangePicker.defaultProps.isDayHighlighted,
     isDisabled: false,
+    isOutsideRange: AirbnbDateRangePicker.defaultProps.isOutsideRange,
     keepOpenOnDateSelect: AirbnbDateRangePicker.defaultProps.keepOpenOnDateSelect,
     labelMonth: '',
     labelYear: '',

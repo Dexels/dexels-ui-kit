@@ -38,6 +38,11 @@ export const StyledDateRangePicker = styled.div`
             color: ${({ theme }) => theme.colorDisabled};
         }
     }
+
+    .CalendarDay__selected_span {
+        background-color: ${({ theme }) => theme.colorTertiary};
+        color: ${({ theme }) => theme.colorContrastText.primary};
+    }
 `;
 
 StyledDateRangePicker.propTypes = {

@@ -17,12 +17,14 @@ export const Default = () => {
             endDateId="daterangepicker_start"
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
+            isDayHighlighted={(day) => day.day() === 1}
             isDisabled={boolean('Is disabled', DateRangePicker.defaultProps.isDisabled)}
+            isOutsideRange={() => false}
             keepOpenOnDateSelect={boolean(
                 'Keep open on date select',
                 DateRangePicker.defaultProps.keepOpenOnDateSelect,
             )}
-            label={text('Label', 'Vakantie periode')}
+            label={text('Label', 'Je favoriete periode')}
             numberOfMonths={number('Number of months', DateRangePicker.defaultProps.numberOfMonths)}
             onDatesChange={(event) => {
                 setStartDate(event.startDate);
