@@ -135,9 +135,7 @@ export const InputWrapper = styled.div`
                     background-color: ${theme.colorTertiary};
                 } to {
                     opacity: 0.7;
-                    background-color: ${theme.colorTertiary};
-                    width: ${`calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
-                    height: ${`calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+                    box-shadow: 0 0 0 ${theme.spacing(1.5)} ${theme.colorTertiary};
                 }
             }
         `}
