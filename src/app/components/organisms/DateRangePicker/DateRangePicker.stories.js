@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import DateRangePicker from './DateRangePicker';
 import moment from 'moment';
 
+const defaultEndDate = moment().add(1, 'w');
+const defaultStartDate = moment();
+
 export default { title: 'organisms/DateRangePicker' };
 
 export const Default = () => {
-    const defaultEndDate = moment().add(1, 'w');
-    const defaultStartDate = moment();
     const [endDate, setEndDate] = useState(defaultEndDate);
     const [startDate, setStartDate] = useState(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState(null);
@@ -77,8 +78,6 @@ export const Default = () => {
 };
 
 export const DefaultWithoutShortcuts = () => {
-    const defaultEndDate = moment().add(1, 'w');
-    const defaultStartDate = moment();
     const [endDate, setEndDate] = useState(defaultEndDate);
     const [startDate, setStartDate] = useState(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState(null);
@@ -118,8 +117,6 @@ export const DefaultWithoutShortcuts = () => {
 };
 
 export const DefaultWithoutFooter = () => {
-    const defaultEndDate = moment().add(1, 'w');
-    const defaultStartDate = moment();
     const [endDate, setEndDate] = useState(defaultEndDate);
     const [startDate, setStartDate] = useState(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState(null);
@@ -185,8 +182,8 @@ export const DefaultWithoutFooter = () => {
 };
 
 export const WithYearSelector = () => {
-    const [endDate, setEndDate] = useState(moment().add(1, 'w'));
-    const [startDate, setStartDate] = useState(moment());
+    const [endDate, setEndDate] = useState(defaultEndDate);
+    const [startDate, setStartDate] = useState(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState(null);
 
     return (
