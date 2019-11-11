@@ -14,7 +14,7 @@ export const Default = () => {
         <DateRangePicker
             displayFormat={text('Display format', DateRangePicker.defaultProps.displayFormat)}
             endDate={endDate}
-            endDateId="daterangepicker_start"
+            endDateId="daterangepicker_end"
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             isDayHighlighted={(day) => day.day() === 1}
@@ -30,11 +30,46 @@ export const Default = () => {
                 setStartDate(event.startDate);
                 setEndDate(event.endDate);
             }}
-            onFocusChange={(newFocusedInput) => {
-                setFocusedInput(newFocusedInput);
+            onFocusChange={(input) => {
+                setFocusedInput(input);
             }}
             startDate={startDate}
             startDateId="daterangepicker_start"
+            startDatePlaceholderText={text('Start date placeholder text', 'Start datum')}
+        />
+    );
+};
+
+export const WithYearSelector = () => {
+    const [endDate, setEndDate] = useState(moment().add(1, 'w'));
+    const [startDate, setStartDate] = useState(moment());
+    const [focusedInput, setFocusedInput] = useState(null);
+
+    return (
+        <DateRangePicker
+            displayFormat={text('Display format', DateRangePicker.defaultProps.displayFormat)}
+            endDate={endDate}
+            endDateId="daterangepicker_withyearselector_end"
+            endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
+            focusedInput={focusedInput}
+            hasYearSelector
+            isDayHighlighted={(day) => day.day() === 3}
+            isDisabled={boolean('Is disabled', DateRangePicker.defaultProps.isDisabled)}
+            keepOpenOnDateSelect={boolean(
+                'Keep open on date select',
+                DateRangePicker.defaultProps.keepOpenOnDateSelect,
+            )}
+            label={text('Label', 'Vakantie periode')}
+            numberOfMonths={1}
+            onDatesChange={(event) => {
+                setStartDate(event.startDate);
+                setEndDate(event.endDate);
+            }}
+            onFocusChange={(input) => {
+                setFocusedInput(input);
+            }}
+            startDate={startDate}
+            startDateId="daterangepicker_withyearselector_start"
             startDatePlaceholderText={text('Start date placeholder text', 'Start datum')}
         />
     );
