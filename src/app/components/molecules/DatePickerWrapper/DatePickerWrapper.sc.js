@@ -86,6 +86,7 @@ export const StyledDatePickerWrapper = styled.div`
     .DayPicker__withBorder {
         ${getElevation(ELEVATIONS.LEVEL_6)}
         border-radius: ${({ theme }) => theme.spacing(1)};
+        overflow: hidden;
     }
 
     .DayPicker_transitionContainer {
