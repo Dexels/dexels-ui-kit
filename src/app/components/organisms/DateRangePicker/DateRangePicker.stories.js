@@ -6,8 +6,10 @@ import moment from 'moment';
 export default { title: 'organisms/DateRangePicker' };
 
 export const Default = () => {
-    const [endDate, setEndDate] = useState(moment().add(1, 'w'));
-    const [startDate, setStartDate] = useState(moment());
+    const defaultEndDate = moment().add(1, 'w');
+    const defaultStartDate = moment();
+    const [endDate, setEndDate] = useState(defaultEndDate);
+    const [startDate, setStartDate] = useState(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState(null);
 
     return (
@@ -20,12 +22,12 @@ export const Default = () => {
             isDayHighlighted={(day) => day.day() === 1}
             isDisabled={boolean('Is disabled', DateRangePicker.defaultProps.isDisabled)}
             isOutsideRange={() => false}
-            keepOpenOnDateSelect={boolean(
-                'Keep open on date select',
-                DateRangePicker.defaultProps.keepOpenOnDateSelect,
-            )}
+            keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
             numberOfMonths={number('Number of months', DateRangePicker.defaultProps.numberOfMonths)}
+            onConfirm={() => {
+                setFocusedInput(null);
+            }}
             onDatesChange={(event) => {
                 setStartDate(event.startDate);
                 setEndDate(event.endDate);
@@ -33,6 +35,40 @@ export const Default = () => {
             onFocusChange={(input) => {
                 setFocusedInput(input);
             }}
+            onReset={() => {
+                setStartDate(defaultStartDate);
+                setEndDate(defaultEndDate);
+            }}
+            shortCuts={[
+                {
+                    onClick: () => {
+                        setStartDate(moment());
+                        setEndDate(moment().add(1, 'd'));
+                    },
+                    text: 'vandaag en morgen',
+                },
+                {
+                    onClick: () => {
+                        setStartDate(moment().day(6));
+                        setEndDate(moment().day(6).add(1, 'd'));
+                    },
+                    text: 'aankomend weekend',
+                },
+                {
+                    onClick: () => {
+                        setStartDate(moment());
+                        setEndDate(moment().add(13, 'd'));
+                    },
+                    text: 'de komende twee weken',
+                },
+                {
+                    onClick: () => {
+                        setStartDate(moment('2019-12-01'));
+                        setEndDate(moment('2019-12-31'));
+                    },
+                    text: 'de maand december',
+                },
+            ]}
             startDate={startDate}
             startDateId="daterangepicker_start"
             startDatePlaceholderText={text('Start date placeholder text', 'Start datum')}

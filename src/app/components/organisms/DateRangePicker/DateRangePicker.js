@@ -6,9 +6,11 @@ import DatePickerButtonNavigation from '../../molecules/DatePickerButtonNavigati
 import DatePickerInputIcon from '../../molecules/DatePickerInputIcon/DatePickerInputIcon';
 import DatePickerNavigation from '../../molecules/DatePickerNavigation/DatePickerNavigation';
 import DatePickerWrapper from '../../molecules/DatePickerWrapper/DatePickerWrapper';
+import Footer from './Footer/Footer';
 import FormElementLabel from '../../molecules/FormElementLabel/FormElementLabel';
 import momentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
+import Shortcuts from './Shortcuts/Shortcuts';
 import { StyledDateRangePicker } from './DateRangePicker.sc';
 import { ThemeContext } from 'styled-components';
 
@@ -28,11 +30,17 @@ const DateRangePicker = ({
     labelMonth,
     labelYear,
     numberOfMonths,
+    onConfirm,
     onDatesChange,
     onFocusChange,
+    onReset,
+    shortCuts,
     startDate,
     startDateId,
     startDatePlaceholderText,
+    textConfirm,
+    textReset,
+    textShortcuts,
     yearCount,
 }) => {
     const isFocused = Boolean(focusedInput);
@@ -64,6 +72,21 @@ const DateRangePicker = ({
                     numberOfMonths={numberOfMonths}
                     onDatesChange={onDatesChange}
                     onFocusChange={onFocusChange}
+                    renderCalendarInfo={() => (
+                        <>
+                            {shortCuts.length > 0 && (
+                                <Shortcuts shortCuts={shortCuts} text={textShortcuts} />
+                            )}
+                            {(onConfirm || onReset) && (
+                                <Footer
+                                    onConfirm={onConfirm}
+                                    onReset={onReset}
+                                    textConfirm={textConfirm}
+                                    textReset={textReset}
+                                />
+                            )}
+                        </>
+                    )}
                     renderMonthElement={(props) => (
                         <DatePickerNavigation
                             {...props}
@@ -99,11 +122,20 @@ DateRangePicker.propTypes = {
     labelMonth: PropTypes.string,
     labelYear: PropTypes.string,
     numberOfMonths: PropTypes.number,
+    onConfirm: PropTypes.func,
     onDatesChange: PropTypes.func.isRequired,
     onFocusChange: PropTypes.func.isRequired,
+    onReset: PropTypes.func,
+    shortCuts: PropTypes.arrayOf(PropTypes.shape({
+        onClick: PropTypes.func.isRequired,
+        text: PropTypes.string.isRequired,
+    })),
     startDate: momentPropTypes.momentObj,
     startDateId: PropTypes.string.isRequired,
     startDatePlaceholderText: PropTypes.string,
+    textConfirm: PropTypes.string,
+    textReset: PropTypes.string,
+    textShortcuts: PropTypes.string,
     yearCount: PropTypes.number,
 };
 
@@ -118,11 +150,17 @@ DateRangePicker.defaultProps = {
     isDisabled: false,
     isOutsideRange: AirbnbDateRangePicker.defaultProps.isOutsideRange,
     keepOpenOnDateSelect: AirbnbDateRangePicker.defaultProps.keepOpenOnDateSelect,
-    labelMonth: '',
-    labelYear: '',
+    labelMonth: undefined,
+    labelYear: undefined,
     numberOfMonths: 2,
+    onConfirm: null,
+    onReset: null,
+    shortCuts: [],
     startDate: null,
     startDatePlaceholderText: AirbnbDateRangePicker.defaultProps.startDatePlaceholderText,
+    textConfirm: undefined,
+    textReset: undefined,
+    textShortcuts: undefined,
     yearCount: 100,
 };
 
