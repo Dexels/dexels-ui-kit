@@ -128,19 +128,19 @@ export const InputWrapper = styled.div`
     &::after {
         ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
             background-color: ${theme.colorSecondary};
-        `}
-        animation: pressed .2s;
+            animation: ripple .2s ease-out;
 
-        @keyframes pressed{
-            from {
-                background-color: ${({ theme }) => theme.colorTertiary};
-            } to {
-                opacity: 0.7;
-                background-color: ${({ theme }) => theme.colorTertiary};
-                width: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
-                height: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+            @keyframes ripple {
+                from {
+                    background-color: ${theme.colorTertiary};
+                } to {
+                    opacity: 0.7;
+                    background-color: ${theme.colorTertiary};
+                    width: ${`calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+                    height: ${`calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
+                }
             }
-        }
+        `}
     }
 
     &:hover,
@@ -149,6 +149,21 @@ export const InputWrapper = styled.div`
         &::before {
             opacity: 0.25;
         }
+    }
+
+    :active{
+        ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+            animation: ripple .2s ease-out;
+            @keyframes ripple{
+                from {
+                    box-shadow: 0 0 0 0 ${theme.colorTertiary};
+
+                } to {
+                    opacity: 0.7;
+                    box-shadow: 0 0 0 ${theme.spacing(1)} ${theme.colorTertiary};
+                }
+            }
+        `}
     }
 
     input {
@@ -187,7 +202,6 @@ export const IconWrapper = styled.div`
     position: absolute;
     z-index: 2;
     background-color: ${({ theme }) => theme.colorPrimary};
-    /* animation: pressed .3s; */
     color: ${({ theme }) => theme.colorContrastText.primary};
     font-size: ${({ theme }) => theme.spacing(2.5)};
     pointer-events: none;
@@ -195,19 +209,6 @@ export const IconWrapper = styled.div`
     span {
         display: block;
     }
-
-    /* @keyframes pressed{
-        from {
-            background-color: ${({ theme }) => theme.colorTertiary};
-
-        } to {
-            opacity: 0.6;
-            border-radius: 100%;
-            background-color: ${({ theme }) => theme.colorTertiary};
-            width: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
-            height: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
-        }
-    } */
 `;
 
 IconWrapper.propTypes = {
