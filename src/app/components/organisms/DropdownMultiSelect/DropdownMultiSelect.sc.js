@@ -124,6 +124,8 @@ export const ListItems = styled.ul`
     border-radius: ${({ theme }) => theme.spacing(1)};
     background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(2)};
+    overflow: auto;
+    height: 130px;
     list-style-type: none;
 `;
 
@@ -144,6 +146,10 @@ export const ListItem = styled.li`
 
     &:first-of-type {
         padding: ${({ theme }) => theme.spacing(0, 0, 2)};
+    }
+
+    &:first-child {
+        position: fixed;
     }
 `;
 
