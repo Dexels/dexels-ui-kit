@@ -185,7 +185,12 @@ export const StyledDatePickerWrapper = styled.div`
     .CalendarDay__selected_start,
     .CalendarDay__selected_end {
         background-color: ${({ theme }) => theme.colorSecondary};
+        cursor: pointer;
         color: ${({ theme }) => theme.shades.nine};
+    }
+
+    .CalendarDay__blocked_minimum_nights:not(.CalendarDay__selected_start) {
+        pointer-events: none;
     }
 
     .CalendarDay__blocked_out_of_range,

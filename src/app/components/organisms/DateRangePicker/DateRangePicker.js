@@ -29,6 +29,7 @@ const DateRangePicker = ({
     label,
     labelMonth,
     labelYear,
+    minimumNights,
     numberOfMonths,
     onConfirm,
     onDatesChange,
@@ -67,6 +68,7 @@ const DateRangePicker = ({
                     isDayHighlighted={isDayHighlighted}
                     isOutsideRange={isOutsideRange}
                     keepOpenOnDateSelect={keepOpenOnDateSelect}
+                    minimumNights={minimumNights}
                     navNext={<DatePickerButtonNavigation isNext />}
                     navPrev={<DatePickerButtonNavigation isPrev />}
                     numberOfMonths={numberOfMonths}
@@ -121,6 +123,7 @@ DateRangePicker.propTypes = {
     label: PropTypes.string.isRequired,
     labelMonth: PropTypes.string,
     labelYear: PropTypes.string,
+    minimumNights: PropTypes.number,
     numberOfMonths: PropTypes.number,
     onConfirm: PropTypes.func,
     onDatesChange: PropTypes.func.isRequired,
@@ -152,6 +155,7 @@ DateRangePicker.defaultProps = {
     keepOpenOnDateSelect: AirbnbDateRangePicker.defaultProps.keepOpenOnDateSelect,
     labelMonth: undefined,
     labelYear: undefined,
+    minimumNights: AirbnbDateRangePicker.defaultProps.minimumNights,
     numberOfMonths: 2,
     onConfirm: null,
     onReset: null,

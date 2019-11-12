@@ -25,6 +25,7 @@ export const Default = () => {
             isOutsideRange={() => false}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
+            minimumNights={number('Minimum night', DateRangePicker.defaultProps.minimumNights)}
             numberOfMonths={number('Number of months', DateRangePicker.defaultProps.numberOfMonths)}
             onConfirm={() => {
                 setFocusedInput(null);
@@ -94,6 +95,7 @@ export const DefaultWithoutShortcuts = () => {
             isOutsideRange={() => false}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
+            minimumNights={number('Minimum night', DateRangePicker.defaultProps.minimumNights)}
             numberOfMonths={number('Number of months', DateRangePicker.defaultProps.numberOfMonths)}
             onConfirm={() => {
                 setFocusedInput(null);
@@ -136,6 +138,7 @@ export const DefaultWithoutFooter = () => {
                 DateRangePicker.defaultProps.keepOpenOnDateSelect,
             )}
             label={text('Label', 'Je favoriete periode')}
+            minimumNights={number('Minimum night', DateRangePicker.defaultProps.minimumNights)}
             numberOfMonths={number('Number of months', DateRangePicker.defaultProps.numberOfMonths)}
             onDatesChange={(event) => {
                 setStartDate(event.startDate);
@@ -201,6 +204,7 @@ export const WithYearSelector = () => {
                 DateRangePicker.defaultProps.keepOpenOnDateSelect,
             )}
             label={text('Label', 'Vakantie periode')}
+            minimumNights={number('Minimum night', DateRangePicker.defaultProps.minimumNights)}
             numberOfMonths={1}
             onDatesChange={(event) => {
                 setStartDate(event.startDate);
