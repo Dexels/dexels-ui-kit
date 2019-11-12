@@ -22,7 +22,7 @@ const DialogFooter = ({
             </TextWrapper>
         )}
         <ButtonBarWrapper>
-            {onCancel && (
+            {buttonCancelText && onCancel && (
                 <ButtonWrapper>
                     <Button
                         iconType={Button.iconTypes.CROSS}
@@ -56,7 +56,7 @@ DialogFooter.propTypes = {
 };
 
 DialogFooter.defaultProps = {
-    buttonCancelText: 'Cancel',
+    buttonCancelText: '',
     message: '',
     onCancel: null,
 };
