@@ -22,19 +22,12 @@ export const InputWrapper = styled.div`
     display: flex;
     position: relative;
     flex: 0 0 auto;
+    order: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 1 : 2)};
     border-radius: 100%;
     width: ${({ theme }) => theme.spacing(5)};
     height: ${({ theme }) => theme.spacing(5)};
     overflow: hidden;
     pointer-events: none;
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        order: 1;
-    `}
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        order: 2;
-    `}
 
     ${({ isDisabled }) => isDisabled && css`
         input {
@@ -96,6 +89,8 @@ InputWrapper.propTypes = {
     direction: PropTypes.oneOf(Object.values(SELECTION_CONTROL_DIRECTIONS)).isRequired,
     isDisabled: PropTypes.bool.isRequired,
     theme: themePropTypes,
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(SELECTION_CONTROL_EASINGS)),
 };
 
 InputWrapper.defaultProps = {
@@ -126,16 +121,22 @@ export const FakeInput = styled.div`
         isIndeterminate,
         theme,
         type,
-    }) => (isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
-        &::after {
-            ${setCentered()}
-            position: absolute;
-            border-radius: 100%;
+    }) => (isChecked || isIndeterminate) && css`
+        ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
             background-color: ${theme.colorPrimary};
-            width: 60%;
-            height: 60%;
-            content: '';
-        }
+        `}
+
+        ${type === SELECTION_CONTROL_TYPES.RADIO && css`
+            &::after {
+                ${setCentered()}
+                position: absolute;
+                border-radius: 100%;
+                background-color: ${theme.colorPrimary};
+                width: 60%;
+                height: 60%;
+                content: '';
+            }
+        `}
     `}
 
     ${({
@@ -143,11 +144,20 @@ export const FakeInput = styled.div`
         isIndeterminate,
         isValid,
         theme,
+        type,
     }) => isValid && css`
         border-color: ${theme.colorValid};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.colorValid};
+            ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+                background-color: ${theme.colorValid};
+            `}
+
+            ${type === SELECTION_CONTROL_TYPES.RADIO && css`
+                &::after {
+                    background-color: ${theme.colorValid};
+                }
+            `}
         `}
     `}
 
@@ -156,11 +166,20 @@ export const FakeInput = styled.div`
         isChecked,
         isIndeterminate,
         theme,
+        type,
     }) => hasError && css`
         border-color: ${theme.colorInvalid};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.colorInvalid};
+            ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+                background-color: ${theme.colorInvalid};
+            `}
+
+            ${type === SELECTION_CONTROL_TYPES.RADIO && css`
+                &::after {
+                    background-color: ${theme.colorInvalid};
+                }
+            `}
         `}
     `}
 
@@ -169,11 +188,20 @@ export const FakeInput = styled.div`
         isDisabled,
         isIndeterminate,
         theme,
+        type,
     }) => isDisabled && css`
         border-color: ${theme.colorDisabled};
 
         ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.colorDisabled};
+            ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+                background-color: ${theme.colorDisabled};
+            `}
+
+            ${type === SELECTION_CONTROL_TYPES.RADIO && css`
+                &::after {
+                    background-color: ${theme.colorDisabled};
+                }
+            `}
         `}
     `}
 
@@ -190,8 +218,6 @@ FakeInput.propTypes = {
     isIndeterminate: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     theme: themePropTypes,
-    transitionDuration: PropTypes.number.isRequired,
-    transitionEasing: PropTypes.oneOf(Object.values(SELECTION_CONTROL_EASINGS)),
     type: PropTypes.oneOf(Object.values(SELECTION_CONTROL_TYPES)).isRequired,
 };
 
@@ -221,6 +247,7 @@ IconWrapper.defaultProps = {
 
 export const LabelWrapper = styled.button`
     flex: 0 1 auto;
+    order: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 2 : 1)};
     outline: none;
     border: 0;
     background: transparent;
@@ -230,14 +257,6 @@ export const LabelWrapper = styled.button`
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
-    `}
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        order: 2;
-    `}
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        order: 1;
     `}
 `;
 

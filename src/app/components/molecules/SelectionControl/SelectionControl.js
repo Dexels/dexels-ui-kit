@@ -35,15 +35,18 @@ const SelectionControl = ({
 }) => (
     <>
         <StyledSelectionControl>
-            <InputWrapper direction={direction} isDisabled={isDisabled}>
+            <InputWrapper
+                direction={direction}
+                isDisabled={isDisabled}
+                transitionDuration={transitionDuration}
+                transitionEasing={transitionEasing}
+            >
                 <FakeInput
                     hasError={hasError}
                     isChecked={isChecked}
                     isDisabled={isDisabled}
                     isIndeterminate={isIndeterminate}
                     isValid={isValid}
-                    transitionDuration={transitionDuration}
-                    transitionEasing={transitionEasing}
                     type={type}
                 />
                 {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
