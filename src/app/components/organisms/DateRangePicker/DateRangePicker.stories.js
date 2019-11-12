@@ -15,6 +15,8 @@ export const Default = () => {
 
     return (
         <DateRangePicker
+            buttonCancelText={text('Button cancel text', 'reset')}
+            buttonConfirmText={text('Button confirm text', 'toepassen')}
             displayFormat={text('Display format', DateRangePicker.defaultProps.displayFormat)}
             endDate={endDate}
             endDateId="daterangepicker_end"
@@ -27,6 +29,10 @@ export const Default = () => {
             label={text('Label', 'Je favoriete periode')}
             minimumNights={number('Minimum night', DateRangePicker.defaultProps.minimumNights)}
             numberOfMonths={number('Number of months', DateRangePicker.defaultProps.numberOfMonths)}
+            onCancel={() => {
+                setStartDate(defaultStartDate);
+                setEndDate(defaultEndDate);
+            }}
             onConfirm={() => {
                 setFocusedInput(null);
             }}
@@ -37,11 +43,7 @@ export const Default = () => {
             onFocusChange={(input) => {
                 setFocusedInput(input);
             }}
-            onReset={() => {
-                setStartDate(defaultStartDate);
-                setEndDate(defaultEndDate);
-            }}
-            shortCuts={[
+            shortcuts={[
                 {
                     onClick: () => {
                         setStartDate(moment());
@@ -97,6 +99,10 @@ export const DefaultWithoutShortcuts = () => {
             label={text('Label', 'Je favoriete periode')}
             minimumNights={number('Minimum night', DateRangePicker.defaultProps.minimumNights)}
             numberOfMonths={number('Number of months', DateRangePicker.defaultProps.numberOfMonths)}
+            onCancel={() => {
+                setStartDate(defaultStartDate);
+                setEndDate(defaultEndDate);
+            }}
             onConfirm={() => {
                 setFocusedInput(null);
             }}
@@ -106,10 +112,6 @@ export const DefaultWithoutShortcuts = () => {
             }}
             onFocusChange={(input) => {
                 setFocusedInput(input);
-            }}
-            onReset={() => {
-                setStartDate(defaultStartDate);
-                setEndDate(defaultEndDate);
             }}
             startDate={startDate}
             startDateId="daterangepicker_start"
@@ -125,6 +127,8 @@ export const DefaultWithoutFooter = () => {
 
     return (
         <DateRangePicker
+            buttonCancelText={text('Button cancel text', 'reset')}
+            buttonConfirmText={text('Button confirm text', 'toepassen')}
             displayFormat={text('Display format', DateRangePicker.defaultProps.displayFormat)}
             endDate={endDate}
             endDateId="daterangepicker_end"
@@ -147,7 +151,7 @@ export const DefaultWithoutFooter = () => {
             onFocusChange={(input) => {
                 setFocusedInput(input);
             }}
-            shortCuts={[
+            shortcuts={[
                 {
                     onClick: () => {
                         setStartDate(moment());

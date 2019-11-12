@@ -1,7 +1,6 @@
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import setCentered from '../../../styles/mixins/setCentered';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
 
 export const StyledDateRangePicker = styled.div`
     .DateRangePickerInput {

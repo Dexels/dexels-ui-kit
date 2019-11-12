@@ -6,7 +6,7 @@ import DatePickerButtonNavigation from '../../molecules/DatePickerButtonNavigati
 import DatePickerInputIcon from '../../molecules/DatePickerInputIcon/DatePickerInputIcon';
 import DatePickerNavigation from '../../molecules/DatePickerNavigation/DatePickerNavigation';
 import DatePickerWrapper from '../../molecules/DatePickerWrapper/DatePickerWrapper';
-import Footer from './Footer/Footer';
+import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import FormElementLabel from '../../molecules/FormElementLabel/FormElementLabel';
 import momentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
@@ -15,6 +15,8 @@ import { StyledDateRangePicker } from './DateRangePicker.sc';
 import { ThemeContext } from 'styled-components';
 
 const DateRangePicker = ({
+    buttonCancelText,
+    buttonConfirmText,
     daySize,
     displayFormat,
     endDate,
@@ -31,17 +33,15 @@ const DateRangePicker = ({
     labelYear,
     minimumNights,
     numberOfMonths,
+    onCancel,
     onConfirm,
     onDatesChange,
     onFocusChange,
-    onReset,
-    shortCuts,
+    shortcuts,
+    shortcutsText,
     startDate,
     startDateId,
     startDatePlaceholderText,
-    textConfirm,
-    textReset,
-    textShortcuts,
     yearCount,
 }) => {
     const isFocused = Boolean(focusedInput);
@@ -76,15 +76,15 @@ const DateRangePicker = ({
                     onFocusChange={onFocusChange}
                     renderCalendarInfo={() => (
                         <>
-                            {shortCuts.length > 0 && (
-                                <Shortcuts shortCuts={shortCuts} text={textShortcuts} />
+                            {shortcuts.length > 0 && (
+                                <Shortcuts shortcuts={shortcuts} text={shortcutsText} />
                             )}
-                            {(onConfirm || onReset) && (
-                                <Footer
+                            {(onCancel || onConfirm) && (
+                                <DialogFooter
+                                    buttonCancelText={buttonCancelText}
+                                    buttonConfirmText={buttonConfirmText}
+                                    onCancel={onCancel}
                                     onConfirm={onConfirm}
-                                    onReset={onReset}
-                                    textConfirm={textConfirm}
-                                    textReset={textReset}
                                 />
                             )}
                         </>
@@ -109,6 +109,8 @@ const DateRangePicker = ({
 };
 
 DateRangePicker.propTypes = {
+    buttonCancelText: PropTypes.string,
+    buttonConfirmText: PropTypes.string,
     daySize: PropTypes.number,
     displayFormat: PropTypes.string,
     endDate: momentPropTypes.momentObj,
@@ -125,24 +127,24 @@ DateRangePicker.propTypes = {
     labelYear: PropTypes.string,
     minimumNights: PropTypes.number,
     numberOfMonths: PropTypes.number,
+    onCancel: PropTypes.func,
     onConfirm: PropTypes.func,
     onDatesChange: PropTypes.func.isRequired,
     onFocusChange: PropTypes.func.isRequired,
-    onReset: PropTypes.func,
-    shortCuts: PropTypes.arrayOf(PropTypes.shape({
+    shortcuts: PropTypes.arrayOf(PropTypes.shape({
         onClick: PropTypes.func.isRequired,
         text: PropTypes.string.isRequired,
     })),
+    shortcutsText: PropTypes.string,
     startDate: momentPropTypes.momentObj,
     startDateId: PropTypes.string.isRequired,
     startDatePlaceholderText: PropTypes.string,
-    textConfirm: PropTypes.string,
-    textReset: PropTypes.string,
-    textShortcuts: PropTypes.string,
     yearCount: PropTypes.number,
 };
 
 DateRangePicker.defaultProps = {
+    buttonCancelText: undefined,
+    buttonConfirmText: undefined,
     daySize: 40,
     displayFormat: 'ddd D MMM Y',
     endDate: null,
@@ -157,14 +159,12 @@ DateRangePicker.defaultProps = {
     labelYear: undefined,
     minimumNights: AirbnbDateRangePicker.defaultProps.minimumNights,
     numberOfMonths: 2,
+    onCancel: null,
     onConfirm: null,
-    onReset: null,
-    shortCuts: [],
+    shortcuts: [],
+    shortcutsText: undefined,
     startDate: null,
     startDatePlaceholderText: AirbnbDateRangePicker.defaultProps.startDatePlaceholderText,
-    textConfirm: undefined,
-    textReset: undefined,
-    textShortcuts: undefined,
     yearCount: 100,
 };
 

@@ -7,12 +7,12 @@ import Chip from '../../../molecules/Chip/Chip';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Shortcuts = ({ shortCuts, text }) => (
+const Shortcuts = ({ shortcuts, text }) => (
     <StyledShortcuts>
         <Text>
             {text}
         </Text>
-        {shortCuts.map(({ onClick, text: shortcutText }) => (
+        {shortcuts.map(({ onClick, text: shortcutText }) => (
             <ButtonWrapper key={shortcutText}>
                 <Chip onClick={onClick}>
                     {shortcutText}
@@ -23,7 +23,7 @@ const Shortcuts = ({ shortCuts, text }) => (
 );
 
 Shortcuts.propTypes = {
-    shortCuts: PropTypes.arrayOf(PropTypes.shape({
+    shortcuts: PropTypes.arrayOf(PropTypes.shape({
         onClick: PropTypes.func.isRequired,
         text: PropTypes.string.isRequired,
     })).isRequired,
