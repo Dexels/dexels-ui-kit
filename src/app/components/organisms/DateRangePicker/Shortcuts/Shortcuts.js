@@ -3,7 +3,7 @@ import {
     StyledShortcuts,
     Text,
 } from './Shortcuts.sc';
-import Button from '../../../molecules/Button/Button';
+import Chip from '../../../molecules/Chip/Chip';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,14 +14,9 @@ const Shortcuts = ({ shortCuts, text }) => (
         </Text>
         {shortCuts.map(({ onClick, text: shortcutText }) => (
             <ButtonWrapper key={shortcutText}>
-                <Button
-                    iconType={Button.iconTypes.SELECT}
-                    onClick={onClick}
-                    size={Button.sizes.SMALL}
-                    variant={Button.variants.OUTLINE}
-                >
+                <Chip onClick={onClick}>
                     {shortcutText}
-                </Button>
+                </Chip>
             </ButtonWrapper>
         ))}
     </StyledShortcuts>
