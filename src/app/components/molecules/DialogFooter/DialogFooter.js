@@ -11,14 +11,14 @@ import React from 'react';
 const DialogFooter = ({
     buttonCancelText,
     buttonConfirmText,
-    message,
     onCancel,
     onConfirm,
+    text,
 }) => (
     <StyledDialogFooter>
-        {message && (
+        {text && (
             <TextWrapper>
-                {message}
+                {text}
             </TextWrapper>
         )}
         <ButtonBarWrapper>
@@ -52,17 +52,17 @@ const DialogFooter = ({
 DialogFooter.propTypes = {
     buttonCancelText: PropTypes.string,
     buttonConfirmText: PropTypes.string,
-    message: PropTypes.string,
     onCancel: PropTypes.func,
     onConfirm: PropTypes.func,
+    text: PropTypes.string,
 };
 
 DialogFooter.defaultProps = {
     buttonCancelText: '',
     buttonConfirmText: '',
-    message: '',
     onCancel: null,
     onConfirm: null,
+    text: '',
 };
 
 export default DialogFooter;

@@ -4,9 +4,7 @@ import styled from 'styled-components';
 
 export const StyledDialogFooter = styled.footer`
     ${setBoxSizing()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     display: flex;
-    flex-direction: row;
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
@@ -24,7 +22,6 @@ StyledDialogFooter.defaultProps = {
 
 export const TextWrapper = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
-    flex: 1 1 auto;
     padding: ${({ theme }) => theme.spacing(0, 1, 0, 0)};
     word-break: break-word;
 `;
@@ -39,9 +36,9 @@ TextWrapper.defaultProps = {
 
 export const ButtonBarWrapper = styled.div`
     display: flex;
-    flex: 0 1 auto;
     flex-wrap: nowrap;
     align-items: center;
+    margin: 0 0 0 auto;
 `;
 
 export const ButtonWrapper = styled.div`
