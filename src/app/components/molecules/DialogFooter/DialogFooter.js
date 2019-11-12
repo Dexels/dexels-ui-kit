@@ -16,11 +16,13 @@ const DialogFooter = ({
     onConfirm,
 }) => (
     <StyledDialogFooter>
-        <TextWrapper>
-            {message}
-        </TextWrapper>
+        {message && (
+            <TextWrapper>
+                {message}
+            </TextWrapper>
+        )}
         <ButtonBarWrapper>
-            {onCancel && buttonCancelText && (
+            {onCancel && (
                 <ButtonWrapper>
                     <Button
                         iconType={Button.iconTypes.CROSS}
@@ -55,7 +57,7 @@ DialogFooter.propTypes = {
 
 DialogFooter.defaultProps = {
     buttonCancelText: 'Cancel',
-    message: null,
+    message: '',
     onCancel: null,
 };
 
