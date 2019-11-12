@@ -17,20 +17,72 @@ export const StyledSelectionControl = styled.div`
 
 /* eslint-disable indent */
 // The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
+export const SelectionControlWrapper = styled.div`
+    display: flex;
+    position: relative;
+    flex: 0 0 auto;
+    width: ${({ theme }) => theme.spacing(5)};
+    height: ${({ theme }) => theme.spacing(5)};
+
+    &::before {
+        ${setCentered()}
+        ${({ transitionDuration, transitionEasing }) => transitionEffect({
+            duration: transitionDuration,
+            easing: transitionEasing,
+        })}
+        display: block;
+        position: absolute;
+        opacity: 0;
+        border-radius: 100%;
+        background-color: ${({ theme }) => theme.colorTertiary};
+        width: 100%;
+        height: 100%;
+        content: '';
+    }
+
+    &:hover,
+    &:focus {
+        &::before {
+            opacity: 0.25;
+        }
+    }
+`;
+
 export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
+    margin: auto;
+    border-radius: 100%;
+
+    &:active {
+        animation: ripple .3s ease-out;
+
+        @keyframes ripple {
+            from {
+                background-color: ${({ theme }) => theme.colorTertiary};
+            } to {
+                opacity: 0.7;
+                box-shadow: 0 0 0 ${({ theme }) => theme.spacing(1.5)} ${({ theme }) => theme.colorTertiary};
+            }
+        }
+    }
+`;
+
+/* eslint-disable indent */
+// The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
+export const InputContainer = styled.div`
+    position: relative;
+    flex: 0 0 auto;
+    margin: auto;
     border: 2px solid ${({ theme }) => theme.colorPrimary};
     pointer-events: none;
 
-    ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
+    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
         order: 1;
-        margin: ${theme.spacing(0, 2.25, 0, 0)};
     `}
 
-    ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
+    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
         order: 2;
-        margin: ${theme.spacing(0, 0, 0, 2.25)};
     `}
 
     ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
@@ -108,37 +160,8 @@ export const InputWrapper = styled.div`
         `}
     `}
 
-    &::before {
-        ${setCentered()}
-        ${({ transitionDuration, transitionEasing }) => transitionEffect({
-            duration: transitionDuration,
-            easing: transitionEasing,
-        })}
-        display: block;
-        position: absolute;
-        opacity: 0;
-        z-index: -1;
-        border-radius: 100%;
-        background-color: ${({ theme }) => theme.colorTertiary};
-        width: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
-        height: ${({ theme }) => `calc(${theme.spacing(2.5)} * (1 + 2 / 3))`};
-        content: '';
-    }
-
     &::after {
-        ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
-            background-color: ${theme.colorSecondary};
-            animation: ripple .2s ease-out;
-
-            @keyframes ripple {
-                from {
-                    background-color: ${theme.colorTertiary};
-                } to {
-                    opacity: 0.7;
-                    box-shadow: 0 0 0 ${theme.spacing(1.5)} ${theme.colorTertiary};
-                }
-            }
-        `}
+        background-color: ${({ theme }) => theme.colorSecondary};
     }
 
     &:hover,
@@ -147,21 +170,6 @@ export const InputWrapper = styled.div`
         &::before {
             opacity: 0.25;
         }
-    }
-
-    :active{
-        ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
-            animation: ripple .2s ease-out;
-            @keyframes ripple{
-                from {
-                    box-shadow: 0 0 0 0 ${theme.colorTertiary};
-
-                } to {
-                    opacity: 0.7;
-                    box-shadow: 0 0 0 ${theme.spacing(1)} ${theme.colorTertiary};
-                }
-            }
-        `}
     }
 
     input {
@@ -179,7 +187,7 @@ export const InputWrapper = styled.div`
 `;
 /* eslint-enable */
 
-InputWrapper.propTypes = {
+InputContainer.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isChecked: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
@@ -191,7 +199,7 @@ InputWrapper.propTypes = {
     type: PropTypes.oneOf(Object.values(SELECTION_CONTROL_TYPES)).isRequired,
 };
 
-InputWrapper.defaultProps = {
+InputContainer.defaultProps = {
     theme: themeBasic,
 };
 
