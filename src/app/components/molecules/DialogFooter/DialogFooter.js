@@ -34,31 +34,35 @@ const DialogFooter = ({
                     </Button>
                 </ButtonWrapper>
             )}
-            <Button
-                autoFocus
-                iconType={Button.iconTypes.CHECK}
-                onClick={onConfirm}
-                size={Button.sizes.SMALL}
-                variant={Button.variants.OUTLINE}
-            >
-                {buttonConfirmText}
-            </Button>
+            {buttonConfirmText && onConfirm && (
+                <Button
+                    autoFocus
+                    iconType={Button.iconTypes.CHECK}
+                    onClick={onConfirm}
+                    size={Button.sizes.SMALL}
+                    variant={Button.variants.OUTLINE}
+                >
+                    {buttonConfirmText}
+                </Button>
+            )}
         </ButtonBarWrapper>
     </StyledDialogFooter>
 );
 
 DialogFooter.propTypes = {
     buttonCancelText: PropTypes.string,
-    buttonConfirmText: PropTypes.string.isRequired,
+    buttonConfirmText: PropTypes.string,
     message: PropTypes.string,
     onCancel: PropTypes.func,
-    onConfirm: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func,
 };
 
 DialogFooter.defaultProps = {
     buttonCancelText: '',
+    buttonConfirmText: '',
     message: '',
     onCancel: null,
+    onConfirm: null,
 };
 
 export default DialogFooter;
