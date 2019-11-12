@@ -91,6 +91,7 @@ const Table = ({
                                     key={cell}
                                     onClick={cell.column.onClick
                                         ? (event) => {
+                                            event.stopPropagation();
                                             cell.column.onClick(cell, row, event);
                                         }
                                         : undefined}
