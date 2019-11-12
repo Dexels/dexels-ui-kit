@@ -1,7 +1,7 @@
-import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import styled from 'styled-components';
 
-export const StyledDateNavigation = styled.div`
+export const StyledDatePickerNavigation = styled.div`
     display: flex;
     flex-wrap: nowrap;
 `;
