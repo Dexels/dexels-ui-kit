@@ -23,6 +23,7 @@ const DateRangePicker = ({
     endDateId,
     endDatePlaceholderText,
     focusedInput,
+    footerText,
     hasYearSelector,
     isDayHighlighted,
     isDisabled,
@@ -85,6 +86,7 @@ const DateRangePicker = ({
                                     buttonConfirmText={buttonConfirmText}
                                     onCancel={onCancel}
                                     onConfirm={onConfirm}
+                                    text={footerText}
                                 />
                             )}
                         </>
@@ -117,6 +119,7 @@ DateRangePicker.propTypes = {
     endDateId: PropTypes.string.isRequired,
     endDatePlaceholderText: PropTypes.string,
     focusedInput: PropTypes.oneOf([END_DATE, START_DATE]),
+    footerText: PropTypes.string,
     hasYearSelector: PropTypes.bool,
     isDayHighlighted: PropTypes.func,
     isDisabled: PropTypes.bool,
@@ -150,6 +153,7 @@ DateRangePicker.defaultProps = {
     endDate: null,
     endDatePlaceholderText: AirbnbDateRangePicker.defaultProps.endDatePlaceholderText,
     focusedInput: null,
+    footerText: undefined,
     hasYearSelector: false,
     isDayHighlighted: AirbnbDateRangePicker.defaultProps.isDayHighlighted,
     isDisabled: false,

@@ -2,7 +2,7 @@ import {
     ButtonBarWrapper,
     ButtonWrapper,
     StyledDialogFooter,
-    TextWrapper,
+    Text,
 } from './DialogFooter.sc';
 import Button from '../Button/Button';
 import PropTypes from 'prop-types';
@@ -17,9 +17,9 @@ const DialogFooter = ({
 }) => (
     <StyledDialogFooter>
         {text && (
-            <TextWrapper>
+            <Text>
                 {text}
-            </TextWrapper>
+            </Text>
         )}
         <ButtonBarWrapper>
             {buttonCancelText && onCancel && (

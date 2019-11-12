@@ -22,12 +22,13 @@ export const Default = () => {
             endDateId="daterangepicker_end"
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
+            footerText="Selecteer minimaal twee dagen"
             isDayHighlighted={(day) => day.day() === 1}
             isDisabled={boolean('Is disabled', DateRangePicker.defaultProps.isDisabled)}
             isOutsideRange={() => false}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
-            minimumNights={number('Minimum night', DateRangePicker.defaultProps.minimumNights)}
+            minimumNights={1}
             numberOfMonths={number('Number of months', DateRangePicker.defaultProps.numberOfMonths)}
             onCancel={() => {
                 setStartDate(defaultStartDate);
