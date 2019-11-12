@@ -60,7 +60,22 @@ const ConfigurableModal = () => (
         options={functionalItems}
         title={text('Header title', 'Heading')}
     >
-        {text('Body', 'Some body text')}
+        {/* {text('Body', 'Some body text')} */}
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" />
     </Modal>
 );
 
