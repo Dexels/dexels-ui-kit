@@ -1,3 +1,4 @@
+import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import {
     SELECTION_CONTROL_DIRECTIONS,
     SELECTION_CONTROL_EASINGS,
@@ -17,12 +18,29 @@ export const StyledSelectionControl = styled.div`
 
 /* eslint-disable indent */
 // The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
-export const SelectionControlWrapper = styled.div`
+export const InputWrapper = styled.div`
     display: flex;
     position: relative;
     flex: 0 0 auto;
+    border-radius: 100%;
     width: ${({ theme }) => theme.spacing(5)};
     height: ${({ theme }) => theme.spacing(5)};
+    overflow: hidden;
+    pointer-events: none;
+
+    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
+        order: 1;
+    `}
+
+    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
+        order: 2;
+    `}
+
+    ${({ isDisabled }) => isDisabled && css`
+        input {
+            pointer-events: none !important;
+        }
+    `}
 
     &::before {
         ${setCentered()}
@@ -33,6 +51,7 @@ export const SelectionControlWrapper = styled.div`
         display: block;
         position: absolute;
         opacity: 0;
+        z-index: 1;
         border-radius: 100%;
         background-color: ${({ theme }) => theme.colorTertiary};
         width: 100%;
@@ -46,44 +65,49 @@ export const SelectionControlWrapper = styled.div`
             opacity: 0.25;
         }
     }
-`;
 
-export const InputWrapper = styled.div`
-    position: relative;
-    flex: 0 0 auto;
-    margin: auto;
-    border-radius: 100%;
+    &:after {
+        ${({ theme }) => rippleEffect(theme.colorTertiary)}
+        z-index: 2;
+    }
 
-    &:active {
-        animation: ripple .3s ease-out;
+    &:active:after {
+        ${rippleEffectReset()}
+    }
 
-        @keyframes ripple {
-            from {
-                background-color: ${({ theme }) => theme.colorTertiary};
-            } to {
-                opacity: 0.7;
-                box-shadow: 0 0 0 ${({ theme }) => theme.spacing(1.5)} ${({ theme }) => theme.colorTertiary};
-            }
-        }
+    input {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 0;
+        margin: 0;
+        border: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        pointer-events: auto;
     }
 `;
+/* eslint-enable */
 
-/* eslint-disable indent */
-// The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
-export const InputContainer = styled.div`
+InputWrapper.propTypes = {
+    direction: PropTypes.oneOf(Object.values(SELECTION_CONTROL_DIRECTIONS)).isRequired,
+    isDisabled: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+InputWrapper.defaultProps = {
+    theme: themeBasic,
+};
+
+export const FakeInput = styled.div`
     position: relative;
     flex: 0 0 auto;
+    z-index: 3;
     margin: auto;
     border: 2px solid ${({ theme }) => theme.colorPrimary};
-    pointer-events: none;
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        order: 1;
-    `}
-
-    ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        order: 2;
-    `}
 
     ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
         border-radius: ${theme.spacing(0.5)};
@@ -102,19 +126,16 @@ export const InputContainer = styled.div`
         isIndeterminate,
         theme,
         type,
-    }) => (isChecked || isIndeterminate) && css`
-
-        ${type === SELECTION_CONTROL_TYPES.RADIO && css`
-            &::after {
-                ${setCentered()}
-                position: absolute;
-                border-radius: 100%;
-                background-color: ${theme.shades.nine};
-                width: 60%;
-                height: 60%;
-                content: '';
-            }
-        `}
+    }) => (isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+        &::after {
+            ${setCentered()}
+            position: absolute;
+            border-radius: 100%;
+            background-color: ${theme.colorPrimary};
+            width: 60%;
+            height: 60%;
+            content: '';
+        }
     `}
 
     ${({
@@ -151,43 +172,18 @@ export const InputContainer = styled.div`
     }) => isDisabled && css`
         border-color: ${theme.colorDisabled};
 
-        input {
-            pointer-events: none !important;
-        }
-
         ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.colorDisabled};
         `}
     `}
 
-    &::after {
-        background-color: ${({ theme }) => theme.colorSecondary};
-    }
-
     &:hover,
     &:focus {
-        border: 2px solid ${({ theme }) => theme.colorSecondary};
-        &::before {
-            opacity: 0.25;
-        }
-    }
-
-    input {
-        display: block;
-        position: relative;
-        opacity: 0;
-        z-index: 1;
-        margin: 0;
-        border: 0;
-        cursor: pointer;
-        width: ${({ theme }) => theme.spacing(3)};
-        height: ${({ theme }) => theme.spacing(3)};
-        pointer-events: auto;
+        border-color: ${({ theme }) => theme.colorSecondary};
     }
 `;
-/* eslint-enable */
 
-InputContainer.propTypes = {
+FakeInput.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isChecked: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
@@ -199,18 +195,16 @@ InputContainer.propTypes = {
     type: PropTypes.oneOf(Object.values(SELECTION_CONTROL_TYPES)).isRequired,
 };
 
-InputContainer.defaultProps = {
+FakeInput.defaultProps = {
     theme: themeBasic,
 };
 
 export const IconWrapper = styled.div`
     ${setCentered()}
     position: absolute;
-    z-index: 2;
-    background-color: ${({ theme }) => theme.colorPrimary};
+    z-index: 4;
     color: ${({ theme }) => theme.colorContrastText.primary};
     font-size: ${({ theme }) => theme.spacing(2.5)};
-    pointer-events: none;
 
     span {
         display: block;

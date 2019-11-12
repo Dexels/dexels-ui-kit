@@ -1,10 +1,9 @@
 import {
     ErrorMessageWrapper,
+    FakeInput,
     IconWrapper,
-    InputContainer,
     InputWrapper,
     LabelWrapper,
-    SelectionControlWrapper,
     StyledSelectionControl,
 } from './SelectionControl.sc';
 import {
@@ -36,35 +35,31 @@ const SelectionControl = ({
 }) => (
     <>
         <StyledSelectionControl>
-            <SelectionControlWrapper>
-                <InputWrapper>
-                    <InputContainer
-                        direction={direction}
-                        hasError={hasError}
-                        isChecked={isChecked}
-                        isDisabled={isDisabled}
-                        isIndeterminate={isIndeterminate}
-                        isValid={isValid}
-                        transitionDuration={transitionDuration}
-                        transitionEasing={transitionEasing}
-                        type={type}
-                    >
-                        <input
-                            checked={isChecked}
-                            disabled={isDisabled}
-                            name={name}
-                            onChange={onChange}
-                            type={type}
-                            value={value}
-                        />
-                    </InputContainer>
-                </InputWrapper>
+            <InputWrapper direction={direction} isDisabled={isDisabled}>
+                <FakeInput
+                    hasError={hasError}
+                    isChecked={isChecked}
+                    isDisabled={isDisabled}
+                    isIndeterminate={isIndeterminate}
+                    isValid={isValid}
+                    transitionDuration={transitionDuration}
+                    transitionEasing={transitionEasing}
+                    type={type}
+                />
                 {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
                     <IconWrapper>
                         <Icon type={isChecked ? Icon.types.CHECK : Icon.types.MINUS} />
                     </IconWrapper>
                 )}
-            </SelectionControlWrapper>
+                <input
+                    checked={isChecked}
+                    disabled={isDisabled}
+                    name={name}
+                    onChange={onChange}
+                    type={type}
+                    value={value}
+                />
+            </InputWrapper>
             <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
                 <Label
                     hasError={hasError}
