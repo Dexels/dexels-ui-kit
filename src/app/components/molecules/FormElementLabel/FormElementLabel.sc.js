@@ -16,7 +16,7 @@ export const StyledFormElementLabel = styled.div`
     `}
 
     ${({ isActive, theme, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.OUTLINE && css`
-        top: ${isActive ? `-${theme.spacing(1)}` : '50%'};
+        top: ${isActive ? '-8px' : '50%'};
         left: ${theme.spacing(isActive ? 2.5 : 1.5)};
         transform: ${isActive ? 'none' : 'translate3d(0, -50%, 0)'};
 
