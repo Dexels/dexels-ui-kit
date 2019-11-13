@@ -1,39 +1,50 @@
-import { DROPDOWN_MULTISELECT_ELEVATIONS, DROPDOWN_MULTISELECT_VARIANTS } from './DropdownMultiSelect.consts';
+import {
+    DROPDOWN_MULTISELECT_ELEVATIONS,
+    DROPDOWN_MULTISELECT_VARIANTS,
+    ENUM_OPTION_ALL,
+} from './DropdownMultiSelect.consts';
 import {
     ErrorMessageWrapper,
     IconWrapper,
     ListItem,
     ListItems,
+    ListWrapper,
     Select,
+    StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
 import React, { useState } from 'react';
+import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../../molecules/FormElementLabel/FormElementLabel';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
-import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 
 const DropdownMultiSelect = ({
+    buttonCancelText,
+    buttonConfirmText,
     elevation,
     errorMessage,
     hasError,
     isDisabled,
+    isOpen,
     isRequired,
     isValid,
     label,
+    maxHeight,
     name,
+    onCancel,
     onChange,
+    onClick,
+    onConfirm,
+    optionAll,
     options,
     placeholder,
-    textOptionDeselectAll,
-    textOptionSelectAll,
     value,
     variant,
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <>
@@ -67,9 +78,7 @@ const DropdownMultiSelect = ({
                         setIsFocused(false);
                     }}
                     onChange={onChange}
-                    onClick={() => {
-                        setIsOpen(!isOpen);
-                    }}
+                    onClick={onClick}
                     onFocus={() => {
                         setIsFocused(true);
                     }}
@@ -84,31 +93,29 @@ const DropdownMultiSelect = ({
                     variant={variant}
                 >
                     {placeholder && placeholder}
-                    {isOpen && (
-                        <ListItems elevation={elevation}>
-                            <ListItem key={'DROPDOWN_MULTISELECT_OPTION_ALL'}>
-                                <SelectionControl
-                                    isChecked
-                                    label={textOptionSelectAll}
-                                    name={'DROPDOWN_MULTISELECT_OPTION_ALL'}
-                                    onChange={() => {}}
-                                    value={'textOptionSelectAll'}
-                                />
-                            </ListItem>
+                </Select>
+                {isOpen && (
+                    <ListWrapper elevation={elevation}>
+                        <StaticItem
+                            elevation={DropdownMultiSelect.elevations.LEVEL_1}
+                        >
+                            {optionAll}
+                        </StaticItem>
+                        <ListItems maxHeight={maxHeight}>
                             {options.map((item) => (
-                                <ListItem key={item}>
-                                    <SelectionControl
-                                        isChecked
-                                        label={item}
-                                        name={'DROPDOWN_MULTISELECT_OPTION'}
-                                        onChange={() => {}}
-                                        value={item}
-                                    />
+                                <ListItem key={item.key}>
+                                    {item}
                                 </ListItem>
                             ))}
                         </ListItems>
-                    )}
-                </Select>
+                        <DialogFooter
+                            buttonCancelText={buttonCancelText}
+                            buttonConfirmText={buttonConfirmText}
+                            onCancel={onCancel}
+                            onConfirm={onConfirm}
+                        />
+                    </ListWrapper>
+                )}
                 <IconWrapper
                     hasError={hasError}
                     isDisabled={isDisabled}
@@ -133,29 +140,34 @@ const DropdownMultiSelect = ({
 
 DropdownMultiSelect.elevations = DROPDOWN_MULTISELECT_ELEVATIONS;
 DropdownMultiSelect.variants = DROPDOWN_MULTISELECT_VARIANTS;
+DropdownMultiSelect.enumOptionAll = ENUM_OPTION_ALL;
 
 DropdownMultiSelect.propTypes = {
+    buttonCancelText: PropTypes.string,
+    buttonConfirmText: PropTypes.string.isRequired,
     elevation: PropTypes.oneOf(Object.values(DropdownMultiSelect.elevations)),
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
+    isOpen: PropTypes.bool.isRequired,
     isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
     label: PropTypes.string,
+    maxHeight: PropTypes.string,
     name: PropTypes.string.isRequired,
+    onCancel: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
-    options: PropTypes.oneOfType(PropTypes.array).isRequired,
+    onClick: PropTypes.func,
+    onConfirm: PropTypes.func.isRequired,
+    optionAll: PropTypes.node.isRequired,
+    options: PropTypes.node.isRequired,
     placeholder: PropTypes.string,
-    textOptionDeselectAll: PropTypes.string,
-    textOptionSelectAll: PropTypes.string,
-    value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]).isRequired,
+    value: PropTypes.string,
     variant: PropTypes.oneOf(Object.values(DropdownMultiSelect.variants)),
 };
 
 DropdownMultiSelect.defaultProps = {
+    buttonCancelText: 'Cancel',
     elevation: DropdownMultiSelect.elevations.LEVEL_6,
     errorMessage: '',
     hasError: false,
@@ -163,9 +175,10 @@ DropdownMultiSelect.defaultProps = {
     isRequired: false,
     isValid: false,
     label: '',
+    maxHeight: '',
+    onClick: null,
     placeholder: '',
-    textOptionDeselectAll: 'Deselect all',
-    textOptionSelectAll: 'Select all',
+    value: '',
     variant: DropdownMultiSelect.variants.COMPACT,
 };
 
