@@ -1,4 +1,5 @@
 /* eslint react/jsx-props-no-spreading: 0 */
+import { HORIZONTAL_ORIENTATION, VERTICAL_ORIENTATION } from 'react-dates/constants';
 import React, { useContext } from 'react';
 import { SingleDatePicker as AirbnbSingleDatePicker } from 'react-dates';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
@@ -93,6 +94,7 @@ SingleDatePicker.propTypes = {
     onClose: PropTypes.func,
     onDateChange: PropTypes.func.isRequired,
     onFocusChange: PropTypes.func.isRequired,
+    orientation: PropTypes.oneOf([HORIZONTAL_ORIENTATION, VERTICAL_ORIENTATION]),
     placeholder: PropTypes.string,
     yearCount: PropTypes.number,
 };
@@ -110,6 +112,7 @@ SingleDatePicker.defaultProps = {
     labelYear: undefined,
     numberOfMonths: 1,
     onClose: AirbnbSingleDatePicker.defaultProps.onClose,
+    orientation: HORIZONTAL_ORIENTATION,
     placeholder: AirbnbSingleDatePicker.defaultProps.placeholder,
     yearCount: 100,
 };

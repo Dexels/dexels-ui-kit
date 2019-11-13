@@ -1,5 +1,10 @@
 /* eslint react/jsx-props-no-spreading: 0 */
-import { END_DATE, START_DATE } from 'react-dates/constants';
+import {
+    END_DATE,
+    HORIZONTAL_ORIENTATION,
+    START_DATE,
+    VERTICAL_ORIENTATION,
+} from 'react-dates/constants';
 import React, { useContext } from 'react';
 import { DateRangePicker as AirbnbDateRangePicker } from 'react-dates';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
@@ -38,6 +43,7 @@ const DateRangePicker = ({
     onConfirm,
     onDatesChange,
     onFocusChange,
+    orientation,
     shortcuts,
     shortcutsText,
     startDate,
@@ -75,6 +81,7 @@ const DateRangePicker = ({
                     numberOfMonths={numberOfMonths}
                     onDatesChange={onDatesChange}
                     onFocusChange={onFocusChange}
+                    orientation={orientation}
                     renderCalendarInfo={() => (
                         <>
                             {shortcuts.length > 0 && (
@@ -134,6 +141,7 @@ DateRangePicker.propTypes = {
     onConfirm: PropTypes.func,
     onDatesChange: PropTypes.func.isRequired,
     onFocusChange: PropTypes.func.isRequired,
+    orientation: PropTypes.oneOf([HORIZONTAL_ORIENTATION, VERTICAL_ORIENTATION]),
     shortcuts: PropTypes.arrayOf(PropTypes.shape({
         onClick: PropTypes.func.isRequired,
         text: PropTypes.string.isRequired,
@@ -165,6 +173,7 @@ DateRangePicker.defaultProps = {
     numberOfMonths: 2,
     onCancel: null,
     onConfirm: null,
+    orientation: HORIZONTAL_ORIENTATION,
     shortcuts: [],
     shortcutsText: undefined,
     startDate: null,
