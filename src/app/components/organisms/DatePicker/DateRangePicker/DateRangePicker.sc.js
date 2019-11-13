@@ -6,7 +6,6 @@ export const StyledDateRangePicker = styled.div`
     .DateRangePickerInput {
         display: flex;
         flex-wrap: nowrap;
-        padding: 0 48px 0 ${({ theme }) => theme.spacing(1.5)};
     }
 
     .DateInput {

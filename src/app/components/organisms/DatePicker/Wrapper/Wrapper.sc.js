@@ -4,6 +4,7 @@ import { ELEVATIONS } from '../../../../utils/constants';
 import getElevation from '../../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
+import setTruncate from '../../../../styles/mixins/setTruncate'
 import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 
 export const StyledWrapper = styled.div`
@@ -16,6 +17,7 @@ export const StyledWrapper = styled.div`
         outline: none;
         border: 1px solid ${({ theme }) => theme.colorPrimary};
         border-radius: ${({ theme }) => theme.spacing(1)};
+        padding: ${({ theme }) => theme.spacing(0, 6, 0, 1.5)};
         height: ${({ theme }) => theme.spacing(6)};
         overflow: hidden;
 
@@ -44,8 +46,7 @@ export const StyledWrapper = styled.div`
         z-index: 1;
         margin: 0;
         outline: none;
-        padding: ${({ theme }) => theme.spacing(1.5)};
-        font-size: 24px;
+        padding: 0;
     }
 
     .DateInput {
@@ -54,6 +55,7 @@ export const StyledWrapper = styled.div`
     }
 
     .DateInput_input {
+        ${setTruncate()}
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
         display: block;
         outline: none;

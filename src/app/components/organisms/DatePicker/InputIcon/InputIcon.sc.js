@@ -3,7 +3,9 @@ import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/ba
 import PropTypes from 'prop-types';
 
 export const StyledInputIcon = styled.div`
+    padding: ${({ theme }) => theme.spacing(1.5)};
     color: ${({ theme }) => theme.colorPrimary};
+    font-size: ${({ theme }) => theme.spacing(3)};
 
     span {
         display: block;

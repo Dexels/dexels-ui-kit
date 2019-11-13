@@ -5,7 +5,6 @@ import styled from 'styled-components';
 export const StyledSingleDatePicker = styled.div`
     .SingleDatePickerInput {
         display: block;
-        padding: ${({ theme }) => theme.spacing(0, 1.5)};
     }
 `;
 
