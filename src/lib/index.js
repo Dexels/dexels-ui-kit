@@ -18,6 +18,7 @@ import ButtonIcon from '../app/components/molecules/ButtonIcon/ButtonIcon';
 import CardNoResults from '../app/components/molecules/CardNoResults/CardNoResults';
 import CardStatus from '../app/components/molecules/CardStatus/CardStatus';
 import Chip from '../app/components/molecules/Chip/Chip';
+import DialogFooter from '../app/components/molecules/DialogFooter/DialogFooter';
 import Dropdown from '../app/components/molecules/Dropdown/Dropdown';
 import Input from '../app/components/molecules/Input/Input';
 import Overlay from '../app/components/molecules/Overlay/Overlay';
@@ -55,6 +56,7 @@ export {
     CardNoResults,
     CardStatus,
     Chip,
+    DialogFooter,
     Dropdown,
     Input,
     Overlay,
