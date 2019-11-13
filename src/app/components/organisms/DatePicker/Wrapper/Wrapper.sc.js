@@ -4,7 +4,7 @@ import { ELEVATIONS } from '../../../../utils/constants';
 import getElevation from '../../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
-import setTruncate from '../../../../styles/mixins/setTruncate'
+import setTruncate from '../../../../styles/mixins/setTruncate';
 import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 
 export const StyledWrapper = styled.div`
