@@ -88,6 +88,8 @@ export const DefaultWithoutShortcuts = () => {
 
     return (
         <DateRangePicker
+            buttonCancelText={text('Button cancel text', 'reset')}
+            buttonConfirmText={text('Button confirm text', 'toepassen')}
             displayFormat={text('Display format', DateRangePicker.defaultProps.displayFormat)}
             endDate={endDate}
             endDateId="daterangepicker_end"
