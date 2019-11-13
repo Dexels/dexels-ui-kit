@@ -29,11 +29,12 @@ import Tooltip from '../app/components/molecules/Tooltip/Tooltip';
 // Organisms
 import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
 import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
-import DatePicker from '../app/components/organisms/DatePicker/DatePicker';
+import DateRangePicker from '../app/components/organisms/DatePicker/DateRangePicker/DateRangePicker';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
 import Header from '../app/components/organisms/Header/Header';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
 import Modal from '../app/components/organisms/Modal/Modal';
+import SingleDatePicker from '../app/components/organisms/DatePicker/SingleDatePicker/SingleDatePicker';
 import Table from '../app/components/organisms/Table/Table';
 import Tabs from '../app/components/organisms/Tabs/Tabs';
 import Toolbar from '../app/components/organisms/Toolbar/Toolbar';
@@ -64,11 +65,12 @@ export {
     // Export organisms
     ChipStatus,
     ContainerContent,
-    DatePicker,
+    DateRangePicker,
     Dialog,
     Header,
     InputPassword,
     Modal,
+    SingleDatePicker,
     Table,
     Tabs,
     Toolbar,
