@@ -54,33 +54,15 @@ const functionalItems = [
     </Button>,
 ];
 
-const ConfigurableModal = () => (
+export const Configurable = () => (
     <Modal
+        isDisplaying
         onBack={action('On back')}
         options={functionalItems}
         title={text('Header title', 'Heading')}
     >
-        {/* {text('Body', 'Some body text')} */}
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
-        <img src="https://via.placeholder.com/150" />
+        {text('Body', 'Some body text')}
     </Modal>
-);
-
-export const Configurable = () => (
-    <ConfigurableModal functionalItems={functionalItems} />
 );
 
 export const ConfigurableAlert = () => {
@@ -96,9 +78,14 @@ export const ConfigurableAlert = () => {
             >
                 {isVisible ? 'MODAL IS SHOWING' : 'SHOW MODAL'}
             </Button>
-            {isVisible && (
-                <ConfigurableModal functionalItems={functionalItems} />
-            )}
+            <Modal
+                isDisplaying={isVisible}
+                onBack={() => setIsVisible(false)}
+                options={functionalItems}
+                title={text('Header title', 'Heading')}
+            >
+                {text('Body', 'Some body text')}
+            </Modal>
         </>
     );
 };

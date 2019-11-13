@@ -1,31 +1,28 @@
+import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledModal = styled.div`
     ${setBoxSizing()};
-    display: flex;
     position: fixed;
+    display: flex;
     top: 0;
-    left: 0;
+    left: 50%;
     flex-direction: column;
     flex-wrap: nowrap;
-    z-index:3;
+    z-index: 3;
     width: 100%;
     max-width: 1024px;
     height: 100%;
-    left: calc((100% - 1024px)/2);
-    animation: show .3s;
-
-    @keyframes show {
-        from{
-            opacity: 0;
-            transform: translateY(100%);
-        } to{
-            opacity: 1;
-            transform: translateY(0%);
-        }
-    }
+    padding: ${({ theme }) => theme.spacing(6.5)} 0 0 0;
+    opacity: ${({ isDisplaying }) => (isDisplaying ? 1 : 0)};
+    transform: ${({ isDisplaying }) => `translate3d(-50%, ${isDisplaying ? '0' : '100%'}, 0)`};
+    transition: all 500ms ease;
 `;
+
+StyledModal.propTypes = {
+    isDisplaying: PropTypes.bool.isRequired,
+};
 
 export const HeaderWrapper = styled.header`
     position: relative;
@@ -34,7 +31,7 @@ export const HeaderWrapper = styled.header`
 
 export const Body = styled.div`
     flex: 1 1 auto;
-    background-color: ${({ theme }) => theme.shades.one};
+    background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(2)};
     overflow: auto;
 `;
