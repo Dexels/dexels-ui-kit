@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 
-export const StyledDatePickerButtonNavigation = styled.div`
+export const StyledButtonNavigation = styled.div`
     position: absolute;
     top: ${({ theme }) => theme.spacing(2.5)};
 
@@ -16,16 +16,16 @@ export const StyledDatePickerButtonNavigation = styled.div`
     `}
 `;
 
-StyledDatePickerButtonNavigation.propTypes = {
+StyledButtonNavigation.propTypes = {
     isNext: PropTypes.bool,
     isPrev: PropTypes.bool,
     theme: themePropTypes,
 };
 
-StyledDatePickerButtonNavigation.defaultProps = {
+StyledButtonNavigation.defaultProps = {
     isNext: false,
     isPrev: false,
     theme: themeBasic,
 };
 
-export default StyledDatePickerButtonNavigation;
+export default StyledButtonNavigation;

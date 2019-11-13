@@ -3,7 +3,7 @@ import {
     StyledShortcuts,
     Text,
 } from './Shortcuts.sc';
-import Chip from '../../../molecules/Chip/Chip';
+import Chip from '../../../../molecules/Chip/Chip';
 import PropTypes from 'prop-types';
 import React from 'react';
 

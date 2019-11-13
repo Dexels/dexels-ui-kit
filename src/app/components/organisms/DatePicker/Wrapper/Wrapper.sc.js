@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
-import { ELEVATIONS } from '../../../utils/constants';
-import getElevation from '../../../styles/mixins/getElevation';
+import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
+import { ELEVATIONS } from '../../../../utils/constants';
+import getElevation from '../../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { StyledDatePickerInputIcon } from '../DatePickerInputIcon/DatePickerInputIcon.sc';
+import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
+import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 
-export const StyledDatePickerWrapper = styled.div`
+export const StyledWrapper = styled.div`
     ${setBoxSizing()}
     position: relative;
 
@@ -30,7 +30,7 @@ export const StyledDatePickerWrapper = styled.div`
 
     .DateRangePickerInput:not(.DateRangePickerInput__disabled):hover,
     .SingleDatePickerInput:not(.SingleDatePickerInput__disabled):hover {
-        ${StyledDatePickerInputIcon} {
+        ${StyledInputIcon} {
             color: ${({ theme }) => theme.colorSecondary};
         }
     }
@@ -231,14 +231,14 @@ export const StyledDatePickerWrapper = styled.div`
     }
 `;
 
-StyledDatePickerWrapper.propTypes = {
+StyledWrapper.propTypes = {
     hasYearSelector: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
 
-StyledDatePickerWrapper.defaultProps = {
+StyledWrapper.defaultProps = {
     theme: themeBasic,
 };
 
-export default StyledDatePickerWrapper;
+export default StyledWrapper;

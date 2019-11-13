@@ -2,17 +2,17 @@
 import { END_DATE, START_DATE } from 'react-dates/constants';
 import React, { useContext } from 'react';
 import { DateRangePicker as AirbnbDateRangePicker } from 'react-dates';
-import DatePickerButtonNavigation from '../../molecules/DatePickerButtonNavigation/DatePickerButtonNavigation';
-import DatePickerInputIcon from '../../molecules/DatePickerInputIcon/DatePickerInputIcon';
-import DatePickerNavigation from '../../molecules/DatePickerNavigation/DatePickerNavigation';
-import DatePickerWrapper from '../../molecules/DatePickerWrapper/DatePickerWrapper';
-import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
-import FormElementLabel from '../../molecules/FormElementLabel/FormElementLabel';
+import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
+import DialogFooter from '../../../molecules/DialogFooter/DialogFooter';
+import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
+import InputIcon from '../InputIcon/InputIcon';
 import momentPropTypes from 'react-moment-proptypes';
+import Navigation from '../Navigation/Navigation';
 import PropTypes from 'prop-types';
 import Shortcuts from './Shortcuts/Shortcuts';
 import { StyledDateRangePicker } from './DateRangePicker.sc';
 import { ThemeContext } from 'styled-components';
+import Wrapper from '../Wrapper/Wrapper';
 
 const DateRangePicker = ({
     buttonCancelText,
@@ -49,14 +49,14 @@ const DateRangePicker = ({
     const { spacingValue } = useContext(ThemeContext);
 
     return (
-        <DatePickerWrapper hasYearSelector={hasYearSelector} isFocused={isFocused}>
+        <Wrapper hasYearSelector={hasYearSelector} isFocused={isFocused}>
             <StyledDateRangePicker>
                 <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused}>
                     {label}
                 </FormElementLabel>
                 <AirbnbDateRangePicker
                     customInputIcon={(
-                        <DatePickerInputIcon isDisabled={isDisabled} isFocused={isFocused} />
+                        <InputIcon isDisabled={isDisabled} isFocused={isFocused} />
                     )}
                     daySize={daySize}
                     disabled={isDisabled}
@@ -70,8 +70,8 @@ const DateRangePicker = ({
                     isOutsideRange={isOutsideRange}
                     keepOpenOnDateSelect={keepOpenOnDateSelect}
                     minimumNights={minimumNights}
-                    navNext={<DatePickerButtonNavigation isNext />}
-                    navPrev={<DatePickerButtonNavigation isPrev />}
+                    navNext={<ButtonNavigation isNext />}
+                    navPrev={<ButtonNavigation isPrev />}
                     numberOfMonths={numberOfMonths}
                     onDatesChange={onDatesChange}
                     onFocusChange={onFocusChange}
@@ -92,7 +92,7 @@ const DateRangePicker = ({
                         </>
                     )}
                     renderMonthElement={(props) => (
-                        <DatePickerNavigation
+                        <Navigation
                             {...props}
                             hasYearSelector={hasYearSelector}
                             labelMonth={labelMonth}
@@ -106,7 +106,7 @@ const DateRangePicker = ({
                     verticalSpacing={(spacingValue * 6) - 40}
                 />
             </StyledDateRangePicker>
-        </DatePickerWrapper>
+        </Wrapper>
     );
 };
 

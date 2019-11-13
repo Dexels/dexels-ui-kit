@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 
-export const StyledDatePickerInputIcon = styled.div`
+export const StyledInputIcon = styled.div`
     color: ${({ theme }) => theme.colorPrimary};
 
     span {
@@ -18,14 +18,14 @@ export const StyledDatePickerInputIcon = styled.div`
     `}
 `;
 
-StyledDatePickerInputIcon.propTypes = {
+StyledInputIcon.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
 
-StyledDatePickerInputIcon.defaultProps = {
+StyledInputIcon.defaultProps = {
     theme: themeBasic,
 };
 
-export default StyledDatePickerInputIcon;
+export default StyledInputIcon;

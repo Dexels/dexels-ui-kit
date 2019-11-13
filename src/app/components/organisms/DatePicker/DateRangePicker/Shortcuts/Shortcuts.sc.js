@@ -1,4 +1,4 @@
-import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
+import { themeBasic, themePropTypes } from '../../../../../styles/theming/themes/basic';
 import styled from 'styled-components';
 
 export const StyledShortcuts = styled.div`
