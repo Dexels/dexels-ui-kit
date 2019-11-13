@@ -4,15 +4,15 @@ import {
     SELECTION_CONTROL_TYPES,
 } from './SelectionControl.consts';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledSelectionControl = styled.div`
-    ${setBoxSizing()};
+    ${setBoxSizing()}
     display: flex;
-    flex-wrap: nowrap;
 `;
 
 /* eslint-disable indent */
@@ -26,22 +26,22 @@ export const InputWrapper = styled.div`
     pointer-events: none;
 
     ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
-        margin: ${theme.spacing(0, 2.25, 0, 0)};
         order: 1;
-    `};
+        margin: ${theme.spacing(0, 2.25, 0, 0)};
+    `}
 
     ${({ direction, theme }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
-        margin: ${theme.spacing(0, 0, 0, 2.25)};
         order: 2;
-    `};
+        margin: ${theme.spacing(0, 0, 0, 2.25)};
+    `}
 
     ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
         border-radius: ${theme.spacing(0.5)};
-    `};
+    `}
 
     ${({ type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
         border-radius: 100%;
-    `};
+    `}
 
     ${({
         isChecked,
@@ -53,16 +53,16 @@ export const InputWrapper = styled.div`
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
             &::after {
-                ${setCentered()};
+                ${setCentered()}
                 position: absolute;
+                border-radius: 100%;
+                background-color: ${theme.shades.nine};
                 width: 60%;
                 height: 60%;
-                background-color: ${theme.shades.nine};
                 content: '';
-                border-radius: 100%;
             }
-        `};
-    `};
+        `}
+    `}
 
     ${({
         isChecked,
@@ -74,8 +74,8 @@ export const InputWrapper = styled.div`
 
         ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.colorValid};
-        `};
-    `};
+        `}
+    `}
 
     ${({
         hasError,
@@ -87,8 +87,8 @@ export const InputWrapper = styled.div`
 
         ${(isChecked || isIndeterminate) && css`
             background-color: ${theme.colorInvalid};
-        `};
-    `};
+        `}
+    `}
 
     ${({
         isChecked,
@@ -98,21 +98,21 @@ export const InputWrapper = styled.div`
     }) => isDisabled && css`
         border-color: ${theme.colorDisabled};
 
-        ${(isChecked || isIndeterminate) && css`
-            background-color: ${theme.colorDisabled};
-        `};
-
         input {
             pointer-events: none !important;
         }
-    `};
+
+        ${(isChecked || isIndeterminate) && css`
+            background-color: ${theme.colorDisabled};
+        `}
+    `}
 
     &::before {
-        ${setCentered()};
+        ${setCentered()}
         ${({ transitionDuration, transitionEasing }) => transitionEffect({
             duration: transitionDuration,
             easing: transitionEasing,
-        })};
+        })}
         display: block;
         position: absolute;
         opacity: 0;
@@ -152,13 +152,18 @@ InputWrapper.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isIndeterminate: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
+    theme: themePropTypes,
     transitionDuration: PropTypes.number.isRequired,
     transitionEasing: PropTypes.oneOf(Object.values(SELECTION_CONTROL_EASINGS)),
     type: PropTypes.oneOf(Object.values(SELECTION_CONTROL_TYPES)).isRequired,
 };
 
+InputWrapper.defaultProps = {
+    theme: themeBasic,
+};
+
 export const IconWrapper = styled.div`
-    ${setCentered()};
+    ${setCentered()}
     position: absolute;
     z-index: 2;
     color: ${({ theme }) => theme.colorContrastText.primary};
@@ -169,6 +174,14 @@ export const IconWrapper = styled.div`
         display: block;
     }
 `;
+
+IconWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
+};
 
 export const LabelWrapper = styled.button`
     flex: 0 1 auto;
@@ -181,22 +194,35 @@ export const LabelWrapper = styled.button`
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
-    `};
+    `}
 
     ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.LTR && css`
         order: 2;
-    `};
+    `}
 
     ${({ direction }) => direction === SELECTION_CONTROL_DIRECTIONS.RTL && css`
         order: 1;
-    `};
+    `}
 `;
 
 LabelWrapper.propTypes = {
     direction: PropTypes.oneOf(Object.values(SELECTION_CONTROL_DIRECTIONS)).isRequired,
     isDisabled: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+LabelWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export const ErrorMessageWrapper = styled.div`
     margin: ${({ theme }) => theme.spacing(0.25, 0, 0, 0)};
 `;
+
+ErrorMessageWrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+ErrorMessageWrapper.defaultProps = {
+    theme: themeBasic,
+};

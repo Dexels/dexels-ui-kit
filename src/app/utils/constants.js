@@ -61,13 +61,14 @@ export const SIZES = mapArrayToObject([
     'LARGE',
     'MEDIUM',
     'SMALL',
+    'XLARGE',
 ]);
 
 export const STATUSES = mapArrayToObject([
+    'ALERT',
     'DEFAULT',
     'DISABLED',
-    'ERROR',
+    'INVALID',
     'NONE',
     'VALID',
-    'WARNING',
 ]);

@@ -3,21 +3,21 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
 export const StyledModal = styled.div`
-    ${setBoxSizing()};
-    position: fixed;
+    ${setBoxSizing()}
     display: flex;
+    position: fixed;
     top: 0;
     left: 50%;
     flex-direction: column;
     flex-wrap: nowrap;
+    transform: ${({ isDisplaying }) => `translate3d(-50%, ${isDisplaying ? '0' : '100%'}, 0)`};
+    transition: all 500ms ease;
+    opacity: ${({ isDisplaying }) => (isDisplaying ? 1 : 0)};
     z-index: 3;
+    padding: ${({ theme }) => theme.spacing(6.5)} 0 0 0;
     width: 100%;
     max-width: 1024px;
     height: 100%;
-    padding: ${({ theme }) => theme.spacing(6.5)} 0 0 0;
-    opacity: ${({ isDisplaying }) => (isDisplaying ? 1 : 0)};
-    transform: ${({ isDisplaying }) => `translate3d(-50%, ${isDisplaying ? '0' : '100%'}, 0)`};
-    transition: all 500ms ease;
 `;
 
 StyledModal.propTypes = {
