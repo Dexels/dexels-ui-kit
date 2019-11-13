@@ -38,7 +38,7 @@ export const StyledDateRangePicker = styled.div`
         }
     }
 
-    .CalendarDay__selected_span {
+    .CalendarDay__default.CalendarDay__selected_span {
         background-color: ${({ theme }) => theme.colorTertiary};
         color: ${({ theme }) => theme.colorContrastText.primary};
     }
