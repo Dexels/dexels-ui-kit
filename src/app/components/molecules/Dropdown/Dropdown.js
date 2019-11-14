@@ -12,6 +12,7 @@ import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 
 const Dropdown = ({
+    as,
     children,
     errorMessage,
     hasError,
@@ -49,6 +50,7 @@ const Dropdown = ({
                     </FormElementLabel>
                 )}
                 <Select
+                    as={as}
                     hasError={hasError}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
@@ -105,6 +107,7 @@ const Dropdown = ({
 Dropdown.variants = DROPDOWN_VARIANTS;
 
 Dropdown.propTypes = {
+    as: PropTypes.string,
     children: PropTypes.node.isRequired,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
@@ -123,6 +126,7 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
+    as: 'select',
     errorMessage: '',
     hasError: false,
     isDisabled: false,
