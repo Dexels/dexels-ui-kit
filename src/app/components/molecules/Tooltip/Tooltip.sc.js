@@ -42,8 +42,8 @@ export const StyledTooltip = styled.span`
     `}
 
     position: fixed;
-    top: ${({ top }) => top};
-    left: ${({ left }) => left};
+    top: ${({ top }) => `${top}px`};
+    left: ${({ left }) => `${left}px`};
     z-index: 99999999;
     border-radius: 15px;
     background-color: ${({ theme }) => theme.colorPrimary};
@@ -53,9 +53,9 @@ export const StyledTooltip = styled.span`
 `;
 
 StyledTooltip.propTypes = {
-    correctionLeft: PropTypes.node.isRequired,
-    correctionTop: PropTypes.node.isRequired,
+    left: PropTypes.number.isRequired,
     tooltipPosition: PropTypes.string.isRequired,
+    top: PropTypes.number.isRequired,
     visibility: PropTypes.string.isRequired,
 };
 

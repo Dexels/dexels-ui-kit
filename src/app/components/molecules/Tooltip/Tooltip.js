@@ -127,8 +127,8 @@ const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
         }
     }, [hoveredElement]);
 
-    const left = hoveredElement ? `${hoveredElement.x}px` : 0;
-    const top = hoveredElement ? `${hoveredElement.y}px` : 0;
+    const left = hoveredElement ? hoveredElement.x : 0;
+    const top = hoveredElement ? hoveredElement.y : 0;
 
     return (
         <StyledTooltip
