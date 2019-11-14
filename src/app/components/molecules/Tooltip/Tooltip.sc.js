@@ -11,6 +11,7 @@ export const StyledTooltip = styled.span`
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
+        property: 'opacity',
     })}
 
     ${({ correctionLeft }) => correctionLeft && css`
