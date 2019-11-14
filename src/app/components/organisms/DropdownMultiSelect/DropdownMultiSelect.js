@@ -35,50 +35,46 @@ const DropdownMultiSelect = ({
     placeholder,
     value,
     variant,
-}) => {
-    console.log(value);
-
-    return (
-        <StyledDropdownMultiSelect>
-            <Dropdown
-                as="div"
-                errorMessage={errorMessage}
-                hasError={hasError}
-                isDisabled={isDisabled}
-                isOpen={isOpen}
-                isValid={isValid}
-                label={label}
-                name={name}
-                onClick={onClick}
-                placeholder={placeholder}
-                value={value || placeholder}
-                variant={variant}
-            >
-                {value || placeholder}
-            </Dropdown>
-            {isOpen && (
-                <ListWrapper elevation={elevation}>
-                    <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
-                        {optionAll}
-                    </StaticItem>
-                    <List maxHeight={maxHeight}>
-                        {options.map((item) => (
-                            <ListItem key={item.key}>
-                                {item}
-                            </ListItem>
-                        ))}
-                    </List>
-                    <DialogFooter
-                        buttonCancelText={buttonCancelText}
-                        buttonConfirmText={buttonConfirmText}
-                        onCancel={onCancel}
-                        onConfirm={onConfirm}
-                    />
-                </ListWrapper>
-            )}
-        </StyledDropdownMultiSelect>
-    );
-};
+}) => (
+    <StyledDropdownMultiSelect>
+        <Dropdown
+            as="div"
+            errorMessage={errorMessage}
+            hasError={hasError}
+            isDisabled={isDisabled}
+            isOpen={isOpen}
+            isValid={isValid}
+            label={label}
+            name={name}
+            onClick={onClick}
+            placeholder={placeholder}
+            value={value || placeholder}
+            variant={variant}
+        >
+            {value || placeholder}
+        </Dropdown>
+        {isOpen && (
+            <ListWrapper elevation={elevation}>
+                <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
+                    {optionAll}
+                </StaticItem>
+                <List maxHeight={maxHeight}>
+                    {options.map((item) => (
+                        <ListItem key={item.key}>
+                            {item}
+                        </ListItem>
+                    ))}
+                </List>
+                <DialogFooter
+                    buttonCancelText={buttonCancelText}
+                    buttonConfirmText={buttonConfirmText}
+                    onCancel={onCancel}
+                    onConfirm={onConfirm}
+                />
+            </ListWrapper>
+        )}
+    </StyledDropdownMultiSelect>
+);
 
 DropdownMultiSelect.elevations = DROPDOWN_MULTISELECT_ELEVATIONS;
 DropdownMultiSelect.variants = DROPDOWN_MULTISELECT_VARIANTS;
