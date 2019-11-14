@@ -60,7 +60,7 @@ export const InputWrapper = styled.div`
     }
 
     &:after {
-        ${({ theme }) => rippleEffect(theme.colorTertiary)}
+        ${({ theme }) => rippleEffect(theme.colorSecondary)}
         z-index: 2;
     }
 
