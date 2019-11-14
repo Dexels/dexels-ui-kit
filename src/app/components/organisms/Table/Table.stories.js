@@ -71,7 +71,7 @@ export const Configurable = () => {
                 hasUnsortedStateIcon={boolean('Has unsorted state icon', Table.defaultProps.hasUnsortedStateIcon)}
                 instance={instance}
                 isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
-                onRowClick={getTableRow}
+                onClickRow={getTableRow}
                 pagingComponent={(
                     <Paginator
                         instance={instance}
