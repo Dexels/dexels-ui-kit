@@ -14,7 +14,7 @@ export const StyledModal = styled.div`
     transition: all 500ms ease;
     opacity: ${({ isDisplaying }) => (isDisplaying ? 1 : 0)};
     z-index: 3;
-    padding: ${({ theme }) => theme.spacing(6.5)} 0 0 0;
+    padding: ${({ theme }) => theme.spacing(3.5)} 0 0 0;
     width: 100%;
     max-width: 1024px;
     height: 100%;
