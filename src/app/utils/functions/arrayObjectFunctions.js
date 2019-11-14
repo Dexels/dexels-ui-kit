@@ -44,14 +44,8 @@ export const setElementSelected = (
         newElement = element;
 
         if (unsetOtherValues) {
-            if (element[propertyIdName] === selectedProperty[propertyIdName]) {
-                newElement[propertySelectedName] = true;
-            } else {
-                newElement[propertySelectedName] = false;
-            }
-        }
-
-        if (!unsetOtherValues && element[propertyIdName] === selectedProperty[propertyIdName]) {
+            newElement[propertySelectedName] = element[propertyIdName] === selectedProperty[propertyIdName];
+        } else if (element[propertyIdName] === selectedProperty[propertyIdName]) {
             newElement[propertySelectedName] = !element[propertySelectedName];
         }
 
@@ -65,8 +59,11 @@ const setAllElements = (data, selected, propertySelectedName) => {
     const output = [];
 
     data.forEach((element) => {
-        const newElement = element;
-        newElement[propertySelectedName] = selected;
+        const newElement = {
+            ...element,
+            [propertySelectedName]: selected,
+        };
+
         output.push(newElement);
     });
 
