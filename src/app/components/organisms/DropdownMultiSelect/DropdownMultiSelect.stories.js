@@ -10,7 +10,7 @@ import {
 import { boolean, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
-import { data } from './MockUp/data';
+import { data } from './mockup/data';
 import DropdownMultiSelect from './DropdownMultiSelect';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 
