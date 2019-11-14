@@ -11,18 +11,14 @@ export const getSelectedElements = (data, propertyName = DEFAULT_PROPERTYNAME_SE
 );
 
 export const getSelectedText = (
-    data,
-    propertyName = DEFAULT_PROPERTYNAME_SELECTED,
+    selectedOptions,
     propertyNameDescription = DEFAULT_PROPERTYNAME_DESCRIPTION,
     delimiter = ',',
 ) => {
     let text = '';
 
-    data.forEach((element) => {
-        if (element[propertyName] && Boolean(element[propertyName])) {
-            text += text !== '' ? `${delimiter} ` : ' ';
-            text += element[propertyNameDescription];
-        }
+    selectedOptions.forEach((selectedOption) => {
+        text += `${text ? `${delimiter} ` : ''}${selectedOption[propertyNameDescription]}`;
     });
 
     return text;
