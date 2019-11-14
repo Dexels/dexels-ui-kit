@@ -28,19 +28,16 @@ const DropdownMultiSelect = ({
     hasError,
     isDisabled,
     isOpen,
-    isRequired,
     isValid,
     label,
     maxHeight,
     name,
     onCancel,
-    onChange,
     onClick,
     onConfirm,
     optionAll,
     options,
     placeholder,
-    value,
     variant,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -67,10 +64,9 @@ const DropdownMultiSelect = ({
                     hasError={hasError}
                     isDisabled={isDisabled}
                     isHovered={isHovered}
-                    isPlaceholderSelected={placeholder === value}
+                    isPlaceholderSelected={Boolean(placeholder)}
                     isValid={isValid}
                     name={name}
-                    onChange={onChange}
                     onClick={onClick}
                     onMouseEnter={() => {
                         setIsHovered(true);
@@ -78,8 +74,6 @@ const DropdownMultiSelect = ({
                     onMouseLeave={() => {
                         setIsHovered(false);
                     }}
-                    required={isRequired}
-                    value={value}
                     variant={variant}
                 >
                     {placeholder && placeholder}
@@ -137,19 +131,16 @@ DropdownMultiSelect.propTypes = {
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
-    isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
     label: PropTypes.string,
     maxHeight: PropTypes.string,
     name: PropTypes.string.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
     onClick: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
     optionAll: PropTypes.node.isRequired,
     options: PropTypes.node.isRequired,
     placeholder: PropTypes.string,
-    value: PropTypes.string,
     variant: PropTypes.oneOf(Object.values(DropdownMultiSelect.variants)),
 };
 
@@ -159,13 +150,11 @@ DropdownMultiSelect.defaultProps = {
     errorMessage: '',
     hasError: false,
     isDisabled: false,
-    isRequired: false,
     isValid: false,
     label: '',
     maxHeight: '',
     onClick: null,
     placeholder: '',
-    value: '',
     variant: DropdownMultiSelect.variants.COMPACT,
 };
 

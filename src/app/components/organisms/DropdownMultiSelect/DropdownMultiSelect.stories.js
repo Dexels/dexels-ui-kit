@@ -18,14 +18,9 @@ export default { title: 'organisms/DropdownMultiSelect' };
 
 const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
-
 const originalOptionValues = cloneArray(data);
 
-const getSelectAllOption = (
-    options,
-    textOptionDeselectAll,
-    textOptionSelectAll,
-) => {
+const getSelectAllOption = (options, textOptionDeselectAll, textOptionSelectAll) => {
     const hasSelected = isAnyOptionSelected(options);
     const allSelected = areAllOptionsSelected(options);
 
@@ -62,8 +57,6 @@ const BaseComponent = (
         ? getSelectedText(getSelectedElements(optionValues))
         : 'Select the best fruit';
 
-    const [value, setValue] = useState(placeholder);
-
     const [selectAllOption, setSelectAllOption] = useState(getSelectAllOption(
         optionValues,
         TEXT_OPTION_DESELECT_ALL,
@@ -83,11 +76,9 @@ const BaseComponent = (
     };
 
     const onChangeAll = () => {
-        const values = isAnyOptionSelected(optionValues)
+        setStates(isAnyOptionSelected(optionValues)
             ? setAllElementsDeselected(optionValues)
-            : setAllElementsSelected(optionValues);
-
-        setStates(values);
+            : setAllElementsSelected(optionValues));
     };
 
     const onChangeItem = (item) => {
@@ -104,8 +95,6 @@ const BaseComponent = (
         }
     };
 
-    const onConfirm = () => setIsOpen(false);
-
     return (
         <>
             <DropdownMultiSelect
@@ -118,18 +107,21 @@ const BaseComponent = (
                 isValid={boolean('Is valid', DropdownMultiSelect.defaultProps.isValid)}
                 maxHeight={maxHeight}
                 name="the-best-fruit"
-                onCancel={(event) => onCancel(event)}
-                onChange={(event) => {
-                    setValue(event.currentTarget.value);
+                onCancel={(event) => {
+                    onCancel(event);
                 }}
-                onClick={() => setIsOpen(!isOpen)}
-                onConfirm={() => onConfirm()}
+                onClick={() => {
+                    setIsOpen(!isOpen);
+                }}
+                onConfirm={() => {
+                    setIsOpen(false);
+                }}
                 optionAll={(
                     <SelectionControl
                         isChecked={selectAllOption.value === DropdownMultiSelect.enumOptionAll.ON}
                         isIndeterminate={selectAllOption.value === DropdownMultiSelect.enumOptionAll.INDETERMINATE}
                         label={selectAllOption.text}
-                        name={'DROPDOWN_MULTISELECT_OPTION_ALL'}
+                        name="DROPDOWN_MULTISELECT_OPTION_ALL"
                         onChange={onChangeAll}
                         value={selectAllOption.value}
                     />
@@ -140,13 +132,14 @@ const BaseComponent = (
                             isChecked={item.Selected}
                             key={item.Id}
                             label={item.Description}
-                            name={`{DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
-                            onChange={() => onChangeItem(item)}
+                            name={`DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
+                            onChange={() => {
+                                onChangeItem(item);
+                            }}
                             value={item.Id}
                         />
                     )))}
                 placeholder={placeholder}
-                value={value}
                 variant={variant}
             />
             {!isOpen && (
