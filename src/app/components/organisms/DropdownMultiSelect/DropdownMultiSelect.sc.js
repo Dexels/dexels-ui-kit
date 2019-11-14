@@ -5,6 +5,7 @@ import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import setTruncate from '../../../styles/mixins/setTruncate';
 
 export const StyledDropdownMultiSelect = styled.div`
     ${setBoxSizing()}
@@ -56,22 +57,14 @@ StyledDropdownMultiSelect.defaultProps = {
 };
 
 export const Select = styled.div`
+    ${setTruncate()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
-    appearance: none;
-    display: block;
-    outline: none;
-    border-radius: 0;
-    background-color: ${({ theme }) => theme.shades.nine};
+    background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(0, 3, 0, 0)};
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.shades.four};
 
     ${({ theme, variant }) => variant === DROPDOWN_MULTISELECT_VARIANTS.COMPACT && css`
-        border: 0;
         border-bottom: 1px solid ${theme.colorHeaderText.primary};
         height: ${theme.spacing(3.5)};
     `}
@@ -172,13 +165,11 @@ StaticItem.defaultProps = {
 };
 
 export const ListItems = styled.ul`
+    margin: 0;
     background-color: ${({ theme }) => theme.shades.nine};
-    margin-block-start: 0;
-    margin-block-end:  0;
-    padding-inline-start: ${({ theme }) => theme.spacing(2)};
+    padding: ${({ theme }) => theme.spacing(0, 0, 0, 2)};
     overflow: auto;
     list-style-type: none;
-
 
     ${({ maxHeight }) => maxHeight && css`
         max-height: ${maxHeight};

@@ -1,8 +1,8 @@
-import { ELEVATIONS, INPUT_VARIANTS } from '../../../utils/constants';
+import { DROPDOWN_VARIANTS, ELEVATIONS } from '../../../utils/constants';
 
 export const DROPDOWN_MULTISELECT_ELEVATIONS = ELEVATIONS;
 
-export const DROPDOWN_MULTISELECT_VARIANTS = INPUT_VARIANTS;
+export const DROPDOWN_MULTISELECT_VARIANTS = DROPDOWN_VARIANTS;
 
 export const ENUM_OPTION_ALL = {
     INDETERMINATE: 'Indeterminate',

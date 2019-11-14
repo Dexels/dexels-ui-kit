@@ -1,5 +1,5 @@
+import { CONTENT_CONTAINER_ELEVATIONS, CONTENT_CONTAINER_POSITIONS } from './ContainerContent.consts';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
-import Card from '../../atoms/Card/Card';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
 import PropTypes from 'prop-types';
@@ -17,8 +17,8 @@ export const StyledContainerContent = styled.div`
 `;
 
 StyledContainerContent.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(Card.elevations)).isRequired,
-    position: PropTypes.oneOf(Object.values(Card.positions)).isRequired,
+    elevation: PropTypes.oneOf(Object.values(CONTENT_CONTAINER_ELEVATIONS)).isRequired,
+    position: PropTypes.oneOf(Object.values(CONTENT_CONTAINER_POSITIONS)).isRequired,
     theme: themePropTypes,
 };
 

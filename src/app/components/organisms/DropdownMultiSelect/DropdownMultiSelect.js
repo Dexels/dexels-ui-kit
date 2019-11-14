@@ -74,14 +74,8 @@ const DropdownMultiSelect = ({
                     isPlaceholderSelected={placeholder === value}
                     isValid={isValid}
                     name={name}
-                    onBlur={() => {
-                        setIsFocused(false);
-                    }}
                     onChange={onChange}
                     onClick={onClick}
-                    onFocus={() => {
-                        setIsFocused(true);
-                    }}
                     onMouseEnter={() => {
                         setIsHovered(true);
                     }}
@@ -96,9 +90,7 @@ const DropdownMultiSelect = ({
                 </Select>
                 {isOpen && (
                     <ListWrapper elevation={elevation}>
-                        <StaticItem
-                            elevation={DropdownMultiSelect.elevations.LEVEL_1}
-                        >
+                        <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
                             {optionAll}
                         </StaticItem>
                         <ListItems maxHeight={maxHeight}>

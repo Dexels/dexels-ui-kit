@@ -99,17 +99,12 @@ const BaseComponent = (
 
         if (closeOnCancel) {
             setIsOpen(false);
-        }
-
-        if (!closeOnCancel) {
+        } else {
             event.stopPropagation();
         }
     };
 
-    const onConfirm = () => {
-        // console.log('******************** onConfirm', optionValues);
-        setIsOpen(false);
-    };
+    const onConfirm = () => setIsOpen(false);
 
     return (
         <>
@@ -145,7 +140,7 @@ const BaseComponent = (
                             isChecked={item.Selected}
                             key={item.Id}
                             label={item.Description}
-                            name={'DROPDOWN_MULTISELECT_OPTION'}
+                            name={`{DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
                             onChange={() => onChangeItem(item)}
                             value={item.Id}
                         />
