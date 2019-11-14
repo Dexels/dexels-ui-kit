@@ -5,48 +5,48 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledTooltip = styled.span`
-    ${setBoxSizing()};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)};
-    ${({ elevation }) => getElevation(elevation)};
+    ${setBoxSizing()}
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ elevation }) => getElevation(elevation)}
     ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
-    })};
+    })}
 
     ${({ correctionLeft }) => correctionLeft && css`
         left: ${correctionLeft};
-    `};
+    `}
 
     ${({ correctionTop }) => correctionTop && css`
         top: ${correctionTop};
-    `};
+    `}
 
     ${({ tooltipPosition }) => tooltipPosition === 'top' && css`
         margin: ${({ theme }) => theme.spacing(-7, 0, 0, -1)};
-    `};
+    `}
 
     ${({ tooltipPosition }) => tooltipPosition === 'bottom' && css`
         margin: ${({ theme }) => theme.spacing(7, 0, 0, 0)};
-    `};
+    `}
 
     ${({ tooltipPosition }) => tooltipPosition === 'right' && css`
         margin: ${({ theme }) => theme.spacing(0, 0, 0, 14)};
-    `};
+    `}
 
     ${({ tooltipPosition }) => tooltipPosition === 'left' && css`
         margin: 0 0 0 calc((8px * -11));
         margin: ${({ theme }) => theme.spacing(0, 0, 0, -11)};
-    `};
+    `}
 
     ${({ visibility }) => visibility === 'visible' && css`
-        opacity: 1;
         visibility: ${visibility};
-    `};
+        opacity: 1;
+    `}
 
     ${({ visibility }) => visibility === 'hidden' && css`
-        opacity: 0;
         visibility: ${visibility};
-    `};
+        opacity: 0;
+    `}
 
     position: fixed;
     z-index: 99999999;

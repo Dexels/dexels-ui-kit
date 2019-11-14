@@ -8,10 +8,11 @@ const TextWithOptionalIcon = ({
     children,
     direction,
     iconType,
+    isCapitalized,
     ...rest
 }) => (
     <StyledTextWithOptionalIcon direction={direction} {...rest}>
-        <Text>
+        <Text isCapitalized={isCapitalized}>
             {children}
         </Text>
         {iconType && (
@@ -29,11 +30,13 @@ TextWithOptionalIcon.propTypes = {
     children: PropTypes.node.isRequired,
     direction: PropTypes.oneOf(Object.values(TextWithOptionalIcon.directions)),
     iconType: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconTypes)),
+    isCapitalized: PropTypes.bool,
 };
 
 TextWithOptionalIcon.defaultProps = {
     direction: TextWithOptionalIcon.directions.LTR,
     iconType: null,
+    isCapitalized: false,
 };
 
 export default TextWithOptionalIcon;

@@ -18,6 +18,7 @@ import ButtonIcon from '../app/components/molecules/ButtonIcon/ButtonIcon';
 import CardNoResults from '../app/components/molecules/CardNoResults/CardNoResults';
 import CardStatus from '../app/components/molecules/CardStatus/CardStatus';
 import Chip from '../app/components/molecules/Chip/Chip';
+import Dropdown from '../app/components/molecules/Dropdown/Dropdown';
 import Input from '../app/components/molecules/Input/Input';
 import Overlay from '../app/components/molecules/Overlay/Overlay';
 import SelectionControl from '../app/components/molecules/SelectionControl/SelectionControl';
@@ -28,8 +29,18 @@ import Tooltip from '../app/components/molecules/Tooltip/Tooltip';
 // Organisms
 import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
 import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
+import DatePicker from '../app/components/organisms/DatePicker/DatePicker';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
+import Header from '../app/components/organisms/Header/Header';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
+import Modal from '../app/components/organisms/Modal/Modal';
+import Table from '../app/components/organisms/Table/Table';
+import Tabs from '../app/components/organisms/Tabs/Tabs';
+import Toolbar from '../app/components/organisms/Toolbar/Toolbar';
+
+// Theming
+import { themeBasic, themePropTypes } from '../app/styles/theming/themes/basic';
+import createDuiTheme from '../app/styles/theming/createDuiTheme';
 
 export {
     // Export atoms
@@ -43,6 +54,7 @@ export {
     CardNoResults,
     CardStatus,
     Chip,
+    Dropdown,
     Input,
     Overlay,
     SelectionControl,
@@ -52,6 +64,16 @@ export {
     // Export organisms
     ChipStatus,
     ContainerContent,
+    DatePicker,
     Dialog,
+    Header,
     InputPassword,
+    Modal,
+    Table,
+    Tabs,
+    Toolbar,
+    // Export theming
+    themeBasic,
+    themePropTypes,
+    createDuiTheme,
 };

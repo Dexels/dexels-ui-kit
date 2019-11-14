@@ -36,7 +36,7 @@ const Button = ({
         variant={variant}
         {...rest}
     >
-        <TextWithOptionalIcon direction={direction} iconType={iconType}>
+        <TextWithOptionalIcon direction={direction} iconType={iconType} isCapitalized>
             {children}
         </TextWithOptionalIcon>
     </StyledButton>
