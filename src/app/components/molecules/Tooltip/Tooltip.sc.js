@@ -14,14 +14,6 @@ export const StyledTooltip = styled.span`
         property: 'opacity',
     })}
 
-    ${({ correctionLeft }) => correctionLeft && css`
-        left: ${correctionLeft};
-    `}
-
-    ${({ correctionTop }) => correctionTop && css`
-        top: ${correctionTop};
-    `}
-
     ${({ tooltipPosition }) => tooltipPosition === 'top' && css`
         margin: ${({ theme }) => theme.spacing(-7, 0, 0, -1)};
     `}
@@ -50,6 +42,8 @@ export const StyledTooltip = styled.span`
     `}
 
     position: fixed;
+    top: ${({ top }) => top};
+    left: ${({ left }) => left};
     z-index: 99999999;
     border-radius: 15px;
     background-color: ${({ theme }) => theme.colorPrimary};

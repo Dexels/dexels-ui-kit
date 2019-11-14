@@ -127,18 +127,18 @@ const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
         }
     }, [hoveredElement]);
 
-    const correctionLeft = hoveredElement ? `${hoveredElement.x}px` : 0;
-    const correctionTop = hoveredElement ? `${hoveredElement.y}px` : 0;
+    const left = hoveredElement ? `${hoveredElement.x}px` : 0;
+    const top = hoveredElement ? `${hoveredElement.y}px` : 0;
 
     return (
         <StyledTooltip
-            correctionLeft={correctionLeft}
-            correctionTop={correctionTop}
             dangerouslySetInnerHTML={{
                 __html: tooltipTitle,
             }}
             elevation={elevation}
+            left={left}
             tooltipPosition={tooltipPosition}
+            top={top}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
             visibility={isTooltipVisible ? 'visible' : 'hidden'}
