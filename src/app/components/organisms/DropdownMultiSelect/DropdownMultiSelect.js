@@ -4,21 +4,16 @@ import {
     ENUM_OPTION_ALL,
 } from './DropdownMultiSelect.consts';
 import {
-    ErrorMessageWrapper,
-    IconWrapper,
+    List,
     ListItem,
-    ListItems,
     ListWrapper,
-    Select,
     StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
-import React, { useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
-import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
-import FormElementLabel from '../../molecules/FormElementLabel/FormElementLabel';
-import Icon from '../../atoms/Icon/Icon';
+import Dropdown from '../../molecules/Dropdown/Dropdown';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const DropdownMultiSelect = ({
     buttonCancelText,
@@ -41,82 +36,47 @@ const DropdownMultiSelect = ({
     value,
     variant,
 }) => {
-    const [isHovered, setIsHovered] = useState(false);
+    console.log(value);
 
     return (
-        <>
-            <StyledDropdownMultiSelect
+        <StyledDropdownMultiSelect>
+            <Dropdown
+                as="div"
+                errorMessage={errorMessage}
                 hasError={hasError}
                 isDisabled={isDisabled}
+                isOpen={isOpen}
                 isValid={isValid}
+                label={label}
+                name={name}
+                onClick={onClick}
+                placeholder={placeholder}
+                value={value || placeholder}
                 variant={variant}
             >
-                {label && (
-                    <FormElementLabel
-                        hasError={hasError}
-                        isActive
-                        isDisabled={isDisabled}
-                        isValid={isValid}
-                    >
-                        {label}
-                    </FormElementLabel>
-                )}
-                <Select
-                    hasError={hasError}
-                    isDisabled={isDisabled}
-                    isHovered={isHovered}
-                    isPlaceholderSelected={!value}
-                    isValid={isValid}
-                    name={name}
-                    onClick={onClick}
-                    onMouseEnter={() => {
-                        setIsHovered(true);
-                    }}
-                    onMouseLeave={() => {
-                        setIsHovered(false);
-                    }}
-                    variant={variant}
-                >
-                    {value || placeholder}
-                </Select>
-                {isOpen && (
-                    <ListWrapper elevation={elevation}>
-                        <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
-                            {optionAll}
-                        </StaticItem>
-                        <ListItems maxHeight={maxHeight}>
-                            {options.map((item) => (
-                                <ListItem key={item.key}>
-                                    {item}
-                                </ListItem>
-                            ))}
-                        </ListItems>
-                        <DialogFooter
-                            buttonCancelText={buttonCancelText}
-                            buttonConfirmText={buttonConfirmText}
-                            onCancel={onCancel}
-                            onConfirm={onConfirm}
-                        />
-                    </ListWrapper>
-                )}
-                <IconWrapper
-                    hasError={hasError}
-                    isDisabled={isDisabled}
-                    isHovered={isHovered}
-                    isValid={isValid}
-                    variant={variant}
-                >
-                    <Icon type={Icon.types.DROPDOWN} />
-                </IconWrapper>
-            </StyledDropdownMultiSelect>
-            {errorMessage && hasError && !isDisabled && (
-                <ErrorMessageWrapper>
-                    <ErrorMessage>
-                        {errorMessage}
-                    </ErrorMessage>
-                </ErrorMessageWrapper>
+                {value || placeholder}
+            </Dropdown>
+            {isOpen && (
+                <ListWrapper elevation={elevation}>
+                    <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
+                        {optionAll}
+                    </StaticItem>
+                    <List maxHeight={maxHeight}>
+                        {options.map((item) => (
+                            <ListItem key={item.key}>
+                                {item}
+                            </ListItem>
+                        ))}
+                    </List>
+                    <DialogFooter
+                        buttonCancelText={buttonCancelText}
+                        buttonConfirmText={buttonConfirmText}
+                        onCancel={onCancel}
+                        onConfirm={onConfirm}
+                    />
+                </ListWrapper>
             )}
-        </>
+        </StyledDropdownMultiSelect>
     );
 };
 

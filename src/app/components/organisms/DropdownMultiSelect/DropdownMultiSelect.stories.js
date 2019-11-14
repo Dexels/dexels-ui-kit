@@ -49,10 +49,10 @@ const BaseComponent = (
     originalOptions,
     variant = DropdownMultiSelect.variants.COMPACT,
     maxHeight = '',
+    label,
 ) => {
     const [optionValues, setOptionValues] = useState(options);
     const [isOpen, setIsOpen] = useState(false);
-    const placeholder = 'Select the best fruit';
     const value = getSelectedText(getSelectedElements(optionValues));
 
     const [selectAllOption, setSelectAllOption] = useState(getSelectAllOption(
@@ -103,6 +103,7 @@ const BaseComponent = (
                 isDisabled={boolean('Is disabled', DropdownMultiSelect.defaultProps.isDisabled)}
                 isOpen={isOpen}
                 isValid={boolean('Is valid', DropdownMultiSelect.defaultProps.isValid)}
+                label={label}
                 maxHeight={maxHeight}
                 name="the-best-fruit"
                 onCancel={(event) => {
@@ -124,20 +125,19 @@ const BaseComponent = (
                         value={selectAllOption.value}
                     />
                 )}
-                options={(
-                    optionValues.map((item) => (
-                        <SelectionControl
-                            isChecked={item.Selected}
-                            key={item.Id}
-                            label={item.Description}
-                            name={`DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
-                            onChange={() => {
-                                onChangeItem(item);
-                            }}
-                            value={item.Id}
-                        />
-                    )))}
-                placeholder={placeholder}
+                options={optionValues.map((item) => (
+                    <SelectionControl
+                        isChecked={item.Selected}
+                        key={item.Id}
+                        label={item.Description}
+                        name={`DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
+                        onChange={() => {
+                            onChangeItem(item);
+                        }}
+                        value={item.Id}
+                    />
+                ))}
+                placeholder="Select the best fruits"
                 value={value}
                 variant={variant}
             />
@@ -170,15 +170,11 @@ export const ConfigurableCompactVariant = () => (
 );
 
 export const ConfigurableOutlineVariant = () => (
-    <>
-        <p>
-            {'What is the best fruit?'}
-        </p>
-        {BaseComponent(
-            data,
-            originalOptionValues,
-            DropdownMultiSelect.variants.OUTLINE,
-            '150px',
-        )}
-    </>
+    BaseComponent(
+        data,
+        originalOptionValues,
+        DropdownMultiSelect.variants.OUTLINE,
+        '150px',
+        'What are the best fruits?',
+    )
 );
