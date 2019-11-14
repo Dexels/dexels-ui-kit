@@ -52,10 +52,8 @@ const BaseComponent = (
 ) => {
     const [optionValues, setOptionValues] = useState(options);
     const [isOpen, setIsOpen] = useState(false);
-
-    const placeholder = optionValues.length !== 0 && isAnyOptionSelected(optionValues)
-        ? getSelectedText(getSelectedElements(optionValues))
-        : 'Select the best fruit';
+    const placeholder = 'Select the best fruit';
+    const value = getSelectedText(getSelectedElements(optionValues));
 
     const [selectAllOption, setSelectAllOption] = useState(getSelectAllOption(
         optionValues,
@@ -140,6 +138,7 @@ const BaseComponent = (
                         />
                     )))}
                 placeholder={placeholder}
+                value={value}
                 variant={variant}
             />
             {!isOpen && (

@@ -38,6 +38,7 @@ const DropdownMultiSelect = ({
     optionAll,
     options,
     placeholder,
+    value,
     variant,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -64,7 +65,7 @@ const DropdownMultiSelect = ({
                     hasError={hasError}
                     isDisabled={isDisabled}
                     isHovered={isHovered}
-                    isPlaceholderSelected={Boolean(placeholder)}
+                    isPlaceholderSelected={!value}
                     isValid={isValid}
                     name={name}
                     onClick={onClick}
@@ -76,7 +77,7 @@ const DropdownMultiSelect = ({
                     }}
                     variant={variant}
                 >
-                    {placeholder && placeholder}
+                    {value || placeholder}
                 </Select>
                 {isOpen && (
                     <ListWrapper elevation={elevation}>
@@ -141,6 +142,7 @@ DropdownMultiSelect.propTypes = {
     optionAll: PropTypes.node.isRequired,
     options: PropTypes.node.isRequired,
     placeholder: PropTypes.string,
+    value: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(Object.values(DropdownMultiSelect.variants)),
 };
 
