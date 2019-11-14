@@ -253,7 +253,7 @@ export const LabelWrapper = styled.button`
     background: transparent;
     cursor: pointer;
     padding: 0;
-    text-align: left;
+    text-align: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 'left' : 'right')};
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;
