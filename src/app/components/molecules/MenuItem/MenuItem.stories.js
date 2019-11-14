@@ -11,12 +11,15 @@ export const Configurable = () => {
     return (
         <>
             <MenuItem
-                hasDivider
                 isDisabled={boolean('Is disabled', MenuItem.defaultProps.isDisabled)}
                 isExpanded={isExpanded === 'Matches'}
                 isParentElement
                 onClick={() => {
-                    isExpanded === 'Matches' ? setExpanded('') : setExpanded('Matches')
+                    if (isExpanded === 'Matches') {
+                        setExpanded('');
+                    } else {
+                        setExpanded('Matches');
+                    }
                 }}
             >
                 <TextWithOptionalIcon
@@ -27,7 +30,6 @@ export const Configurable = () => {
                 </TextWithOptionalIcon>
             </MenuItem>
             <MenuItem
-                hasDivider
                 isDisabled={boolean('Is disabled', MenuItem.defaultProps.isDisabled)}
                 isExpanded={isExpanded === 'Matches'}
                 isParentElement={false}
@@ -41,12 +43,15 @@ export const Configurable = () => {
                 </TextWithOptionalIcon>
             </MenuItem>
             <MenuItem
-                hasDivider
                 isDisabled={boolean('Is disabled', MenuItem.defaultProps.isDisabled)}
                 isExpanded={isExpanded === 'Competitions'}
                 isParentElement
                 onClick={() => {
-                    isExpanded === 'Competitions' ? setExpanded('') : setExpanded('Competitions')
+                    if (isExpanded === 'Competitions') {
+                        setExpanded('');
+                    } else {
+                        setExpanded('Competitions');
+                    }
                 }}
             >
                 <TextWithOptionalIcon
@@ -57,7 +62,6 @@ export const Configurable = () => {
                 </TextWithOptionalIcon>
             </MenuItem>
             <MenuItem
-                hasDivider
                 isDisabled={boolean('Is disabled', MenuItem.defaultProps.isDisabled)}
                 isExpanded={isExpanded === 'Competitions'}
                 isParentElement={false}

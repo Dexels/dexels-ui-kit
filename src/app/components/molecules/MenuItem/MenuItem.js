@@ -20,28 +20,17 @@ const MenuItem = ({
         onClick={onClick}
     >
         {React.Children.map(children, (child) => {
-            if (isParentElement) {
+            if (isParentElement || isExpanded) {
                 return (
                     <>
                         <ItemWrapper>
                             {child}
-                            <ButtonIcon
-                                iconType={!isExpanded ? Icon.types.CHEVRONDOWN : Icon.types.CHEVRONUP}
-                                onClick={() => {}}
-                            />
-                        </ItemWrapper>
-                        {hasDivider && !isExpanded && (
-                            <Divider />
-                        )}
-                    </>
-                );
-            }
-
-            if (isExpanded) {
-                return (
-                    <>
-                        <ItemWrapper>
-                            {child}
+                            {isParentElement && (
+                                <ButtonIcon
+                                    iconType={!isExpanded ? Icon.types.CHEVRONDOWN : Icon.types.CHEVRONUP}
+                                    onClick={() => {}}
+                                />
+                            )}
                         </ItemWrapper>
                         {hasDivider && !isExpanded && (
                             <Divider />
