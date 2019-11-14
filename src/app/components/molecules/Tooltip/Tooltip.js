@@ -3,11 +3,7 @@ import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS } from './Tooltip.consts';
 import PropTypes from 'prop-types';
 import { StyledTooltip } from './Tooltip.sc';
 
-const Tooltip = ({
-    elevation,
-    transitionDuration,
-    transitionEasing,
-}) => {
+const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
     const [hasTooltipDelay, setTooltipDelay] = useState(false);
     const [hoveredElement, setHoveredElement] = useState(null);
     const [isTooltipVisible, setTooltipVisiblity] = useState(false);
