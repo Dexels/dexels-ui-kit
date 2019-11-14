@@ -55,9 +55,11 @@ const DropdownMultiSelect = ({
         </Dropdown>
         {isOpen && (
             <ListWrapper elevation={elevation}>
-                <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
-                    {optionAll}
-                </StaticItem>
+                {optionAll && (
+                    <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
+                        {optionAll}
+                    </StaticItem>
+                )}
                 <List maxHeight={maxHeight}>
                     {options.map((item) => (
                         <ListItem key={item.key}>
@@ -95,7 +97,7 @@ DropdownMultiSelect.propTypes = {
     onCancel: PropTypes.func.isRequired,
     onClick: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
-    optionAll: PropTypes.node.isRequired,
+    optionAll: PropTypes.node,
     options: PropTypes.node.isRequired,
     placeholder: PropTypes.string,
     value: PropTypes.string.isRequired,
@@ -112,6 +114,7 @@ DropdownMultiSelect.defaultProps = {
     label: '',
     maxHeight: '',
     onClick: null,
+    optionAll: null,
     placeholder: '',
     variant: DropdownMultiSelect.variants.COMPACT,
 };
