@@ -246,7 +246,7 @@ IconWrapper.defaultProps = {
 };
 
 export const LabelWrapper = styled.button`
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     order: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 2 : 1)};
     outline: none;
     border: 0;
