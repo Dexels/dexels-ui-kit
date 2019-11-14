@@ -33,7 +33,6 @@ export const Configurable = () => (
             {'This is a big div'}
         </div>
         <div
-            id={'btnLeft'}
             style={{
                 left: '-60px',
                 position: 'absolute',
@@ -44,66 +43,52 @@ export const Configurable = () => (
                 data-tooltip-component={renderToString(<CustomTestComponent />)}
                 data-tooltip-delay
                 onClick={() => {}}
-                size={'SMALL'}
             >
                 {'Click 1'}
             </Button>
         </div>
         <div
-            id={'btnRight'}
             style={{
                 float: 'right',
                 position: 'absolute',
                 right: '-80px',
                 top: '10px',
             }}
-            type={'button'}
         >
             <Button
-                data-tooltip-component={'click 2'}
+                data-tooltip-component="Check out this tooltip!"
                 data-tooltip-delay
                 onClick={() => {}}
-                size={'SMALL'}
+                size={Button.sizes.SMALL}
             >
                 {'Click 2'}
             </Button>
         </div>
         <Button
-            data-tooltip-component={'tooltip'}
-            data-tooltip-position={'right'}
+            data-tooltip-component="Check out this tooltip!"
+            data-tooltip-position="right"
             onClick={() => {}}
-            size={'SMALL'}
+            size={Button.sizes.SMALL}
         >
             {'Click me!'}
         </Button>
         <div
-            id={'btnBtmR'}
             style={{
                 position: 'absolute',
                 right: '190px',
                 top: '100px',
             }}
-            type={'button'}
         >
-            <TextIcon
-                data-tooltip-component={'click 3'}
-                data-tooltip-position={'left'}
-                text={'A'}
-            />
+            <TextIcon data-tooltip-component="tooltip 3" data-tooltip-position="left" text="A" />
         </div>
         <div
-            id={'btnCenter'}
             style={{
                 left: '150px',
                 position: 'absolute',
                 top: '300px',
             }}
-            type={'button'}
         >
-            <Chip
-                data-tooltip-component={'click 4'}
-                onClick={() => {}}
-            >
+            <Chip data-tooltip-component="Tooltip 4" onClick={() => {}}>
                 {'Click 4'}
             </Chip>
         </div>
