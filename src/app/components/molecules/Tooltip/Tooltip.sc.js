@@ -54,8 +54,6 @@ export const StyledTooltip = styled.span`
     background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(0.5, 1, 0.5, 1)};
     text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     color: ${({ theme }) => theme.colorContrastText.primary};
 `;
 
