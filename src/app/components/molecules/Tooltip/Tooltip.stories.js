@@ -4,6 +4,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import TextIcon from '../TextIcon/TextIcon';
 import Tooltip from './Tooltip';
+import { BlockPicker } from 'react-color';
 
 export default { title: 'molecules/Tooltip' };
 
@@ -20,17 +21,16 @@ export const Configurable = () => (
     <>
         <div
             data-tooltip-component="Check out this tooltip!"
-            data-tooltip-position="bottom"
             style={{
                 background: 'grey',
                 height: '400px',
-                left: '100px',
+                left: '300px',
                 position: 'absolute',
                 top: '0',
                 width: '200px',
             }}
         >
-            {'This is a big div'}
+            {'This tooltip should render on the bottom'}
         </div>
         <div
             style={{
@@ -42,9 +42,10 @@ export const Configurable = () => (
             <Button
                 data-tooltip-component={renderToString(<CustomTestComponent />)}
                 data-tooltip-delay
+                data-tooltip-position="top"
                 onClick={() => {}}
             >
-                {'Click 1'}
+                {'This tooltip should render on the top'}
             </Button>
         </div>
         <div
@@ -57,11 +58,11 @@ export const Configurable = () => (
         >
             <Button
                 data-tooltip-component="Check out this tooltip!"
-                data-tooltip-delay
+                data-tooltip-position="left"
                 onClick={() => {}}
                 size={Button.sizes.SMALL}
             >
-                {'Click 2'}
+                {'This tooltip should render on the left'}
             </Button>
         </div>
         <Button
@@ -70,30 +71,11 @@ export const Configurable = () => (
             onClick={() => {}}
             size={Button.sizes.SMALL}
         >
-            {'Click me!'}
+            {'This tooltip should render on the right'}
         </Button>
-        <div
-            style={{
-                position: 'absolute',
-                right: '190px',
-                top: '100px',
-            }}
-        >
-            <TextIcon data-tooltip-component="tooltip 3" data-tooltip-position="left" text="A" />
-        </div>
-        <div
-            style={{
-                left: '150px',
-                position: 'absolute',
-                top: '300px',
-            }}
-        >
-            <Chip data-tooltip-component="Tooltip 4" onClick={() => {}}>
-                {'Click 4'}
-            </Chip>
-        </div>
         <Tooltip
             elevation={Tooltip.defaultProps.elevation}
+            position={'bottom'}
             transitionDuration={Tooltip.defaultProps.transitionDuration}
             transitionEasing={Tooltip.defaultProps.transitionEasing}
         />

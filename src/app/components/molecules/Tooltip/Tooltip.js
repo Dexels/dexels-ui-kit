@@ -1,15 +1,29 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+    useCallback,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS } from './Tooltip.consts';
 import PropTypes from 'prop-types';
 import { StyledTooltip } from './Tooltip.sc';
+import { ThemeContext } from 'styled-components';
 
-const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
+const Tooltip = ({
+    elevation,
+    position,
+    transitionDuration,
+    transitionEasing,
+}) => {
     const [hasTooltipDelay, setTooltipDelay] = useState(false);
     const [hoveredElement, setHoveredElement] = useState(null);
     const [isTooltipVisible, setTooltipVisiblity] = useState(false);
     const [timeoutId, setTimeoutId] = useState(null);
-    const [tooltipPosition, setTooltipPosition] = useState('bottom');
+    const [tooltipPosition, setTooltipPosition] = useState(position);
     const [tooltipTitle, setTooltipTitle] = useState('some text');
+    const { spacingValue } = useContext(ThemeContext);
+    const tooltipRef = useRef(null);
 
     const calculateTooltipPosition = (hoveredItem) => {
         const docWidth = document.documentElement.clientWidth;
@@ -19,32 +33,36 @@ const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
         const spaceFromRightSide = docWidth - hoveredItem.right;
         const spaceFromLeftSide = hoveredItem.left;
 
-        if (tooltipPosition.toLowerCase() === 'bottom') {
+        if (tooltipPosition === 'bottom') {
             if (spaceFromBottom < 100) {
                 if (spaceFromTop < 100) {
-                    if (spaceFromRightSide < 100) {
+                    if (spaceFromRightSide < 150) {
                         setTooltipPosition('left');
-                    } else if (spaceFromLeftSide < 100) {
+                    } else if (spaceFromLeftSide < 150) {
                         setTooltipPosition('right');
+                    } else {
+                        setTooltipPosition('left');
                     }
                 } else {
                     setTooltipPosition('top');
                 }
             }
-        } else if (tooltipPosition.toLowerCase() === 'top') {
+        } else if (tooltipPosition === 'top') {
             if (spaceFromTop < 100) {
                 if (spaceFromBottom < 100) {
-                    if (spaceFromRightSide < 100) {
+                    if (spaceFromRightSide < 150) {
                         setTooltipPosition('left');
                     } else if (spaceFromBottom < 100) {
                         setTooltipPosition('right');
+                    } else {
+                        setTooltipPosition('left');
                     }
                 } else {
                     setTooltipPosition('bottom');
                 }
             }
-        } else if (tooltipPosition.toLowerCase() === 'right') {
-            if (spaceFromRightSide < 100) {
+        } else if (tooltipPosition === 'right') {
+            if (spaceFromRightSide < 150) {
                 if (spaceFromBottom < 100) {
                     if (spaceFromTop < 100) {
                         setTooltipPosition('left');
@@ -55,8 +73,8 @@ const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
                     setTooltipPosition('bottom');
                 }
             }
-        } else if (tooltipPosition.toLowerCase() === 'left') {
-            if (spaceFromLeftSide < 100) {
+        } else if (tooltipPosition === 'left') {
+            if (spaceFromLeftSide < 150) {
                 if (spaceFromBottom < 100) {
                     if (spaceFromTop < 100) {
                         setTooltipPosition('right');
@@ -76,7 +94,7 @@ const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
     };
 
     const handleOnMouseOver = (element) => {
-        setTooltipPosition('bottom');
+        setTooltipPosition(position);
 
         if (timeoutId) {
             clearTimeout(timeoutId);
@@ -87,7 +105,7 @@ const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
         setTooltipDelay(element.getAttribute('data-tooltip-delay'));
 
         if (element.getAttribute('data-tooltip-position')) {
-            setTooltipPosition(element.getAttribute('data-tooltip-position'));
+            setTooltipPosition(element.getAttribute('data-tooltip-position').toLowerCase());
         }
 
         setHoveredElement(element.getBoundingClientRect());
@@ -127,21 +145,47 @@ const Tooltip = ({ elevation, transitionDuration, transitionEasing }) => {
         }
     }, [hoveredElement]);
 
-    const left = hoveredElement ? hoveredElement.x : 0;
-    const top = hoveredElement ? hoveredElement.y : 0;
+    let left = 'auto';
+    let top = 'auto';
+    let bottom = 'auto';
+    let right = 'auto';
+    let tooltipWidth = 0;
+
+    if (tooltipRef.current) {
+        tooltipWidth = tooltipRef.current.offsetWidth;
+    }
+
+    if (hoveredElement) {
+        if (tooltipPosition === 'top') {
+            bottom = `${document.documentElement.clientHeight - hoveredElement.top + (spacingValue * 2)}px`;
+            left = `${hoveredElement.left + ((hoveredElement.width - tooltipWidth) / 2)}px`;
+        } else if (tooltipPosition === 'right') {
+            top = `${hoveredElement.top}px`;
+            left = `${hoveredElement.right + (spacingValue * 2)}px`;
+        } else if (tooltipPosition === 'bottom') {
+            top = `${hoveredElement.bottom + (spacingValue * 2)}px`;
+            left = `${hoveredElement.left}px`;
+        } else {
+            right = `${document.documentElement.clientWidth - hoveredElement.left + (spacingValue * 2)}px`;
+            top = `${hoveredElement.top}px`;
+        }
+    }
 
     return (
         <StyledTooltip
+            bottom={bottom}
             dangerouslySetInnerHTML={{
                 __html: tooltipTitle,
             }}
             elevation={elevation}
+            isVisible={isTooltipVisible}
             left={left}
+            ref={tooltipRef}
+            right={right}
             tooltipPosition={tooltipPosition}
             top={top}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
-            visibility={isTooltipVisible ? 'visible' : 'hidden'}
         />
     );
 };
@@ -151,12 +195,14 @@ Tooltip.transitionEasings = TOOLTIP_EASINGS;
 
 Tooltip.propTypes = {
     elevation: PropTypes.oneOf(Object.values(Tooltip.elevations)),
+    position: PropTypes.string,
     transitionDuration: PropTypes.number,
     transitionEasing: PropTypes.oneOf(Object.values(Tooltip.transitionEasings)),
 };
 
 Tooltip.defaultProps = {
     elevation: Tooltip.elevations.LEVEL_6,
+    position: 'bottom',
     transitionDuration: 300,
     transitionEasing: Tooltip.transitionEasings.EASE,
 };
