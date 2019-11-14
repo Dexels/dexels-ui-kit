@@ -80,7 +80,9 @@ export const ConfigurableAlert = () => {
             </Button>
             <Modal
                 isDisplaying={isVisible}
-                onBack={() => setIsVisible(false)}
+                onBack={() => {
+                    setIsVisible(false);
+                }}
                 options={functionalItems}
                 title={text('Header title', 'Heading')}
             >
