@@ -43,7 +43,6 @@ const DropdownMultiSelect = ({
     value,
     variant,
 }) => {
-    const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -51,7 +50,6 @@ const DropdownMultiSelect = ({
             <StyledDropdownMultiSelect
                 hasError={hasError}
                 isDisabled={isDisabled}
-                isFocused={isFocused}
                 isValid={isValid}
                 variant={variant}
             >
@@ -60,7 +58,6 @@ const DropdownMultiSelect = ({
                         hasError={hasError}
                         isActive
                         isDisabled={isDisabled}
-                        isFocused={isFocused}
                         isValid={isValid}
                     >
                         {label}
@@ -69,7 +66,6 @@ const DropdownMultiSelect = ({
                 <Select
                     hasError={hasError}
                     isDisabled={isDisabled}
-                    isFocused={isFocused}
                     isHovered={isHovered}
                     isPlaceholderSelected={placeholder === value}
                     isValid={isValid}
@@ -111,7 +107,6 @@ const DropdownMultiSelect = ({
                 <IconWrapper
                     hasError={hasError}
                     isDisabled={isDisabled}
-                    isFocused={isFocused}
                     isHovered={isHovered}
                     isValid={isValid}
                     variant={variant}

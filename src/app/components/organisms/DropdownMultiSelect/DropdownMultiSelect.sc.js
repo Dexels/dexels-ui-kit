@@ -14,7 +14,6 @@ export const StyledDropdownMultiSelect = styled.div`
     ${({
         hasError,
         isDisabled,
-        isFocused,
         isValid,
         theme,
         variant,
@@ -23,10 +22,6 @@ export const StyledDropdownMultiSelect = styled.div`
             display: block;
             height: 1px;
             content: '';
-
-            ${isFocused && css`
-                background-color: ${theme.colorSecondary};
-            `}
 
             ${isValid && css`
                 background-color: ${theme.colorValid};
@@ -46,7 +41,6 @@ export const StyledDropdownMultiSelect = styled.div`
 StyledDropdownMultiSelect.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocused: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     theme: themePropTypes,
     variant: PropTypes.oneOf(Object.values(DROPDOWN_MULTISELECT_VARIANTS)).isRequired,
@@ -80,7 +74,7 @@ export const Select = styled.div`
         color: ${theme.shades.four};
     `}
 
-    ${({ isFocused, isHovered, theme }) => (isFocused || isHovered) && css`
+    ${({ isHovered, theme }) => isHovered && css`
         border-color: ${theme.colorSecondary};
     `}
 
@@ -104,7 +98,6 @@ export const Select = styled.div`
 Select.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocused: PropTypes.bool.isRequired,
     isHovered: PropTypes.bool.isRequired,
     isPlaceholderSelected: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
@@ -232,12 +225,8 @@ export const IconWrapper = styled.div`
         right: ${theme.spacing(1.5)};
     `}
 
-    ${({ isFocused, isHovered, theme }) => (isFocused || isHovered) && css`
+    ${({ isHovered, theme }) => isHovered && css`
         color: ${theme.colorSecondary};
-    `}
-
-    ${({ isFocused }) => isFocused && css`
-        transform: rotate(180deg);
     `}
 
     ${({ isValid, theme }) => isValid && css`
@@ -256,7 +245,6 @@ export const IconWrapper = styled.div`
 IconWrapper.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isFocused: PropTypes.bool.isRequired,
     isHovered: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     theme: themePropTypes,

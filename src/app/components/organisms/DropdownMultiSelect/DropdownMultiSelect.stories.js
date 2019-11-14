@@ -1,15 +1,15 @@
 import {
     areAllOptionsSelected,
-    cloneArray,
     getSelectedElements,
-    getSelectedTexts,
+    getSelectedText,
     isAnyOptionSelected,
     setAllElementsDeselected,
     setAllElementsSelected,
     setElementSelected,
-} from '../../../utils/functions/arrayFunctions';
+} from '../../../utils/functions/arrayObjectFunctions';
 import { boolean, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
+import { cloneArray } from '../../../utils/functions/arrayFunctions';
 import { data } from './MockUp/data';
 import DropdownMultiSelect from './DropdownMultiSelect';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
@@ -59,7 +59,7 @@ const BaseComponent = (
     const [isOpen, setIsOpen] = useState(false);
 
     const placeholder = optionValues.length !== 0 && isAnyOptionSelected(optionValues)
-        ? getSelectedTexts(optionValues)
+        ? getSelectedText(getSelectedElements(optionValues))
         : 'Select the best fruit';
 
     const [value, setValue] = useState(placeholder);
@@ -158,7 +158,7 @@ const BaseComponent = (
                         </p>
                     ))}
                     {'Selected items as string:'}
-                    {getSelectedTexts(optionValues)}
+                    {getSelectedText(getSelectedElements(optionValues))}
                 </div>
             )}
         </>
