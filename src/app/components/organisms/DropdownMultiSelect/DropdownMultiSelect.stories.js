@@ -142,7 +142,7 @@ const BaseComponent = (
                 variant={variant}
             />
             {!isOpen && (
-                <div style={{ margin: '20px 0 0 0' }}>
+                <div style={{ margin: '20px 0 0' }}>
                     {'Selected items:'}
                     {getSelectedElements(optionValues).map((item) => (
                         <p key={item.Id}>
@@ -150,7 +150,7 @@ const BaseComponent = (
                         </p>
                     ))}
                     {'Selected items as string:'}
-                    {getSelectedText(getSelectedElements(optionValues))}
+                    {value}
                 </div>
             )}
         </>
