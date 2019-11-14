@@ -62,7 +62,7 @@ const BaseComponent = (
     ));
 
     const setStates = (values) => {
-        setOptionValues(values);
+        setOptionValues(cloneArray(values));
 
         setSelectAllOption(
             getSelectAllOption(
@@ -79,20 +79,6 @@ const BaseComponent = (
             : setAllElementsSelected(optionValues));
     };
 
-    const onChangeItem = (item) => {
-        setStates(setElementSelected(optionValues, item));
-    };
-
-    const onCancel = (event, closeOnCancel = true) => {
-        setStates(originalOptions);
-
-        if (closeOnCancel) {
-            setIsOpen(false);
-        } else {
-            event.stopPropagation();
-        }
-    };
-
     return (
         <>
             <DropdownMultiSelect
@@ -106,8 +92,9 @@ const BaseComponent = (
                 label={label}
                 maxHeight={maxHeight}
                 name="the-best-fruit"
-                onCancel={(event) => {
-                    onCancel(event);
+                onCancel={() => {
+                    setStates(originalOptions);
+                    setIsOpen(false);
                 }}
                 onClick={() => {
                     setIsOpen(!isOpen);
@@ -132,7 +119,7 @@ const BaseComponent = (
                         label={item.Description}
                         name={`DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
                         onChange={() => {
-                            onChangeItem(item);
+                            setStates(setElementSelected(optionValues, item));
                         }}
                         value={item.Id}
                     />
