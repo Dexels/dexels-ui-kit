@@ -131,9 +131,9 @@ export const FakeInput = styled.div`
                 ${setCentered()}
                 position: absolute;
                 border-radius: 100%;
-                background-color: ${theme.colorPrimary};
-                width: 60%;
-                height: 60%;
+                background-color: ${theme.colorSecondary};
+                width: ${theme.spacing(1.5)};
+                height: ${theme.spacing(1.5)};
                 content: '';
             }
         `}

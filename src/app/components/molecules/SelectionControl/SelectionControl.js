@@ -64,12 +64,7 @@ const SelectionControl = ({
                 />
             </InputWrapper>
             <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
-                <Label
-                    hasError={hasError}
-                    isCheckboxLabel
-                    isDisabled={isDisabled}
-                    isValid={isValid}
-                >
+                <Label hasError={hasError} isCheckboxLabel isValid={isValid}>
                     {label}
                 </Label>
             </LabelWrapper>
