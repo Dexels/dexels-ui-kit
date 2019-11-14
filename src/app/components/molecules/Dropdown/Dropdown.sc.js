@@ -3,6 +3,7 @@ import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic
 import { DROPDOWN_VARIANTS } from './Dropdown.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import setTruncate from '../../../styles/mixins/setTruncate';
 
 export const StyledDropdown = styled.div`
     ${setBoxSizing()}
@@ -54,6 +55,7 @@ StyledDropdown.defaultProps = {
 };
 
 export const Select = styled.select`
+    ${setTruncate()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     appearance: none;
     display: block;
