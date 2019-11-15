@@ -1,10 +1,7 @@
 import Button from '../Button/Button';
-import Chip from '../Chip/Chip';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import TextIcon from '../TextIcon/TextIcon';
 import Tooltip from './Tooltip';
-import { BlockPicker } from 'react-color';
 
 export default { title: 'molecules/Tooltip' };
 
@@ -20,7 +17,7 @@ const CustomTestComponent = () => (
 export const Configurable = () => (
     <>
         <div
-            data-tooltip-component="Check out this tooltip!"
+            data-tooltip-component="Hi!"
             style={{
                 background: 'grey',
                 height: '400px',

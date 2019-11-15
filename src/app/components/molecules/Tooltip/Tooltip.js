@@ -10,6 +10,72 @@ import PropTypes from 'prop-types';
 import { StyledTooltip } from './Tooltip.sc';
 import { ThemeContext } from 'styled-components';
 
+const getTooltipPosition = (hoveredItem, tooltipPosition) => {
+    const docWidth = document.documentElement.clientWidth;
+    const docHeight = document.documentElement.clientHeight;
+    const spaceFromBottom = docHeight - hoveredItem.bottom;
+    const spaceFromTop = hoveredItem.top;
+    const spaceFromRightSide = docWidth - hoveredItem.right;
+    const spaceFromLeftSide = hoveredItem.left;
+    let position = tooltipPosition;
+
+    if (tooltipPosition === 'bottom') {
+        if (spaceFromBottom < 100) {
+            if (spaceFromTop < 100) {
+                if (spaceFromRightSide < 150) {
+                    position = 'left';
+                } else if (spaceFromLeftSide < 150) {
+                    position = 'right';
+                } else {
+                    position = 'left';
+                }
+            } else {
+                position = 'top';
+            }
+        }
+    } else if (tooltipPosition === 'top') {
+        if (spaceFromTop < 100) {
+            if (spaceFromBottom < 100) {
+                if (spaceFromRightSide < 150) {
+                    position = 'left';
+                } else if (spaceFromBottom < 100) {
+                    position = 'right';
+                } else {
+                    position = 'left';
+                }
+            } else {
+                position = 'bottom';
+            }
+        }
+    } else if (tooltipPosition === 'right') {
+        if (spaceFromRightSide < 150) {
+            if (spaceFromBottom < 100) {
+                if (spaceFromTop < 100) {
+                    position = 'left';
+                } else {
+                    position = 'top';
+                }
+            } else {
+                position = 'bottom';
+            }
+        }
+    } else if (tooltipPosition === 'left') {
+        if (spaceFromLeftSide < 150) {
+            if (spaceFromBottom < 100) {
+                if (spaceFromTop < 100) {
+                    position = 'right';
+                } else {
+                    position = 'top';
+                }
+            } else {
+                position = 'bottom';
+            }
+        }
+    }
+
+    return position;
+};
+
 const Tooltip = ({
     elevation,
     position,
@@ -25,71 +91,8 @@ const Tooltip = ({
     const { spacingValue } = useContext(ThemeContext);
     const tooltipRef = useRef(null);
 
-    const calculateTooltipPosition = (hoveredItem) => {
-        const docWidth = document.documentElement.clientWidth;
-        const docHeight = document.documentElement.clientHeight;
-        const spaceFromBottom = docHeight - hoveredItem.bottom;
-        const spaceFromTop = hoveredItem.top;
-        const spaceFromRightSide = docWidth - hoveredItem.right;
-        const spaceFromLeftSide = hoveredItem.left;
-
-        if (tooltipPosition === 'bottom') {
-            if (spaceFromBottom < 100) {
-                if (spaceFromTop < 100) {
-                    if (spaceFromRightSide < 150) {
-                        setTooltipPosition('left');
-                    } else if (spaceFromLeftSide < 150) {
-                        setTooltipPosition('right');
-                    } else {
-                        setTooltipPosition('left');
-                    }
-                } else {
-                    setTooltipPosition('top');
-                }
-            }
-        } else if (tooltipPosition === 'top') {
-            if (spaceFromTop < 100) {
-                if (spaceFromBottom < 100) {
-                    if (spaceFromRightSide < 150) {
-                        setTooltipPosition('left');
-                    } else if (spaceFromBottom < 100) {
-                        setTooltipPosition('right');
-                    } else {
-                        setTooltipPosition('left');
-                    }
-                } else {
-                    setTooltipPosition('bottom');
-                }
-            }
-        } else if (tooltipPosition === 'right') {
-            if (spaceFromRightSide < 150) {
-                if (spaceFromBottom < 100) {
-                    if (spaceFromTop < 100) {
-                        setTooltipPosition('left');
-                    } else {
-                        setTooltipPosition('top');
-                    }
-                } else {
-                    setTooltipPosition('bottom');
-                }
-            }
-        } else if (tooltipPosition === 'left') {
-            if (spaceFromLeftSide < 150) {
-                if (spaceFromBottom < 100) {
-                    if (spaceFromTop < 100) {
-                        setTooltipPosition('right');
-                    } else {
-                        setTooltipPosition('top');
-                    }
-                } else {
-                    setTooltipPosition('bottom');
-                }
-            }
-        }
-    };
-
     const showTooltip = (hoveredItem) => {
-        calculateTooltipPosition(hoveredItem);
+        setTooltipPosition(getTooltipPosition(hoveredItem, tooltipPosition));
         setTooltipVisiblity(true);
     };
 
@@ -150,9 +153,14 @@ const Tooltip = ({
     let bottom = 'auto';
     let right = 'auto';
     let tooltipWidth = 0;
+    let tooltipHeight = 0;
 
     if (tooltipRef.current) {
         tooltipWidth = tooltipRef.current.offsetWidth;
+    }
+
+    if (tooltipRef.current) {
+        tooltipHeight = tooltipRef.current.offsetHeight;
     }
 
     if (hoveredElement) {
@@ -160,14 +168,14 @@ const Tooltip = ({
             bottom = `${document.documentElement.clientHeight - hoveredElement.top + (spacingValue * 2)}px`;
             left = `${hoveredElement.left + ((hoveredElement.width - tooltipWidth) / 2)}px`;
         } else if (tooltipPosition === 'right') {
-            top = `${hoveredElement.top}px`;
+            top = `${hoveredElement.top + ((hoveredElement.height - tooltipHeight) / 2)}px`;
             left = `${hoveredElement.right + (spacingValue * 2)}px`;
         } else if (tooltipPosition === 'bottom') {
             top = `${hoveredElement.bottom + (spacingValue * 2)}px`;
-            left = `${hoveredElement.left}px`;
+            left = `${hoveredElement.left + ((hoveredElement.width - tooltipWidth) / 2)}px`;
         } else {
             right = `${document.documentElement.clientWidth - hoveredElement.left + (spacingValue * 2)}px`;
-            top = `${hoveredElement.top}px`;
+            top = `${hoveredElement.top + ((hoveredElement.height - tooltipHeight) / 2)}px`;
         }
     }
 

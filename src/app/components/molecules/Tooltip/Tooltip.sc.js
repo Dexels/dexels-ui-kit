@@ -1,3 +1,4 @@
+import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS } from './Tooltip.consts';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
@@ -25,19 +26,15 @@ export const StyledTooltip = styled.span`
     border-radius: ${({ theme }) => theme.spacing(1.9)};
     background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(0.5, 1, 0.5, 1)};
-    width: fit-content;
-    height: fit-content;
     text-align: center;
     color: ${({ theme }) => theme.colorContrastText.primary};
 `;
 
 StyledTooltip.propTypes = {
-    // bottom: PropTypes.number.isRequired,
+    elevation: PropTypes.oneOf(Object.values(TOOLTIP_ELEVATIONS)).isRequired,
     isVisible: PropTypes.bool.isRequired,
-    // left: PropTypes.number.isRequired,
-    // right: PropTypes.number.isRequired,
-    tooltipPosition: PropTypes.string.isRequired,
-    // top: PropTypes.number.isRequired,
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(TOOLTIP_EASINGS)),
 };
 
 export default StyledTooltip;
