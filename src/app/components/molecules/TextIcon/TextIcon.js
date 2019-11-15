@@ -15,7 +15,7 @@ TextIcon.propTypes = {
 };
 
 TextIcon.defaultProps = {
-    text: 'A',
+    text: '',
 };
 
 export default TextIcon;

@@ -46,7 +46,7 @@ const DialogFooter = ({
 );
 
 DialogFooter.propTypes = {
-    buttonCancelText: PropTypes.string,
+    buttonCancelText: PropTypes.string, // This can not be required because the button is optional
     buttonConfirmText: PropTypes.string.isRequired,
     message: PropTypes.string,
     onCancel: PropTypes.func,
@@ -54,7 +54,7 @@ DialogFooter.propTypes = {
 };
 
 DialogFooter.defaultProps = {
-    buttonCancelText: 'Cancel',
+    buttonCancelText: '',
     message: null,
     onCancel: null,
 };

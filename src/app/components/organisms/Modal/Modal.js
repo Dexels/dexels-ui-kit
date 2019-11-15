@@ -35,13 +35,12 @@ Modal.propTypes = {
     children: PropTypes.node.isRequired,
     onBack: PropTypes.func,
     options: PropTypes.node,
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
 };
 
 Modal.defaultProps = {
     onBack: null,
     options: null,
-    title: '',
 };
 
 export default Modal;
