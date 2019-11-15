@@ -56,7 +56,7 @@ const functionalItems = [
 
 export const Configurable = () => (
     <Modal
-        isDisplaying
+        isVisible
         onBack={action('On back')}
         options={functionalItems}
         title={text('Header title', 'Heading')}
@@ -79,7 +79,7 @@ export const ConfigurableAlert = () => {
                 {isVisible ? 'MODAL IS SHOWING' : 'SHOW MODAL'}
             </Button>
             <Modal
-                isDisplaying={isVisible}
+                isVisible={isVisible}
                 onBack={() => {
                     setIsVisible(false);
                 }}

@@ -10,20 +10,18 @@ import React from 'react';
 
 const Modal = ({
     children,
-    isDisplaying,
+    isVisible,
     options,
     title,
     onBack,
 }) => (
-    <Overlay isFullscreen={isDisplaying} isVisible={isDisplaying}>
-        <StyledModal isDisplaying={isDisplaying}>
-            {options && (
-                <HeaderWrapper>
-                    <Header isInverted onBack={onBack} title={title}>
-                        {options}
-                    </Header>
-                </HeaderWrapper>
-            )}
+    <Overlay isFullscreen={isVisible} isVisible={isVisible}>
+        <StyledModal isVisible={isVisible}>
+            <HeaderWrapper>
+                <Header isInverted onBack={onBack} title={title}>
+                    {options}
+                </Header>
+            </HeaderWrapper>
             <Body>
                 {children}
             </Body>
@@ -33,16 +31,15 @@ const Modal = ({
 
 Modal.propTypes = {
     children: PropTypes.node.isRequired,
-    isDisplaying: PropTypes.bool.isRequired,
+    isVisible: PropTypes.bool.isRequired,
     onBack: PropTypes.func,
     options: PropTypes.node,
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
 };
 
 Modal.defaultProps = {
     onBack: null,
     options: null,
-    title: '',
 };
 
 export default Modal;

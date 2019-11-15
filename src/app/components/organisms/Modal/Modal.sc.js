@@ -10,18 +10,18 @@ export const StyledModal = styled.div`
     left: 50%;
     flex-direction: column;
     flex-wrap: nowrap;
-    transform: ${({ isDisplaying }) => `translate3d(-50%, ${isDisplaying ? '0' : '100%'}, 0)`};
+    transform: ${({ isVisible }) => `translate3d(-50%, ${isVisible ? '0' : '100%'}, 0)`};
     transition: all 500ms ease;
-    opacity: ${({ isDisplaying }) => (isDisplaying ? 1 : 0)};
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     z-index: 3;
     padding: ${({ theme }) => theme.spacing(3.5)} 0 0 0;
     width: 100%;
-    max-width: 1024px;
+    max-width: ${({ theme }) => theme.spacing(128)};
     height: 100%;
 `;
 
 StyledModal.propTypes = {
-    isDisplaying: PropTypes.bool.isRequired,
+    isVisible: PropTypes.bool.isRequired,
 };
 
 export const HeaderWrapper = styled.header`
