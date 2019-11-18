@@ -17,6 +17,7 @@ export const StyledWrapper = styled.div`
         outline: none;
         border: 1px solid ${({ theme }) => theme.colorPrimary};
         border-radius: ${({ theme }) => theme.spacing(1)};
+        background-color: transparent;
         padding: ${({ theme }) => theme.spacing(0, 6, 0, 1.5)};
         height: ${({ theme }) => theme.spacing(6)};
         overflow: hidden;
@@ -51,6 +52,7 @@ export const StyledWrapper = styled.div`
 
     .DateInput {
         display: block;
+        background-color: transparent;
         width: 100%;
     }
 
@@ -60,7 +62,8 @@ export const StyledWrapper = styled.div`
         display: block;
         outline: none;
         border: 0;
-        background-color: ${({ theme }) => theme.shades.nine};
+        background-color: transparent;
+        /* background-color: ${({ theme }) => theme.shades.nine}; */
         padding: 0;
         height: ${({ theme }) => `calc(${theme.spacing(6)} - 2px)`};
         color: ${({ theme }) => theme.colorText.primary};

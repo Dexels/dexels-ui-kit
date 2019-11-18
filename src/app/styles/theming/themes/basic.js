@@ -43,6 +43,9 @@ export const themePropTypes = PropTypes.shape({
             tertiary: PropTypes.string.isRequired,
         }),
     }).isRequired,
+    card: PropTypes.shape({
+        backgroundColor: PropTypes.string.isRequired,
+    }).isRequired,
     colorText: PropTypes.shape({
         primary: PropTypes.string.isRequired,
         secondary: PropTypes.string.isRequired,
@@ -169,6 +172,10 @@ themeBasic.button = {
         secondary: themeBasic.shades.nine,
         tertiary: themeBasic.colorSecondary,
     },
+};
+
+themeBasic.card = {
+    backgroundColor: themeBasic.shades.nine,
 };
 
 themeBasic.colorDisabled = themeBasic.shades.six;

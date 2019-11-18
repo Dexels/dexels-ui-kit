@@ -10,7 +10,7 @@ export const StyledLabel = styled.label`
     ${({ isTruncatable }) => isTruncatable && setTruncate()}
     display: block;
     cursor: inherit;
-    color: ${({ theme }) => theme.shades.four};
+    color: ${({ theme }) => theme.shades.three};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
         color: ${({ theme }) => theme.colorText.primary};

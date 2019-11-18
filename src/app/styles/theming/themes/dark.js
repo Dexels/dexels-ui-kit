@@ -10,9 +10,9 @@ export const themeDark = createDuiTheme(themeBasic, {
         four: '#666',
         five: '#555',
         six: '#444',
-        seven: '#333',
-        eight: '#222',
-        nine: '#111',
+        seven: '#191919',
+        eight: '#050505',
+        nine: '#000000',
     },
     colorPrimary: '#FFFFFF',
     colorSecondary: '#009FFD',
@@ -36,6 +36,10 @@ themeDark.button = {
         secondary: themeDark.shades.nine,
         tertiary: themeDark.colorSecondary,
     },
+};
+
+themeDark.card = {
+    backgroundColor: '#222',
 };
 
 themeDark.colorDisabled = themeDark.shades.six;

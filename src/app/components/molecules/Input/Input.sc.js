@@ -63,7 +63,7 @@ export const TextField = styled.input`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     display: block;
     outline: none;
-    background-color: ${({ theme }) => theme.shades.nine};
+    background-color: transparent;
     width: 100%;
     color: ${({ theme }) => theme.colorText.primary};
 
