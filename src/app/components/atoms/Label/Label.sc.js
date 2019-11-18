@@ -17,7 +17,7 @@ export const StyledLabel = styled.label`
     `}
 
     ${({ isActive }) => isActive && css`
-        color: ${({ theme }) => theme.colorHeaderText.primary};
+        color: ${({ theme }) => theme.shades.one};
     `}
 
     ${({ isFocused }) => isFocused && css`
