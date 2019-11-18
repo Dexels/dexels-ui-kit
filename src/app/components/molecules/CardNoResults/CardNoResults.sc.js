@@ -27,7 +27,7 @@ StyledCardNoResults.defaultProps = {
 export const Header = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
     margin: ${({ theme }) => theme.spacing(0, 0, 2)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 Header.propTypes = {
@@ -41,7 +41,7 @@ Header.defaultProps = {
 export const Title = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
     margin: ${({ theme }) => theme.spacing(0.5, 0.5, 0.5, 0)};
-    color: ${({ theme }) => theme.colorHeaderText.secondary};
+    color: ${({ theme }) => theme.colorText.secondary};
 `;
 
 Title.propTypes = {
@@ -55,7 +55,7 @@ Title.defaultProps = {
 export const Item = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     margin: ${({ theme }) => theme.spacing(0, 0, 0.5)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 Item.propTypes = {
@@ -81,7 +81,7 @@ Left.defaultProps = {
 };
 
 export const IconWrapper = styled.div`
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
     font-size: 30px;
 
     span {

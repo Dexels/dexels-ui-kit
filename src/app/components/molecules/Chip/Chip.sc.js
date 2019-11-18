@@ -22,7 +22,7 @@ export const StyledChip = styled.button`
     padding: ${({ theme }) => theme.spacing(0.5, 1)};
     min-height: ${({ theme }) => theme.spacing(4)};
     overflow: hidden;
-    color: ${({ theme }) => theme.colorBodyText.primary};
+    color: ${({ theme }) => theme.colorTextBody.primary};
 
     ${({ isSelected }) => isSelected && css`
         background-color: ${({ theme }) => theme.shades.five};

@@ -9,7 +9,7 @@ export const StyledHeader = styled.div`
     flex-direction: row;
     background: ${({ isInverted, theme }) => (isInverted ? theme.shades.nine : theme.colorPrimary)};
     height: ${({ theme }) => theme.spacing(6.5)};
-    color: ${({ isInverted, theme }) => (isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary)};
+    color: ${({ isInverted, theme }) => (isInverted ? theme.colorText.primary : theme.colorTextContrast.primary)};
 `;
 
 StyledHeader.propTypes = {

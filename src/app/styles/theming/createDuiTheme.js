@@ -1,3 +1,5 @@
+import { cloneObject } from '../../utils/functions/objectFunctions';
+
 const checkIfPropertyExists = (object, property, completePropertyName) => {
     if (!Object.prototype.hasOwnProperty.call(object, property)) {
         throw Error(`The theme you provided doesn't have a '${completePropertyName || property}' property on it`);
@@ -5,9 +7,10 @@ const checkIfPropertyExists = (object, property, completePropertyName) => {
 };
 
 const createDuiTheme = (baseTheme, overrides) => {
-    const theme = {
-        ...baseTheme,
-    };
+    const theme = cloneObject(baseTheme);
+    // const theme = {
+    //     ...baseTheme,
+    // };
 
     Object.keys(overrides).forEach((property1) => {
         checkIfPropertyExists(baseTheme, property1);

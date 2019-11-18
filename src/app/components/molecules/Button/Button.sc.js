@@ -62,21 +62,21 @@ export const StyledButton = styled.button`
         theme,
         variant,
     }) => variant === BUTTON_VARIANTS.FILLED && css`
-        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
-        background-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
-        color: ${isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary};
+        border-color: ${isInverted ? theme.button.backgroundColor.secondary : theme.button.backgroundColor.primary};
+        background-color: ${isInverted ? theme.button.backgroundColor.secondary : theme.button.backgroundColor.primary};
+        color: ${isInverted ? theme.button.color.secondary : theme.colorTextContrast.primary};
 
         &:focus,
         &:hover {
-            border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
-            background-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
-            color: ${isInverted ? theme.colorContrastText.primary : theme.colorContrastText.primary};
+            border-color: ${isInverted ? theme.button.backgroundColor.secondary : theme.button.backgroundColor.tertiary};
+            background-color: ${isInverted ? theme.button.backgroundColor.secondary : theme.button.backgroundColor.tertiary};
+            color: ${isInverted ? theme.button.color.tertiary : theme.colorTextContrast.primary};
         }
 
         ${isDisabled && css`
             border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
             background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
-            color: ${isInverted ? theme.shades.five : theme.colorContrastText.primary};
+            color: ${isInverted ? theme.shades.five : theme.colorTextContrast.primary};
         `}
     `}
 
@@ -86,19 +86,19 @@ export const StyledButton = styled.button`
         theme,
         variant,
     }) => variant === BUTTON_VARIANTS.OUTLINE && css`
-        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        border-color: ${isInverted ? theme.shades.nine : theme.button.backgroundColor.primary};
         background-color: transparent !important;
-        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
+        color: ${isInverted ? theme.colorTextContrast.primary : theme.colorText.primary};
 
         &:focus,
         &:hover {
-            border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
-            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorHeaderText.secondary};
+            border-color: ${isInverted ? theme.button.backgroundColor.tertiary : theme.button.backgroundColor.tertiary};
+            color: ${isInverted ? theme.button.color.tertiary : theme.button.color.tertiary};
         }
 
         ${isDisabled && css`
             border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
-            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
+            color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
         `}
     `}
 
@@ -112,21 +112,23 @@ export const StyledButton = styled.button`
         background-color: transparent !important;
         padding: 0;
         min-height: 0;
-        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
+        color: ${isInverted ? theme.colorTextContrast.primary : theme.button.color.secondary};
 
         &:focus,
         &:hover {
-            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorSecondary};
+            color: ${isInverted ? theme.button.color.tertiary : theme.button.color.tertiary};
         }
 
         ${isDisabled && css`
-            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
+            color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
         `}
     `}
 
     &:after {
-        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.colorSecondary) : rippleEffect())}
-    }
+        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED
+        ? rippleEffect(theme.button.backgroundColor.tertiary)
+        : rippleEffect(theme.button.backgroundColor.secondary)
+    )}}
 
     &:active:after {
         ${rippleEffectReset()}

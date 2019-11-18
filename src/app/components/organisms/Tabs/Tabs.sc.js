@@ -26,7 +26,7 @@ export const TabHeader = styled.button`
     height: ${({ theme }) => theme.spacing(6)};
     overflow: hidden;
     text-align: center;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
@@ -48,7 +48,7 @@ export const TabHeader = styled.button`
     &:active,
     &:hover {
         border-bottom-color: ${({ theme }) => theme.colorSecondary};
-        color: ${({ theme }) => theme.colorHeaderText.secondary};
+        color: ${({ theme }) => theme.colorText.secondary};
     }
 
     &:active:after {

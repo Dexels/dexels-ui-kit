@@ -10,7 +10,7 @@ export const StyledPaginator = styled.div`
     flex-wrap: nowrap;
     align-items: flex-end;
     padding: ${({ theme }) => theme.spacing(3, 0, 0, 0)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 export const InputWrapper = styled.div`

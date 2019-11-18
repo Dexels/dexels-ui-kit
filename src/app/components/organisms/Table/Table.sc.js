@@ -8,7 +8,7 @@ export const TableCaption = styled.div`
     ${setBoxSizing()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
     padding: ${({ theme }) => theme.spacing(0, 0, 4, 0)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 export const StyledTable = styled.table`
@@ -43,7 +43,7 @@ export const TableHeaderCell = styled.th`
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 export const TableBody = styled.tbody`
@@ -83,7 +83,7 @@ export const TableCell = styled.td`
     height: ${({ theme }) => theme.spacing(6)};
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ isClickable }) => isClickable && css`
         cursor: pointer;
@@ -96,7 +96,7 @@ TableCell.propTypes = {
 
 export const IconWrapper = styled.span`
     padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
-    color: ${({ isSorted, theme }) => (isSorted ? theme.colorHeaderText.primary : theme.colorDisabled)};
+    color: ${({ isSorted, theme }) => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
 `;
 
 IconWrapper.propTypes = {

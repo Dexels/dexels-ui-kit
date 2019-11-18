@@ -13,15 +13,15 @@ export const StyledLabel = styled.label`
     color: ${({ theme }) => theme.shades.four};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
-        color: ${({ theme }) => theme.colorHeaderText.primary};
+        color: ${({ theme }) => theme.colorText.primary};
     `}
 
     ${({ isActive }) => isActive && css`
-        color: ${({ theme }) => theme.colorHeaderText.primary};
+        color: ${({ theme }) => theme.colorText.primary};
     `}
 
     ${({ isFocused }) => isFocused && css`
-        color: ${({ theme }) => theme.colorHeaderText.secondary};
+        color: ${({ theme }) => theme.colorText.secondary};
     `}
 
     ${({ isValid }) => isValid && css`

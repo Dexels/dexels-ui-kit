@@ -61,7 +61,7 @@ export const StyledDatePicker = styled.div`
         background-color: ${({ theme }) => theme.shades.nine};
         padding: ${({ theme }) => theme.spacing(0, 1.5)};
         height: ${({ theme }) => theme.spacing(6)};
-        color: ${({ theme }) => theme.colorHeaderText.primary};
+        color: ${({ theme }) => theme.colorText.primary};
 
         &::placeholder {
             color: ${({ theme }) => theme.shades.four};
@@ -148,7 +148,7 @@ export const StyledDatePicker = styled.div`
 
         &:hover {
             background-color: ${({ theme }) => theme.colorPrimary};
-            color: ${({ theme }) => theme.colorContrastText.primary};
+            color: ${({ theme }) => theme.colorTextContrast.primary};
         }
     }
 

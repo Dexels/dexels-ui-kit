@@ -7,6 +7,7 @@ import { addDecorator, addParameters, configure } from '@storybook/react';
 import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
+import { themeDark } from '../app/styles/theming/themes/dark';
 import { themeLight } from '../app/styles/theming/themes/light';
 // This seems like a ESLint bug
 // eslint-disable-next-line import/no-unresolved
@@ -25,6 +26,10 @@ addDecorator(withThemesProvider([
     {
         ...themeBasic,
         name: 'Basic',
+    },
+    {
+        ...themeDark,
+        name: 'Dark',
     },
     {
         ...themeLight,

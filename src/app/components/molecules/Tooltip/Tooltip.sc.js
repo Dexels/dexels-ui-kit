@@ -18,7 +18,7 @@ export const StyledTooltip = styled.div`
         position: absolute;
         visibility: hidden;
         opacity: 0;
-        background-color: ${({ theme }) => theme.colorHeaderText.primary};
+        background-color: ${({ theme }) => theme.colorText.primary};
     }
 
     &::before {
@@ -36,7 +36,7 @@ export const StyledTooltip = styled.div`
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: ${({ theme }) => theme.colorContrastText.primary};
+        color: ${({ theme }) => theme.colorTextContrast.primary};
         content: attr(data-tooltip);
     }
 

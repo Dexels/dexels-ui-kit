@@ -29,28 +29,15 @@ export const themePropTypes = PropTypes.shape({
     colorValid: PropTypes.string.isRequired,
     background: PropTypes.shape({
         primary: PropTypes.string.isRequired,
-        secondary: PropTypes.string.isRequired,
-        tertiary: PropTypes.string.isRequired,
     }).isRequired,
-    button: PropTypes.shape({
-        color: PropTypes.shape({
-            primary: PropTypes.string.isRequired,
-            secondary: PropTypes.string.isRequired,
-        }),
-        backgroundColor: PropTypes.shape({
-            primary: PropTypes.string.isRequired,
-            secondary: PropTypes.string.isRequired,
-            tertiary: PropTypes.string.isRequired,
-        }),
+    colorContrastText: PropTypes.shape({
+        primary: PropTypes.string.isRequired,
     }).isRequired,
-    colorText: PropTypes.shape({
+    colorHeaderText: PropTypes.shape({
         primary: PropTypes.string.isRequired,
         secondary: PropTypes.string.isRequired,
     }).isRequired,
-    colorTextContrast: PropTypes.shape({
-        primary: PropTypes.string.isRequired,
-    }).isRequired,
-    colorTextBody: PropTypes.shape({
+    colorBodyText: PropTypes.shape({
         primary: PropTypes.string.isRequired,
         secondary: PropTypes.string.isRequired,
     }).isRequired,
@@ -92,10 +79,9 @@ export const themeBasic = {
     colorInvalid: '#F94E4E',
     colorValid: '#2DD67B',
     background: {},
-    button: {},
-    colorText: {},
-    colorTextContrast: {},
-    colorTextBody: {},
+    colorContrastText: {},
+    colorHeaderText: {},
+    colorBodyText: {},
     fontFamilyPrimary: "'Open Sans', arial, sans-serif",
     fontFamilySecondary: "'Exo 2', sans-serif",
     spacingValue: 8,
@@ -154,35 +140,20 @@ export const themeBasic = {
 
 themeBasic.background = {
     primary: themeBasic.shades.eight,
-    secondary: themeBasic.shades.nine,
-    tertiary: themeBasic.shades.eight,
-};
-
-themeBasic.button = {
-    color: {
-        primary: themeBasic.shades.nine,
-        secondary: themeBasic.shades.one,
-        tertiary: themeBasic.colorSecondary,
-    },
-    backgroundColor: {
-        primary: themeBasic.colorPrimary,
-        secondary: themeBasic.shades.nine,
-        tertiary: themeBasic.colorSecondary,
-    },
 };
 
 themeBasic.colorDisabled = themeBasic.shades.six;
 
-themeBasic.colorTextContrast = {
+themeBasic.colorContrastText = {
     primary: themeBasic.shades.nine,
 };
 
-themeBasic.colorText = {
+themeBasic.colorHeaderText = {
     primary: themeBasic.colorPrimary,
     secondary: themeBasic.colorSecondary,
 };
 
-themeBasic.colorTextBody = {
+themeBasic.colorBodyText = {
     primary: themeBasic.shades.one,
     secondary: themeBasic.shades.four,
 };
