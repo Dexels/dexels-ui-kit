@@ -60,7 +60,6 @@ export const Select = styled.select`
     appearance: none;
     display: block;
     outline: none;
-    border-radius: 0;
     background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
     width: 100%;
@@ -69,6 +68,8 @@ export const Select = styled.select`
     ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
         border: 0;
         border-bottom: 1px solid ${theme.colorText.primary};
+        border-radius: 0;
+        padding: ${theme.spacing(0, 3, 0, 0)};
         height: ${theme.spacing(3.5)};
         line-height: ${theme.spacing(3.5)};
     `}
@@ -76,7 +77,7 @@ export const Select = styled.select`
     ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.OUTLINE && css`
         border: 1px solid ${theme.colorText.primary};
         border-radius: ${theme.spacing(1)};
-        padding: ${theme.spacing(0, 6, 0, 1.5)};
+        padding: ${theme.spacing(0, 4.5, 0, 1.5)};
         height: ${theme.spacing(6)};
         line-height: ${theme.spacing(6)};
     `}

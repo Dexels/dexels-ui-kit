@@ -4,9 +4,7 @@ import styled from 'styled-components';
 
 export const StyledDialogFooter = styled.footer`
     ${setBoxSizing()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     display: flex;
-    flex-direction: row;
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
@@ -22,30 +20,31 @@ StyledDialogFooter.defaultProps = {
     theme: themeBasic,
 };
 
-export const TextWrapper = styled.div`
+export const Text = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
-    flex: 1 1 auto;
-    padding: ${({ theme }) => theme.spacing(0, 1, 0, 0)};
+    padding: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
     word-break: break-word;
+    color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
-TextWrapper.propTypes = {
+Text.propTypes = {
     theme: themePropTypes,
 };
 
-TextWrapper.defaultProps = {
+Text.defaultProps = {
     theme: themeBasic,
 };
 
 export const ButtonBarWrapper = styled.div`
     display: flex;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     flex-wrap: nowrap;
     align-items: center;
+    margin: 0 0 0 auto;
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
+    margin: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
 `;
 
 ButtonWrapper.propTypes = {

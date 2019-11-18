@@ -1,11 +1,11 @@
-import { Date, DropdownWrapper, StyledDateNavigation } from './DateNavigation.sc';
+import { CurrentDate, DropdownWrapper, StyledNavigation } from './Navigation.sc';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import moment from 'moment';
 import momentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const DateNavigation = ({
+const Navigation = ({
     hasYearSelector,
     labelMonth,
     labelYear,
@@ -16,9 +16,9 @@ const DateNavigation = ({
 }) => {
     if (!hasYearSelector) {
         return (
-            <Date>
+            <CurrentDate>
                 {`${month.format('MMMM')} ${month.year()}`}
-            </Date>
+            </CurrentDate>
         );
     }
 
@@ -40,7 +40,7 @@ const DateNavigation = ({
     }
 
     return (
-        <StyledDateNavigation>
+        <StyledNavigation>
             <DropdownWrapper>
                 <Dropdown
                     label={labelMonth}
@@ -67,11 +67,11 @@ const DateNavigation = ({
                     {yearArray}
                 </Dropdown>
             </DropdownWrapper>
-        </StyledDateNavigation>
+        </StyledNavigation>
     );
 };
 
-DateNavigation.propTypes = {
+Navigation.propTypes = {
     hasYearSelector: PropTypes.bool.isRequired,
     labelMonth: PropTypes.string,
     labelYear: PropTypes.string,
@@ -81,9 +81,9 @@ DateNavigation.propTypes = {
     yearCount: PropTypes.number.isRequired,
 };
 
-DateNavigation.defaultProps = {
+Navigation.defaultProps = {
     labelMonth: '',
     labelYear: '',
 };
 
-export default DateNavigation;
+export default Navigation;

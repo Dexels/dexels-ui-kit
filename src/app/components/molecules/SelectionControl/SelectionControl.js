@@ -1,5 +1,6 @@
 import {
     ErrorMessageWrapper,
+    FakeInput,
     IconWrapper,
     InputWrapper,
     LabelWrapper,
@@ -36,15 +37,23 @@ const SelectionControl = ({
         <StyledSelectionControl>
             <InputWrapper
                 direction={direction}
-                hasError={hasError}
-                isChecked={isChecked}
                 isDisabled={isDisabled}
-                isIndeterminate={isIndeterminate}
-                isValid={isValid}
                 transitionDuration={transitionDuration}
                 transitionEasing={transitionEasing}
-                type={type}
             >
+                <FakeInput
+                    hasError={hasError}
+                    isChecked={isChecked}
+                    isDisabled={isDisabled}
+                    isIndeterminate={isIndeterminate}
+                    isValid={isValid}
+                    type={type}
+                />
+                {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
+                    <IconWrapper>
+                        <Icon type={isChecked ? Icon.types.CHECK : Icon.types.MINUS} />
+                    </IconWrapper>
+                )}
                 <input
                     checked={isChecked}
                     disabled={isDisabled}
@@ -53,19 +62,9 @@ const SelectionControl = ({
                     type={type}
                     value={value}
                 />
-                {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
-                    <IconWrapper>
-                        <Icon type={isChecked ? Icon.types.CHECK : Icon.types.MINUS} />
-                    </IconWrapper>
-                )}
             </InputWrapper>
             <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
-                <Label
-                    hasError={hasError}
-                    isCheckboxLabel
-                    isDisabled={isDisabled}
-                    isValid={isValid}
-                >
+                <Label hasError={hasError} isCheckboxLabel isValid={isValid}>
                     {label}
                 </Label>
             </LabelWrapper>
