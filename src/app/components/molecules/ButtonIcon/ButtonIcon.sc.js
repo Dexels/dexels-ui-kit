@@ -55,6 +55,10 @@ export const StyledButtonIcon = styled.button`
         ${rippleEffectReset()}
         border: 0;
     }
+
+    span {
+        display: block;
+    }
 `;
 
 StyledButtonIcon.propTypes = {
