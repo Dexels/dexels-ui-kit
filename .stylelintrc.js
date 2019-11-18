@@ -31,7 +31,9 @@ module.exports = {
             ],
         }],
         'function-parentheses-space-inside': 'never',
-        indentation: 4,
+        indentation: [4, {
+            indentInsideParens: 'once-at-root-twice-in-block',
+        }],
         'length-zero-no-unit': true,
         'max-empty-lines': 1,
         'rule-empty-line-before': ['always', {
