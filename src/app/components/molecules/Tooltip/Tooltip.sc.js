@@ -32,7 +32,7 @@ export const StyledTooltip = styled.div`
         ${({ elevation }) => getElevation(elevation)}
         z-index: 99999999;
         border-radius: 15px;
-        padding: 4px 8px 4px 8px;
+        padding: 4px 8px;
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;

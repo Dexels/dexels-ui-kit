@@ -38,20 +38,20 @@ export const StyledButtonIcon = styled.button`
         pointer-events: none;
     `}
 
-    &:focus,
-    &:hover {
-        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.colorTertiary)};
-        color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
-    }
-
-    &:after {
+    &::after {
         border: 0;
         pointer-events: none;
 
         ${({ isInverted, theme }) => (isInverted ? rippleEffect() : rippleEffect(theme.colorSecondary))}
     }
 
-    &:active:after {
+    &:focus,
+    &:hover {
+        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.colorTertiary)};
+        color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
+    }
+
+    &:active::after {
         ${rippleEffectReset()}
         border: 0;
     }

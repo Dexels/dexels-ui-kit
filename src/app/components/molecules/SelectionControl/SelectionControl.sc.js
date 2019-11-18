@@ -52,6 +52,11 @@ export const InputWrapper = styled.div`
         content: '';
     }
 
+    &::after {
+        ${({ theme }) => rippleEffect(theme.colorSecondary)}
+        z-index: 2;
+    }
+
     &:hover,
     &:focus {
         &::before {
@@ -59,12 +64,7 @@ export const InputWrapper = styled.div`
         }
     }
 
-    &:after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)}
-        z-index: 2;
-    }
-
-    &:active:after {
+    &:active::after {
         ${rippleEffectReset()}
     }
 

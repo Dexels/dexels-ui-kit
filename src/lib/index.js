@@ -11,6 +11,7 @@ import Card from '../app/components/atoms/Card/Card';
 import ErrorMessage from '../app/components/atoms/ErrorMessage/ErrorMessage';
 import Icon from '../app/components/atoms/Icon/Icon';
 import Label from '../app/components/atoms/Label/Label';
+import StatusIndicator from '../app/components/atoms/StatusIndicator/StatusIndicator';
 
 // Molecules
 import Button from '../app/components/molecules/Button/Button';
@@ -20,6 +21,7 @@ import CardStatus from '../app/components/molecules/CardStatus/CardStatus';
 import Chip from '../app/components/molecules/Chip/Chip';
 import DialogFooter from '../app/components/molecules/DialogFooter/DialogFooter';
 import Dropdown from '../app/components/molecules/Dropdown/Dropdown';
+import FormElementLabel from '../app/components/molecules/FormElementLabel/FormElementLabel';
 import Input from '../app/components/molecules/Input/Input';
 import Overlay from '../app/components/molecules/Overlay/Overlay';
 import SelectionControl from '../app/components/molecules/SelectionControl/SelectionControl';
@@ -32,6 +34,7 @@ import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
 import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
 import DateRangePicker from '../app/components/organisms/DatePicker/DateRangePicker/DateRangePicker';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
+import DropdownMultiSelect from '../app/components/organisms/DropdownMultiSelect/DropdownMultiSelect';
 import Header from '../app/components/organisms/Header/Header';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
 import Modal from '../app/components/organisms/Modal/Modal';
@@ -50,6 +53,7 @@ export {
     ErrorMessage,
     Icon,
     Label,
+    StatusIndicator,
     // Export molecules
     Button,
     ButtonIcon,
@@ -58,6 +62,7 @@ export {
     Chip,
     DialogFooter,
     Dropdown,
+    FormElementLabel,
     Input,
     Overlay,
     SelectionControl,
@@ -69,6 +74,7 @@ export {
     ContainerContent,
     DateRangePicker,
     Dialog,
+    DropdownMultiSelect,
     Header,
     InputPassword,
     Modal,
