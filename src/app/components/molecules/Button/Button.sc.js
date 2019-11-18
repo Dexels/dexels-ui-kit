@@ -123,11 +123,11 @@ export const StyledButton = styled.button`
         `}
     `}
 
-    &:after {
+    &::after {
         ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.colorSecondary) : rippleEffect())}
     }
 
-    &:active:after {
+    &:active::after {
         ${rippleEffectReset()}
     }
 `;

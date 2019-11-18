@@ -17,7 +17,9 @@ export const StyledModal = styled.div`
     @keyframes show {
         from {
             transform: scale(0);
-        } to {
+        }
+
+        to {
             transform: scale(1);
         }
     }
