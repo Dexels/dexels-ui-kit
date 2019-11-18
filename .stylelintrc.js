@@ -23,7 +23,7 @@ module.exports = {
         'function-comma-space-after': 'always-single-line',
         'function-comma-space-before': 'never',
         'function-name-case': ['lower', {
-            ignoreFunctions: ['/^get.*$/'],
+            ignoreFunctions: ['/^get.*$/', 'invertcolor'],
         }],
         'function-parentheses-space-inside': 'never',
         indentation: 4,
