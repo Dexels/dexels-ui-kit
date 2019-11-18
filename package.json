@@ -15,7 +15,7 @@
         "build:prod": "cross-env BABEL_ENV=prod webpack --config config/webpack.config.js",
         "dist": "npm run build:prod",
         "dist:analyze": "npm run build:prod -- --env.analyze=true",
-        "lint:css": "stylelint \"src/**/*.js\" --config .stylelintrc.js",
+        "lint:css": "stylelint \"src/**/*.js\"",
         "lint:js": "eslint \"src/**/*.js\" --config config/.eslintrc.js",
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
