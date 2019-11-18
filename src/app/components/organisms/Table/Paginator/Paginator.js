@@ -143,7 +143,7 @@ Paginator.propTypes = {
         resultsOf: PropTypes.string,
         rowsPerPage: PropTypes.string,
         show: PropTypes.string,
-    }),
+    }).isRequired,
     useResultsOfText: PropTypes.bool,
 };
 
@@ -152,14 +152,6 @@ Paginator.defaultProps = {
     hasGoToPage: false,
     hasPageSizeSelector: true,
     pageSizes: Paginator.pageSizes,
-    texts: {
-        page: 'Page',
-        pageGoto: 'Go to page',
-        pageOf: 'Of',
-        resultsOf: 'Results of',
-        rowsPerPage: 'Rows per page',
-        show: 'Show',
-    },
     useResultsOfText: true,
 };
 

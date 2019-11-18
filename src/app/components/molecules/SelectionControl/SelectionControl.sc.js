@@ -134,6 +134,10 @@ export const FakeInput = styled.div`
         }
     `}
 
+    ${({ isHovered, theme }) => isHovered && css`
+        border-color: ${theme.colorSecondary};
+    `}
+
     ${({
         isChecked,
         isIndeterminate,
@@ -181,17 +185,13 @@ export const FakeInput = styled.div`
             }
         `}
     `}
-
-    &:hover,
-    &:focus {
-        border-color: ${({ theme }) => theme.colorSecondary};
-    }
 `;
 
 FakeInput.propTypes = {
     hasError: PropTypes.bool.isRequired,
     isChecked: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
+    isHovered: PropTypes.bool.isRequired,
     isIndeterminate: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
     theme: themePropTypes,
