@@ -1,82 +1,43 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
-import { ELEVATIONS } from '../../../utils/constants';
-import getElevation from '../../../styles/mixins/getElevation';
+import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
+import { ELEVATIONS } from '../../../../utils/constants';
+import getElevation from '../../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
+import setTruncate from '../../../../styles/mixins/setTruncate';
+import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 
-export const InputIcon = styled.div`
-    color: ${({ theme }) => theme.colorPrimary};
-
-    ${({ isFocused, theme }) => isFocused && css`
-        color: ${theme.colorSecondary};
-    `}
-
-    ${({ isDisabled, theme }) => isDisabled && css`
-        color: ${theme.colorDisabled};
-    `}
-`;
-
-InputIcon.propTypes = {
-    isDisabled: PropTypes.bool.isRequired,
-    isFocused: PropTypes.bool.isRequired,
-    theme: themePropTypes,
-};
-
-InputIcon.defaultProps = {
-    theme: themeBasic,
-};
-
-export const StyledDatePicker = styled.div`
+export const StyledWrapper = styled.div`
     ${setBoxSizing()}
     position: relative;
 
     /* Input styling */
-    .SingleDatePicker {
-        display: block;
-    }
-
+    .DateRangePickerInput,
     .SingleDatePickerInput {
-        display: block;
-        border: 0;
-        border-radius: 0;
-
-        &:not(.SingleDatePickerInput__disabled):hover {
-            ${InputIcon} {
-                color: ${({ theme }) => theme.colorSecondary};
-            }
-        }
-    }
-
-    .DateInput {
-        width: 100%;
-    }
-
-    .DateInput_input {
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
-        display: block;
         outline: none;
         border: 1px solid ${({ theme }) => theme.colorPrimary};
         border-radius: ${({ theme }) => theme.spacing(1)};
-        background-color: ${({ theme }) => theme.shades.nine};
-        padding: ${({ theme }) => theme.spacing(0, 1.5)};
+        padding: ${({ theme }) => theme.spacing(0, 6, 0, 1.5)};
         height: ${({ theme }) => theme.spacing(6)};
-        color: ${({ theme }) => theme.colorHeaderText.primary};
+        overflow: hidden;
 
-        &::placeholder {
-            color: ${({ theme }) => theme.shades.four};
-        }
+        ${({ isFocused, theme }) => isFocused && css`
+            border-color: ${theme.colorSecondary};
+        `}
 
-        &.DateInput_input__focused,
         &:hover {
             border-color: ${({ theme }) => theme.colorSecondary};
         }
     }
 
-    .SingleDatePicker_picker {
-        background-color: transparent;
+    .DateRangePickerInput:not(.DateRangePickerInput__disabled):hover,
+    .SingleDatePickerInput:not(.SingleDatePickerInput__disabled):hover {
+        ${StyledInputIcon} {
+            color: ${({ theme }) => theme.colorSecondary};
+        }
     }
 
+    .DateRangePickerInput_calendarIcon,
     .SingleDatePickerInput_calendarIcon {
         position: absolute;
         top: 50%;
@@ -85,25 +46,52 @@ export const StyledDatePicker = styled.div`
         z-index: 1;
         margin: 0;
         outline: none;
-        padding: ${({ theme }) => theme.spacing(1.5)};
-        font-size: 24px;
-
-        span {
-            display: block;
-        }
+        padding: 0;
     }
 
-    /* Calendar styling */
-    .DayPicker_transitionContainer {
-        border-radius: ${({ theme }) => theme.spacing(1)};
+    .DateInput {
+        display: block;
+        width: 100%;
+    }
+
+    .DateInput_input {
+        ${setTruncate()}
+        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
+        display: block;
+        outline: none;
+        border: 0;
+        background-color: ${({ theme }) => theme.shades.nine};
+        padding: 0;
+        height: ${({ theme }) => `calc(${theme.spacing(6)} - 2px)`};
+        color: ${({ theme }) => theme.colorHeaderText.primary};
+
+        &::placeholder {
+            color: ${({ theme }) => theme.shades.four};
+        }
     }
 
     .DateInput_fang {
         display: none;
     }
 
+    /* Calendar styling */
+    .DateRangePicker,
+    .SingleDatePicker {
+        display: block;
+    }
+
+    .DateRangePicker_picker,
+    .SingleDatePicker_picker {
+        background-color: transparent;
+    }
+
     .DayPicker__withBorder {
         ${getElevation(ELEVATIONS.LEVEL_6)}
+        border-radius: ${({ theme }) => theme.spacing(1)};
+        overflow: hidden;
+    }
+
+    .DayPicker_transitionContainer {
         border-radius: ${({ theme }) => theme.spacing(1)};
     }
 
@@ -173,11 +161,6 @@ export const StyledDatePicker = styled.div`
         }
     }
 
-    .CalendarDay__selected {
-        background-color: ${({ theme }) => theme.colorSecondary};
-        color: ${({ theme }) => theme.shades.nine};
-    }
-
     .CalendarDay__highlighted_calendar {
         &::after {
             display: block;
@@ -192,11 +175,24 @@ export const StyledDatePicker = styled.div`
         }
 
         &:hover,
-        &.CalendarDay__selected {
+        &.CalendarDay__selected,
+        &.CalendarDay__selected_span {
             &::after {
                 background-color: ${({ theme }) => theme.shades.nine};
             }
         }
+    }
+
+    .CalendarDay__selected,
+    .CalendarDay__selected_start,
+    .CalendarDay__selected_end {
+        background-color: ${({ theme }) => theme.colorSecondary};
+        cursor: pointer;
+        color: ${({ theme }) => theme.shades.nine};
+    }
+
+    .CalendarDay__blocked_minimum_nights:not(.CalendarDay__selected_start) {
+        pointer-events: none;
     }
 
     .CalendarDay__blocked_out_of_range,
@@ -211,60 +207,40 @@ export const StyledDatePicker = styled.div`
         }
     }
 
+    .DateRangePickerInput__disabled,
     .SingleDatePickerInput__disabled {
+        border-color: ${({ theme }) => theme.colorDisabled};
         background: none;
+
+        &:hover {
+            border-color: ${({ theme }) => theme.colorDisabled};
+        }
 
         .DateInput {
             background: none;
         }
 
-        .DateInput_input {
-            border-color: ${({ theme }) => theme.colorDisabled};
-            background-color: ${({ theme }) => theme.shades.nine};
+        .DateInput_input,
+        .DateInput_input::placeholder {
             color: ${({ theme }) => theme.colorDisabled};
             font-style: normal;
-
-            &::placeholder {
-                color: ${({ theme }) => theme.colorDisabled};
-            }
         }
 
+        .DateRangePickerInput_calendarIcon,
         .SingleDatePickerInput_calendarIcon {
             cursor: default;
         }
     }
 `;
 
-StyledDatePicker.propTypes = {
+StyledWrapper.propTypes = {
     hasYearSelector: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
 
-StyledDatePicker.defaultProps = {
+StyledWrapper.defaultProps = {
     theme: themeBasic,
 };
 
-export const ButtonNavigation = styled.div`
-    position: absolute;
-    top: ${({ theme }) => theme.spacing(2)};
-
-    ${({ isNext }) => isNext && css`
-        right: 20px
-    `}
-
-    ${({ isPrev }) => isPrev && css`
-        left: 20px;
-    `}
-`;
-
-ButtonNavigation.propTypes = {
-    isNext: PropTypes.bool,
-    isPrev: PropTypes.bool,
-    theme: themePropTypes,
-};
-
-ButtonNavigation.defaultProps = {
-    isNext: false,
-    isPrev: false,
-    theme: themeBasic,
-};
+export default StyledWrapper;

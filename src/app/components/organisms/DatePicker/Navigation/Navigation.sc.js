@@ -1,7 +1,7 @@
 import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
 import styled from 'styled-components';
 
-export const StyledDateNavigation = styled.div`
+export const StyledNavigation = styled.div`
     display: flex;
     flex-wrap: nowrap;
 `;
@@ -27,17 +27,17 @@ DropdownWrapper.defaultProps = {
     theme: themeBasic,
 };
 
-export const Date = styled.p`
+export const CurrentDate = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h2)}
     margin: 0;
     text-transform: capitalize;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 `;
 
-Date.propTypes = {
+CurrentDate.propTypes = {
     theme: themePropTypes,
 };
 
-Date.defaultProps = {
+CurrentDate.defaultProps = {
     theme: themeBasic,
 };
