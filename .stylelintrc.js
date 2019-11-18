@@ -23,7 +23,12 @@ module.exports = {
         'function-comma-space-after': 'always-single-line',
         'function-comma-space-before': 'never',
         'function-name-case': ['lower', {
-            ignoreFunctions: ['/^get.*$/', 'invertColor', 'toLowerCase'],
+            ignoreFunctions: [
+                /^get.*$/,
+                /^\${get.*$/,
+                'invertColor',
+                '.toLowerCase',
+            ],
         }],
         'function-parentheses-space-inside': 'never',
         indentation: 4,
