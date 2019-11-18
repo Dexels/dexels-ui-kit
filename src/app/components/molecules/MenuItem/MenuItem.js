@@ -3,61 +3,66 @@ import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
+import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const MenuItem = ({
-    children,
     hasDivider,
+    iconType,
     isDisabled,
     isExpanded,
     isParentElement,
+    isSelected,
     onClick,
+    title,
 }) => (
     <StyledMenuItem
-        hasDivider={hasDivider}
         isDisabled={isDisabled}
-        isExpanded={isExpanded}
         isParentElement={isParentElement}
+        isSelected={!isParentElement && isSelected}
         onClick={onClick}
     >
-        {React.Children.map(children, (child) => {
-            if (isParentElement || isExpanded) {
-                return (
-                    <>
-                        <ItemWrapper>
-                            {child}
-                            {isParentElement && (
-                                <ButtonIcon
-                                    iconType={!isExpanded ? Icon.types.CHEVRONDOWN : Icon.types.CHEVRONUP}
-                                    onClick={() => {}}
-                                />
-                            )}
-                        </ItemWrapper>
-                        {hasDivider && !isExpanded && (
-                            <Divider />
-                        )}
-                    </>
-                );
-            }
-
-            return null;
-        })}
+        {(isParentElement || isExpanded) && (
+            <>
+                <ItemWrapper isParentElement={isParentElement}>
+                    <TextWithOptionalIcon
+                        iconType={iconType && TextWithOptionalIcon.iconTypes[iconType]}
+                        isCapitalized={false}
+                    >
+                        {title}
+                    </TextWithOptionalIcon>
+                    {isParentElement && (
+                        <ButtonIcon
+                            iconType={isExpanded ? Icon.types.CHEVRONUP : Icon.types.CHEVRONDOWN}
+                            isDisabled={isDisabled}
+                            onClick={onClick}
+                        />
+                    )}
+                </ItemWrapper>
+                {hasDivider && !isExpanded && (
+                    <Divider />
+                )}
+            </>
+        )}
     </StyledMenuItem>
 );
 
 MenuItem.propTypes = {
-    children: PropTypes.node.isRequired,
     hasDivider: PropTypes.bool,
+    iconType: PropTypes.string,
     isDisabled: PropTypes.bool,
     isExpanded: PropTypes.bool,
     isParentElement: PropTypes.bool,
+    isSelected: PropTypes.bool.isRequired,
     onClick: PropTypes.func,
+    title: PropTypes.string.isRequired,
 };
 
 MenuItem.defaultProps = {
     hasDivider: false,
+    iconType: null,
     isDisabled: false,
     isExpanded: false,
-    isParentElement: true,
+    isParentElement: false,
     onClick: null,
 };
 
