@@ -30,11 +30,9 @@ const Header = ({
                 )}
             </NavigationWrapper>
         )}
-        {title && (
-            <Title>
-                {title}
-            </Title>
-        )}
+        <Title>
+            {title}
+        </Title>
         <FunctionalWrapper>
             <Toolbar isInverted={!isInverted}>
                 {children}

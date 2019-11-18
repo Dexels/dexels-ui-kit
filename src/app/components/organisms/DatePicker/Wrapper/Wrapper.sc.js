@@ -107,7 +107,7 @@ export const StyledWrapper = styled.div`
         margin: 0;
     }
 
-    .DayPicker_weekHeader_li  {
+    .DayPicker_weekHeader_li {
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
         text-transform: capitalize;
         color: ${({ theme }) => theme.shades.one};

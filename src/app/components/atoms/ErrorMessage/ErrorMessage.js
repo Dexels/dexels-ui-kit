@@ -9,11 +9,7 @@ const ErrorMessage = ({ children }) => (
 );
 
 ErrorMessage.propTypes = {
-    children: PropTypes.node,
-};
-
-ErrorMessage.defaultProps = {
-    children: 'Oops, something went wrong!',
+    children: PropTypes.node.isRequired,
 };
 
 export default ErrorMessage;

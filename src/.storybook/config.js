@@ -21,6 +21,18 @@ moment.locale('nl');
 addDecorator(withInfo);
 addDecorator(withKnobs);
 
+// Wrap all stories in some centered div
+addDecorator((storyFn) => (
+    <div style={{
+        margin: '40px auto',
+        width: '80%',
+    }}
+    >
+        {storyFn()}
+    </div>
+));
+
+// Add withThemesProvider setup to make themes available in all stories
 addDecorator(withThemesProvider([
     {
         ...themeBasic,
@@ -31,17 +43,6 @@ addDecorator(withThemesProvider([
         name: 'Light',
     },
 ]));
-
-// Wrap all stories in the ThemeProvider and render the BaseStyling
-addDecorator((storyFn) => (
-    <div style={{
-        margin: '40px auto',
-        width: '80%',
-    }}
-    >
-        {storyFn()}
-    </div>
-));
 
 // Make it possible to switch between background-colors
 addParameters({

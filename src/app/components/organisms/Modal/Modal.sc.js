@@ -1,3 +1,4 @@
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
@@ -22,6 +23,11 @@ export const StyledModal = styled.div`
 
 StyledModal.propTypes = {
     isVisible: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+StyledModal.defaultProps = {
+    theme: themeBasic,
 };
 
 export const HeaderWrapper = styled.header`
@@ -35,3 +41,11 @@ export const Body = styled.div`
     padding: ${({ theme }) => theme.spacing(2)};
     overflow: auto;
 `;
+
+Body.propTypes = {
+    theme: themePropTypes,
+};
+
+Body.defaultProps = {
+    theme: themeBasic,
+};

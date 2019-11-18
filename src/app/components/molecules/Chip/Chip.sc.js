@@ -31,7 +31,7 @@ export const StyledChip = styled.button`
         pointer-events: none;
     `}
 
-    &:after {
+    &::after {
         ${({ theme }) => rippleEffect(theme.colorTertiary)}
     }
 
@@ -44,7 +44,7 @@ export const StyledChip = styled.button`
         `}
     }
 
-    &:active:after {
+    &:active::after {
         ${rippleEffectReset()}
     }
 `;
