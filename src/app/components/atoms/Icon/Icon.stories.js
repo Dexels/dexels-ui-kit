@@ -17,15 +17,17 @@ export const Configurable = () => {
     return (
         <div
             style={{
-                color: select('Color', colors, colors['colorText-primary']),
-                fontSize: select('Size', {
-                    XSMALL: '12px',
-                    SMALL: '16px',
-                    MEDIUM: '20px',
-                    LARGE: '24px',
-                    XLARGE: '28px',
-                    XXLARGE: '32px',
-                }, '24px'),
+                color: select('Color', colors, colors['colorHeaderText-primary']),
+                fontSize: select('Size',
+                    {
+                        XSMALL: '12px',
+                        SMALL: '16px',
+                        MEDIUM: '20px',
+                        LARGE: '24px',
+                        XLARGE: '28px',
+                        XXLARGE: '32px',
+                    },
+                    '24px'),
             }}
         >
             <Icon type={select('Type', Icon.types, Icon.types.CALENDAR)} />

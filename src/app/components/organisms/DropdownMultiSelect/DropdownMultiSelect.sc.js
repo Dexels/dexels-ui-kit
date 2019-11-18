@@ -37,11 +37,11 @@ export const StaticItem = styled.div`
     background-color: ${({ theme }) => theme.shades.eight};
     padding: ${({ theme }) => theme.spacing(1, 1, 1, 2)};
 
-    &:after {
+    &::after {
         ${({ theme }) => rippleEffect(theme.colorSecondary)}
     }
 
-    &:active:after {
+    &:active::after {
         ${rippleEffectReset()}
     }
 `;
@@ -81,11 +81,11 @@ export const ListItem = styled.li`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     padding: ${({ theme }) => theme.spacing(1, 0)};
 
-    &:after {
+    &::after {
         ${({ theme }) => rippleEffect(theme.colorSecondary)}
     }
 
-    &:active:after {
+    &:active::after {
         ${rippleEffectReset()}
     }
 

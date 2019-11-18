@@ -40,7 +40,7 @@ export const TabHeader = styled.button`
         pointer-events: none;
     `}
 
-    &:after {
+    &::after {
         ${({ theme }) => rippleEffect(theme.colorSecondary)}
     }
 
@@ -50,7 +50,7 @@ export const TabHeader = styled.button`
         color: ${({ theme }) => theme.colorText.secondary};
     }
 
-    &:active:after {
+    &:active::after {
         ${rippleEffectReset()}
     }
 `;

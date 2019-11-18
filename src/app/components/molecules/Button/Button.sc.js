@@ -123,13 +123,11 @@ export const StyledButton = styled.button`
         `}
     `}
 
-    &:after {
-        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED
-        ? rippleEffect(theme.button.backgroundColor.tertiary)
-        : rippleEffect(theme.button.backgroundColor.secondary)
-    )}}
+    &::after {
+        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.button.backgroundColor.tertiary) : rippleEffect(theme.button.backgroundColor.secondary))}
+    }
 
-    &:active:after {
+    &:active::after {
         ${rippleEffectReset()}
     }
 `;
