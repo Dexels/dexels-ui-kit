@@ -139,6 +139,10 @@ export const FakeInput = styled.div`
         `}
     `}
 
+    ${({ isHovered, theme }) => isHovered && css`
+        border-color: ${theme.colorSecondary};
+    `}
+
     ${({
         isChecked,
         isIndeterminate,
@@ -204,11 +208,6 @@ export const FakeInput = styled.div`
             `}
         `}
     `}
-
-    &:hover,
-    &:focus {
-        border-color: ${({ theme }) => theme.colorSecondary};
-    }
 `;
 
 FakeInput.propTypes = {
