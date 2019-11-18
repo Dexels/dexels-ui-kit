@@ -85,6 +85,10 @@ module.exports = {
         'react/jsx-no-literals': ['error', {
             noStrings: false,
         }],
+        'react/jsx-no-target-blank': ['error', {
+            enforceDynamicLinks: 'always',
+        }],
+        'react/jsx-no-useless-fragment': 'error',
         'react/jsx-one-expression-per-line': ['error', {
             allow: 'literal',
         }],
