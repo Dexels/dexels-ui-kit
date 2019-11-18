@@ -49,13 +49,14 @@ export const InputWrapper = styled.div`
         theme,
         type,
     }) => (isChecked || isIndeterminate) && css`
-        background-color: ${theme.colorPrimary};
+        background-color: transparent;
 
         ${type === SELECTION_CONTROL_TYPES.RADIO && css`
             &::after {
                 ${setCentered()}
                 position: absolute;
                 border-radius: 100%;
+                border-color: ${theme.colorSecondary};
                 background-color: ${theme.shades.nine};
                 width: 60%;
                 height: 60%;
@@ -166,7 +167,7 @@ export const IconWrapper = styled.div`
     ${setCentered()}
     position: absolute;
     z-index: 2;
-    color: ${({ theme }) => theme.colorTextContrast.primary};
+    color: ${({ theme }) => theme.colorSecondary};
     font-size: ${({ theme }) => theme.spacing(2.5)};
     pointer-events: none;
 
