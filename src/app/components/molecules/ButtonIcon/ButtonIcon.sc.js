@@ -1,13 +1,13 @@
-import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
+import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import PropTypes from 'prop-types';
 
 export const StyledButtonIcon = styled.button`
+    ${rippleEffectInit()}
     appearance: none;
     display: flex;
-    position: relative;
     align-items: center;
     outline: none;
     border: 0;

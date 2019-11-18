@@ -31,15 +31,9 @@ const ConfigurableDialog = ({ onCancel, onClose, onConfirm }) => (
 );
 
 ConfigurableDialog.propTypes = {
-    onCancel: PropTypes.func,
-    onClose: PropTypes.func,
-    onConfirm: PropTypes.func,
-};
-
-ConfigurableDialog.defaultProps = {
-    onCancel: null,
-    onClose: null,
-    onConfirm: null,
+    onCancel: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
 };
 
 export const Configurable = () => (

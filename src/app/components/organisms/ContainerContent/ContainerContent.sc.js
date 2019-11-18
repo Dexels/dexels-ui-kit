@@ -1,6 +1,8 @@
+import { CONTENT_CONTAINER_ELEVATIONS, CONTENT_CONTAINER_POSITIONS } from './ContainerContent.consts';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
+import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 
@@ -15,6 +17,8 @@ export const StyledContainerContent = styled.div`
 `;
 
 StyledContainerContent.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(CONTENT_CONTAINER_ELEVATIONS)).isRequired,
+    position: PropTypes.oneOf(Object.values(CONTENT_CONTAINER_POSITIONS)).isRequired,
     theme: themePropTypes,
 };
 

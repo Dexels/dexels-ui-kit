@@ -11,6 +11,11 @@ export const DIRECTIONS = mapArrayToObject([
     'RTL',
 ]);
 
+export const DROPDOWN_VARIANTS = mapArrayToObject([
+    'COMPACT',
+    'OUTLINE',
+]);
+
 export const EASINGS = mapArrayToObject([
     'EASE',
     'EASE_IN',

@@ -1,4 +1,4 @@
-import Card from '../../atoms/Card/Card';
+import { CONTENT_CONTAINER_ELEVATIONS, CONTENT_CONTAINER_POSITIONS } from './ContainerContent.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledContainerContent } from './ContainerContent.sc';
@@ -9,8 +9,8 @@ const ContainerContent = ({ children, elevation, position }) => (
     </StyledContainerContent>
 );
 
-ContainerContent.elevations = Card.elevations;
-ContainerContent.positions = Card.positions;
+ContainerContent.elevations = CONTENT_CONTAINER_ELEVATIONS;
+ContainerContent.positions = CONTENT_CONTAINER_POSITIONS;
 
 ContainerContent.propTypes = {
     children: PropTypes.node.isRequired,
