@@ -77,7 +77,7 @@ export const Select = styled.select`
     ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.OUTLINE && css`
         border: 1px solid ${theme.colorHeaderText.primary};
         border-radius: ${theme.spacing(1)};
-        padding: ${theme.spacing(0, 6, 0, 1.5)};
+        padding: ${theme.spacing(0, 4.5, 0, 1.5)};
         height: ${theme.spacing(6)};
         line-height: ${theme.spacing(6)};
     `}

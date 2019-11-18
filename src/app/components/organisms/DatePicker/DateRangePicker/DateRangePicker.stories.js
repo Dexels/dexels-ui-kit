@@ -211,6 +211,8 @@ export const WithYearSelector = () => {
                 DateRangePicker.defaultProps.keepOpenOnDateSelect,
             )}
             label={text('Label', 'Vakantie periode')}
+            labelMonth={text('Label month', 'Maand')}
+            labelYear={text('Label year', 'Jaar')}
             minimumNights={number('Minimum night', DateRangePicker.defaultProps.minimumNights)}
             numberOfMonths={1}
             onDatesChange={(event) => {
