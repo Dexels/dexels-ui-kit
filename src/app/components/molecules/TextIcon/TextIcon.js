@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledTextIcon } from './TextIcon.sc';
-import validateInputLength from '../../../utils/validators/validateInputLength';
+import { textPropTypeFactory } from './TextIcon.consts';
 
 const TextIcon = ({ text }) => (
     <StyledTextIcon>
@@ -8,14 +8,11 @@ const TextIcon = ({ text }) => (
     </StyledTextIcon>
 );
 
-TextIcon.propTypes = {
-    text: ({ text }, propName, componentName) => (
-        validateInputLength(text, 1, 2, propName, componentName)
-    ),
-};
+const textPropType = textPropTypeFactory(false);
+textPropType.isRequired = textPropTypeFactory(true);
 
-TextIcon.defaultProps = {
-    text: '',
+TextIcon.propTypes = {
+    text: textPropType.isRequired,
 };
 
 export default TextIcon;
