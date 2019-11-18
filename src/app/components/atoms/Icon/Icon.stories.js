@@ -17,7 +17,7 @@ export const Configurable = () => {
     return (
         <div
             style={{
-                color: select('Color', colors, colors['colorHeaderText-primary']),
+                color: select('Color', colors, colors['colorText-primary']),
                 fontSize: select('Size', {
                     XSMALL: '12px',
                     SMALL: '16px',

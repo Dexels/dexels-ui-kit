@@ -54,8 +54,7 @@ addParameters({
         {
             default: true,
             name: 'light',
-            value: '#FFFFFF',
-            // value: themeBasic.shades.nine,
+            value: themeBasic.shades.nine,
         },
         {
             name: 'intermediate',

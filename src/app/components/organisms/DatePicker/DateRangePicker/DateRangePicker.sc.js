@@ -17,7 +17,7 @@ export const StyledDateRangePicker = styled.div`
         flex: 0 0 auto;
         width: 20px;
         text-align: center;
-        color: ${({ theme }) => theme.colorHeaderText.primary};
+        color: ${({ theme }) => theme.colorText.primary};
 
         &::after {
             ${setCentered()}
@@ -39,7 +39,7 @@ export const StyledDateRangePicker = styled.div`
 
     .CalendarDay__default.CalendarDay__selected_span {
         background-color: ${({ theme }) => theme.colorTertiary};
-        color: ${({ theme }) => theme.colorContrastText.primary};
+        color: ${({ theme }) => theme.colorTextContrast.primary};
     }
 `;
 

@@ -20,7 +20,7 @@ export const Text = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     flex: 0 0 auto;
     margin: ${({ theme }) => theme.spacing(0, 2, 1, 0)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
     font-weight: 600;
 `;
 

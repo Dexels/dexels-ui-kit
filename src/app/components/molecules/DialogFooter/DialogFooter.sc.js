@@ -24,7 +24,7 @@ export const Text = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     padding: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
     word-break: break-word;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 Text.propTypes = {

@@ -18,7 +18,7 @@ export const StyledTooltip = styled.div`
         position: absolute;
         visibility: hidden;
         opacity: 0;
-        background-color: ${({ theme }) => theme.colorText.primary};
+        background-color: ${({ theme }) => theme.Secondary};
     }
 
     &::before {

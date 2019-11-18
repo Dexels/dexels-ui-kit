@@ -20,7 +20,6 @@ export const StyledWrapper = styled.div`
         padding: ${({ theme }) => theme.spacing(0, 6, 0, 1.5)};
         height: ${({ theme }) => theme.spacing(6)};
         overflow: hidden;
-        /* color: ${({ theme }) => theme.colorText.primary}; */
 
         ${({ isFocused, theme }) => isFocused && css`
             border-color: ${theme.colorSecondary};
@@ -64,7 +63,7 @@ export const StyledWrapper = styled.div`
         background-color: ${({ theme }) => theme.shades.nine};
         padding: 0;
         height: ${({ theme }) => `calc(${theme.spacing(6)} - 2px)`};
-        color: ${({ theme }) => theme.colorHeaderText.primary};
+        color: ${({ theme }) => theme.colorText.primary};
 
         &::placeholder {
             color: ${({ theme }) => theme.shades.four};
