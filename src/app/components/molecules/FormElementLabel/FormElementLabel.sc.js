@@ -10,8 +10,8 @@ export const StyledFormElementLabel = styled.div`
     text-align: left;
     pointer-events: none;
 
-    ${({ isActive, theme, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.COMPACT && css`
-        top: ${isActive ? `-${theme.spacing(2)}` : 0};
+    ${({ isActive, variant }) => variant === FORM_ELEMENT_LABEL_VARIANTS.COMPACT && css`
+        top: ${isActive ? '-16px' : 0};
         left: 0;
     `}
 

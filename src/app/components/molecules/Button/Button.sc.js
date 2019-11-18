@@ -3,7 +3,7 @@ import {
     BUTTON_SIZES,
     BUTTON_VARIANTS,
 } from './Button.consts';
-import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
+import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
@@ -14,12 +14,11 @@ export const StyledButton = styled.button`
         duration: transitionDuration,
         easing: transitionEasing,
     })}
+    ${rippleEffectInit()}
     appearance: none;
-    position: relative;
     outline: none;
     border: 2px solid;
     cursor: pointer;
-    overflow: hidden;
 
     ${({ isFullWidth }) => isFullWidth && css`
         justify-content: center;

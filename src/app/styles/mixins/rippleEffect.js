@@ -18,6 +18,11 @@ export const rippleEffect = (backgroundColor = '#FFFFFF') => (css`
     pointer-events: none;
 `);
 
+export const rippleEffectInit = () => (css`
+    position: relative;
+    overflow: hidden;
+`);
+
 export const rippleEffectReset = () => (css`
     transform: scale(0, 0);
     transition: none;
