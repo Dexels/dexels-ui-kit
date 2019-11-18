@@ -60,7 +60,7 @@ Dialog.elevations = DIALOG_ELEVATIONS;
 
 Dialog.propTypes = {
     bodyAlignment: PropTypes.oneOf(Object.values(Dialog.alignments)),
-    buttonCancelText: PropTypes.string,
+    buttonCancelText: PropTypes.string, // This can not be required because the button is optional
     buttonClosePosition: PropTypes.oneOf(Object.values(Dialog.directions)),
     buttonConfirmText: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
@@ -78,7 +78,7 @@ Dialog.propTypes = {
 
 Dialog.defaultProps = {
     bodyAlignment: Dialog.alignments.CENTER,
-    buttonCancelText: 'Cancel',
+    buttonCancelText: '',
     buttonClosePosition: Dialog.directions.LTR,
     elevation: Dialog.elevations.LEVEL_12,
     footerMessage: null,

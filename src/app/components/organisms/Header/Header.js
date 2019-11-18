@@ -30,11 +30,9 @@ const Header = ({
                 )}
             </NavigationWrapper>
         )}
-        {title && (
-            <Title>
-                {title}
-            </Title>
-        )}
+        <Title>
+            {title}
+        </Title>
         <FunctionalWrapper>
             <Toolbar isInverted={!isInverted}>
                 {children}
@@ -51,7 +49,7 @@ Header.propTypes = {
     isInverted: PropTypes.bool,
     onBack: PropTypes.func,
     onToggleMenu: PropTypes.func,
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
 };
 
 Header.defaultProps = {
@@ -59,7 +57,6 @@ Header.defaultProps = {
     isInverted: false,
     onBack: null,
     onToggleMenu: null,
-    title: '',
 };
 
 export default Header;
