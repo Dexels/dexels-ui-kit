@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
+import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
 
 export const Text = styled.p`
+    ${setBoxSizing()}
     flex: 0 1 auto;
     order: 2;
     margin: 0;
