@@ -1,4 +1,4 @@
-import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
+import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { ELEVATIONS } from '../../../utils/constants';
@@ -14,9 +14,9 @@ StyledTabs.propTypes = {
 };
 
 export const TabHeader = styled.button`
+    ${rippleEffectInit()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
     appearance: none;
-    position: relative;
     outline: none;
     border: 0;
     border-bottom: 2px solid ${({ theme }) => theme.shades.nine};
@@ -24,7 +24,6 @@ export const TabHeader = styled.button`
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(0, 3)};
     height: ${({ theme }) => theme.spacing(6)};
-    overflow: hidden;
     text-align: center;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
@@ -41,7 +40,7 @@ export const TabHeader = styled.button`
         pointer-events: none;
     `}
 
-    &:after {
+    &::after {
         ${({ theme }) => rippleEffect(theme.colorSecondary)}
     }
 
@@ -51,7 +50,7 @@ export const TabHeader = styled.button`
         color: ${({ theme }) => theme.colorHeaderText.secondary};
     }
 
-    &:active:after {
+    &:active::after {
         ${rippleEffectReset()}
     }
 `;

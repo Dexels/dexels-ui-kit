@@ -3,6 +3,7 @@ import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic
 import { DROPDOWN_VARIANTS } from './Dropdown.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import setTruncate from '../../../styles/mixins/setTruncate';
 
 export const StyledDropdown = styled.div`
     ${setBoxSizing()}
@@ -54,28 +55,31 @@ StyledDropdown.defaultProps = {
 };
 
 export const Select = styled.select`
+    ${setTruncate()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     appearance: none;
     display: block;
     outline: none;
-    border-radius: 0;
     background-color: ${({ theme }) => theme.shades.nine};
     cursor: pointer;
-    padding: ${({ theme }) => theme.spacing(0, 3, 0, 0)};
     width: 100%;
     color: ${({ theme }) => theme.colorHeaderText.primary};
 
     ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
         border: 0;
         border-bottom: 1px solid ${theme.colorHeaderText.primary};
+        border-radius: 0;
+        padding: ${theme.spacing(0, 3, 0, 0)};
         height: ${theme.spacing(3.5)};
+        line-height: ${theme.spacing(3.5)};
     `}
 
     ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.OUTLINE && css`
         border: 1px solid ${theme.colorHeaderText.primary};
         border-radius: ${theme.spacing(1)};
-        padding: ${theme.spacing(0, 1.5)};
+        padding: ${theme.spacing(0, 4.5, 0, 1.5)};
         height: ${theme.spacing(6)};
+        line-height: ${theme.spacing(6)};
     `}
 
     ${({ isPlaceholderSelected, theme }) => isPlaceholderSelected && css`
@@ -128,8 +132,8 @@ export const IconWrapper = styled.div`
         display: block;
     }
 
-    ${({ variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
-        top: 0;
+    ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
+        top: ${theme.spacing(0.25)};
         right: 0;
     `}
 

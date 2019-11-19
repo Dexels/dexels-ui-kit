@@ -1,10 +1,12 @@
 import {
     ErrorMessageWrapper,
+    FakeInput,
     IconWrapper,
     InputWrapper,
     LabelWrapper,
     StyledSelectionControl,
 } from './SelectionControl.sc';
+import React, { useState } from 'react';
 import {
     SELECTION_CONTROL_DIRECTIONS,
     SELECTION_CONTROL_EASINGS,
@@ -14,7 +16,6 @@ import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import Icon from '../../atoms/Icon/Icon';
 import Label from '../../atoms/Label/Label';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const SelectionControl = ({
     direction,
@@ -32,55 +33,65 @@ const SelectionControl = ({
     type,
     value,
     ...rest
-}) => (
-    <>
-        <StyledSelectionControl>
-            <InputWrapper
-                direction={direction}
-                hasError={hasError}
-                isChecked={isChecked}
-                isDisabled={isDisabled}
-                isIndeterminate={isIndeterminate}
-                isValid={isValid}
-                transitionDuration={transitionDuration}
-                transitionEasing={transitionEasing}
-                type={type}
+}) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <>
+            <StyledSelectionControl
+                onMouseEnter={() => {
+                    setIsHovered(true);
+                }}
+                onMouseLeave={() => {
+                    setIsHovered(false);
+                }}
                 {...rest}
             >
-                <input
-                    checked={isChecked}
-                    disabled={isDisabled}
-                    name={name}
-                    onChange={onChange}
-                    type={type}
-                    value={value}
-                />
-                {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
-                    <IconWrapper>
-                        <Icon type={isChecked ? Icon.types.CHECK : Icon.types.MINUS} />
-                    </IconWrapper>
-                )}
-            </InputWrapper>
-            <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
-                <Label
-                    hasError={hasError}
-                    isCheckboxLabel
+                <InputWrapper
+                    direction={direction}
                     isDisabled={isDisabled}
-                    isValid={isValid}
+                    transitionDuration={transitionDuration}
+                    transitionEasing={transitionEasing}
                 >
-                    {label}
-                </Label>
-            </LabelWrapper>
-        </StyledSelectionControl>
-        {errorMessage && hasError && !isDisabled && (
-            <ErrorMessageWrapper>
-                <ErrorMessage>
-                    {errorMessage}
-                </ErrorMessage>
-            </ErrorMessageWrapper>
-        )}
-    </>
-);
+                    <FakeInput
+                        hasError={hasError}
+                        isChecked={isChecked}
+                        isDisabled={isDisabled}
+                        isHovered={isHovered}
+                        isIndeterminate={isIndeterminate}
+                        isValid={isValid}
+                        type={type}
+                    />
+                    {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
+                        <IconWrapper>
+                            <Icon type={isChecked ? Icon.types.CHECK : Icon.types.MINUS} />
+                        </IconWrapper>
+                    )}
+                    <input
+                        checked={isChecked}
+                        disabled={isDisabled}
+                        name={name}
+                        onChange={onChange}
+                        type={type}
+                        value={value}
+                    />
+                </InputWrapper>
+                <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
+                    <Label hasError={hasError} isCheckboxLabel isValid={isValid}>
+                        {label}
+                    </Label>
+                </LabelWrapper>
+            </StyledSelectionControl>
+            {errorMessage && hasError && !isDisabled && (
+                <ErrorMessageWrapper>
+                    <ErrorMessage>
+                        {errorMessage}
+                    </ErrorMessage>
+                </ErrorMessageWrapper>
+            )}
+        </>
+    );
+};
 
 SelectionControl.directions = SELECTION_CONTROL_DIRECTIONS;
 SelectionControl.transitionEasings = SELECTION_CONTROL_EASINGS;

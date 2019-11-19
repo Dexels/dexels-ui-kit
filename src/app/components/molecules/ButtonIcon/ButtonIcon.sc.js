@@ -1,13 +1,13 @@
-import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
+import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import PropTypes from 'prop-types';
 
 export const StyledButtonIcon = styled.button`
+    ${rippleEffectInit()}
     appearance: none;
     display: flex;
-    position: relative;
     align-items: center;
     outline: none;
     border: 0;
@@ -15,7 +15,6 @@ export const StyledButtonIcon = styled.button`
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
-    overflow: hidden;
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary)};
 
     ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
@@ -39,22 +38,26 @@ export const StyledButtonIcon = styled.button`
         pointer-events: none;
     `}
 
-    &:focus,
-    &:hover {
-        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.colorTertiary)};
-        color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
-    }
-
-    &:after {
+    &::after {
         border: 0;
         pointer-events: none;
 
         ${({ isInverted, theme }) => (isInverted ? rippleEffect() : rippleEffect(theme.colorSecondary))}
     }
 
-    &:active:after {
+    &:focus,
+    &:hover {
+        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.colorTertiary)};
+        color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
+    }
+
+    &:active::after {
         ${rippleEffectReset()}
         border: 0;
+    }
+
+    span {
+        display: block;
     }
 `;
 
