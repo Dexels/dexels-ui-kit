@@ -16,7 +16,7 @@ const ConfigurableDialog = ({ onCancel, onClose, onConfirm }) => (
         )}
         buttonConfirmText={text('Button confirm text', 'Ok')}
         elevation={select('Elevation', Dialog.elevations, Dialog.defaultProps.elevation)}
-        footerMessage={text('Message in footer', '')}
+        footerText={text('Text in footer', '')}
         hasButtonClose={boolean('Show close button', Dialog.defaultProps.hasButtonClose)}
         hasOverlay={boolean('Has overlay', Dialog.defaultProps.hasOverlay)}
         header={text('Header', '')}

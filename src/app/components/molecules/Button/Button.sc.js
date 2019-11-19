@@ -63,7 +63,7 @@ export const StyledButton = styled.button`
     }) => variant === BUTTON_VARIANTS.FILLED && css`
         border-color: ${isInverted ? theme.button.backgroundColor.secondary : theme.button.backgroundColor.primary};
         background-color: ${isInverted ? theme.button.backgroundColor.secondary : theme.button.backgroundColor.primary};
-        color: ${isInverted ? theme.button.color.secondary : theme.colorTextContrast.primary};
+        color: ${isInverted ? theme.button.color.secondary : theme.button.color.primary};
 
         &:focus,
         &:hover {
@@ -85,7 +85,7 @@ export const StyledButton = styled.button`
         theme,
         variant,
     }) => variant === BUTTON_VARIANTS.OUTLINE && css`
-        border-color: ${isInverted ? theme.shades.nine : theme.button.backgroundColor.primary};
+        border-color: ${isInverted ? theme.button.backgroundColor.secondary : theme.button.backgroundColor.primary};
         background-color: transparent !important;
         color: ${isInverted ? theme.colorTextContrast.primary : theme.colorText.primary};
 

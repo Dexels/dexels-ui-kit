@@ -59,6 +59,12 @@ export const themePropTypes = PropTypes.shape({
     }).isRequired,
     fontFamilyPrimary: PropTypes.string.isRequired,
     fontFamilySecondary: PropTypes.string.isRequired,
+    header: PropTypes.shape({
+        backgroundColor: PropTypes.shape({
+            primary: PropTypes.string.isRequired,
+            secondary: PropTypes.string.isRequired,
+        }),
+    }).isRequired,
     spacingValue: PropTypes.number.isRequired,
     textStyles: PropTypes.shape({
         body1: textStylePropTypes.isRequired,
@@ -192,6 +198,13 @@ themeBasic.colorText = {
 themeBasic.colorTextBody = {
     primary: themeBasic.shades.one,
     secondary: themeBasic.shades.four,
+};
+
+themeBasic.header = {
+    backgroundColor: {
+        primary: themeBasic.colorPrimary,
+        secondary: themeBasic.shades.nine,
+    },
 };
 
 themeBasic.textStyles.body1 = {

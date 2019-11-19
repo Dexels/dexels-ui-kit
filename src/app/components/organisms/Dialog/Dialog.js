@@ -18,7 +18,7 @@ const Dialog = ({
     buttonConfirmText,
     children,
     elevation,
-    footerMessage,
+    footerText,
     hasButtonClose,
     hasOverlay,
     header,
@@ -46,9 +46,9 @@ const Dialog = ({
             <DialogFooter
                 buttonCancelText={buttonCancelText}
                 buttonConfirmText={buttonConfirmText}
-                message={footerMessage}
                 onCancel={onCancel}
                 onConfirm={onConfirm}
+                text={footerText}
             />
         </StyledDialog>
     </Overlay>
@@ -65,7 +65,7 @@ Dialog.propTypes = {
     buttonConfirmText: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(Dialog.elevations)),
-    footerMessage: PropTypes.string,
+    footerText: PropTypes.string,
     hasButtonClose: PropTypes.bool,
     hasOverlay: PropTypes.bool,
     header: PropTypes.string,
@@ -81,7 +81,7 @@ Dialog.defaultProps = {
     buttonCancelText: '',
     buttonClosePosition: Dialog.directions.LTR,
     elevation: Dialog.elevations.LEVEL_12,
-    footerMessage: null,
+    footerText: null,
     hasButtonClose: true,
     hasOverlay: true,
     header: null,

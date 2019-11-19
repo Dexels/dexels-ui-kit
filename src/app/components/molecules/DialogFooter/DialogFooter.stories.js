@@ -9,8 +9,8 @@ export const Configurable = () => (
     <DialogFooter
         buttonCancelText={text('Button cancel text', 'Cancel')}
         buttonConfirmText={text('Button confirm text', 'Ok')}
-        message={text('Message', '')}
         onCancel={action('On cancel click')}
         onConfirm={action('On confirm click')}
+        text={text('Text', '')}
     />
 );

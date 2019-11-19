@@ -28,12 +28,12 @@ themeDark.background = {
 themeDark.button = {
     color: {
         primary: themeDark.shades.nine,
-        secondary: themeDark.shades.one,
+        secondary: themeDark.shades.nine,
         tertiary: themeDark.colorSecondary,
     },
     backgroundColor: {
         primary: themeDark.colorPrimary,
-        secondary: themeDark.shades.nine,
+        secondary: themeDark.colorPrimary,
         tertiary: themeDark.colorSecondary,
     },
 };
@@ -45,7 +45,7 @@ themeDark.card = {
 themeDark.colorDisabled = themeDark.shades.six;
 
 themeDark.colorTextContrast = {
-    primary: themeDark.shades.nine,
+    primary: themeDark.shades.one,
 };
 
 themeDark.colorText = {
@@ -56,6 +56,13 @@ themeDark.colorText = {
 themeDark.colorTextBody = {
     primary: themeDark.shades.one,
     secondary: themeDark.shades.four,
+};
+
+themeDark.header = {
+    backgroundColor: {
+        primary: '#002451',
+        secondary: '#647B96',
+    },
 };
 
 export default themeDark;
