@@ -20,11 +20,12 @@ const Toolbar = ({ children, isInverted }) => (
 );
 
 Toolbar.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     isInverted: PropTypes.bool,
 };
 
 Toolbar.defaultProps = {
+    children: null,
     isInverted: false,
 };
 
