@@ -1,3 +1,4 @@
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS } from './Tooltip.consts';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
@@ -23,7 +24,7 @@ export const StyledTooltip = styled.span`
     visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     z-index: 99999999;
-    border-radius: ${({ theme }) => theme.spacing(1.9)};
+    border-radius: ${({ theme }) => theme.spacing(1)};
     background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(0.5, 1, 0.5, 1)};
     text-align: center;
@@ -31,10 +32,19 @@ export const StyledTooltip = styled.span`
 `;
 
 StyledTooltip.propTypes = {
+    bottom: PropTypes.string.isRequired,
     elevation: PropTypes.oneOf(Object.values(TOOLTIP_ELEVATIONS)).isRequired,
     isVisible: PropTypes.bool.isRequired,
+    left: PropTypes.string.isRequired,
+    right: PropTypes.string.isRequired,
+    theme: themePropTypes,
+    top: PropTypes.string.isRequired,
     transitionDuration: PropTypes.number.isRequired,
     transitionEasing: PropTypes.oneOf(Object.values(TOOLTIP_EASINGS)),
+};
+
+StyledTooltip.defaultProps = {
+    theme: themeBasic,
 };
 
 export default StyledTooltip;
