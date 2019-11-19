@@ -22,13 +22,15 @@ export const StyledChip = styled.button`
     padding: ${({ theme }) => theme.spacing(0.5, 1)};
     min-height: ${({ theme }) => theme.spacing(4)};
     overflow: hidden;
-    color: ${({ theme }) => theme.colorTextBody.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
-    ${({ isSelected }) => isSelected && css`
-        background-color: ${({ theme }) => theme.shades.five};
+    ${({ isSelected }) => !isSelected && css`
+        border-color: ${({ theme }) => theme.colorDisabled};
     `}
 
     ${({ isDisabled }) => isDisabled && css`
+        border-color: ${({ theme }) => theme.colorDisabled};
+        color: ${({ theme }) => theme.colorDisabled};
         pointer-events: none;
     `}
 
@@ -38,11 +40,8 @@ export const StyledChip = styled.button`
 
     &:active,
     &:hover {
-        background-color: ${({ theme }) => theme.shades.five};
-
-        ${({ isSelected }) => isSelected && css`
-            background-color: ${({ theme }) => theme.shades.seven};
-        `}
+        border-color: ${({ theme }) => theme.colorSecondary};
+        color: ${({ theme }) => theme.colorSecondary};
     }
 
     &:active::after {
