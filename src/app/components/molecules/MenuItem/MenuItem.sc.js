@@ -1,5 +1,6 @@
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 
 export const StyledMenuItem = styled.div`
@@ -21,7 +22,7 @@ export const StyledMenuItem = styled.div`
     `}
 
     ${({ isParentElement, isSelected }) => !isParentElement && isSelected && css`
-        border-left: ${({ theme }) => theme.spacing(0.46)} solid ${({ theme }) => theme.colorSecondary};
+        border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.colorSecondary};
         color: ${({ theme }) => theme.colorHeaderText.secondary};
         font-weight: 500;
     `}
@@ -29,18 +30,18 @@ export const StyledMenuItem = styled.div`
     &:hover,
     &:focus {
         ${({ isSelected }) => !isSelected && css`
-            border-left: ${({ theme }) => theme.spacing(0.46)} solid ${({ theme }) => theme.shades.five};
+            border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.shades.five};
         `}
         background-color: ${({ theme }) => theme.shades.eight};
     }
 
-    &:after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)}
-        color: ${({ theme }) => theme.colorHeaderText.secondary};
+    &:active::after {
+        ${rippleEffectReset()}
     }
 
-    &:active:after {
-        ${rippleEffectReset()}
+    ::after {
+        ${({ theme }) => rippleEffect(theme.colorSecondary)}
+        color: ${({ theme }) => theme.colorHeaderText.secondary};
     }
 `;
 
@@ -48,28 +49,37 @@ StyledMenuItem.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isParentElement: PropTypes.bool.isRequired,
     isSelected: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+StyledMenuItem.defaultProps = {
+    theme: themeBasic,
 };
 
 export const ItemWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: ${({ theme }) => theme.spacing(4.5)};
 
     ${({ isParentElement }) => isParentElement && css`
-        margin: 0 0 0 ${({ theme }) => theme.spacing(1)};
+        padding: ${({ theme }) => theme.spacing(0.5)} 0 ${({ theme }) => theme.spacing(0.5)} ${({ theme }) => theme.spacing(1)};
     `}
 
     ${({ isParentElement }) => !isParentElement && css`
-        margin: 0 0 0 ${({ theme }) => theme.spacing(2)};
+        padding: ${({ theme }) => theme.spacing(1)} 0 ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(2)};
     `}
 `;
 
 ItemWrapper.propTypes = {
     isParentElement: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+ItemWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export const Divider = styled.div`
     background-color: ${({ theme }) => theme.shades.seven};
-    height: ${({ theme }) => theme.spacing(0.125)};
+    height: 1px;
 `;
