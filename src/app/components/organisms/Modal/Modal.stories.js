@@ -72,6 +72,7 @@ export const ConfigurableAlert = () => {
         <>
             <Button
                 onClick={() => {
+                    action('On back');
                     setIsVisible(true);
                 }}
                 variant={Button.variants.FILLED}
@@ -81,6 +82,7 @@ export const ConfigurableAlert = () => {
             <Modal
                 isVisible={isVisible}
                 onBack={() => {
+                    action('On back');
                     setIsVisible(false);
                 }}
                 options={functionalItems}
