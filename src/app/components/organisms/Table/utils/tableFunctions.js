@@ -71,7 +71,7 @@ export const renderCell = (row) => {
 };
 
 export const renderSortIcon = (column, hasUnsortedStateIcon = false) => {
-    let sortIcon = '';
+    let sortIcon = null;
 
     if (!column.canSort) {
         return sortIcon;

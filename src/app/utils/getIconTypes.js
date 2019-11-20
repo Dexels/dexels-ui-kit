@@ -1,4 +1,4 @@
-import iconFontData from '../styles/fonts/iconfont/selection';
+import iconFontData from '../styles/fonts/iconfont/selection.json';
 
 const ICON_TYPES = {};
 

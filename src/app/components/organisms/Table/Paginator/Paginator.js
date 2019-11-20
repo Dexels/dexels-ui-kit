@@ -132,8 +132,24 @@ Paginator.propTypes = {
     hasAllPagingButtons: PropTypes.bool,
     hasGoToPage: PropTypes.bool,
     hasPageSizeSelector: PropTypes.bool,
-    instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
-    pageSizes: PropTypes.arrayOf(PropTypes.number),
+    instance: PropTypes.shape({
+        canNextPage: PropTypes.bool.isRequired,
+        canPreviousPage: PropTypes.bool.isRequired,
+        gotoPage: PropTypes.func.isRequired,
+        nextPage: PropTypes.func.isRequired,
+        pageCount: PropTypes.number.isRequired,
+        pageIndex: PropTypes.number.isRequired,
+        pageSize: PropTypes.number.isRequired,
+        previousPage: PropTypes.func.isRequired,
+        rows: PropTypes.shape({
+            length: PropTypes.number.isRequired,
+        }).isRequired,
+        setPageSize: PropTypes.func.isRequired,
+    }).isRequired,
+    pageSizes: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.arrayOf(PropTypes.string),
+    ]),
     texts: PropTypes.shape({
         page: PropTypes.string,
         pageGoto: PropTypes.string,

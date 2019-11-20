@@ -44,7 +44,6 @@ const CardNoResults = ({
 );
 
 CardNoResults.elevations = Card.elevations;
-CardNoResults.iconColors = Colors.colors;
 CardNoResults.iconTypes = Icon.types;
 
 CardNoResults.propTypes = {
