@@ -40,9 +40,10 @@ export const getTableRow = (event, row) => {
     return row;
 };
 
-export const renderButton = (row) => (
+export const renderButton = (row, isInverted = false) => (
     <Button
         iconType={Button.iconTypes.SELECT}
+        isInverted={isInverted}
         onClick={(event) => {
             event.stopPropagation();
             action(`On click => ${row.cell.row.index}`);

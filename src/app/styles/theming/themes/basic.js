@@ -1,6 +1,23 @@
 import mapArrayToObject from '../../../utils/mapArrayToObject';
 import PropTypes from 'prop-types';
 
+const buttonObjectShape = PropTypes.shape({
+    backgroundColor: {
+        disabled: PropTypes.string.isRequired,
+        hover: PropTypes.string.isRequired,
+        hoverInverted: PropTypes.string.isRequired,
+        inverted: PropTypes.string.isRequired,
+        primary: PropTypes.string.isRequired,
+    },
+    color: {
+        disabled: PropTypes.string.isRequired,
+        hover: PropTypes.string.isRequired,
+        hoverInverted: PropTypes.string.isRequired,
+        inverted: PropTypes.string.isRequired,
+        primary: PropTypes.string.isRequired,
+    },
+});
+
 export const textStylePropTypes = PropTypes.shape({
     fontFamily: PropTypes.string.isRequired,
     fontSize: PropTypes.string.isRequired,
@@ -27,25 +44,6 @@ export const themePropTypes = PropTypes.shape({
     colorAlert: PropTypes.string.isRequired,
     colorInvalid: PropTypes.string.isRequired,
     colorValid: PropTypes.string.isRequired,
-    background: PropTypes.shape({
-        primary: PropTypes.string.isRequired,
-        secondary: PropTypes.string.isRequired,
-        tertiary: PropTypes.string.isRequired,
-    }).isRequired,
-    button: PropTypes.shape({
-        color: PropTypes.shape({
-            primary: PropTypes.string.isRequired,
-            secondary: PropTypes.string.isRequired,
-        }),
-        backgroundColor: PropTypes.shape({
-            primary: PropTypes.string.isRequired,
-            secondary: PropTypes.string.isRequired,
-            tertiary: PropTypes.string.isRequired,
-        }),
-    }).isRequired,
-    card: PropTypes.shape({
-        backgroundColor: PropTypes.string.isRequired,
-    }).isRequired,
     colorText: PropTypes.shape({
         primary: PropTypes.string.isRequired,
         secondary: PropTypes.string.isRequired,
@@ -59,10 +57,36 @@ export const themePropTypes = PropTypes.shape({
     }).isRequired,
     fontFamilyPrimary: PropTypes.string.isRequired,
     fontFamilySecondary: PropTypes.string.isRequired,
+    background: PropTypes.shape({
+        primary: PropTypes.string.isRequired,
+        secondary: PropTypes.string.isRequired,
+        tertiary: PropTypes.string.isRequired,
+    }).isRequired,
+    button: PropTypes.shape({
+        filled: buttonObjectShape,
+        outline: buttonObjectShape,
+        textOnly: PropTypes.shape({
+            disabled: PropTypes.string.isRequired,
+            disabledInverted: PropTypes.string.isRequired,
+            hover: PropTypes.string.isRequired,
+            hoverInverted: PropTypes.string.isRequired,
+            inverted: PropTypes.string.isRequired,
+            primary: PropTypes.string.isRequired,
+        }),
+    }).isRequired,
+    card: PropTypes.shape({
+        backgroundColor: PropTypes.string.isRequired,
+    }).isRequired,
     header: PropTypes.shape({
         backgroundColor: PropTypes.shape({
             primary: PropTypes.string.isRequired,
             secondary: PropTypes.string.isRequired,
+        }),
+    }).isRequired,
+    table: PropTypes.shape({
+        row: PropTypes.shape({
+            backgroundColor: PropTypes.string.isRequired,
+            backgroundColorAlt: PropTypes.string.isRequired,
         }),
     }).isRequired,
     spacingValue: PropTypes.number.isRequired,
@@ -161,29 +185,6 @@ export const themeBasic = {
     },
 };
 
-themeBasic.background = {
-    primary: themeBasic.shades.eight,
-    secondary: themeBasic.shades.nine,
-    tertiary: themeBasic.shades.eight,
-};
-
-themeBasic.button = {
-    color: {
-        primary: themeBasic.shades.nine,
-        secondary: themeBasic.shades.one,
-        tertiary: themeBasic.colorSecondary,
-    },
-    backgroundColor: {
-        primary: themeBasic.colorPrimary,
-        secondary: themeBasic.shades.nine,
-        tertiary: themeBasic.colorSecondary,
-    },
-};
-
-themeBasic.card = {
-    backgroundColor: themeBasic.shades.nine,
-};
-
 themeBasic.colorDisabled = themeBasic.shades.six;
 
 themeBasic.colorTextContrast = {
@@ -200,10 +201,70 @@ themeBasic.colorTextBody = {
     secondary: themeBasic.shades.four,
 };
 
+themeBasic.background = {
+    primary: themeBasic.shades.eight,
+    secondary: themeBasic.shades.nine,
+    tertiary: themeBasic.shades.eight,
+};
+
+themeBasic.button = {
+    filled: {
+        backgroundColor: {
+            disabled: themeBasic.colorDisabled,
+            hover: themeBasic.colorSecondary,
+            hoverInverted: themeBasic.colorSecondary,
+            inverted: themeBasic.shades.nine,
+            primary: themeBasic.colorPrimary,
+        },
+        color: {
+            disabled: themeBasic.shades.nine,
+            hover: themeBasic.shades.nine,
+            hoverInverted: themeBasic.shades.nine,
+            inverted: themeBasic.colorPrimary,
+            primary: themeBasic.shades.nine,
+        },
+    },
+    outline: {
+        backgroundColor: {
+            disabled: themeBasic.colorDisabled,
+            hover: themeBasic.colorSecondary,
+            hoverInverted: themeBasic.colorSecondary,
+            inverted: themeBasic.shades.nine,
+            primary: themeBasic.colorPrimary,
+        },
+        color: {
+            disabled: themeBasic.colorDisabled,
+            hover: themeBasic.colorSecondary,
+            hoverInverted: themeBasic.colorSecondary,
+            inverted: themeBasic.shades.nine,
+            primary: themeBasic.colorPrimary,
+        },
+    },
+    textOnly: {
+        disabled: themeBasic.colorDisabled,
+        disabledInverted: themeBasic.shades.seven,
+        hover: themeBasic.colorSecondary,
+        hoverInverted: themeBasic.colorSecondary,
+        inverted: themeBasic.shades.nine,
+        primary: themeBasic.colorPrimary,
+    },
+};
+
+themeBasic.card = {
+    backgroundColor: themeBasic.shades.nine,
+};
+
 themeBasic.header = {
     backgroundColor: {
         primary: themeBasic.colorPrimary,
         secondary: themeBasic.shades.nine,
+    },
+};
+
+themeBasic.table = {
+    row: {
+        backgroundColor: themeBasic.background.primary,
+        backgroundColorAlt: themeBasic.shades.eight,
     },
 };
 

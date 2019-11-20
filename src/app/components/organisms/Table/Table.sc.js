@@ -60,11 +60,11 @@ export const TableRow = styled.tr`
     `}
 
     &:nth-child(odd) {
-        background-color: ${({ theme }) => theme.shades.nine};
+        background-color: ${({ theme }) => theme.table.row.backgroundColor};
     }
 
     &:nth-child(even) {
-        background-color: ${({ theme }) => theme.shades.eight};
+        background-color: ${({ theme }) => theme.table.row.backgroundColorAlt};
     }
 
     &:hover {
