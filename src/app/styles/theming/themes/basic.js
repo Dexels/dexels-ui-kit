@@ -158,8 +158,8 @@ themeBasic.header = {
 
 themeBasic.table = {
     row: {
-        backgroundColor: themeBasic.background.primary,
-        backgroundColorAlt: themeBasic.shades.eight,
+        backgroundColor: themeBasic.shades.nine,
+        backgroundColorAlt: themeBasic.background.primary,
     },
 };
 

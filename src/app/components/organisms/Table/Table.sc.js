@@ -54,7 +54,7 @@ export const TableHeaderCell = styled.th`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     border-bottom: 4px solid;
     border-color: ${({ theme }) => theme.colorPrimary};
-    background-color: ${({ theme }) => theme.shades.nine};
+    background-color: transparent;
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
