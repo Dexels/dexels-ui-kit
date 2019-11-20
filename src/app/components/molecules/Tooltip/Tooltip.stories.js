@@ -55,7 +55,7 @@ export const Configurable = () => (
         </div>
         <div
             style={{
-                left: '1000px',
+                left: '900px',
                 position: 'absolute',
                 top: '10px',
             }}
