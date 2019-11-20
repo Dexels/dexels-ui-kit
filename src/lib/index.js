@@ -44,7 +44,8 @@ import Tabs from '../app/components/organisms/Tabs/Tabs';
 import Toolbar from '../app/components/organisms/Toolbar/Toolbar';
 
 // Theming
-import { themeBasic, themePropTypes } from '../app/styles/theming/themes/basic';
+import { themeBasic } from '../app/styles/theming/themes/basic';
+import { themePropTypes } from '../app/styles/theming/themes/themePropTypes';
 import createDuiTheme from '../app/styles/theming/createDuiTheme';
 
 export {
