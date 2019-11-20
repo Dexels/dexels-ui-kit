@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledInput = styled.div`
     ${setBoxSizing()}

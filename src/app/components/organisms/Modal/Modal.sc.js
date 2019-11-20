@@ -1,5 +1,7 @@
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledModal = styled.div`
     ${setBoxSizing()}
@@ -36,3 +38,11 @@ export const Body = styled.div`
     padding: ${({ theme }) => theme.spacing(2)};
     overflow: auto;
 `;
+
+Body.propTypes = {
+    theme: themePropTypes,
+};
+
+Body.defaultProps = {
+    theme: themeBasic,
+};

@@ -1,9 +1,10 @@
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { CARD_ELEVATIONS } from '../../atoms/Card/Card.consts';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledCardNoResults = styled.div`
     ${setBoxSizing()}

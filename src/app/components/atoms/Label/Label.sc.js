@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import setTruncate from '../../../styles/mixins/setTruncate';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledLabel = styled.label`
     ${({ isSmall, theme }) => theme.textStyling(

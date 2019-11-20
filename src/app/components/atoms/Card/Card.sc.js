@@ -1,17 +1,18 @@
 import { CARD_ELEVATIONS, CARD_POSITIONS } from './Card.consts';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import getElevation from '../../../styles/mixins/getElevation';
 import getPosition from '../../../styles/mixins/getPosition';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledCard = styled.div`
     ${setBoxSizing()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     ${({ position }) => getPosition(position)}
     ${({ elevation }) => getElevation(elevation)}
-    display: flex;
+    flex: auto;
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.spacing(1)};
     word-break: break-word;

@@ -3,6 +3,8 @@ import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { TABLE_ELEVATIONS } from './Table.consts';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const TableCaption = styled.div`
     ${setBoxSizing()}
@@ -25,6 +27,11 @@ export const StyledTable = styled.table`
 StyledTable.propTypes = {
     elevation: PropTypes.oneOf(Object.values(TABLE_ELEVATIONS)).isRequired,
     isFullWidth: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+StyledTable.defaultProps = {
+    theme: themeBasic,
 };
 
 export const TableHead = styled.thead`
@@ -34,6 +41,14 @@ export const TableHead = styled.thead`
 export const TableHeaderRow = styled.tr`
     height: ${({ theme }) => theme.spacing(4.5)};
 `;
+
+TableHeaderRow.propTypes = {
+    theme: themePropTypes,
+};
+
+TableHeaderRow.defaultProps = {
+    theme: themeBasic,
+};
 
 export const TableHeaderCell = styled.th`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
@@ -46,9 +61,25 @@ export const TableHeaderCell = styled.th`
     color: ${({ theme }) => theme.colorText.primary};
 `;
 
+TableHeaderCell.propTypes = {
+    theme: themePropTypes,
+};
+
+TableHeaderCell.defaultProps = {
+    theme: themeBasic,
+};
+
 export const TableBody = styled.tbody`
     color: ${({ theme }) => theme.shades.nine};
 `;
+
+TableBody.propTypes = {
+    theme: themePropTypes,
+};
+
+TableBody.defaultProps = {
+    theme: themeBasic,
+};
 
 export const TableRow = styled.tr`
     position: relative;
@@ -75,6 +106,11 @@ export const TableRow = styled.tr`
 
 TableRow.propTypes = {
     isClickable: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+TableRow.defaultProps = {
+    theme: themeBasic,
 };
 
 export const TableCell = styled.td`
@@ -92,6 +128,11 @@ export const TableCell = styled.td`
 
 TableCell.propTypes = {
     isClickable: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+TableCell.defaultProps = {
+    theme: themeBasic,
 };
 
 export const IconWrapper = styled.span`
@@ -101,6 +142,11 @@ export const IconWrapper = styled.span`
 
 IconWrapper.propTypes = {
     isSorted: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export const TableFooter = styled.tfoot`

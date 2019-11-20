@@ -1,7 +1,13 @@
 import createDuiTheme from '../createDuiTheme';
 import { themeBasic } from './basic';
 
-/* eslint-disable */
+/* Some additional colors for the dark theme */
+const colorHeaderPrimary = '#002451';
+const colorHeaderSecondary = '#647B96';
+const colorShadeTen = '#333';
+const colorShadeEleven = '#222';
+
+/* eslint-disable sort-keys */
 export const themeDark = createDuiTheme(themeBasic, {
     shades: {
         one: '#FFFFFF',
@@ -48,56 +54,56 @@ themeDark.button = {
             hover: themeDark.colorSecondary,
             hoverInverted: themeDark.colorSecondary,
             inverted: themeDark.colorPrimary,
-            primary: '#002451',
+            primary: colorHeaderPrimary,
         },
         color: {
             disabled: themeDark.shades.two,
             hover: themeDark.shades.one,
             hoverInverted: themeDark.shades.one,
-            inverted: '#002451',
+            inverted: colorHeaderPrimary,
             primary: themeDark.colorPrimary,
         },
     },
     outline: {
         backgroundColor: {
-            disabled: themeDark.colorDisabled,
+            disabled: colorShadeTen,
             hover: themeDark.colorSecondary,
             hoverInverted: themeDark.colorSecondary,
-            inverted: themeDark.shades.nine,
+            inverted: themeDark.colorPrimary,
             primary: themeDark.colorPrimary,
         },
         color: {
-            disabled: themeDark.colorDisabled,
+            disabled: colorShadeTen,
             hover: themeDark.colorSecondary,
             hoverInverted: themeDark.colorSecondary,
-            inverted: themeDark.shades.nine,
+            inverted: themeDark.colorPrimary,
             primary: themeDark.colorPrimary,
         },
     },
     textOnly: {
-        disabled: themeDark.colorDisabled,
-        disabledInverted: themeDark.shades.seven,
+        disabled: colorShadeTen,
+        disabledInverted: themeDark.shades.two,
         hover: themeDark.colorSecondary,
         hoverInverted: themeDark.colorSecondary,
-        inverted: themeDark.shades.nine,
+        inverted: themeDark.colorPrimary,
         primary: themeDark.colorPrimary,
     },
 };
 
 themeDark.card = {
-    backgroundColor: '#222',
+    backgroundColor: colorShadeEleven,
 };
 
 themeDark.header = {
     backgroundColor: {
-        primary: '#002451',
-        secondary: '#647B96',
+        primary: colorHeaderPrimary,
+        secondary: colorHeaderSecondary,
     },
 };
 
 themeDark.table = {
     row: {
-        backgroundColor: '#222',
+        backgroundColor: colorShadeEleven,
         backgroundColorAlt: themeDark.shades.seven,
     },
 };

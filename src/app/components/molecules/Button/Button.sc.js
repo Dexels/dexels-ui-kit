@@ -5,8 +5,9 @@ import {
 } from './Button.consts';
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 import transitionEffect from '../../../styles/mixins/transitionEffect';
 
 export const StyledButton = styled.button`
@@ -124,7 +125,7 @@ export const StyledButton = styled.button`
     `}
 
     &::after {
-        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.button.outline.backgroundColor.primary) : rippleEffect(theme.button.filled.backgroundColor.primary))}
+        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.button.outline.backgroundColor.primary) : rippleEffect(theme.button.filled.color.primary))}
     }
 
     &:active::after {

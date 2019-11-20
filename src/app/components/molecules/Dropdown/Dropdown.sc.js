@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { DROPDOWN_VARIANTS } from './Dropdown.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../styles/mixins/setTruncate';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledDropdown = styled.div`
     ${setBoxSizing()}

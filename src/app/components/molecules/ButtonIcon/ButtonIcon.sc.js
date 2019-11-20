@@ -1,8 +1,9 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import PropTypes from 'prop-types';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledButtonIcon = styled.button`
     ${rippleEffectInit()}
