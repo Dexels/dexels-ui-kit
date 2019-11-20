@@ -17,7 +17,7 @@ const buttonObjectShape = PropTypes.shape({
     }),
 });
 
-export const textStylePropTypes = PropTypes.shape({
+const textStylePropTypes = PropTypes.shape({
     fontFamily: PropTypes.string.isRequired,
     fontSize: PropTypes.string.isRequired,
     fontWeight: PropTypes.string.isRequired,
@@ -104,3 +104,5 @@ export const themePropTypes = PropTypes.shape({
     spacing: PropTypes.func.isRequired,
     textStyling: PropTypes.func.isRequired,
 });
+
+export default themePropTypes;
