@@ -3,35 +3,49 @@ import {
     HeaderWrapper,
     StyledModal,
 } from './Modal.sc';
+import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Overlay from '../../molecules/Overlay/Overlay';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const Modal = ({
     children,
-    isVisible,
     options,
     title,
     onBack,
-}) => (
-    <Overlay isFullscreen={isVisible} isVisible={isVisible}>
-        <StyledModal isVisible={isVisible}>
-            <HeaderWrapper>
-                <Header isInverted onBack={onBack} title={title}>
-                    {options}
-                </Header>
-            </HeaderWrapper>
-            <Body>
-                {children}
-            </Body>
-        </StyledModal>
-    </Overlay>
-);
+}) => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        setIsVisible(true);
+    }, []);
+
+    const cleanUp = () => {
+        setIsVisible(false);
+
+        setTimeout(() => {
+            onBack();
+        }, 500);
+    };
+
+    return (
+        <Overlay isFullscreen={isVisible} isVisible={isVisible}>
+            <StyledModal isVisible={isVisible}>
+                <HeaderWrapper>
+                    <Header isInverted onBack={cleanUp} title={title}>
+                        {options}
+                    </Header>
+                </HeaderWrapper>
+                <Body>
+                    {children}
+                </Body>
+            </StyledModal>
+        </Overlay>
+    );
+};
 
 Modal.propTypes = {
     children: PropTypes.node.isRequired,
-    isVisible: PropTypes.bool.isRequired,
     onBack: PropTypes.func,
     options: PropTypes.node,
     title: PropTypes.string.isRequired,
