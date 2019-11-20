@@ -34,7 +34,7 @@ const Dialog = ({
             <Overlay isFullscreen={isVisible} isVisible={hasOverlay || isVisible} />
         )}
         {hasButtonClose && hasOverlay && isVisible && (
-            <ButtonClose onClick={onClose} position={buttonClosePosition}>
+            <ButtonClose isVisible={isVisible} onClick={onClose} position={buttonClosePosition}>
                 <Icon type={Icon.types.CROSS} />
             </ButtonClose>
         )}

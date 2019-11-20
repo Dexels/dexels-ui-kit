@@ -23,6 +23,7 @@ export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
     order: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 1 : 2)};
+    z-index: 1;
     border-radius: 100%;
     width: ${({ theme }) => theme.spacing(5)};
     height: ${({ theme }) => theme.spacing(5)};

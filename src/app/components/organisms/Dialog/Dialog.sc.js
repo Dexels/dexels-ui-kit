@@ -5,16 +5,20 @@ import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import setCentered from '../../../styles/mixins/setCentered';
 
 export const StyledDialog = styled.div`
     ${setBoxSizing()}
+    ${setCentered()}
     ${({ elevation }) => getElevation(elevation)}
-    position: inherit;
+    position: fixed;
+    transform: ${({ isVisible }) => `translate3d(-50%, ${isVisible ? '-50%' : '-40%'}, 0)`};
+    transition: all 500ms ease;
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     z-index: 3;
-    margin: auto;
     border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
+    pointer-events: ${({ isVisible }) => (isVisible ? 'auto' : 'none')};
 `;
 
 StyledDialog.propTypes = {
@@ -28,22 +32,10 @@ StyledDialog.defaultProps = {
     theme: themeBasic,
 };
 
-// export const ButtonWrapper = styled.div`
-//     margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
-// `;
-
-// ButtonWrapper.propTypes = {
-//     theme: themePropTypes,
-// };
-
-// ButtonWrapper.defaultProps = {
-//     theme: themeBasic,
-// };
-
 export const ButtonClose = styled.button`
     position: fixed;
     top: 2px;
-    z-index: 2;
+    z-index: 3;
     outline: none;
     border: 0;
     background-color: transparent;
