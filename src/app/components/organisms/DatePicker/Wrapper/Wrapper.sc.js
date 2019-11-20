@@ -64,7 +64,6 @@ export const StyledWrapper = styled.div`
         outline: none;
         border: 0;
         background-color: transparent;
-        /* background-color: ${({ theme }) => theme.shades.nine}; */
         padding: 0;
         height: ${({ theme }) => `calc(${theme.spacing(6)} - 2px)`};
         color: ${({ theme }) => theme.colorText.primary};
@@ -76,6 +75,15 @@ export const StyledWrapper = styled.div`
 
     .DateInput_fang {
         display: none;
+    }
+
+    /* Overall styling */
+    .DayPicker,
+    .DayPicker__withBorder,
+    .DayPicker__horizontal,
+    .CalendarMonth,
+    .CalendarMonthGrid {
+        background-color: ${({ theme }) => `${theme.card.backgroundColor} !important`};
     }
 
     /* Calendar styling */
