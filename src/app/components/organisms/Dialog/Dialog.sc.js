@@ -12,6 +12,7 @@ export const StyledDialog = styled.div`
     margin: auto;
     border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
+
 `;
 
 StyledDialog.propTypes = {
