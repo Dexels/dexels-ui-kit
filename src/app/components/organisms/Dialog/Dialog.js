@@ -23,18 +23,22 @@ const Dialog = ({
     hasOverlay,
     header,
     headerAlignment,
+    isVisible,
     onCancel,
     onClose,
     onConfirm,
     width,
 }) => (
-    <Overlay isFullscreen isVisible={hasOverlay}>
-        {hasButtonClose && hasOverlay && (
+    <>
+        {isVisible && (
+            <Overlay isFullscreen={isVisible} isVisible={hasOverlay || isVisible} />
+        )}
+        {hasButtonClose && hasOverlay && isVisible && (
             <ButtonClose onClick={onClose} position={buttonClosePosition}>
                 <Icon type={Icon.types.CROSS} />
             </ButtonClose>
         )}
-        <StyledDialog elevation={elevation} width={width}>
+        <StyledDialog elevation={elevation} isVisible={isVisible} width={width}>
             {header && (
                 <Header alignment={headerAlignment}>
                     {header}
@@ -51,7 +55,7 @@ const Dialog = ({
                 onConfirm={onConfirm}
             />
         </StyledDialog>
-    </Overlay>
+    </>
 );
 
 Dialog.alignments = DIALOG_ALIGNMENTS;
@@ -70,6 +74,7 @@ Dialog.propTypes = {
     hasOverlay: PropTypes.bool,
     header: PropTypes.string,
     headerAlignment: PropTypes.oneOf(Object.values(Dialog.alignments)),
+    isVisible: PropTypes.bool.isRequired,
     onCancel: PropTypes.func,
     onClose: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,

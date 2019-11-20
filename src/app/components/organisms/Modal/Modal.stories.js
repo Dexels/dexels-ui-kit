@@ -78,17 +78,16 @@ export const ConfigurableAlert = () => {
             >
                 {isVisible ? 'MODAL IS SHOWING' : 'SHOW MODAL'}
             </Button>
-            {isVisible && (
-                <Modal
-                    onBack={() => {
-                        setIsVisible(false);
-                    }}
-                    options={functionalItems}
-                    title={text('Header title', 'Heading')}
-                >
-                    {text('Body', 'Some body text')}
-                </Modal>
-            )}
+            <Modal
+                isVisible={isVisible}
+                onBack={() => {
+                    setIsVisible(false);
+                }}
+                options={functionalItems}
+                title={text('Header title', 'Heading')}
+            >
+                {text('Body', 'Some body text')}
+            </Modal>
         </>
     );
 };

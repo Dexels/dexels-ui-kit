@@ -9,6 +9,9 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 export const StyledDialog = styled.div`
     ${setBoxSizing()}
     ${({ elevation }) => getElevation(elevation)}
+    position: inherit;
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    z-index: 3;
     margin: auto;
     border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
@@ -16,6 +19,7 @@ export const StyledDialog = styled.div`
 
 StyledDialog.propTypes = {
     elevation: PropTypes.oneOf(Object.values(DIALOG_ELEVATIONS)).isRequired,
+    isVisible: PropTypes.bool.isRequired,
     theme: themePropTypes,
     width: PropTypes.string.isRequired,
 };
@@ -24,17 +28,17 @@ StyledDialog.defaultProps = {
     theme: themeBasic,
 };
 
-export const ButtonWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
-`;
+// export const ButtonWrapper = styled.div`
+//     margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
+// `;
 
-ButtonWrapper.propTypes = {
-    theme: themePropTypes,
-};
+// ButtonWrapper.propTypes = {
+//     theme: themePropTypes,
+// };
 
-ButtonWrapper.defaultProps = {
-    theme: themeBasic,
-};
+// ButtonWrapper.defaultProps = {
+//     theme: themeBasic,
+// };
 
 export const ButtonClose = styled.button`
     position: fixed;
