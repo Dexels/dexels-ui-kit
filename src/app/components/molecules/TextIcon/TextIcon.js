@@ -4,8 +4,8 @@ import React from 'react';
 import { StyledTextIcon } from './TextIcon.sc';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
-const TextIcon = ({ size, text }) => (
-    <StyledTextIcon size={size}>
+const TextIcon = ({ size, text, ...rest }) => (
+    <StyledTextIcon size={size} {...rest}>
         <TextWithOptionalIcon>
             {text}
         </TextWithOptionalIcon>

@@ -32,6 +32,7 @@ const SelectionControl = ({
     transitionEasing,
     type,
     value,
+    ...rest
 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -44,6 +45,7 @@ const SelectionControl = ({
                 onMouseLeave={() => {
                     setIsHovered(false);
                 }}
+                {...rest}
             >
                 <InputWrapper
                     direction={direction}
