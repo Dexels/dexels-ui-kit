@@ -44,7 +44,7 @@ const Header = ({
 Header.elevations = ELEVATIONS;
 
 Header.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     elevation: PropTypes.oneOf(Object.values(Header.elevations)),
     isInverted: PropTypes.bool,
     onBack: PropTypes.func,
@@ -53,6 +53,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
+    children: null,
     elevation: Header.elevations.LEVEL_1,
     isInverted: false,
     onBack: null,

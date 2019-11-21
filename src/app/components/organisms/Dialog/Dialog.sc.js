@@ -1,23 +1,42 @@
-import { DIALOG_ALIGNMENTS, DIALOG_DIRECTIONS, DIALOG_ELEVATIONS } from './Dialog.consts';
+import {
+    DIALOG_ALIGNMENTS,
+    DIALOG_DIRECTIONS,
+    DIALOG_EASINGS,
+    DIALOG_ELEVATIONS,
+} from './Dialog.consts';
 import styled, { css } from 'styled-components';
+import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import setCentered from '../../../styles/mixins/setCentered';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledDialog = styled.div`
     ${setBoxSizing()}
+    ${setCentered()}
     ${({ elevation }) => getElevation(elevation)}
-    margin: auto;
+    ${({ isVisible, transitionDuration, transitionEasing }) => fadeInEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+        isVisible,
+    })}
+    position: fixed;
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    z-index: 3;
     border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
+    pointer-events: ${({ isVisible }) => (isVisible ? 'auto' : 'none')};
 `;
 
 StyledDialog.propTypes = {
     elevation: PropTypes.oneOf(Object.values(DIALOG_ELEVATIONS)).isRequired,
+    isVisible: PropTypes.bool.isRequired,
     theme: themePropTypes,
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(DIALOG_EASINGS)).isRequired,
     width: PropTypes.string.isRequired,
 };
 
@@ -25,22 +44,10 @@ StyledDialog.defaultProps = {
     theme: themeBasic,
 };
 
-export const ButtonWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
-`;
-
-ButtonWrapper.propTypes = {
-    theme: themePropTypes,
-};
-
-ButtonWrapper.defaultProps = {
-    theme: themeBasic,
-};
-
 export const ButtonClose = styled.button`
     position: fixed;
     top: 2px;
-    z-index: 2;
+    z-index: 3;
     outline: none;
     border: 0;
     background-color: transparent;

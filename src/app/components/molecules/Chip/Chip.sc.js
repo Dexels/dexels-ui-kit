@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
-import transitionEffect from '../../../styles/mixins/transitionEffect';
+import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledChip = styled.button`
     ${setBoxSizing()}

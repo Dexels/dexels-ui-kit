@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
-import transitionEffect from '../../../styles/mixins/transitionEffect';
+import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledButton = styled.button`
     ${({ transitionDuration, transitionEasing }) => transitionEffect({

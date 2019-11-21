@@ -28,7 +28,7 @@ const Table = ({
     hasUnsortedStateIcon,
     instance,
     isFullWidth,
-    onRowClick,
+    onClickRow,
     pagingComponent,
     texts,
 }) => {
@@ -77,12 +77,11 @@ const Table = ({
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
                     {dataSource(instance, Boolean(pagingComponent)).map((row) => prepareRow(row) || (
                         <TableRow
-                            isClickable={Boolean(onRowClick)}
-                            onClick={onRowClick
+                            isClickable={Boolean(onClickRow)}
+                            onClick={onClickRow
                                 ? (event) => {
-                                    onRowClick(event, row);
-                                }
-                                : undefined}
+                                    onClickRow(event, row);
+                                } : undefined}
                             {...row.getRowProps()}
                         >
                             {row.cells.map((cell) => (
@@ -93,8 +92,7 @@ const Table = ({
                                         ? (event) => {
                                             event.stopPropagation();
                                             cell.column.onClick(cell, row, event);
-                                        }
-                                        : undefined}
+                                        } : undefined}
                                     {...cell.getCellProps()}
                                 >
                                     {cell.render('Cell')}
@@ -134,7 +132,7 @@ Table.propTypes = {
         prepareRow: PropTypes.func.isRequired,
     }).isRequired,
     isFullWidth: PropTypes.bool,
-    onRowClick: PropTypes.func,
+    onClickRow: PropTypes.func,
     pagingComponent: PropTypes.node,
     texts: PropTypes.shape({
         toggleSortTooltip: PropTypes.string,
@@ -148,7 +146,7 @@ Table.defaultProps = {
     footerComponent: undefined,
     hasUnsortedStateIcon: true,
     isFullWidth: true,
-    onRowClick: undefined,
+    onClickRow: undefined,
     pagingComponent: undefined,
     texts: {
         toggleSortTooltip: 'Sort by',
