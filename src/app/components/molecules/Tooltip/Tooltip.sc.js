@@ -2,7 +2,7 @@ import getElevation from '../../../styles/mixins/getElevation';
 import getPlacement from '../../../styles/mixins/getPlacement';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
-import transitionEffect from '../../../styles/mixins/transitionEffect';
+import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledTooltip = styled.div`
     ${setBoxSizing()}
