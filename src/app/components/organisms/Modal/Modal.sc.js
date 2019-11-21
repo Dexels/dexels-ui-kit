@@ -1,43 +1,31 @@
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
-import { MODAL_EASINGS } from './Modal.consts';
-import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledModal = styled.div`
     ${setBoxSizing()}
-    ${({ isVisible, transitionDuration, transitionEasing }) => slideUpEffect({
-        duration: transitionDuration,
-        easing: transitionEasing,
-        isVisible,
-    })}
     display: flex;
     position: fixed;
     top: 0;
-    left: 50%;
+    left: 0;
     flex-direction: column;
     flex-wrap: nowrap;
-    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     z-index: 3;
-    padding: ${({ theme }) => theme.spacing(3.5)} 0 0 0;
     width: 100%;
-    max-width: ${({ theme }) => theme.spacing(128)};
     height: 100%;
+    animation: show .3s;
+
+    @keyframes show {
+        from {
+            transform: scale(0);
+        }
+
+        to {
+            transform: scale(1);
+        }
+    }
 `;
-
-StyledModal.propTypes = {
-    isVisible: PropTypes.bool.isRequired,
-    theme: themePropTypes,
-    transitionDuration: PropTypes.number.isRequired,
-    transitionEasing: PropTypes.oneOf(Object.values(MODAL_EASINGS)).isRequired,
-};
-
-StyledModal.defaultProps = {
-    theme: themeBasic,
-};
 
 export const HeaderWrapper = styled.header`
     position: relative;

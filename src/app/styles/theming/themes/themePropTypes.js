@@ -107,10 +107,14 @@ export const themePropTypes = PropTypes.shape({
             secondary: PropTypes.string.isRequired,
         }),
     }).isRequired,
+    hover: PropTypes.shape({
+        backgroundColor: PropTypes.string.isRequired,
+        color: PropTypes.string,
+    }).isRequired,
     table: PropTypes.shape({
         row: PropTypes.shape({
-            backgroundColor: PropTypes.string.isRequired,
-            backgroundColorAlt: PropTypes.string.isRequired,
+            backgroundColorOdd: PropTypes.string.isRequired,
+            backgroundColorEven: PropTypes.string.isRequired,
         }),
     }).isRequired,
     spacingValue: PropTypes.number.isRequired,

@@ -127,10 +127,14 @@ themeDark.header = {
     },
 };
 
+themeDark.hover = {
+    backgroundColor: themeDark.shades.seven,
+};
+
 themeDark.table = {
     row: {
-        backgroundColor: colorShadeEleven,
-        backgroundColorAlt: themeDark.shades.seven,
+        backgroundColorOdd: colorShadeEleven,
+        backgroundColorEven: themeDark.hover.backgroundColor,
     },
 };
 

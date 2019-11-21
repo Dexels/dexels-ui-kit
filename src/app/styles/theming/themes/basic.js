@@ -182,10 +182,14 @@ themeBasic.header = {
     },
 };
 
+themeBasic.hover = {
+    backgroundColor: themeBasic.background.primary,
+};
+
 themeBasic.table = {
     row: {
-        backgroundColor: themeBasic.shades.nine,
-        backgroundColorAlt: themeBasic.background.primary,
+        backgroundColorOdd: themeBasic.shades.nine,
+        backgroundColorEven: themeBasic.hover.backgroundColor,
     },
 };
 

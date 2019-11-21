@@ -95,7 +95,7 @@ export const ListItem = styled.li`
     }
 
     &:hover {
-        background-color: ${({ theme }) => theme.table.row.backgroundColorAlt};
+        background-color: ${({ theme }) => theme.hover.backgroundColor};
     }
 `;
 

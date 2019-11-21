@@ -91,11 +91,11 @@ export const TableRow = styled.tr`
     `}
 
     &:nth-child(odd) {
-        background-color: ${({ theme }) => theme.table.row.backgroundColor};
+        background-color: ${({ theme }) => theme.table.row.backgroundColorOdd};
     }
 
     &:nth-child(even) {
-        background-color: ${({ theme }) => theme.table.row.backgroundColorAlt};
+        background-color: ${({ theme }) => theme.table.row.backgroundColorEven};
     }
 
     &:hover {
