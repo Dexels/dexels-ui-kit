@@ -1,16 +1,18 @@
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 import PropTypes from 'prop-types';
 
 export const StyledMenuItem = styled.div`
     position: relative;
     border-left: ${({ theme }) => theme.spacing(0.5)} solid transparent;
+    background-color: ${({ theme }) => theme.card.backgroundColor};
     overflow: hidden;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ isDisabled }) => isDisabled && css`
-        color: ${({ theme }) => theme.colorHeaderText.disabled};
+        color: ${({ theme }) => theme.colorDisabled};
         pointer-events: none;
     `}
 
@@ -25,14 +27,14 @@ export const StyledMenuItem = styled.div`
     ${({ isParentItem, isSelected }) => !isParentItem && isSelected && css`
         border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.colorSecondary};
         background-color: ${({ theme }) => theme.shades.eight};
-        color: ${({ theme }) => theme.colorHeaderText.secondary};
+        color: ${({ theme }) => theme.colorText.secondary};
         font-weight: 500;
     `}
 
     ${({ hasChildrenItems, isParentItem, isSelected }) => !hasChildrenItems && isParentItem && isSelected && css`
         border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.colorSecondary};
         background-color: ${({ theme }) => theme.shades.eight};
-        color: ${({ theme }) => theme.colorHeaderText.secondary};
+        color: ${({ theme }) => theme.colorText.secondary};
     `}
 
     &:hover,
@@ -40,7 +42,7 @@ export const StyledMenuItem = styled.div`
         ${({ isSelected }) => !isSelected && css`
             border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.shades.five};
         `}
-        background-color: ${({ theme }) => theme.shades.eight};
+        background-color: ${({ theme }) => theme.hover.backgroundColor};
     }
 
     &:active::after {
