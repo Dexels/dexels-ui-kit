@@ -1,6 +1,12 @@
-import { DIALOG_ALIGNMENTS, DIALOG_DIRECTIONS, DIALOG_ELEVATIONS } from './Dialog.consts';
+import {
+    DIALOG_ALIGNMENTS,
+    DIALOG_DIRECTIONS,
+    DIALOG_EASINGS,
+    DIALOG_ELEVATIONS,
+} from './Dialog.consts';
 import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
@@ -11,9 +17,12 @@ export const StyledDialog = styled.div`
     ${setBoxSizing()}
     ${setCentered()}
     ${({ elevation }) => getElevation(elevation)}
+    ${({ isVisible, transitionDuration, transitionEasing }) => fadeInEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+        isVisible,
+    })}
     position: fixed;
-    transform: ${({ isVisible }) => `translate3d(-50%, ${isVisible ? '-50%' : '-40%'}, 0)`};
-    transition: all 500ms ease;
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     z-index: 3;
     border-radius: ${({ theme }) => theme.spacing(1)};
@@ -25,6 +34,8 @@ StyledDialog.propTypes = {
     elevation: PropTypes.oneOf(Object.values(DIALOG_ELEVATIONS)).isRequired,
     isVisible: PropTypes.bool.isRequired,
     theme: themePropTypes,
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(DIALOG_EASINGS)).isRequired,
     width: PropTypes.string.isRequired,
 };
 

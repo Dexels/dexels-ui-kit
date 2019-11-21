@@ -1,18 +1,23 @@
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import { MODAL_EASINGS } from './Modal.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
 import styled from 'styled-components';
 
 export const StyledModal = styled.div`
     ${setBoxSizing()}
+    ${({ isVisible, transitionDuration, transitionEasing }) => slideUpEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+        isVisible,
+    })}
     display: flex;
     position: fixed;
     top: 0;
     left: 50%;
     flex-direction: column;
     flex-wrap: nowrap;
-    transform: ${({ isVisible }) => `translate3d(-50%, ${isVisible ? '0' : '100%'}, 0)`};
-    transition: all 500ms ease;
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     z-index: 3;
     padding: ${({ theme }) => theme.spacing(3.5)} 0 0 0;
@@ -24,6 +29,8 @@ export const StyledModal = styled.div`
 StyledModal.propTypes = {
     isVisible: PropTypes.bool.isRequired,
     theme: themePropTypes,
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(MODAL_EASINGS)).isRequired,
 };
 
 StyledModal.defaultProps = {

@@ -1,4 +1,9 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import {
+    boolean,
+    number,
+    select,
+    text,
+} from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
@@ -21,7 +26,7 @@ const ConfigurableDialog = ({
         )}
         buttonConfirmText={text('Button confirm text', 'Ok')}
         elevation={select('Elevation', Dialog.elevations, Dialog.defaultProps.elevation)}
-        footerMessage={text('Message in footer', '')}
+        footerText={text('Text in footer', '')}
         hasButtonClose={boolean('Show close button', Dialog.defaultProps.hasButtonClose)}
         hasOverlay={boolean('Has overlay', Dialog.defaultProps.hasOverlay)}
         header={text('Header', '')}
@@ -30,6 +35,12 @@ const ConfigurableDialog = ({
         onCancel={onCancel}
         onClose={onClose}
         onConfirm={onConfirm}
+        transitionDuration={number('Transition duration', Dialog.defaultProps.transitionDuration)}
+        transitionEasing={select(
+            'Transition type',
+            Dialog.transitionEasings,
+            Dialog.defaultProps.transitionEasing,
+        )}
         width={text('Set width in px or %', Dialog.defaultProps.width)}
     >
         {text('Body', 'Some body text')}
