@@ -3,12 +3,14 @@ import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { TABLE_ELEVATIONS } from './Table.consts';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const TableCaption = styled.div`
     ${setBoxSizing()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
     padding: ${({ theme }) => theme.spacing(0, 0, 4, 0)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 export const StyledTable = styled.table`
@@ -25,6 +27,11 @@ export const StyledTable = styled.table`
 StyledTable.propTypes = {
     elevation: PropTypes.oneOf(Object.values(TABLE_ELEVATIONS)).isRequired,
     isFullWidth: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+StyledTable.defaultProps = {
+    theme: themeBasic,
 };
 
 export const TableHead = styled.thead`
@@ -35,20 +42,44 @@ export const TableHeaderRow = styled.tr`
     height: ${({ theme }) => theme.spacing(4.5)};
 `;
 
+TableHeaderRow.propTypes = {
+    theme: themePropTypes,
+};
+
+TableHeaderRow.defaultProps = {
+    theme: themeBasic,
+};
+
 export const TableHeaderCell = styled.th`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     border-bottom: 4px solid;
     border-color: ${({ theme }) => theme.colorPrimary};
-    background-color: ${({ theme }) => theme.shades.nine};
+    background-color: transparent;
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
+
+TableHeaderCell.propTypes = {
+    theme: themePropTypes,
+};
+
+TableHeaderCell.defaultProps = {
+    theme: themeBasic,
+};
 
 export const TableBody = styled.tbody`
     color: ${({ theme }) => theme.shades.nine};
 `;
+
+TableBody.propTypes = {
+    theme: themePropTypes,
+};
+
+TableBody.defaultProps = {
+    theme: themeBasic,
+};
 
 export const TableRow = styled.tr`
     position: relative;
@@ -60,11 +91,11 @@ export const TableRow = styled.tr`
     `}
 
     &:nth-child(odd) {
-        background-color: ${({ theme }) => theme.shades.nine};
+        background-color: ${({ theme }) => theme.table.row.backgroundColorOdd};
     }
 
     &:nth-child(even) {
-        background-color: ${({ theme }) => theme.shades.eight};
+        background-color: ${({ theme }) => theme.table.row.backgroundColorEven};
     }
 
     &:hover {
@@ -75,6 +106,11 @@ export const TableRow = styled.tr`
 
 TableRow.propTypes = {
     isClickable: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+TableRow.defaultProps = {
+    theme: themeBasic,
 };
 
 export const TableCell = styled.td`
@@ -83,7 +119,7 @@ export const TableCell = styled.td`
     height: ${({ theme }) => theme.spacing(6)};
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ isClickable }) => isClickable && css`
         cursor: pointer;
@@ -92,15 +128,25 @@ export const TableCell = styled.td`
 
 TableCell.propTypes = {
     isClickable: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+TableCell.defaultProps = {
+    theme: themeBasic,
 };
 
 export const IconWrapper = styled.span`
     padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
-    color: ${({ isSorted, theme }) => (isSorted ? theme.colorHeaderText.primary : theme.colorDisabled)};
+    color: ${({ isSorted, theme }) => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
 `;
 
 IconWrapper.propTypes = {
     isSorted: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export const TableFooter = styled.tfoot`

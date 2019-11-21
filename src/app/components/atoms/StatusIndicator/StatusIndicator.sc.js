@@ -1,8 +1,9 @@
 import { STATUS_INDICATOR_PLACEMENTS, STATUS_INDICATOR_STATUSES } from './StatusIndicator.consts';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import PropTypes from 'prop-types';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledStatusIndicator = styled.div`
     display: flex;

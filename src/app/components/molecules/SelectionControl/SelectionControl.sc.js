@@ -5,10 +5,11 @@ import {
     SELECTION_CONTROL_TYPES,
 } from './SelectionControl.consts';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledSelectionControl = styled.div`
@@ -104,6 +105,7 @@ export const FakeInput = styled.div`
     z-index: 3;
     margin: auto;
     border: 2px solid ${({ theme }) => theme.colorPrimary};
+    background-color: transparent;
 
     ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
         border-radius: ${theme.spacing(0.5)};
@@ -122,22 +124,16 @@ export const FakeInput = styled.div`
         isIndeterminate,
         theme,
         type,
-    }) => (isChecked || isIndeterminate) && css`
-        ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
-            background-color: ${theme.colorPrimary};
-        `}
-
-        ${type === SELECTION_CONTROL_TYPES.RADIO && css`
-            &::after {
-                ${setCentered()}
-                position: absolute;
-                border-radius: 100%;
-                background-color: ${theme.colorSecondary};
-                width: ${theme.spacing(1.5)};
-                height: ${theme.spacing(1.5)};
-                content: '';
-            }
-        `}
+    }) => (isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+        &::after {
+            ${setCentered()}
+            position: absolute;
+            border-radius: 100%;
+            background-color: ${theme.colorSecondary};
+            width: ${theme.spacing(1.5)};
+            height: ${theme.spacing(1.5)};
+            content: '';
+        }
     `}
 
     ${({ isHovered, theme }) => isHovered && css`
@@ -153,16 +149,10 @@ export const FakeInput = styled.div`
     }) => isValid && css`
         border-color: ${theme.colorValid};
 
-        ${(isChecked || isIndeterminate) && css`
-            ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+        ${(isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+            &::after {
                 background-color: ${theme.colorValid};
-            `}
-
-            ${type === SELECTION_CONTROL_TYPES.RADIO && css`
-                &::after {
-                    background-color: ${theme.colorValid};
-                }
-            `}
+            }
         `}
     `}
 
@@ -175,16 +165,10 @@ export const FakeInput = styled.div`
     }) => hasError && css`
         border-color: ${theme.colorInvalid};
 
-        ${(isChecked || isIndeterminate) && css`
-            ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+        ${(isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+            &::after {
                 background-color: ${theme.colorInvalid};
-            `}
-
-            ${type === SELECTION_CONTROL_TYPES.RADIO && css`
-                &::after {
-                    background-color: ${theme.colorInvalid};
-                }
-            `}
+            }
         `}
     `}
 
@@ -197,16 +181,10 @@ export const FakeInput = styled.div`
     }) => isDisabled && css`
         border-color: ${theme.colorDisabled};
 
-        ${(isChecked || isIndeterminate) && css`
-            ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+        ${(isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+            &::after {
                 background-color: ${theme.colorDisabled};
-            `}
-
-            ${type === SELECTION_CONTROL_TYPES.RADIO && css`
-                &::after {
-                    background-color: ${theme.colorDisabled};
-                }
-            `}
+            }
         `}
     `}
 `;
@@ -230,15 +208,30 @@ export const IconWrapper = styled.div`
     ${setCentered()}
     position: absolute;
     z-index: 4;
-    color: ${({ theme }) => theme.colorContrastText.primary};
+    color: ${({ theme }) => theme.colorSecondary};
     font-size: ${({ theme }) => theme.spacing(2.5)};
 
     span {
         display: block;
     }
+
+    ${({ hasError, theme }) => hasError && css`
+        color: ${theme.colorInvalid};
+    `}
+
+    ${({ isDisabled, theme }) => isDisabled && css`
+        color: ${theme.colorDisabled};
+    `}
+
+    ${({ isValid, theme }) => isValid && css`
+        color: ${theme.colorValid};
+    `}
 `;
 
 IconWrapper.propTypes = {
+    hasError: PropTypes.bool.isRequired,
+    isDisabled: PropTypes.bool.isRequired,
+    isValid: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
 

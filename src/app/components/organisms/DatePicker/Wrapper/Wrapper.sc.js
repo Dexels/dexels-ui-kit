@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
 import { ELEVATIONS } from '../../../../utils/constants';
 import getElevation from '../../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../../styles/mixins/setTruncate';
 import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
+import { themeBasic } from '../../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
 
 export const StyledWrapper = styled.div`
     ${setBoxSizing()}
@@ -17,6 +18,7 @@ export const StyledWrapper = styled.div`
         outline: none;
         border: 1px solid ${({ theme }) => theme.colorPrimary};
         border-radius: ${({ theme }) => theme.spacing(1)};
+        background-color: transparent;
         padding: ${({ theme }) => theme.spacing(0, 6, 0, 1.5)};
         height: ${({ theme }) => theme.spacing(6)};
         overflow: hidden;
@@ -51,6 +53,7 @@ export const StyledWrapper = styled.div`
 
     .DateInput {
         display: block;
+        background-color: transparent;
         width: 100%;
     }
 
@@ -60,10 +63,10 @@ export const StyledWrapper = styled.div`
         display: block;
         outline: none;
         border: 0;
-        background-color: ${({ theme }) => theme.shades.nine};
+        background-color: transparent;
         padding: 0;
         height: ${({ theme }) => `calc(${theme.spacing(6)} - 2px)`};
-        color: ${({ theme }) => theme.colorHeaderText.primary};
+        color: ${({ theme }) => theme.colorText.primary};
 
         &::placeholder {
             color: ${({ theme }) => theme.shades.four};
@@ -72,6 +75,15 @@ export const StyledWrapper = styled.div`
 
     .DateInput_fang {
         display: none;
+    }
+
+    /* Overall styling */
+    .DayPicker,
+    .DayPicker__withBorder,
+    .DayPicker__horizontal,
+    .CalendarMonth,
+    .CalendarMonthGrid {
+        background-color: ${({ theme }) => `${theme.datePicker.backgroundColor} !important`};
     }
 
     /* Calendar styling */
@@ -130,25 +142,25 @@ export const StyledWrapper = styled.div`
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
         position: relative;
         outline: none;
-        border: 1px solid ${({ theme }) => theme.shades.nine};
-        background-color: ${({ theme }) => theme.shades.seven};
-        color: ${({ theme }) => theme.shades.one};
+        border: 1px solid transparent;
+        background-color: ${({ theme }) => theme.datePicker.day.backgroundColor};
+        color: ${({ theme }) => theme.datePicker.day.color};
 
         &:hover {
-            background-color: ${({ theme }) => theme.colorPrimary};
-            color: ${({ theme }) => theme.colorContrastText.primary};
+            background-color: ${({ theme }) => theme.datePicker.day.hover.backgroundColor};
+            color: ${({ theme }) => theme.datePicker.day.hover.color};
         }
     }
 
     .CalendarDay__today {
-        color: ${({ theme }) => theme.colorPrimary};
+        color: ${({ theme }) => theme.datePicker.day.color};
 
         &::before {
             display: block;
             position: absolute;
             top: 0;
             left: 0;
-            background-color: ${({ theme }) => theme.colorPrimary};
+            background-color: ${({ theme }) => theme.datePicker.day.accent};
             width: 100%;
             height: 4px;
             content: '';
@@ -156,7 +168,7 @@ export const StyledWrapper = styled.div`
 
         &:hover {
             &::before {
-                background-color: ${({ theme }) => theme.colorSecondary};
+                background-color: ${({ theme }) => theme.datePicker.day.hover.accent};
             }
         }
     }
@@ -168,7 +180,7 @@ export const StyledWrapper = styled.div`
             bottom: 4px;
             left: 18px;
             border-radius: 100%;
-            background-color: ${({ theme }) => theme.colorPrimary};
+            background-color: ${({ theme }) => theme.datePicker.day.color};
             width: 4px;
             height: 4px;
             content: '';
@@ -178,7 +190,7 @@ export const StyledWrapper = styled.div`
         &.CalendarDay__selected,
         &.CalendarDay__selected_span {
             &::after {
-                background-color: ${({ theme }) => theme.shades.nine};
+                background-color: ${({ theme }) => theme.datePicker.day.selected.color};
             }
         }
     }
@@ -186,9 +198,9 @@ export const StyledWrapper = styled.div`
     .CalendarDay__selected,
     .CalendarDay__selected_start,
     .CalendarDay__selected_end {
-        background-color: ${({ theme }) => theme.colorSecondary};
+        background-color: ${({ theme }) => theme.datePicker.day.selectionLimit.backgroundColor};
         cursor: pointer;
-        color: ${({ theme }) => theme.shades.nine};
+        color: ${({ theme }) => theme.datePicker.day.selectionLimit.color};
     }
 
     .CalendarDay__blocked_minimum_nights:not(.CalendarDay__selected_start) {
@@ -197,12 +209,12 @@ export const StyledWrapper = styled.div`
 
     .CalendarDay__blocked_out_of_range,
     .CalendarDay__blocked_out_of_range:hover {
-        background-color: ${({ theme }) => theme.background.primary};
-        color: ${({ theme }) => theme.colorDisabled};
+        background-color: ${({ theme }) => theme.datePicker.day.disabled.backgroundColor};
+        color: ${({ theme }) => theme.datePicker.day.disabled.color};
 
         &.CalendarDay__highlighted_calendar {
             &::after {
-                background-color: ${({ theme }) => theme.colorDisabled};
+                background-color: ${({ theme }) => theme.datePicker.day.disabled.backgroundColor};
             }
         }
     }

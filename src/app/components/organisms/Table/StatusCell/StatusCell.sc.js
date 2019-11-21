@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import StatusIndicator from '../../../atoms/StatusIndicator/StatusIndicator';
 import styled from 'styled-components';
+import { themeBasic } from '../../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
 
 export const StyledStatusCell = styled.div`
     ${setBoxSizing()}
@@ -16,6 +18,11 @@ export const IconWrapper = styled.div`
 
 IconWrapper.propTypes = {
     status: PropTypes.oneOf(Object.values(StatusIndicator.statuses)).isRequired,
+    theme: themePropTypes,
+};
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export default StyledStatusCell;

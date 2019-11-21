@@ -1,5 +1,6 @@
-import { themeBasic, themePropTypes } from '../../../../styles/theming/themes/basic';
 import styled from 'styled-components';
+import { themeBasic } from '../../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
 
 export const StyledNavigation = styled.div`
     display: flex;
@@ -31,7 +32,7 @@ export const CurrentDate = styled.p`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h2)}
     margin: 0;
     text-transform: capitalize;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 CurrentDate.propTypes = {

@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { DROPDOWN_VARIANTS } from './Dropdown.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../styles/mixins/setTruncate';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledDropdown = styled.div`
     ${setBoxSizing()}
@@ -60,14 +61,14 @@ export const Select = styled.select`
     appearance: none;
     display: block;
     outline: none;
-    background-color: ${({ theme }) => theme.shades.nine};
+    background-color: transparent;
     cursor: pointer;
     width: 100%;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
         border: 0;
-        border-bottom: 1px solid ${theme.colorHeaderText.primary};
+        border-bottom: 1px solid ${theme.colorText.primary};
         border-radius: 0;
         padding: ${theme.spacing(0, 3, 0, 0)};
         height: ${theme.spacing(3.5)};
@@ -75,7 +76,7 @@ export const Select = styled.select`
     `}
 
     ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.OUTLINE && css`
-        border: 1px solid ${theme.colorHeaderText.primary};
+        border: 1px solid ${theme.colorText.primary};
         border-radius: ${theme.spacing(1)};
         padding: ${theme.spacing(0, 4.5, 0, 1.5)};
         height: ${theme.spacing(6)};
@@ -124,7 +125,7 @@ Select.defaultProps = {
 
 export const IconWrapper = styled.div`
     position: absolute;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
     font-size: ${({ theme }) => theme.spacing(3)};
     pointer-events: none;
 

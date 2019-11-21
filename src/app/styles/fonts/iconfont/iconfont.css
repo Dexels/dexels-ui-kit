@@ -1,13 +1,13 @@
 @font-face {
-    font-family: 'SL-Small-Icons';
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?joeozn');
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?joeozn#iefix') format('embedded-opentype'),
-        url('~fonts/iconfont/SL-Small-Icons.ttf?joeozn') format('truetype'),
-        url('~fonts/iconfont/SL-Small-Icons.woff?joeozn') format('woff'),
-        url('~fonts/iconfont/SL-Small-Icons.svg?joeozn#SL-Small-Icons') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
+  font-family: 'SL-Small-Icons';
+  src:  url('~fonts/iconfont/SL-Small-Icons.eot?9az2bt');
+  src:  url('~fonts/iconfont/SL-Small-Icons.eot?9az2bt#iefix') format('embedded-opentype'),
+    url('~fonts/iconfont/SL-Small-Icons.ttf?9az2bt') format('truetype'),
+    url('~fonts/iconfont/SL-Small-Icons.woff?9az2bt') format('woff'),
+    url('~fonts/iconfont/SL-Small-Icons.svg?9az2bt#SL-Small-Icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
 
 [class^="icon-"], [class*=" icon-"] {
@@ -25,11 +25,77 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-CalendarAccept:before {
+  content: "\e909";
+}
+.icon-CalendarDecline:before {
+  content: "\e962";
+}
+.icon-MatchResume:before {
+  content: "\e963";
+}
+.icon-Cable:before {
+  content: "\e94f";
+}
+.icon-CommunicationPhone:before {
+  content: "\e950";
+}
+.icon-ProductAds:before {
+  content: "\e951";
+}
+.icon-ProductAVG:before {
+  content: "\e952";
+}
+.icon-ProductBoekhouding:before {
+  content: "\e953";
+}
+.icon-ProductContributie:before {
+  content: "\e954";
+}
+.icon-ProductDataservice:before {
+  content: "\e955";
+}
+.icon-ProductDWF:before {
+  content: "\e956";
+}
+.icon-ProductMobiel:before {
+  content: "\e957";
+}
+.icon-ProductOpleidingen:before {
+  content: "\e958";
+}
+.icon-ProductToernooien:before {
+  content: "\e959";
+}
+.icon-ProductTrainingen:before {
+  content: "\e95a";
+}
+.icon-ProductTV:before {
+  content: "\e95b";
+}
+.icon-ProductVrijwilligers:before {
+  content: "\e95c";
+}
+.icon-ProductWebsite:before {
+  content: "\e95d";
+}
+.icon-RoundCheck:before {
+  content: "\e95e";
+}
+.icon-RoundCross:before {
+  content: "\e95f";
+}
+.icon-UserDouble:before {
+  content: "\e960";
+}
 .icon-ChevronFirst:before {
   content: "\e941";
 }
 .icon-ChevronLast:before {
   content: "\e942";
+}
+.icon-CommunicationMail:before {
+  content: "\e961";
 }
 .icon-SportAtletiek:before {
   content: "\e943";
@@ -93,9 +159,6 @@
 }
 .icon-Clock:before {
   content: "\e908";
-}
-.icon-Mail:before {
-  content: "\e909";
 }
 .icon-Question:before {
   content: "\e90a";
