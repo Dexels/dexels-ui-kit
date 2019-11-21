@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import MenuItem from './MenuItem';
+import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export default { title: 'molecules/MenuItem' };
 
 export const Configurable = () => {
-    const [isExpanded, setExpanded] = useState('');
+    const [isVisible, setVisible] = useState('');
     const [isSelected, setSelected] = useState('');
 
     const handleOnClick = (item) => {
-        if (isExpanded === item) {
-            setExpanded('');
+        if (isVisible === item) {
+            setVisible('');
         } else {
-            setExpanded(item);
+            setVisible(item);
         }
 
         setSelected(item);
@@ -21,37 +22,48 @@ export const Configurable = () => {
         <>
             <MenuItem
                 hasDivider
-                iconType={'MATCHOWN'}
-                isExpanded={isExpanded === 'Matches'}
-                isParentElement
+                iconType={TextWithOptionalIcon.iconTypes.SHIRT}
+                isParentItem
+                isSelected={isSelected === 'Tournament'}
+                isVisible={isVisible === 'Tournament'}
+                onClick={() => handleOnClick('Tournament')}
+                title={'Tournament'}
+            />
+            <MenuItem
+                hasChildrenItems
+                hasDivider
+                iconType={TextWithOptionalIcon.iconTypes.MATCHOWN}
+                isParentItem
                 isSelected={isSelected === 'Matches'}
+                isVisible={isVisible === 'Matches'}
                 onClick={() => handleOnClick('Matches')}
                 title={'Matches'}
             />
             <MenuItem
-                isExpanded={isExpanded === 'Matches'}
                 isSelected={isSelected === 'Fields'}
+                isVisible={isVisible === 'Matches'}
                 onClick={() => setSelected('Fields')}
                 title={'Fields'}
             />
             <MenuItem
+                hasChildrenItems
                 hasDivider
-                iconType={'LIGHTBULB'}
-                isExpanded={isExpanded === 'Competitions'}
-                isParentElement
+                iconType={TextWithOptionalIcon.iconTypes.LIGHTBULB}
+                isParentItem
                 isSelected={isSelected === 'Competitions'}
+                isVisible={isVisible === 'Competitions'}
                 onClick={() => handleOnClick('Competitions')}
                 title={'Competitions'}
             />
             <MenuItem
-                isExpanded={isExpanded === 'Competitions'}
                 isSelected={isSelected === 'Teams'}
+                isVisible={isVisible === 'Competitions'}
                 onClick={() => setSelected('Teams')}
                 title={'Teams'}
             />
             <MenuItem
-                isExpanded={isExpanded === 'Competitions'}
                 isSelected={isSelected === 'Officials'}
+                isVisible={isVisible === 'Competitions'}
                 onClick={() => setSelected('Officials')}
                 title={'Officials'}
             />
