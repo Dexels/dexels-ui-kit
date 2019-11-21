@@ -9,8 +9,9 @@ const TextWithOptionalIcon = ({
     direction,
     iconType,
     isCapitalized,
+    ...rest
 }) => (
-    <StyledTextWithOptionalIcon direction={direction}>
+    <StyledTextWithOptionalIcon direction={direction} {...rest}>
         <Text isCapitalized={isCapitalized}>
             {children}
         </Text>

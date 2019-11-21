@@ -1,52 +1,50 @@
+import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS } from './Tooltip.consts';
 import getElevation from '../../../styles/mixins/getElevation';
-import getPlacement from '../../../styles/mixins/getPlacement';
+import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
-export const StyledTooltip = styled.div`
+export const StyledTooltip = styled.span`
     ${setBoxSizing()}
-    position: relative;
-
-    &::after,
-    &::before {
-        /* This weird indent is a bug in ESLint */
-        ${({ transitionDuration, transitionEasing }) => transitionEffect({
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ elevation }) => getElevation(elevation)}
+    ${({ transitionDuration, transitionEasing }) => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
+        property: 'opacity',
     })}
-        position: absolute;
-        visibility: hidden;
-        opacity: 0;
-        background-color: ${({ theme }) => theme.colorHeaderText.primary};
-    }
 
-    &::before {
-        z-index: 2;
-        content: '';
-    }
-
-    &::after {
-        ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
-        ${({ placement }) => getPlacement(placement)}
-        ${({ elevation }) => getElevation(elevation)}
-        z-index: 99999999;
-        border-radius: 15px;
-        padding: 4px 8px;
-        text-align: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: ${({ theme }) => theme.colorContrastText.primary};
-        content: attr(data-tooltip);
-    }
-
-    &:hover {
-        &::after,
-        &::before {
-            visibility: visible;
-            opacity: 1;
-        }
-    }
+    position: fixed;
+    top: ${({ top }) => top};
+    right: ${({ right }) => right};
+    bottom: ${({ bottom }) => bottom};
+    left: ${({ left }) => left};
+    visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    z-index: 99999999;
+    border-radius: ${({ theme }) => theme.spacing(1)};
+    background-color: ${({ theme }) => theme.colorPrimary};
+    padding: ${({ theme }) => theme.spacing(0.5, 1, 0.5, 1)};
+    text-align: center;
+    color: ${({ theme }) => theme.colorContrastText.primary};
 `;
+
+StyledTooltip.propTypes = {
+    bottom: PropTypes.string.isRequired,
+    elevation: PropTypes.oneOf(Object.values(TOOLTIP_ELEVATIONS)).isRequired,
+    isVisible: PropTypes.bool.isRequired,
+    left: PropTypes.string.isRequired,
+    right: PropTypes.string.isRequired,
+    theme: themePropTypes,
+    top: PropTypes.string.isRequired,
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(TOOLTIP_EASINGS)),
+};
+
+StyledTooltip.defaultProps = {
+    theme: themeBasic,
+};
 
 export default StyledTooltip;
