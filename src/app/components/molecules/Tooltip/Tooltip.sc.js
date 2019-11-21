@@ -1,9 +1,10 @@
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS } from './Tooltip.consts';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledTooltip = styled.span`
@@ -25,10 +26,10 @@ export const StyledTooltip = styled.span`
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     z-index: 99999999;
     border-radius: ${({ theme }) => theme.spacing(1)};
-    background-color: ${({ theme }) => theme.colorPrimary};
+    background-color: ${({ theme }) => theme.colorSecondary};
     padding: ${({ theme }) => theme.spacing(0.5, 1, 0.5, 1)};
     text-align: center;
-    color: ${({ theme }) => theme.colorContrastText.primary};
+    color: ${({ theme }) => theme.colorTextContrast.primary};
 `;
 
 StyledTooltip.propTypes = {
