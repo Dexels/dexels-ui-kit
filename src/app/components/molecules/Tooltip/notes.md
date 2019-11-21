@@ -1,20 +1,22 @@
 # How to use the Tooltip component
 
-The Tooltip component accepts 4 properties:<br/>
-1. elevation<br/>
-2. position<br/>
-3. transitionDuration<br/>
-4. transitionEasing<br/>
+The Tooltip component accepts 4 properties:
+
+* elevation
+* position
+* transitionDuration
+* transitionEasing
 
 None of the above is required, all of them have default values. By setting the position you can change the default position(bottom) that
 the tooltip should be rendered if there are no placement restrictions(too close to top/right/bottom/left). If restrictions apply, the tooltip
-is being rendered wherever it fits better.<br/>
+is being rendered wherever it fits better.
 
 Each component that has a tooltip can specify in its props the tooltip title, if it has delay or not and the position that the specific tooltip
-should have. These properties are the following respectively:<br/>
-1. data-tooltip-component<br/>
-2. data-tooltip-delay<br/>
-3. data-tooltip-position<br/>
+should have. These properties are the following respectively:
+
+* data-tooltip-component (Tip: you need to wrap the component in <a href="https://reactjs.org/docs/react-dom-server.html" target="_blank">renderToString()</a> when it's not a native type)
+* data-tooltip-delay (the unchangeable value is 4000 ms)
+* data-tooltip-position
 
 
 The `data-tooltip-delay` can be either true or false, if not specified then it is false and the tooltip gets hidden when not hovering on the corresponding component.

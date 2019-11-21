@@ -10,6 +10,13 @@ import PropTypes from 'prop-types';
 import { StyledTooltip } from './Tooltip.sc';
 import { ThemeContext } from 'styled-components';
 
+const dataTooltipComponent = 'data-tooltip-component';
+const dataTooltipDelay = 'data-tooltip-delay';
+const dataTooltipPosition = 'data-tooltip-position';
+const thresholdVertical = 100;
+const thresholdHorizontal = 150;
+const delay = 4000;
+
 const getTooltipPosition = (hoveredItem, tooltipPosition, tooltipPositions) => {
     const docWidth = document.documentElement.clientWidth;
     const docHeight = document.documentElement.clientHeight;
@@ -20,11 +27,11 @@ const getTooltipPosition = (hoveredItem, tooltipPosition, tooltipPositions) => {
     let position = tooltipPosition;
 
     if (tooltipPosition === tooltipPositions.BOTTOM) {
-        if (spaceFromBottom < 100) {
-            if (spaceFromTop < 100) {
-                if (spaceFromRightSide < 150) {
+        if (spaceFromBottom < thresholdVertical) {
+            if (spaceFromTop < thresholdVertical) {
+                if (spaceFromRightSide < thresholdHorizontal) {
                     position = tooltipPositions.LEFT;
-                } else if (spaceFromLeftSide < 150) {
+                } else if (spaceFromLeftSide < thresholdHorizontal) {
                     position = tooltipPositions.RIGHT;
                 } else {
                     position = tooltipPositions.LEFT;
@@ -34,11 +41,11 @@ const getTooltipPosition = (hoveredItem, tooltipPosition, tooltipPositions) => {
             }
         }
     } else if (tooltipPosition === tooltipPositions.TOP) {
-        if (spaceFromTop < 100) {
-            if (spaceFromBottom < 100) {
-                if (spaceFromRightSide < 150) {
+        if (spaceFromTop < thresholdVertical) {
+            if (spaceFromBottom < thresholdVertical) {
+                if (spaceFromRightSide < thresholdHorizontal) {
                     position = tooltipPositions.LEFT;
-                } else if (spaceFromBottom < 100) {
+                } else if (spaceFromBottom < thresholdVertical) {
                     position = tooltipPositions.RIGHT;
                 } else {
                     position = tooltipPositions.LEFT;
@@ -48,9 +55,9 @@ const getTooltipPosition = (hoveredItem, tooltipPosition, tooltipPositions) => {
             }
         }
     } else if (tooltipPosition === tooltipPositions.RIGHT) {
-        if (spaceFromRightSide < 150) {
-            if (spaceFromBottom < 100) {
-                if (spaceFromTop < 100) {
+        if (spaceFromRightSide < thresholdHorizontal) {
+            if (spaceFromBottom < thresholdVertical) {
+                if (spaceFromTop < thresholdVertical) {
                     position = tooltipPositions.LEFT;
                 } else {
                     position = tooltipPositions.TOP;
@@ -60,9 +67,9 @@ const getTooltipPosition = (hoveredItem, tooltipPosition, tooltipPositions) => {
             }
         }
     } else if (tooltipPosition === tooltipPositions.LEFT) {
-        if (spaceFromLeftSide < 150) {
-            if (spaceFromBottom < 100) {
-                if (spaceFromTop < 100) {
+        if (spaceFromLeftSide < thresholdHorizontal) {
+            if (spaceFromBottom < thresholdVertical) {
+                if (spaceFromTop < thresholdVertical) {
                     position = tooltipPositions.RIGHT;
                 } else {
                     position = tooltipPositions.TOP;
@@ -87,12 +94,9 @@ const Tooltip = ({
     const [isTooltipVisible, setTooltipVisiblity] = useState(false);
     const [timeoutId, setTimeoutId] = useState(null);
     const [tooltipPosition, setTooltipPosition] = useState(position);
-    const [tooltipTitle, setTooltipTitle] = useState('some text');
+    const [tooltipTitle, setTooltipTitle] = useState('');
     const { spacingValue } = useContext(ThemeContext);
     const tooltipRef = useRef(null);
-    const dataTooltipComponent = 'data-tooltip-component';
-    const dataTooltipDelay = 'data-tooltip-delay';
-    const dataTooltipPosition = 'data-tooltip-position';
 
     const showTooltip = (hoveredItem) => {
         setTooltipPosition(getTooltipPosition(hoveredItem, tooltipPosition, Tooltip.positions));
@@ -122,7 +126,7 @@ const Tooltip = ({
             setTimeoutId(setTimeout(() => {
                 setTooltipVisiblity(false);
                 setTooltipDelay(false);
-            }, 4000));
+            }, delay));
         } else {
             setTooltipVisiblity(false);
             setTooltipDelay(false);
@@ -131,8 +135,8 @@ const Tooltip = ({
 
     const onMouseMove = useCallback(({ target }) => {
         if (target.closest(`[${dataTooltipComponent}]`) && (!isTooltipVisible || timeoutId)) {
-            handleOnMouseOver(target.closest('['.concat(dataTooltipComponent).concat(']')));
-        } else if (!target.closest('['.concat(dataTooltipComponent).concat(']')) && isTooltipVisible && !timeoutId) {
+            handleOnMouseOver(target.closest(`[${dataTooltipComponent}]`));
+        } else if (!target.closest(`[${dataTooltipComponent}]`) && isTooltipVisible && !timeoutId) {
             handleOnMouseOut();
         }
     }, [hasTooltipDelay, isTooltipVisible, timeoutId]);
