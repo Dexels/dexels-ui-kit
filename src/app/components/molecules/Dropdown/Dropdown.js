@@ -27,6 +27,7 @@ const Dropdown = ({
     placeholder,
     value,
     variant,
+    ...rest
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -39,6 +40,7 @@ const Dropdown = ({
                 isFocused={isFocused || isOpen}
                 isValid={isValid}
                 variant={variant}
+                {...rest}
             >
                 {label && (
                     <FormElementLabel
