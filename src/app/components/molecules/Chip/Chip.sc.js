@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import transitionEffect from '../../../styles/mixins/transitionEffect';
+import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledChip = styled.button`
     ${setBoxSizing()}

@@ -4,7 +4,7 @@ import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
-import transitionEffect from '../../../styles/mixins/transitionEffect';
+import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledTooltip = styled.span`
     ${setBoxSizing()}

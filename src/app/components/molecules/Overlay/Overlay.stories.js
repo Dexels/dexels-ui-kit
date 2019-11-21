@@ -5,19 +5,20 @@ import React from 'react';
 export default { title: 'molecules/Overlay' };
 
 export const Configurable = () => (
-    <Overlay
-        height={number('Height in %', Overlay.defaultProps.height)}
-        isFullscreen={boolean('Fullscreen', Overlay.defaultProps.isFullscreen)}
-        isVisible={boolean('Is visible', Overlay.defaultProps.isVisible)}
-        width={number('Width in %', Overlay.defaultProps.width)}
-    >
+    <>
+        <Overlay
+            height={number('Height in %', Overlay.defaultProps.height)}
+            isFullscreen={boolean('Fullscreen', Overlay.defaultProps.isFullscreen)}
+            isVisible={boolean('Is visible', Overlay.defaultProps.isVisible)}
+            width={number('Width in %', Overlay.defaultProps.width)}
+        />
         <p
             style={{
-                color: 'white',
+                color: 'black',
                 margin: '40px auto',
             }}
         >
             {'Such a sick overlay!'}
         </p>
-    </Overlay>
+    </>
 );

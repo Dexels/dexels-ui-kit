@@ -9,7 +9,7 @@ import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
-import transitionEffect from '../../../styles/mixins/transitionEffect';
+import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledSelectionControl = styled.div`
     ${setBoxSizing()}
@@ -23,6 +23,7 @@ export const InputWrapper = styled.div`
     position: relative;
     flex: 0 0 auto;
     order: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 1 : 2)};
+    z-index: 1;
     border-radius: 100%;
     width: ${({ theme }) => theme.spacing(5)};
     height: ${({ theme }) => theme.spacing(5)};
