@@ -17,6 +17,11 @@ const buttonObjectShape = PropTypes.shape({
     }),
 });
 
+const datePickerDayObject = PropTypes.shape({
+    backgroundColor: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+});
+
 const textStylePropTypes = PropTypes.shape({
     fontFamily: PropTypes.string.isRequired,
     fontSize: PropTypes.string.isRequired,
@@ -75,6 +80,26 @@ export const themePropTypes = PropTypes.shape({
     }).isRequired,
     card: PropTypes.shape({
         backgroundColor: PropTypes.string.isRequired,
+    }).isRequired,
+    datePicker: PropTypes.shape({
+        datePickerDayObject,
+        day: PropTypes.shape({
+            accent: PropTypes.string.isRequired,
+            datePickerDayObject,
+            disabled: PropTypes.shape({
+                datePickerDayObject,
+            }),
+            hover: PropTypes.shape({
+                accent: PropTypes.string.isRequired,
+                datePickerDayObject,
+            }),
+            selected: PropTypes.shape({
+                color: PropTypes.string.isRequired,
+            }),
+            selectionLimit: PropTypes.shape({
+                datePickerDayObject,
+            }),
+        }),
     }).isRequired,
     header: PropTypes.shape({
         backgroundColor: PropTypes.shape({

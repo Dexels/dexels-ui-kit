@@ -94,6 +94,32 @@ themeDark.card = {
     backgroundColor: colorShadeEleven,
 };
 
+themeDark.datePicker = {
+    backgroundColor: colorShadeEleven,
+    color: themeDark.colorPrimary,
+    day: {
+        accent: themeDark.colorPrimary,
+        backgroundColor: themeDark.shades.seven,
+        color: themeDark.colorText.primary,
+        disabled: {
+            backgroundColor: themeDark.shades.eight,
+            color: colorShadeTen,
+        },
+        hover: {
+            accent: themeDark.colorSecondary,
+            backgroundColor: colorHeaderPrimary,
+            color: themeDark.colorText.primary,
+        },
+        selected: {
+            color: themeDark.colorText.primary,
+        },
+        selectionLimit: {
+            backgroundColor: themeDark.colorSecondary,
+            color: themeDark.colorText.primary,
+        },
+    },
+};
+
 themeDark.header = {
     backgroundColor: {
         primary: colorHeaderPrimary,

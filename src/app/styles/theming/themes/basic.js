@@ -149,6 +149,32 @@ themeBasic.card = {
     backgroundColor: themeBasic.shades.nine,
 };
 
+themeBasic.datePicker = {
+    backgroundColor: themeBasic.shades.nine,
+    color: themeBasic.colorPrimary,
+    day: {
+        accent: themeBasic.colorPrimary,
+        backgroundColor: themeBasic.shades.seven,
+        color: themeBasic.shades.one,
+        disabled: {
+            backgroundColor: themeBasic.shades.eight,
+            color: themeBasic.colorDisabled,
+        },
+        hover: {
+            accent: themeBasic.colorSecondary,
+            backgroundColor: themeBasic.colorPrimary,
+            color: themeBasic.shades.nine,
+        },
+        selected: {
+            color: themeBasic.shades.nine,
+        },
+        selectionLimit: {
+            backgroundColor: themeBasic.colorSecondary,
+            color: themeBasic.shades.nine,
+        },
+    },
+};
+
 themeBasic.header = {
     backgroundColor: {
         primary: themeBasic.colorPrimary,
