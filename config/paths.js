@@ -4,4 +4,5 @@ module.exports = {
     distPath: resolve(__dirname, './../dist'),
     libPath: resolve(__dirname, './../src/lib'),
     publicPath: resolve(__dirname, './../public'),
+    typesPath: resolve(__dirname, './../src/types'),
 };

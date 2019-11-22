@@ -1,6 +1,13 @@
-const { distPath, libPath, publicPath } = require('./paths');
+const {
+    distPath,
+    libPath,
+    publicPath,
+    typesPath,
+} = require('./paths');
+
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -64,6 +71,12 @@ module.exports = (env = {}) => ({
             analyzerMode: env.analyze ? 'server' : 'disabled',
         }),
         new CleanWebpackPlugin(),
+        new CopyPlugin([
+            {
+                from: `${typesPath}/index.d.ts`,
+                to: distPath,
+            },
+        ]),
         new MiniCSSExtractPlugin({
             filename: '[name].css',
         }),
