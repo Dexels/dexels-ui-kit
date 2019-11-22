@@ -6,9 +6,9 @@ import StyledSubMenuItem from './SubMenuItem.sc';
 import TextWithOptionalIcon from '../../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const SubMenuItem = ({
-    hasDivider,
     iconType,
     isDisabled,
+    isDividerSet,
     isSelected,
     onClick,
     title,
@@ -24,7 +24,7 @@ const SubMenuItem = ({
                     {title}
                 </TextWithOptionalIcon>
             </ItemWrapper>
-            {hasDivider && (
+            {isDividerSet && (
                 <Divider />
             )}
         </>
@@ -32,18 +32,18 @@ const SubMenuItem = ({
 );
 
 SubMenuItem.propTypes = {
-    hasDivider: PropTypes.bool,
     iconType: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconTypes)),
     isDisabled: PropTypes.bool,
+    isDividerSet: PropTypes.bool,
     isSelected: PropTypes.bool,
     onClick: PropTypes.func,
     title: PropTypes.string.isRequired,
 };
 
 SubMenuItem.defaultProps = {
-    hasDivider: false,
     iconType: null,
     isDisabled: false,
+    isDividerSet: false,
     isSelected: false,
     onClick: null,
 };

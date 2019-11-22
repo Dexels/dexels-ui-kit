@@ -9,9 +9,9 @@ import TextWithOptionalIcon from '../../TextWithOptionalIcon/TextWithOptionalIco
 
 const MenuItem = ({
     children,
-    hasDivider,
     iconType,
     isDisabled,
+    isDividerSet,
     isExpanded,
     isSelected,
     onClick,
@@ -37,7 +37,7 @@ const MenuItem = ({
                         />
                     )}
                 </ItemWrapper>
-                {hasDivider && !isSelected && (
+                {isDividerSet && !isSelected && (
                     <Divider />
                 )}
             </>
@@ -50,9 +50,9 @@ const MenuItem = ({
 
 MenuItem.propTypes = {
     children: PropTypes.node,
-    hasDivider: PropTypes.bool,
     iconType: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconTypes)),
     isDisabled: PropTypes.bool,
+    isDividerSet: PropTypes.bool,
     isExpanded: PropTypes.bool,
     isSelected: PropTypes.bool,
     onClick: PropTypes.func,
@@ -61,9 +61,9 @@ MenuItem.propTypes = {
 
 MenuItem.defaultProps = {
     children: null,
-    hasDivider: false,
     iconType: null,
     isDisabled: false,
+    isDividerSet: false,
     isExpanded: false,
     isSelected: false,
     onClick: null,
