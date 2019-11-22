@@ -77,15 +77,6 @@ export const StyledWrapper = styled.div`
         display: none;
     }
 
-    /* Overall styling */
-    .DayPicker,
-    .DayPicker__withBorder,
-    .DayPicker__horizontal,
-    .CalendarMonth,
-    .CalendarMonthGrid {
-        background-color: ${({ theme }) => `${theme.datePicker.backgroundColor} !important`};
-    }
-
     /* Calendar styling */
     .DateRangePicker,
     .SingleDatePicker {
@@ -100,6 +91,7 @@ export const StyledWrapper = styled.div`
     .DayPicker__withBorder {
         ${getElevation(ELEVATIONS.LEVEL_6)}
         border-radius: ${({ theme }) => theme.spacing(1)};
+        background-color: ${({ theme }) => theme.datePicker.backgroundColor};
         overflow: hidden;
     }
 
@@ -136,6 +128,11 @@ export const StyledWrapper = styled.div`
         ${({ hasYearSelector }) => hasYearSelector && css`
             display: none;
         `}
+    }
+
+    .CalendarMonth,
+    .CalendarMonthGrid {
+        background-color: ${({ theme }) => theme.datePicker.backgroundColor};
     }
 
     .CalendarDay__default {
