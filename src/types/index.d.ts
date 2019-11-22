@@ -1,11 +1,7 @@
-// Type definitions for dexels-ui-kit 1.0.27
+// Type definitions for dexels-ui-kit 1.0.28
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 
-/*~ If this module is a UMD module that exposes a global variable 'myLib' when
- *~ loaded outside a module loader environment, declare that global here.
- *~ Otherwise, delete this declaration.
- */
 export as namespace DexelsUIKit;
 
 /*~ If this module has methods, declare them as functions like so.
