@@ -8,7 +8,6 @@ import {
     Title,
 } from './CardNoResults.sc';
 import Card from '../../atoms/Card/Card';
-import Colors from '../../atoms/Colors/Colors';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
