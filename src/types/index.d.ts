@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 1.0.28
+// Type definitions for dexels-ui-kit 1.0.29
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 
