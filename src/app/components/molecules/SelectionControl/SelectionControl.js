@@ -32,6 +32,7 @@ const SelectionControl = ({
     transitionEasing,
     type,
     value,
+    ...rest
 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -44,6 +45,7 @@ const SelectionControl = ({
                 onMouseLeave={() => {
                     setIsHovered(false);
                 }}
+                {...rest}
             >
                 <InputWrapper
                     direction={direction}
@@ -61,7 +63,7 @@ const SelectionControl = ({
                         type={type}
                     />
                     {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
-                        <IconWrapper>
+                        <IconWrapper hasError={hasError} isDisabled={isDisabled} isValid={isValid}>
                             <Icon type={isChecked ? Icon.types.CHECK : Icon.types.MINUS} />
                         </IconWrapper>
                     )}

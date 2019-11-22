@@ -13,6 +13,7 @@ const Chip = ({
     onClick,
     transitionDuration,
     transitionEasing,
+    ...rest
 }) => (
     <StyledChip
         isDisabled={isDisabled}
@@ -20,6 +21,7 @@ const Chip = ({
         onClick={onClick}
         transitionDuration={transitionDuration}
         transitionEasing={transitionEasing}
+        {...rest}
     >
         <TextWithOptionalIcon direction={direction} iconType={iconType}>
             {children}

@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledToolbar = styled.div`
     display: flex;
@@ -13,4 +15,9 @@ export const ButtonWrapper = styled.div`
 
 ButtonWrapper.propTypes = {
     children: PropTypes.node.isRequired,
+    theme: themePropTypes,
+};
+
+ButtonWrapper.defaultProps = {
+    theme: themeBasic,
 };

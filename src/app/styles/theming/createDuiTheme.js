@@ -27,10 +27,17 @@ const createDuiTheme = (baseTheme, overrides) => {
                 if (typeof overrides[property1][property2] === 'object') {
                     Object.keys(overrides[property1][property2]).forEach((property3) => {
                         checkIfPropertyExists(baseTheme[property1][property2], property3, `${property1}.${property2}.${property3}`);
-                        theme[property1][property2][property3] = overrides[property1][property2][property3];
                     });
+
+                    theme[property1][property2] = {
+                        ...theme[property1][property2],
+                        ...overrides[property1][property2],
+                    };
                 } else {
-                    theme[property1][property2] = overrides[property1][property2];
+                    theme[property1] = {
+                        ...theme[property1],
+                        ...overrides[property1],
+                    };
                 }
             });
         }

@@ -1,10 +1,10 @@
+import { number, select, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import Icon from '../../atoms/Icon/Icon';
 import Modal from './Modal';
-import { text } from '@storybook/addon-knobs';
 
 export default { title: 'organisms/Modal' };
 
@@ -65,13 +65,14 @@ export const Configurable = () => (
     </Modal>
 );
 
-export const ConfigurableAlert = () => {
+export const ConfigurableModal = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
         <>
             <Button
                 onClick={() => {
+                    action('On back');
                     setIsVisible(true);
                 }}
                 variant={Button.variants.FILLED}
@@ -81,10 +82,17 @@ export const ConfigurableAlert = () => {
             <Modal
                 isVisible={isVisible}
                 onBack={() => {
+                    action('On back');
                     setIsVisible(false);
                 }}
                 options={functionalItems}
                 title={text('Header title', 'Heading')}
+                transitionDuration={number('Transition duration', Modal.defaultProps.transitionDuration)}
+                transitionEasing={select(
+                    'Transition type',
+                    Modal.transitionEasings,
+                    Modal.defaultProps.transitionEasing,
+                )}
             >
                 {text('Body', 'Some body text')}
             </Modal>

@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
+import { themeBasic } from '../../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
 
 export const StyledPaginator = styled.div`
     ${setBoxSizing()}
@@ -10,8 +12,16 @@ export const StyledPaginator = styled.div`
     flex-wrap: nowrap;
     align-items: flex-end;
     padding: ${({ theme }) => theme.spacing(3, 0, 0, 0)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 `;
+
+StyledPaginator.propTypes = {
+    theme: themePropTypes,
+};
+
+StyledPaginator.defaultProps = {
+    theme: themeBasic,
+};
 
 export const InputWrapper = styled.div`
     margin: 0 0 -1px; /* The -1px is a correction for the input components border */
@@ -24,6 +34,11 @@ export const InputWrapper = styled.div`
 
 InputWrapper.propTypes = {
     hasPageSizeSelector: PropTypes.bool.isRequired,
+    theme: themePropTypes,
+};
+
+InputWrapper.defaultProps = {
+    theme: themeBasic,
 };
 
 export const PageSizeSelector = styled.div`
@@ -32,6 +47,14 @@ export const PageSizeSelector = styled.div`
     flex-wrap: nowrap;
     align-items: center;
 `;
+
+PageSizeSelector.propTypes = {
+    theme: themePropTypes,
+};
+
+PageSizeSelector.defaultProps = {
+    theme: themeBasic,
+};
 
 export const PageSizeSelectorText = styled.div`
     &:first-of-type {
@@ -43,6 +66,14 @@ export const PageSizeSelectorText = styled.div`
         text-transform: lowercase;
     }
 `;
+
+PageSizeSelectorText.propTypes = {
+    theme: themePropTypes,
+};
+
+PageSizeSelectorText.defaultProps = {
+    theme: themeBasic,
+};
 
 export const Paging = styled.div`
     display: flex;
@@ -58,6 +89,14 @@ export const PagingText = styled.div`
     text-transform: lowercase;
 `;
 
+PagingText.propTypes = {
+    theme: themePropTypes,
+};
+
+PagingText.defaultProps = {
+    theme: themeBasic,
+};
+
 export const PagingButtons = styled.div`
     display: flex;
     flex-direction: row;
@@ -65,3 +104,10 @@ export const PagingButtons = styled.div`
     padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
 `;
 
+PagingButtons.propTypes = {
+    theme: themePropTypes,
+};
+
+PagingButtons.defaultProps = {
+    theme: themeBasic,
+};

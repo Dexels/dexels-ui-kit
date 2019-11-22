@@ -1,9 +1,12 @@
+import { select, text } from '@storybook/addon-knobs';
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
 import TextIcon from './TextIcon';
 
 export default { title: 'molecules/TextIcon' };
 
 export const Configurable = () => (
-    <TextIcon text={text('Text', 'A')} />
+    <TextIcon
+        size={select('Size', TextIcon.sizes, TextIcon.defaultProps.size)}
+        text={text('Text', 'A')}
+    />
 );

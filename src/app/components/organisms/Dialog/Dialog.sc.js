@@ -1,22 +1,42 @@
-import { DIALOG_ALIGNMENTS, DIALOG_DIRECTIONS, DIALOG_ELEVATIONS } from './Dialog.consts';
+import {
+    DIALOG_ALIGNMENTS,
+    DIALOG_DIRECTIONS,
+    DIALOG_EASINGS,
+    DIALOG_ELEVATIONS,
+} from './Dialog.consts';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
+import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import setCentered from '../../../styles/mixins/setCentered';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
 
 export const StyledDialog = styled.div`
     ${setBoxSizing()}
+    ${setCentered()}
     ${({ elevation }) => getElevation(elevation)}
-    margin: auto;
+    ${({ isVisible, transitionDuration, transitionEasing }) => fadeInEffect({
+        duration: transitionDuration,
+        easing: transitionEasing,
+        isVisible,
+    })}
+    position: fixed;
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    z-index: 3;
     border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
+    pointer-events: ${({ isVisible }) => (isVisible ? 'auto' : 'none')};
 `;
 
 StyledDialog.propTypes = {
     elevation: PropTypes.oneOf(Object.values(DIALOG_ELEVATIONS)).isRequired,
+    isVisible: PropTypes.bool.isRequired,
     theme: themePropTypes,
+    transitionDuration: PropTypes.number.isRequired,
+    transitionEasing: PropTypes.oneOf(Object.values(DIALOG_EASINGS)).isRequired,
     width: PropTypes.string.isRequired,
 };
 
@@ -24,29 +44,17 @@ StyledDialog.defaultProps = {
     theme: themeBasic,
 };
 
-export const ButtonWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
-`;
-
-ButtonWrapper.propTypes = {
-    theme: themePropTypes,
-};
-
-ButtonWrapper.defaultProps = {
-    theme: themeBasic,
-};
-
 export const ButtonClose = styled.button`
     position: fixed;
     top: 2px;
-    z-index: 2;
+    z-index: 3;
     outline: none;
     border: 0;
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
     text-align: ${({ position }) => (position === DIALOG_DIRECTIONS.LTR ? 'left' : 'right')};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
     font-size: ${({ theme }) => theme.spacing(3)};
 
     ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`
@@ -60,7 +68,7 @@ export const ButtonClose = styled.button`
     &:active,
     &:hover {
         background-color: transparent;
-        color: ${({ theme }) => theme.colorContrastText.primary};
+        color: ${({ theme }) => theme.colorTextContrast.primary};
     }
 
     span {
@@ -87,7 +95,7 @@ export const Header = styled.header`
     background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(2)};
     min-height: ${({ theme }) => theme.spacing(7)};
-    color: ${({ theme }) => theme.colorContrastText.primary};
+    color: ${({ theme }) => theme.colorTextContrast.primary};
 `;
 
 Header.propTypes = {
@@ -104,7 +112,7 @@ export const Body = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(2)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ hasHeader, theme }) => !hasHeader && css`
         border-radius: ${theme.spacing(1, 1, 0, 0)};

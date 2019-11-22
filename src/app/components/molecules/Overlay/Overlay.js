@@ -3,7 +3,6 @@ import React from 'react';
 import { StyledOverlay } from './Overlay.sc';
 
 const Overlay = ({
-    children,
     height,
     isFullscreen,
     isVisible,
@@ -14,13 +13,10 @@ const Overlay = ({
         isFullscreen={isFullscreen}
         isVisible={isVisible}
         width={width}
-    >
-        {children}
-    </StyledOverlay>
+    />
 );
 
 Overlay.propTypes = {
-    children: PropTypes.node.isRequired,
     height: PropTypes.number,
     isFullscreen: PropTypes.bool,
     isVisible: PropTypes.bool,
