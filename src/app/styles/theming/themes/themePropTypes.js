@@ -94,7 +94,7 @@ export const themePropTypes = PropTypes.shape({
                 datePickerDayObject,
             }),
             selected: PropTypes.shape({
-                color: PropTypes.string.isRequired,
+                datePickerDayObject,
             }),
             selectionLimit: PropTypes.shape({
                 datePickerDayObject,

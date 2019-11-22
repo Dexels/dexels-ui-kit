@@ -150,6 +150,16 @@ export const StyledWrapper = styled.div`
             background-color: ${({ theme }) => theme.datePicker.day.hover.backgroundColor};
             color: ${({ theme }) => theme.datePicker.day.hover.color};
         }
+
+        &.CalendarDay__selected_span {
+            opacity: 0.7;
+            background-color: ${({ theme }) => theme.datePicker.day.selected.backgroundColor};
+
+            &:hover {
+                background-color: ${({ theme }) => theme.datePicker.day.hover.backgroundColor};
+                color: ${({ theme }) => theme.datePicker.day.hover.color};
+            }
+        }
     }
 
     .CalendarDay__today {
@@ -190,7 +200,7 @@ export const StyledWrapper = styled.div`
         &.CalendarDay__selected,
         &.CalendarDay__selected_span {
             &::after {
-                background-color: ${({ theme }) => theme.datePicker.day.selected.color};
+                background-color: ${({ theme }) => theme.datePicker.day.color};
             }
         }
     }
