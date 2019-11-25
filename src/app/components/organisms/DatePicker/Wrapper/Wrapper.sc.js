@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ELEVATIONS } from '../../../../utils/constants';
 import getElevation from '../../../../styles/mixins/getElevation';
+import { hexToRgb } from '../../../../utils/colorFunctions';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../../styles/mixins/setTruncate';
@@ -149,8 +150,7 @@ export const StyledWrapper = styled.div`
         }
 
         &.CalendarDay__selected_span {
-            opacity: 0.7;
-            background-color: ${({ theme }) => theme.datePicker.day.selected.backgroundColor};
+            background-color: ${({ theme }) => hexToRgb(theme.datePicker.day.selected.backgroundColor, 0.7)};
 
             &:hover {
                 background-color: ${({ theme }) => theme.datePicker.day.hover.backgroundColor};
@@ -197,7 +197,7 @@ export const StyledWrapper = styled.div`
         &.CalendarDay__selected,
         &.CalendarDay__selected_span {
             &::after {
-                background-color: ${({ theme }) => theme.datePicker.day.color};
+                background-color: ${({ theme }) => theme.datePicker.day.hover.color};
             }
         }
     }

@@ -25,12 +25,11 @@ export const StyledChip = styled.button`
     overflow: hidden;
     color: ${({ theme }) => theme.colorText.primary};
 
-    ${({ isSelected }) => !isSelected && css`
+    ${({ isDisabled, isSelected }) => (isDisabled || !isSelected) && css`
         border-color: ${({ theme }) => theme.colorDisabled};
     `}
 
     ${({ isDisabled }) => isDisabled && css`
-        border-color: ${({ theme }) => theme.colorDisabled};
         color: ${({ theme }) => theme.colorDisabled};
         pointer-events: none;
     `}

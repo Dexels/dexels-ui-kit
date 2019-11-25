@@ -26,6 +26,7 @@ module.exports = {
             ignoreFunctions: [
                 /^get.*$/,
                 /^\${get.*$/,
+                'hexToRgb',
                 'invertColor',
                 '.toLowerCase',
             ],

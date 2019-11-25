@@ -12,7 +12,7 @@ export const StyledCard = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     ${({ position }) => getPosition(position)}
     ${({ elevation }) => getElevation(elevation)}
-    flex: auto;
+    display: flex;
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.spacing(1)};
     word-break: break-word;

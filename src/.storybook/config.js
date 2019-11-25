@@ -4,6 +4,8 @@ import '../app/styles/fonts/opensans/opensans.css';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import { addDecorator, addParameters, configure } from '@storybook/react';
+import { ELEVATIONS, POSITIONS } from '../app/utils/constants';
+import Card from '../app/components/atoms/Card/Card';
 import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
@@ -22,14 +24,19 @@ moment.locale('nl');
 addDecorator(withInfo);
 addDecorator(withKnobs);
 
-// Wrap all stories in some centered div
+// Wrap all stories in some centered div and then inside a Card so you can see the them color
 addDecorator((storyFn) => (
     <div style={{
         margin: '40px auto',
         width: '80%',
     }}
     >
-        {storyFn()}
+        <Card
+            elevation={ELEVATIONS.LEVEL_0}
+            position={POSITIONS.TOP_LEFT}
+        >
+            {storyFn()}
+        </Card>
     </div>
 ));
 
