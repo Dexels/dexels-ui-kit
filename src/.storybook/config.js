@@ -4,7 +4,7 @@ import '../app/styles/fonts/opensans/opensans.css';
 import '../app/styles/global.css';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-import { addDecorator, addParameters, configure } from '@storybook/react';
+import { addDecorator, configure } from '@storybook/react';
 import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
@@ -41,33 +41,6 @@ addDecorator(withThemesProvider([
         name: 'Dark',
     },
 ]));
-
-// Make it possible to switch between background-colors
-addParameters({
-    backgrounds: [
-        {
-            default: true,
-            name: 'light',
-            value: themeBasic.shades.nine,
-        },
-        {
-            name: 'intermediate',
-            value: themeBasic.shades.five,
-        },
-        {
-            name: 'dark',
-            value: '#000000',
-        },
-        {
-            name: 'blue',
-            value: themeBasic.colorSecondary,
-        },
-        {
-            name: 'purple',
-            value: themeBasic.colorPrimary,
-        },
-    ],
-});
 
 // Import all stories
 configure(require.context('../app', true, /\.stories\.js$/), module);
