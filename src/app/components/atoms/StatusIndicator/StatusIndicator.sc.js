@@ -13,7 +13,7 @@ export const StyledStatusIndicator = styled.div`
     color: ${({ status, theme }) => getStatusColor(status, theme)};
 
     ${({ placement }) => css`
-        border-${placement.toLowerCase()}: 8px solid;
+        border-${placement}: 8px solid;
     `}
 `;
 
