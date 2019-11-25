@@ -5,28 +5,32 @@ import { themeBasic } from '../../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
 
 const StyledMenuItem = styled.div`
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
     position: relative;
     border-left: ${({ theme }) => theme.spacing(0.5)} solid transparent;
     background-color: ${({ theme }) => theme.card.backgroundColor};
     overflow: hidden;
     color: ${({ theme }) => theme.colorText.primary};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
 
     ${({ isDisabled }) => isDisabled && css`
         color: ${({ theme }) => theme.colorDisabled};
         pointer-events: none;
     `}
 
-    ${({ hasChildrenItems, isSelected }) => !hasChildrenItems && isSelected && css`
-        border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.colorSecondary};
-        background-color: ${({ theme }) => theme.shades.eight};
-        color: ${({ theme }) => theme.colorText.secondary};
+    ${({ hasChildren, isSelected, theme }) => !hasChildren && isSelected && css`
+        border-color: ${theme.colorSecondary};
+        background-color: ${theme.shades.eight};
+        color: ${theme.colorText.secondary};
     `}
+
+    &::after {
+        ${({ theme }) => rippleEffect(theme.colorSecondary)}
+    }
 
     &:hover,
     &:focus {
-        ${({ isSelected }) => !isSelected && css`
-            border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.shades.five};
+        ${({ isSelected, theme }) => !isSelected && css`
+            border-color: ${theme.shades.five};
         `}
         background-color: ${({ theme }) => theme.hover.backgroundColor};
     }
@@ -34,14 +38,10 @@ const StyledMenuItem = styled.div`
     &:active::after {
         ${rippleEffectReset()}
     }
-
-    ::after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)}
-    }
 `;
 
 StyledMenuItem.propTypes = {
-    hasChildrenItems: PropTypes.bool.isRequired,
+    hasChildren: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isSelected: PropTypes.bool.isRequired,
     theme: themePropTypes,

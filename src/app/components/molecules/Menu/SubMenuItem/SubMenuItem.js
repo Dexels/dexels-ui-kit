@@ -1,14 +1,14 @@
 import Divider from '../Divider/Divider';
-import ItemWrapper from '../ItemWrapper/ItemWrapper';
+import Item from '../Item/Item';
 import PropTypes from 'prop-types';
 import React from 'react';
 import StyledSubMenuItem from './SubMenuItem.sc';
 import TextWithOptionalIcon from '../../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const SubMenuItem = ({
+    hasDivider,
     iconType,
     isDisabled,
-    isDividerSet,
     isSelected,
     onClick,
     title,
@@ -19,12 +19,12 @@ const SubMenuItem = ({
         onClick={isDisabled ? null : onClick}
     >
         <>
-            <ItemWrapper>
-                <TextWithOptionalIcon iconType={iconType} isCapitalized={false}>
+            <Item hasChildren={false} isParent={false}>
+                <TextWithOptionalIcon iconType={iconType}>
                     {title}
                 </TextWithOptionalIcon>
-            </ItemWrapper>
-            {isDividerSet && (
+            </Item>
+            {hasDivider && (
                 <Divider />
             )}
         </>
@@ -32,18 +32,18 @@ const SubMenuItem = ({
 );
 
 SubMenuItem.propTypes = {
+    hasDivider: PropTypes.bool,
     iconType: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconTypes)),
     isDisabled: PropTypes.bool,
-    isDividerSet: PropTypes.bool,
     isSelected: PropTypes.bool,
     onClick: PropTypes.func,
     title: PropTypes.string.isRequired,
 };
 
 SubMenuItem.defaultProps = {
+    hasDivider: false,
     iconType: null,
     isDisabled: false,
-    isDividerSet: false,
     isSelected: false,
     onClick: null,
 };

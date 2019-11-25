@@ -5,39 +5,39 @@ import { themeBasic } from '../../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
 
 const StyledSubMenuItem = styled.div`
+    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     position: relative;
     border-left: ${({ theme }) => theme.spacing(0.5)} solid transparent;
     background-color: ${({ theme }) => theme.card.backgroundColor};
     overflow: hidden;
-    color: ${({ theme }) => theme.colorText.primary};
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    color: ${({ theme }) => theme.shades.one};
 
     ${({ isDisabled }) => isDisabled && css`
         color: ${({ theme }) => theme.colorDisabled};
         pointer-events: none;
     `}
 
-    ${({ isSelected }) => isSelected && css`
-        border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.colorSecondary};
-        background-color: ${({ theme }) => theme.shades.eight};
-        color: ${({ theme }) => theme.colorText.secondary};
+    ${({ isSelected, theme }) => isSelected && css`
+        border-color: ${theme.colorSecondary};
+        background-color: ${theme.shades.eight};
+        color: ${theme.colorText.secondary};
         font-weight: 500;
     `}
 
+    &::after {
+        ${({ theme }) => rippleEffect(theme.colorSecondary)}
+    }
+
     &:hover,
     &:focus {
-        ${({ isSelected }) => !isSelected && css`
-            border-left: ${({ theme }) => theme.spacing(0.5)} solid ${({ theme }) => theme.shades.five};
+        ${({ isSelected, theme }) => !isSelected && css`
+            border-color: ${theme.shades.five};
         `}
         background-color: ${({ theme }) => theme.hover.backgroundColor};
     }
 
     &:active::after {
         ${rippleEffectReset()}
-    }
-
-    ::after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)}
     }
 `;
 

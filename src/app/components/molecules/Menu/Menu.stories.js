@@ -22,15 +22,15 @@ export const Configurable = () => {
     return (
         <>
             <MenuItem
+                hasDivider
                 iconType={TextWithOptionalIcon.iconTypes.SHIRT}
-                isDividerSet
                 isSelected={selectedItem === 'Tournament'}
                 onClick={() => handleOnClick('Tournament')}
                 title={'Tournament'}
             />
             <MenuItem
+                hasDivider
                 iconType={TextWithOptionalIcon.iconTypes.MATCHOWN}
-                isDividerSet
                 isExpanded={expandedItem === 'Matches'}
                 isSelected={selectedItem === 'Matches'}
                 onClick={() => handleOnClick('Matches')}
@@ -43,8 +43,8 @@ export const Configurable = () => {
                 />
             </MenuItem>
             <MenuItem
+                hasDivider
                 iconType={TextWithOptionalIcon.iconTypes.LIGHTBULB}
-                isDividerSet
                 isExpanded={expandedItem === 'Competitions'}
                 isSelected={selectedItem === 'Competitions'}
                 onClick={() => handleOnClick('Competitions')}

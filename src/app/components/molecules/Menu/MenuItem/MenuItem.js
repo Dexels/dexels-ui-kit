@@ -1,7 +1,7 @@
 import ButtonIcon from '../../ButtonIcon/ButtonIcon';
 import Divider from '../Divider/Divider';
 import Icon from '../../../atoms/Icon/Icon';
-import ItemWrapper from '../ItemWrapper/ItemWrapper';
+import Item from '../Item/Item';
 import PropTypes from 'prop-types';
 import React from 'react';
 import StyledMenuItem from './MenuItem.sc';
@@ -9,9 +9,9 @@ import TextWithOptionalIcon from '../../TextWithOptionalIcon/TextWithOptionalIco
 
 const MenuItem = ({
     children,
+    hasDivider,
     iconType,
     isDisabled,
-    isDividerSet,
     isExpanded,
     isSelected,
     onClick,
@@ -19,14 +19,14 @@ const MenuItem = ({
 }) => (
     <>
         <StyledMenuItem
-            hasChildrenItems={children !== null}
+            hasChildren={children !== null}
             isDisabled={isDisabled}
             isSelected={isSelected}
             onClick={isDisabled ? null : onClick}
         >
             <>
-                <ItemWrapper hasChildrenItems={children !== null} isParentItem>
-                    <TextWithOptionalIcon iconType={iconType} isCapitalized={false}>
+                <Item hasChildren={children !== null} isParent>
+                    <TextWithOptionalIcon iconType={iconType}>
                         {title}
                     </TextWithOptionalIcon>
                     {children && (
@@ -36,8 +36,8 @@ const MenuItem = ({
                             onClick={isDisabled ? null : onClick}
                         />
                     )}
-                </ItemWrapper>
-                {isDividerSet && !isSelected && (
+                </Item>
+                {hasDivider && !isSelected && (
                     <Divider />
                 )}
             </>
@@ -48,11 +48,13 @@ const MenuItem = ({
     </>
 );
 
+MenuItem.iconTypes = Icon.types;
+
 MenuItem.propTypes = {
     children: PropTypes.node,
-    iconType: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconTypes)),
+    hasDivider: PropTypes.bool,
+    iconType: PropTypes.oneOf(Object.values(MenuItem.iconTypes)),
     isDisabled: PropTypes.bool,
-    isDividerSet: PropTypes.bool,
     isExpanded: PropTypes.bool,
     isSelected: PropTypes.bool,
     onClick: PropTypes.func,
@@ -61,9 +63,9 @@ MenuItem.propTypes = {
 
 MenuItem.defaultProps = {
     children: null,
+    hasDivider: false,
     iconType: null,
     isDisabled: false,
-    isDividerSet: false,
     isExpanded: false,
     isSelected: false,
     onClick: null,
