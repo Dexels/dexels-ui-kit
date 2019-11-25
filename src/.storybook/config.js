@@ -1,11 +1,10 @@
 import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
+import './styles/global.css';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import { addDecorator, addParameters, configure } from '@storybook/react';
-import { ELEVATIONS, POSITIONS } from '../app/utils/constants';
-import Card from '../app/components/atoms/Card/Card';
 import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
@@ -16,6 +15,7 @@ import { themeLight } from '../app/styles/theming/themes/light';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
+import Wrapper from './components/Wrapper/Wrapper';
 
 // Set Moment locale to Dutch
 moment.locale('nl');
@@ -26,18 +26,9 @@ addDecorator(withKnobs);
 
 // Wrap all stories in some centered div and then inside a Card so you can see the them color
 addDecorator((storyFn) => (
-    <div style={{
-        margin: '40px auto',
-        width: '80%',
-    }}
-    >
-        <Card
-            elevation={ELEVATIONS.LEVEL_0}
-            position={POSITIONS.TOP_LEFT}
-        >
-            {storyFn()}
-        </Card>
-    </div>
+    <Wrapper>
+        {storyFn()}
+    </Wrapper>
 ));
 
 // Add withThemesProvider setup to make themes available in all stories
