@@ -7,11 +7,7 @@ import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../../styles/mixins/setTruncate';
 import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
-<<<<<<< HEAD
-import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
-=======
 import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
->>>>>>> master
 
 export const StyledWrapper = styled.div`
     ${setBoxSizing()}
@@ -160,8 +156,6 @@ export const StyledWrapper = styled.div`
         &:hover {
             background-color: ${({ theme }) => theme.datePicker.day.hover.backgroundColor};
             color: ${({ theme }) => theme.datePicker.day.hover.color};
-<<<<<<< HEAD
-=======
         }
 
         &.CalendarDay__selected_span {
@@ -171,7 +165,6 @@ export const StyledWrapper = styled.div`
                 background-color: ${({ theme }) => theme.datePicker.day.hover.backgroundColor};
                 color: ${({ theme }) => theme.datePicker.day.hover.color};
             }
->>>>>>> master
         }
     }
 
@@ -213,11 +206,7 @@ export const StyledWrapper = styled.div`
         &.CalendarDay__selected,
         &.CalendarDay__selected_span {
             &::after {
-<<<<<<< HEAD
-                background-color: ${({ theme }) => theme.datePicker.day.selected.color};
-=======
                 background-color: ${({ theme }) => theme.datePicker.day.hover.color};
->>>>>>> master
             }
         }
     }

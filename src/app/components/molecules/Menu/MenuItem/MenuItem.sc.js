@@ -30,7 +30,7 @@ const StyledMenuItem = styled.div`
     &:hover,
     &:focus {
         ${({ isSelected, theme }) => !isSelected && css`
-            border-color: ${theme.shades.five};
+            border-color: ${theme.shades.six};
         `}
         background-color: ${({ theme }) => theme.hover.backgroundColor};
     }
