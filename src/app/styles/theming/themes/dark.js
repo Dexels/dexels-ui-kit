@@ -107,10 +107,11 @@ themeDark.datePicker = {
         },
         hover: {
             accent: themeDark.colorSecondary,
-            backgroundColor: colorHeaderPrimary,
+            backgroundColor: colorHeaderSecondary,
             color: themeDark.colorText.primary,
         },
         selected: {
+            backgroundColor: themeDark.colorSecondary,
             color: themeDark.colorText.primary,
         },
         selectionLimit: {

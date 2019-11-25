@@ -45,7 +45,8 @@ import Toolbar from '../app/components/organisms/Toolbar/Toolbar';
 
 // Theming
 import { themeBasic } from '../app/styles/theming/themes/basic';
-import { themePropTypes } from '../app/styles/theming/themes/themePropTypes';
+import { themeDark } from '../app/styles/theming/themes/dark';
+import { themePropTypes } from '../app/styles/theming/themes/propTypes';
 import createDuiTheme from '../app/styles/theming/createDuiTheme';
 
 export {
@@ -85,6 +86,7 @@ export {
     Toolbar,
     // Export theming
     themeBasic,
+    themeDark,
     themePropTypes,
     createDuiTheme,
 };

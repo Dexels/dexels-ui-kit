@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import PropTypes from 'prop-types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledStatusIndicator = styled.div`
     display: flex;
@@ -13,7 +13,7 @@ export const StyledStatusIndicator = styled.div`
     color: ${({ status, theme }) => getStatusColor(status, theme)};
 
     ${({ placement }) => css`
-        border-${placement.toLowerCase()}: 8px solid;
+        border-${placement}: 8px solid;
     `}
 `;
 

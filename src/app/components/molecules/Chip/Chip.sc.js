@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledChip = styled.button`
@@ -22,15 +22,13 @@ export const StyledChip = styled.button`
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(0.5, 1)};
     min-height: ${({ theme }) => theme.spacing(4)};
-    overflow: hidden;
     color: ${({ theme }) => theme.colorText.primary};
 
-    ${({ isSelected }) => !isSelected && css`
+    ${({ isDisabled, isSelected }) => (isDisabled || !isSelected) && css`
         border-color: ${({ theme }) => theme.colorDisabled};
     `}
 
     ${({ isDisabled }) => isDisabled && css`
-        border-color: ${({ theme }) => theme.colorDisabled};
         color: ${({ theme }) => theme.colorDisabled};
         pointer-events: none;
     `}

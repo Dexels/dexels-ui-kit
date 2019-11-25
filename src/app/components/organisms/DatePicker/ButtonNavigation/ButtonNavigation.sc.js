@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
 
 export const StyledButtonNavigation = styled.div`
     position: absolute;
