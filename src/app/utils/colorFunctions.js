@@ -35,4 +35,25 @@ export const invertColor = (hex, bw = false) => {
     return `#${padZero(r)}${padZero(g)}${padZero(b)}`;
 };
 
-export default invertColor;
+export const hexToRgb = (hex, transparency = 1) => {
+    let hexTmp = hex;
+
+    if (hexTmp.indexOf('#') === 0) {
+        hexTmp = hexTmp.slice(1);
+    }
+
+    // convert 3-digit hex to 6-digits.
+    if (hexTmp.length === 3) {
+        hexTmp = hexTmp[0] + hexTmp[0] + hexTmp[1] + hexTmp[1] + hexTmp[2] + hexTmp[2];
+    }
+
+    if (hexTmp.length !== 6) {
+        throw new Error('Invalid HEX color.');
+    }
+
+    const r = parseInt(hexTmp.slice(0, 2), 16).toString();
+    const g = parseInt(hexTmp.slice(2, 4), 16).toString();
+    const b = parseInt(hexTmp.slice(4, 6), 16).toString();
+
+    return `rgb(${padZero(r)}, ${padZero(g)}, ${padZero(b)}, ${transparency})`;
+};

@@ -4,7 +4,7 @@ import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import StatusIndicator from '../../../atoms/StatusIndicator/StatusIndicator';
 import styled from 'styled-components';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
 
 export const StyledStatusCell = styled.div`
     ${setBoxSizing()}

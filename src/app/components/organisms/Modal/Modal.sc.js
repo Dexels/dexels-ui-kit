@@ -1,7 +1,12 @@
+<<<<<<< HEAD
+=======
+import { MODAL_EASINGS } from './Modal.consts';
+import PropTypes from 'prop-types';
+>>>>>>> master
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledModal = styled.div`
     ${setBoxSizing()}

@@ -166,6 +166,7 @@ themeBasic.datePicker = {
             color: themeBasic.shades.nine,
         },
         selected: {
+            backgroundColor: themeBasic.colorSecondary,
             color: themeBasic.shades.nine,
         },
         selectionLimit: {

@@ -1,12 +1,17 @@
 import styled, { css } from 'styled-components';
 import { ELEVATIONS } from '../../../../utils/constants';
 import getElevation from '../../../../styles/mixins/getElevation';
+import { hexToRgb } from '../../../../utils/colorFunctions';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../../styles/mixins/setTruncate';
 import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
+<<<<<<< HEAD
 import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
+=======
+import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
+>>>>>>> master
 
 export const StyledWrapper = styled.div`
     ${setBoxSizing()}
@@ -100,6 +105,7 @@ export const StyledWrapper = styled.div`
     .DayPicker__withBorder {
         ${getElevation(ELEVATIONS.LEVEL_6)}
         border-radius: ${({ theme }) => theme.spacing(1)};
+        background-color: ${({ theme }) => theme.datePicker.backgroundColor};
         overflow: hidden;
     }
 
@@ -138,6 +144,11 @@ export const StyledWrapper = styled.div`
         `}
     }
 
+    .CalendarMonth,
+    .CalendarMonthGrid {
+        background-color: ${({ theme }) => theme.datePicker.backgroundColor};
+    }
+
     .CalendarDay__default {
         ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
         position: relative;
@@ -149,6 +160,18 @@ export const StyledWrapper = styled.div`
         &:hover {
             background-color: ${({ theme }) => theme.datePicker.day.hover.backgroundColor};
             color: ${({ theme }) => theme.datePicker.day.hover.color};
+<<<<<<< HEAD
+=======
+        }
+
+        &.CalendarDay__selected_span {
+            background-color: ${({ theme }) => hexToRgb(theme.datePicker.day.selected.backgroundColor, 0.7)};
+
+            &:hover {
+                background-color: ${({ theme }) => theme.datePicker.day.hover.backgroundColor};
+                color: ${({ theme }) => theme.datePicker.day.hover.color};
+            }
+>>>>>>> master
         }
     }
 
@@ -190,7 +213,11 @@ export const StyledWrapper = styled.div`
         &.CalendarDay__selected,
         &.CalendarDay__selected_span {
             &::after {
+<<<<<<< HEAD
                 background-color: ${({ theme }) => theme.datePicker.day.selected.color};
+=======
+                background-color: ${({ theme }) => theme.datePicker.day.hover.color};
+>>>>>>> master
             }
         }
     }

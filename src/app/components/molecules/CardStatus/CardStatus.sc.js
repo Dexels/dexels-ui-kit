@@ -3,7 +3,7 @@ import { CARD_ELEVATIONS } from '../../atoms/Card/Card.consts';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledCardStatusWrapper = styled.div`
     ${({ elevation }) => getElevation(elevation)}
