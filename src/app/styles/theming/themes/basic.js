@@ -1,65 +1,6 @@
 import mapArrayToObject from '../../../utils/mapArrayToObject';
-import PropTypes from 'prop-types';
-
-export const textStylePropTypes = PropTypes.shape({
-    fontFamily: PropTypes.string.isRequired,
-    fontSize: PropTypes.string.isRequired,
-    fontWeight: PropTypes.string.isRequired,
-    lineHeight: PropTypes.string.isRequired,
-});
 
 /* eslint-disable sort-keys */
-export const themePropTypes = PropTypes.shape({
-    shades: PropTypes.shape({
-        one: PropTypes.string.isRequired,
-        two: PropTypes.string.isRequired,
-        three: PropTypes.string.isRequired,
-        four: PropTypes.string.isRequired,
-        five: PropTypes.string.isRequired,
-        six: PropTypes.string.isRequired,
-        seven: PropTypes.string.isRequired,
-        eight: PropTypes.string.isRequired,
-        nine: PropTypes.string.isRequired,
-    }).isRequired,
-    colorPrimary: PropTypes.string.isRequired,
-    colorSecondary: PropTypes.string.isRequired,
-    colorTertiary: PropTypes.string.isRequired,
-    colorAlert: PropTypes.string.isRequired,
-    colorInvalid: PropTypes.string.isRequired,
-    colorValid: PropTypes.string.isRequired,
-    background: PropTypes.shape({
-        primary: PropTypes.string.isRequired,
-    }).isRequired,
-    colorContrastText: PropTypes.shape({
-        primary: PropTypes.string.isRequired,
-    }).isRequired,
-    colorHeaderText: PropTypes.shape({
-        primary: PropTypes.string.isRequired,
-        secondary: PropTypes.string.isRequired,
-    }).isRequired,
-    colorBodyText: PropTypes.shape({
-        primary: PropTypes.string.isRequired,
-        secondary: PropTypes.string.isRequired,
-    }).isRequired,
-    fontFamilyPrimary: PropTypes.string.isRequired,
-    fontFamilySecondary: PropTypes.string.isRequired,
-    spacingValue: PropTypes.number.isRequired,
-    textStyles: PropTypes.shape({
-        body1: textStylePropTypes.isRequired,
-        body2: textStylePropTypes.isRequired,
-        buttonLarge: textStylePropTypes.isRequired,
-        buttonMedium: textStylePropTypes.isRequired,
-        buttonSmall: textStylePropTypes.isRequired,
-        caption: textStylePropTypes.isRequired,
-        h1: textStylePropTypes.isRequired,
-        h2: textStylePropTypes.isRequired,
-        h3: textStylePropTypes.isRequired,
-    }).isRequired,
-    availableTextStyles: PropTypes.func.isRequired,
-    spacing: PropTypes.func.isRequired,
-    textStyling: PropTypes.func.isRequired,
-});
-
 export const themeBasic = {
     shades: {
         one: '#002451',
@@ -79,9 +20,10 @@ export const themeBasic = {
     colorInvalid: '#F94E4E',
     colorValid: '#2DD67B',
     background: {},
-    colorContrastText: {},
-    colorHeaderText: {},
-    colorBodyText: {},
+    button: {},
+    colorText: {},
+    colorTextContrast: {},
+    colorTextBody: {},
     fontFamilyPrimary: "'Open Sans', arial, sans-serif",
     fontFamilySecondary: "'Exo 2', sans-serif",
     spacingValue: 8,
@@ -138,24 +80,118 @@ export const themeBasic = {
     },
 };
 
-themeBasic.background = {
-    primary: themeBasic.shades.eight,
-};
-
 themeBasic.colorDisabled = themeBasic.shades.six;
 
-themeBasic.colorContrastText = {
+themeBasic.colorTextContrast = {
     primary: themeBasic.shades.nine,
 };
 
-themeBasic.colorHeaderText = {
+themeBasic.colorText = {
     primary: themeBasic.colorPrimary,
     secondary: themeBasic.colorSecondary,
 };
 
-themeBasic.colorBodyText = {
+themeBasic.colorTextBody = {
     primary: themeBasic.shades.one,
     secondary: themeBasic.shades.four,
+};
+
+themeBasic.background = {
+    primary: themeBasic.shades.eight,
+    secondary: themeBasic.shades.nine,
+    tertiary: themeBasic.shades.eight,
+};
+
+themeBasic.button = {
+    filled: {
+        backgroundColor: {
+            disabled: themeBasic.colorDisabled,
+            hover: themeBasic.colorSecondary,
+            hoverInverted: themeBasic.colorSecondary,
+            inverted: themeBasic.shades.nine,
+            primary: themeBasic.colorPrimary,
+        },
+        color: {
+            disabled: themeBasic.shades.nine,
+            hover: themeBasic.shades.nine,
+            hoverInverted: themeBasic.shades.nine,
+            inverted: themeBasic.colorPrimary,
+            primary: themeBasic.shades.nine,
+        },
+    },
+    outline: {
+        backgroundColor: {
+            disabled: themeBasic.colorDisabled,
+            hover: themeBasic.colorSecondary,
+            hoverInverted: themeBasic.colorSecondary,
+            inverted: themeBasic.shades.nine,
+            primary: themeBasic.colorPrimary,
+        },
+        color: {
+            disabled: themeBasic.colorDisabled,
+            hover: themeBasic.colorSecondary,
+            hoverInverted: themeBasic.colorSecondary,
+            inverted: themeBasic.shades.nine,
+            primary: themeBasic.colorPrimary,
+        },
+    },
+    textOnly: {
+        disabled: themeBasic.colorDisabled,
+        disabledInverted: themeBasic.shades.seven,
+        hover: themeBasic.colorSecondary,
+        hoverInverted: themeBasic.colorSecondary,
+        inverted: themeBasic.shades.nine,
+        primary: themeBasic.colorPrimary,
+    },
+};
+
+themeBasic.card = {
+    backgroundColor: themeBasic.shades.nine,
+};
+
+themeBasic.datePicker = {
+    backgroundColor: themeBasic.shades.nine,
+    color: themeBasic.colorPrimary,
+    day: {
+        accent: themeBasic.colorPrimary,
+        backgroundColor: themeBasic.shades.seven,
+        color: themeBasic.shades.one,
+        disabled: {
+            backgroundColor: themeBasic.shades.eight,
+            color: themeBasic.colorDisabled,
+        },
+        hover: {
+            accent: themeBasic.colorSecondary,
+            backgroundColor: themeBasic.colorPrimary,
+            color: themeBasic.shades.nine,
+        },
+        selected: {
+            backgroundColor: themeBasic.colorSecondary,
+            color: themeBasic.shades.nine,
+        },
+        selectionLimit: {
+            backgroundColor: themeBasic.colorSecondary,
+            color: themeBasic.shades.nine,
+        },
+    },
+};
+
+themeBasic.header = {
+    backgroundColor: {
+        primary: themeBasic.colorPrimary,
+        secondary: themeBasic.shades.nine,
+    },
+};
+
+themeBasic.hover = {
+    backgroundColor: themeBasic.background.primary,
+};
+
+themeBasic.table = {
+    row: {
+        backgroundColorOdd: themeBasic.shades.nine,
+        backgroundColorEven: themeBasic.hover.backgroundColor,
+    },
 };
 
 themeBasic.textStyles.body1 = {
@@ -227,3 +263,5 @@ themeBasic.textStyles.h3 = {
     fontWeight: '600',
     lineHeight: '24px',
 };
+
+export default themeBasic;

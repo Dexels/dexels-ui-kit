@@ -23,7 +23,7 @@ export const EASINGS = mapArrayToObject([
     'EASE_OUT',
     'LINEAR',
     'NONE',
-]);
+], true);
 
 export const ELEVATIONS = mapArrayToObject([
     'LEVEL_0',
@@ -60,7 +60,7 @@ export const PLACEMENTS = mapArrayToObject([
     'LEFT',
     'RIGHT',
     'TOP',
-]);
+], true);
 
 export const SIZES = mapArrayToObject([
     'LARGE',

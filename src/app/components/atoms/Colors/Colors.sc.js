@@ -1,8 +1,9 @@
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
-import { invertColor } from '../../../utils/invertColor';
+import { invertColor } from '../../../utils/colorFunctions';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledColors = styled.div`
     ${setBoxSizing()}

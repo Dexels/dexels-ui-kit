@@ -1,8 +1,9 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import PropTypes from 'prop-types';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledButtonIcon = styled.button`
     ${rippleEffectInit()}
@@ -15,7 +16,8 @@ export const StyledButtonIcon = styled.button`
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
-    color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary)};
+    overflow: hidden;
+    color: ${({ isInverted, theme }) => (isInverted ? theme.colorTextContrast.primary : theme.colorText.primary)};
 
     ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
         font-size: 14px;
@@ -48,7 +50,7 @@ export const StyledButtonIcon = styled.button`
     &:focus,
     &:hover {
         background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.colorTertiary)};
-        color: ${({ isInverted, theme }) => (isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.secondary)};
+        color: ${({ isInverted, theme }) => (isInverted ? theme.colorTextContrast.primary : theme.colorText.secondary)};
     }
 
     &:active::after {

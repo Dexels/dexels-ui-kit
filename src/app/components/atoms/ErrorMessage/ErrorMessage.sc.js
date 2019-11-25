@@ -1,5 +1,6 @@
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import styled from 'styled-components';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledErrorMessage = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)}

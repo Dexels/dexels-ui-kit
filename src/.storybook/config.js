@@ -1,18 +1,20 @@
 import '../app/styles/fonts/exo2/exo2.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
+import '../app/styles/global.css';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import { addDecorator, addParameters, configure } from '@storybook/react';
+import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
-import { themeLight } from '../app/styles/theming/themes/light';
+import { themeDark } from '../app/styles/theming/themes/dark';
 // This seems like a ESLint bug
 // eslint-disable-next-line import/no-unresolved
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
+import Wrapper from './components/Wrapper/Wrapper';
 
 // Set Moment locale to Dutch
 moment.locale('nl');
@@ -21,15 +23,14 @@ moment.locale('nl');
 addDecorator(withInfo);
 addDecorator(withKnobs);
 
-// Wrap all stories in some centered div
+// Wrap all stories in some centered div and then inside a Card so you can see the them color
 addDecorator((storyFn) => (
-    <div style={{
-        margin: '40px auto',
-        width: '80%',
-    }}
+    <Wrapper
+        isTransparent={boolean('Wrapper is transparent', false)}
+        width={select('Wrapper width', Wrapper.widths, Wrapper.widths.LARGE)}
     >
         {storyFn()}
-    </div>
+    </Wrapper>
 ));
 
 // Add withThemesProvider setup to make themes available in all stories
@@ -39,8 +40,8 @@ addDecorator(withThemesProvider([
         name: 'Basic',
     },
     {
-        ...themeLight,
-        name: 'Light',
+        ...themeDark,
+        name: 'Dark',
     },
 ]));
 

@@ -5,13 +5,14 @@ import {
     DIALOG_ELEVATIONS,
 } from './Dialog.consts';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledDialog = styled.div`
     ${setBoxSizing()}
@@ -53,7 +54,7 @@ export const ButtonClose = styled.button`
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
     text-align: ${({ position }) => (position === DIALOG_DIRECTIONS.LTR ? 'left' : 'right')};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
     font-size: ${({ theme }) => theme.spacing(3)};
 
     ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`
@@ -67,7 +68,7 @@ export const ButtonClose = styled.button`
     &:active,
     &:hover {
         background-color: transparent;
-        color: ${({ theme }) => theme.colorContrastText.primary};
+        color: ${({ theme }) => theme.colorTextContrast.primary};
     }
 
     span {
@@ -94,7 +95,7 @@ export const Header = styled.header`
     background-color: ${({ theme }) => theme.colorPrimary};
     padding: ${({ theme }) => theme.spacing(2)};
     min-height: ${({ theme }) => theme.spacing(7)};
-    color: ${({ theme }) => theme.colorContrastText.primary};
+    color: ${({ theme }) => theme.colorTextContrast.primary};
 `;
 
 Header.propTypes = {
@@ -111,7 +112,7 @@ export const Body = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     background-color: ${({ theme }) => theme.shades.nine};
     padding: ${({ theme }) => theme.spacing(2)};
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ hasHeader, theme }) => !hasHeader && css`
         border-radius: ${theme.spacing(1, 1, 0, 0)};

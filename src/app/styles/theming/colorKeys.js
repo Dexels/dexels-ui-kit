@@ -1,8 +1,10 @@
 export const colorKeys = [
-    'colorBodyText',
+    'background',
     'colorDisabled',
     'colorInvalid',
-    'colorHeaderText',
+    'colorText',
+    'colorTextBody',
+    'colorTextContrast',
     'colorPrimary',
     'colorSecondary',
     'colorTertiary',

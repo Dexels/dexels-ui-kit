@@ -1,10 +1,11 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { DROPDOWN_MULTISELECT_ELEVATIONS } from './DropdownMultiSelect.consts';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledDropdownMultiSelect = styled.div`
     ${setBoxSizing()}
@@ -34,7 +35,7 @@ export const StaticItem = styled.div`
     ${({ elevation }) => getElevation(elevation)}
     margin: 0 0 2px;
     border-radius: ${({ theme }) => theme.spacing(1, 1, 0, 0)};
-    background-color: ${({ theme }) => theme.shades.eight};
+    background-color: ${({ theme }) => theme.shades.seven};
     padding: ${({ theme }) => theme.spacing(1, 1, 1, 2)};
 
     &::after {
@@ -43,6 +44,10 @@ export const StaticItem = styled.div`
 
     &:active::after {
         ${rippleEffectReset()}
+    }
+
+    &:hover {
+        background-color: ${({ theme }) => theme.shades.six};
     }
 `;
 
@@ -57,8 +62,8 @@ StaticItem.defaultProps = {
 
 export const List = styled.ul`
     margin: 0;
-    background-color: ${({ theme }) => theme.shades.nine};
-    padding: ${({ theme }) => theme.spacing(0, 0, 0, 2)};
+    background-color: ${({ theme }) => theme.card.backgroundColor};
+    padding: ${({ theme }) => theme.spacing(0)};
     overflow: auto;
     list-style-type: none;
 
@@ -79,7 +84,7 @@ List.defaultProps = {
 export const ListItem = styled.li`
     ${rippleEffectInit()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
-    padding: ${({ theme }) => theme.spacing(1, 0)};
+    padding: ${({ theme }) => theme.spacing(1, 0, 0, 2)};
 
     &::after {
         ${({ theme }) => rippleEffect(theme.colorSecondary)}
@@ -90,7 +95,7 @@ export const ListItem = styled.li`
     }
 
     &:hover {
-        background-color: ${({ theme }) => theme.shades.eight};
+        background-color: ${({ theme }) => theme.hover.backgroundColor};
     }
 `;
 

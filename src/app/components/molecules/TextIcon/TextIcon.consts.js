@@ -1,3 +1,7 @@
+import { SIZES } from '../../../utils/constants';
+
+export const TEXT_ICON_SIZES = SIZES;
+
 export const textPropTypeFactory = (isRequired) => (
     ({ text }, propName, componentName) => {
         const baseErrorText = `Invalid prop ${propName} passed to ${componentName}`;
@@ -17,5 +21,3 @@ export const textPropTypeFactory = (isRequired) => (
         return null;
     }
 );
-
-export default textPropTypeFactory;

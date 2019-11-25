@@ -1,4 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import Card from './Card';
 import React from 'react';
@@ -22,7 +23,7 @@ export const ConfigurableWithComponent = () => (
         position={select('Position', Card.positions, Card.defaultProps.position)}
     >
         <Button
-            onClick={() => {}}
+            onClick={action('On click')}
         >
             {'Button for testing'}
         </Button>

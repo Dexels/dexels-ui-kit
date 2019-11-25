@@ -33,16 +33,18 @@ FormElementLabel.variants = FORM_ELEMENT_LABEL_VARIANTS;
 FormElementLabel.propTypes = {
     children: PropTypes.node.isRequired,
     hasError: PropTypes.bool,
-    isActive: PropTypes.bool.isRequired,
+    isActive: PropTypes.bool,
     isDisabled: PropTypes.bool,
-    isFocused: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool,
     isValid: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(FormElementLabel.variants)),
 };
 
 FormElementLabel.defaultProps = {
     hasError: false,
+    isActive: true,
     isDisabled: false,
+    isFocused: false,
     isValid: false,
     variant: FormElementLabel.variants.OUTLINE,
 };

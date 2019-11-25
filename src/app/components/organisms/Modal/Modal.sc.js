@@ -1,9 +1,10 @@
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { MODAL_EASINGS } from './Modal.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
 import styled from 'styled-components';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledModal = styled.div`
     ${setBoxSizing()}

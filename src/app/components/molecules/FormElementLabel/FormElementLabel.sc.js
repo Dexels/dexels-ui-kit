@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { FORM_ELEMENT_LABEL_VARIANTS } from './FormElementLabel.consts';
 import PropTypes from 'prop-types';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledFormElementLabel = styled.div`
     position: absolute;

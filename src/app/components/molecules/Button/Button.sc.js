@@ -5,8 +5,9 @@ import {
 } from './Button.consts';
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledButton = styled.button`
@@ -58,73 +59,73 @@ export const StyledButton = styled.button`
     ${({
         isDisabled,
         isInverted,
-        theme,
+        theme: { button },
         variant,
     }) => variant === BUTTON_VARIANTS.FILLED && css`
-        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
-        background-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
-        color: ${isInverted ? theme.colorHeaderText.primary : theme.colorContrastText.primary};
+        border-color: ${isInverted ? button.filled.backgroundColor.inverted : button.filled.backgroundColor.primary};
+        background-color: ${isInverted ? button.filled.backgroundColor.inverted : button.filled.backgroundColor.primary};
+        color: ${isInverted ? button.filled.color.inverted : button.filled.color.primary};
 
         &:focus,
         &:hover {
-            border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
-            background-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
-            color: ${isInverted ? theme.colorContrastText.primary : theme.colorContrastText.primary};
+            border-color: ${isInverted ? button.filled.backgroundColor.hoverInverted : button.filled.backgroundColor.hover};
+            background-color: ${isInverted ? button.filled.backgroundColor.hoverInverted : button.filled.backgroundColor.hover};
+            color: ${isInverted ? button.filled.color.hoverInverted : button.filled.color.hover};
         }
 
         ${isDisabled && css`
-            border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
-            background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
-            color: ${isInverted ? theme.shades.five : theme.colorContrastText.primary};
+            border-color: ${isInverted ? button.filled.color.disabled : button.filled.backgroundColor.disabled};
+            background-color: ${isInverted ? button.filled.color.disabled : button.filled.backgroundColor.disabled};
+            color: ${isInverted ? button.filled.backgroundColor.disabled : button.filled.color.disabled};
         `}
     `}
 
     ${({
         isDisabled,
         isInverted,
-        theme,
+        theme: { button },
         variant,
     }) => variant === BUTTON_VARIANTS.OUTLINE && css`
-        border-color: ${isInverted ? theme.shades.nine : theme.colorPrimary};
+        border-color: ${isInverted ? button.outline.backgroundColor.inverted : button.outline.backgroundColor.primary};
         background-color: transparent !important;
-        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
+        color: ${isInverted ? button.outline.color.inverted : button.outline.color.primary};
 
         &:focus,
         &:hover {
-            border-color: ${isInverted ? theme.colorSecondary : theme.colorSecondary};
-            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorHeaderText.secondary};
+            border-color: ${isInverted ? button.outline.backgroundColor.hoverInverted : button.outline.backgroundColor.hover};
+            color: ${isInverted ? button.outline.color.hoverInverted : button.outline.color.hover};
         }
 
         ${isDisabled && css`
-            border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
-            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
+            border-color: ${isInverted ? button.outline.color.disabled : button.outline.backgroundColor.disabled};
+            color: ${isInverted ? button.outline.backgroundColor.disabled : button.outline.color.disabled};
         `}
     `}
 
     ${({
         isDisabled,
         isInverted,
-        theme,
+        theme: { button },
         variant,
     }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         border: 0;
         background-color: transparent !important;
         padding: 0;
         min-height: 0;
-        color: ${isInverted ? theme.colorContrastText.primary : theme.colorHeaderText.primary};
+        color: ${isInverted ? button.textOnly.inverted : button.textOnly.primary};
 
         &:focus,
         &:hover {
-            color: ${isInverted ? theme.colorHeaderText.secondary : theme.colorSecondary};
+            color: ${isInverted ? button.textOnly.hoverInverted : button.textOnly.hover};
         }
 
         ${isDisabled && css`
-            color: ${isInverted ? theme.shades.seven : theme.colorContrastText.primary};
+            color: ${isInverted ? button.textOnly.disabledInverted : button.textOnly.disabled};
         `}
     `}
 
     &::after {
-        ${({ variant, theme }) => (variant !== BUTTON_VARIANTS.FILLED ? rippleEffect(theme.colorSecondary) : rippleEffect())}
+        ${({ variant, theme: { button } }) => rippleEffect(variant === BUTTON_VARIANTS.FILLED ? button.filled.color.primary : button.outline.backgroundColor.primary)}
     }
 
     &:active::after {

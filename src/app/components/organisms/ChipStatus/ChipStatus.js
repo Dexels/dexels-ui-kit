@@ -1,4 +1,4 @@
-import { CHIP_STATUS_DIRECTIONS, CHIP_STATUS_VARIANTS } from './ChipStatus.consts';
+import { CHIP_STATUS_DIRECTIONS, CHIP_STATUS_ICON_TYPES, CHIP_STATUS_VARIANTS } from './ChipStatus.consts';
 import Chip from '../../molecules/Chip/Chip';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -6,10 +6,13 @@ import React from 'react';
 const getIconType = (variant) => {
     switch (variant) {
         case CHIP_STATUS_VARIANTS.SELECTED:
-            return 'Check';
+            return CHIP_STATUS_ICON_TYPES.CHECK;
+
+        case CHIP_STATUS_VARIANTS.DESELECTED:
+            return CHIP_STATUS_ICON_TYPES.ROUNDCROSS;
 
         case CHIP_STATUS_VARIANTS.INDETERMINATE:
-            return 'Minus';
+            return CHIP_STATUS_ICON_TYPES.MINUS;
 
         default:
             return null;
@@ -39,6 +42,7 @@ const ChipStatus = ({
 );
 
 ChipStatus.directions = CHIP_STATUS_DIRECTIONS;
+ChipStatus.iconTypes = CHIP_STATUS_ICON_TYPES;
 ChipStatus.variants = CHIP_STATUS_VARIANTS;
 
 ChipStatus.propTypes = {

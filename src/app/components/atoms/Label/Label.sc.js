@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import PropTypes from 'prop-types';
 import setTruncate from '../../../styles/mixins/setTruncate';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledLabel = styled.label`
     ${({ isSmall, theme }) => theme.textStyling(
@@ -10,18 +11,18 @@ export const StyledLabel = styled.label`
     ${({ isTruncatable }) => isTruncatable && setTruncate()}
     display: block;
     cursor: inherit;
-    color: ${({ theme }) => theme.shades.four};
+    color: ${({ theme }) => theme.shades.three};
 
     ${({ isCheckboxLabel }) => isCheckboxLabel && css`
-        color: ${({ theme }) => theme.shades.one};
+        color: ${({ theme }) => theme.colorText.primary};
     `}
 
     ${({ isActive }) => isActive && css`
-        color: ${({ theme }) => theme.shades.one};
+        color: ${({ theme }) => theme.colorText.primary};
     `}
 
     ${({ isFocused }) => isFocused && css`
-        color: ${({ theme }) => theme.colorHeaderText.secondary};
+        color: ${({ theme }) => theme.colorText.secondary};
     `}
 
     ${({ isValid }) => isValid && css`

@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { INPUT_VARIANTS } from '../../../utils/constants';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledInput = styled.div`
     ${setBoxSizing()}
@@ -63,9 +64,9 @@ export const TextField = styled.input`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     display: block;
     outline: none;
-    background-color: ${({ theme }) => theme.shades.nine};
+    background-color: transparent;
     width: 100%;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ theme, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
         border: 0;

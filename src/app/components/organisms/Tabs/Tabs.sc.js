@@ -1,9 +1,10 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { themeBasic, themePropTypes } from '../../../styles/theming/themes/basic';
 import { ELEVATIONS } from '../../../utils/constants';
 import getElevation from '../../../styles/mixins/getElevation';
 import PropTypes from 'prop-types';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledTabs = styled.div`
     ${({ elevation }) => getElevation(elevation)}
@@ -25,7 +26,7 @@ export const TabHeader = styled.button`
     padding: ${({ theme }) => theme.spacing(0, 3)};
     height: ${({ theme }) => theme.spacing(6)};
     text-align: center;
-    color: ${({ theme }) => theme.colorHeaderText.primary};
+    color: ${({ theme }) => theme.colorText.primary};
 
     ${({ isFullWidth }) => isFullWidth && css`
         width: 100%;
@@ -47,7 +48,7 @@ export const TabHeader = styled.button`
     &:active,
     &:hover {
         border-bottom-color: ${({ theme }) => theme.colorSecondary};
-        color: ${({ theme }) => theme.colorHeaderText.secondary};
+        color: ${({ theme }) => theme.colorText.secondary};
     }
 
     &:active::after {
