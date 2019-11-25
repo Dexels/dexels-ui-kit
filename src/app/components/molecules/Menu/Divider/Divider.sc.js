@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
 
 const Divider = styled.div`
     background-color: ${({ theme }) => theme.shades.seven};
