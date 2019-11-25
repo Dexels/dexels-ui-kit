@@ -5,7 +5,7 @@ import getPosition from '../../../styles/mixins/getPosition';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledCard = styled.div`
     ${setBoxSizing()}

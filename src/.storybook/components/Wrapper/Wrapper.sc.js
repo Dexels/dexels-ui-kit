@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { themeBasic } from '../../../app/styles/theming/themes/basic';
-import { themePropTypes } from '../../../app/styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../app/styles/theming/themes/propTypes';
 
 export const StyledWrapper = styled.div`
     background-color: ${({ theme }) => theme.background.primary};

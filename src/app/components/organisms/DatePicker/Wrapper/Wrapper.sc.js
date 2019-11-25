@@ -7,7 +7,7 @@ import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../../styles/mixins/setTruncate';
 import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
-import { themePropTypes } from '../../../../styles/theming/themes/themePropTypes';
+import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
 
 export const StyledWrapper = styled.div`
     ${setBoxSizing()}
