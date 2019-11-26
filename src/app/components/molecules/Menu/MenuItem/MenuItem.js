@@ -16,37 +16,42 @@ const MenuItem = ({
     isSelected,
     onClick,
     title,
-}) => (
-    <>
-        <StyledMenuItem
-            hasChildren={children !== null}
-            isDisabled={isDisabled}
-            isSelected={isSelected}
-            onClick={isDisabled ? null : onClick}
-        >
-            <>
-                <Item hasChildren={children !== null} isParent>
-                    <TextWithOptionalIcon iconType={iconType}>
-                        {title}
-                    </TextWithOptionalIcon>
-                    {children && (
-                        <ButtonIcon
-                            iconType={isSelected ? Icon.types.CHEVRONUP : Icon.types.CHEVRONDOWN}
-                            isDisabled={isDisabled}
-                            onClick={isDisabled ? null : onClick}
-                        />
+}) => {
+    const handleOnClick = isDisabled ? null : onClick;
+    const hasChildren = children !== null;
+
+    return (
+        <>
+            <StyledMenuItem
+                hasChildren={hasChildren}
+                isDisabled={isDisabled}
+                isSelected={isSelected}
+                onClick={handleOnClick}
+            >
+                <>
+                    <Item hasChildren={hasChildren} isParent>
+                        <TextWithOptionalIcon iconType={iconType}>
+                            {title}
+                        </TextWithOptionalIcon>
+                        {children && (
+                            <ButtonIcon
+                                iconType={isSelected ? Icon.types.CHEVRONUP : Icon.types.CHEVRONDOWN}
+                                isDisabled={isDisabled}
+                                onClick={handleOnClick}
+                            />
+                        )}
+                    </Item>
+                    {hasDivider && !isSelected && (
+                        <Divider />
                     )}
-                </Item>
-                {hasDivider && !isSelected && (
-                    <Divider />
-                )}
-            </>
-        </StyledMenuItem>
-        {isExpanded && React.Children.map(children, (child) => (
-            React.cloneElement(child)
-        ))}
-    </>
-);
+                </>
+            </StyledMenuItem>
+            {isExpanded && React.Children.map(children, (child) => (
+                React.cloneElement(child)
+            ))}
+        </>
+    );
+};
 
 MenuItem.iconTypes = Icon.types;
 
