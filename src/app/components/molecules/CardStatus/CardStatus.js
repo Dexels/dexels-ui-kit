@@ -23,8 +23,8 @@ const CardStatus = ({
 );
 
 CardStatus.elevations = Card.elevations;
-CardStatus.positions = Card.positions;
 CardStatus.placements = CARD_STATUS_PLACEMENTS;
+CardStatus.positions = Card.positions;
 CardStatus.statuses = CARD_STATUS_STATUSES;
 
 CardStatus.propTypes = {

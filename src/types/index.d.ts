@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.7
+// Type definitions for dexels-ui-kit 2.0.9
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.2
@@ -144,37 +144,94 @@ export interface ButtonProps {
     isDisabled?: boolean;
     isFullWidth?: boolean;
     isInverted?: boolean;
-    onClick: function;
+    onClick: (...args: any[]) => any;
     size?: 'LARGE' | 'MEDIUM' | 'SMALL';
     transitionDuration?: number;
     transitionEasing?: easings;
     variant?: 'FILLED' | 'OUTLINE' | 'TEXT_ONLY';
+    [key: string]: any;
 }
 
 interface Button<P> extends React.FunctionComponent<P> {
     directions: directionsMap;
     iconTypes: iconTypesMap;
     sizes: {
-        [size in ButtonProps.size]: size;
+        [size in ButtonProps['size']]: size;
     }
     transitionEasings: easingsMap;
     variants: {
-        [variant in ButtonProps.variant]: variant;
+        [variant in ButtonProps['variant']]: variant;
     }
 }
 
 export const Button: Button<ButtonProps>;
 
 export interface ButtonIconProps {
-    iconType?: iconTypes;
+    iconType: iconTypes;
     isDisabled?: boolean;
     isInverted?: boolean;
-    onClick: function;
-    size: sizesMap,
+    onClick: (...args: any[]) => any;
+    size?: sizes,
+    [key: string]: any;
 }
 
 interface ButtonIcon<P> extends React.FunctionComponent<P> {
+    iconTypes: iconTypesMap;
     sizes: sizesMap;
 }
 
 export const ButtonIcon: ButtonIcon<ButtonIconProps>;
+
+export interface CardNoResultsProps {
+    elevation?: elevations;
+    header: string;
+    iconType: iconTypes;
+    itemPrefix?: string;
+    items?: React.ReactNode[];
+    title: string;
+}
+
+interface CardNoResults<P> extends React.FunctionComponent<P> {
+    elevations: elevationsMap;
+    iconTypes: iconTypesMap;
+}
+
+export const CardNoResults: CardNoResults<CardNoResultsProps>;
+
+export interface CardStatusProps {
+    children: React.ReactNode;
+    elevation?: elevations;
+    hasBorderRadius?: boolean,
+    placement?: placements;
+    position?: positions;
+    status?: statuses;
+}
+
+interface CardStatus<P> extends React.FunctionComponent<P> {
+    elevations: elevationsMap;
+    placements: placementsMap;
+    positions: positionsMap;
+    statuses: statusesMap;
+}
+
+export const CardStatus: CardStatus<CardStatusProps>;
+
+export interface ChipProps {
+    children: React.ReactNode;
+    direction?: directions;
+    iconType?: iconTypes;
+    isDisabled?: boolean;
+    isSelected?: boolean;
+    onClick: (...args: any[]) => any;
+    transitionDuration?: number;
+    transitionEasing?: easings;
+    [key: string]: any;
+}
+
+interface Chip<P> extends React.FunctionComponent<P> {
+    directions: directionsMap;
+    iconTypes: iconTypesMap;
+    transitionEasings: easingsMap;
+}
+
+export const Chip: Chip<ChipProps>;
