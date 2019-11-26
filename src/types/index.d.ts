@@ -51,12 +51,6 @@ export type statusesMap = { [status in statuses]: status };
 
 // Typings for components
 // Atoms
-export interface ErrorMessageProps {
-    children: React.ReactNode;
-}
-
-export const ErrorMessage: React.FunctionComponent<ErrorMessageProps>;
-
 export interface CardProps {
     children: React.ReactNode;
     elevation?: elevations;
@@ -71,9 +65,15 @@ interface Card<P> extends React.FunctionComponent<P> {
 
 export const Card: Card<CardProps>;
 
+export interface ErrorMessageProps {
+    children: React.ReactNode;
+}
+
+export const ErrorMessage: React.FunctionComponent<ErrorMessageProps>;
+
 export interface IconProps {
-    children: never;
-    type: iconTypesMap;
+    children?: never;
+    type: iconTypes;
 }
 
 interface Icon<P> extends React.FunctionComponent<P> {
