@@ -95,27 +95,27 @@ const Paginator = ({
             <PagingButtons>
                 {hasAllPagingButtons && (
                     <ButtonIcon
-                        iconType={ButtonIcon.types.CHEVRONFIRST}
+                        iconType={ButtonIcon.iconTypes.CHEVRONFIRST}
                         isDisabled={!instance.canPreviousPage}
                         onClick={() => instance.gotoPage(0)}
                         size={ButtonIcon.sizes.XLARGE}
                     />
                 )}
                 <ButtonIcon
-                    iconType={ButtonIcon.types.CHEVRONLEFT}
+                    iconType={ButtonIcon.iconTypes.CHEVRONLEFT}
                     isDisabled={!instance.canPreviousPage}
                     onClick={() => instance.previousPage()}
                     size={ButtonIcon.sizes.XLARGE}
                 />
                 <ButtonIcon
-                    iconType={ButtonIcon.types.CHEVRONRIGHT}
+                    iconType={ButtonIcon.iconTypes.CHEVRONRIGHT}
                     isDisabled={!instance.canNextPage}
                     onClick={() => instance.nextPage()}
                     size={ButtonIcon.sizes.XLARGE}
                 />
                 {hasAllPagingButtons && (
                     <ButtonIcon
-                        iconType={ButtonIcon.types.CHEVRONLAST}
+                        iconType={ButtonIcon.iconTypes.CHEVRONLAST}
                         isDisabled={!instance.canNextPage}
                         onClick={() => instance.gotoPage(instance.pageCount - 1)}
                         size={ButtonIcon.sizes.XLARGE}

@@ -7,7 +7,7 @@ export default { title: 'molecules/ButtonIcon' };
 
 export const Configurable = () => (
     <ButtonIcon
-        iconType={select('Type', ButtonIcon.types, ButtonIcon.defaultProps.iconType)}
+        iconType={select('Type', ButtonIcon.iconTypes, ButtonIcon.defaultProps.iconType)}
         isDisabled={boolean('Is disabled', ButtonIcon.defaultProps.isDisabled)}
         isInverted={boolean('Is inverted', ButtonIcon.defaultProps.isInverted)}
         onClick={action('On click')}
