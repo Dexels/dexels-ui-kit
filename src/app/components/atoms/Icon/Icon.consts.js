@@ -7,6 +7,10 @@
 // I know this solution is a little bit weird but it's still better than including a 40 kb JSON file in our bundle
 // If you manage to come up with a better solution don't hesitate to implement it!
 // import '../../../utils/getIconTypes';
+// Regex to find and replace the part of the key: : '(.*?)',\n
+// Replace it with: ' | '
+// Only the last and first values in the list now need to manually updated to be in the correct format,
+// the rest should be perfect
 
 export const ICON_TYPES = {
     CABLE: 'CABLE',
