@@ -5,8 +5,8 @@ export const transitionEffect = ({
     delay = 0,
     easing = 'ease',
     property = 'all',
-} = {}) => (property !== 'NONE' && css`
-    transition: ${`${property} ${duration}ms ${easing.split('_').join('-')} ${delay}ms`};
+} = {}) => (css`
+    transition: ${`${property} ${duration}ms ${easing} ${delay}ms`};
 `);
 
 export const slideUpEffect = ({
@@ -14,7 +14,7 @@ export const slideUpEffect = ({
     easing = 'ease',
     isVisible = false,
     property = 'all',
-} = {}) => (property !== 'NONE' && css`
+} = {}) => (css`
     ${transitionEffect({
         duration,
         easing,
@@ -28,7 +28,7 @@ export const fadeInEffect = ({
     easing = 'ease',
     isVisible = false,
     property = 'all',
-} = {}) => (property !== 'NONE' && css`
+} = {}) => (css`
     ${transitionEffect({
         duration,
         easing,
