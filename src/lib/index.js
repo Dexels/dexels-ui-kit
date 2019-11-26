@@ -23,6 +23,7 @@ import DialogFooter from '../app/components/molecules/DialogFooter/DialogFooter'
 import Dropdown from '../app/components/molecules/Dropdown/Dropdown';
 import FormElementLabel from '../app/components/molecules/FormElementLabel/FormElementLabel';
 import Input from '../app/components/molecules/Input/Input';
+import Loader from '../app/components/molecules/Loader/Loader';
 import Overlay from '../app/components/molecules/Overlay/Overlay';
 import SelectionControl from '../app/components/molecules/SelectionControl/SelectionControl';
 import TextIcon from '../app/components/molecules/TextIcon/TextIcon';
@@ -66,6 +67,7 @@ export {
     Dropdown,
     FormElementLabel,
     Input,
+    Loader,
     Overlay,
     SelectionControl,
     TextIcon,
