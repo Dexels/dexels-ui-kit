@@ -43,6 +43,13 @@ export const INPUT_VARIANTS = mapArrayToObject([
     'OUTLINE',
 ]);
 
+export const PLACEMENTS = mapArrayToObject([
+    'BOTTOM',
+    'LEFT',
+    'RIGHT',
+    'TOP',
+], true);
+
 export const POSITIONS = mapArrayToObject([
     'BOTTOM_CENTER',
     'BOTTOM_LEFT',
@@ -54,13 +61,6 @@ export const POSITIONS = mapArrayToObject([
     'TOP_LEFT',
     'TOP_RIGHT',
 ]);
-
-export const PLACEMENTS = mapArrayToObject([
-    'BOTTOM',
-    'LEFT',
-    'RIGHT',
-    'TOP',
-], true);
 
 export const SIZES = mapArrayToObject([
     'LARGE',
