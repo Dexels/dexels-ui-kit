@@ -70,7 +70,14 @@ module.exports = (env = {}) => ({
         new BundleAnalyzerPlugin({
             analyzerMode: env.analyze ? 'server' : 'disabled',
         }),
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                'index.d.ts',
+                'index.js',
+                'fonts',
+                'main.css',
+            ],
+        }),
         new CopyPlugin([
             {
                 from: `${typesPath}/index.d.ts`,

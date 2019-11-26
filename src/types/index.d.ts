@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.0
+// Type definitions for dexels-ui-kit 2.0.7
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.2
@@ -151,20 +151,30 @@ export interface ButtonProps {
     variant?: 'FILLED' | 'OUTLINE' | 'TEXT_ONLY';
 }
 
-type ButtonVariantsMap = {
-    [variant in ButtonProps.variant]: variant;
-};
-
 interface Button<P> extends React.FunctionComponent<P> {
     directions: directionsMap;
     iconTypes: iconTypesMap;
     sizes: {
         [size in ButtonProps.size]: size;
     }
-    transitionEasing: easingsMap;
-    variant: {
+    transitionEasings: easingsMap;
+    variants: {
         [variant in ButtonProps.variant]: variant;
     }
 }
 
 export const Button: Button<ButtonProps>;
+
+export interface ButtonIconProps {
+    iconType?: iconTypes;
+    isDisabled?: boolean;
+    isInverted?: boolean;
+    onClick: function;
+    size: sizesMap,
+}
+
+interface ButtonIcon<P> extends React.FunctionComponent<P> {
+    sizes: sizesMap;
+}
+
+export const ButtonIcon: ButtonIcon<ButtonIconProps>;

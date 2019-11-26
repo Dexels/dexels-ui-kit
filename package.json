@@ -1,15 +1,18 @@
 {
     "name": "dexels-ui-kit",
-    "version": "1.0.44",
+    "version": "2.0.7",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
     },
     "description": "An UI kit which can be used in Dexels applications",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "index.js",
+    "types": "index.d.ts",
     "files": [
-        "dist"
+        "index.d.ts",
+        "index.js",
+        "fonts",
+        "main.css"
     ],
     "scripts": {
         "start": "npm run storybook",
@@ -21,6 +24,7 @@
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
         "prepublishOnly": "rm -rf node_modules && npm i && npm run dist",
+        "postpublish": "rm -rf index.d.ts index.js fonts main.css",
         "check-types": "tsc"
     },
     "repository": {
