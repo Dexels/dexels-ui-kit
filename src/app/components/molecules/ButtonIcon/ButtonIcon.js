@@ -27,7 +27,7 @@ ButtonIcon.types = Icon.types;
 ButtonIcon.sizes = BUTTON_ICON_SIZES;
 
 ButtonIcon.propTypes = {
-    iconType: PropTypes.oneOf(Object.values(ButtonIcon.types)),
+    iconType: PropTypes.oneOf(Object.values(ButtonIcon.types)).isRequired,
     isDisabled: PropTypes.bool,
     isInverted: PropTypes.bool,
     onClick: PropTypes.func,
@@ -35,7 +35,6 @@ ButtonIcon.propTypes = {
 };
 
 ButtonIcon.defaultProps = {
-    iconType: ButtonIcon.types.CHEVRONDOWN,
     isDisabled: false,
     isInverted: false,
     onClick: null,
