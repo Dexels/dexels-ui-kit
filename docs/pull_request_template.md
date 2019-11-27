@@ -1,4 +1,10 @@
-### Pull Request template Dexels-ui-kit
+### Pull Request Dexels-ui-kit
+
+<label for="jira">Jira link:</label>
+<input type="text" id="jira" name="jira" placeholder="Paste Jira issue link here"/>
+<label for="description">Description:</label>
+<textarea rows="3" cols="50" id="description" name="description" placeholder="Description of the pull request (contents)"/>
+<br />
 
 - [ ] Performed lint:js check?
 - [ ] Performed lint:csss check?
