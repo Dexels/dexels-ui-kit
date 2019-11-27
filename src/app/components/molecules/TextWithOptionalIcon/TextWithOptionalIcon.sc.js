@@ -8,7 +8,7 @@ import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const Text = styled.p`
     ${setBoxSizing()}
-    ${setTruncate()}
+    ${({ isTruncatable }) => isTruncatable && setTruncate()}
     flex: 0 1 auto;
     order: 2;
     margin: 0;
@@ -23,6 +23,7 @@ export const Text = styled.p`
 
 Text.propTypes = {
     isCapitalized: PropTypes.bool.isRequired,
+    isTruncatable: PropTypes.bool.isRequired,
 };
 
 export const IconWrapper = styled.div`

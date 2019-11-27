@@ -14,7 +14,7 @@ export const menuItems = [
         iconType: ICON_TYPES.SHIRT,
         isDisabled: false,
         path: '/toernooi',
-        text: 'Toernooi',
+        text: 'Toernooi met een extreem lange titel',
     },
     {
         children: [],
@@ -28,7 +28,7 @@ export const menuItems = [
             {
                 isDisabled: true,
                 path: '/wedstrijden/kleedkamers',
-                text: 'Kleedkamers',
+                text: 'Kleedkamers die zo lang zijn dat je er niet eens op kan drukken',
             },
             {
                 isDisabled: false,
