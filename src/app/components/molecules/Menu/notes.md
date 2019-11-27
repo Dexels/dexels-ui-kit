@@ -10,47 +10,54 @@ In the stories file, you'll find a nice working example of how to deal with expa
 ```jsx
 export const menuItems = [
     {
+        children: [],
         iconType: ICON_TYPES.SHIRT,
-        isActive: false,
         isDisabled: false,
-        isExpanded: false,
-        onClick: null,
-        // Example line
-        // onClick: (event) => handleOnClick('Tournament', event),
-        text: 'Tournament',
+        path: '/toernooi',
+        text: 'Toernooi',
+    },
+    {
+        children: [],
+        iconType: ICON_TYPES.SHIELD,
+        isDisabled: true,
+        path: '/club',
+        text: 'Club',
     },
     {
         children: [
             {
-                isActive: false,
-                onClick: null,
-                text: 'Fields',
+                isDisabled: true,
+                path: '/wedstrijden/kleedkamers',
+                text: 'Kleedkamers',
+            },
+            {
+                isDisabled: false,
+                path: '/wedstrijden/velden',
+                text: 'Velden',
             },
         ],
         iconType: ICON_TYPES.MATCHOWN,
-        isActive: false,
-        isExpanded: false,
-        onClick: null,
-        text: 'Matches',
+        isDisabled: false,
+        path: undefined,
+        text: 'Wedstrijden',
     },
     {
         children: [
             {
-                isActive: false,
-                onClick: null,
+                isDisabled: false,
+                path: '/competitie/teams',
                 text: 'Teams',
             },
             {
-                isActive: false,
-                onClick: null,
+                isDisabled: false,
+                path: '/competitie/officials',
                 text: 'Officials',
             },
         ],
         iconType: ICON_TYPES.LIGHTBULB,
-        isActive: false,
-        isExpanded: false,
-        onClick: null,
-        text: 'Competition',
+        isDisabled: false,
+        path: undefined,
+        text: 'Competitie',
     },
 ];
 ```

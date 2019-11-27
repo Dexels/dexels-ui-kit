@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import MenuItem from './MenuItem/MenuItem';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Menu from './Menu';
 import { menuItems } from './mockup/menuItems';
 import notes from './notes.md';
-import SubMenuItem from './SubMenuItem/SubMenuItem';
+import React from 'react';
 
 export default {
     parameters: {
@@ -11,50 +11,44 @@ export default {
     title: 'molecules/Menu',
 };
 
-export const Configurable = () => {
-    const [expandedItem, setExpandedItem] = useState('');
-    const [selectedItem, setSelectedItem] = useState('');
-
-    const handleSetExpandedItem = (item, parentItem = null) => {
-        let expandedItemTmp = '';
-
-        if (expandedItem === parentItem) {
-            expandedItemTmp = parentItem;
-        }
-
-        if (expandedItem !== item && !parentItem) {
-            expandedItemTmp = item;
-        }
-
-        setExpandedItem(expandedItemTmp);
-    };
-
-    const handleOnClick = (item, parentItem = null) => {
-        handleSetExpandedItem(item, parentItem);
-        setSelectedItem(item);
-    };
-
-    return (
-        menuItems.map((item) => (
-            <MenuItem
-                iconType={item.iconType}
-                isActive={selectedItem === item.text}
-                isDisabled={item.isDisabled}
-                isExpanded={expandedItem === item.text}
-                key={item.text}
-                onClick={item.onClick ? item.onClick : () => handleOnClick(item.text)}
-                text={item.text}
+export const Configurable = () => (
+    <BrowserRouter>
+        <div
+            style={{
+                display: 'flex',
+                flexWrap: 'nowrap',
+            }}
+        >
+            <div
+                style={{
+                    flex: '0 0 auto',
+                    width: '300px',
+                }}
             >
-                {item.children && item.children.map((child) => (
-                    <SubMenuItem
-                        isActive={selectedItem === child.text}
-                        isDisabled={child.isDisabled}
-                        key={child.text}
-                        onClick={child.onClick ? child.onClick : () => handleOnClick(child.text, item.text)}
-                        text={child.text}
-                    />
-                ))}
-            </MenuItem>
-        ))
-    );
-};
+                <Menu items={menuItems} />
+            </div>
+            <div
+                style={{
+                    flex: '1 1 auto',
+                    padding: '0 0 0 32px',
+                }}
+            >
+                {menuItems.map(({ children, path, text }) => {
+                    if (children.length > 0) {
+                        return children.map(({ path: childPath, text: childText }) => (
+                            <Route key={childText} path={childPath}>
+                                {`${childText} pagina`}
+                            </Route>
+                        ));
+                    }
+
+                    return (
+                        <Route key={path} path={path}>
+                            {`${text} pagina`}
+                        </Route>
+                    );
+                })}
+            </div>
+        </div>
+    </BrowserRouter>
+);
