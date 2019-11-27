@@ -1,14 +1,14 @@
-### Pull Request Dexels-ui-kit
+### Pull Request (PR) Dexels-ui-kit
 
-<label for="jira">Jira link:</label>
-<input type="text" id="jira" name="jira" placeholder="Paste Jira issue link here"/>
-<label for="description">Description:</label>
-<textarea rows="3" cols="50" id="description" name="description" placeholder="Description of the pull request (contents)"/>
+**Jira link**:
+*Paste Jira URL here*
+
+**Description of the pull request**:
+*The PR description goes here*
+
+<br />
+- [ ] New component?? Did you add it to the export/build file **index.js**?
+- [ ] New iconfont? Did you check if you updated the values in **index.d.ts**?
 <br />
 
-- [ ] Performed lint:js check?
-- [ ] Performed lint:csss check?
-- [ ] If a new component has been created, did you add it to the export file index.js?
-- [ ] If a new iconfont has been imported, did you check if the values are updated in index.d.ts?
-
-Feel free to ask if this PR template needs to be updated!
+#### Feel free to ask if this PR template needs to be updated!
