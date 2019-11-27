@@ -59,7 +59,7 @@ addParameters({
         },
         {
             name: 'dark',
-            value: '#000000',
+            value: '#212121',
         },
         {
             name: 'blue',
