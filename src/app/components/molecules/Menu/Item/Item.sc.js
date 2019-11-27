@@ -5,30 +5,15 @@ import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
 
 const StyledItem = styled.div`
     display: flex;
-    flex-direction: row;
+    flex: 1 1 auto;
     justify-content: space-between;
 
-    ${({ hasChildren, isParent, theme }) => {
-        if (hasChildren) {
-            return css`
-                padding: ${theme.spacing(0.5, 0, 0.5, 1.5)};
-            `;
-        }
-
-        if (!isParent) {
-            return css`
-                padding: ${theme.spacing(1, 0, 1, 3)};
-            `;
-        }
-
-        return css`
-            padding: ${theme.spacing(1, 0, 1, 1.5)};
-        `;
-    }}
+    ${({ isParent, theme }) => css`
+        padding: ${theme.spacing(1, 0, 1, isParent ? 1.5 : 4.2)};
+    `}
 `;
 
 StyledItem.propTypes = {
-    hasChildren: PropTypes.bool.isRequired,
     isParent: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };

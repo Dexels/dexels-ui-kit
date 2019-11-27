@@ -9,6 +9,7 @@ const StyledSubMenuItem = styled.div`
     position: relative;
     border-left: ${({ theme }) => theme.spacing(0.5)} solid transparent;
     background-color: ${({ theme }) => theme.card.backgroundColor};
+    height: ${({ theme }) => theme.spacing(4.5)};
     overflow: hidden;
     color: ${({ theme }) => theme.shades.one};
 
@@ -17,11 +18,11 @@ const StyledSubMenuItem = styled.div`
         pointer-events: none;
     `}
 
-    ${({ isSelected, theme }) => isSelected && css`
+    ${({ isActive, theme }) => isActive && css`
         border-color: ${theme.colorSecondary};
         background-color: ${theme.shades.eight};
         color: ${theme.colorText.secondary};
-        font-weight: 500;
+        font-weight: 600;
     `}
 
     &::after {
@@ -30,10 +31,14 @@ const StyledSubMenuItem = styled.div`
 
     &:hover,
     &:focus {
-        ${({ isSelected, theme }) => !isSelected && css`
+        ${({ isActive, theme }) => !isActive && css`
             border-color: ${theme.shades.six};
         `}
-        background-color: ${({ theme }) => theme.hover.backgroundColor};
+
+        ${({ isActive, theme }) => css`
+            background-color: ${isActive ? theme.background.secondary : theme.hover.backgroundColor};
+        `}
+        cursor: pointer;
     }
 
     &:active::after {
@@ -42,8 +47,8 @@ const StyledSubMenuItem = styled.div`
 `;
 
 StyledSubMenuItem.propTypes = {
+    isActive: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isSelected: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
 

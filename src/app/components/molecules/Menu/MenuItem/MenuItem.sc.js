@@ -6,9 +6,13 @@ import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
 
 const StyledMenuItem = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
+    display: flex;
     position: relative;
+    align-items: center;
+    border-top: ${({ theme }) => `1px solid ${theme.colorDisabled}`};
     border-left: ${({ theme }) => theme.spacing(0.5)} solid transparent;
     background-color: ${({ theme }) => theme.card.backgroundColor};
+    height: ${({ theme }) => theme.spacing(6)};
     overflow: hidden;
     color: ${({ theme }) => theme.colorText.primary};
 
@@ -17,8 +21,8 @@ const StyledMenuItem = styled.div`
         pointer-events: none;
     `}
 
-    ${({ hasChildren, isSelected, theme }) => !hasChildren && isSelected && css`
-        border-color: ${theme.colorSecondary};
+    ${({ hasChildren, isActive, theme }) => !hasChildren && isActive && css`
+        border-left: ${theme.spacing(0.5)} solid ${theme.colorSecondary};
         background-color: ${theme.shades.eight};
         color: ${theme.colorText.secondary};
     `}
@@ -29,21 +33,29 @@ const StyledMenuItem = styled.div`
 
     &:hover,
     &:focus {
-        ${({ isSelected, theme }) => !isSelected && css`
+        ${({ isActive, theme }) => !isActive && css`
             border-color: ${theme.shades.six};
         `}
-        background-color: ${({ theme }) => theme.hover.backgroundColor};
+
+        ${({ isActive, theme }) => css`
+            background-color: ${isActive ? theme.background.secondary : theme.hover.backgroundColor};
+        `}
+        cursor: pointer;
     }
 
     &:active::after {
         ${rippleEffectReset()}
     }
+
+    &:last-of-type {
+        border-bottom: 1px solid ${({ theme }) => theme.colorDisabled};
+    }
 `;
 
 StyledMenuItem.propTypes = {
     hasChildren: PropTypes.bool.isRequired,
+    isActive: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
-    isSelected: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
 

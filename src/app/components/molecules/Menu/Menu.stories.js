@@ -1,66 +1,60 @@
 import React, { useState } from 'react';
 import MenuItem from './MenuItem/MenuItem';
+import { menuItems } from './mockup/menuItems';
+import notes from './notes.md';
 import SubMenuItem from './SubMenuItem/SubMenuItem';
-import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
-export default { title: 'molecules/Menu' };
+export default {
+    parameters: {
+        notes,
+    },
+    title: 'molecules/Menu',
+};
 
 export const Configurable = () => {
     const [expandedItem, setExpandedItem] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
 
-    const handleOnClick = (item) => {
-        if (expandedItem === item) {
-            setExpandedItem('');
-        } else {
-            setExpandedItem(item);
+    const handleSetExpandedItem = (item, parentItem = null) => {
+        let expandedItemTmp = '';
+
+        if (expandedItem === parentItem) {
+            expandedItemTmp = parentItem;
         }
 
+        if (expandedItem !== item && !parentItem) {
+            expandedItemTmp = item;
+        }
+
+        setExpandedItem(expandedItemTmp);
+    };
+
+    const handleOnClick = (item, parentItem = null) => {
+        handleSetExpandedItem(item, parentItem);
         setSelectedItem(item);
     };
 
     return (
-        <>
+        menuItems.map((item) => (
             <MenuItem
-                hasDivider
-                iconType={TextWithOptionalIcon.iconTypes.SHIRT}
-                isSelected={selectedItem === 'Tournament'}
-                onClick={() => handleOnClick('Tournament')}
-                title={'Tournament'}
-            />
-            <MenuItem
-                hasDivider
-                iconType={TextWithOptionalIcon.iconTypes.MATCHOWN}
-                isExpanded={expandedItem === 'Matches'}
-                isSelected={selectedItem === 'Matches'}
-                onClick={() => handleOnClick('Matches')}
-                title={'Matches'}
+                iconType={item.iconType}
+                isActive={selectedItem === item.text}
+                isDisabled={item.isDisabled}
+                isExpanded={expandedItem === item.text}
+                key={item.text}
+                onClick={item.onClick ? item.onClick : () => handleOnClick(item.text)}
+                text={item.text}
             >
-                <SubMenuItem
-                    isSelected={selectedItem === 'Fields'}
-                    onClick={() => setSelectedItem('Fields')}
-                    title={'Fields'}
-                />
+                {item.children && item.children.map((child) => (
+                    <SubMenuItem
+                        isActive={selectedItem === child.text}
+                        isDisabled={child.isDisabled}
+                        key={child.text}
+                        onClick={child.onClick ? child.onClick : () => handleOnClick(child.text, item.text)}
+                        text={child.text}
+                    />
+                ))}
             </MenuItem>
-            <MenuItem
-                hasDivider
-                iconType={TextWithOptionalIcon.iconTypes.LIGHTBULB}
-                isExpanded={expandedItem === 'Competitions'}
-                isSelected={selectedItem === 'Competitions'}
-                onClick={() => handleOnClick('Competitions')}
-                title={'Competitions'}
-            >
-                <SubMenuItem
-                    isSelected={selectedItem === 'Teams'}
-                    onClick={() => setSelectedItem('Teams')}
-                    title={'Teams'}
-                />
-                <SubMenuItem
-                    isSelected={selectedItem === 'Officials'}
-                    onClick={() => setSelectedItem('Officials')}
-                    title={'Officials'}
-                />
-            </MenuItem>
-        </>
+        ))
     );
 };
