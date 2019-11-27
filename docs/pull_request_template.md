@@ -10,3 +10,5 @@
 - [ ] Performed lint:csss check?
 - [ ] If a new component has been created, did you add it to the export file index.js?
 - [ ] If a new iconfont has been imported, did you check if the values are updated in index.d.ts?
+
+Feel free to ask if this PR template needs to be updated!
