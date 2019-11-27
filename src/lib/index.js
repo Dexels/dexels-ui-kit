@@ -44,10 +44,10 @@ import Tabs from '../app/components/organisms/Tabs/Tabs';
 import Toolbar from '../app/components/organisms/Toolbar/Toolbar';
 
 // Theming
+import createDuiTheme from '../app/styles/theming/createDuiTheme';
 import { themeBasic } from '../app/styles/theming/themes/basic';
 import { themeDark } from '../app/styles/theming/themes/dark';
 import { themePropTypes } from '../app/styles/theming/themes/propTypes';
-import createDuiTheme from '../app/styles/theming/createDuiTheme';
 
 export {
     // Export atoms

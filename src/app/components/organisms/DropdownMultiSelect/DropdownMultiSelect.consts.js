@@ -1,11 +1,12 @@
 import { DROPDOWN_VARIANTS, ELEVATIONS } from '../../../utils/constants';
+import mapArrayToObject from '../../../utils/mapArrayToObject';
 
 export const DROPDOWN_MULTISELECT_ELEVATIONS = ELEVATIONS;
 
 export const DROPDOWN_MULTISELECT_VARIANTS = DROPDOWN_VARIANTS;
 
-export const ENUM_OPTION_ALL = {
-    INDETERMINATE: 'Indeterminate',
-    OFF: 'Off',
-    ON: 'On',
-};
+export const DROPDOWN_OPTION_ALL_TEXTS = mapArrayToObject([
+    'INDETERMINATE',
+    'OFF',
+    'ON',
+], true);

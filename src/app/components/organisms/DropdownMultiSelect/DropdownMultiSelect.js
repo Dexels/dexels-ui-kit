@@ -1,7 +1,7 @@
 import {
     DROPDOWN_MULTISELECT_ELEVATIONS,
     DROPDOWN_MULTISELECT_VARIANTS,
-    ENUM_OPTION_ALL,
+    DROPDOWN_OPTION_ALL_TEXTS,
 } from './DropdownMultiSelect.consts';
 import {
     List,
@@ -79,8 +79,8 @@ const DropdownMultiSelect = ({
 );
 
 DropdownMultiSelect.elevations = DROPDOWN_MULTISELECT_ELEVATIONS;
+DropdownMultiSelect.optionAllTexts = DROPDOWN_OPTION_ALL_TEXTS;
 DropdownMultiSelect.variants = DROPDOWN_MULTISELECT_VARIANTS;
-DropdownMultiSelect.enumOptionAll = ENUM_OPTION_ALL;
 
 DropdownMultiSelect.propTypes = {
     buttonCancelText: PropTypes.string,
