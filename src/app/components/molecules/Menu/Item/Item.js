@@ -29,7 +29,7 @@ const Item = ({
         <Inner as={path ? NavLink : 'div'} onClick={isDisabled ? null : onClick} to={path}>
             <TextWrapper>
                 <TextWithOptionalIcon
-                    iconSize={TextWithOptionalIcon.iconSizes.SMALL}
+                    iconSize={TextWithOptionalIcon.iconSizes.MEDIUM}
                     iconType={iconType}
                     isTruncatable
                 >
