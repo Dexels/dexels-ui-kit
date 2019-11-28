@@ -710,6 +710,36 @@ interface Modal<P> extends React.FunctionComponent<P> {
 
 export const Modal: Modal<ModalProps>;
 
+export interface PaginatorProps {
+    hasAllPagingButtons?: boolean;
+    hasGoToPage?: boolean;
+    hasPageSizeSelector?: boolean;
+    instance: {
+        canNextPage: boolean;
+        canPreviousPage: boolean;
+        gotoPage: (...args: any[]) => any;
+        nextPage: (...args: any[]) => any;
+        pageCount: boolean;
+        pageIndex: boolean;
+        pageSize: boolean;
+        previousPage: (...args: any[]) => any;
+        rows: object[];
+        setPageSize: (...args: any[]) => any;
+    }
+    pageSizes?: number[] | string[];
+    texts: {
+        page: string;
+        pageGoto: string;
+        pageOf: string;
+        resultsOf: string;
+        rowsPerPage: string;
+        show: string;
+    }
+    useResultsOfText?: boolean;
+}
+
+export const Paginator: React.FunctionComponent<PaginatorProps>;
+
 export interface SingleDatePickerProps {
     date?: moment.Moment;
     daySize?: number;
@@ -757,12 +787,6 @@ export interface TableProps {
 
 interface Table<P> extends React.FunctionComponent<P> {
     elevations: elevationsMap;
-    pageSizes: {
-        5: 5;
-        10: 10;
-        20: 20;
-        50: 50;
-    }
 }
 
 export const Table: Table<TableProps>;
