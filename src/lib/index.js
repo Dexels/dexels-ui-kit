@@ -38,6 +38,7 @@ import Dialog from '../app/components/organisms/Dialog/Dialog';
 import DropdownMultiSelect from '../app/components/organisms/DropdownMultiSelect/DropdownMultiSelect';
 import Header from '../app/components/organisms/Header/Header';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
+import Menu from '../app/components/organisms/Menu/Menu';
 import Modal from '../app/components/organisms/Modal/Modal';
 import Paginator from '../app/components/organisms/Table/Paginator/Paginator';
 import SingleDatePicker from '../app/components/organisms/DatePicker/SingleDatePicker/SingleDatePicker';
@@ -82,6 +83,7 @@ export {
     DropdownMultiSelect,
     Header,
     InputPassword,
+    Menu,
     Modal,
     Paginator,
     SingleDatePicker,
