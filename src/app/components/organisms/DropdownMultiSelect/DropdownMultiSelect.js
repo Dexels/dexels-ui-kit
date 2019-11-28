@@ -10,10 +10,35 @@ import {
     StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
+import React, { useEffect, useRef, useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import Dropdown from '../../molecules/Dropdown/Dropdown';
 import PropTypes from 'prop-types';
-import React from 'react';
+
+const useMountEffect = (fn) => useEffect(fn, []);
+
+export const useOnOutsideClick = (handleOutsideClick) => {
+    const innerBorderRef = useRef();
+
+    const onClick = (event) => {
+        if (
+            innerBorderRef.current &&
+            !innerBorderRef.current.contains(event.target)
+        ) {
+            handleOutsideClick();
+        }
+    };
+
+    useMountEffect(() => {
+        document.addEventListener('click', onClick, true);
+
+        return () => {
+            document.removeEventListener('click', onClick, true);
+        };
+    });
+
+    return { innerBorderRef };
+};
 
 const DropdownMultiSelect = ({
     buttonCancelText,
@@ -35,48 +60,71 @@ const DropdownMultiSelect = ({
     placeholder,
     value,
     variant,
-}) => (
-    <StyledDropdownMultiSelect>
-        <Dropdown
-            as="div"
-            errorMessage={errorMessage}
-            hasError={hasError}
-            isDisabled={isDisabled}
-            isOpen={isOpen}
-            isValid={isValid}
-            label={label}
-            name={name}
-            onClick={onClick}
-            placeholder={placeholder}
-            value={value || placeholder}
-            variant={variant}
-        >
-            {value || placeholder}
-        </Dropdown>
-        {isOpen && (
-            <ListWrapper elevation={elevation}>
-                {optionAll && (
-                    <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
-                        {optionAll}
-                    </StaticItem>
-                )}
-                <List maxHeight={maxHeight}>
-                    {options.map((item) => (
-                        <ListItem key={item.key}>
-                            {item}
-                        </ListItem>
-                    ))}
-                </List>
-                <DialogFooter
-                    buttonCancelText={buttonCancelText}
-                    buttonConfirmText={buttonConfirmText}
-                    onCancel={onCancel}
-                    onConfirm={onConfirm}
-                />
-            </ListWrapper>
-        )}
-    </StyledDropdownMultiSelect>
-);
+}) => {
+    const [isSelectOpen, setIsSelectOpen] = useState(isOpen);
+
+    const handleOnOutsideClick = (resetSelection = true) => {
+        setIsSelectOpen(false);
+
+        if (resetSelection) {
+            onCancel();
+        }
+    };
+
+    const { innerBorderRef } = useOnOutsideClick(() => handleOnOutsideClick());
+
+    return (
+        <StyledDropdownMultiSelect>
+            <Dropdown
+                as="div"
+                errorMessage={errorMessage}
+                hasError={hasError}
+                isDisabled={isDisabled}
+                isOpen={isOpen}
+                isValid={isValid}
+                label={label}
+                name={name}
+                onClick={() => {
+                    setIsSelectOpen(true);
+                    onClick();
+                }}
+                placeholder={placeholder}
+                value={value || placeholder}
+                variant={variant}
+            >
+                {value || placeholder}
+            </Dropdown>
+            {isSelectOpen && (
+                <ListWrapper elevation={elevation} ref={innerBorderRef}>
+                    {optionAll && (
+                        <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
+                            {optionAll}
+                        </StaticItem>
+                    )}
+                    <List maxHeight={maxHeight}>
+                        {options.map((item) => (
+                            <ListItem key={item.key}>
+                                {item}
+                            </ListItem>
+                        ))}
+                    </List>
+                    <DialogFooter
+                        buttonCancelText={buttonCancelText}
+                        buttonConfirmText={buttonConfirmText}
+                        onCancel={() => {
+                            setIsSelectOpen(false);
+                            onCancel();
+                        }}
+                        onConfirm={() => {
+                            setIsSelectOpen(false);
+                            onConfirm();
+                        }}
+                    />
+                </ListWrapper>
+            )}
+        </StyledDropdownMultiSelect>
+    );
+};
 
 DropdownMultiSelect.elevations = DROPDOWN_MULTISELECT_ELEVATIONS;
 DropdownMultiSelect.variants = DROPDOWN_MULTISELECT_VARIANTS;
