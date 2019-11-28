@@ -14,6 +14,7 @@ const Menu = ({ defaultOpenItem, items }) => {
         <StyledMenu>
             {items.map(({
                 children,
+                exact,
                 iconType,
                 isDisabled,
                 path,
@@ -38,7 +39,12 @@ const Menu = ({ defaultOpenItem, items }) => {
                                 {text}
                             </Item>
                             {isOpen && children.map((child) => (
-                                <Item isDisabled={child.isDisabled} key={child.text} path={child.path}>
+                                <Item
+                                    exact={child.exact}
+                                    isDisabled={child.isDisabled}
+                                    key={child.text}
+                                    path={child.path}
+                                >
                                     {child.text}
                                 </Item>
                             ))}
@@ -48,6 +54,7 @@ const Menu = ({ defaultOpenItem, items }) => {
 
                 return (
                     <Item
+                        exact={exact}
                         iconType={iconType}
                         isDisabled={isDisabled}
                         isParent
@@ -71,12 +78,14 @@ Menu.propTypes = {
     defaultOpenItem: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
         children: PropTypes.arrayOf(PropTypes.shape({
-            isDisabled: PropTypes.bool.isRequired,
+            exact: PropTypes.bool,
+            isDisabled: PropTypes.bool,
             path: PropTypes.string.isRequired,
             text: PropTypes.string.isRequired,
         })),
+        exact: PropTypes.bool,
         iconType: PropTypes.oneOf(Object.values(Menu.iconTypes)).isRequired,
-        isDisabled: PropTypes.bool.isRequired,
+        isDisabled: PropTypes.bool,
         path: PropTypes.string,
         text: PropTypes.string.isRequired,
     })).isRequired,

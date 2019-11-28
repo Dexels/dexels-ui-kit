@@ -698,12 +698,14 @@ export interface MenuProps {
     defaultOpenItem?: string;
     items: {
         children: {
-            isDisabled: boolean;
+            exact?: boolean;
+            isDisabled?: boolean;
             path: string;
             text: string;
         }[];
+        exact?: boolean;
         iconType: iconTypes;
-        isDisabled: boolean;
+        isDisabled?: boolean;
         path?: string;
         text: string;
     }[];

@@ -12,6 +12,7 @@ import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWi
 
 const Item = ({
     children,
+    exact,
     hasChildren,
     iconType,
     isDisabled,
@@ -26,7 +27,12 @@ const Item = ({
         isOpen={isOpen}
         isParent={isParent}
     >
-        <Inner as={path ? NavLink : 'div'} onClick={isDisabled ? null : onClick} to={path}>
+        <Inner
+            as={path ? NavLink : 'div'}
+            exact={exact}
+            onClick={isDisabled ? null : onClick}
+            to={path}
+        >
             <TextWrapper>
                 <TextWithOptionalIcon
                     iconSize={TextWithOptionalIcon.iconSizes.MEDIUM}
@@ -49,9 +55,10 @@ Item.iconTypes = TextWithOptionalIcon.iconTypes;
 
 Item.propTypes = {
     children: PropTypes.node.isRequired,
+    exact: PropTypes.bool,
     hasChildren: PropTypes.bool,
     iconType: PropTypes.oneOf(Object.values(Item.iconTypes)),
-    isDisabled: PropTypes.bool.isRequired,
+    isDisabled: PropTypes.bool,
     isOpen: PropTypes.bool,
     isParent: PropTypes.bool,
     onClick: PropTypes.func,
@@ -59,8 +66,10 @@ Item.propTypes = {
 };
 
 Item.defaultProps = {
+    exact: false,
     hasChildren: false,
     iconType: null,
+    isDisabled: false,
     isOpen: false,
     isParent: false,
     onClick: null,
