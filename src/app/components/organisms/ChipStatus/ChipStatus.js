@@ -9,7 +9,7 @@ const getIconType = (variant) => {
             return CHIP_STATUS_ICON_TYPES.CHECK;
 
         case CHIP_STATUS_VARIANTS.DESELECTED:
-            return CHIP_STATUS_ICON_TYPES.ROUNDCROSS;
+            return null;
 
         case CHIP_STATUS_VARIANTS.INDETERMINATE:
             return CHIP_STATUS_ICON_TYPES.MINUS;
@@ -20,7 +20,7 @@ const getIconType = (variant) => {
 };
 
 const isSelected = (variant) => (
-    variant !== CHIP_STATUS_VARIANTS.DESELECTED
+    variant === CHIP_STATUS_VARIANTS.SELECTED
 );
 
 const ChipStatus = ({
