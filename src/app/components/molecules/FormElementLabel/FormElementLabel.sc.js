@@ -37,7 +37,7 @@ export const StyledFormElementLabel = styled.div`
                 top: 8px;
                 left: 0;
                 z-index: -1;
-                background-color: ${theme.shades.nine};
+                background-color: ${backgroundColor || theme.shades.nine};
                 width: 100%;
                 height: 1px;
                 content: '';

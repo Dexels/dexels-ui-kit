@@ -44,7 +44,6 @@ export const StyledLabel = styled.label`
 `;
 
 StyledLabel.propTypes = {
-    backgroundColor: PropTypes.string.isRequired,
     hasError: PropTypes.bool.isRequired,
     isActive: PropTypes.bool.isRequired,
     isCheckboxLabel: PropTypes.bool.isRequired,
