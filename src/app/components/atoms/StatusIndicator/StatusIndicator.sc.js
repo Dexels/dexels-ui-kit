@@ -16,12 +16,17 @@ export const StyledStatusIndicator = styled.div`
     border-color: ${({ status, theme }) => getStatusColor(status, theme)};
     color: ${({ status, theme }) => getStatusColor(status, theme)};
 
+    ${({ background, theme }) => css`
+        background-color: ${background !== undefined ? background : theme.card.backgroundColor};
+    `}
+
     ${({ placement, size, theme }) => css`
         border-${placement}: ${theme.spacing(size === STATUS_INDICATOR_SIZES.LARGE ? 1 : 0.5)} solid;
     `}
 `;
 
 StyledStatusIndicator.propTypes = {
+    background: PropTypes.string,
     placement: PropTypes.oneOf(Object.values(STATUS_INDICATOR_PLACEMENTS)).isRequired,
     size: PropTypes.oneOf(Object.values(STATUS_INDICATOR_SIZES)).isRequired,
     status: PropTypes.oneOf(Object.values(STATUS_INDICATOR_STATUSES)).isRequired,

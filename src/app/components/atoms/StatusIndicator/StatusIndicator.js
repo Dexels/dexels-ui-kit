@@ -9,6 +9,7 @@ import React from 'react';
 
 const StatusIndicator = ({
     as,
+    background,
     children,
     placement,
     size,
@@ -16,13 +17,15 @@ const StatusIndicator = ({
 }) => (
     <StyledStatusIndicator
         as={as}
+        background={background}
         placement={placement}
         size={size}
         status={status}
     >
-        <Text placement={placement}>
+        {children}
+        {/* <Text placement={placement}>
             {children}
-        </Text>
+        </Text> */}
     </StyledStatusIndicator>
 );
 
@@ -32,6 +35,7 @@ StatusIndicator.statuses = STATUS_INDICATOR_STATUSES;
 
 StatusIndicator.propTypes = {
     as: PropTypes.string,
+    background: PropTypes.string,
     children: PropTypes.node.isRequired,
     placement: PropTypes.oneOf(Object.values(StatusIndicator.placements)),
     size: PropTypes.oneOf(Object.values(StatusIndicator.sizes)),
@@ -40,6 +44,7 @@ StatusIndicator.propTypes = {
 
 StatusIndicator.defaultProps = {
     as: 'div',
+    background: undefined,
     placement: StatusIndicator.placements.TOP,
     size: StatusIndicator.statuses.LARGE,
     status: StatusIndicator.statuses.DEFAULT,

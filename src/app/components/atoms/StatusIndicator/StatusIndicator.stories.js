@@ -8,7 +8,7 @@ export default { title: 'atoms/StatusIndicator' };
 export const Configurable = () => (
     <StatusIndicator
         placement={select('Placement', StatusIndicator.placements, StatusIndicator.defaultProps.placement)}
-        size={select('Status', StatusIndicator.sizes, StatusIndicator.defaultProps.size)}
+        size={select('Size', StatusIndicator.sizes, StatusIndicator.defaultProps.size)}
         status={select('Status', StatusIndicator.statuses, StatusIndicator.defaultProps.status)}
     >
         <Colors />
