@@ -10,7 +10,6 @@ import {
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
-import { PAGINATOR_PAGE_SIZES } from './Paginator.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -126,8 +125,6 @@ const Paginator = ({
     </StyledPaginator>
 );
 
-Paginator.pageSizes = PAGINATOR_PAGE_SIZES;
-
 Paginator.propTypes = {
     hasAllPagingButtons: PropTypes.bool,
     hasGoToPage: PropTypes.bool,
@@ -163,7 +160,7 @@ Paginator.defaultProps = {
     hasAllPagingButtons: true,
     hasGoToPage: false,
     hasPageSizeSelector: true,
-    pageSizes: Paginator.pageSizes,
+    pageSizes: [5, 10, 20],
     useResultsOfText: true,
 };
 
