@@ -66,7 +66,7 @@ export const TextField = styled.input`
     outline: none;
     background-color: transparent;
     width: 100%;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }) => theme.colorTextBody.primary};
 
     ${({ theme, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
         border: 0;

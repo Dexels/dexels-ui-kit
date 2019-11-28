@@ -125,7 +125,8 @@ export const StyledButton = styled.button`
     `}
 
     &::after {
-        ${({ variant, theme: { button } }) => rippleEffect(variant === BUTTON_VARIANTS.FILLED ? button.filled.color.primary : button.outline.backgroundColor.primary)}
+        ${({ variant, theme: { button } }) => variant !== BUTTON_VARIANTS.TEXT_ONLY
+            && rippleEffect(variant === BUTTON_VARIANTS.FILLED ? button.filled.color.primary : button.outline.backgroundColor.primary)}
     }
 
     &:active::after {
