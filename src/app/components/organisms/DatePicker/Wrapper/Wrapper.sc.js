@@ -78,6 +78,15 @@ export const StyledWrapper = styled.div`
         display: none;
     }
 
+    /* Overall styling */
+    .DayPicker,
+    .DayPicker__withBorder,
+    .DayPicker__horizontal,
+    .CalendarMonth,
+    .CalendarMonthGrid {
+        background-color: ${({ theme }) => `${theme.datePicker.backgroundColor} !important`};
+    }
+
     /* Calendar styling */
     .DateRangePicker,
     .SingleDatePicker {

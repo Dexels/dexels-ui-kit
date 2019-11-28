@@ -3,12 +3,12 @@ import {
     boolean,
 } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
-import { createLocalizedPagingTexts } from '../MockUp/tableFunctions';
-import { createTable } from '../MockUp/createTable';
+import { createLocalizedPagingTexts } from '../mockup/tableFunctions';
+import { createTable } from '../mockup/createTable';
 import Paginator from './Paginator';
 import SelectionControl from '../../../molecules/SelectionControl/SelectionControl';
-import { tableColumns } from '../MockUp/tableColumns';
-import { tableData } from '../MockUp/tableData';
+import { tableColumns } from '../mockup/tableColumns';
+import { tableData } from '../mockup/tableData';
 
 export default { title: 'organisms/Table/Paginator' };
 

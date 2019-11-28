@@ -3,15 +3,15 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
-import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } from './MockUp/tableFunctions';
+import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } from './mockup/tableFunctions';
 import React, { useState } from 'react';
-import { tableColumns, tableColumnsWithGroupHeader } from './MockUp/tableColumns';
-import { createTable } from './MockUp/createTable';
+import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
+import { createTable } from './mockup/createTable';
 import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
-import { tableData } from './MockUp/tableData';
+import { tableData } from './mockup/tableData';
 
 export default {
     parameters: {
