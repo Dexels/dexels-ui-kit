@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import setTruncate from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
+import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledLabel = styled.label`
     ${({ isSmall, theme }) => theme.textStyling(
         isSmall ? theme.availableTextStyles().caption : theme.availableTextStyles().body1,
     )}
+    ${transitionEffect({
+        duration: 300,
+        property: 'font-size',
+    })}
     ${({ isTruncatable }) => isTruncatable && setTruncate()}
     display: block;
     cursor: inherit;
@@ -39,6 +44,7 @@ export const StyledLabel = styled.label`
 `;
 
 StyledLabel.propTypes = {
+    backgroundColor: PropTypes.string.isRequired,
     hasError: PropTypes.bool.isRequired,
     isActive: PropTypes.bool.isRequired,
     isCheckboxLabel: PropTypes.bool.isRequired,
