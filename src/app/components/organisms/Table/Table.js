@@ -13,10 +13,10 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
-import { TABLE_ELEVATIONS, TABLE_PAGE_SIZES } from './Table.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
+import { TABLE_ELEVATIONS } from './Table.consts';
 
 const dataSource = (instance, hasPaging) => (hasPaging ? instance.page : instance.rows);
 
@@ -117,7 +117,6 @@ const Table = ({
 };
 
 Table.elevations = TABLE_ELEVATIONS;
-Table.pageSizes = TABLE_PAGE_SIZES;
 
 Table.propTypes = {
     caption: PropTypes.string,

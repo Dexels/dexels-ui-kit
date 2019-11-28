@@ -141,9 +141,7 @@ Paginator.propTypes = {
         pageIndex: PropTypes.number.isRequired,
         pageSize: PropTypes.number.isRequired,
         previousPage: PropTypes.func.isRequired,
-        rows: PropTypes.shape({
-            length: PropTypes.number.isRequired,
-        }).isRequired,
+        rows: PropTypes.arrayOf(PropTypes.object).isRequired,
         setPageSize: PropTypes.func.isRequired,
     }).isRequired,
     pageSizes: PropTypes.oneOfType([
