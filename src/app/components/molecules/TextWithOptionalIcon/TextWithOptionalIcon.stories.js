@@ -15,6 +15,7 @@ export const Configurable = () => (
 export const ConfigurableWithIcon = () => (
     <TextWithOptionalIcon
         direction={select('Direction', TextWithOptionalIcon.directions, TextWithOptionalIcon.defaultProps.direction)}
+        iconSize={select('Icon size', TextWithOptionalIcon.iconSizes, TextWithOptionalIcon.defaultProps.iconSize)}
         iconType={select('Icon type', TextWithOptionalIcon.iconTypes, TextWithOptionalIcon.iconTypes.CHECK)}
         isCapitalized={boolean('Is capitalized', TextWithOptionalIcon.defaultProps.isCapitalized)}
     >
