@@ -8,7 +8,7 @@ import Icon from '../../../atoms/Icon/Icon';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TextWithOptionalIcon from '../../TextWithOptionalIcon/TextWithOptionalIcon';
+import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
 
 const Item = ({
     children,
