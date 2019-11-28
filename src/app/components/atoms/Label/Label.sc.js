@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import setTruncate from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
+import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const StyledLabel = styled.label`
     ${({ isSmall, theme }) => theme.textStyling(
         isSmall ? theme.availableTextStyles().caption : theme.availableTextStyles().body1,
     )}
+    ${transitionEffect({
+        duration: 300,
+        property: 'font-size',
+    })}
     ${({ isTruncatable }) => isTruncatable && setTruncate()}
     display: block;
     cursor: inherit;
@@ -21,7 +26,7 @@ export const StyledLabel = styled.label`
         color: ${({ theme }) => theme.colorText.primary};
     `}
 
-    ${({ isFocused }) => isFocused && css`
+    ${({ isFocused, isHovered }) => (isFocused || isHovered) && css`
         color: ${({ theme }) => theme.colorText.secondary};
     `}
 
@@ -44,6 +49,7 @@ StyledLabel.propTypes = {
     isCheckboxLabel: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
+    isHovered: PropTypes.bool.isRequired,
     isSmall: PropTypes.bool.isRequired,
     isTruncatable: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,

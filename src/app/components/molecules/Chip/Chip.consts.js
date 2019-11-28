@@ -1,7 +1,11 @@
-import { DIRECTIONS, EASINGS } from '../../../utils/constants';
+import { DIRECTIONS, EASINGS, SIZES } from '../../../utils/constants';
 
 export const CHIP_DIRECTIONS = DIRECTIONS;
 
 export const CHIP_EASINGS = EASINGS;
 
-export default CHIP_DIRECTIONS;
+export const CHIP_ICON_SIZES = {
+    ...SIZES,
+};
+
+delete CHIP_ICON_SIZES.XLARGE;

@@ -1,6 +1,7 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
+import { hexToRgb } from '../../../utils/colorFunctions';
 import PropTypes from 'prop-types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
@@ -49,7 +50,7 @@ export const StyledButtonIcon = styled.button`
 
     &:focus,
     &:hover {
-        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : theme.colorTertiary)};
+        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : hexToRgb(theme.colorTertiary, 0.25))};
         color: ${({ isInverted, theme }) => (isInverted ? theme.colorTextContrast.primary : theme.colorText.secondary)};
     }
 
