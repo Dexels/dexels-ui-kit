@@ -1,4 +1,8 @@
-import { STATUS_INDICATOR_PLACEMENTS, STATUS_INDICATOR_STATUSES } from './StatusIndicator.consts';
+import {
+    STATUS_INDICATOR_PLACEMENTS,
+    STATUS_INDICATOR_SIZES,
+    STATUS_INDICATOR_STATUSES,
+} from './StatusIndicator.consts';
 import styled, { css } from 'styled-components';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import PropTypes from 'prop-types';
@@ -12,13 +16,14 @@ export const StyledStatusIndicator = styled.div`
     border-color: ${({ status, theme }) => getStatusColor(status, theme)};
     color: ${({ status, theme }) => getStatusColor(status, theme)};
 
-    ${({ placement }) => css`
-        border-${placement}: 8px solid;
+    ${({ placement, size, theme }) => css`
+        border-${placement}: ${theme.spacing(size === STATUS_INDICATOR_SIZES.LARGE ? 1 : 0.5)} solid;
     `}
 `;
 
 StyledStatusIndicator.propTypes = {
     placement: PropTypes.oneOf(Object.values(STATUS_INDICATOR_PLACEMENTS)).isRequired,
+    size: PropTypes.oneOf(Object.values(STATUS_INDICATOR_SIZES)).isRequired,
     status: PropTypes.oneOf(Object.values(STATUS_INDICATOR_STATUSES)).isRequired,
     theme: themePropTypes,
 };
