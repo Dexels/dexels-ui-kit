@@ -64,6 +64,7 @@ const Input = ({
                     isActive={hasValue}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
+                    isHovered={isHovered}
                     isValid={isValid}
                     variant={variant}
                 >

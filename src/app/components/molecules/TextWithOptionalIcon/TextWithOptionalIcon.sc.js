@@ -1,12 +1,14 @@
 import styled, { css } from 'styled-components';
+import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS, TEXT_WITH_OPTIONAL_ICON_SIZES } from './TextWithOptionalIcon.consts';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS } from './TextWithOptionalIcon.consts';
+import setTruncate from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const Text = styled.p`
     ${setBoxSizing()}
+    ${({ isTruncatable }) => isTruncatable && setTruncate()}
     flex: 0 1 auto;
     order: 2;
     margin: 0;
@@ -21,6 +23,7 @@ export const Text = styled.p`
 
 Text.propTypes = {
     isCapitalized: PropTypes.bool.isRequired,
+    isTruncatable: PropTypes.bool.isRequired,
 };
 
 export const IconWrapper = styled.div`
@@ -30,9 +33,24 @@ export const IconWrapper = styled.div`
     span {
         display: block;
     }
+
+    ${({ size }) => css`
+        ${size === TEXT_WITH_OPTIONAL_ICON_SIZES.SMALL && css`
+            font-size: 18px;
+        `}
+
+        ${size === TEXT_WITH_OPTIONAL_ICON_SIZES.MEDIUM && css`
+            font-size: 20px;
+        `}
+
+        ${size === TEXT_WITH_OPTIONAL_ICON_SIZES.LARGE && css`
+            font-size: 24px;
+        `}
+    `}
 `;
 
 IconWrapper.propTypes = {
+    size: PropTypes.string.isRequired,
     theme: themePropTypes,
 };
 

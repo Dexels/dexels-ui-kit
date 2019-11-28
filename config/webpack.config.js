@@ -23,6 +23,7 @@ module.exports = (env = {}) => ({
         react: 'react',
         'react-dates': 'react-dates',
         'react-dom': 'react-dom',
+        'react-router-dom': 'react-router-dom',
         'react-table': 'react-table',
         'react-with-direction': 'react-with-direction',
         'styled-components': 'styled-components',

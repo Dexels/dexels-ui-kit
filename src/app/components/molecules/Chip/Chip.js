@@ -1,4 +1,4 @@
-import { CHIP_DIRECTIONS, CHIP_EASINGS } from './Chip.consts';
+import { CHIP_DIRECTIONS, CHIP_EASINGS, CHIP_ICON_SIZES } from './Chip.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledChip } from './Chip.sc';
@@ -30,12 +30,14 @@ const Chip = ({
 );
 
 Chip.directions = CHIP_DIRECTIONS;
+Chip.iconSizes = CHIP_ICON_SIZES;
 Chip.iconTypes = TextWithOptionalIcon.iconTypes;
 Chip.transitionEasings = CHIP_EASINGS;
 
 Chip.propTypes = {
     children: PropTypes.node.isRequired,
     direction: PropTypes.oneOf(Object.values(Chip.directions)),
+    iconSize: PropTypes.oneOf(Object.values(Chip.iconSizes)),
     iconType: PropTypes.oneOf(Object.values(Chip.iconTypes)),
     isDisabled: PropTypes.bool,
     isSelected: PropTypes.bool,
@@ -46,6 +48,7 @@ Chip.propTypes = {
 
 Chip.defaultProps = {
     direction: Chip.directions.LTR,
+    iconSize: Chip.iconSizes.MEDIUM,
     iconType: null,
     isDisabled: false,
     isSelected: true,
