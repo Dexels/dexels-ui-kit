@@ -55,9 +55,8 @@ export const TableHeaderCell = styled.th`
     border-bottom: 4px solid;
     border-color: ${({ theme }) => theme.colorPrimary};
     background-color: transparent;
+    vertical-align: middle;
     text-align: left;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     color: ${({ theme }) => theme.colorText.primary};
 `;
 
@@ -83,7 +82,6 @@ TableBody.defaultProps = {
 
 export const TableRow = styled.tr`
     position: relative;
-    /* border-spacing: ${({ theme }) => theme.spacing(0.125)}; */
     z-index: 1;
 
     ${({ isClickable }) => isClickable && css`
@@ -117,8 +115,7 @@ export const TableCell = styled.td`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     padding: 0;
     height: ${({ theme }) => theme.spacing(6)};
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    vertical-align: middle;
     color: ${({ theme }) => theme.colorText.primary};
 
     ${({ isClickable }) => isClickable && css`
