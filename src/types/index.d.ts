@@ -497,6 +497,7 @@ export interface TextWithOptionalIconProps {
     direction?: directions;
     iconType?: iconTypes;
     isCapitalized?: boolean;
+    isTruncatable?: boolean
     [key: string]: any;
 }
 
