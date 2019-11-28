@@ -11,23 +11,29 @@ const FormElementLabel = ({
     isActive,
     isDisabled,
     isFocused,
+    isHovered,
     isValid,
     variant,
-}) => (
-    <StyledFormElementLabel backgroundColor={backgroundColor} isActive={isActive || isFocused} variant={variant}>
-        <Label
-            hasError={hasError}
-            isActive={isActive}
-            isDisabled={isDisabled}
-            isFocused={isFocused}
-            isSmall={isActive || isFocused}
-            isTruncatable
-            isValid={isValid}
-        >
-            {children}
-        </Label>
-    </StyledFormElementLabel>
-);
+}) => {
+    const isSmall = isActive || isFocused;
+
+    return (
+        <StyledFormElementLabel backgroundColor={backgroundColor} isActive={isActive || isFocused} variant={variant}>
+            <Label
+                hasError={hasError}
+                isActive={isActive}
+                isDisabled={isDisabled}
+                isFocused={isFocused}
+                isHovered={isSmall && isHovered}
+                isSmall={isSmall}
+                isTruncatable
+                isValid={isValid}
+            >
+                {children}
+            </Label>
+        </StyledFormElementLabel>
+    );
+};
 
 FormElementLabel.variants = FORM_ELEMENT_LABEL_VARIANTS;
 
@@ -38,6 +44,7 @@ FormElementLabel.propTypes = {
     isActive: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFocused: PropTypes.bool,
+    isHovered: PropTypes.bool,
     isValid: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(FormElementLabel.variants)),
 };
@@ -48,6 +55,7 @@ FormElementLabel.defaultProps = {
     isActive: true,
     isDisabled: false,
     isFocused: false,
+    isHovered: false,
     isValid: false,
     variant: FormElementLabel.variants.OUTLINE,
 };

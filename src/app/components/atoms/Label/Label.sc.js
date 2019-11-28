@@ -26,7 +26,7 @@ export const StyledLabel = styled.label`
         color: ${({ theme }) => theme.colorText.primary};
     `}
 
-    ${({ isFocused }) => isFocused && css`
+    ${({ isFocused, isHovered }) => (isFocused || isHovered) && css`
         color: ${({ theme }) => theme.colorText.secondary};
     `}
 
@@ -49,6 +49,7 @@ StyledLabel.propTypes = {
     isCheckboxLabel: PropTypes.bool.isRequired,
     isDisabled: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
+    isHovered: PropTypes.bool.isRequired,
     isSmall: PropTypes.bool.isRequired,
     isTruncatable: PropTypes.bool.isRequired,
     isValid: PropTypes.bool.isRequired,
