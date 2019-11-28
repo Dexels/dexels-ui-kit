@@ -64,7 +64,7 @@ export const Select = styled.select`
     background-color: transparent;
     cursor: pointer;
     width: 100%;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }) => theme.colorTextBody.primary};
 
     ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
         border: 0;
