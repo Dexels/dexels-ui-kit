@@ -4,24 +4,30 @@ import { LoaderWrapper } from './Loader.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+const constructLoaderCircle = (amount) => {
+    const LoaderCirclesArray = [];
+
+    for (let i = 0; i < amount + 1; i += 1) {
+        LoaderCirclesArray.push(<LoaderCircles id={i} opacity={i * 0.2} />);
+    }
+
+    return LoaderCirclesArray;
+};
+
 // @TODO: Add other loaders
-const Loader = ({ type }) => {
+const Loader = ({ amount, type }) => {
     switch (type) {
         case LOADER_TYPES.CIRCLES:
             return (
                 <LoaderWrapper>
-                    {[1, 2, 3, 4, 5].map((item) => (
-                        <LoaderCircles id={item} key={item} opacity={item * 0.2} />
-                    ))}
+                    {constructLoaderCircle(amount)}
                 </LoaderWrapper>
             );
 
         default:
             return (
                 <LoaderWrapper>
-                    {[1, 2, 3, 4, 5, 6].map((item) => (
-                        <LoaderCircles id={item} key={item} opacity={item * 0.167} />
-                    ))}
+                    {constructLoaderCircle(amount)}
                 </LoaderWrapper>
             );
     }
@@ -30,10 +36,12 @@ const Loader = ({ type }) => {
 Loader.types = LOADER_TYPES;
 
 Loader.propTypes = {
+    amount: PropTypes.number,
     type: PropTypes.oneOf(Object.values(Loader.types)),
 };
 
 Loader.defaultProps = {
+    amount: 5,
     type: Loader.types.CIRCLES,
 };
 
