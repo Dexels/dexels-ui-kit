@@ -2,6 +2,24 @@ import { customSortByDate, renderCell, renderStatusCell } from '../utils/tableFu
 import { getTableCell, renderButton } from './tableFunctions';
 import React from 'react';
 
+const getColumnWidth = (data, accessor, headerText) => {
+    console.log('*********************** columnWidth', data, accessor, headerText);
+
+    if (typeof accessor === 'string' || accessor instanceof String) {
+        accessor = (d) => d[accessor]; // eslint-disable-line no-param-reassign
+    }
+
+    const maxWidth = 600;
+    const magicSpacing = 10;
+
+    const cellLength = Math.max(
+        ...data.map((row) => (`${accessor(row)}` || '').length),
+        headerText.length,
+    );
+
+    return Math.min(maxWidth, cellLength * magicSpacing);
+};
+
 export const tableColumns = () => (
     React.useMemo(() => [
         {
@@ -17,6 +35,7 @@ export const tableColumns = () => (
             accessor: 'firstName',
             // TIP: event can be left out. Default = null
             onClick: (cell, row, event) => getTableCell(cell, row, event),
+            width: (cell) => getColumnWidth(cell, 'string', 'First Name'),
         },
         {
             Cell: (row) => renderCell(row),

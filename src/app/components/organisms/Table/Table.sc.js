@@ -15,7 +15,6 @@ export const TableCaption = styled.div`
 
 export const StyledTable = styled.table`
     ${setBoxSizing()}
-    ${({ elevation }) => getElevation(elevation)}
     background-color: transparent;
     border-spacing: 0;
 
@@ -25,7 +24,6 @@ export const StyledTable = styled.table`
 `;
 
 StyledTable.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(TABLE_ELEVATIONS)).isRequired,
     isFullWidth: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
@@ -39,26 +37,21 @@ export const TableHead = styled.thead`
 `;
 
 export const TableHeaderRow = styled.tr`
-    height: ${({ theme }) => theme.spacing(4.5)};
+    background-color: transparent;
 `;
-
-TableHeaderRow.propTypes = {
-    theme: themePropTypes,
-};
-
-TableHeaderRow.defaultProps = {
-    theme: themeBasic,
-};
 
 export const TableHeaderCell = styled.th`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     border-bottom: 4px solid;
     border-color: ${({ theme }) => theme.colorPrimary};
     background-color: transparent;
+    padding: ${({ theme }) => theme.spacing(0, 0, 1, 0)};
+    height: ${({ theme }) => theme.spacing(5)};
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: ${({ theme }) => theme.colorText.primary};
+    font-weight: 600;
 `;
 
 TableHeaderCell.propTypes = {
@@ -70,10 +63,12 @@ TableHeaderCell.defaultProps = {
 };
 
 export const TableBody = styled.tbody`
+    ${({ elevation }) => getElevation(elevation)}
     color: ${({ theme }) => theme.shades.nine};
 `;
 
 TableBody.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(TABLE_ELEVATIONS)).isRequired,
     theme: themePropTypes,
 };
 
@@ -150,8 +145,13 @@ IconWrapper.defaultProps = {
 };
 
 export const TableFooter = styled.tfoot`
+    ${({ elevation }) => getElevation(elevation)}
     background-color: transparent;
 `;
+
+TableFooter.propTypes = {
+    elevation: PropTypes.oneOf(Object.values(TABLE_ELEVATIONS)).isRequired,
+};
 
 export const Paging = styled.div`
     background-color: transparent;
