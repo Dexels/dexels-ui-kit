@@ -84,7 +84,7 @@ List.defaultProps = {
 export const ListItem = styled.li`
     ${rippleEffectInit()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
-    padding: ${({ theme }) => theme.spacing(1, 0, 0, 2)};
+    padding: ${({ theme }) => theme.spacing(0, 0, 0, 2)};
 
     &::after {
         ${({ theme }) => rippleEffect(theme.colorSecondary)}
