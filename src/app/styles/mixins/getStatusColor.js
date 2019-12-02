@@ -1,6 +1,6 @@
 import { STATUSES } from '../../utils/constants';
 
-export const getStatusColor = (status, theme) => {
+const getStatusColor = (status, theme) => {
     switch (status) {
         case STATUSES.NONE:
             return theme.shades.six;
