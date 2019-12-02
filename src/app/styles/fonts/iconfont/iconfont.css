@@ -1,16 +1,16 @@
 @font-face {
   font-family: 'SL-Small-Icons';
-  src:  url('~fonts/iconfont/SL-Small-Icons.eot?yp4eqc');
-  src:  url('~fonts/iconfont/SL-Small-Icons.eot?yp4eqc#iefix') format('embedded-opentype'),
-    url('~fonts/iconfont/SL-Small-Icons.ttf?yp4eqc') format('truetype'),
-    url('~fonts/iconfont/SL-Small-Icons.woff?yp4eqc') format('woff'),
-    url('~fonts/iconfont/SL-Small-Icons.svg?yp4eqc#SL-Small-Icons') format('svg');
+  src:  url('~fonts/iconfont/SL-Small-Icons.eot?3xhcow');
+  src:  url('~fonts/iconfont/SL-Small-Icons.eot?3xhcow#iefix') format('embedded-opentype'),
+    url('~fonts/iconfont/SL-Small-Icons.ttf?3xhcow') format('truetype'),
+    url('~fonts/iconfont/SL-Small-Icons.woff?3xhcow') format('woff'),
+    url('~fonts/iconfont/SL-Small-Icons.svg?3xhcow#SL-Small-Icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="ICON-"], [class*=" ICON-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'SL-Small-Icons' !important;
   speak: none;
@@ -25,315 +25,321 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-NEWS:before {
+.ICON-CHECKBOXMINUS1:before {
+  content: "\e968";
+}
+.ICON-CHECKBOXCHECK:before {
+  content: "\e969";
+}
+.ICON-NEWS:before {
   content: "\e964";
 }
-.icon-TWITTER:before {
+.ICON-TWITTER:before {
   content: "\e965";
 }
-.icon-TUTORIAL:before {
+.ICON-TUTORIAL:before {
   content: "\e966";
 }
-.icon-STAR:before {
+.ICON-STAR:before {
   content: "\e967";
 }
-.icon-CALENDARACCEPT:before {
+.ICON-CALENDARACCEPT:before {
   content: "\e909";
 }
-.icon-CALENDARDECLINE:before {
+.ICON-CALENDARDECLINE:before {
   content: "\e962";
 }
-.icon-MATCHRESUME:before {
+.ICON-MATCHRESUME:before {
   content: "\e963";
 }
-.icon-CABLE:before {
+.ICON-CABLE:before {
   content: "\e94f";
 }
-.icon-COMMUNICATIONPHONE:before {
+.ICON-COMMUNICATIONPHONE:before {
   content: "\e950";
 }
-.icon-PRODUCTADS:before {
+.ICON-PRODUCTADS:before {
   content: "\e951";
 }
-.icon-PRODUCTAVG:before {
+.ICON-PRODUCTAVG:before {
   content: "\e952";
 }
-.icon-PRODUCTBOEKHOUDING:before {
+.ICON-PRODUCTBOEKHOUDING:before {
   content: "\e953";
 }
-.icon-PRODUCTCONTRIBUTIE:before {
+.ICON-PRODUCTCONTRIBUTIE:before {
   content: "\e954";
 }
-.icon-PRODUCTDATASERVICE:before {
+.ICON-PRODUCTDATASERVICE:before {
   content: "\e955";
 }
-.icon-PRODUCTDWF:before {
+.ICON-PRODUCTDWF:before {
   content: "\e956";
 }
-.icon-PRODUCTMOBIEL:before {
+.ICON-PRODUCTMOBIEL:before {
   content: "\e957";
 }
-.icon-PRODUCTOPLEIDINGEN:before {
+.ICON-PRODUCTOPLEIDINGEN:before {
   content: "\e958";
 }
-.icon-PRODUCTTOERNOOIEN:before {
+.ICON-PRODUCTTOERNOOIEN:before {
   content: "\e959";
 }
-.icon-PRODUCTTRAININGEN:before {
+.ICON-PRODUCTTRAININGEN:before {
   content: "\e95a";
 }
-.icon-PRODUCTTV:before {
+.ICON-PRODUCTTV:before {
   content: "\e95b";
 }
-.icon-PRODUCTVRIJWILLIGERS:before {
+.ICON-PRODUCTVRIJWILLIGERS:before {
   content: "\e95c";
 }
-.icon-PRODUCTWEBSITE:before {
+.ICON-PRODUCTWEBSITE:before {
   content: "\e95d";
 }
-.icon-ROUNDCHECK:before {
+.ICON-ROUNDCHECK:before {
   content: "\e95e";
 }
-.icon-ROUNDCROSS:before {
+.ICON-ROUNDCROSS:before {
   content: "\e95f";
 }
-.icon-USERDOUBLE:before {
+.ICON-USERDOUBLE:before {
   content: "\e960";
 }
-.icon-CHEVRONFIRST:before {
+.ICON-CHEVRONFIRST:before {
   content: "\e941";
 }
-.icon-CHEVRONLAST:before {
+.ICON-CHEVRONLAST:before {
   content: "\e942";
 }
-.icon-COMMUNICATIONMAIL:before {
+.ICON-COMMUNICATIONMAIL:before {
   content: "\e961";
 }
-.icon-SPORTATLETIEK:before {
+.ICON-SPORTATLETIEK:before {
   content: "\e943";
 }
-.icon-SPORTBASKETBAL:before {
+.ICON-SPORTBASKETBAL:before {
   content: "\e944";
 }
-.icon-SPORTHANDBAL:before {
+.ICON-SPORTHANDBAL:before {
   content: "\e945";
 }
-.icon-SPORTHOCKEY:before {
+.ICON-SPORTHOCKEY:before {
   content: "\e946";
 }
-.icon-SPORTHONKBAL:before {
+.ICON-SPORTHONKBAL:before {
   content: "\e947";
 }
-.icon-SPORTJUDO:before {
+.ICON-SPORTJUDO:before {
   content: "\e948";
 }
-.icon-SPORTKORFBAL:before {
+.ICON-SPORTKORFBAL:before {
   content: "\e949";
 }
-.icon-SPORTKRACHT:before {
+.ICON-SPORTKRACHT:before {
   content: "\e94a";
 }
-.icon-SPORTREDDINGSBRIGADE:before {
+.ICON-SPORTREDDINGSBRIGADE:before {
   content: "\e94b";
 }
-.icon-SPORTVOETBAL:before {
+.ICON-SPORTVOETBAL:before {
   content: "\e94c";
 }
-.icon-SPORTVOLLEYBAL:before {
+.ICON-SPORTVOLLEYBAL:before {
   content: "\e94d";
 }
-.icon-SPORTZWEMMEN:before {
+.ICON-SPORTZWEMMEN:before {
   content: "\e94e";
 }
-.icon-CALENDAR:before {
+.ICON-CALENDAR:before {
   content: "\e900";
 }
-.icon-CARDS:before {
+.ICON-CARDS:before {
   content: "\e901";
 }
-.icon-CHANGE:before {
+.ICON-CHANGE:before {
   content: "\e902";
 }
-.icon-CHECK:before {
+.ICON-CHECK:before {
   content: "\e903";
 }
-.icon-CHEVRONDOWN:before {
+.ICON-CHEVRONDOWN:before {
   content: "\e904";
 }
-.icon-CHEVRONLEFT:before {
+.ICON-CHEVRONLEFT:before {
   content: "\e905";
 }
-.icon-CHEVRONRIGHT:before {
+.ICON-CHEVRONRIGHT:before {
   content: "\e906";
 }
-.icon-CHEVRONUP:before {
+.ICON-CHEVRONUP:before {
   content: "\e907";
 }
-.icon-CLOCK:before {
+.ICON-CLOCK:before {
   content: "\e908";
 }
-.icon-QUESTION:before {
+.ICON-QUESTION:before {
   content: "\e90a";
 }
-.icon-SHARE:before {
+.ICON-SHARE:before {
   content: "\e90b";
 }
-.icon-USER:before {
+.ICON-USER:before {
   content: "\e90c";
 }
-.icon-CROSS:before {
+.ICON-CROSS:before {
   content: "\e90d";
 }
-.icon-DROPDOWN:before {
+.ICON-DROPDOWN:before {
   content: "\e90e";
 }
-.icon-DROPLEFT:before {
+.ICON-DROPLEFT:before {
   content: "\e90f";
 }
-.icon-DROPRIGHT:before {
+.ICON-DROPRIGHT:before {
   content: "\e910";
 }
-.icon-DROPUP:before {
+.ICON-DROPUP:before {
   content: "\e911";
 }
-.icon-EVENTGENERIC:before {
+.ICON-EVENTGENERIC:before {
   content: "\e912";
 }
-.icon-EVENTREDCARD:before {
+.ICON-EVENTREDCARD:before {
   content: "\e913";
 }
-.icon-EVENTYELLOWCARD:before {
+.ICON-EVENTYELLOWCARD:before {
   content: "\e914";
 }
-.icon-FLAG:before {
+.ICON-FLAG:before {
   content: "\e915";
 }
-.icon-GEAR:before {
+.ICON-GEAR:before {
   content: "\e916";
 }
-.icon-INDICATOR:before {
+.ICON-INDICATOR:before {
   content: "\e917";
 }
-.icon-LIGHTBULB:before {
+.ICON-LIGHTBULB:before {
   content: "\e918";
 }
-.icon-LOCKOFF:before {
+.ICON-LOCKOFF:before {
   content: "\e919";
 }
-.icon-LOCKON:before {
+.ICON-LOCKON:before {
   content: "\e91a";
 }
-.icon-LOGOUT:before {
+.ICON-LOGOUT:before {
   content: "\e91b";
 }
-.icon-MATCHCANCEL:before {
+.ICON-MATCHCANCEL:before {
   content: "\e91c";
 }
-.icon-MATCHCOMPA:before {
+.ICON-MATCHCOMPA:before {
   content: "\e91d";
 }
-.icon-MATCHCOMPB:before {
+.ICON-MATCHCOMPB:before {
   content: "\e91e";
 }
-.icon-MATCHCUP:before {
+.ICON-MATCHCUP:before {
   content: "\e91f";
 }
-.icon-MATCHDELETE:before {
+.ICON-MATCHDELETE:before {
   content: "\e920";
 }
-.icon-MATCHOWN:before {
+.ICON-MATCHOWN:before {
   content: "\e921";
 }
-.icon-MENU:before {
+.ICON-MENU:before {
   content: "\e922";
 }
-.icon-MINUS:before {
+.ICON-MINUS:before {
   content: "\e923";
 }
-.icon-MOVEALL:before {
+.ICON-MOVEALL:before {
   content: "\e924";
 }
-.icon-MOVELEFTRIGHT:before {
+.ICON-MOVELEFTRIGHT:before {
   content: "\e925";
 }
-.icon-MOVEUPDOWN:before {
+.ICON-MOVEUPDOWN:before {
   content: "\e926";
 }
-.icon-OPTIONS:before {
+.ICON-OPTIONS:before {
   content: "\e927";
 }
-.icon-PENCIL:before {
+.ICON-PENCIL:before {
   content: "\e928";
 }
-.icon-PLACEHOLDER:before {
+.ICON-PLACEHOLDER:before {
   content: "\e929";
 }
-.icon-PLANE:before {
+.ICON-PLANE:before {
   content: "\e92a";
 }
-.icon-PLUS:before {
+.ICON-PLUS:before {
   content: "\e92b";
 }
-.icon-POSTBOXIN:before {
+.ICON-POSTBOXIN:before {
   content: "\e92c";
 }
-.icon-POSTBOXOUT:before {
+.ICON-POSTBOXOUT:before {
   content: "\e92d";
 }
-.icon-ROUNDHELP:before {
+.ICON-ROUNDHELP:before {
   content: "\e92e";
 }
-.icon-ROUNDINFO:before {
+.ICON-ROUNDINFO:before {
   content: "\e92f";
 }
-.icon-ROUNDMINUS:before {
+.ICON-ROUNDMINUS:before {
   content: "\e930";
 }
-.icon-ROUNDPLUS:before {
+.ICON-ROUNDPLUS:before {
   content: "\e931";
 }
-.icon-SEARCH:before {
+.ICON-SEARCH:before {
   content: "\e932";
 }
-.icon-SELECT:before {
+.ICON-SELECT:before {
   content: "\e933";
 }
-.icon-SHIELD:before {
+.ICON-SHIELD:before {
   content: "\e934";
 }
-.icon-SHIRT:before {
+.ICON-SHIRT:before {
   content: "\e935";
 }
-.icon-STATUSALERT:before {
+.ICON-STATUSALERT:before {
   content: "\e936";
 }
-.icon-STATUSCANCELED:before {
+.ICON-STATUSCANCELED:before {
   content: "\e937";
 }
-.icon-STATUSCONCEPT:before {
+.ICON-STATUSCONCEPT:before {
   content: "\e938";
 }
-.icon-STATUSCONCEPTALERT:before {
+.ICON-STATUSCONCEPTALERT:before {
   content: "\e939";
 }
-.icon-STATUSDONE:before {
+.ICON-STATUSDONE:before {
   content: "\e93a";
 }
-.icon-STATUSERROR:before {
+.ICON-STATUSERROR:before {
   content: "\e93b";
 }
-.icon-STATUSSUSPENDED:before {
+.ICON-STATUSSUSPENDED:before {
   content: "\e93c";
 }
-.icon-TRASHCAN:before {
+.ICON-TRASHCAN:before {
   content: "\e93d";
 }
-.icon-VISIBILITYOFF:before {
+.ICON-VISIBILITYOFF:before {
   content: "\e93e";
 }
-.icon-VISIBILITYON:before {
+.ICON-VISIBILITYON:before {
   content: "\e93f";
 }
-.icon-WORLD:before {
+.ICON-WORLD:before {
   content: "\e940";
 }

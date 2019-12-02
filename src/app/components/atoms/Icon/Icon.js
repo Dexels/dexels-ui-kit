@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Icon = ({ type }) => (
-    <span className={`icon-${type}`} />
+    <span className={`ICON-${type}`} />
 );
 
 Icon.types = ICON_TYPES;
