@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.16
+// Type definitions for dexels-ui-kit 2.0.17
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.2
@@ -669,6 +669,7 @@ export interface DropdownMultiSelectProps {
     optionAll?: React.ReactNode;
     options: React.ReactNode;
     placeholder?: string;
+    resetOnOutsideClick?: boolean;
     value: string;
     variant?: dropdownVariants;
 }
