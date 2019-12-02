@@ -17,7 +17,7 @@ export const StyledStatusIndicator = styled.div`
     color: ${({ status, theme }) => getStatusColor(status, theme)};
 
     ${({ background, theme }) => css`
-        background-color: ${background !== undefined ? background : theme.card.backgroundColor};
+        background-color: ${background || theme.card.backgroundColor};
     `}
 
     ${({ placement, size, theme }) => css`
