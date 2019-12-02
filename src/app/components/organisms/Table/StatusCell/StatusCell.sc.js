@@ -1,4 +1,4 @@
-import { getStatusColor } from '../../../../styles/mixins/getStatusColor';
+import getStatusColor from '../../../../styles/mixins/getStatusColor';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import StatusIndicator from '../../../atoms/StatusIndicator/StatusIndicator';
