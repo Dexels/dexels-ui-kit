@@ -16,6 +16,7 @@ module.exports = {
         'declaration-block-semicolon-space-before': 'never',
         'declaration-colon-space-before': 'never',
         'declaration-colon-space-after': 'always',
+        'font-family-no-missing-generic-family-keyword': null,
         'font-weight-notation': 'numeric',
         'function-calc-no-invalid': true,
         'function-calc-no-unspaced-operator': true,
