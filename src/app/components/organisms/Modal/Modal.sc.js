@@ -45,9 +45,10 @@ export const HeaderWrapper = styled.header`
 
 export const Body = styled.div`
     flex: 1 1 auto;
-    background-color: ${({ theme }) => theme.shades.nine};
+    background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.spacing(2)};
     overflow: auto;
+    color: ${({ theme }) => theme.colorText.primary};
 `;
 
 Body.propTypes = {
