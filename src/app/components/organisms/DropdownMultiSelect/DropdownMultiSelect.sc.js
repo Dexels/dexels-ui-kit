@@ -35,7 +35,7 @@ export const StaticItem = styled.div`
     ${({ elevation }) => getElevation(elevation)}
     margin: 0 0 2px;
     border-radius: ${({ theme }) => theme.spacing(1, 1, 0, 0)};
-    background-color: ${({ theme }) => theme.shades.seven};
+    background-color: ${({ theme }) => theme.hover.backgroundColor};
     padding: ${({ theme }) => theme.spacing(1, 1, 1, 2)};
 
     &::after {
@@ -84,7 +84,7 @@ List.defaultProps = {
 export const ListItem = styled.li`
     ${rippleEffectInit()}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
-    padding: ${({ theme }) => theme.spacing(1, 0, 0, 2)};
+    padding: ${({ theme }) => theme.spacing(0, 0, 0, 2)};
 
     &::after {
         ${({ theme }) => rippleEffect(theme.colorSecondary)}
