@@ -14,7 +14,7 @@ const CardStatus = ({
     status,
 }) => (
     <StyledCardStatusWrapper elevation={elevation} hasBorderRadius={hasBorderRadius}>
-        <StatusIndicator placement={placement} status={status}>
+        <StatusIndicator placement={placement} size={StatusIndicator.sizes.SMALL} status={status}>
             <Card elevation={Card.elevations.LEVEL_0} hasBorderRadius={false} position={position}>
                 {children}
             </Card>
