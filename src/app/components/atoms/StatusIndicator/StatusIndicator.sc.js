@@ -37,21 +37,4 @@ StyledStatusIndicator.defaultProps = {
     theme: themeBasic,
 };
 
-export const Text = styled.div`
-    display: flex;
-    align-items: center;
-
-    ${({ placement, theme }) => placement === STATUS_INDICATOR_PLACEMENTS.LEFT && css`
-        padding: ${theme.spacing(0, 0, 0, 1)};
-    `}
-`;
-
-Text.propTypes = {
-    placement: PropTypes.oneOf(Object.values(STATUS_INDICATOR_PLACEMENTS)).isRequired,
-    theme: themePropTypes,
-};
-
-Text.defaultProps = {
-    theme: themeBasic,
-};
-
+export default StyledStatusIndicator;
