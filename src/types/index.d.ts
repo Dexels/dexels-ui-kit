@@ -842,6 +842,23 @@ interface Table<P> extends React.FunctionComponent<P> {
 
 export const Table: Table<TableProps>;
 
+export interface TabsProps {
+    elevation?: elevations;
+    hasFullWidthTabHeaders?: boolean;
+    initiallyActiveTabIndex?: number;
+    tabs: {
+        content: React.ReactNode;
+        isDisabled?: boolean;
+        title: React.ReactNode;
+    }[];
+}
+
+interface Tabs<P> extends React.FunctionComponent<P> {
+    elevations: elevationsMap;
+}
+
+export const Tabs: Tabs<TabsProps>;
+
 export interface ToolbarProps {
     children?: React.ReactNode;
     isInverted?: boolean;
