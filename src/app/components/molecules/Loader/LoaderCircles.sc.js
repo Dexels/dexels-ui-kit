@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { hexToRgb } from '../../../utils/colorFunctions';
+import { hexToRgb } from '../../../utils/functions/colorFunctions';
 import PropTypes from 'prop-types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';

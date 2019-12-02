@@ -10,10 +10,11 @@ import {
     StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
+import React, { useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import Dropdown from '../../molecules/Dropdown/Dropdown';
 import PropTypes from 'prop-types';
-import React from 'react';
+import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 const DropdownMultiSelect = ({
     buttonCancelText,
@@ -33,50 +34,76 @@ const DropdownMultiSelect = ({
     optionAll,
     options,
     placeholder,
+    resetOnOutsideClick,
     value,
     variant,
-}) => (
-    <StyledDropdownMultiSelect>
-        <Dropdown
-            as="div"
-            errorMessage={errorMessage}
-            hasError={hasError}
-            isDisabled={isDisabled}
-            isOpen={isOpen}
-            isValid={isValid}
-            label={label}
-            name={name}
-            onClick={onClick}
-            placeholder={placeholder}
-            value={value || placeholder}
-            variant={variant}
-        >
-            {value || placeholder}
-        </Dropdown>
-        {isOpen && (
-            <ListWrapper elevation={elevation}>
-                {optionAll && (
-                    <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
-                        {optionAll}
-                    </StaticItem>
-                )}
-                <List maxHeight={maxHeight}>
-                    {options.map((item) => (
-                        <ListItem key={item.key}>
-                            {item}
-                        </ListItem>
-                    ))}
-                </List>
-                <DialogFooter
-                    buttonCancelText={buttonCancelText}
-                    buttonConfirmText={buttonConfirmText}
-                    onCancel={onCancel}
-                    onConfirm={onConfirm}
-                />
-            </ListWrapper>
-        )}
-    </StyledDropdownMultiSelect>
-);
+}) => {
+    const [isSelectOpen, setIsSelectOpen] = useState(isOpen);
+
+    const handleClickOutsideComponent = () => {
+        setIsSelectOpen(false);
+
+        if (resetOnOutsideClick) {
+            onCancel();
+        } else {
+            onConfirm();
+        }
+    };
+
+    const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
+
+    return (
+        <StyledDropdownMultiSelect>
+            <Dropdown
+                as="div"
+                errorMessage={errorMessage}
+                hasError={hasError}
+                isDisabled={isDisabled}
+                isOpen={isOpen}
+                isValid={isValid}
+                label={label}
+                name={name}
+                onClick={() => {
+                    setIsSelectOpen(true);
+                    onClick();
+                }}
+                placeholder={placeholder}
+                value={value || placeholder}
+                variant={variant}
+            >
+                {value || placeholder}
+            </Dropdown>
+            {isSelectOpen && (
+                <ListWrapper elevation={elevation} ref={componentRef}>
+                    {optionAll && (
+                        <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
+                            {optionAll}
+                        </StaticItem>
+                    )}
+                    <List maxHeight={maxHeight}>
+                        {options.map((item) => (
+                            <ListItem key={item.key}>
+                                {item}
+                            </ListItem>
+                        ))}
+                    </List>
+                    <DialogFooter
+                        buttonCancelText={buttonCancelText}
+                        buttonConfirmText={buttonConfirmText}
+                        onCancel={() => {
+                            setIsSelectOpen(false);
+                            onCancel();
+                        }}
+                        onConfirm={() => {
+                            setIsSelectOpen(false);
+                            onConfirm();
+                        }}
+                    />
+                </ListWrapper>
+            )}
+        </StyledDropdownMultiSelect>
+    );
+};
 
 DropdownMultiSelect.elevations = DROPDOWN_MULTISELECT_ELEVATIONS;
 DropdownMultiSelect.optionAllTexts = DROPDOWN_OPTION_ALL_TEXTS;
@@ -100,6 +127,7 @@ DropdownMultiSelect.propTypes = {
     optionAll: PropTypes.node,
     options: PropTypes.node.isRequired,
     placeholder: PropTypes.string,
+    resetOnOutsideClick: PropTypes.bool,
     value: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(Object.values(DropdownMultiSelect.variants)),
 };
@@ -116,6 +144,7 @@ DropdownMultiSelect.defaultProps = {
     onClick: null,
     optionAll: null,
     placeholder: '',
+    resetOnOutsideClick: true,
     variant: DropdownMultiSelect.variants.COMPACT,
 };
 
