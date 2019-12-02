@@ -275,13 +275,18 @@ export const Label: React.FunctionComponent<LabelProps>;
 
 export interface StatusIndicatorProps {
     as?: string;
+    background?: string;
     children: React.ReactNode;
     placement: placements;
+    size?: 'LARGE' | 'SMALL';
     status: statuses;
 }
 
 interface StatusIndicator<P> extends React.FunctionComponent<P> {
     placements: placementsMap;
+    sizes: {
+        [size in StatusIndicatorProps['size']]: size;
+    }
     statuses: statusesMap;
 }
 
