@@ -1,5 +1,12 @@
-import { PLACEMENTS, STATUSES } from '../../../utils/constants';
+import { PLACEMENTS, SIZES, STATUSES } from '../../../utils/constants';
 
 export const STATUS_INDICATOR_PLACEMENTS = PLACEMENTS;
+
+export const STATUS_INDICATOR_SIZES = {
+    ...SIZES,
+};
+
+delete STATUS_INDICATOR_SIZES.MEDIUM;
+delete STATUS_INDICATOR_SIZES.XLARGE;
 
 export const STATUS_INDICATOR_STATUSES = STATUSES;

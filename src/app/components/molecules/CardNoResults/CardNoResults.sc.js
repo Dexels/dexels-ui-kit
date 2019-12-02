@@ -12,7 +12,7 @@ export const StyledCardNoResults = styled.div`
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    background-color: transparent;
+    background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.spacing(3)};
 `;
 

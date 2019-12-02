@@ -64,7 +64,7 @@ const SelectionControl = ({
                     />
                     {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
                         <IconWrapper hasError={hasError} isDisabled={isDisabled} isValid={isValid}>
-                            <Icon type={isChecked ? Icon.types.CHECK : Icon.types.MINUS} />
+                            <Icon type={isChecked ? Icon.types.CHECKBOXCHECK : Icon.types.CHECKBOXMINUS1} />
                         </IconWrapper>
                     )}
                     <input
