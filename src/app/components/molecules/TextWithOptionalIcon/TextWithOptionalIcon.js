@@ -10,10 +10,11 @@ const TextWithOptionalIcon = ({
     iconSize,
     iconType,
     isCapitalized,
+    isTruncatable,
     ...rest
 }) => (
     <StyledTextWithOptionalIcon direction={direction} {...rest}>
-        <Text isCapitalized={isCapitalized}>
+        <Text isCapitalized={isCapitalized} isTruncatable={isTruncatable}>
             {children}
         </Text>
         {iconType && (
@@ -34,6 +35,7 @@ TextWithOptionalIcon.propTypes = {
     iconSize: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconSizes)),
     iconType: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconTypes)),
     isCapitalized: PropTypes.bool,
+    isTruncatable: PropTypes.bool,
 };
 
 TextWithOptionalIcon.defaultProps = {
@@ -41,6 +43,7 @@ TextWithOptionalIcon.defaultProps = {
     iconSize: TextWithOptionalIcon.iconSizes.LARGE,
     iconType: null,
     isCapitalized: false,
+    isTruncatable: false,
 };
 
 export default TextWithOptionalIcon;

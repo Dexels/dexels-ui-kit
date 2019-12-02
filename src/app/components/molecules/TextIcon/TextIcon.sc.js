@@ -7,39 +7,40 @@ import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledTextIcon = styled.div`
     ${setBoxSizing()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
-    display: grid;
-    border: 0;
     border-radius: 100%;
     background-color: ${({ theme }) => theme.shades.eight};
+    text-align: center;
     color: ${({ theme }) => theme.shades.four};
+    font-family: ${({ theme }) => theme.fontFamilyPrimary};
 
-    ${({ size }) => size === TEXT_ICON_SIZES.SMALL && css`
-        width: ${({ theme }) => theme.spacing(2.25)};
-        height: ${({ theme }) => theme.spacing(2.25)};
-        line-height: ${({ theme }) => theme.spacing(1.75)};
-        font-size: 10px;
-    `}
+    ${({ size, theme }) => css`
+        ${size === TEXT_ICON_SIZES.SMALL && css`
+            width: ${theme.spacing(2.25)};
+            height: ${theme.spacing(2.25)};
+            line-height: ${theme.spacing(2.25)};
+            font-size: ${theme.spacing(1.25)};
+        `}
 
-    ${({ size }) => size === TEXT_ICON_SIZES.MEDIUM && css`
-        width: ${({ theme }) => theme.spacing(2.5)};
-        height: ${({ theme }) => theme.spacing(2.5)};
-        line-height: ${({ theme }) => theme.spacing(2)};
-        font-size: 12px;
-    `}
+        ${size === TEXT_ICON_SIZES.MEDIUM && css`
+            width: ${theme.spacing(2.5)};
+            height: ${theme.spacing(2.5)};
+            line-height: ${theme.spacing(2.5)};
+            font-size: ${theme.spacing(1.5)};
+        `}
 
-    ${({ size }) => size === TEXT_ICON_SIZES.LARGE && css`
-        width: ${({ theme }) => theme.spacing(3)};
-        height: ${({ theme }) => theme.spacing(3)};
-        line-height: ${({ theme }) => theme.spacing(2.5)};
-        font-size: 16px;
-    `}
+        ${size === TEXT_ICON_SIZES.LARGE && css`
+            width: ${theme.spacing(3)};
+            height: ${theme.spacing(3)};
+            line-height: ${theme.spacing(3)};
+            font-size: ${theme.spacing(2)};
+        `}
 
-    ${({ size }) => size === TEXT_ICON_SIZES.XLARGE && css`
-        width: ${({ theme }) => theme.spacing(3.5)};
-        height: ${({ theme }) => theme.spacing(3.5)};
-        line-height: ${({ theme }) => theme.spacing(3)};
-        font-size: 20px;
+        ${size === TEXT_ICON_SIZES.XLARGE && css`
+            width: ${theme.spacing(3.5)};
+            height: ${theme.spacing(3.5)};
+            line-height: ${theme.spacing(3.5)};
+            font-size: ${theme.spacing(2.5)};
+        `}
     `}
 `;
 
