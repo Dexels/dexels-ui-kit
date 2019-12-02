@@ -10,35 +10,11 @@ import {
     StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import Dropdown from '../../molecules/Dropdown/Dropdown';
 import PropTypes from 'prop-types';
-
-const useMountEffect = (fn) => useEffect(fn, []);
-
-export const useOnOutsideClick = (handleOutsideClick) => {
-    const innerBorderRef = useRef();
-
-    const onClick = (event) => {
-        if (
-            innerBorderRef.current &&
-            !innerBorderRef.current.contains(event.target)
-        ) {
-            handleOutsideClick();
-        }
-    };
-
-    useMountEffect(() => {
-        document.addEventListener('click', onClick, true);
-
-        return () => {
-            document.removeEventListener('click', onClick, true);
-        };
-    });
-
-    return { innerBorderRef };
-};
+import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 const DropdownMultiSelect = ({
     buttonCancelText,
@@ -58,20 +34,23 @@ const DropdownMultiSelect = ({
     optionAll,
     options,
     placeholder,
+    resetOnOutsideClick,
     value,
     variant,
 }) => {
     const [isSelectOpen, setIsSelectOpen] = useState(isOpen);
 
-    const handleOnOutsideClick = (resetSelection = true) => {
+    const handleClickOutsideComponent = () => {
         setIsSelectOpen(false);
 
-        if (resetSelection) {
+        if (resetOnOutsideClick) {
             onCancel();
+        } else {
+            onConfirm();
         }
     };
 
-    const { innerBorderRef } = useOnOutsideClick(() => handleOnOutsideClick());
+    const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
     return (
         <StyledDropdownMultiSelect>
@@ -95,7 +74,7 @@ const DropdownMultiSelect = ({
                 {value || placeholder}
             </Dropdown>
             {isSelectOpen && (
-                <ListWrapper elevation={elevation} ref={innerBorderRef}>
+                <ListWrapper elevation={elevation} ref={componentRef}>
                     {optionAll && (
                         <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
                             {optionAll}
@@ -148,6 +127,7 @@ DropdownMultiSelect.propTypes = {
     optionAll: PropTypes.node,
     options: PropTypes.node.isRequired,
     placeholder: PropTypes.string,
+    resetOnOutsideClick: PropTypes.bool,
     value: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(Object.values(DropdownMultiSelect.variants)),
 };
@@ -164,6 +144,7 @@ DropdownMultiSelect.defaultProps = {
     onClick: null,
     optionAll: null,
     placeholder: '',
+    resetOnOutsideClick: true,
     variant: DropdownMultiSelect.variants.COMPACT,
 };
 

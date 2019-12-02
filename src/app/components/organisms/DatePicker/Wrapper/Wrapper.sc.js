@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ELEVATIONS } from '../../../../utils/constants';
 import getElevation from '../../../../styles/mixins/getElevation';
-import { hexToRgb } from '../../../../utils/colorFunctions';
+import { hexToRgb } from '../../../../utils/functions/colorFunctions';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../../styles/mixins/setTruncate';
