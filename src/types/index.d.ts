@@ -11,9 +11,7 @@ import * as ReactDates from 'react-dates';
 // Set up the project namespace, should be the same as the output.library field in the webpack config
 export as namespace DexelsUIKit;
 
-// Typings for functions/variables
-export function createDuiTheme(baseTheme: object, overrides: object): object;
-
+// Typings for utility functions, variables and mixins
 export interface themeTextStyle {
     fontFamily: string;
     fontSize: string;
@@ -205,6 +203,28 @@ export type sizesMap = { [size in sizes]: size }
 
 export type statuses = 'ALERT' | 'DEFAULT' | 'DISABLED' | 'INVALID' | 'NONE' | 'VALID';
 export type statusesMap = { [status in statuses]: status }
+
+export function createDuiTheme(baseTheme: theme, overrides: object): theme;
+
+export function getAlignment(alignment: alignments): string;
+
+export function getElevation(elevation: elevations): string;
+
+export function getPosition(position: positions): string;
+
+export function getStatusColor(status: statuses, theme: theme): string;
+
+export function rippleEffect(backgroundColor: string): string;
+
+export function rippleEffectInit(): string;
+
+export function rippleEffectReset(): string;
+
+export function setBoxSizing(): string;
+
+export function setCentered(): string;
+
+export function setTruncate(): string;
 
 // Typings for components
 // Atoms

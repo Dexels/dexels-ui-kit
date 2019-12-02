@@ -52,6 +52,16 @@ import { themeBasic } from '../app/styles/theming/themes/basic';
 import { themeDark } from '../app/styles/theming/themes/dark';
 import { themePropTypes } from '../app/styles/theming/themes/propTypes';
 
+// Mixins
+import getAlignment from '../app/styles/mixins/getAlignment';
+import getElevation from '../app/styles/mixins/getElevation';
+import getPosition from '../app/styles/mixins/getPosition';
+import getStatusColor from '../app/styles/mixins/getStatusColor';
+import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../app/styles/mixins/rippleEffect';
+import setBoxSizing from '../app/styles/mixins/setBoxSizing';
+import setCentered from '../app/styles/mixins/setCentered';
+import setTruncate from '../app/styles/mixins/setTruncate';
+
 export {
     // Export atoms
     Card,
@@ -95,4 +105,15 @@ export {
     themeDark,
     themePropTypes,
     createDuiTheme,
+    // Export mixins
+    getAlignment,
+    getElevation,
+    getPosition,
+    getStatusColor,
+    rippleEffect,
+    rippleEffectInit,
+    rippleEffectReset,
+    setBoxSizing,
+    setCentered,
+    setTruncate,
 };
