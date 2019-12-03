@@ -1,4 +1,4 @@
-import { invertColor } from '../../../utils/colorFunctions';
+import { invertColor } from '../../../utils/functions/colorFunctions';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
