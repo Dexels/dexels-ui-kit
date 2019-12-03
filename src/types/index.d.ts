@@ -12,14 +12,14 @@ import * as ReactDates from 'react-dates';
 export as namespace DexelsUIKit;
 
 // Typings for utility functions, variables and mixins
-export interface themeTextStyle {
+export interface ThemeTextStyle {
     fontFamily: string;
     fontSize: string;
     fontWeight: string;
     lineHeight: string;
 }
 
-export interface theme {
+export interface Theme {
     shades: {
         one: string;
         two: string;
@@ -143,38 +143,38 @@ export interface theme {
         }
     }
     textStyles: {
-        body1: themeTextStyle;
-        body2: themeTextStyle;
-        buttonLarge: themeTextStyle;
-        buttonMedium: themeTextStyle;
-        buttonSmall: themeTextStyle;
-        caption: themeTextStyle;
-        h1: themeTextStyle;
-        h2: themeTextStyle;
-        h3: themeTextStyle;
+        body1: ThemeTextStyle;
+        body2: ThemeTextStyle;
+        buttonLarge: ThemeTextStyle;
+        buttonMedium: ThemeTextStyle;
+        buttonSmall: ThemeTextStyle;
+        caption: ThemeTextStyle;
+        h1: ThemeTextStyle;
+        h2: ThemeTextStyle;
+        h3: ThemeTextStyle;
     }
     spacingValue: number;
     availableTextStyles: () => {
-        [textStyle in keyof theme['textStyles']]: textStyle;
+        [TextStyle in keyof Theme['textStyles']]: TextStyle;
     }
     spacing: (factor1: number, factor2?: number, factor3?: number, factor4?: number) => string;
-    textStyling: (textStyleSelector: keyof theme['textStyles']) => string;
+    textStyling: (textStyleSelector: keyof Theme['textStyles']) => string;
 }
 
-export const themeBasic: theme;
-export const themeDark: theme;
+export const ThemeBasic: Theme;
+export const ThemeDark: Theme;
 
-export type alignments = 'CENTER' | 'LEFT' | 'RIGHT';
-export type alignmentsMap =  { [alignment in alignments]: alignment }
+export type Alignments = 'CENTER' | 'LEFT' | 'RIGHT';
+export type AlignmentsMap =  { [Alignment in Alignments]: Alignment }
 
-export type directions = 'LTR' | 'RTL';
-export type directionsMap =  { [direction in directions]: direction }
+export type Directions = 'LTR' | 'RTL';
+export type DirectionsMap =  { [Direction in Directions]: Direction }
 
-export type dropdownVariants = 'COMPACT' | 'OUTLINE';
-export type dropdownVariantsMap =  { [dropdownVariant in dropdownVariants]: dropdownVariant }
+export type DropdownVariants = 'COMPACT' | 'OUTLINE';
+export type DropdownVariantsMap =  { [DropdownVariant in DropdownVariants]: DropdownVariant }
 
-export type easings = 'EASE' | 'EASE_IN' | 'EASE_IN_OUT' | 'EASE_OUT' | 'LINEAR' | 'NONE';
-export type easingsMap = {
+export type Easings = 'EASE' | 'EASE_IN' | 'EASE_IN_OUT' | 'EASE_OUT' | 'LINEAR' | 'NONE';
+export type EasingsMap = {
     EASE: 'ease';
     EASE_IN: 'ease-in';
     EASE_IN_OUT: 'ease-in-out';
@@ -183,36 +183,36 @@ export type easingsMap = {
     NONE: 'none';
 }
 
-export type elevations = 'LEVEL_0' | 'LEVEL_1' | 'LEVEL_2' | 'LEVEL_3' | 'LEVEL_4' | 'LEVEL_6' | 'LEVEL_8' | 'LEVEL_12' | 'LEVEL_16' | 'LEVEL_24';
-export type elevationsMap = { [elevation in elevations]: elevation }
+export type Elevations = 'LEVEL_0' | 'LEVEL_1' | 'LEVEL_2' | 'LEVEL_3' | 'LEVEL_4' | 'LEVEL_6' | 'LEVEL_8' | 'LEVEL_12' | 'LEVEL_16' | 'LEVEL_24';
+export type ElevationsMap = { [Elevation in Elevations]: Elevation }
 
-export type iconTypes = 'CABLE' | 'CALENDAR' | 'CALENDARACCEPT' | 'CALENDARDECLINE' | 'CARDS' | 'CHANGE' | 'CHECK' | 'CHEVRONDOWN' | 'CHEVRONFIRST' | 'CHEVRONLAST' | 'CHEVRONLEFT' | 'CHEVRONRIGHT' | 'CHEVRONUP' | 'CLOCK' | 'COMMUNICATIONMAIL' | 'COMMUNICATIONPHONE' | 'CROSS' | 'DROPDOWN' | 'DROPLEFT' | 'DROPRIGHT' | 'DROPUP' | 'EVENTGENERIC' | 'EVENTREDCARD' | 'EVENTYELLOWCARD' | 'FLAG' | 'GEAR' | 'INDICATOR' | 'LIGHTBULB' | 'LOCKOFF' | 'LOCKON' | 'LOGOUT' | 'MATCHCANCEL' | 'MATCHCOMPA' | 'MATCHCOMPB' | 'MATCHCUP' | 'MATCHDELETE' | 'MATCHOWN' | 'MATCHRESUME' | 'MENU' | 'MINUS' | 'MOVEALL' | 'MOVELEFTRIGHT' | 'MOVEUPDOWN' | 'NEWS' | 'OPTIONS' | 'PENCIL' | 'PLACEHOLDER' | 'PLANE' | 'PLUS' | 'POSTBOXIN' | 'POSTBOXOUT' | 'PRODUCTADS' | 'PRODUCTAVG' | 'PRODUCTBOEKHOUDING' | 'PRODUCTCONTRIBUTIE' | 'PRODUCTDATASERVICE' | 'PRODUCTDWF' | 'PRODUCTMOBIEL' | 'PRODUCTOPLEIDINGEN' | 'PRODUCTTOERNOOIEN' | 'PRODUCTTRAININGEN' | 'PRODUCTTV' | 'PRODUCTVRIJWILLIGERS' | 'PRODUCTWEBSITE' | 'QUESTION' | 'ROUNDCHECK' | 'ROUNDCROSS' | 'ROUNDHELP' | 'ROUNDINFO' | 'ROUNDMINUS' | 'ROUNDPLUS' | 'SEARCH' | 'SELECT' | 'SHARE' | 'SHIELD' | 'SHIRT' | 'SPORTATLETIEK' | 'SPORTBASKETBAL' | 'SPORTHANDBAL' | 'SPORTHOCKEY' | 'SPORTHONKBAL' | 'SPORTJUDO' | 'SPORTKORFBAL' | 'SPORTKRACHT' | 'SPORTREDDINGSBRIGADE' | 'SPORTVOETBAL' | 'SPORTVOLLEYBAL' | 'SPORTZWEMMEN' | 'STAR' | 'STATUSALERT' | 'STATUSCANCELED' | 'STATUSCONCEPT' | 'STATUSCONCEPTALERT' | 'STATUSDONE' | 'STATUSERROR' | 'STATUSSUSPENDED' | 'TRASHCAN' | 'TUTORIAL' | 'TWITTER' | 'USER' | 'USERDOUBLE' | 'VISIBILITYOFF' | 'VISIBILITYON' | 'WORLD';
-export type iconTypesMap = { [iconType in iconTypes]: iconType }
+export type IconTypes = 'CABLE' | 'CALENDAR' | 'CALENDARACCEPT' | 'CALENDARDECLINE' | 'CARDS' | 'CHANGE' | 'CHECK' | 'CHEVRONDOWN' | 'CHEVRONFIRST' | 'CHEVRONLAST' | 'CHEVRONLEFT' | 'CHEVRONRIGHT' | 'CHEVRONUP' | 'CLOCK' | 'COMMUNICATIONMAIL' | 'COMMUNICATIONPHONE' | 'CROSS' | 'DROPDOWN' | 'DROPLEFT' | 'DROPRIGHT' | 'DROPUP' | 'EVENTGENERIC' | 'EVENTREDCARD' | 'EVENTYELLOWCARD' | 'FLAG' | 'GEAR' | 'INDICATOR' | 'LIGHTBULB' | 'LOCKOFF' | 'LOCKON' | 'LOGOUT' | 'MATCHCANCEL' | 'MATCHCOMPA' | 'MATCHCOMPB' | 'MATCHCUP' | 'MATCHDELETE' | 'MATCHOWN' | 'MATCHRESUME' | 'MENU' | 'MINUS' | 'MOVEALL' | 'MOVELEFTRIGHT' | 'MOVEUPDOWN' | 'NEWS' | 'OPTIONS' | 'PENCIL' | 'PLACEHOLDER' | 'PLANE' | 'PLUS' | 'POSTBOXIN' | 'POSTBOXOUT' | 'PRODUCTADS' | 'PRODUCTAVG' | 'PRODUCTBOEKHOUDING' | 'PRODUCTCONTRIBUTIE' | 'PRODUCTDATASERVICE' | 'PRODUCTDWF' | 'PRODUCTMOBIEL' | 'PRODUCTOPLEIDINGEN' | 'PRODUCTTOERNOOIEN' | 'PRODUCTTRAININGEN' | 'PRODUCTTV' | 'PRODUCTVRIJWILLIGERS' | 'PRODUCTWEBSITE' | 'QUESTION' | 'ROUNDCHECK' | 'ROUNDCROSS' | 'ROUNDHELP' | 'ROUNDINFO' | 'ROUNDMINUS' | 'ROUNDPLUS' | 'SEARCH' | 'SELECT' | 'SHARE' | 'SHIELD' | 'SHIRT' | 'SPORTATLETIEK' | 'SPORTBASKETBAL' | 'SPORTHANDBAL' | 'SPORTHOCKEY' | 'SPORTHONKBAL' | 'SPORTJUDO' | 'SPORTKORFBAL' | 'SPORTKRACHT' | 'SPORTREDDINGSBRIGADE' | 'SPORTVOETBAL' | 'SPORTVOLLEYBAL' | 'SPORTZWEMMEN' | 'STAR' | 'STATUSALERT' | 'STATUSCANCELED' | 'STATUSCONCEPT' | 'STATUSCONCEPTALERT' | 'STATUSDONE' | 'STATUSERROR' | 'STATUSSUSPENDED' | 'TRASHCAN' | 'TUTORIAL' | 'TWITTER' | 'USER' | 'USERDOUBLE' | 'VISIBILITYOFF' | 'VISIBILITYON' | 'WORLD';
+export type IconTypesMap = { [IconType in IconTypes]: IconType }
 
-export type inputVariants = 'COMPACT' | 'OUTLINE';
-export type inputVariantsMap =  { [inputVariant in inputVariants]: inputVariant }
+export type InputVariants = 'COMPACT' | 'OUTLINE';
+export type InputVariantsMap =  { [InputVariant in InputVariants]: InputVariant }
 
-export type placements = 'BOTTOM' | 'LEFT' | 'RIGHT' | 'TOP';
-export type placementsMap = { [placement in placements]: placement }
+export type Placements = 'BOTTOM' | 'LEFT' | 'RIGHT' | 'TOP';
+export type PlacementsMap = { [Placement in Placements]: Placement }
 
-export type positions = 'BOTTOM_CENTER' | 'BOTTOM_LEFT' | 'BOTTOM_RIGHT' | 'MIDDLE_CENTER' | 'MIDDLE_LEFT' | 'MIDDLE_RIGHT' | 'TOP_CENTER' | 'TOP_LEFT' | 'TOP_RIGHT';
-export type positionsMap = { [position in positions]: position }
+export type Positions = 'BOTTOM_CENTER' | 'BOTTOM_LEFT' | 'BOTTOM_RIGHT' | 'MIDDLE_CENTER' | 'MIDDLE_LEFT' | 'MIDDLE_RIGHT' | 'TOP_CENTER' | 'TOP_LEFT' | 'TOP_RIGHT';
+export type PositionsMap = { [Position in Positions]: Position }
 
-export type sizes = 'LARGE' | 'MEDIUM' | 'SMALL' | 'XLARGE';
-export type sizesMap = { [size in sizes]: size }
+export type Sizes = 'LARGE' | 'MEDIUM' | 'SMALL' | 'XLARGE';
+export type SizesMap = { [Size in Sizes]: Size }
 
-export type statuses = 'ALERT' | 'DEFAULT' | 'DISABLED' | 'INVALID' | 'NONE' | 'VALID';
-export type statusesMap = { [status in statuses]: status }
+export type Statuses = 'ALERT' | 'DEFAULT' | 'DISABLED' | 'INVALID' | 'NONE' | 'VALID';
+export type StatusesMap = { [Status in Statuses]: Status }
 
-export function createDuiTheme(baseTheme: theme, overrides: object): theme;
+export function createDuiTheme(baseTheme: Theme, overrides: object): Theme;
 
-export function getAlignment(alignment: alignments): string;
+export function getAlignment(alignment: Alignments): string;
 
-export function getElevation(elevation: elevations): string;
+export function getElevation(elevation: Elevations): string;
 
-export function getPosition(position: positions): string;
+export function getPosition(position: Positions): string;
 
-export function getStatusColor(status: statuses, theme: theme): string;
+export function getStatusColor(status: Statuses, theme: Theme): string;
 
 export function rippleEffect(backgroundColor: string): string;
 
@@ -230,14 +230,14 @@ export function setTruncate(): string;
 // Atoms
 export interface CardProps {
     children: React.ReactNode;
-    elevation?: elevations;
+    elevation?: Elevations;
     hasBorderRadius?: boolean;
-    position?: positions;
+    position?: Positions;
 }
 
 interface Card<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
-    positions: positionsMap;
+    elevations: ElevationsMap;
+    positions: PositionsMap;
 }
 
 export const Card: Card<CardProps>;
@@ -250,11 +250,11 @@ export const ErrorMessage: React.FunctionComponent<ErrorMessageProps>;
 
 export interface IconProps {
     children?: never;
-    type: iconTypes;
+    type: IconTypes;
 }
 
 interface Icon<P> extends React.FunctionComponent<P> {
-    types: iconTypesMap;
+    types: IconTypesMap;
 }
 
 export const Icon: Icon<IconProps>;
@@ -277,17 +277,17 @@ export interface StatusIndicatorProps {
     as?: string;
     background?: string;
     children: React.ReactNode;
-    placement: placements;
+    placement: Placements;
     size?: 'LARGE' | 'SMALL';
-    status: statuses;
+    status: Statuses;
 }
 
 interface StatusIndicator<P> extends React.FunctionComponent<P> {
-    placements: placementsMap;
+    placements: PlacementsMap;
     sizes: {
         [size in StatusIndicatorProps['size']]: size;
     }
-    statuses: statusesMap;
+    statuses: StatusesMap;
 }
 
 export const StatusIndicator: StatusIndicator<StatusIndicatorProps>;
@@ -296,99 +296,99 @@ export const StatusIndicator: StatusIndicator<StatusIndicatorProps>;
 export interface ButtonProps {
     autoFocus?: boolean;
     children: React.ReactNode;
-    direction?: directions;
-    iconType?: iconTypes;
+    direction?: Directions;
+    iconType?: IconTypes;
     isDisabled?: boolean;
     isFullWidth?: boolean;
     isInverted?: boolean;
     onClick: (...args: any[]) => any;
     size?: 'LARGE' | 'MEDIUM' | 'SMALL';
     transitionDuration?: number;
-    transitionEasing?: easings;
+    transitionEasing?: Easings;
     variant?: 'FILLED' | 'OUTLINE' | 'TEXT_ONLY';
     [key: string]: any;
 }
 
 interface Button<P> extends React.FunctionComponent<P> {
-    directions: directionsMap;
-    iconTypes: iconTypesMap;
+    directions: DirectionsMap;
+    iconTypes: IconTypesMap;
     sizes: {
-        [size in ButtonProps['size']]: size;
+        [Size in ButtonProps['size']]: Size;
     }
-    transitionEasings: easingsMap;
+    transitionEasings: EasingsMap;
     variants: {
-        [variant in ButtonProps['variant']]: variant;
+        [Variant in ButtonProps['variant']]: Variant;
     }
 }
 
 export const Button: Button<ButtonProps>;
 
 export interface ButtonIconProps {
-    iconType: iconTypes;
+    iconType: IconTypes;
     isDisabled?: boolean;
     isInverted?: boolean;
     onClick: (...args: any[]) => any;
-    size?: sizes;
+    size?: Sizes;
     [key: string]: any;
 }
 
 interface ButtonIcon<P> extends React.FunctionComponent<P> {
-    iconTypes: iconTypesMap;
-    sizes: sizesMap;
+    iconTypes: IconTypesMap;
+    sizes: SizesMap;
 }
 
 export const ButtonIcon: ButtonIcon<ButtonIconProps>;
 
 export interface CardNoResultsProps {
-    elevation?: elevations;
+    elevation?: Elevations;
     header: string;
-    iconType: iconTypes;
+    iconType: IconTypes;
     itemPrefix?: string;
     items?: React.ReactNode[];
     title: string;
 }
 
 interface CardNoResults<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
-    iconTypes: iconTypesMap;
+    elevations: ElevationsMap;
+    iconTypes: IconTypesMap;
 }
 
 export const CardNoResults: CardNoResults<CardNoResultsProps>;
 
 export interface CardStatusProps {
     children: React.ReactNode;
-    elevation?: elevations;
+    elevation?: Elevations;
     hasBorderRadius?: boolean;
-    placement?: placements;
-    position?: positions;
-    status?: statuses;
+    placement?: Placements;
+    position?: Positions;
+    status?: Statuses;
 }
 
 interface CardStatus<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
-    placements: placementsMap;
-    positions: positionsMap;
-    statuses: statusesMap;
+    elevations: ElevationsMap;
+    placements: PlacementsMap;
+    positions: PositionsMap;
+    statuses: StatusesMap;
 }
 
 export const CardStatus: CardStatus<CardStatusProps>;
 
 export interface ChipProps {
     children: React.ReactNode;
-    direction?: directions;
-    iconType?: iconTypes;
+    direction?: Directions;
+    iconType?: IconTypes
     isDisabled?: boolean;
     isSelected?: boolean;
     onClick: (...args: any[]) => any;
     transitionDuration?: number;
-    transitionEasing?: easings;
+    transitionEasing?: Easings;
     [key: string]: any;
 }
 
 interface Chip<P> extends React.FunctionComponent<P> {
-    directions: directionsMap;
-    iconTypes: iconTypesMap;
-    transitionEasings: easingsMap;
+    directions: DirectionsMap;
+    iconTypes: IconTypesMap;
+    transitionEasings: EasingsMap;
 }
 
 export const Chip: Chip<ChipProps>;
@@ -418,12 +418,12 @@ export interface DropdownProps {
     onClick?: (...args: any[]) => any;
     placeholder: string;
     value: number | string;
-    variant?: dropdownVariants;
+    variant?: DropdownVariants;
     [key: string]: any;
 }
 
 interface Dropdown<P> extends React.FunctionComponent<P> {
-    variants: dropdownVariantsMap;
+    variants: DropdownVariantsMap;
 }
 
 export const Dropdown: Dropdown<DropdownProps>;
@@ -435,11 +435,11 @@ export interface FormElementLabelProps {
     isDisabled?: boolean;
     isFocused?: boolean;
     isValid?: boolean;
-    variant?: inputVariants;
+    variant?: InputVariants;
 }
 
 interface FormElementLabel<P> extends React.FunctionComponent<P> {
-    variants: inputVariantsMap;
+    variants: InputVariantsMap;
 }
 
 export const FormElementLabel: FormElementLabel<FormElementLabelProps>;
@@ -455,15 +455,15 @@ export interface InputProps {
     onChange: (...args: any[]) => any;
     type?: 'EMAIL' | 'NUMBER' | 'PASSWORD' | 'TEL' | 'TEXT';
     value?: string;
-    variant?: inputVariants;
+    variant?: InputVariants;
     [key: string]: any;
 }
 
 interface Input<P> extends React.FunctionComponent<P> {
     types: {
-        [type in InputProps['type']]: type;
+        [Type in InputProps['type']]: Type;
     }
-    variants: inputVariantsMap;
+    variants: InputVariantsMap;
 }
 
 export const Input: Input<InputProps>;
@@ -478,7 +478,7 @@ export interface OverlayProps {
 export const Overlay: React.FunctionComponent<OverlayProps>;
 
 export interface SelectionControlProps {
-    direction?: directions;
+    direction?: Directions;
     errorMessage?: string;
     hasError?: boolean;
     isChecked?: boolean;
@@ -489,61 +489,61 @@ export interface SelectionControlProps {
     name: string;
     onChange: (...args: any[]) => any;
     transitionDuration?: number;
-    transitionEasing?: easings;
+    transitionEasing?: Easings;
     type?: 'CHECKBOX' | 'RADIO';
     value: string;
     [key: string]: any;
 }
 
 interface SelectionControl<P> extends React.FunctionComponent<P> {
-    directions: directionsMap;
-    transitionEasing: easingsMap;
+    directions: DirectionsMap;
+    transitionEasing: EasingsMap;
     types: {
-        [type in SelectionControlProps['type']]: type;
+        [Type in SelectionControlProps['type']]: Type;
     }
 }
 
 export const SelectionControl: SelectionControl<SelectionControlProps>;
 
 export interface TextIconProps {
-    size?: sizes;
+    size?: Sizes;
     text: string;
     [key: string]: any;
 }
 
 interface TextIcon<P> extends React.FunctionComponent<P> {
-    sizes: sizesMap;
+    sizes: SizesMap;
 }
 
 export const TextIcon: TextIcon<TextIconProps>;
 
 export interface TextWithOptionalIconProps {
     children: React.ReactNode;
-    direction?: directions;
-    iconType?: iconTypes;
+    direction?: Directions;
+    iconType?: IconTypes
     isCapitalized?: boolean;
     isTruncatable?: boolean;
     [key: string]: any;
 }
 
 interface TextWithOptionalIcon<P> extends React.FunctionComponent<P> {
-    directions: directionsMap;
-    iconTypes: iconTypesMap;
+    directions: DirectionsMap;
+    iconTypes: IconTypesMap;
 }
 
 export const TextWithOptionalIcon: TextWithOptionalIcon<TextWithOptionalIconProps>;
 
 export interface TooltipProps {
-    elevations?: elevations;
-    position?: positions;
+    elevations?: Elevations;
+    position?: Positions;
     transitionDuration?: number;
-    transitionEasing?: easings;
+    transitionEasing?: Easings;
 }
 
 interface Tooltip<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
-    positions: positionsMap;
-    transitionEasings: easingsMap;
+    elevations: ElevationsMap;
+    positions: PositionsMap;
+    transitionEasings: EasingsMap;
 }
 
 export const Tooltip: Tooltip<TooltipProps>;
@@ -551,17 +551,17 @@ export const Tooltip: Tooltip<TooltipProps>;
 // Organisms
 export interface ChipStatusProps {
     children: React.ReactNode;
-    direction?: directions;
+    direction?: Directions;
     isDisabled?: boolean;
     onClick: (...args: any[]) => any;
     variant?: 'DESELECTED' | 'INDETERMINATE' | 'SELECTED';
 }
 
 interface ChipStatus<P> extends React.FunctionComponent<P> {
-    directions: directionsMap;
-    iconTypes: iconTypesMap;
+    directions: DirectionsMap;
+    iconTypes: IconTypesMap;
     variants: {
-        [variant in ChipStatusProps['variant']]: variant;
+        [Variant in ChipStatusProps['variant']]: Variant;
     }
 }
 
@@ -569,13 +569,13 @@ export const ChipStatus: ChipStatus<ChipStatusProps>;
 
 export interface ContainerContentProps {
     children: React.ReactNode;
-    elevation?: elevations;
-    position?: positions;
+    elevation?: Elevations;
+    position?: Positions;
 }
 
 interface ContainerContent<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
-    positions: positionsMap;
+    elevations: ElevationsMap;
+    positions: PositionsMap;
 }
 
 export const ContainerContent: ContainerContent<ContainerContentProps>;
@@ -619,34 +619,34 @@ export interface DateRangePickerProps {
 export const DateRangePicker: React.FunctionComponent<DateRangePickerProps>;
 
 export interface DialogProps {
-    bodyAlignment?: alignments;
+    bodyAlignment?: Alignments;
     buttonCancelText?: string;
     buttonClosePosition: 'LEFT' | 'RIGHT';
     buttonConfirmText: string;
     children: React.ReactNode;
-    elevation?: elevations;
+    elevation?: Elevations;
     footerText?: string;
     hasButtonClose?: boolean;
     hasOverlay?: boolean;
     header?: string;
-    headerAlignment?: alignments;
+    headerAlignment?: Alignments;
     isVisible: boolean;
     onCancel?: (...args: any[]) => any;
     onClose?: (...args: any[]) => any;
     onConfirm: (...args: any[]) => any;
     transitionDuration?: number;
-    transitionEasing?: easings;
+    transitionEasing?: Easings;
     width?: string;
 }
 
 interface Dialog<P> extends React.FunctionComponent<P> {
-    bodyAlignments: alignmentsMap;
+    bodyAlignments: AlignmentsMap;
     buttonClosePositions: {
-        [buttonClosePosition in DialogProps['buttonClosePosition']]: buttonClosePosition;
+        [ButtonClosePosition in DialogProps['buttonClosePosition']]: ButtonClosePosition;
     }
-    elevations: elevationsMap;
-    headerAlignments: alignmentsMap;
-    transitionEasings: easingsMap;
+    elevations: ElevationsMap;
+    headerAlignments: AlignmentsMap;
+    transitionEasings: EasingsMap;
 }
 
 export const Dialog: Dialog<DialogProps>;
@@ -654,7 +654,7 @@ export const Dialog: Dialog<DialogProps>;
 export interface DropdownMultiSelectProps {
     buttonCancelText?: string;
     buttonConfirmText: string;
-    elevation?: elevations;
+    elevation?: Elevations;
     errorMessage?: string;
     hasError?: boolean;
     isDisabled?: boolean;
@@ -671,24 +671,24 @@ export interface DropdownMultiSelectProps {
     placeholder?: string;
     resetOnOutsideClick?: boolean;
     value: string;
-    variant?: dropdownVariants;
+    variant?: DropdownVariants;
 }
 
 interface DropdownMultiSelect<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
+    elevations: ElevationsMap;
     optionAllTexts: {
         INDETERMINATE: 'Indeterminate';
         OFF: 'Off';
         ON: 'On';
     }
-    variants: dropdownVariantsMap;
+    variants: DropdownVariantsMap;
 }
 
 export const DropdownMultiSelect: DropdownMultiSelect<DropdownMultiSelectProps>;
 
 export interface HeaderProps {
     children?: React.ReactNode;
-    elevation?: elevations;
+    elevation?: Elevations;
     isInverted?: boolean;
     onBack?: (...args: any[]) => any;
     onToggleMenu?: (...args: any[]) => any;
@@ -696,7 +696,7 @@ export interface HeaderProps {
 }
 
 interface Header<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
+    elevations: ElevationsMap;
 }
 
 export const Header: Header<HeaderProps>;
@@ -711,11 +711,11 @@ export interface InputPasswordProps {
     name: string;
     onChange: (...args: any[]) => any;
     value?: string;
-    variant?: inputVariants;
+    variant?: InputVariants;
 }
 
 interface InputPassword<P> extends React.FunctionComponent<P> {
-    variants: inputVariantsMap;
+    variants: InputVariantsMap;
 }
 
 export const InputPassword: InputPassword<InputPasswordProps>;
@@ -730,7 +730,7 @@ export interface MenuProps {
             text: string;
         }[];
         exact?: boolean;
-        iconType: iconTypes;
+        iconType: IconTypes
         isDisabled?: boolean;
         path?: string;
         text: string;
@@ -738,7 +738,7 @@ export interface MenuProps {
 }
 
 interface Menu<P> extends React.FunctionComponent<P> {
-    iconTypes: iconTypesMap;
+    iconTypes: IconTypesMap;
 }
 
 export const Menu: Menu<MenuProps>;
@@ -778,11 +778,11 @@ export interface ModalProps {
     options?: React.ReactNode;
     title: string;
     transitionDuration?: number;
-    transitionEasings?: easings;
+    transitionEasings?: Easings;
 }
 
 interface Modal<P> extends React.FunctionComponent<P> {
-    transitionEasings: easingsMap;
+    transitionEasings: EasingsMap;
 }
 
 export const Modal: Modal<ModalProps>;
@@ -845,7 +845,7 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps>;
 export interface TableProps {
     caption?: string;
     debug?: boolean;
-    elevation?: elevations;
+    elevation?: Elevations;
     footerComponent?: React.ReactNode;
     hasUnsortedStateIcon?: boolean;
     instance: {
@@ -863,13 +863,13 @@ export interface TableProps {
 }
 
 interface Table<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
+    elevations: ElevationsMap;
 }
 
 export const Table: Table<TableProps>;
 
 export interface TabsProps {
-    elevation?: elevations;
+    elevation?: Elevations;
     hasFullWidthTabHeaders?: boolean;
     initiallyActiveTabIndex?: number;
     tabs: {
@@ -880,7 +880,7 @@ export interface TabsProps {
 }
 
 interface Tabs<P> extends React.FunctionComponent<P> {
-    elevations: elevationsMap;
+    elevations: ElevationsMap;
 }
 
 export const Tabs: Tabs<TabsProps>;
