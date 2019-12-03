@@ -1,8 +1,13 @@
-import { customSortByDate, renderCell, renderStatusCell } from '../utils/tableFunctions';
+import {
+    customSortByDate,
+    getColumnWidth,
+    renderCell,
+    renderStatusCell,
+} from '../utils/tableFunctions';
 import { getTableCell, renderButton } from './tableFunctions';
 import React from 'react';
 
-export const tableColumns = () => (
+export const tableColumns = (data) => (
     React.useMemo(() => [
         {
             Cell: (row) => renderStatusCell(row.cell.row.original.matchTaskStatus, row.cell.value),
@@ -17,6 +22,7 @@ export const tableColumns = () => (
             accessor: 'firstName',
             // TIP: event can be left out. Default = null
             onClick: (cell, row, event) => getTableCell(cell, row, event),
+            width: getColumnWidth(data, 'firstName', 'First Name'),
         },
         {
             Cell: (row) => renderCell(row),
@@ -27,6 +33,7 @@ export const tableColumns = () => (
             Cell: (row) => renderCell(row),
             Header: 'Infix',
             accessor: 'infix',
+            width: getColumnWidth(data, 'infix'),
         },
         {
             Cell: (row) => renderCell(row),

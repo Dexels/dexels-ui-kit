@@ -46,12 +46,7 @@ const Table = ({
                     {caption}
                 </TableCaption>
             )}
-            <StyledTable
-                debug={debug}
-                elevation={elevation}
-                isFullWidth={isFullWidth}
-                {...getTableProps()}
-            >
+            <StyledTable debug={debug} isFullWidth={isFullWidth} {...getTableProps()}>
                 <TableHead>
                     {headerGroups.map((headerGroup) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
@@ -73,7 +68,7 @@ const Table = ({
                         </TableHeaderRow>
                     ))}
                 </TableHead>
-                <TableBody {...getTableBodyProps()}>
+                <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
                     {dataSource(instance, Boolean(pagingComponent)).map((row) => prepareRow(row) || (
                         <TableRow
@@ -102,7 +97,7 @@ const Table = ({
                     ))}
                 </TableBody>
                 {footerComponent && (
-                    <TableFooter>
+                    <TableFooter elevation={elevation}>
                         {footerComponent}
                     </TableFooter>
                 )}

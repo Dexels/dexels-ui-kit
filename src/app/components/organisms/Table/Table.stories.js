@@ -26,10 +26,11 @@ export const Configurable = () => {
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [disableSorting, setDisableSorting] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
+    const data = tableData();
 
     const instance = createTable(
-        hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(),
-        tableData(),
+        hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(data),
+        data,
         disableSorting,
     );
 
@@ -65,35 +66,42 @@ export const Configurable = () => {
                     value={'isFooterVisible'}
                 />
             </div>
-            <Table
-                caption={text('Table caption', 'Table caption')}
-                debug={boolean('Show table debug info', Table.defaultProps.debug)}
-                elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
-                footerComponent={isFooterVisible && (
-                    <tr style={{
-                        backgroundColor: 'yellow',
-                        height: '50px',
-                    }}
-                    >
-                        {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT.
-                         OK WITH THAT FOR NOW IN HERE */}
-                        <td colSpan={instance.columns.length}>
-                            {'Some text'}
-                        </td>
-                    </tr>
-                )}
-                hasUnsortedStateIcon={boolean('Has unsorted state icon', Table.defaultProps.hasUnsortedStateIcon)}
-                instance={instance}
-                isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
-                onClickRow={getTableRow}
-                pagingComponent={(
-                    <Paginator
-                        instance={instance}
-                        texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
-                    />
-                )}
-                texts={createLocalizedTableTexts(isNL ? 'nl' : 'en')}
-            />
+            {!instance && (
+                <div>
+                    {'Loading...'}
+                </div>
+            )}
+            {instance && (
+                <Table
+                    caption={text('Table caption', 'Table caption')}
+                    debug={boolean('Show table debug info', Table.defaultProps.debug)}
+                    elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
+                    footerComponent={isFooterVisible && (
+                        <tr style={{
+                            backgroundColor: 'yellow',
+                            height: '50px',
+                        }}
+                        >
+                            {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT.
+                            OK WITH THAT FOR NOW IN HERE */}
+                            <td colSpan={instance.columns.length}>
+                                {'Some text'}
+                            </td>
+                        </tr>
+                    )}
+                    hasUnsortedStateIcon={boolean('Has unsorted state icon', Table.defaultProps.hasUnsortedStateIcon)}
+                    instance={instance}
+                    isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
+                    onClickRow={getTableRow}
+                    pagingComponent={(
+                        <Paginator
+                            instance={instance}
+                            texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
+                        />
+                    )}
+                    texts={createLocalizedTableTexts(isNL ? 'nl' : 'en')}
+                />
+            )}
         </>
     );
 };
