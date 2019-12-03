@@ -125,10 +125,6 @@ const BaseComponent = (
                     />
                 ))}
                 placeholder="Select the best fruits"
-                resetOnOutsideClick={boolean(
-                    'Reset selection on click outside',
-                    DropdownMultiSelect.defaultProps.resetOnOutsideClick,
-                )}
                 value={value}
                 variant={variant}
             />
