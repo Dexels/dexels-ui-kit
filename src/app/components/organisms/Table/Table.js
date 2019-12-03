@@ -53,6 +53,7 @@ const Table = ({
                             {headerGroup.headers.map((column) => (
                                 <TableHeaderCell
                                     key={column}
+                                    width={column.width}
                                     {...column.getHeaderProps(column.getSortByToggleProps({
                                         title: column.canSort
                                             ? `${texts.toggleSortTooltip} ${column.render('Header')}`

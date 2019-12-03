@@ -26,10 +26,11 @@ export const Configurable = () => {
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [disableSorting, setDisableSorting] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
+    const data = tableData();
 
     const instance = createTable(
-        hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(),
-        tableData(),
+        hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(data),
+        data,
         disableSorting,
     );
 

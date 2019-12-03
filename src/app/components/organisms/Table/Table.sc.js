@@ -52,6 +52,12 @@ export const TableHeaderCell = styled.th`
     white-space: nowrap;
     color: ${({ theme }) => theme.colorText.primary};
     font-weight: 600;
+
+    /* ${({ width }) => width && css`
+        &[style] {
+            width: ${width},
+        }
+    `} */
 `;
 
 TableHeaderCell.propTypes = {
