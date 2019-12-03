@@ -1,24 +1,11 @@
-import { customSortByDate, renderCell, renderStatusCell } from '../utils/tableFunctions';
+import {
+    customSortByDate,
+    getColumnWidth,
+    renderCell,
+    renderStatusCell,
+} from '../utils/tableFunctions';
 import { getTableCell, renderButton } from './tableFunctions';
 import React from 'react';
-
-const getColumnWidth = (data, accessor, headerText = accessor) => {
-    // console.log('*********************** columnWidth', data, accessor, headerText);
-
-    if (typeof accessor === 'string' || accessor instanceof String) {
-        accessor = (d) => d[accessor]; // eslint-disable-line no-param-reassign
-    }
-
-    const maxWidth = 600;
-    const magicSpacing = 10;
-
-    const cellLength = Math.max(
-        ...data.map((row) => (`${accessor(row)}` || '').length),
-        headerText.length,
-    );
-
-    return `${Math.min(maxWidth, cellLength * magicSpacing)}px`;
-};
 
 export const tableColumns = (data) => (
     React.useMemo(() => [
