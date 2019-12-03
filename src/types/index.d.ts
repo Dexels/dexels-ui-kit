@@ -416,7 +416,7 @@ export interface DropdownProps {
     name: string;
     onChange?: (...args: any[]) => any;
     onClick?: (...args: any[]) => any;
-    placeholder: string;
+    placeholder?: string;
     value: number | string;
     variant?: DropdownVariants;
     [key: string]: any;
