@@ -8,7 +8,7 @@ const constructLoaderCircle = (amount) => {
     const LoaderCirclesArray = [];
 
     for (let i = 0; i < amount + 1; i += 1) {
-        LoaderCirclesArray.push(<LoaderCircles id={i} opacity={i * 0.2} />);
+        LoaderCirclesArray.push(<LoaderCircles id={i} key={i} opacity={i * 0.2} />);
     }
 
     return LoaderCirclesArray;
