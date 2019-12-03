@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.19
+// Type definitions for dexels-ui-kit 2.0.20
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.2
@@ -161,8 +161,8 @@ export interface Theme {
     textStyling: (textStyleSelector: keyof Theme['textStyles']) => string;
 }
 
-export const ThemeBasic: Theme;
-export const ThemeDark: Theme;
+export const themeBasic: Theme;
+export const themeDark: Theme;
 
 export type Alignments = 'CENTER' | 'LEFT' | 'RIGHT';
 export type AlignmentsMap =  { [Alignment in Alignments]: Alignment }
