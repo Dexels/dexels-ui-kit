@@ -23,8 +23,8 @@
         "lint:js": "eslint \"src/**/*.js\" --config config/.eslintrc.js",
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
-        "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist",
-        "postpublish": "npx rimraf index.d.ts index.js fonts main.css",
+        "prepublishOnly": "rimraf node_modules && npm i && npm run dist",
+        "postpublish": "rimraf index.d.ts index.js fonts main.css",
         "check-types": "tsc"
     },
     "repository": {
@@ -101,6 +101,7 @@
         "react-router-dom": "^5.1.2",
         "react-table": "^7.0.0-beta.23",
         "react-with-direction": "^1.3.1",
+        "rimraf": "^3.0.0",
         "storybook-addon-styled-component-theme": "^1.2.5",
         "styled-components": "^4.4.1",
         "stylelint": "^12.0.0",
