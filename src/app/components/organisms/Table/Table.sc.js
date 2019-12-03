@@ -48,16 +48,8 @@ export const TableHeaderCell = styled.th`
     padding: ${({ theme }) => theme.spacing(0, 0, 1, 0)};
     height: ${({ theme }) => theme.spacing(5)};
     text-align: left;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     color: ${({ theme }) => theme.colorText.primary};
     font-weight: 600;
-
-    /* ${({ width }) => width && css`
-        &[style] {
-            width: ${width},
-        }
-    `} */
 `;
 
 TableHeaderCell.propTypes = {
@@ -118,8 +110,6 @@ export const TableCell = styled.td`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
     padding: 0;
     height: ${({ theme }) => theme.spacing(6)};
-    text-overflow: ellipsis;
-    white-space: nowrap;
     color: ${({ theme }) => theme.colorText.primary};
 
     ${({ isClickable }) => isClickable && css`
