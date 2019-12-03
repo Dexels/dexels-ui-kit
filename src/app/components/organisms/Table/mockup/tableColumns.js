@@ -14,6 +14,7 @@ export const tableColumns = (data) => (
             // Header: '',
             accessor: 'status',
             disableSorting: true,
+            hasCellPadding: false,
             show: true,
         },
         {

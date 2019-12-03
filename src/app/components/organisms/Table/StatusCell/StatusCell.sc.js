@@ -8,6 +8,8 @@ import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
 
 export const StyledStatusCell = styled.div`
     ${setBoxSizing()}
+    display: flex;
+    height: 100%;
 `;
 
 export const IconWrapper = styled.div`

@@ -19,10 +19,10 @@ const ConfigurableDialog = ({
     onConfirm,
 }) => (
     <Dialog
-        bodyAlignment={select('Body alignment', Dialog.alignments, Dialog.defaultProps.bodyAlignment)}
+        bodyAlignment={select('Body alignment', Dialog.bodyAlignments, Dialog.defaultProps.bodyAlignment)}
         buttonCancelText={text('ButtonCancel text', 'Cancel')}
         buttonClosePosition={select(
-            'ButtonClose position', Dialog.directions, Dialog.defaultProps.buttonClosePosition,
+            'ButtonClose position', Dialog.buttonClosePositions, Dialog.defaultProps.buttonClosePosition,
         )}
         buttonConfirmText={text('Button confirm text', 'Ok')}
         elevation={select('Elevation', Dialog.elevations, Dialog.defaultProps.elevation)}
@@ -30,7 +30,7 @@ const ConfigurableDialog = ({
         hasButtonClose={boolean('Show close button', Dialog.defaultProps.hasButtonClose)}
         hasOverlay={boolean('Has overlay', Dialog.defaultProps.hasOverlay)}
         header={text('Header', '')}
-        headerAlignment={select('Align header', Dialog.alignments, Dialog.defaultProps.headerAlignment)}
+        headerAlignment={select('Align header', Dialog.headerAlignments, Dialog.defaultProps.headerAlignment)}
         isVisible={isVisible}
         onCancel={onCancel}
         onClose={onClose}

@@ -38,6 +38,17 @@ export function tableData() {
 
     result.push({
         companyName: 'Dexels',
+        firstName: 'Lange voornaam',
+        infix: 'een net iets te lange infix',
+        info: 66,
+        lastName: 'Achternaam met best veel tekens in de naam',
+        matchTaskStatus: `${MATCH_TASK_STATUSES.NO_FIELD}`,
+        relationStart: moment(),
+        status: `${STATUS_INDICATOR_STATUSES.INVALID}`,
+    });
+
+    result.push({
+        companyName: 'Dexels',
         firstName: 'erik',
         infix: undefined,
         info: 66,

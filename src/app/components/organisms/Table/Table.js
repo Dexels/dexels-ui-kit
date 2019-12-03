@@ -52,6 +52,7 @@ const Table = ({
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
                                 <TableHeaderCell
+                                    hasCellPadding={column.hasCellPadding}
                                     key={column}
                                     {...column.getHeaderProps(column.getSortByToggleProps({
                                         title: column.canSort
@@ -81,6 +82,7 @@ const Table = ({
                         >
                             {row.cells.map((cell) => (
                                 <TableCell
+                                    hasCellPadding={cell.column.hasCellPadding}
                                     isClickable={Boolean(cell.column.onClick)}
                                     key={cell}
                                     onClick={cell.column.onClick
