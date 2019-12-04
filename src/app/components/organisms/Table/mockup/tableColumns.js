@@ -16,6 +16,7 @@ export const tableColumns = (data) => (
             disableSorting: true,
             hasCellPadding: false,
             show: true,
+            width: '50px',
         },
         {
             Cell: (row) => renderCell(row),
@@ -29,6 +30,7 @@ export const tableColumns = (data) => (
             Cell: (row) => renderCell(row),
             Header: 'Last Name',
             accessor: 'lastName',
+            width: '40%',
         },
         {
             Cell: (row) => renderCell(row),
@@ -40,24 +42,28 @@ export const tableColumns = (data) => (
             Cell: (row) => renderCell(row),
             Header: 'Company',
             accessor: 'companyName',
+            width: getColumnWidth(data, 'companyName', 'Company'),
         },
         {
             Cell: (row) => renderCell(row),
             Header: 'Startdate',
             accessor: 'relationStart',
             sortType: (a, b, propName) => customSortByDate(a, b, propName),
+            width: getColumnWidth(data, 'relationStart', 'Startdate'),
         },
         {
             Cell: (row) => renderCell(row),
             Header: 'Info',
             accessor: 'info',
             sortType: 'basic',
+            width: getColumnWidth(data, 'info'),
         },
         {
             Cell: (row) => renderButton(row),
             Header: 'Action',
             accessor: 'action',
             disableSorting: true,
+            width: getColumnWidth(data, 'action'),
         },
     ], [])
 );

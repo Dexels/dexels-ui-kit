@@ -28,13 +28,11 @@ const DropdownMultiSelect = ({
     label,
     maxHeight,
     name,
-    onCancel,
     onClick,
     onConfirm,
     optionAll,
     options,
     placeholder,
-    resetOnOutsideClick,
     value,
     variant,
 }) => {
@@ -42,12 +40,7 @@ const DropdownMultiSelect = ({
 
     const handleClickOutsideComponent = () => {
         setIsSelectOpen(false);
-
-        if (resetOnOutsideClick) {
-            onCancel();
-        } else {
-            onConfirm();
-        }
+        onConfirm();
     };
 
     const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
@@ -90,10 +83,6 @@ const DropdownMultiSelect = ({
                     <DialogFooter
                         buttonCancelText={buttonCancelText}
                         buttonConfirmText={buttonConfirmText}
-                        onCancel={() => {
-                            setIsSelectOpen(false);
-                            onCancel();
-                        }}
                         onConfirm={() => {
                             setIsSelectOpen(false);
                             onConfirm();
@@ -121,13 +110,11 @@ DropdownMultiSelect.propTypes = {
     label: PropTypes.string,
     maxHeight: PropTypes.string,
     name: PropTypes.string.isRequired,
-    onCancel: PropTypes.func.isRequired,
     onClick: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
     optionAll: PropTypes.node,
     options: PropTypes.node.isRequired,
     placeholder: PropTypes.string,
-    resetOnOutsideClick: PropTypes.bool,
     value: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(Object.values(DropdownMultiSelect.variants)),
 };
@@ -144,7 +131,6 @@ DropdownMultiSelect.defaultProps = {
     onClick: null,
     optionAll: null,
     placeholder: '',
-    resetOnOutsideClick: true,
     variant: DropdownMultiSelect.variants.COMPACT,
 };
 
