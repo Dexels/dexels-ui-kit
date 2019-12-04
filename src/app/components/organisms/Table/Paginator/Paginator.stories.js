@@ -14,7 +14,6 @@ export default { title: 'organisms/Table/Paginator' };
 
 export const Configurable = () => {
     const [isNL, setIsNL] = useState(true);
-
     const instance = createTable(tableColumns(), tableData());
     const localizedTexts = createLocalizedPagingTexts(isNL ? 'nl' : 'en');
 
@@ -38,7 +37,7 @@ export const Configurable = () => {
                     Paginator.defaultProps.hasPageSizeSelector,
                 )}
                 instance={instance}
-                pageSizes={array('Page sizes', [5, 10, 20, 50])}
+                pageSizes={array('Page sizes', ['5', '10', '20', '50'])}
                 texts={{
                     page: localizedTexts.page,
                     pageGoto: localizedTexts.pageGoto,

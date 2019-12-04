@@ -13,10 +13,10 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
-import { TABLE_ELEVATIONS, TABLE_PAGE_SIZES } from './Table.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
+import { TABLE_ELEVATIONS } from './Table.consts';
 
 const dataSource = (instance, hasPaging) => (hasPaging ? instance.page : instance.rows);
 
@@ -52,6 +52,7 @@ const Table = ({
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
                                 <TableHeaderCell
+                                    hasCellPadding={column.hasCellPadding}
                                     key={column}
                                     {...column.getHeaderProps(column.getSortByToggleProps({
                                         title: column.canSort
@@ -81,6 +82,7 @@ const Table = ({
                         >
                             {row.cells.map((cell) => (
                                 <TableCell
+                                    hasCellPadding={cell.column.hasCellPadding}
                                     isClickable={Boolean(cell.column.onClick)}
                                     key={cell}
                                     onClick={cell.column.onClick
@@ -112,7 +114,6 @@ const Table = ({
 };
 
 Table.elevations = TABLE_ELEVATIONS;
-Table.pageSizes = TABLE_PAGE_SIZES;
 
 Table.propTypes = {
     caption: PropTypes.string,

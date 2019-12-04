@@ -189,8 +189,8 @@ themeBasic.hover = {
 
 themeBasic.table = {
     row: {
-        backgroundColorOdd: themeBasic.shades.nine,
         backgroundColorEven: themeBasic.hover.backgroundColor,
+        backgroundColorOdd: themeBasic.shades.nine,
     },
 };
 
@@ -225,13 +225,6 @@ themeBasic.textStyles.buttonMedium = {
 themeBasic.textStyles.buttonSmall = {
     fontFamily: themeBasic.fontFamilySecondary,
     fontSize: '14px',
-    fontWeight: '600',
-    lineHeight: '22px',
-};
-
-themeBasic.textStyles.buttonXLarge = {
-    fontFamily: themeBasic.fontFamilySecondary,
-    fontSize: '18px',
     fontWeight: '600',
     lineHeight: '22px',
 };

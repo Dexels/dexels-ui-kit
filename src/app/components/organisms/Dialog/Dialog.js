@@ -5,10 +5,11 @@ import {
     StyledDialog,
 } from './Dialog.sc';
 import {
-    DIALOG_ALIGNMENTS,
-    DIALOG_DIRECTIONS,
+    DIALOG_BODY_ALIGNMENTS,
+    DIALOG_BUTTON_CLOSE_POSITIONS,
     DIALOG_EASINGS,
     DIALOG_ELEVATIONS,
+    DIALOG_HEADER_ALIGNMENTS,
 } from './Dialog.consts';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import Icon from '../../atoms/Icon/Icon';
@@ -71,15 +72,16 @@ const Dialog = ({
     </>
 );
 
-Dialog.alignments = DIALOG_ALIGNMENTS;
-Dialog.directions = DIALOG_DIRECTIONS;
+Dialog.bodyAlignments = DIALOG_BODY_ALIGNMENTS;
+Dialog.buttonClosePositions = DIALOG_BUTTON_CLOSE_POSITIONS;
 Dialog.elevations = DIALOG_ELEVATIONS;
+Dialog.headerAlignments = DIALOG_HEADER_ALIGNMENTS;
 Dialog.transitionEasings = DIALOG_EASINGS;
 
 Dialog.propTypes = {
-    bodyAlignment: PropTypes.oneOf(Object.values(Dialog.alignments)),
-    buttonCancelText: PropTypes.string, // This can not be required because the button is optional
-    buttonClosePosition: PropTypes.oneOf(Object.values(Dialog.directions)),
+    bodyAlignment: PropTypes.oneOf(Object.values(Dialog.bodyAlignments)),
+    buttonCancelText: PropTypes.string,
+    buttonClosePosition: PropTypes.oneOf(Object.values(Dialog.buttonClosePositions)),
     buttonConfirmText: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(Dialog.elevations)),
@@ -87,7 +89,7 @@ Dialog.propTypes = {
     hasButtonClose: PropTypes.bool,
     hasOverlay: PropTypes.bool,
     header: PropTypes.string,
-    headerAlignment: PropTypes.oneOf(Object.values(Dialog.alignments)),
+    headerAlignment: PropTypes.oneOf(Object.values(Dialog.headerAlignments)),
     isVisible: PropTypes.bool.isRequired,
     onCancel: PropTypes.func,
     onClose: PropTypes.func,
@@ -98,15 +100,15 @@ Dialog.propTypes = {
 };
 
 Dialog.defaultProps = {
-    bodyAlignment: Dialog.alignments.CENTER,
+    bodyAlignment: Dialog.bodyAlignments.CENTER,
     buttonCancelText: '',
-    buttonClosePosition: Dialog.directions.LTR,
+    buttonClosePosition: Dialog.buttonClosePositions.LEFT,
     elevation: Dialog.elevations.LEVEL_12,
     footerText: null,
     hasButtonClose: true,
     hasOverlay: true,
     header: null,
-    headerAlignment: Dialog.alignments.CENTER,
+    headerAlignment: Dialog.headerAlignments.CENTER,
     onCancel: null,
     onClose: null,
     transitionDuration: 500,

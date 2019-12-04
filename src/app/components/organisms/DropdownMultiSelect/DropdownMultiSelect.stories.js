@@ -27,20 +27,20 @@ const getSelectAllOption = (options, textOptionDeselectAll, textOptionSelectAll)
     if (allSelected) {
         return {
             text: textOptionDeselectAll,
-            value: DropdownMultiSelect.enumOptionAll.ON,
+            value: DropdownMultiSelect.optionAllTexts.ON,
         };
     }
 
     if (hasSelected) {
         return {
             text: textOptionDeselectAll,
-            value: DropdownMultiSelect.enumOptionAll.INDETERMINATE,
+            value: DropdownMultiSelect.optionAllTexts.INDETERMINATE,
         };
     }
 
     return {
         text: textOptionSelectAll,
-        value: DropdownMultiSelect.enumOptionAll.OFF,
+        value: DropdownMultiSelect.optionAllTexts.OFF,
     };
 };
 
@@ -104,8 +104,8 @@ const BaseComponent = (
                 }}
                 optionAll={(
                     <SelectionControl
-                        isChecked={selectAllOption.value === DropdownMultiSelect.enumOptionAll.ON}
-                        isIndeterminate={selectAllOption.value === DropdownMultiSelect.enumOptionAll.INDETERMINATE}
+                        isChecked={selectAllOption.value === DropdownMultiSelect.optionAllTexts.ON}
+                        isIndeterminate={selectAllOption.value === DropdownMultiSelect.optionAllTexts.INDETERMINATE}
                         label={selectAllOption.text}
                         name="DROPDOWN_MULTISELECT_OPTION_ALL"
                         onChange={onChangeAll}

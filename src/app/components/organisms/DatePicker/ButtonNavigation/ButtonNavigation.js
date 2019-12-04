@@ -5,7 +5,7 @@ import { StyledButtonNavigation } from './ButtonNavigation.sc';
 
 const ButtonNavigation = ({ isNext, isPrev }) => (
     <StyledButtonNavigation isNext={isNext} isPrev={isPrev}>
-        <ButtonIcon iconType={ButtonIcon.types.CHEVRONLEFT} />
+        <ButtonIcon iconType={ButtonIcon.iconTypes.CHEVRONLEFT} />
     </StyledButtonNavigation>
 );
 

@@ -23,11 +23,11 @@ const ButtonIcon = ({
     </StyledButtonIcon>
 );
 
-ButtonIcon.types = Icon.types;
+ButtonIcon.iconTypes = Icon.types;
 ButtonIcon.sizes = BUTTON_ICON_SIZES;
 
 ButtonIcon.propTypes = {
-    iconType: PropTypes.oneOf(Object.values(ButtonIcon.types)),
+    iconType: PropTypes.oneOf(Object.values(ButtonIcon.iconTypes)).isRequired,
     isDisabled: PropTypes.bool,
     isInverted: PropTypes.bool,
     onClick: PropTypes.func,
@@ -35,7 +35,6 @@ ButtonIcon.propTypes = {
 };
 
 ButtonIcon.defaultProps = {
-    iconType: ButtonIcon.types.CHEVRONDOWN,
     isDisabled: false,
     isInverted: false,
     onClick: null,

@@ -1,8 +1,9 @@
 import {
-    DIALOG_ALIGNMENTS,
-    DIALOG_DIRECTIONS,
+    DIALOG_BODY_ALIGNMENTS,
+    DIALOG_BUTTON_CLOSE_POSITIONS,
     DIALOG_EASINGS,
     DIALOG_ELEVATIONS,
+    DIALOG_HEADER_ALIGNMENTS,
 } from './Dialog.consts';
 import styled, { css } from 'styled-components';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
@@ -53,15 +54,15 @@ export const ButtonClose = styled.button`
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
-    text-align: ${({ position }) => (position === DIALOG_DIRECTIONS.LTR ? 'left' : 'right')};
+    text-align: ${({ position }) => (position === DIALOG_BUTTON_CLOSE_POSITIONS.LEFT ? 'left' : 'right')};
     color: ${({ theme }) => theme.colorText.primary};
     font-size: ${({ theme }) => theme.spacing(3)};
 
-    ${({ position }) => position === DIALOG_DIRECTIONS.LTR && css`
+    ${({ position }) => position === DIALOG_BUTTON_CLOSE_POSITIONS.LEFT && css`
         left: 2px;
     `}
 
-    ${({ position }) => position === DIALOG_DIRECTIONS.RTL && css`
+    ${({ position }) => position === DIALOG_BUTTON_CLOSE_POSITIONS.RIGHT && css`
         right: 2px;
     `}
 
@@ -77,7 +78,7 @@ export const ButtonClose = styled.button`
 `;
 
 ButtonClose.propTypes = {
-    position: PropTypes.oneOf(Object.values(DIALOG_DIRECTIONS)).isRequired,
+    position: PropTypes.oneOf(Object.values(DIALOG_BUTTON_CLOSE_POSITIONS)).isRequired,
     theme: themePropTypes,
 };
 
@@ -99,7 +100,7 @@ export const Header = styled.header`
 `;
 
 Header.propTypes = {
-    alignment: PropTypes.oneOf(Object.values(DIALOG_ALIGNMENTS)).isRequired,
+    alignment: PropTypes.oneOf(Object.values(DIALOG_HEADER_ALIGNMENTS)).isRequired,
     theme: themePropTypes,
 };
 
@@ -120,7 +121,7 @@ export const Body = styled.div`
 `;
 
 Body.propTypes = {
-    alignment: PropTypes.oneOf(Object.values(DIALOG_ALIGNMENTS)).isRequired,
+    alignment: PropTypes.oneOf(Object.values(DIALOG_BODY_ALIGNMENTS)).isRequired,
     hasHeader: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };

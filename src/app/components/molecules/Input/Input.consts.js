@@ -5,6 +5,7 @@ export const INPUT_TYPES = mapArrayToObject([
     'EMAIL',
     'NUMBER',
     'PASSWORD',
+    'TEL',
     'TEXT',
 ], true);
 

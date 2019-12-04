@@ -7,7 +7,6 @@ import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 const Chip = ({
     children,
     direction,
-    iconSize,
     iconType,
     isDisabled,
     isSelected,
@@ -24,7 +23,7 @@ const Chip = ({
         transitionEasing={transitionEasing}
         {...rest}
     >
-        <TextWithOptionalIcon direction={direction} iconSize={iconSize} iconType={iconType}>
+        <TextWithOptionalIcon direction={direction} iconType={iconType}>
             {children}
         </TextWithOptionalIcon>
     </StyledChip>

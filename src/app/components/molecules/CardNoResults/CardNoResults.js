@@ -8,7 +8,6 @@ import {
     Title,
 } from './CardNoResults.sc';
 import Card from '../../atoms/Card/Card';
-import Colors from '../../atoms/Colors/Colors';
 import Icon from '../../atoms/Icon/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -44,13 +43,12 @@ const CardNoResults = ({
 );
 
 CardNoResults.elevations = Card.elevations;
-CardNoResults.iconColors = Colors.colors;
 CardNoResults.iconTypes = Icon.types;
 
 CardNoResults.propTypes = {
     elevation: PropTypes.oneOf(Object.values(CardNoResults.elevations)),
     header: PropTypes.string.isRequired,
-    iconType: PropTypes.oneOf(Object.values(CardNoResults.iconTypes)),
+    iconType: PropTypes.oneOf(Object.values(CardNoResults.iconTypes)).isRequired,
     itemPrefix: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.node),
     title: PropTypes.string.isRequired,
@@ -58,7 +56,6 @@ CardNoResults.propTypes = {
 
 CardNoResults.defaultProps = {
     elevation: CardNoResults.elevations.LEVEL_1,
-    iconType: CardNoResults.iconTypes.SEARCH,
     itemPrefix: '-',
     items: null,
 };

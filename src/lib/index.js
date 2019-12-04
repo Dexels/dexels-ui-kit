@@ -38,17 +38,29 @@ import Dialog from '../app/components/organisms/Dialog/Dialog';
 import DropdownMultiSelect from '../app/components/organisms/DropdownMultiSelect/DropdownMultiSelect';
 import Header from '../app/components/organisms/Header/Header';
 import InputPassword from '../app/components/organisms/InputPassword/InputPassword';
+import Menu from '../app/components/organisms/Menu/Menu';
 import Modal from '../app/components/organisms/Modal/Modal';
+import Paginator from '../app/components/organisms/Table/Paginator/Paginator';
 import SingleDatePicker from '../app/components/organisms/DatePicker/SingleDatePicker/SingleDatePicker';
 import Table from '../app/components/organisms/Table/Table';
 import Tabs from '../app/components/organisms/Tabs/Tabs';
 import Toolbar from '../app/components/organisms/Toolbar/Toolbar';
 
 // Theming
+import createDuiTheme from '../app/styles/theming/createDuiTheme';
 import { themeBasic } from '../app/styles/theming/themes/basic';
 import { themeDark } from '../app/styles/theming/themes/dark';
 import { themePropTypes } from '../app/styles/theming/themes/propTypes';
-import createDuiTheme from '../app/styles/theming/createDuiTheme';
+
+// Mixins
+import getAlignment from '../app/styles/mixins/getAlignment';
+import getElevation from '../app/styles/mixins/getElevation';
+import getPosition from '../app/styles/mixins/getPosition';
+import getStatusColor from '../app/styles/mixins/getStatusColor';
+import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../app/styles/mixins/rippleEffect';
+import setBoxSizing from '../app/styles/mixins/setBoxSizing';
+import setCentered from '../app/styles/mixins/setCentered';
+import setTruncate from '../app/styles/mixins/setTruncate';
 
 export {
     // Export atoms
@@ -81,7 +93,9 @@ export {
     DropdownMultiSelect,
     Header,
     InputPassword,
+    Menu,
     Modal,
+    Paginator,
     SingleDatePicker,
     Table,
     Tabs,
@@ -91,4 +105,15 @@ export {
     themeDark,
     themePropTypes,
     createDuiTheme,
+    // Export mixins
+    getAlignment,
+    getElevation,
+    getPosition,
+    getStatusColor,
+    rippleEffect,
+    rippleEffectInit,
+    rippleEffectReset,
+    setBoxSizing,
+    setCentered,
+    setTruncate,
 };

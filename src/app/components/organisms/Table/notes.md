@@ -17,6 +17,7 @@ export const tableColumns = () => (
             Cell: (row) => renderCell(row),
             Header: 'First Name',
             accessor: 'firstName',
+            hasCellPadding: false,
             // TIP: event can be left out. Default = null
             onClick: (cell, row, event) => getTableCell(cell, row, event),
         },

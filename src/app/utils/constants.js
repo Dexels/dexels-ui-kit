@@ -1,8 +1,8 @@
 import mapArrayToObject from './mapArrayToObject';
 
 export const ALIGNMENTS = mapArrayToObject([
-    'LEFT',
     'CENTER',
+    'LEFT',
     'RIGHT',
 ]);
 
@@ -16,14 +16,14 @@ export const DROPDOWN_VARIANTS = mapArrayToObject([
     'OUTLINE',
 ]);
 
-export const EASINGS = mapArrayToObject([
-    'EASE',
-    'EASE_IN',
-    'EASE_IN_OUT',
-    'EASE_OUT',
-    'LINEAR',
-    'NONE',
-], true);
+export const EASINGS = {
+    EASE: 'ease',
+    EASE_IN: 'ease-in',
+    EASE_IN_OUT: 'ease-in-out',
+    EASE_OUT: 'ease-out',
+    LINEAR: 'linear',
+    NONE: 'none',
+};
 
 export const ELEVATIONS = mapArrayToObject([
     'LEVEL_0',
@@ -43,6 +43,13 @@ export const INPUT_VARIANTS = mapArrayToObject([
     'OUTLINE',
 ]);
 
+export const PLACEMENTS = mapArrayToObject([
+    'BOTTOM',
+    'LEFT',
+    'RIGHT',
+    'TOP',
+], true);
+
 export const POSITIONS = mapArrayToObject([
     'BOTTOM_CENTER',
     'BOTTOM_LEFT',
@@ -54,13 +61,6 @@ export const POSITIONS = mapArrayToObject([
     'TOP_LEFT',
     'TOP_RIGHT',
 ]);
-
-export const PLACEMENTS = mapArrayToObject([
-    'BOTTOM',
-    'LEFT',
-    'RIGHT',
-    'TOP',
-], true);
 
 export const SIZES = mapArrayToObject([
     'LARGE',

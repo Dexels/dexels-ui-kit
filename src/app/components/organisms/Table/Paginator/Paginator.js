@@ -10,7 +10,6 @@ import {
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
-import { PAGINATOR_PAGE_SIZES } from './Paginator.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -95,27 +94,27 @@ const Paginator = ({
             <PagingButtons>
                 {hasAllPagingButtons && (
                     <ButtonIcon
-                        iconType={ButtonIcon.types.CHEVRONFIRST}
+                        iconType={ButtonIcon.iconTypes.CHEVRONFIRST}
                         isDisabled={!instance.canPreviousPage}
                         onClick={() => instance.gotoPage(0)}
                         size={ButtonIcon.sizes.XLARGE}
                     />
                 )}
                 <ButtonIcon
-                    iconType={ButtonIcon.types.CHEVRONLEFT}
+                    iconType={ButtonIcon.iconTypes.CHEVRONLEFT}
                     isDisabled={!instance.canPreviousPage}
                     onClick={() => instance.previousPage()}
                     size={ButtonIcon.sizes.XLARGE}
                 />
                 <ButtonIcon
-                    iconType={ButtonIcon.types.CHEVRONRIGHT}
+                    iconType={ButtonIcon.iconTypes.CHEVRONRIGHT}
                     isDisabled={!instance.canNextPage}
                     onClick={() => instance.nextPage()}
                     size={ButtonIcon.sizes.XLARGE}
                 />
                 {hasAllPagingButtons && (
                     <ButtonIcon
-                        iconType={ButtonIcon.types.CHEVRONLAST}
+                        iconType={ButtonIcon.iconTypes.CHEVRONLAST}
                         isDisabled={!instance.canNextPage}
                         onClick={() => instance.gotoPage(instance.pageCount - 1)}
                         size={ButtonIcon.sizes.XLARGE}
@@ -126,14 +125,26 @@ const Paginator = ({
     </StyledPaginator>
 );
 
-Paginator.pageSizes = PAGINATOR_PAGE_SIZES;
-
 Paginator.propTypes = {
     hasAllPagingButtons: PropTypes.bool,
     hasGoToPage: PropTypes.bool,
     hasPageSizeSelector: PropTypes.bool,
-    instance: PropTypes.shape(PropTypes.node.isRequired).isRequired,
-    pageSizes: PropTypes.arrayOf(PropTypes.number),
+    instance: PropTypes.shape({
+        canNextPage: PropTypes.bool.isRequired,
+        canPreviousPage: PropTypes.bool.isRequired,
+        gotoPage: PropTypes.func.isRequired,
+        nextPage: PropTypes.func.isRequired,
+        pageCount: PropTypes.number.isRequired,
+        pageIndex: PropTypes.number.isRequired,
+        pageSize: PropTypes.number.isRequired,
+        previousPage: PropTypes.func.isRequired,
+        rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+        setPageSize: PropTypes.func.isRequired,
+    }).isRequired,
+    pageSizes: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.arrayOf(PropTypes.string),
+    ]),
     texts: PropTypes.shape({
         page: PropTypes.string,
         pageGoto: PropTypes.string,
@@ -149,7 +160,7 @@ Paginator.defaultProps = {
     hasAllPagingButtons: true,
     hasGoToPage: false,
     hasPageSizeSelector: true,
-    pageSizes: Paginator.pageSizes,
+    pageSizes: [5, 10, 20],
     useResultsOfText: true,
 };
 

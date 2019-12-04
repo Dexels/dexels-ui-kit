@@ -8,7 +8,7 @@ export default {
     parameters: {
         notes,
     },
-    title: 'molecules/Menu',
+    title: 'organisms/Menu',
 };
 
 export const Configurable = () => (
@@ -33,17 +33,22 @@ export const Configurable = () => (
                     padding: '0 0 0 32px',
                 }}
             >
-                {menuItems.map(({ children, path, text }) => {
+                {menuItems.map(({
+                    children,
+                    exact,
+                    path,
+                    text,
+                }) => {
                     if (children.length > 0) {
-                        return children.map(({ path: childPath, text: childText }) => (
-                            <Route key={childText} path={childPath}>
-                                {`${childText} pagina`}
+                        return children.map((child) => (
+                            <Route exact={child.exact} key={child.text} path={child.path}>
+                                {`${child.text} pagina`}
                             </Route>
                         ));
                     }
 
                     return (
-                        <Route key={path} path={path}>
+                        <Route exact={exact} key={path} path={path}>
                             {`${text} pagina`}
                         </Route>
                     );

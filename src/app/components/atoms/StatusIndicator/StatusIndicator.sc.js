@@ -4,7 +4,7 @@ import {
     STATUS_INDICATOR_STATUSES,
 } from './StatusIndicator.consts';
 import styled, { css } from 'styled-components';
-import { getStatusColor } from '../../../styles/mixins/getStatusColor';
+import getStatusColor from '../../../styles/mixins/getStatusColor';
 import PropTypes from 'prop-types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';

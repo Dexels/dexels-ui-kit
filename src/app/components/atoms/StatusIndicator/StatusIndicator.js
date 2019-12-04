@@ -43,7 +43,7 @@ StatusIndicator.defaultProps = {
     as: 'div',
     background: undefined,
     placement: StatusIndicator.placements.TOP,
-    size: StatusIndicator.statuses.LARGE,
+    size: StatusIndicator.sizes.LARGE,
     status: StatusIndicator.statuses.DEFAULT,
 };
 

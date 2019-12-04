@@ -45,7 +45,7 @@ export const TableHeaderCell = styled.th`
     border-bottom: 4px solid;
     border-color: ${({ theme }) => theme.colorPrimary};
     background-color: transparent;
-    padding: ${({ theme }) => theme.spacing(0, 0, 1, 0)};
+    padding: ${({ hasCellPadding, theme }) => (hasCellPadding ? theme.spacing(0.5, 0.5, 1, 0.5) : theme.spacing(0))};
     height: ${({ theme }) => theme.spacing(5)};
     text-align: left;
     color: ${({ theme }) => theme.colorText.primary};
@@ -53,10 +53,12 @@ export const TableHeaderCell = styled.th`
 `;
 
 TableHeaderCell.propTypes = {
+    hasCellPadding: PropTypes.bool,
     theme: themePropTypes,
 };
 
 TableHeaderCell.defaultProps = {
+    hasCellPadding: true,
     theme: themeBasic,
 };
 
@@ -76,7 +78,6 @@ TableBody.defaultProps = {
 
 export const TableRow = styled.tr`
     position: relative;
-    /* border-spacing: ${({ theme }) => theme.spacing(0.125)}; */
     z-index: 1;
 
     ${({ isClickable }) => isClickable && css`
@@ -108,7 +109,7 @@ TableRow.defaultProps = {
 
 export const TableCell = styled.td`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
-    padding: 0;
+    padding: ${({ hasCellPadding, theme }) => theme.spacing(hasCellPadding ? 0.5 : 0)};
     height: ${({ theme }) => theme.spacing(6)};
     color: ${({ theme }) => theme.colorText.primary};
 
@@ -118,11 +119,13 @@ export const TableCell = styled.td`
 `;
 
 TableCell.propTypes = {
+    hasCellPadding: PropTypes.bool,
     isClickable: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
 
 TableCell.defaultProps = {
+    hasCellPadding: true,
     theme: themeBasic,
 };
 

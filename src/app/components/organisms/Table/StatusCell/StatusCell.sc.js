@@ -1,4 +1,4 @@
-import { getStatusColor } from '../../../../styles/mixins/getStatusColor';
+import getStatusColor from '../../../../styles/mixins/getStatusColor';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
 import StatusIndicator from '../../../atoms/StatusIndicator/StatusIndicator';
@@ -8,6 +8,8 @@ import { themePropTypes } from '../../../../styles/theming/themes/propTypes';
 
 export const StyledStatusCell = styled.div`
     ${setBoxSizing()}
+    display: flex;
+    height: 100%;
 `;
 
 export const IconWrapper = styled.div`

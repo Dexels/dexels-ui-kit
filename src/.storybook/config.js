@@ -23,7 +23,7 @@ moment.locale('nl');
 addDecorator(withInfo);
 addDecorator(withKnobs);
 
-// Wrap all stories in some centered div and then inside a Card so you can see the them color
+// Wrap all stories in a custom Wrapper component
 addDecorator((storyFn) => (
     <Wrapper
         isTransparent={boolean('Wrapper is transparent', false)}

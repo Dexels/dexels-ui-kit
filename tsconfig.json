@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "esModuleInterop": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "resolveJsonModule": true,
+    },
+    "include": ["./src"]
+}
