@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "2.0.22",
+    "version": "2.0.23",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -23,8 +23,8 @@
         "lint:js": "eslint \"src/**/*.js\" --config config/.eslintrc.js",
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
-        "prepublishOnly": "rimraf node_modules && npm i && npm run dist",
-        "postpublish": "rimraf index.d.ts index.js fonts main.css",
+        "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist",
+        "postpublish": "npx rimraf index.d.ts index.js fonts main.css",
         "check-types": "tsc"
     },
     "repository": {
