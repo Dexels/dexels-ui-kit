@@ -10,7 +10,7 @@
 
 - [ ] New component? Did you add it to the library exports file `index.js`?
 - [ ] Did you change props or proptypes? Did you update the values in `index.d.ts`?
-- [ ] New iconfont? Update the values in `index.d.ts`?
+- [ ] New iconfont? Update `selection.json`, `iconfont.css` (mind the path part), `Icon.const.js` and the values in `index.d.ts`?
 
 <br />
 
