@@ -54,12 +54,12 @@ export const StyledLoader = styled.div`
         }
 
         &::before {
-            left: -${({ theme }) => theme.spacing(1.5)};
+            left: ${({ theme }) => theme.spacing(-1.5)};
             border-radius: 50% 0 0 50%;
         }
 
         &::after {
-            top: -${({ theme }) => theme.spacing(1.5)};
+            top: ${({ theme }) => theme.spacing(-1.5)};
             border-radius: 50% 50% 0 0;
         }
     }

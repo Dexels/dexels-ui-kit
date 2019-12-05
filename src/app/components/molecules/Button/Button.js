@@ -40,7 +40,7 @@ const Button = ({
         {...rest}
     >
         {isLoading && (
-            <LoaderWrapper>
+            <LoaderWrapper buttonSize={size}>
                 <Loader />
             </LoaderWrapper>
         )}
