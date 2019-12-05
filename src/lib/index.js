@@ -24,6 +24,7 @@ import Dropdown from '../app/components/molecules/Dropdown/Dropdown';
 import FormElementLabel from '../app/components/molecules/FormElementLabel/FormElementLabel';
 import FullscreenLoader from '../app/components/molecules/FullscreenLoader/FullscreenLoader';
 import Input from '../app/components/molecules/Input/Input';
+import Loader from '../app/components/molecules/Loader/Loader';
 import Overlay from '../app/components/molecules/Overlay/Overlay';
 import SelectionControl from '../app/components/molecules/SelectionControl/SelectionControl';
 import TextIcon from '../app/components/molecules/TextIcon/TextIcon';
@@ -80,6 +81,7 @@ export {
     FormElementLabel,
     FullscreenLoader,
     Input,
+    Loader,
     Overlay,
     SelectionControl,
     TextIcon,

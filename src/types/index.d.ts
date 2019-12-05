@@ -30,7 +30,7 @@ export interface Theme {
         seven: string;
         eight: string;
         nine: string;
-    }
+    };
     colorPrimary: string;
     colorSecondary: string;
     colorTertiary: string;
@@ -42,20 +42,20 @@ export interface Theme {
     fontFamilySecondary: string;
     colorTextContrast: {
         primary: string;
-    }
+    };
     colorText: {
         primary: string;
         secondary: string;
-    }
+    };
     colorTextBody: {
         primary: string;
         secondary: string;
-    }
+    };
     background: {
         primary: string;
         secondary: string;
         tertiary: string;
-    }
+    };
     button: {
         filled: {
             backgroundColor: {
@@ -64,15 +64,15 @@ export interface Theme {
                 hoverInverted: string;
                 inverted: string;
                 primary: string;
-            }
+            };
             color: {
                 disabled: string;
                 hover: string;
                 hoverInverted: string;
                 inverted: string;
                 primary: string;
-            }
-        }
+            };
+        };
         outline: {
             backgroundColor: {
                 disabled: string;
@@ -80,15 +80,15 @@ export interface Theme {
                 hoverInverted: string;
                 inverted: string;
                 primary: string;
-            }
+            };
             color: {
                 disabled: string;
                 hover: string;
                 hoverInverted: string;
                 inverted: string;
                 primary: string;
-            }
-        }
+            };
+        };
         textOnly: {
             disabled: string;
             disabledInverted: string;
@@ -96,11 +96,11 @@ export interface Theme {
             hoverInverted: string;
             inverted: string;
             primary: string;
-        }
-    }
+        };
+    };
     card: {
         backgroundColor: string;
-    }
+    };
     datePicker: {
         backgroundColor: string;
         color: string;
@@ -111,37 +111,37 @@ export interface Theme {
             disabled: {
                 backgroundColor: string;
                 color: string;
-            }
+            };
             hover: {
                 accent: string;
                 backgroundColor: string;
                 color: string;
-            }
+            };
             selected: {
                 backgroundColor: string;
                 color: string;
-            }
+            };
             selectionLimit: {
                 backgroundColor: string;
                 color: string;
-            }
-        }
-    }
+            };
+        };
+    };
     header: {
         backgroundColor: {
             primary: string;
             secondary: string;
-        }
-    }
+        };
+    };
     hover: {
         backgroundColor: string;
-    }
+    };
     table: {
         row: {
             backgroundColorEven: string;
             backgroundColorOdd: string;
-        }
-    }
+        };
+    };
     textStyles: {
         body1: ThemeTextStyle;
         body2: ThemeTextStyle;
@@ -152,11 +152,11 @@ export interface Theme {
         h1: ThemeTextStyle;
         h2: ThemeTextStyle;
         h3: ThemeTextStyle;
-    }
+    };
     spacingValue: number;
     availableTextStyles: () => {
         [TextStyle in keyof Theme['textStyles']]: TextStyle;
-    }
+    };
     spacing: (factor1: number, factor2?: number, factor3?: number, factor4?: number) => string;
     textStyling: (textStyleSelector: keyof Theme['textStyles']) => string;
 }
@@ -285,7 +285,7 @@ export interface StatusIndicatorProps {
 interface StatusIndicator<P> extends React.FunctionComponent<P> {
     placements: PlacementsMap;
     sizes: {
-        [size in StatusIndicatorProps['size']]: size;
+        [Size in StatusIndicatorProps['size']]: Size;
     }
     statuses: StatusesMap;
 }
@@ -301,6 +301,7 @@ export interface ButtonProps {
     isDisabled?: boolean;
     isFullWidth?: boolean;
     isInverted?: boolean;
+    isLoading?: boolean;
     onClick: (...args: any[]) => any;
     size?: 'LARGE' | 'MEDIUM' | 'SMALL';
     transitionDuration?: number;
@@ -314,11 +315,11 @@ interface Button<P> extends React.FunctionComponent<P> {
     iconTypes: IconTypesMap;
     sizes: {
         [Size in ButtonProps['size']]: Size;
-    }
+    };
     transitionEasings: EasingsMap;
     variants: {
         [Variant in ButtonProps['variant']]: Variant;
-    }
+    };
 }
 
 export const Button: Button<ButtonProps>;
@@ -504,7 +505,7 @@ interface SelectionControl<P> extends React.FunctionComponent<P> {
     transitionEasing: EasingsMap;
     types: {
         [Type in SelectionControlProps['type']]: Type;
-    }
+    };
 }
 
 export const SelectionControl: SelectionControl<SelectionControlProps>;
@@ -566,7 +567,7 @@ interface ChipStatus<P> extends React.FunctionComponent<P> {
     iconTypes: IconTypesMap;
     variants: {
         [Variant in ChipStatusProps['variant']]: Variant;
-    }
+    };
 }
 
 export const ChipStatus: ChipStatus<ChipStatusProps>;
@@ -647,7 +648,7 @@ interface Dialog<P> extends React.FunctionComponent<P> {
     bodyAlignments: AlignmentsMap;
     buttonClosePositions: {
         [ButtonClosePosition in DialogProps['buttonClosePosition']]: ButtonClosePosition;
-    }
+    };
     elevations: ElevationsMap;
     headerAlignments: AlignmentsMap;
     transitionEasings: EasingsMap;
@@ -684,7 +685,7 @@ interface DropdownMultiSelect<P> extends React.FunctionComponent<P> {
         INDETERMINATE: 'Indeterminate';
         OFF: 'Off';
         ON: 'On';
-    }
+    };
     variants: DropdownVariantsMap;
 }
 
@@ -762,7 +763,7 @@ export interface PaginatorProps {
         previousPage: (...args: any[]) => any;
         rows: object[];
         setPageSize: (...args: any[]) => any;
-    }
+    };
     pageSizes?: number[] | string[];
     texts: {
         page: string;
@@ -771,7 +772,7 @@ export interface PaginatorProps {
         resultsOf: string;
         rowsPerPage: string;
         show: string;
-    }
+    };
     useResultsOfText?: boolean;
 }
 
@@ -806,7 +807,7 @@ export interface PaginatorProps {
         previousPage: (...args: any[]) => any;
         rows: object[];
         setPageSize: (...args: any[]) => any;
-    }
+    };
     pageSizes?: number[] | string[];
     texts: {
         page: string;
@@ -815,7 +816,7 @@ export interface PaginatorProps {
         resultsOf: string;
         rowsPerPage: string;
         show: string;
-    }
+    };
     useResultsOfText?: boolean;
 }
 
@@ -857,13 +858,13 @@ export interface TableProps {
         getTableProps: (...args: any[]) => any;
         headerGroups: any[];
         prepareRow: (...args: any[]) => any;
-    }
+    };
     isFullWidth?: boolean;
     onClickRow?: (...args: any[]) => any;
     pagingComponent?: React.ReactNode;
     texts?: {
         toggleSortTooltip?: string;
-    }
+    };
 }
 
 interface Table<P> extends React.FunctionComponent<P> {
