@@ -4,9 +4,10 @@ import {
     BUTTON_SIZES,
     BUTTON_VARIANTS,
 } from './Button.consts';
+import { LoaderWrapper, StyledButton, TextWrapper } from './Button.sc';
+import Loader from '../Loader/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyledButton } from './Button.sc';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const Button = ({
@@ -17,6 +18,7 @@ const Button = ({
     isDisabled,
     isFullWidth,
     isInverted,
+    isLoading,
     onClick,
     size,
     transitionDuration,
@@ -29,6 +31,7 @@ const Button = ({
         isDisabled={isDisabled}
         isFullWidth={isFullWidth}
         isInverted={isInverted}
+        isLoading={isLoading}
         onClick={onClick}
         size={size}
         transitionDuration={transitionDuration}
@@ -36,14 +39,21 @@ const Button = ({
         variant={variant}
         {...rest}
     >
-        <TextWithOptionalIcon
-            direction={direction}
-            iconSize={size}
-            iconType={iconType}
-            isCapitalized
-        >
-            {children}
-        </TextWithOptionalIcon>
+        {isLoading && (
+            <LoaderWrapper buttonSize={size}>
+                <Loader />
+            </LoaderWrapper>
+        )}
+        <TextWrapper isLoading={isLoading}>
+            <TextWithOptionalIcon
+                direction={direction}
+                iconSize={size}
+                iconType={iconType}
+                isCapitalized
+            >
+                {children}
+            </TextWithOptionalIcon>
+        </TextWrapper>
     </StyledButton>
 );
 
@@ -61,6 +71,7 @@ Button.propTypes = {
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     isInverted: PropTypes.bool,
+    isLoading: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     size: PropTypes.oneOf(Object.values(Button.sizes)),
     transitionDuration: PropTypes.number,
@@ -75,6 +86,7 @@ Button.defaultProps = {
     isDisabled: false,
     isFullWidth: false,
     isInverted: false,
+    isLoading: false,
     size: Button.sizes.LARGE,
     transitionDuration: 300,
     transitionEasing: Button.transitionEasings.EASE,

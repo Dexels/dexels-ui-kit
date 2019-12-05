@@ -22,6 +22,7 @@ import Chip from '../app/components/molecules/Chip/Chip';
 import DialogFooter from '../app/components/molecules/DialogFooter/DialogFooter';
 import Dropdown from '../app/components/molecules/Dropdown/Dropdown';
 import FormElementLabel from '../app/components/molecules/FormElementLabel/FormElementLabel';
+import FullscreenLoader from '../app/components/molecules/FullscreenLoader/FullscreenLoader';
 import Input from '../app/components/molecules/Input/Input';
 import Loader from '../app/components/molecules/Loader/Loader';
 import Overlay from '../app/components/molecules/Overlay/Overlay';
@@ -78,6 +79,7 @@ export {
     DialogFooter,
     Dropdown,
     FormElementLabel,
+    FullscreenLoader,
     Input,
     Loader,
     Overlay,
