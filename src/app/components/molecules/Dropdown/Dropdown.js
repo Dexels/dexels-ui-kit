@@ -48,6 +48,7 @@ const Dropdown = ({
                         isActive
                         isDisabled={isDisabled}
                         isFocused={isFocused || isOpen}
+                        isHovered={isHovered}
                         isValid={isValid}
                     >
                         {label}

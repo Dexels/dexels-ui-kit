@@ -36,6 +36,7 @@ const DropdownMultiSelect = ({
     value,
     variant,
 }) => {
+    const [isHovered, setIsHovered] = useState(false);
     const [isSelectOpen, setIsSelectOpen] = useState(isOpen);
 
     const handleClickOutsideComponent = () => {
@@ -52,6 +53,7 @@ const DropdownMultiSelect = ({
                 errorMessage={errorMessage}
                 hasError={hasError}
                 isDisabled={isDisabled}
+                isHovered={isHovered}
                 isOpen={isOpen}
                 isValid={isValid}
                 label={label}
@@ -59,6 +61,12 @@ const DropdownMultiSelect = ({
                 onClick={() => {
                     setIsSelectOpen(true);
                     onClick();
+                }}
+                onMouseEnter={() => {
+                    setIsHovered(true);
+                }}
+                onMouseLeave={() => {
+                    setIsHovered(false);
                 }}
                 placeholder={placeholder}
                 value={value || placeholder}
