@@ -1,5 +1,5 @@
-import { ELEVATIONS, POSITIONS } from '../../../utils/constants';
+import { ELEVATIONS } from '../../../utils/constants';
 
 export const CARD_ELEVATIONS = ELEVATIONS;
 
-export const CARD_POSITIONS = POSITIONS;
+export default CARD_ELEVATIONS;

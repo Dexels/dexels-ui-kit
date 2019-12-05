@@ -10,12 +10,11 @@ const CardStatus = ({
     elevation,
     hasBorderRadius,
     placement,
-    position,
     status,
 }) => (
     <StyledCardStatusWrapper elevation={elevation} hasBorderRadius={hasBorderRadius}>
         <StatusIndicator placement={placement} size={StatusIndicator.sizes.SMALL} status={status}>
-            <Card elevation={Card.elevations.LEVEL_0} hasBorderRadius={false} position={position}>
+            <Card elevation={Card.elevations.LEVEL_0} hasBorderRadius={false}>
                 {children}
             </Card>
         </StatusIndicator>
@@ -24,7 +23,6 @@ const CardStatus = ({
 
 CardStatus.elevations = Card.elevations;
 CardStatus.placements = CARD_STATUS_PLACEMENTS;
-CardStatus.positions = Card.positions;
 CardStatus.statuses = CARD_STATUS_STATUSES;
 
 CardStatus.propTypes = {
@@ -32,7 +30,6 @@ CardStatus.propTypes = {
     elevation: PropTypes.oneOf(Object.values(CardStatus.elevations)),
     hasBorderRadius: PropTypes.bool,
     placement: PropTypes.oneOf(Object.values(CardStatus.placements)),
-    position: PropTypes.oneOf(Object.values(CardStatus.positions)),
     status: PropTypes.oneOf(Object.values(CardStatus.statuses)),
 };
 
@@ -40,7 +37,6 @@ CardStatus.defaultProps = {
     elevation: Card.defaultProps.elevation,
     hasBorderRadius: false,
     placement: CardStatus.placements.TOP,
-    position: Card.defaultProps.position,
     status: CardStatus.statuses.DEFAULT,
 };
 

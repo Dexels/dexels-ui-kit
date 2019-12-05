@@ -14,7 +14,6 @@ export const Configurable = () => (
             CardStatus.placements,
             CardStatus.defaultProps.placement,
         )}
-        position={select('Position', CardStatus.positions, CardStatus.defaultProps.position)}
         status={select('Status', CardStatus.statuses, CardStatus.defaultProps.status)}
     >
         {text('Text', 'Configure me!')}
@@ -30,7 +29,6 @@ export const ConfigurableWithComponent = () => (
             CardStatus.placements,
             CardStatus.defaultProps.placement,
         )}
-        position={select('Position', CardStatus.positions, CardStatus.defaultProps.position)}
         status={select('Status', CardStatus.statuses, CardStatus.defaultProps.status)}
     >
         <Button

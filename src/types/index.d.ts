@@ -232,12 +232,10 @@ export interface CardProps {
     children: React.ReactNode;
     elevation?: Elevations;
     hasBorderRadius?: boolean;
-    position?: Positions;
 }
 
 interface Card<P> extends React.FunctionComponent<P> {
     elevations: ElevationsMap;
-    positions: PositionsMap;
 }
 
 export const Card: Card<CardProps>;
@@ -361,14 +359,12 @@ export interface CardStatusProps {
     elevation?: Elevations;
     hasBorderRadius?: boolean;
     placement?: Placements;
-    position?: Positions;
     status?: Statuses;
 }
 
 interface CardStatus<P> extends React.FunctionComponent<P> {
     elevations: ElevationsMap;
     placements: PlacementsMap;
-    positions: PositionsMap;
     statuses: StatusesMap;
 }
 
