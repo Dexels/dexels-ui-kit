@@ -38,7 +38,7 @@ export const StyledLoader = styled.div`
         top: ${({ theme }) => theme.spacing(2)};
         left: ${({ theme }) => theme.spacing(2)};
         border-radius: ${({ theme }) => theme.spacing(0, 0, 0.375)};
-        background: ${({ theme }) => theme.background.primary};
+        background-color: currentColor;
         width: ${({ theme }) => theme.spacing(2)};
         height: ${({ theme }) => theme.spacing(2)};
         animation: ${loaderAnimation} 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -47,7 +47,7 @@ export const StyledLoader = styled.div`
         &::before {
             display: block;
             position: absolute;
-            background: ${({ theme }) => theme.background.primary};
+            background-color: currentColor;
             width: ${({ theme }) => theme.spacing(2)};
             height: ${({ theme }) => theme.spacing(2)};
             content: '';

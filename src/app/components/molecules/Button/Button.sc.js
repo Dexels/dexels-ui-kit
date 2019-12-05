@@ -124,6 +124,10 @@ export const StyledButton = styled.button`
         `}
     `}
 
+    ${({ isLoading }) => isLoading && css`
+        pointer-events: none;
+    `}
+
     &::after {
         ${({ variant, theme: { button } }) => variant !== BUTTON_VARIANTS.TEXT_ONLY
             && rippleEffect(variant === BUTTON_VARIANTS.FILLED ? button.filled.color.primary : button.outline.backgroundColor.primary)}
@@ -138,6 +142,7 @@ StyledButton.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
     isFullWidth: PropTypes.bool.isRequired,
     isInverted: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     size: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
     theme: themePropTypes,
     transitionDuration: PropTypes.number.isRequired,
@@ -149,4 +154,19 @@ StyledButton.defaultProps = {
     theme: themeBasic,
 };
 
-export default StyledButton;
+export const LoaderWrapper = styled.div`
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+`;
+
+export const TextWrapper = styled.div`
+    ${({ isLoading }) => isLoading && css`
+        visibility: hidden;
+    `}
+`;
+
+TextWrapper.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+};
