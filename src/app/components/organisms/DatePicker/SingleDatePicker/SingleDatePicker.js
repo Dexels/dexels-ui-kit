@@ -1,6 +1,6 @@
 /* eslint react/jsx-props-no-spreading: 0 */
 import { HORIZONTAL_ORIENTATION, VERTICAL_ORIENTATION } from 'react-dates/constants';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { SingleDatePicker as AirbnbSingleDatePicker } from 'react-dates';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
@@ -33,12 +33,27 @@ const SingleDatePicker = ({
     placeholder,
     yearCount,
 }) => {
+    const [isHovered, setIsHovered] = useState(false);
     const { spacingValue } = useContext(ThemeContext);
 
     return (
-        <Wrapper hasYearSelector={hasYearSelector} isFocused={isFocused}>
+        <Wrapper
+            hasYearSelector={hasYearSelector}
+            isFocused={isFocused}
+            onMouseEnter={() => {
+                setIsHovered(true);
+            }}
+            onMouseLeave={() => {
+                setIsHovered(false);
+            }}
+        >
             <StyledSingleDatePicker hasYearSelector={hasYearSelector}>
-                <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused}>
+                <FormElementLabel
+                    isActive
+                    isDisabled={isDisabled}
+                    isFocused={isFocused}
+                    isHovered={isHovered}
+                >
                     {label}
                 </FormElementLabel>
                 <AirbnbSingleDatePicker

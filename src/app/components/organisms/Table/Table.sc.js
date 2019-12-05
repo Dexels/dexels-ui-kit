@@ -77,9 +77,6 @@ TableBody.defaultProps = {
 };
 
 export const TableRow = styled.tr`
-    position: relative;
-    z-index: 1;
-
     ${({ isClickable }) => isClickable && css`
         cursor: pointer;
     `}
@@ -94,7 +91,7 @@ export const TableRow = styled.tr`
 
     &:hover {
         ${getElevation(TABLE_ELEVATIONS.LEVEL_3)}
-        z-index: 2;
+        transform: scale(1);
     }
 `;
 
