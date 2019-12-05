@@ -11,7 +11,6 @@ export const StyledCard = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     ${({ elevation }) => getElevation(elevation)}
     background-color: ${({ theme }) => theme.card.backgroundColor};
-    padding: ${({ theme }) => theme.spacing(1)};
     color: ${({ theme }) => theme.colorText.primary};
 
     ${({ hasBorderRadius, theme }) => hasBorderRadius && css`
