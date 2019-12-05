@@ -445,6 +445,19 @@ interface FormElementLabel<P> extends React.FunctionComponent<P> {
 
 export const FormElementLabel: FormElementLabel<FormElementLabelProps>;
 
+export interface FullscreenLoaderProps {
+    amount?: number;
+    type?: 'CIRCLES';
+}
+
+interface FullscreenLoader<P> extends React.FunctionComponent<P> {
+    types: {
+        [Type in FullscreenLoaderProps['type']]: Type;
+    };
+}
+
+export const FullscreenLoader: FullscreenLoader<FullscreenLoaderProps>;
+
 export interface InputProps {
     errorMessage?: string;
     hasError?: boolean;
@@ -472,6 +485,8 @@ interface Input<P> extends React.FunctionComponent<P> {
 }
 
 export const Input: Input<InputProps>;
+
+export const Loader: React.FunctionComponent;
 
 export interface OverlayProps {
     height?: number;
