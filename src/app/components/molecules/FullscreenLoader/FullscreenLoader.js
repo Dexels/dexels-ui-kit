@@ -1,6 +1,6 @@
-import { LOADER_TYPES } from './Loader.consts';
+import { FULLSCREEN_LOADER_TYPES } from './FullscreenLoader.consts';
 import { LoaderCircles } from './LoaderCircles.sc';
-import { LoaderWrapper } from './Loader.sc';
+import { LoaderWrapper } from './FullscreenLoader.sc';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -15,9 +15,9 @@ const constructLoaderCircle = (amount) => {
 };
 
 // @TODO: Add other loaders
-const Loader = ({ amount, type }) => {
+const FullscreenLoader = ({ amount, type }) => {
     switch (type) {
-        case LOADER_TYPES.CIRCLES:
+        case FULLSCREEN_LOADER_TYPES.CIRCLES:
             return (
                 <LoaderWrapper>
                     {constructLoaderCircle(amount)}
@@ -33,16 +33,16 @@ const Loader = ({ amount, type }) => {
     }
 };
 
-Loader.types = LOADER_TYPES;
+FullscreenLoader.types = FULLSCREEN_LOADER_TYPES;
 
-Loader.propTypes = {
+FullscreenLoader.propTypes = {
     amount: PropTypes.number,
-    type: PropTypes.oneOf(Object.values(Loader.types)),
+    type: PropTypes.oneOf(Object.values(FullscreenLoader.types)),
 };
 
-Loader.defaultProps = {
+FullscreenLoader.defaultProps = {
     amount: 5,
-    type: Loader.types.CIRCLES,
+    type: FullscreenLoader.types.CIRCLES,
 };
 
-export default Loader;
+export default FullscreenLoader;
