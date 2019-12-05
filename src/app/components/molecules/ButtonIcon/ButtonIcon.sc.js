@@ -50,7 +50,7 @@ export const StyledButtonIcon = styled.button`
 
     &:focus,
     &:hover {
-        background-color: ${({ isInverted, theme }) => (isInverted ? theme.colorSecondary : hexToRgb(theme.colorTertiary, 0.25))};
+        background-color: ${({ isInverted, theme }) => (isInverted ? hexToRgb(theme.colorSecondary, 0.25) : hexToRgb(theme.colorTertiary, 0.25))};
         color: ${({ isInverted, theme }) => (isInverted ? theme.colorTextContrast.primary : theme.colorText.secondary)};
     }
 

@@ -453,7 +453,7 @@ export interface InputProps {
     label: string;
     name: string;
     onChange: (...args: any[]) => any;
-    type?: 'EMAIL' | 'NUMBER' | 'PASSWORD' | 'TEL' | 'TEXT';
+    type?: 'email' | 'number' | 'password' | 'tel' | 'text';
     value?: string;
     variant?: InputVariants;
     [key: string]: any;
@@ -461,8 +461,12 @@ export interface InputProps {
 
 interface Input<P> extends React.FunctionComponent<P> {
     types: {
-        [Type in InputProps['type']]: Type;
-    }
+        EMAIL: 'email';
+        NUMBER: 'number';
+        PASSWORD: 'password';
+        TEL: 'tel';
+        TEXT: 'text';
+    };
     variants: InputVariantsMap;
 }
 
@@ -534,7 +538,7 @@ interface TextWithOptionalIcon<P> extends React.FunctionComponent<P> {
 export const TextWithOptionalIcon: TextWithOptionalIcon<TextWithOptionalIconProps>;
 
 export interface TooltipProps {
-    elevations?: Elevations;
+    elevation?: Elevations;
     position?: Positions;
     transitionDuration?: number;
     transitionEasing?: Easings;

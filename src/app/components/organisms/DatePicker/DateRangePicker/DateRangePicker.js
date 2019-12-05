@@ -5,7 +5,7 @@ import {
     START_DATE,
     VERTICAL_ORIENTATION,
 } from 'react-dates/constants';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { DateRangePicker as AirbnbDateRangePicker } from 'react-dates';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import DialogFooter from '../../../molecules/DialogFooter/DialogFooter';
@@ -51,13 +51,28 @@ const DateRangePicker = ({
     startDatePlaceholderText,
     yearCount,
 }) => {
+    const [isHovered, setIsHovered] = useState(false);
     const isFocused = Boolean(focusedInput);
     const { spacingValue } = useContext(ThemeContext);
 
     return (
-        <Wrapper hasYearSelector={hasYearSelector} isFocused={isFocused}>
+        <Wrapper
+            hasYearSelector={hasYearSelector}
+            isFocused={isFocused}
+            onMouseEnter={() => {
+                setIsHovered(true);
+            }}
+            onMouseLeave={() => {
+                setIsHovered(false);
+            }}
+        >
             <StyledDateRangePicker>
-                <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused}>
+                <FormElementLabel
+                    isActive
+                    isDisabled={isDisabled}
+                    isFocused={isFocused}
+                    isHovered={isHovered}
+                >
                     {label}
                 </FormElementLabel>
                 <AirbnbDateRangePicker
