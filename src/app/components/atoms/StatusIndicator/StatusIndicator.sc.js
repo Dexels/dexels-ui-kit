@@ -10,8 +10,6 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledStatusIndicator = styled.div`
-    display: flex;
-    align-items: center;
     border-radius: inherit;
     border-color: ${({ status, theme }) => getStatusColor(status, theme)};
     color: ${({ status, theme }) => getStatusColor(status, theme)};
