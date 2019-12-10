@@ -99,7 +99,7 @@ SelectionControl.types = SELECTION_CONTROL_TYPES;
 
 SelectionControl.propTypes = {
     direction: PropTypes.oneOf(Object.values(SelectionControl.directions)),
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
     isChecked: PropTypes.bool,
     isDisabled: PropTypes.bool,
@@ -116,7 +116,7 @@ SelectionControl.propTypes = {
 
 SelectionControl.defaultProps = {
     direction: SelectionControl.directions.LTR,
-    errorMessage: '',
+    errorMessage: null,
     hasError: false,
     isChecked: false,
     isDisabled: false,

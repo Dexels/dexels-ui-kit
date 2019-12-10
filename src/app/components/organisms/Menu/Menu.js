@@ -75,24 +75,24 @@ const Menu = ({ defaultOpenItem, items }) => {
 Menu.iconTypes = Item.iconTypes;
 
 Menu.propTypes = {
-    defaultOpenItem: PropTypes.string,
+    defaultOpenItem: PropTypes.node,
     items: PropTypes.arrayOf(PropTypes.shape({
         children: PropTypes.arrayOf(PropTypes.shape({
             exact: PropTypes.bool,
             isDisabled: PropTypes.bool,
             path: PropTypes.string.isRequired,
-            text: PropTypes.string.isRequired,
+            text: PropTypes.node.isRequired,
         })),
         exact: PropTypes.bool,
         iconType: PropTypes.oneOf(Object.values(Menu.iconTypes)).isRequired,
         isDisabled: PropTypes.bool,
         path: PropTypes.string,
-        text: PropTypes.string.isRequired,
+        text: PropTypes.node.isRequired,
     })).isRequired,
 };
 
 Menu.defaultProps = {
-    defaultOpenItem: '',
+    defaultOpenItem: null,
 };
 
 export default Menu;

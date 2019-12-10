@@ -107,38 +107,38 @@ DropdownMultiSelect.optionAllTexts = DROPDOWN_OPTION_ALL_TEXTS;
 DropdownMultiSelect.variants = DROPDOWN_MULTISELECT_VARIANTS;
 
 DropdownMultiSelect.propTypes = {
-    buttonCancelText: PropTypes.string,
-    buttonConfirmText: PropTypes.string.isRequired,
+    buttonCancelText: PropTypes.node,
+    buttonConfirmText: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(DropdownMultiSelect.elevations)),
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     isValid: PropTypes.bool,
-    label: PropTypes.string,
+    label: PropTypes.node,
     maxHeight: PropTypes.string,
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
     optionAll: PropTypes.node,
     options: PropTypes.node.isRequired,
-    placeholder: PropTypes.string,
+    placeholder: PropTypes.node,
     value: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(Object.values(DropdownMultiSelect.variants)),
 };
 
 DropdownMultiSelect.defaultProps = {
-    buttonCancelText: 'Cancel',
+    buttonCancelText: null,
     elevation: DropdownMultiSelect.elevations.LEVEL_6,
-    errorMessage: '',
+    errorMessage: null,
     hasError: false,
     isDisabled: false,
     isValid: false,
-    label: '',
+    label: null,
     maxHeight: '',
     onClick: null,
     optionAll: null,
-    placeholder: '',
+    placeholder: null,
     variant: DropdownMultiSelect.variants.COMPACT,
 };
 

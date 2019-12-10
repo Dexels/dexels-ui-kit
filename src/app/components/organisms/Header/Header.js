@@ -49,7 +49,7 @@ Header.propTypes = {
     isInverted: PropTypes.bool,
     onBack: PropTypes.func,
     onToggleMenu: PropTypes.func,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.node.isRequired,
 };
 
 Header.defaultProps = {

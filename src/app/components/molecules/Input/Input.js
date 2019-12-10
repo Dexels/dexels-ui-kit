@@ -86,12 +86,12 @@ Input.types = INPUT_TYPES;
 Input.variants = INPUT_VARIANTS;
 
 Input.propTypes = {
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isTextarea: PropTypes.bool,
     isValid: PropTypes.bool,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     type: PropTypes.oneOf(Object.values(Input.types)),
@@ -100,7 +100,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-    errorMessage: '',
+    errorMessage: null,
     hasError: false,
     isDisabled: false,
     isTextarea: false,

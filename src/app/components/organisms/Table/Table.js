@@ -116,7 +116,7 @@ const Table = ({
 Table.elevations = TABLE_ELEVATIONS;
 
 Table.propTypes = {
-    caption: PropTypes.string,
+    caption: PropTypes.node,
     debug: PropTypes.bool,
     elevation: PropTypes.oneOf(Object.values(Table.elevations)),
     footerComponent: PropTypes.node,
@@ -131,12 +131,12 @@ Table.propTypes = {
     onClickRow: PropTypes.func,
     pagingComponent: PropTypes.node,
     texts: PropTypes.shape({
-        toggleSortTooltip: PropTypes.string,
+        toggleSortTooltip: PropTypes.node,
     }),
 };
 
 Table.defaultProps = {
-    caption: '',
+    caption: null,
     debug: false,
     elevation: Table.elevations.LEVEL_1,
     footerComponent: undefined,
@@ -145,7 +145,7 @@ Table.defaultProps = {
     onClickRow: undefined,
     pagingComponent: undefined,
     texts: {
-        toggleSortTooltip: 'Sort by',
+        toggleSortTooltip: null,
     },
 };
 
