@@ -15,7 +15,22 @@ import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 export const StyledSelectionControl = styled.div`
     ${setBoxSizing()}
     display: flex;
+
+    ${({ hasHorizontalCorrection, theme, type }) => hasHorizontalCorrection && css`
+        ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+            margin: ${theme.spacing(0, 0, 0, -1)};
+        `}
+
+        ${type === SELECTION_CONTROL_TYPES.RADIO && css`
+            margin: ${theme.spacing(0, 0, 0, -1.25)};
+        `}
+    `}
 `;
+
+StyledSelectionControl.propTypes = {
+    hasHorizontalCorrection: PropTypes.bool.isRequired,
+    type: PropTypes.oneOf(Object.values(SELECTION_CONTROL_TYPES)).isRequired,
+};
 
 /* eslint-disable indent */
 // The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc

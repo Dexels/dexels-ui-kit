@@ -21,6 +21,7 @@ const SelectionControl = ({
     direction,
     errorMessage,
     hasError,
+    hasHorizontalCorrection,
     isChecked,
     isDisabled,
     isIndeterminate,
@@ -39,12 +40,14 @@ const SelectionControl = ({
     return (
         <>
             <StyledSelectionControl
+                hasHorizontalCorrection={hasHorizontalCorrection}
                 onMouseEnter={() => {
                     setIsHovered(true);
                 }}
                 onMouseLeave={() => {
                     setIsHovered(false);
                 }}
+                type={type}
                 {...rest}
             >
                 <InputWrapper
@@ -101,6 +104,7 @@ SelectionControl.propTypes = {
     direction: PropTypes.oneOf(Object.values(SelectionControl.directions)),
     errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
+    hasHorizontalCorrection: PropTypes.bool,
     isChecked: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isIndeterminate: PropTypes.bool,
@@ -118,6 +122,7 @@ SelectionControl.defaultProps = {
     direction: SelectionControl.directions.LTR,
     errorMessage: null,
     hasError: false,
+    hasHorizontalCorrection: true,
     isChecked: false,
     isDisabled: false,
     isIndeterminate: false,

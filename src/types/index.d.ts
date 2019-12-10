@@ -497,6 +497,7 @@ export interface SelectionControlProps {
     direction?: Directions;
     errorMessage?: React.ReactNode;
     hasError?: boolean;
+    hasHorizontalCorrection?: boolean;
     isChecked?: boolean;
     isDisabled?: boolean;
     isIndeterminate?: boolean;
