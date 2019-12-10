@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.37
+// Type definitions for dexels-ui-kit 2.0.39
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -497,6 +497,7 @@ export interface SelectionControlProps {
     direction?: Directions;
     errorMessage?: React.ReactNode;
     hasError?: boolean;
+    hasHorizontalCorrection?: boolean;
     isChecked?: boolean;
     isDisabled?: boolean;
     isIndeterminate?: boolean;
