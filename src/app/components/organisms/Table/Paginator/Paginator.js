@@ -146,12 +146,12 @@ Paginator.propTypes = {
         PropTypes.arrayOf(PropTypes.string),
     ]),
     texts: PropTypes.shape({
-        page: PropTypes.string,
-        pageGoto: PropTypes.string,
-        pageOf: PropTypes.string,
-        resultsOf: PropTypes.string,
-        rowsPerPage: PropTypes.string,
-        show: PropTypes.string,
+        page: PropTypes.node.isRequired,
+        pageGoto: PropTypes.node.isRequired,
+        pageOf: PropTypes.node.isRequired,
+        resultsOf: PropTypes.node.isRequired,
+        rowsPerPage: PropTypes.node.isRequired,
+        show: PropTypes.node.isRequired,
     }).isRequired,
     useResultsOfText: PropTypes.bool,
 };

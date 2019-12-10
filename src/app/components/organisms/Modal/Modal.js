@@ -46,7 +46,7 @@ Modal.propTypes = {
     isVisible: PropTypes.bool.isRequired,
     onBack: PropTypes.func,
     options: PropTypes.node,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.node.isRequired,
     transitionDuration: PropTypes.number,
     transitionEasing: PropTypes.oneOf(Object.values(Modal.transitionEasings)),
 };

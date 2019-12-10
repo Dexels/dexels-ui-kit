@@ -7,7 +7,7 @@ export default { title: 'organisms/DatePicker' };
 
 export const Default = () => {
     const [date, setDate] = useState(moment());
-    const [isFocused, setFocus] = useState(true);
+    const [isFocused, setIsFocused] = useState(true);
 
     return (
         <SingleDatePicker
@@ -27,7 +27,7 @@ export const Default = () => {
                 setDate(newDate);
             }}
             onFocusChange={({ focused }) => {
-                setFocus(focused);
+                setIsFocused(focused);
             }}
             placeholder={text('Placeholder', 'Selecteer je datum')}
         />
@@ -36,7 +36,7 @@ export const Default = () => {
 
 export const WithYearSelector = () => {
     const [date, setDate] = useState(null);
-    const [isFocused, setFocus] = useState(true);
+    const [isFocused, setIsFocused] = useState(true);
 
     return (
         <SingleDatePicker
@@ -60,7 +60,7 @@ export const WithYearSelector = () => {
                 setDate(newDate);
             }}
             onFocusChange={({ focused }) => {
-                setFocus(focused);
+                setIsFocused(focused);
             }}
             placeholder={text('Placeholder', 'Selecteer je datum')}
             yearCount={number('Year count', SingleDatePicker.defaultProps.yearCount)}
