@@ -90,7 +90,7 @@ Button.defaultProps = {
     size: Button.sizes.LARGE,
     transitionDuration: 300,
     transitionEasing: Button.transitionEasings.EASE,
-    variant: Button.variants.FILLED,
+    variant: Button.variants.OUTLINE,
 };
 
 export default Button;
