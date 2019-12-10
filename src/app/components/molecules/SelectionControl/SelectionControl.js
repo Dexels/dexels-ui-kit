@@ -105,7 +105,7 @@ SelectionControl.propTypes = {
     isDisabled: PropTypes.bool,
     isIndeterminate: PropTypes.bool,
     isValid: PropTypes.bool,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     transitionDuration: PropTypes.number,
