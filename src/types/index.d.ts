@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.33
+// Type definitions for dexels-ui-kit 2.0.34
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -813,7 +813,7 @@ export interface SingleDatePickerProps {
     id: string;
     isDayHighlighted?: (...args: any[]) => any;
     isDisabled?: boolean;
-    isFocused: (...args: any[]) => any;
+    isFocused: boolean;
     isOutsideRange?: (...args: any[]) => any;
     keepOpenOnDateSelect?: boolean;
     label: React.ReactNode;
