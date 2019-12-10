@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.36
+// Type definitions for dexels-ui-kit 2.0.37
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -300,7 +300,7 @@ export interface ButtonProps {
     isFullWidth?: boolean;
     isInverted?: boolean;
     isLoading?: boolean;
-    onClick: (...args: any[]) => any;
+    onClick?: (...args: any[]) => any;
     size?: 'LARGE' | 'MEDIUM' | 'SMALL';
     transitionDuration?: number;
     transitionEasing?: Easings;
