@@ -1,7 +1,7 @@
-// Type definitions for dexels-ui-kit 2.0.32
+// Type definitions for dexels-ui-kit 2.0.33
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
-// TypeScript Version: 3.7.2
+// TypeScript Version: 3.7.3
 
 // References to types which our library depends on
 import * as moment from 'moment';
