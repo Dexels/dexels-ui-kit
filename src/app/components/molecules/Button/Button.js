@@ -32,7 +32,7 @@ const Button = ({
         isFullWidth={isFullWidth}
         isInverted={isInverted}
         isLoading={isLoading}
-        onClick={onClick}
+        onClick={isDisabled ? null : onClick}
         size={size}
         transitionDuration={transitionDuration}
         transitionEasing={transitionEasing}
@@ -72,7 +72,7 @@ Button.propTypes = {
     isFullWidth: PropTypes.bool,
     isInverted: PropTypes.bool,
     isLoading: PropTypes.bool,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     size: PropTypes.oneOf(Object.values(Button.sizes)),
     transitionDuration: PropTypes.number,
     transitionEasing: PropTypes.oneOf(Object.values(Button.transitionEasings)),
@@ -87,10 +87,11 @@ Button.defaultProps = {
     isFullWidth: false,
     isInverted: false,
     isLoading: false,
+    onClick: null,
     size: Button.sizes.LARGE,
     transitionDuration: 300,
     transitionEasing: Button.transitionEasings.EASE,
-    variant: Button.variants.FILLED,
+    variant: Button.variants.OUTLINE,
 };
 
 export default Button;

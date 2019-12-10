@@ -1,7 +1,7 @@
-// Type definitions for dexels-ui-kit 2.0.29
+// Type definitions for dexels-ui-kit 2.0.37
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
-// TypeScript Version: 3.7.2
+// TypeScript Version: 3.7.3
 
 // References to types which our library depends on
 import * as moment from 'moment';
@@ -300,7 +300,7 @@ export interface ButtonProps {
     isFullWidth?: boolean;
     isInverted?: boolean;
     isLoading?: boolean;
-    onClick: (...args: any[]) => any;
+    onClick?: (...args: any[]) => any;
     size?: 'LARGE' | 'MEDIUM' | 'SMALL';
     transitionDuration?: number;
     transitionEasing?: Easings;
@@ -340,11 +340,11 @@ export const ButtonIcon: ButtonIcon<ButtonIconProps>;
 
 export interface CardNoResultsProps {
     elevation?: Elevations;
-    header: string;
+    header: React.ReactNode;
     iconType: IconTypes;
     itemPrefix?: string;
     items?: React.ReactNode[];
-    title: string;
+    title: React.ReactNode;
 }
 
 interface CardNoResults<P> extends React.FunctionComponent<P> {
@@ -391,11 +391,11 @@ interface Chip<P> extends React.FunctionComponent<P> {
 export const Chip: Chip<ChipProps>;
 
 export interface DialogFooterProps {
-    buttonCancelText?: string;
-    buttonConfirmText?: string;
+    buttonCancelText?: React.ReactNode;
+    buttonConfirmText?: React.ReactNode;
     onCancel?: (...args: any[]) => any;
     onConfirm?: (...args: any[]) => any;
-    text?: string;
+    text?: React.ReactNode;
 }
 
 export const DialogFooter: React.FunctionComponent<DialogFooterProps>;
@@ -403,17 +403,17 @@ export const DialogFooter: React.FunctionComponent<DialogFooterProps>;
 export interface DropdownProps {
     as?: string;
     children: React.ReactNode;
-    errormessage?: string;
+    errormessage?: React.ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
     isOpen?: boolean;
     isRequired?: boolean;
     isValid?: boolean;
-    label?: string;
+    label?: React.ReactNode;
     name: string;
     onChange?: (...args: any[]) => any;
     onClick?: (...args: any[]) => any;
-    placeholder?: string;
+    placeholder?: React.ReactNode;
     value: number | string;
     variant?: DropdownVariants;
     [key: string]: any;
@@ -455,12 +455,12 @@ interface FullscreenLoader<P> extends React.FunctionComponent<P> {
 export const FullscreenLoader: FullscreenLoader<FullscreenLoaderProps>;
 
 export interface InputProps {
-    errorMessage?: string;
+    errorMessage?: React.ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
     isTextarea?: boolean;
     isValid?: boolean;
-    label: string;
+    label: React.ReactNode;
     name: string;
     onChange: (...args: any[]) => any;
     type?: 'email' | 'number' | 'password' | 'tel' | 'text';
@@ -495,13 +495,13 @@ export const Overlay: React.FunctionComponent<OverlayProps>;
 
 export interface SelectionControlProps {
     direction?: Directions;
-    errorMessage?: string;
+    errorMessage?: React.ReactNode;
     hasError?: boolean;
     isChecked?: boolean;
     isDisabled?: boolean;
     isIndeterminate?: boolean;
     isValid?: boolean;
-    label: string;
+    label: React.ReactNode;
     name: string;
     onChange: (...args: any[]) => any;
     transitionDuration?: number;
@@ -597,23 +597,23 @@ interface ContainerContent<P> extends React.FunctionComponent<P> {
 export const ContainerContent: ContainerContent<ContainerContentProps>;
 
 export interface DateRangePickerProps {
-    buttonCancelText?: string;
-    buttonConfirmText?: string;
+    buttonCancelText?: React.ReactNode;
+    buttonConfirmText?: React.ReactNode;
     daySize?: number;
-    displayFormat?: string;
+    displayFormat?: React.ReactNode;
     endDate?: moment.Moment;
     endDateId: string;
-    endDatePlaceholderText?: string;
+    endDatePlaceholderText?: React.ReactNode;
     focusedInput?: ReactDates.FocusedInputShape;
-    footerText?: string;
+    footerText?: React.ReactNode;
     hasYearSelector?: boolean;
     isDayHighlighted?: (...args: any[]) => any;
     isDisabled?: boolean;
     isOutsideRange?: (...args: any[]) => any;
     keepOpenOnDateSelect?: boolean;
-    label: string;
-    labelMonth?: string;
-    labelYear?: string;
+    label: React.ReactNode;
+    labelMonth?: React.ReactNode;
+    labelYear?: React.ReactNode;
     minimumNights?: number;
     numberOfMonths?: number;
     onCancel?: (...args: any[]) => any;
@@ -623,12 +623,12 @@ export interface DateRangePickerProps {
     orientation?: ReactDates.OrientationShape;
     shortcuts?: {
         onClick: (...args: any[]) => any;
-        text: string;
+        text: React.ReactNode;
     }[];
-    shortcutsText?: string;
+    shortcutsText?: React.ReactNode;
     startDate?: moment.Moment;
     startDateId: string;
-    startDatePlaceholderText?: string;
+    startDatePlaceholderText?: React.ReactNode;
     yearCount?: number;
 }
 
@@ -636,15 +636,15 @@ export const DateRangePicker: React.FunctionComponent<DateRangePickerProps>;
 
 export interface DialogProps {
     bodyAlignment?: Alignments;
-    buttonCancelText?: string;
+    buttonCancelText?: React.ReactNode;
     buttonClosePosition: 'LEFT' | 'RIGHT';
-    buttonConfirmText: string;
+    buttonConfirmText: React.ReactNode;
     children: React.ReactNode;
     elevation?: Elevations;
-    footerText?: string;
+    footerText?: React.ReactNode;
     hasButtonClose?: boolean;
     hasOverlay?: boolean;
-    header?: string;
+    header?: React.ReactNode;
     headerAlignment?: Alignments;
     isVisible: boolean;
     onCancel?: (...args: any[]) => any;
@@ -668,15 +668,15 @@ interface Dialog<P> extends React.FunctionComponent<P> {
 export const Dialog: Dialog<DialogProps>;
 
 export interface DropdownMultiSelectProps {
-    buttonCancelText?: string;
-    buttonConfirmText: string;
+    buttonCancelText?: React.ReactNode;
+    buttonConfirmText: React.ReactNode;
     elevation?: Elevations;
-    errorMessage?: string;
+    errorMessage?: React.ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
     isOpen: boolean;
     isValid?: boolean;
-    label?: string;
+    label?: React.ReactNode;
     maxHeight?: string;
     name: string;
     onCancel: (...args: any[]) => any;
@@ -684,7 +684,7 @@ export interface DropdownMultiSelectProps {
     onConfirm: (...args: any[]) => any;
     optionAll?: React.ReactNode;
     options: React.ReactNode;
-    placeholder?: string;
+    placeholder?: React.ReactNode;
     resetOnOutsideClick?: boolean;
     value: string;
     variant?: DropdownVariants;
@@ -708,7 +708,7 @@ export interface HeaderProps {
     isInverted?: boolean;
     onBack?: (...args: any[]) => any;
     onToggleMenu?: (...args: any[]) => any;
-    title: string;
+    title: React.ReactNode;
 }
 
 interface Header<P> extends React.FunctionComponent<P> {
@@ -718,12 +718,12 @@ interface Header<P> extends React.FunctionComponent<P> {
 export const Header: Header<HeaderProps>;
 
 export interface InputPasswordProps {
-    errorMessage?: string;
+    errorMessage?: React.ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
     isValid?: boolean;
     isVisibleDefault?: boolean;
-    label: string;
+    label: React.ReactNode;
     name: string;
     onChange: (...args: any[]) => any;
     value?: string;
@@ -737,19 +737,19 @@ interface InputPassword<P> extends React.FunctionComponent<P> {
 export const InputPassword: InputPassword<InputPasswordProps>;
 
 export interface MenuProps {
-    defaultOpenItem?: string;
+    defaultOpenItem?: React.ReactNode;
     items: {
         children: {
             exact?: boolean;
             isDisabled?: boolean;
             path: string;
-            text: string;
+            text: React.ReactNode;
         }[];
         exact?: boolean;
         iconType: IconTypes
         isDisabled?: boolean;
         path?: string;
-        text: string;
+        text: React.ReactNode;
     }[];
 }
 
@@ -759,40 +759,12 @@ interface Menu<P> extends React.FunctionComponent<P> {
 
 export const Menu: Menu<MenuProps>;
 
-export interface PaginatorProps {
-    hasAllPagingButtons?: boolean;
-    hasGoToPage?: boolean;
-    hasPageSizeSelector?: boolean;
-    instance: {
-        canNextPage: boolean;
-        canPreviousPage: boolean;
-        gotoPage: (...args: any[]) => any;
-        nextPage: (...args: any[]) => any;
-        pageCount: boolean;
-        pageIndex: boolean;
-        pageSize: boolean;
-        previousPage: (...args: any[]) => any;
-        rows: object[];
-        setPageSize: (...args: any[]) => any;
-    };
-    pageSizes?: number[] | string[];
-    texts: {
-        page: string;
-        pageGoto: string;
-        pageOf: string;
-        resultsOf: string;
-        rowsPerPage: string;
-        show: string;
-    };
-    useResultsOfText?: boolean;
-}
-
 export interface ModalProps {
     children: React.ReactNode;
     isVisible: boolean;
     onBack?: (...args: any[]) => any;
     options?: React.ReactNode;
-    title: string;
+    title: React.ReactNode;
     transitionDuration?: number;
     transitionEasings?: Easings;
 }
@@ -821,12 +793,12 @@ export interface PaginatorProps {
     };
     pageSizes?: number[] | string[];
     texts: {
-        page: string;
-        pageGoto: string;
-        pageOf: string;
-        resultsOf: string;
-        rowsPerPage: string;
-        show: string;
+        page: React.ReactNode;
+        pageGoto: React.ReactNode;
+        pageOf: React.ReactNode;
+        resultsOf: React.ReactNode;
+        rowsPerPage: React.ReactNode;
+        show: React.ReactNode;
     };
     useResultsOfText?: boolean;
 }
@@ -836,30 +808,30 @@ export const Paginator: React.FunctionComponent<PaginatorProps>;
 export interface SingleDatePickerProps {
     date?: moment.Moment;
     daySize?: number;
-    displayFormat?: string;
+    displayFormat?: React.ReactNode;
     hasYearSelector?: boolean;
     id: string;
     isDayHighlighted?: (...args: any[]) => any;
     isDisabled?: boolean;
-    isFocused: (...args: any[]) => any;
+    isFocused: boolean;
     isOutsideRange?: (...args: any[]) => any;
     keepOpenOnDateSelect?: boolean;
-    label: string;
-    labelMonth?: string;
-    labelYear?: string;
+    label: React.ReactNode;
+    labelMonth?: React.ReactNode;
+    labelYear?: React.ReactNode;
     numberOfMonths?: number;
     onClose?: (...args: any[]) => any;
     onDateChange: (...args: any[]) => any;
     onFocusChange: (...args: any[]) => any;
     orientation?: ReactDates.OrientationShape;
-    placeholder?: string;
+    placeholder?: React.ReactNode;
     yearCount?: number;
 }
 
 export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps>;
 
 export interface TableProps {
-    caption?: string;
+    caption?: React.ReactNode;
     debug?: boolean;
     elevation?: Elevations;
     footerComponent?: React.ReactNode;
@@ -874,7 +846,7 @@ export interface TableProps {
     onClickRow?: (...args: any[]) => any;
     pagingComponent?: React.ReactNode;
     texts?: {
-        toggleSortTooltip?: string;
+        toggleSortTooltip?: React.ReactNode;
     };
 }
 

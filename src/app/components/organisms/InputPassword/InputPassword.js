@@ -49,12 +49,12 @@ const InputPassword = ({
 InputPassword.variants = INPUT_PASSWORD_VARIANTS;
 
 InputPassword.propTypes = {
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isValid: PropTypes.bool,
     isVisibleDefault: PropTypes.bool,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string,
@@ -62,7 +62,7 @@ InputPassword.propTypes = {
 };
 
 InputPassword.defaultProps = {
-    errorMessage: '',
+    errorMessage: null,
     hasError: false,
     isDisabled: false,
     isValid: false,

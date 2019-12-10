@@ -115,17 +115,17 @@ Dropdown.variants = DROPDOWN_VARIANTS;
 Dropdown.propTypes = {
     as: PropTypes.string,
     children: PropTypes.node.isRequired,
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isOpen: PropTypes.bool,
     isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
-    label: PropTypes.string,
+    label: PropTypes.node,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     onClick: PropTypes.func,
-    placeholder: PropTypes.string,
+    placeholder: PropTypes.node,
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
@@ -135,16 +135,16 @@ Dropdown.propTypes = {
 
 Dropdown.defaultProps = {
     as: 'select',
-    errorMessage: '',
+    errorMessage: null,
     hasError: false,
     isDisabled: false,
     isOpen: false,
     isRequired: false,
     isValid: false,
-    label: '',
+    label: null,
     onChange: null,
     onClick: null,
-    placeholder: '',
+    placeholder: null,
     variant: Dropdown.variants.COMPACT,
 };
 

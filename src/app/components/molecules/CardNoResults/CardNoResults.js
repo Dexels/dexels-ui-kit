@@ -47,11 +47,11 @@ CardNoResults.iconTypes = Icon.types;
 
 CardNoResults.propTypes = {
     elevation: PropTypes.oneOf(Object.values(CardNoResults.elevations)),
-    header: PropTypes.string.isRequired,
+    header: PropTypes.node.isRequired,
     iconType: PropTypes.oneOf(Object.values(CardNoResults.iconTypes)).isRequired,
     itemPrefix: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.node),
-    title: PropTypes.string.isRequired,
+    title: PropTypes.node.isRequired,
 };
 
 CardNoResults.defaultProps = {

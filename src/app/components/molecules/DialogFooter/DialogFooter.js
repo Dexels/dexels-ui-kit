@@ -50,19 +50,19 @@ const DialogFooter = ({
 );
 
 DialogFooter.propTypes = {
-    buttonCancelText: PropTypes.string,
-    buttonConfirmText: PropTypes.string,
+    buttonCancelText: PropTypes.node,
+    buttonConfirmText: PropTypes.node,
     onCancel: PropTypes.func,
     onConfirm: PropTypes.func,
-    text: PropTypes.string,
+    text: PropTypes.node,
 };
 
 DialogFooter.defaultProps = {
-    buttonCancelText: '',
-    buttonConfirmText: '',
+    buttonCancelText: null,
+    buttonConfirmText: null,
     onCancel: null,
     onConfirm: null,
-    text: '',
+    text: null,
 };
 
 export default DialogFooter;

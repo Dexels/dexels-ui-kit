@@ -80,15 +80,15 @@ Dialog.transitionEasings = DIALOG_EASINGS;
 
 Dialog.propTypes = {
     bodyAlignment: PropTypes.oneOf(Object.values(Dialog.bodyAlignments)),
-    buttonCancelText: PropTypes.string,
+    buttonCancelText: PropTypes.node,
     buttonClosePosition: PropTypes.oneOf(Object.values(Dialog.buttonClosePositions)),
-    buttonConfirmText: PropTypes.string.isRequired,
+    buttonConfirmText: PropTypes.node.isRequired,
     children: PropTypes.node.isRequired,
     elevation: PropTypes.oneOf(Object.values(Dialog.elevations)),
-    footerText: PropTypes.string,
+    footerText: PropTypes.node,
     hasButtonClose: PropTypes.bool,
     hasOverlay: PropTypes.bool,
-    header: PropTypes.string,
+    header: PropTypes.node,
     headerAlignment: PropTypes.oneOf(Object.values(Dialog.headerAlignments)),
     isVisible: PropTypes.bool.isRequired,
     onCancel: PropTypes.func,
@@ -101,7 +101,7 @@ Dialog.propTypes = {
 
 Dialog.defaultProps = {
     bodyAlignment: Dialog.bodyAlignments.CENTER,
-    buttonCancelText: '',
+    buttonCancelText: null,
     buttonClosePosition: Dialog.buttonClosePositions.LEFT,
     elevation: Dialog.elevations.LEVEL_12,
     footerText: null,
