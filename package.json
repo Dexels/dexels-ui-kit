@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "2.0.40",
+    "version": "2.0.41",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -47,16 +47,16 @@
     },
     "homepage": "https://github.com/Dexels/dexels-ui-kit#readme",
     "peerDependencies": {
-        "@babel/runtime": "^7.7.4",
+        "@babel/runtime": "^7.7.6",
         "@types/react": "^16.9.16",
         "@types/react-dates": "^17.1.5",
         "moment": "^2.24.0",
         "prop-types": "^15.7.2",
         "react": "^16.12.0",
-        "react-dates": "^21.5.0",
+        "react-dates": "^21.5.1",
         "react-dom": "^16.12.0",
         "react-router-dom": "^5.1.2",
-        "react-table": "^7.0.0-rc.6",
+        "react-table": "^7.0.0-rc.9",
         "react-with-direction": "^1.3.1",
         "styled-components": "^4.4.1"
     },
