@@ -15,6 +15,7 @@ export const Text = styled.p`
     word-break: break-word;
 
     ${({ isCapitalized }) => isCapitalized && css`
+        span::first-letter,
         &::first-letter {
             text-transform: uppercase;
         }
