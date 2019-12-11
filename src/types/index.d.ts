@@ -214,6 +214,8 @@ export function getPosition(position: Positions): string;
 
 export function getStatusColor(status: Statuses, theme: Theme): string;
 
+export function getStatusIndicator(status: Statuses, theme: Theme, placement: Placements, size: StatusIndicatorProps['size']): string;
+
 export function rippleEffect(backgroundColor: string): string;
 
 export function rippleEffectInit(): string;

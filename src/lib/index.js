@@ -57,6 +57,7 @@ import getAlignment from '../app/styles/mixins/getAlignment';
 import getElevation from '../app/styles/mixins/getElevation';
 import getPosition from '../app/styles/mixins/getPosition';
 import getStatusColor from '../app/styles/mixins/getStatusColor';
+import getStatusIndicator from '../app/styles/mixins/getStatusIndicator';
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../app/styles/mixins/rippleEffect';
 import setBoxSizing from '../app/styles/mixins/setBoxSizing';
 import setCentered from '../app/styles/mixins/setCentered';
@@ -110,6 +111,7 @@ export {
     getElevation,
     getPosition,
     getStatusColor,
+    getStatusIndicator,
     rippleEffect,
     rippleEffectInit,
     rippleEffectReset,
