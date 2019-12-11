@@ -3,7 +3,7 @@ import Card from '../../atoms/Card/Card';
 import PropTypes from 'prop-types';
 import React from 'react';
 import StatusIndicator from '../../atoms/StatusIndicator/StatusIndicator';
-import { StyledCardStatusWrapper } from './CardStatus.sc';
+import { StyledCardStatus } from './CardStatus.sc';
 
 const CardStatus = ({
     children,
@@ -12,13 +12,15 @@ const CardStatus = ({
     placement,
     status,
 }) => (
-    <StyledCardStatusWrapper elevation={elevation} hasBorderRadius={hasBorderRadius}>
-        <StatusIndicator placement={placement} size={StatusIndicator.sizes.SMALL} status={status}>
-            <Card elevation={Card.elevations.LEVEL_0} hasBorderRadius={false}>
-                {children}
-            </Card>
-        </StatusIndicator>
-    </StyledCardStatusWrapper>
+    <StyledCardStatus
+        elevation={elevation}
+        hasBorderRadius={hasBorderRadius}
+        placement={placement}
+        size={StatusIndicator.sizes.SMALL}
+        status={status}
+    >
+        {children}
+    </StyledCardStatus>
 );
 
 CardStatus.elevations = Card.elevations;

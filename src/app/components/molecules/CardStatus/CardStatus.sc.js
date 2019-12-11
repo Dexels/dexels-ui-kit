@@ -1,28 +1,33 @@
-import styled, { css } from 'styled-components';
-import { CARD_ELEVATIONS } from '../../atoms/Card/Card.consts';
-import getElevation from '../../../styles/mixins/getElevation';
+import {
+    STATUS_INDICATOR_PLACEMENTS,
+    STATUS_INDICATOR_SIZES,
+    STATUS_INDICATOR_STATUSES,
+} from '../../atoms/StatusIndicator/StatusIndicator.consts';
+import getStatusIndicator from '../../../styles/mixins/getStatusIndicator';
 import PropTypes from 'prop-types';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import styled from 'styled-components';
+import { StyledCard } from '../../atoms/Card/Card.sc';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
-export const StyledCardStatusWrapper = styled.div`
-    ${setBoxSizing()}
-    ${({ elevation }) => getElevation(elevation)}
-
-    ${({ hasBorderRadius, theme }) => hasBorderRadius && css`
-        border-radius: ${theme.spacing(0.5)};
-    `}
+export const StyledCardStatus = styled(StyledCard)`
+    ${({
+        placement,
+        size,
+        status,
+        theme,
+    }) => getStatusIndicator(status, theme, placement, size)}
 `;
 
-StyledCardStatusWrapper.propTypes = {
-    elevation: PropTypes.oneOf(Object.values(CARD_ELEVATIONS)).isRequired,
-    hasBorderRadius: PropTypes.bool.isRequired,
+StyledCardStatus.propTypes = {
+    placement: PropTypes.oneOf(Object.values(STATUS_INDICATOR_PLACEMENTS)).isRequired,
+    size: PropTypes.oneOf(Object.values(STATUS_INDICATOR_SIZES)).isRequired,
+    status: PropTypes.oneOf(Object.values(STATUS_INDICATOR_STATUSES)).isRequired,
     theme: themePropTypes,
 };
 
-StyledCardStatusWrapper.defaultProps = {
+StyledCardStatus.defaultProps = {
     theme: themeBasic,
 };
 
-export default StyledCardStatusWrapper;
+export default StyledCardStatus;
