@@ -84,6 +84,7 @@ const getTooltipPosition = (hoveredItem, tooltipPosition, tooltipPositions) => {
 };
 
 const Tooltip = ({
+    className,
     elevation,
     position,
     transitionDuration,
@@ -189,6 +190,7 @@ const Tooltip = ({
     return (
         <StyledTooltip
             bottom={bottom}
+            className={className}
             dangerouslySetInnerHTML={{
                 __html: tooltipTitle,
             }}
@@ -209,6 +211,7 @@ Tooltip.positions = TOOLTIP_POSITIONS;
 Tooltip.transitionEasings = TOOLTIP_EASINGS;
 
 Tooltip.propTypes = {
+    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(Tooltip.elevations)),
     position: PropTypes.oneOf(Object.values(Tooltip.positions)),
     transitionDuration: PropTypes.number,
@@ -216,6 +219,7 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
+    className: '',
     elevation: Tooltip.elevations.LEVEL_6,
     position: Tooltip.positions.BOTTOM,
     transitionDuration: 300,

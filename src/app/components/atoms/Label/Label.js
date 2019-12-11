@@ -4,6 +4,7 @@ import { StyledLabel } from './Label.sc';
 
 const Label = ({
     children,
+    className,
     hasError,
     isActive,
     isCheckboxLabel,
@@ -15,6 +16,7 @@ const Label = ({
     isValid,
 }) => (
     <StyledLabel
+        className={className}
         hasError={hasError}
         isActive={isActive}
         isCheckboxLabel={isCheckboxLabel}
@@ -31,6 +33,7 @@ const Label = ({
 
 Label.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     hasError: PropTypes.bool,
     isActive: PropTypes.bool,
     isCheckboxLabel: PropTypes.bool,
@@ -43,6 +46,7 @@ Label.propTypes = {
 };
 
 Label.defaultProps = {
+    className: '',
     hasError: false,
     isActive: false,
     isCheckboxLabel: false,

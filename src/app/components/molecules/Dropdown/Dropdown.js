@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 const Dropdown = ({
     as,
     children,
+    className,
     errorMessage,
     hasError,
     isDisabled,
@@ -35,6 +36,7 @@ const Dropdown = ({
     return (
         <>
             <StyledDropdown
+                className={className}
                 hasError={hasError}
                 isDisabled={isDisabled}
                 isFocused={isFocused || isOpen}
@@ -115,6 +117,7 @@ Dropdown.variants = DROPDOWN_VARIANTS;
 Dropdown.propTypes = {
     as: PropTypes.string,
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
@@ -135,6 +138,7 @@ Dropdown.propTypes = {
 
 Dropdown.defaultProps = {
     as: 'select',
+    className: '',
     errorMessage: null,
     hasError: false,
     isDisabled: false,

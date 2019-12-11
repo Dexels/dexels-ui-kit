@@ -11,11 +11,12 @@ import React from 'react';
 const DialogFooter = ({
     buttonCancelText,
     buttonConfirmText,
+    className,
     onCancel,
     onConfirm,
     text,
 }) => (
-    <StyledDialogFooter>
+    <StyledDialogFooter className={className}>
         {text && (
             <Text>
                 {text}
@@ -52,6 +53,7 @@ const DialogFooter = ({
 DialogFooter.propTypes = {
     buttonCancelText: PropTypes.node,
     buttonConfirmText: PropTypes.node,
+    className: PropTypes.string,
     onCancel: PropTypes.func,
     onConfirm: PropTypes.func,
     text: PropTypes.node,
@@ -60,6 +62,7 @@ DialogFooter.propTypes = {
 DialogFooter.defaultProps = {
     buttonCancelText: null,
     buttonConfirmText: null,
+    className: '',
     onCancel: null,
     onConfirm: null,
     text: null,

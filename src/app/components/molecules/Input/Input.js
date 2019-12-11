@@ -6,6 +6,7 @@ import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import PropTypes from 'prop-types';
 
 const Input = ({
+    className,
     errorMessage,
     hasError,
     isDisabled,
@@ -26,6 +27,7 @@ const Input = ({
     return (
         <>
             <StyledInput
+                className={className}
                 hasError={hasError}
                 isDisabled={isDisabled}
                 isFocused={isFocused}
@@ -86,6 +88,7 @@ Input.types = INPUT_TYPES;
 Input.variants = INPUT_VARIANTS;
 
 Input.propTypes = {
+    className: PropTypes.string,
     errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
@@ -100,6 +103,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+    className: '',
     errorMessage: null,
     hasError: false,
     isDisabled: false,

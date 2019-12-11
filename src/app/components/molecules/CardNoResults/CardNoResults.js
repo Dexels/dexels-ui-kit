@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const CardNoResults = ({
+    className,
     elevation,
     header,
     iconType,
@@ -20,7 +21,7 @@ const CardNoResults = ({
     items,
     title,
 }) => (
-    <StyledCardNoResults elevation={elevation}>
+    <StyledCardNoResults className={className} elevation={elevation}>
         <Left>
             <IconWrapper>
                 <Icon type={iconType} />
@@ -46,6 +47,7 @@ CardNoResults.elevations = Card.elevations;
 CardNoResults.iconTypes = Icon.types;
 
 CardNoResults.propTypes = {
+    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(CardNoResults.elevations)),
     header: PropTypes.node.isRequired,
     iconType: PropTypes.oneOf(Object.values(CardNoResults.iconTypes)).isRequired,
@@ -55,6 +57,7 @@ CardNoResults.propTypes = {
 };
 
 CardNoResults.defaultProps = {
+    className: '',
     elevation: CardNoResults.elevations.LEVEL_1,
     itemPrefix: '-',
     items: null,

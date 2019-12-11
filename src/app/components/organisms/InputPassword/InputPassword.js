@@ -6,6 +6,7 @@ import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 import PropTypes from 'prop-types';
 
 const InputPassword = ({
+    className,
     errorMessage,
     hasError,
     isDisabled,
@@ -20,7 +21,7 @@ const InputPassword = ({
     const [isVisible, setIsVisible] = useState(isVisibleDefault);
 
     return (
-        <StyledInputPassword>
+        <StyledInputPassword className={className}>
             <Input
                 errorMessage={errorMessage}
                 hasError={hasError}
@@ -49,6 +50,7 @@ const InputPassword = ({
 InputPassword.variants = INPUT_PASSWORD_VARIANTS;
 
 InputPassword.propTypes = {
+    className: PropTypes.string,
     errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
     isDisabled: PropTypes.bool,
@@ -62,6 +64,7 @@ InputPassword.propTypes = {
 };
 
 InputPassword.defaultProps = {
+    className: '',
     errorMessage: null,
     hasError: false,
     isDisabled: false,

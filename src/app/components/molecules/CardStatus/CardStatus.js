@@ -7,12 +7,14 @@ import { StyledCardStatus } from './CardStatus.sc';
 
 const CardStatus = ({
     children,
+    className,
     elevation,
     hasBorderRadius,
     placement,
     status,
 }) => (
     <StyledCardStatus
+        className={className}
         elevation={elevation}
         hasBorderRadius={hasBorderRadius}
         placement={placement}
@@ -29,6 +31,7 @@ CardStatus.statuses = CARD_STATUS_STATUSES;
 
 CardStatus.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(CardStatus.elevations)),
     hasBorderRadius: PropTypes.bool,
     placement: PropTypes.oneOf(Object.values(CardStatus.placements)),
@@ -36,6 +39,7 @@ CardStatus.propTypes = {
 };
 
 CardStatus.defaultProps = {
+    className: '',
     elevation: Card.defaultProps.elevation,
     hasBorderRadius: false,
     placement: CardStatus.placements.TOP,

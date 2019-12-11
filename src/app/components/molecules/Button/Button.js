@@ -13,6 +13,7 @@ import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 const Button = ({
     autoFocus,
     children,
+    className,
     direction,
     iconType,
     isDisabled,
@@ -28,6 +29,7 @@ const Button = ({
 }) => (
     <StyledButton
         autoFocus={autoFocus}
+        className={className}
         isDisabled={isDisabled}
         isFullWidth={isFullWidth}
         isInverted={isInverted}
@@ -66,6 +68,7 @@ Button.variants = BUTTON_VARIANTS;
 Button.propTypes = {
     autoFocus: PropTypes.bool,
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     direction: PropTypes.oneOf(Object.values(Button.directions)),
     iconType: PropTypes.oneOf(Object.values(Button.iconTypes)),
     isDisabled: PropTypes.bool,
@@ -81,6 +84,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
     autoFocus: false,
+    className: '',
     direction: Button.directions.LTR,
     iconType: null,
     isDisabled: false,
