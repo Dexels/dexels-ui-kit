@@ -243,12 +243,14 @@ export const Card: Card<CardProps>;
 
 export interface ErrorMessageProps {
     children: React.ReactNode;
+    className?: string;
 }
 
 export const ErrorMessage: React.FunctionComponent<ErrorMessageProps>;
 
 export interface IconProps {
     children?: never;
+    className?: string;
     type: IconTypes;
 }
 
@@ -260,6 +262,7 @@ export const Icon: Icon<IconProps>;
 
 export interface LabelProps {
     children: React.ReactNode;
+    className?: string;
     hasError?: boolean;
     isActive?: boolean;
     isCheckboxLabel?: boolean;
@@ -276,6 +279,7 @@ export interface StatusIndicatorProps {
     as?: string;
     background?: string;
     children: React.ReactNode;
+    className?: string;
     placement: Placements;
     size?: 'LARGE' | 'SMALL';
     status: Statuses;
@@ -295,6 +299,7 @@ export const StatusIndicator: StatusIndicator<StatusIndicatorProps>;
 export interface ButtonProps {
     autoFocus?: boolean;
     children: React.ReactNode;
+    className?: string;
     direction?: Directions;
     iconType?: IconTypes;
     isDisabled?: boolean;
@@ -324,6 +329,7 @@ interface Button<P> extends React.FunctionComponent<P> {
 export const Button: Button<ButtonProps>;
 
 export interface ButtonIconProps {
+    className?: string;
     iconType: IconTypes;
     isDisabled?: boolean;
     isInverted?: boolean;
@@ -340,6 +346,7 @@ interface ButtonIcon<P> extends React.FunctionComponent<P> {
 export const ButtonIcon: ButtonIcon<ButtonIconProps>;
 
 export interface CardNoResultsProps {
+    className?: string;
     elevation?: Elevations;
     header: React.ReactNode;
     iconType: IconTypes;
@@ -357,6 +364,7 @@ export const CardNoResults: CardNoResults<CardNoResultsProps>;
 
 export interface CardStatusProps {
     children: React.ReactNode;
+    className?: string;
     elevation?: Elevations;
     hasBorderRadius?: boolean;
     placement?: Placements;
@@ -373,6 +381,7 @@ export const CardStatus: CardStatus<CardStatusProps>;
 
 export interface ChipProps {
     children: React.ReactNode;
+    className?: string;
     direction?: Directions;
     iconType?: IconTypes
     isDisabled?: boolean;
@@ -394,6 +403,7 @@ export const Chip: Chip<ChipProps>;
 export interface DialogFooterProps {
     buttonCancelText?: React.ReactNode;
     buttonConfirmText?: React.ReactNode;
+    className?: string;
     onCancel?: (...args: any[]) => any;
     onConfirm?: (...args: any[]) => any;
     text?: React.ReactNode;
@@ -404,6 +414,7 @@ export const DialogFooter: React.FunctionComponent<DialogFooterProps>;
 export interface DropdownProps {
     as?: string;
     children: React.ReactNode;
+    className?: string;
     errormessage?: React.ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
@@ -428,6 +439,7 @@ export const Dropdown: Dropdown<DropdownProps>;
 
 export interface FormElementLabelProps {
     children: React.ReactNode;
+    className?: string;
     hasError?: boolean;
     isActive?: boolean;
     isDisabled?: boolean;
@@ -444,6 +456,7 @@ export const FormElementLabel: FormElementLabel<FormElementLabelProps>;
 
 export interface FullscreenLoaderProps {
     amount?: number;
+    className?: string;
     type?: 'CIRCLES';
 }
 
@@ -456,6 +469,7 @@ interface FullscreenLoader<P> extends React.FunctionComponent<P> {
 export const FullscreenLoader: FullscreenLoader<FullscreenLoaderProps>;
 
 export interface InputProps {
+    className?: string;
     errorMessage?: React.ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
@@ -483,9 +497,14 @@ interface Input<P> extends React.FunctionComponent<P> {
 
 export const Input: Input<InputProps>;
 
-export const Loader: React.FunctionComponent;
+export interface LoaderProps {
+    className?: string;
+}
+
+export const Loader: React.FunctionComponent<LoaderProps>;
 
 export interface OverlayProps {
+    className?: string;
     height?: number;
     isFullscreen?: boolean;
     isVisible?: boolean;
@@ -495,6 +514,7 @@ export interface OverlayProps {
 export const Overlay: React.FunctionComponent<OverlayProps>;
 
 export interface SelectionControlProps {
+    className?: string;
     direction?: Directions;
     errorMessage?: React.ReactNode;
     hasError?: boolean;
@@ -524,6 +544,7 @@ interface SelectionControl<P> extends React.FunctionComponent<P> {
 export const SelectionControl: SelectionControl<SelectionControlProps>;
 
 export interface TextIconProps {
+    className?: string;
     size?: Sizes;
     text: string;
     [key: string]: any;
@@ -537,6 +558,7 @@ export const TextIcon: TextIcon<TextIconProps>;
 
 export interface TextWithOptionalIconProps {
     children: React.ReactNode;
+    className?: string;
     direction?: Directions;
     iconType?: IconTypes
     isCapitalized?: boolean;
@@ -552,6 +574,7 @@ interface TextWithOptionalIcon<P> extends React.FunctionComponent<P> {
 export const TextWithOptionalIcon: TextWithOptionalIcon<TextWithOptionalIconProps>;
 
 export interface TooltipProps {
+    className?: string;
     elevation?: Elevations;
     position?: Positions;
     transitionDuration?: number;
@@ -569,6 +592,7 @@ export const Tooltip: Tooltip<TooltipProps>;
 // Organisms
 export interface ChipStatusProps {
     children: React.ReactNode;
+    className?: string;
     direction?: Directions;
     isDisabled?: boolean;
     onClick: (...args: any[]) => any;
@@ -588,6 +612,7 @@ export const ChipStatus: ChipStatus<ChipStatusProps>;
 export interface DateRangePickerProps {
     buttonCancelText?: React.ReactNode;
     buttonConfirmText?: React.ReactNode;
+    className?: string;
     daySize?: number;
     displayFormat?: React.ReactNode;
     endDate?: moment.Moment;
@@ -629,6 +654,7 @@ export interface DialogProps {
     buttonClosePosition: 'LEFT' | 'RIGHT';
     buttonConfirmText: React.ReactNode;
     children: React.ReactNode;
+    className?: string;
     elevation?: Elevations;
     footerText?: React.ReactNode;
     hasButtonClose?: boolean;
@@ -659,6 +685,7 @@ export const Dialog: Dialog<DialogProps>;
 export interface DropdownMultiSelectProps {
     buttonCancelText?: React.ReactNode;
     buttonConfirmText: React.ReactNode;
+    className?: string;
     elevation?: Elevations;
     errorMessage?: React.ReactNode;
     hasError?: boolean;
@@ -693,6 +720,7 @@ export const DropdownMultiSelect: DropdownMultiSelect<DropdownMultiSelectProps>;
 
 export interface HeaderProps {
     children?: React.ReactNode;
+    className?: string;
     elevation?: Elevations;
     isInverted?: boolean;
     onBack?: (...args: any[]) => any;
@@ -707,6 +735,7 @@ interface Header<P> extends React.FunctionComponent<P> {
 export const Header: Header<HeaderProps>;
 
 export interface InputPasswordProps {
+    className?: string;
     errorMessage?: React.ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
@@ -726,6 +755,7 @@ interface InputPassword<P> extends React.FunctionComponent<P> {
 export const InputPassword: InputPassword<InputPasswordProps>;
 
 export interface MenuProps {
+    className?: string;
     defaultOpenItem?: React.ReactNode;
     items: {
         children: {
@@ -750,6 +780,7 @@ export const Menu: Menu<MenuProps>;
 
 export interface ModalProps {
     children: React.ReactNode;
+    className?: string;
     isVisible: boolean;
     onBack?: (...args: any[]) => any;
     options?: React.ReactNode;
@@ -765,6 +796,7 @@ interface Modal<P> extends React.FunctionComponent<P> {
 export const Modal: Modal<ModalProps>;
 
 export interface PaginatorProps {
+    className?: string;
     hasAllPagingButtons?: boolean;
     hasGoToPage?: boolean;
     hasPageSizeSelector?: boolean;
@@ -795,6 +827,7 @@ export interface PaginatorProps {
 export const Paginator: React.FunctionComponent<PaginatorProps>;
 
 export interface SingleDatePickerProps {
+    className?: string;
     date?: moment.Moment;
     daySize?: number;
     displayFormat?: React.ReactNode;
@@ -821,6 +854,7 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps>;
 
 export interface TableProps {
     caption?: React.ReactNode;
+    className?: string;
     debug?: boolean;
     elevation?: Elevations;
     footerComponent?: React.ReactNode;
@@ -846,6 +880,7 @@ interface Table<P> extends React.FunctionComponent<P> {
 export const Table: Table<TableProps>;
 
 export interface TabsProps {
+    className?: string;
     elevation?: Elevations;
     hasFullWidthTabHeaders?: boolean;
     initiallyActiveTabIndex?: number;
@@ -864,6 +899,7 @@ export const Tabs: Tabs<TabsProps>;
 
 export interface ToolbarProps {
     children?: React.ReactNode;
+    className?: string;
     isInverted?: boolean;
 }
 
