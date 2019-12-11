@@ -3,14 +3,14 @@ import {
     STATUS_INDICATOR_SIZES,
     STATUS_INDICATOR_STATUSES,
 } from '../../atoms/StatusIndicator/StatusIndicator.consts';
+import Card from '../../atoms/Card/Card';
 import getStatusIndicator from '../../../styles/mixins/getStatusIndicator';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { StyledCard } from '../../atoms/Card/Card.sc';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
-export const StyledCardStatus = styled(StyledCard)`
+export const StyledCardStatus = styled(Card)`
     ${({
         placement,
         size,

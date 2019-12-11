@@ -230,6 +230,7 @@ export function setTruncate(): string;
 // Atoms
 export interface CardProps {
     children: React.ReactNode;
+    className?: string;
     elevation?: Elevations;
     hasBorderRadius?: boolean;
 }
