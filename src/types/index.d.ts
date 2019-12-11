@@ -585,19 +585,6 @@ interface ChipStatus<P> extends React.FunctionComponent<P> {
 
 export const ChipStatus: ChipStatus<ChipStatusProps>;
 
-export interface ContainerContentProps {
-    children: React.ReactNode;
-    elevation?: Elevations;
-    position?: Positions;
-}
-
-interface ContainerContent<P> extends React.FunctionComponent<P> {
-    elevations: ElevationsMap;
-    positions: PositionsMap;
-}
-
-export const ContainerContent: ContainerContent<ContainerContentProps>;
-
 export interface DateRangePickerProps {
     buttonCancelText?: React.ReactNode;
     buttonConfirmText?: React.ReactNode;

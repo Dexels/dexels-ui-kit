@@ -33,7 +33,6 @@ import Tooltip from '../app/components/molecules/Tooltip/Tooltip';
 
 // Organisms
 import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
-import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
 import DateRangePicker from '../app/components/organisms/DatePicker/DateRangePicker/DateRangePicker';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
 import DropdownMultiSelect from '../app/components/organisms/DropdownMultiSelect/DropdownMultiSelect';
@@ -89,7 +88,6 @@ export {
     Tooltip,
     // Export organisms
     ChipStatus,
-    ContainerContent,
     DateRangePicker,
     Dialog,
     DropdownMultiSelect,
