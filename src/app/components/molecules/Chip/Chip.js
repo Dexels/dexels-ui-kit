@@ -6,6 +6,7 @@ import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const Chip = ({
     children,
+    className,
     direction,
     iconType,
     isDisabled,
@@ -16,6 +17,7 @@ const Chip = ({
     ...rest
 }) => (
     <StyledChip
+        className={className}
         isDisabled={isDisabled}
         isSelected={isSelected}
         onClick={onClick}
@@ -36,6 +38,7 @@ Chip.transitionEasings = CHIP_EASINGS;
 
 Chip.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     direction: PropTypes.oneOf(Object.values(Chip.directions)),
     iconSize: PropTypes.oneOf(Object.values(Chip.iconSizes)),
     iconType: PropTypes.oneOf(Object.values(Chip.iconTypes)),
@@ -47,6 +50,7 @@ Chip.propTypes = {
 };
 
 Chip.defaultProps = {
+    className: '',
     direction: Chip.directions.LTR,
     iconSize: Chip.iconSizes.MEDIUM,
     iconType: null,

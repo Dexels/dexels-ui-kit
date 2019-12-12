@@ -22,6 +22,7 @@ import Wrapper from '../Wrapper/Wrapper';
 const DateRangePicker = ({
     buttonCancelText,
     buttonConfirmText,
+    className,
     daySize,
     displayFormat,
     endDate,
@@ -57,6 +58,7 @@ const DateRangePicker = ({
 
     return (
         <Wrapper
+            className={className}
             hasYearSelector={hasYearSelector}
             isFocused={isFocused}
             onMouseEnter={() => {
@@ -135,6 +137,7 @@ const DateRangePicker = ({
 DateRangePicker.propTypes = {
     buttonCancelText: PropTypes.node,
     buttonConfirmText: PropTypes.node,
+    className: PropTypes.string,
     daySize: PropTypes.number,
     displayFormat: PropTypes.node,
     endDate: momentPropTypes.momentObj,
@@ -171,6 +174,7 @@ DateRangePicker.propTypes = {
 DateRangePicker.defaultProps = {
     buttonCancelText: null,
     buttonConfirmText: null,
+    className: '',
     daySize: 40,
     displayFormat: 'ddd D MMM Y',
     endDate: null,

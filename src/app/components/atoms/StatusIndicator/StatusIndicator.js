@@ -11,6 +11,7 @@ const StatusIndicator = ({
     as,
     background,
     children,
+    className,
     placement,
     size,
     status,
@@ -18,6 +19,7 @@ const StatusIndicator = ({
     <StyledStatusIndicator
         as={as}
         background={background}
+        className={className}
         placement={placement}
         size={size}
         status={status}
@@ -34,6 +36,7 @@ StatusIndicator.propTypes = {
     as: PropTypes.string,
     background: PropTypes.string,
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     placement: PropTypes.oneOf(Object.values(StatusIndicator.placements)),
     size: PropTypes.oneOf(Object.values(StatusIndicator.sizes)),
     status: PropTypes.oneOf(Object.values(StatusIndicator.statuses)),
@@ -42,6 +45,7 @@ StatusIndicator.propTypes = {
 StatusIndicator.defaultProps = {
     as: 'div',
     background: undefined,
+    className: '',
     placement: StatusIndicator.placements.TOP,
     size: StatusIndicator.sizes.LARGE,
     status: StatusIndicator.statuses.DEFAULT,

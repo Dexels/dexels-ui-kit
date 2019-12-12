@@ -11,6 +11,7 @@ import React from 'react';
 
 const Modal = ({
     children,
+    className,
     isVisible,
     onBack,
     options,
@@ -23,6 +24,7 @@ const Modal = ({
             <Overlay isFullscreen={isVisible} isVisible={isVisible} />
         )}
         <StyledModal
+            className={className}
             isVisible={isVisible}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
@@ -43,6 +45,7 @@ Modal.transitionEasings = MODAL_EASINGS;
 
 Modal.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     isVisible: PropTypes.bool.isRequired,
     onBack: PropTypes.func,
     options: PropTypes.node,
@@ -52,6 +55,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+    className: '',
     onBack: null,
     options: null,
     transitionDuration: 500,

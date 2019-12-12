@@ -13,6 +13,7 @@ const setInitiallyActiveTabIndex = (tab) => (
 );
 
 const Tabs = ({
+    className,
     elevation,
     hasFullWidthTabHeaders,
     initiallyActiveTabIndex,
@@ -23,7 +24,7 @@ const Tabs = ({
     );
 
     return (
-        <StyledTabs elevation={elevation}>
+        <StyledTabs className={className} elevation={elevation}>
             <TabHeaderList>
                 {tabs.length > 0 && tabs.map((tab, index) => (
                     <TabHeader
@@ -51,6 +52,7 @@ const Tabs = ({
 Tabs.elevations = ELEVATIONS;
 
 Tabs.propTypes = {
+    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(Tabs.elevations)),
     hasFullWidthTabHeaders: PropTypes.bool,
     initiallyActiveTabIndex: PropTypes.number,
@@ -62,6 +64,7 @@ Tabs.propTypes = {
 };
 
 Tabs.defaultProps = {
+    className: '',
     elevation: Tabs.elevations.LEVEL_1,
     hasFullWidthTabHeaders: true,
     initiallyActiveTabIndex: null,

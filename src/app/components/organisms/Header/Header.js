@@ -13,13 +13,14 @@ import Toolbar from '../Toolbar/Toolbar';
 
 const Header = ({
     children,
+    className,
     elevation,
     isInverted,
     onBack,
     onToggleMenu,
     title,
 }) => (
-    <StyledHeader elevation={elevation} isInverted={isInverted}>
+    <StyledHeader className={className} elevation={elevation} isInverted={isInverted}>
         {(onBack || onToggleMenu) && (
             <NavigationWrapper>
                 {onToggleMenu && (
@@ -45,6 +46,7 @@ Header.elevations = ELEVATIONS;
 
 Header.propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(Header.elevations)),
     isInverted: PropTypes.bool,
     onBack: PropTypes.func,
@@ -54,6 +56,7 @@ Header.propTypes = {
 
 Header.defaultProps = {
     children: null,
+    className: '',
     elevation: Header.elevations.LEVEL_1,
     isInverted: false,
     onBack: null,

@@ -7,6 +7,7 @@ import { StyledFormElementLabel } from './FormElementLabel.sc';
 const FormElementLabel = ({
     backgroundColor,
     children,
+    className,
     hasError,
     isActive,
     isDisabled,
@@ -18,7 +19,12 @@ const FormElementLabel = ({
     const isSmall = isActive || isFocused;
 
     return (
-        <StyledFormElementLabel backgroundColor={backgroundColor} isActive={isActive || isFocused} variant={variant}>
+        <StyledFormElementLabel
+            backgroundColor={backgroundColor}
+            className={className}
+            isActive={isActive || isFocused}
+            variant={variant}
+        >
             <Label
                 hasError={hasError}
                 isActive={isActive}
@@ -40,6 +46,7 @@ FormElementLabel.variants = FORM_ELEMENT_LABEL_VARIANTS;
 FormElementLabel.propTypes = {
     backgroundColor: PropTypes.string,
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     hasError: PropTypes.bool,
     isActive: PropTypes.bool,
     isDisabled: PropTypes.bool,
@@ -51,6 +58,7 @@ FormElementLabel.propTypes = {
 
 FormElementLabel.defaultProps = {
     backgroundColor: '',
+    className: '',
     hasError: false,
     isActive: true,
     isDisabled: false,

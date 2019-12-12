@@ -5,6 +5,7 @@ import React from 'react';
 import { StyledButtonIcon } from './ButtonIcon.sc';
 
 const ButtonIcon = ({
+    className,
     iconType,
     isDisabled,
     isInverted,
@@ -13,6 +14,7 @@ const ButtonIcon = ({
     ...rest
 }) => (
     <StyledButtonIcon
+        className={className}
         isDisabled={isDisabled}
         isInverted={isInverted}
         onClick={onClick}
@@ -27,6 +29,7 @@ ButtonIcon.iconTypes = Icon.types;
 ButtonIcon.sizes = BUTTON_ICON_SIZES;
 
 ButtonIcon.propTypes = {
+    className: PropTypes.string,
     iconType: PropTypes.oneOf(Object.values(ButtonIcon.iconTypes)).isRequired,
     isDisabled: PropTypes.bool,
     isInverted: PropTypes.bool,
@@ -35,6 +38,7 @@ ButtonIcon.propTypes = {
 };
 
 ButtonIcon.defaultProps = {
+    className: '',
     isDisabled: false,
     isInverted: false,
     onClick: null,

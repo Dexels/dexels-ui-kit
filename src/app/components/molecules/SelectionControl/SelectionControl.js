@@ -18,6 +18,7 @@ import Label from '../../atoms/Label/Label';
 import PropTypes from 'prop-types';
 
 const SelectionControl = ({
+    className,
     direction,
     errorMessage,
     hasError,
@@ -40,6 +41,7 @@ const SelectionControl = ({
     return (
         <>
             <StyledSelectionControl
+                className={className}
                 hasHorizontalCorrection={hasHorizontalCorrection}
                 onMouseEnter={() => {
                     setIsHovered(true);
@@ -101,6 +103,7 @@ SelectionControl.transitionEasings = SELECTION_CONTROL_EASINGS;
 SelectionControl.types = SELECTION_CONTROL_TYPES;
 
 SelectionControl.propTypes = {
+    className: PropTypes.string,
     direction: PropTypes.oneOf(Object.values(SelectionControl.directions)),
     errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
@@ -119,6 +122,7 @@ SelectionControl.propTypes = {
 };
 
 SelectionControl.defaultProps = {
+    className: '',
     direction: SelectionControl.directions.LTR,
     errorMessage: null,
     hasError: false,

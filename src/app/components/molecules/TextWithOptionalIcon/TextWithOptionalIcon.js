@@ -6,6 +6,7 @@ import React from 'react';
 
 const TextWithOptionalIcon = ({
     children,
+    className,
     direction,
     iconSize,
     iconType,
@@ -13,7 +14,7 @@ const TextWithOptionalIcon = ({
     isTruncatable,
     ...rest
 }) => (
-    <StyledTextWithOptionalIcon direction={direction} {...rest}>
+    <StyledTextWithOptionalIcon className={className} direction={direction} {...rest}>
         <Text isCapitalized={isCapitalized} isTruncatable={isTruncatable}>
             {children}
         </Text>
@@ -31,6 +32,7 @@ TextWithOptionalIcon.iconTypes = Icon.types;
 
 TextWithOptionalIcon.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     direction: PropTypes.oneOf(Object.values(TextWithOptionalIcon.directions)),
     iconSize: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconSizes)),
     iconType: PropTypes.oneOf(Object.values(TextWithOptionalIcon.iconTypes)),
@@ -39,6 +41,7 @@ TextWithOptionalIcon.propTypes = {
 };
 
 TextWithOptionalIcon.defaultProps = {
+    className: '',
     direction: TextWithOptionalIcon.directions.LTR,
     iconSize: TextWithOptionalIcon.iconSizes.LARGE,
     iconType: null,

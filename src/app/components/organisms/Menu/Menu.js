@@ -3,7 +3,7 @@ import Item from './Item/Item';
 import PropTypes from 'prop-types';
 import { StyledMenu } from './Menu.sc';
 
-const Menu = ({ defaultOpenItem, items }) => {
+const Menu = ({ className, defaultOpenItem, items }) => {
     const [openItem, setOpenItem] = useState(defaultOpenItem);
 
     const handleSetOpenItem = (text) => {
@@ -11,7 +11,7 @@ const Menu = ({ defaultOpenItem, items }) => {
     };
 
     return (
-        <StyledMenu>
+        <StyledMenu className={className}>
             {items.map(({
                 children,
                 exact,
@@ -75,6 +75,7 @@ const Menu = ({ defaultOpenItem, items }) => {
 Menu.iconTypes = Item.iconTypes;
 
 Menu.propTypes = {
+    className: PropTypes.string,
     defaultOpenItem: PropTypes.node,
     items: PropTypes.arrayOf(PropTypes.shape({
         children: PropTypes.arrayOf(PropTypes.shape({
@@ -92,6 +93,7 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
+    className: '',
     defaultOpenItem: null,
 };
 

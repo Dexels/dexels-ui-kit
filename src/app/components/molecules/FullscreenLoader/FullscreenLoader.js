@@ -15,18 +15,18 @@ const constructLoaderCircle = (amount) => {
 };
 
 // @TODO: Add other loaders
-const FullscreenLoader = ({ amount, type }) => {
+const FullscreenLoader = ({ amount, className, type }) => {
     switch (type) {
         case FULLSCREEN_LOADER_TYPES.CIRCLES:
             return (
-                <LoaderWrapper>
+                <LoaderWrapper className={className}>
                     {constructLoaderCircle(amount)}
                 </LoaderWrapper>
             );
 
         default:
             return (
-                <LoaderWrapper>
+                <LoaderWrapper className={className}>
                     {constructLoaderCircle(amount)}
                 </LoaderWrapper>
             );
@@ -37,11 +37,13 @@ FullscreenLoader.types = FULLSCREEN_LOADER_TYPES;
 
 FullscreenLoader.propTypes = {
     amount: PropTypes.number,
+    className: PropTypes.string,
     type: PropTypes.oneOf(Object.values(FullscreenLoader.types)),
 };
 
 FullscreenLoader.defaultProps = {
     amount: 5,
+    className: '',
     type: FullscreenLoader.types.CIRCLES,
 };
 

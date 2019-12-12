@@ -4,12 +4,14 @@ import { StyledWrapper } from './Wrapper.sc';
 
 const Wrapper = ({
     children,
+    className,
     hasYearSelector,
     isFocused,
     onMouseEnter,
     onMouseLeave,
 }) => (
     <StyledWrapper
+        className={className}
         hasYearSelector={hasYearSelector}
         isFocused={isFocused}
         onMouseEnter={onMouseEnter}
@@ -21,6 +23,7 @@ const Wrapper = ({
 
 Wrapper.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     hasYearSelector: PropTypes.bool,
     isFocused: PropTypes.bool.isRequired,
     onMouseEnter: PropTypes.func.isRequired,
@@ -28,6 +31,7 @@ Wrapper.propTypes = {
 };
 
 Wrapper.defaultProps = {
+    className: '',
     hasYearSelector: false,
 };
 

@@ -23,6 +23,7 @@ const Dialog = ({
     buttonClosePosition,
     buttonConfirmText,
     children,
+    className,
     elevation,
     footerText,
     hasButtonClose,
@@ -47,6 +48,7 @@ const Dialog = ({
             </ButtonClose>
         )}
         <StyledDialog
+            className={className}
             elevation={elevation}
             isVisible={isVisible}
             transitionDuration={transitionDuration}
@@ -84,6 +86,7 @@ Dialog.propTypes = {
     buttonClosePosition: PropTypes.oneOf(Object.values(Dialog.buttonClosePositions)),
     buttonConfirmText: PropTypes.node.isRequired,
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(Dialog.elevations)),
     footerText: PropTypes.node,
     hasButtonClose: PropTypes.bool,
@@ -103,6 +106,7 @@ Dialog.defaultProps = {
     bodyAlignment: Dialog.bodyAlignments.CENTER,
     buttonCancelText: null,
     buttonClosePosition: Dialog.buttonClosePositions.LEFT,
+    className: '',
     elevation: Dialog.elevations.LEVEL_12,
     footerText: null,
     hasButtonClose: true,
