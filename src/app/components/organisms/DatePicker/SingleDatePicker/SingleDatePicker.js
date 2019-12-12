@@ -13,6 +13,7 @@ import { ThemeContext } from 'styled-components';
 import Wrapper from '../Wrapper/Wrapper';
 
 const SingleDatePicker = ({
+    className,
     date,
     daySize,
     displayFormat,
@@ -38,6 +39,7 @@ const SingleDatePicker = ({
 
     return (
         <Wrapper
+            className={className}
             hasYearSelector={hasYearSelector}
             isFocused={isFocused}
             onMouseEnter={() => {
@@ -92,6 +94,7 @@ const SingleDatePicker = ({
 };
 
 SingleDatePicker.propTypes = {
+    className: PropTypes.string,
     date: momentPropTypes.momentObj,
     daySize: PropTypes.number,
     displayFormat: PropTypes.node,
@@ -115,6 +118,7 @@ SingleDatePicker.propTypes = {
 };
 
 SingleDatePicker.defaultProps = {
+    className: '',
     date: null,
     daySize: 40,
     displayFormat: 'ddd D MMM Y',

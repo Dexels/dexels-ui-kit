@@ -5,21 +5,23 @@ import {
 } from './StatusIndicator.consts';
 import styled, { css } from 'styled-components';
 import getStatusColor from '../../../styles/mixins/getStatusColor';
+import getStatusIndicator from '../../../styles/mixins/getStatusIndicator';
 import PropTypes from 'prop-types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledStatusIndicator = styled.div`
+    ${({
+        placement,
+        size,
+        status,
+        theme,
+    }) => getStatusIndicator(status, theme, placement, size)}
     border-radius: inherit;
-    border-color: ${({ status, theme }) => getStatusColor(status, theme)};
     color: ${({ status, theme }) => getStatusColor(status, theme)};
 
     ${({ background, theme }) => css`
         background-color: ${background || theme.card.backgroundColor};
-    `}
-
-    ${({ placement, size, theme }) => css`
-        border-${placement}: ${theme.spacing(size === STATUS_INDICATOR_SIZES.LARGE ? 1 : 0.5)} solid;
     `}
 `;
 

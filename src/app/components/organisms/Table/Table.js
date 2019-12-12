@@ -22,6 +22,7 @@ const dataSource = (instance, hasPaging) => (hasPaging ? instance.page : instanc
 
 const Table = ({
     caption,
+    className,
     debug,
     elevation,
     footerComponent,
@@ -46,7 +47,12 @@ const Table = ({
                     {caption}
                 </TableCaption>
             )}
-            <StyledTable debug={debug} isFullWidth={isFullWidth} {...getTableProps()}>
+            <StyledTable
+                className={className}
+                debug={debug}
+                isFullWidth={isFullWidth}
+                {...getTableProps()}
+            >
                 <TableHead>
                     {headerGroups.map((headerGroup) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
@@ -117,6 +123,7 @@ Table.elevations = TABLE_ELEVATIONS;
 
 Table.propTypes = {
     caption: PropTypes.node,
+    className: PropTypes.string,
     debug: PropTypes.bool,
     elevation: PropTypes.oneOf(Object.values(Table.elevations)),
     footerComponent: PropTypes.node,
@@ -137,6 +144,7 @@ Table.propTypes = {
 
 Table.defaultProps = {
     caption: null,
+    className: '',
     debug: false,
     elevation: Table.elevations.LEVEL_1,
     footerComponent: undefined,

@@ -33,7 +33,6 @@ import Tooltip from '../app/components/molecules/Tooltip/Tooltip';
 
 // Organisms
 import ChipStatus from '../app/components/organisms/ChipStatus/ChipStatus';
-import ContainerContent from '../app/components/organisms/ContainerContent/ContainerContent';
 import DateRangePicker from '../app/components/organisms/DatePicker/DateRangePicker/DateRangePicker';
 import Dialog from '../app/components/organisms/Dialog/Dialog';
 import DropdownMultiSelect from '../app/components/organisms/DropdownMultiSelect/DropdownMultiSelect';
@@ -58,6 +57,7 @@ import getAlignment from '../app/styles/mixins/getAlignment';
 import getElevation from '../app/styles/mixins/getElevation';
 import getPosition from '../app/styles/mixins/getPosition';
 import getStatusColor from '../app/styles/mixins/getStatusColor';
+import getStatusIndicator from '../app/styles/mixins/getStatusIndicator';
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../app/styles/mixins/rippleEffect';
 import setBoxSizing from '../app/styles/mixins/setBoxSizing';
 import setCentered from '../app/styles/mixins/setCentered';
@@ -89,7 +89,6 @@ export {
     Tooltip,
     // Export organisms
     ChipStatus,
-    ContainerContent,
     DateRangePicker,
     Dialog,
     DropdownMultiSelect,
@@ -112,6 +111,7 @@ export {
     getElevation,
     getPosition,
     getStatusColor,
+    getStatusIndicator,
     rippleEffect,
     rippleEffectInit,
     rippleEffectReset,

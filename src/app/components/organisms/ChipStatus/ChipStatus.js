@@ -25,12 +25,14 @@ const isSelected = (variant) => (
 
 const ChipStatus = ({
     children,
+    className,
     direction,
     variant,
     isDisabled,
     onClick,
 }) => (
     <Chip
+        className={className}
         direction={direction}
         iconType={getIconType(variant)}
         isDisabled={isDisabled}
@@ -47,6 +49,7 @@ ChipStatus.variants = CHIP_STATUS_VARIANTS;
 
 ChipStatus.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     direction: PropTypes.oneOf(Object.values(ChipStatus.directions)),
     isDisabled: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
@@ -54,6 +57,7 @@ ChipStatus.propTypes = {
 };
 
 ChipStatus.defaultProps = {
+    className: '',
     direction: ChipStatus.directions.LTR,
     isDisabled: false,
     variant: ChipStatus.variants.SELECTED,

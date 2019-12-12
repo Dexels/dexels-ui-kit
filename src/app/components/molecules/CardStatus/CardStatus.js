@@ -3,22 +3,26 @@ import Card from '../../atoms/Card/Card';
 import PropTypes from 'prop-types';
 import React from 'react';
 import StatusIndicator from '../../atoms/StatusIndicator/StatusIndicator';
-import { StyledCardStatusWrapper } from './CardStatus.sc';
+import { StyledCardStatus } from './CardStatus.sc';
 
 const CardStatus = ({
     children,
+    className,
     elevation,
     hasBorderRadius,
     placement,
     status,
 }) => (
-    <StyledCardStatusWrapper elevation={elevation} hasBorderRadius={hasBorderRadius}>
-        <StatusIndicator placement={placement} size={StatusIndicator.sizes.SMALL} status={status}>
-            <Card elevation={Card.elevations.LEVEL_0} hasBorderRadius={false}>
-                {children}
-            </Card>
-        </StatusIndicator>
-    </StyledCardStatusWrapper>
+    <StyledCardStatus
+        className={className}
+        elevation={elevation}
+        hasBorderRadius={hasBorderRadius}
+        placement={placement}
+        size={StatusIndicator.sizes.SMALL}
+        status={status}
+    >
+        {children}
+    </StyledCardStatus>
 );
 
 CardStatus.elevations = Card.elevations;
@@ -27,6 +31,7 @@ CardStatus.statuses = CARD_STATUS_STATUSES;
 
 CardStatus.propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(CardStatus.elevations)),
     hasBorderRadius: PropTypes.bool,
     placement: PropTypes.oneOf(Object.values(CardStatus.placements)),
@@ -34,6 +39,7 @@ CardStatus.propTypes = {
 };
 
 CardStatus.defaultProps = {
+    className: '',
     elevation: Card.defaultProps.elevation,
     hasBorderRadius: false,
     placement: CardStatus.placements.TOP,

@@ -19,6 +19,7 @@ import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers
 const DropdownMultiSelect = ({
     buttonCancelText,
     buttonConfirmText,
+    className,
     elevation,
     errorMessage,
     hasError,
@@ -47,7 +48,7 @@ const DropdownMultiSelect = ({
     const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
     return (
-        <StyledDropdownMultiSelect>
+        <StyledDropdownMultiSelect className={className}>
             <Dropdown
                 as="div"
                 errorMessage={errorMessage}
@@ -109,6 +110,7 @@ DropdownMultiSelect.variants = DROPDOWN_MULTISELECT_VARIANTS;
 DropdownMultiSelect.propTypes = {
     buttonCancelText: PropTypes.node,
     buttonConfirmText: PropTypes.node.isRequired,
+    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(DropdownMultiSelect.elevations)),
     errorMessage: PropTypes.node,
     hasError: PropTypes.bool,
@@ -129,6 +131,7 @@ DropdownMultiSelect.propTypes = {
 
 DropdownMultiSelect.defaultProps = {
     buttonCancelText: null,
+    className: '',
     elevation: DropdownMultiSelect.elevations.LEVEL_6,
     errorMessage: null,
     hasError: false,

@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "2.0.41",
+    "version": "2.0.45",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -108,7 +108,7 @@
         "stylelint-config-recommended": "^3.0.0",
         "stylelint-config-styled-components": "^0.1.1",
         "stylelint-junit-formatter": "^0.2.2",
-        "terser-webpack-plugin": "^2.2.2",
+        "terser-webpack-plugin": "^2.2.3",
         "typescript": "^3.7.3",
         "webpack": "^4.41.2",
         "webpack-bundle-analyzer": "^3.6.0",
