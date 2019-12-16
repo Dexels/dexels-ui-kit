@@ -31,7 +31,6 @@ const Menu = ({ className, defaultOpenItem, items }) => {
                                 isDisabled={isDisabled}
                                 isOpen={isOpen}
                                 isParent
-                                key={text}
                                 onClick={() => {
                                     handleSetOpenItem(text);
                                 }}
@@ -42,7 +41,7 @@ const Menu = ({ className, defaultOpenItem, items }) => {
                                 <Item
                                     exact={child.exact}
                                     isDisabled={child.isDisabled}
-                                    key={child.text}
+                                    key={child.path}
                                     path={child.path}
                                 >
                                     {child.text}
@@ -58,7 +57,7 @@ const Menu = ({ className, defaultOpenItem, items }) => {
                         iconType={iconType}
                         isDisabled={isDisabled}
                         isParent
-                        key={text}
+                        key={path}
                         onClick={() => {
                             handleSetOpenItem(text);
                         }}
