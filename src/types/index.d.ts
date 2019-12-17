@@ -507,10 +507,8 @@ export const Loader: React.FunctionComponent<LoaderProps>;
 
 export interface OverlayProps {
     className?: string;
-    height?: number;
-    isFullscreen?: boolean;
     isVisible?: boolean;
-    width?: number;
+    onClick?: (...args: any[]) => any;
 }
 
 export const Overlay: React.FunctionComponent<OverlayProps>;
