@@ -14,11 +14,13 @@ export const StyledOverlay = styled.div`
     opacity: ${({ isVisible }) => (isVisible ? '0.4' : '0')};
     z-index: 1;
     background-color: black;
+    cursor: ${({ isClickable }) => (isClickable ? 'pointer' : 'auto')};
     width: 100%;
     height: 100%;
 `;
 
 StyledOverlay.propTypes = {
+    isClickable: PropTypes.bool.isRequired,
     isVisible: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
