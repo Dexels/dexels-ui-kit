@@ -109,6 +109,7 @@ export const StyledButton = styled.button`
         variant,
     }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
         border: 0;
+        border-radius: 0;
         background-color: transparent !important;
         padding: 0;
         min-height: 0;

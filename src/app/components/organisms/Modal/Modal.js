@@ -20,9 +20,7 @@ const Modal = ({
     transitionEasing,
 }) => (
     <>
-        {isVisible && (
-            <Overlay isFullscreen={isVisible} isVisible={isVisible} />
-        )}
+        <Overlay isVisible={isVisible} />
         <StyledModal
             className={className}
             isVisible={isVisible}

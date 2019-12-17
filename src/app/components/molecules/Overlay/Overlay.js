@@ -2,36 +2,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledOverlay } from './Overlay.sc';
 
-const Overlay = ({
-    className,
-    height,
-    isFullscreen,
-    isVisible,
-    width,
-}) => (
+const Overlay = ({ className, isVisible, onClick }) => (
     <StyledOverlay
         className={className}
-        height={height}
-        isFullscreen={isFullscreen}
+        isClickable={onClick}
         isVisible={isVisible}
-        width={width}
+        onClick={onClick}
     />
 );
 
 Overlay.propTypes = {
     className: PropTypes.string,
-    height: PropTypes.number,
-    isFullscreen: PropTypes.bool,
     isVisible: PropTypes.bool,
-    width: PropTypes.number,
+    onClick: PropTypes.func,
 };
 
 Overlay.defaultProps = {
     className: '',
-    height: 80,
-    isFullscreen: true,
     isVisible: true,
-    width: 80,
+    onClick: null,
 };
 
 export default Overlay;
