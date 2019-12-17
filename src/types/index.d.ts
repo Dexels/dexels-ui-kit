@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.47
+// Type definitions for dexels-ui-kit 2.0.48
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
