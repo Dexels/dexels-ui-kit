@@ -39,8 +39,8 @@ const Dialog = ({
     width,
 }) => (
     <>
-        {isVisible && (
-            <Overlay isFullscreen={isVisible} isVisible={hasOverlay || isVisible} />
+        {hasOverlay && (
+            <Overlay isVisible={isVisible} />
         )}
         {hasButtonClose && hasOverlay && isVisible && (
             <ButtonClose isVisible={isVisible} onClick={onClose} position={buttonClosePosition}>

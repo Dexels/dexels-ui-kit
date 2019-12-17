@@ -1,38 +1,28 @@
-import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledOverlay = styled.div`
     ${setBoxSizing()}
-    display: flex;
+    display: block;
     position: fixed;
+    top: 0;
+    left: 0;
+    visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+    opacity: ${({ isVisible }) => (isVisible ? '0.4' : '0')};
     z-index: 1;
-    overflow: auto;
-
-    ${({ height, isFullscreen, width }) => (isFullscreen ? css`
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    ` : css`
-        margin: auto;
-        width: ${width}%;
-        height: ${height}%;
-    `)}
-
-    ${({ isVisible }) => isVisible && css`
-        background-color: rgba(0, 0, 0, 0.4);
-    `}
+    background-color: black;
+    cursor: ${({ isClickable }) => (isClickable ? 'pointer' : 'auto')};
+    width: 100%;
+    height: 100%;
 `;
 
 StyledOverlay.propTypes = {
-    height: PropTypes.number.isRequired,
-    isFullscreen: PropTypes.bool.isRequired,
+    isClickable: PropTypes.bool.isRequired,
     isVisible: PropTypes.bool.isRequired,
     theme: themePropTypes,
-    width: PropTypes.number.isRequired,
 };
 
 StyledOverlay.defaultProps = {

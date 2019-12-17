@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.45
+// Type definitions for dexels-ui-kit 2.0.50
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -507,10 +507,8 @@ export const Loader: React.FunctionComponent<LoaderProps>;
 
 export interface OverlayProps {
     className?: string;
-    height?: number;
-    isFullscreen?: boolean;
     isVisible?: boolean;
-    width?: number;
+    onClick?: (...args: any[]) => any;
 }
 
 export const Overlay: React.FunctionComponent<OverlayProps>;
