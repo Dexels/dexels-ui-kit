@@ -99,11 +99,14 @@ export const getColumnWidth = (data, accessor, headerText = accessor) => {
 
     const maxWidth = 600;
     const magicSpacing = 10;
+    let cellLength = headerText.length;
 
-    const cellLength = Math.max(
-        ...data.map((row) => (`${accessor(row)}` || '').length),
-        headerText.length,
-    );
+    if (data) {
+        cellLength = Math.max(
+            ...data.map((row) => (`${accessor(row)}` || '').length),
+            headerText.length,
+        );
+    }
 
     return `${Math.min(maxWidth, cellLength * magicSpacing)}px`;
 };
