@@ -5,7 +5,7 @@ import { StyledOverlay } from './Overlay.sc';
 const Overlay = ({ className, isVisible, onClick }) => (
     <StyledOverlay
         className={className}
-        isClickable={onClick}
+        isClickable={Boolean(onClick)}
         isVisible={isVisible}
         onClick={onClick}
     />
