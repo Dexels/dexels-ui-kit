@@ -3,11 +3,11 @@ import Item from './Item/Item';
 import PropTypes from 'prop-types';
 import { StyledMenu } from './Menu.sc';
 
-const Menu = ({ className, defaultOpenItem, items }) => {
-    const [openItem, setOpenItem] = useState(defaultOpenItem);
+const Menu = ({ className, defaultOpenItemPath, items }) => {
+    const [openItemPath, setOpenItemPath] = useState(defaultOpenItemPath);
 
-    const handleSetOpenItem = (text) => {
-        setOpenItem(openItem === text ? '' : text);
+    const handleSetOpenItem = (path) => {
+        setOpenItemPath(openItemPath === path ? '' : path);
     };
 
     return (
@@ -21,10 +21,10 @@ const Menu = ({ className, defaultOpenItem, items }) => {
                 text,
             }) => {
                 if (children.length > 0) {
-                    const isOpen = openItem === text;
+                    const isOpen = openItemPath === path;
 
                     return (
-                        <React.Fragment key={text}>
+                        <React.Fragment key={path}>
                             <Item
                                 hasChildren
                                 iconType={iconType}
@@ -32,7 +32,7 @@ const Menu = ({ className, defaultOpenItem, items }) => {
                                 isOpen={isOpen}
                                 isParent
                                 onClick={() => {
-                                    handleSetOpenItem(text);
+                                    handleSetOpenItem(path);
                                 }}
                             >
                                 {text}
@@ -58,9 +58,6 @@ const Menu = ({ className, defaultOpenItem, items }) => {
                         isDisabled={isDisabled}
                         isParent
                         key={path}
-                        onClick={() => {
-                            handleSetOpenItem(text);
-                        }}
                         path={path}
                     >
                         {text}
@@ -75,7 +72,7 @@ Menu.iconTypes = Item.iconTypes;
 
 Menu.propTypes = {
     className: PropTypes.string,
-    defaultOpenItem: PropTypes.node,
+    defaultOpenItemPath: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
         children: PropTypes.arrayOf(PropTypes.shape({
             exact: PropTypes.bool,
@@ -93,7 +90,7 @@ Menu.propTypes = {
 
 Menu.defaultProps = {
     className: '',
-    defaultOpenItem: null,
+    defaultOpenItemPath: '',
 };
 
 export default Menu;

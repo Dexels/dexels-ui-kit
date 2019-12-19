@@ -756,7 +756,7 @@ export const InputPassword: InputPassword<InputPasswordProps>;
 
 export interface MenuProps {
     className?: string;
-    defaultOpenItem?: React.ReactNode;
+    defaultOpenItemPath?: string;
     items: {
         children: {
             exact?: boolean;

@@ -73,7 +73,7 @@ Item.defaultProps = {
     isOpen: false,
     isParent: false,
     onClick: null,
-    path: undefined,
+    path: '',
 };
 
 export default Item;
