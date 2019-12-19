@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.51
+// Type definitions for dexels-ui-kit 2.0.52
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -756,7 +756,7 @@ export const InputPassword: InputPassword<InputPasswordProps>;
 
 export interface MenuProps {
     className?: string;
-    defaultOpenItem?: React.ReactNode;
+    defaultOpenItemPath?: string;
     items: {
         children: {
             exact?: boolean;
@@ -767,7 +767,7 @@ export interface MenuProps {
         exact?: boolean;
         iconType: IconTypes
         isDisabled?: boolean;
-        path?: string;
+        path: string;
         text: React.ReactNode;
     }[];
 }
