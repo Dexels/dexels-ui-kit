@@ -86,7 +86,7 @@ Menu.propTypes = {
         exact: PropTypes.bool,
         iconType: PropTypes.oneOf(Object.values(Menu.iconTypes)).isRequired,
         isDisabled: PropTypes.bool,
-        path: PropTypes.string,
+        path: PropTypes.string.isRequired,
         text: PropTypes.node.isRequired,
     })).isRequired,
 };

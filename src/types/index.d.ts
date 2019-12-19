@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.50
+// Type definitions for dexels-ui-kit 2.0.51
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -767,7 +767,7 @@ export interface MenuProps {
         exact?: boolean;
         iconType: IconTypes
         isDisabled?: boolean;
-        path?: string;
+        path: string;
         text: React.ReactNode;
     }[];
 }

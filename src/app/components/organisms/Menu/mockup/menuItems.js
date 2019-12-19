@@ -34,7 +34,7 @@ export const menuItems = [
             },
         ],
         iconType: ICON_TYPES.MATCHOWN,
-        path: undefined,
+        path: '/wedstrijden',
         text: 'Wedstrijden',
     },
     {
@@ -49,7 +49,7 @@ export const menuItems = [
             },
         ],
         iconType: ICON_TYPES.LIGHTBULB,
-        path: undefined,
+        path: '/competitie',
         text: 'Competitie',
     },
 ];
