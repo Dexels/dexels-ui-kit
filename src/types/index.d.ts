@@ -758,7 +758,7 @@ export interface MenuProps {
     className?: string;
     defaultOpenItemPath?: string;
     items: {
-        children: {
+        children?: {
             exact?: boolean;
             isDisabled?: boolean;
             path: string;

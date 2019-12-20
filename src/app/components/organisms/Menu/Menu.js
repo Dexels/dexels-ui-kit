@@ -20,7 +20,7 @@ const Menu = ({ className, defaultOpenItemPath, items }) => {
                 path,
                 text,
             }) => {
-                if (children.length > 0) {
+                if (children && children.length > 0) {
                     const isOpen = openItemPath === path;
 
                     return (
