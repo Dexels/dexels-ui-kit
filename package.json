@@ -48,7 +48,7 @@
     "homepage": "https://github.com/Dexels/dexels-ui-kit#readme",
     "peerDependencies": {
         "@babel/runtime": "^7.7.7",
-        "@types/react": "^16.9.16",
+        "@types/react": "^16.9.17",
         "@types/react-dates": "^17.1.6",
         "moment": "^2.24.0",
         "prop-types": "^15.7.2",
@@ -72,7 +72,7 @@
         "@storybook/addon-knobs": "^5.2.8",
         "@storybook/addon-notes": "^5.2.8",
         "@storybook/react": "^5.2.8",
-        "@types/react": "^16.9.16",
+        "@types/react": "^16.9.17",
         "@types/react-dates": "^17.1.6",
         "babel-eslint": "^10.0.3",
         "babel-loader": "^8.0.6",
