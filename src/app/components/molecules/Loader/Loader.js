@@ -5,6 +5,8 @@ import { StyledLoader } from './Loader.sc';
 const Loader = ({ className }) => (
     <StyledLoader className={className}>
         <div />
+        <div />
+        <div />
     </StyledLoader>
 );
 

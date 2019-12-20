@@ -1,68 +1,52 @@
 import styled, { keyframes } from 'styled-components';
+import { themeBasic } from '../../../styles/theming/themes/basic';
+import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 const loaderAnimation = keyframes`
     0% {
-        transform: scale(0.90);
+        transform: scale(1, 1);
+        opacity: .4;
     }
 
-    5% {
-        transform: scale(1.15);
-    }
-
-    39% {
-        transform: scale(0.80);
-    }
-
-    45% {
-        transform: scale(1.05);
-    }
-
-    60% {
-        transform: scale(0.90);
+    50% {
+        transform: scale(1.2, 1.2);
+        opacity: 1;
     }
 
     100% {
-        transform: scale(0.85);
+        transform: scale(1, 1);
+        opacity: .4;
     }
 `;
 
 export const StyledLoader = styled.div`
-    position: relative;
-    transform: rotate(45deg);
-    transform-origin: ${({ theme }) => theme.spacing(2.5, 2.5)};
-    width: ${({ theme }) => theme.spacing(5)};
-    height: ${({ theme }) => theme.spacing(5)};
+    text-align: center;
 
     div {
-        position: absolute;
-        top: ${({ theme }) => theme.spacing(2)};
-        left: ${({ theme }) => theme.spacing(2)};
-        border-radius: ${({ theme }) => theme.spacing(0, 0, 0.375)};
-        background-color: currentColor;
-        width: ${({ theme }) => theme.spacing(2)};
-        height: ${({ theme }) => theme.spacing(2)};
-        animation: ${loaderAnimation} 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        display: inline-block;
+        margin: ${({ theme }) => theme.spacing(0.5)};
+        border-radius: 50%;
+        background-color: ${({ theme }) => theme.background.secondary};
+        width: ${({ theme }) => theme.spacing(1.5)};
+        height: ${({ theme }) => theme.spacing(1.5)};
+        animation: ${loaderAnimation} 1.5s infinite ease-in-out;
 
-        &::after,
-        &::before {
-            display: block;
-            position: absolute;
-            background-color: currentColor;
-            width: ${({ theme }) => theme.spacing(2)};
-            height: ${({ theme }) => theme.spacing(2)};
-            content: '';
+        &:nth-child(2) {
+            animation-delay: .5s;
         }
 
-        &::before {
-            left: ${({ theme }) => theme.spacing(-1.5)};
-            border-radius: 50% 0 0 50%;
-        }
-
-        &::after {
-            top: ${({ theme }) => theme.spacing(-1.5)};
-            border-radius: 50% 50% 0 0;
+        &:nth-child(3) {
+            animation-delay: 1s;
         }
     }
 `;
+
+StyledLoader.propTypes = {
+    theme: themePropTypes,
+};
+
+StyledLoader.defaultProps = {
+    theme: themeBasic,
+};
 
 export default StyledLoader;
