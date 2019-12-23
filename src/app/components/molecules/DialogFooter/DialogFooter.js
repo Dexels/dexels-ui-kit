@@ -10,6 +10,7 @@ import React from 'react';
 
 const DialogFooter = ({
     buttonCancelText,
+    buttonConfirmIconType,
     buttonConfirmText,
     className,
     onCancel,
@@ -38,7 +39,7 @@ const DialogFooter = ({
             {buttonConfirmText && onConfirm && (
                 <Button
                     autoFocus
-                    iconType={Button.iconTypes.CHECK}
+                    iconType={buttonConfirmIconType}
                     onClick={onConfirm}
                     size={Button.sizes.SMALL}
                     variant={Button.variants.OUTLINE}
@@ -50,8 +51,11 @@ const DialogFooter = ({
     </StyledDialogFooter>
 );
 
+DialogFooter.iconTypesButtonConfirm = Button.types;
+
 DialogFooter.propTypes = {
     buttonCancelText: PropTypes.node,
+    buttonConfirmIconType: PropTypes.oneOf(Object.values(DialogFooter.iconTypesButtonConfirm)),
     buttonConfirmText: PropTypes.node,
     className: PropTypes.string,
     onCancel: PropTypes.func,
@@ -61,6 +65,7 @@ DialogFooter.propTypes = {
 
 DialogFooter.defaultProps = {
     buttonCancelText: null,
+    buttonConfirmIconType: DialogFooter.iconTypesButtonConfirm.CHECK,
     buttonConfirmText: null,
     className: '',
     onCancel: null,
