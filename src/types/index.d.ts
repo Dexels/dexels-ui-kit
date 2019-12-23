@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.55
+// Type definitions for dexels-ui-kit 2.0.56
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -652,7 +652,7 @@ export const DateRangePicker: React.FunctionComponent<DateRangePickerProps>;
 export interface DialogProps {
     bodyAlignment?: Alignments;
     buttonCancelText?: React.ReactNode;
-    buttonClosePosition: 'LEFT' | 'RIGHT';
+    buttonClosePosition?: 'LEFT' | 'RIGHT';
     buttonConfirmIconType?: IconTypes
     buttonConfirmText: React.ReactNode;
     children: React.ReactNode;
