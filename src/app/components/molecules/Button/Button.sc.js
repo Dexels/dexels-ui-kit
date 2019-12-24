@@ -112,6 +112,7 @@ export const StyledButton = styled.button`
         border-radius: 0;
         background-color: transparent !important;
         padding: 0;
+        min-width: 0;
         min-height: 0;
         color: ${isInverted ? button.textOnly.inverted : button.textOnly.primary};
 
