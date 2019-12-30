@@ -1,7 +1,6 @@
 import {
     FunctionalWrapper,
     StyledHeader,
-    StyledPanelStatus,
     Title,
 } from './PanelStatus.sc';
 import CardStatus from '../CardStatus/CardStatus';
@@ -13,15 +12,14 @@ import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const PanelStatus = ({
     children,
-    className,
     elevation,
     iconType,
     options,
     status,
     title,
 }) => (
-    <StyledPanelStatus>
-        <StyledHeader className={className}>
+    <>
+        <StyledHeader>
             <Title>
                 <TextWithOptionalIcon iconType={iconType}>
                     {title}
@@ -32,7 +30,6 @@ const PanelStatus = ({
             </FunctionalWrapper>
         </StyledHeader>
         <CardStatus
-            className={className}
             elevation={elevation}
             placement={CardStatus.placements.TOP}
             size={StatusIndicator.defaultProps.size}
@@ -40,14 +37,13 @@ const PanelStatus = ({
         >
             {children}
         </CardStatus>
-    </StyledPanelStatus>
+    </>
 );
 
 PanelStatus.iconTypes = PANEL_STATUS_ICON_TYPES;
 
 PanelStatus.propTypes = {
     children: PropTypes.node.isRequired,
-    className: PropTypes.string,
     elevation: PropTypes.oneOf(Object.values(CardStatus.elevations)),
     iconType: PropTypes.oneOf(Object.values(PanelStatus.iconTypes)),
     options: PropTypes.node,
@@ -56,7 +52,6 @@ PanelStatus.propTypes = {
 };
 
 PanelStatus.defaultProps = {
-    className: '',
     elevation: CardStatus.defaultProps.elevation,
     iconType: null,
     options: null,

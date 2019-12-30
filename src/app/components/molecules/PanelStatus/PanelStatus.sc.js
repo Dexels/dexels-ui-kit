@@ -1,12 +1,6 @@
-import getElevation from '../../../styles/mixins/getElevation';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { themePropTypes } from '../../../styles/theming/themes/propTypes';
-
-export const StyledPanelStatus = styled.div`
-    ${getElevation('LEVEL_0')}
-    background-color: transparent;
-`;
 
 export const StyledHeader = styled.div`
     display: flex;
@@ -24,10 +18,6 @@ StyledHeader.defaultProps = {
 
 export const Title = styled.div`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
     color: ${({ theme }) => theme.colorText.primary};
 `;
 

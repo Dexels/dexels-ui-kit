@@ -516,7 +516,6 @@ export const Overlay: React.FunctionComponent<OverlayProps>;
 
 export interface PanelStatusProps {
     children: React.ReactNode;
-    className?: string;
     elevation?: Elevations;
     iconType?: IconTypes;
     options?: React.ReactNode;
