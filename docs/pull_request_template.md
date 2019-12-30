@@ -1,7 +1,7 @@
 ### Pull Request (PR) Dexels-ui-kit
 
 **Jira link**:
-*Paste Jira URL here*
+*https://jira.sportlink.nl/browse/[Paste Jira issue here]*
 
 **Description of the pull request**:
 *The PR description goes here*

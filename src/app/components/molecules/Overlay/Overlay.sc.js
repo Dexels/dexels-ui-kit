@@ -12,7 +12,7 @@ export const StyledOverlay = styled.div`
     left: 0;
     visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
     opacity: ${({ isVisible }) => (isVisible ? '0.4' : '0')};
-    z-index: 1;
+    z-index: 2;
     background-color: black;
     cursor: ${({ isClickable }) => (isClickable ? 'pointer' : 'auto')};
     width: 100%;

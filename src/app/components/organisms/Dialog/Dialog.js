@@ -21,6 +21,7 @@ const Dialog = ({
     bodyAlignment,
     buttonCancelText,
     buttonClosePosition,
+    buttonConfirmIconType,
     buttonConfirmText,
     children,
     className,
@@ -65,6 +66,7 @@ const Dialog = ({
             </Body>
             <DialogFooter
                 buttonCancelText={buttonCancelText}
+                buttonConfirmIconType={buttonConfirmIconType}
                 buttonConfirmText={buttonConfirmText}
                 onCancel={onCancel}
                 onConfirm={onConfirm}
@@ -76,6 +78,7 @@ const Dialog = ({
 
 Dialog.bodyAlignments = DIALOG_BODY_ALIGNMENTS;
 Dialog.buttonClosePositions = DIALOG_BUTTON_CLOSE_POSITIONS;
+Dialog.buttonConfirmIconTypes = Icon.types;
 Dialog.elevations = DIALOG_ELEVATIONS;
 Dialog.headerAlignments = DIALOG_HEADER_ALIGNMENTS;
 Dialog.transitionEasings = DIALOG_EASINGS;
@@ -84,6 +87,7 @@ Dialog.propTypes = {
     bodyAlignment: PropTypes.oneOf(Object.values(Dialog.bodyAlignments)),
     buttonCancelText: PropTypes.node,
     buttonClosePosition: PropTypes.oneOf(Object.values(Dialog.buttonClosePositions)),
+    buttonConfirmIconType: PropTypes.oneOf(Object.values(Dialog.buttonConfirmIconTypes)),
     buttonConfirmText: PropTypes.node.isRequired,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
@@ -106,6 +110,7 @@ Dialog.defaultProps = {
     bodyAlignment: Dialog.bodyAlignments.CENTER,
     buttonCancelText: null,
     buttonClosePosition: Dialog.buttonClosePositions.LEFT,
+    buttonConfirmIconType: Dialog.buttonConfirmIconTypes.CHECK,
     className: '',
     elevation: Dialog.elevations.LEVEL_12,
     footerText: null,
