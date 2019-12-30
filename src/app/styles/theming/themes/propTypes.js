@@ -6,6 +6,8 @@ const buttonObjectShape = PropTypes.shape({
         hover: PropTypes.string.isRequired,
         hoverInverted: PropTypes.string.isRequired,
         inverted: PropTypes.string.isRequired,
+        loader: PropTypes.string.isRequired,
+        loaderInverted: PropTypes.string.isRequired,
         primary: PropTypes.string.isRequired,
     }),
     color: PropTypes.shape({
@@ -110,6 +112,10 @@ export const themePropTypes = PropTypes.shape({
     hover: PropTypes.shape({
         backgroundColor: PropTypes.string.isRequired,
         color: PropTypes.string,
+    }).isRequired,
+    loader: PropTypes.shape({
+        primary: PropTypes.string.isRequired,
+        secondary: PropTypes.string.isRequired,
     }).isRequired,
     table: PropTypes.shape({
         row: PropTypes.shape({

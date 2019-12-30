@@ -157,26 +157,17 @@ StyledButton.defaultProps = {
 
 export const LoaderWrapper = styled.div`
     position: absolute;
+    top: 25%;
     left: 50%;
     transform: translate3d(-50%, 0, 0);
 
-    ${({ buttonSize, theme }) => css`
-        ${buttonSize === BUTTON_SIZES.SMALL && css`
-            top: ${theme.spacing(-1)};
-        `}
-
-        ${buttonSize === BUTTON_SIZES.MEDIUM && css`
-            top: ${theme.spacing(-0.5)};
-        `}
-
-        ${buttonSize === BUTTON_SIZES.LARGE && css`
-            top: 0;
-        `}
+    ${({ variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
+        top: 0;
     `}
 `;
 
 LoaderWrapper.propTypes = {
-    buttonSize: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
+    variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
 };
 
 export const TextWrapper = styled.div`

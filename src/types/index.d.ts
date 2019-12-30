@@ -63,6 +63,8 @@ export interface Theme {
                 hover: string;
                 hoverInverted: string;
                 inverted: string;
+                loader: string;
+                loaderInverted: string;
                 primary: string;
             };
             color: {
@@ -79,6 +81,8 @@ export interface Theme {
                 hover: string;
                 hoverInverted: string;
                 inverted: string;
+                loader: string;
+                loaderInverted: string;
                 primary: string;
             };
             color: {
@@ -95,6 +99,8 @@ export interface Theme {
             hover: string;
             hoverInverted: string;
             inverted: string;
+            loader: string;
+            loaderInverted: string;
             primary: string;
         };
     };
@@ -135,6 +141,10 @@ export interface Theme {
     };
     hover: {
         backgroundColor: string;
+    };
+    loader: {
+        primary: string;
+        secondary: string;
     };
     table: {
         row: {
@@ -182,6 +192,9 @@ export type EasingsMap = {
     LINEAR: 'linear';
     NONE: 'none';
 }
+
+export type ButtonVariants = 'FILLED' | 'OUTLINE' | 'TEXT_ONLY';
+export type ButtonVariantsMap = { [ButtonVariant in ButtonVariants]: ButtonVariant }
 
 export type Elevations = 'LEVEL_0' | 'LEVEL_1' | 'LEVEL_2' | 'LEVEL_3' | 'LEVEL_4' | 'LEVEL_6' | 'LEVEL_8' | 'LEVEL_12' | 'LEVEL_16' | 'LEVEL_24';
 export type ElevationsMap = { [Elevation in Elevations]: Elevation }
@@ -312,7 +325,7 @@ export interface ButtonProps {
     size?: 'LARGE' | 'MEDIUM' | 'SMALL';
     transitionDuration?: number;
     transitionEasing?: Easings;
-    variant?: 'FILLED' | 'OUTLINE' | 'TEXT_ONLY';
+    variant?: ButtonVariants;
     [key: string]: any;
 }
 
@@ -323,9 +336,7 @@ interface Button<P> extends React.FunctionComponent<P> {
         [Size in ButtonProps['size']]: Size;
     };
     transitionEasings: EasingsMap;
-    variants: {
-        [Variant in ButtonProps['variant']]: Variant;
-    };
+    variants: ButtonVariantsMap;
 }
 
 export const Button: Button<ButtonProps>;
@@ -501,7 +512,14 @@ interface Input<P> extends React.FunctionComponent<P> {
 export const Input: Input<InputProps>;
 
 export interface LoaderProps {
-    className?: string;
+    isInverted?: boolean;
+    size?: Sizes;
+    variant: ButtonVariants;
+}
+
+interface Loader<P> extends React.FunctionComponent<P> {
+    sizes: SizesMap;
+    variants: ButtonVariantsMap;
 }
 
 export const Loader: React.FunctionComponent<LoaderProps>;
