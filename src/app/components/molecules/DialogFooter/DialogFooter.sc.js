@@ -45,7 +45,7 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
+    margin: ${({ theme }) => theme.spacing(0, 1, 0, 1)};
 `;
 
 ButtonWrapper.propTypes = {
