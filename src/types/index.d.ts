@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.51
+// Type definitions for dexels-ui-kit 2.0.56
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -404,6 +404,7 @@ export const Chip: Chip<ChipProps>;
 
 export interface DialogFooterProps {
     buttonCancelText?: React.ReactNode;
+    buttonConfirmIconType?: IconTypes
     buttonConfirmText?: React.ReactNode;
     className?: string;
     onCancel?: (...args: any[]) => any;
@@ -651,7 +652,8 @@ export const DateRangePicker: React.FunctionComponent<DateRangePickerProps>;
 export interface DialogProps {
     bodyAlignment?: Alignments;
     buttonCancelText?: React.ReactNode;
-    buttonClosePosition: 'LEFT' | 'RIGHT';
+    buttonClosePosition?: 'LEFT' | 'RIGHT';
+    buttonConfirmIconType?: IconTypes
     buttonConfirmText: React.ReactNode;
     children: React.ReactNode;
     className?: string;
@@ -756,9 +758,9 @@ export const InputPassword: InputPassword<InputPasswordProps>;
 
 export interface MenuProps {
     className?: string;
-    defaultOpenItem?: React.ReactNode;
+    defaultOpenItemPath?: string;
     items: {
-        children: {
+        children?: {
             exact?: boolean;
             isDisabled?: boolean;
             path: string;
@@ -767,7 +769,7 @@ export interface MenuProps {
         exact?: boolean;
         iconType: IconTypes
         isDisabled?: boolean;
-        path?: string;
+        path: string;
         text: React.ReactNode;
     }[];
 }

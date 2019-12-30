@@ -41,7 +41,7 @@ export const Configurable = () => (
                 }) => {
                     if (children.length > 0) {
                         return children.map((child) => (
-                            <Route exact={child.exact} key={child.text} path={child.path}>
+                            <Route exact={child.exact} key={child.path} path={child.path}>
                                 {`${child.text} pagina`}
                             </Route>
                         ));

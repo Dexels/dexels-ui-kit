@@ -24,6 +24,9 @@ const ConfigurableDialog = ({
         buttonClosePosition={select(
             'ButtonClose position', Dialog.buttonClosePositions, Dialog.defaultProps.buttonClosePosition,
         )}
+        buttonConfirmIconType={select(
+            'Icon type confirm button', Dialog.buttonConfirmIconTypes, Dialog.defaultProps.buttonConfirmIconType,
+        )}
         buttonConfirmText={text('Button confirm text', 'Ok')}
         elevation={select('Elevation', Dialog.elevations, Dialog.defaultProps.elevation)}
         footerText={text('Text in footer', '')}
