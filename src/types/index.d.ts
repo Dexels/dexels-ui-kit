@@ -404,6 +404,7 @@ export const Chip: Chip<ChipProps>;
 
 export interface DialogFooterProps {
     buttonCancelText?: React.ReactNode;
+    buttonConfirmIconType?: IconTypes
     buttonConfirmText?: React.ReactNode;
     className?: string;
     onCancel?: (...args: any[]) => any;
@@ -669,7 +670,8 @@ export const DateRangePicker: React.FunctionComponent<DateRangePickerProps>;
 export interface DialogProps {
     bodyAlignment?: Alignments;
     buttonCancelText?: React.ReactNode;
-    buttonClosePosition: 'LEFT' | 'RIGHT';
+    buttonClosePosition?: 'LEFT' | 'RIGHT';
+    buttonConfirmIconType?: IconTypes
     buttonConfirmText: React.ReactNode;
     children: React.ReactNode;
     className?: string;
