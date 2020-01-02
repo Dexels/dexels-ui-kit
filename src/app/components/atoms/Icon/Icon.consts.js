@@ -6,11 +6,11 @@
 // automatically by running npm run lint:js -- --fix in the console
 // I know this solution is a little bit weird but it's still better than including a 40 kb JSON file in our bundle
 // If you manage to come up with a better solution don't hesitate to implement it!
-// import '../../../utils/getIconTypes';
 // Regex to find and replace the part of the key: : '(.*?)',\n
 // Replace it with: ' | '
 // Only the last and first values in the list now need to manually updated to be in the correct format,
 // the rest should be perfect
+// import '../../../utils/getIconTypes';
 
 export const ICON_TYPES = {
     CABLE: 'CABLE',
@@ -29,6 +29,10 @@ export const ICON_TYPES = {
     CHEVRONRIGHT: 'CHEVRONRIGHT',
     CHEVRONUP: 'CHEVRONUP',
     CLOCK: 'CLOCK',
+    CLUBPLACEHOLDER1: 'ClubPlaceholder1',
+    CLUBPLACEHOLDER2: 'ClubPlaceholder2',
+    CLUBPLACEHOLDER3: 'ClubPlaceholder3',
+    CLUBPLACEHOLDER4: 'ClubPlaceholder4',
     COMMUNICATIONMAIL: 'COMMUNICATIONMAIL',
     COMMUNICATIONPHONE: 'COMMUNICATIONPHONE',
     CROSS: 'CROSS',
@@ -39,8 +43,12 @@ export const ICON_TYPES = {
     EVENTGENERIC: 'EVENTGENERIC',
     EVENTREDCARD: 'EVENTREDCARD',
     EVENTYELLOWCARD: 'EVENTYELLOWCARD',
+    FIELDSOCCER: 'FieldSoccer',
     FLAG: 'FLAG',
     GEAR: 'GEAR',
+    GENDERFEMALE: 'GenderFemale',
+    GENDERMALE: 'GenderMale',
+    GENDERMIXED: 'GenderMixed',
     INDICATOR: 'INDICATOR',
     LIGHTBULB: 'LIGHTBULB',
     LOCKOFF: 'LOCKOFF',

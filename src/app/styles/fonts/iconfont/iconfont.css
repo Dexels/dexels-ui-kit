@@ -12,335 +12,359 @@
 }
 
 [class^="ICON-"], [class*=" ICON-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'SL-Small-Icons' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'SL-Small-Icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-.ICON-CHECKBOXMINUS1:before {
-  content: "\e968";
-}
-.ICON-CHECKBOXCHECK:before {
-  content: "\e969";
-}
-.ICON-NEWS:before {
-  content: "\e964";
-}
-.ICON-TWITTER:before {
-  content: "\e965";
-}
-.ICON-TUTORIAL:before {
-  content: "\e966";
-}
-.ICON-STAR:before {
-  content: "\e967";
-}
-.ICON-CALENDARACCEPT:before {
-  content: "\e909";
-}
-.ICON-CALENDARDECLINE:before {
-  content: "\e962";
-}
-.ICON-MATCHRESUME:before {
-  content: "\e963";
-}
-.ICON-CABLE:before {
-  content: "\e94f";
-}
-.ICON-COMMUNICATIONPHONE:before {
-  content: "\e950";
-}
-.ICON-PRODUCTADS:before {
-  content: "\e951";
-}
-.ICON-PRODUCTAVG:before {
-  content: "\e952";
-}
-.ICON-PRODUCTBOEKHOUDING:before {
-  content: "\e953";
-}
-.ICON-PRODUCTCONTRIBUTIE:before {
-  content: "\e954";
-}
-.ICON-PRODUCTDATASERVICE:before {
-  content: "\e955";
-}
-.ICON-PRODUCTDWF:before {
-  content: "\e956";
-}
-.ICON-PRODUCTMOBIEL:before {
-  content: "\e957";
-}
-.ICON-PRODUCTOPLEIDINGEN:before {
-  content: "\e958";
-}
-.ICON-PRODUCTTOERNOOIEN:before {
-  content: "\e959";
-}
-.ICON-PRODUCTTRAININGEN:before {
-  content: "\e95a";
-}
-.ICON-PRODUCTTV:before {
-  content: "\e95b";
-}
-.ICON-PRODUCTVRIJWILLIGERS:before {
-  content: "\e95c";
-}
-.ICON-PRODUCTWEBSITE:before {
-  content: "\e95d";
-}
-.ICON-ROUNDCHECK:before {
-  content: "\e95e";
-}
-.ICON-ROUNDCROSS:before {
-  content: "\e95f";
-}
-.ICON-USERDOUBLE:before {
-  content: "\e960";
-}
-.ICON-CHEVRONFIRST:before {
-  content: "\e941";
-}
-.ICON-CHEVRONLAST:before {
-  content: "\e942";
-}
-.ICON-COMMUNICATIONMAIL:before {
-  content: "\e961";
-}
-.ICON-SPORTATLETIEK:before {
-  content: "\e943";
-}
-.ICON-SPORTBASKETBAL:before {
-  content: "\e944";
-}
-.ICON-SPORTHANDBAL:before {
-  content: "\e945";
-}
-.ICON-SPORTHOCKEY:before {
-  content: "\e946";
-}
-.ICON-SPORTHONKBAL:before {
-  content: "\e947";
-}
-.ICON-SPORTJUDO:before {
-  content: "\e948";
-}
-.ICON-SPORTKORFBAL:before {
-  content: "\e949";
-}
-.ICON-SPORTKRACHT:before {
-  content: "\e94a";
-}
-.ICON-SPORTREDDINGSBRIGADE:before {
-  content: "\e94b";
-}
-.ICON-SPORTVOETBAL:before {
-  content: "\e94c";
-}
-.ICON-SPORTVOLLEYBAL:before {
-  content: "\e94d";
-}
-.ICON-SPORTZWEMMEN:before {
-  content: "\e94e";
-}
-.ICON-CALENDAR:before {
-  content: "\e900";
-}
-.ICON-CARDS:before {
-  content: "\e901";
-}
-.ICON-CHANGE:before {
-  content: "\e902";
-}
-.ICON-CHECK:before {
-  content: "\e903";
-}
-.ICON-CHEVRONDOWN:before {
-  content: "\e904";
-}
-.ICON-CHEVRONLEFT:before {
-  content: "\e905";
-}
-.ICON-CHEVRONRIGHT:before {
-  content: "\e906";
-}
-.ICON-CHEVRONUP:before {
-  content: "\e907";
-}
-.ICON-CLOCK:before {
-  content: "\e908";
-}
-.ICON-QUESTION:before {
-  content: "\e90a";
-}
-.ICON-SHARE:before {
-  content: "\e90b";
-}
-.ICON-USER:before {
-  content: "\e90c";
-}
-.ICON-CROSS:before {
-  content: "\e90d";
-}
-.ICON-DROPDOWN:before {
-  content: "\e90e";
-}
-.ICON-DROPLEFT:before {
-  content: "\e90f";
-}
-.ICON-DROPRIGHT:before {
-  content: "\e910";
-}
-.ICON-DROPUP:before {
-  content: "\e911";
-}
-.ICON-EVENTGENERIC:before {
-  content: "\e912";
-}
-.ICON-EVENTREDCARD:before {
-  content: "\e913";
-}
-.ICON-EVENTYELLOWCARD:before {
-  content: "\e914";
-}
-.ICON-FLAG:before {
-  content: "\e915";
-}
-.ICON-GEAR:before {
-  content: "\e916";
-}
-.ICON-INDICATOR:before {
-  content: "\e917";
-}
-.ICON-LIGHTBULB:before {
-  content: "\e918";
-}
-.ICON-LOCKOFF:before {
-  content: "\e919";
-}
-.ICON-LOCKON:before {
-  content: "\e91a";
-}
-.ICON-LOGOUT:before {
-  content: "\e91b";
-}
-.ICON-MATCHCANCEL:before {
-  content: "\e91c";
-}
-.ICON-MATCHCOMPA:before {
-  content: "\e91d";
-}
-.ICON-MATCHCOMPB:before {
-  content: "\e91e";
-}
-.ICON-MATCHCUP:before {
-  content: "\e91f";
-}
-.ICON-MATCHDELETE:before {
-  content: "\e920";
-}
-.ICON-MATCHOWN:before {
-  content: "\e921";
-}
-.ICON-MENU:before {
-  content: "\e922";
-}
-.ICON-MINUS:before {
-  content: "\e923";
-}
-.ICON-MOVEALL:before {
-  content: "\e924";
-}
-.ICON-MOVELEFTRIGHT:before {
-  content: "\e925";
-}
-.ICON-MOVEUPDOWN:before {
-  content: "\e926";
-}
-.ICON-OPTIONS:before {
-  content: "\e927";
-}
-.ICON-PENCIL:before {
-  content: "\e928";
-}
-.ICON-PLACEHOLDER:before {
-  content: "\e929";
-}
-.ICON-PLANE:before {
-  content: "\e92a";
-}
-.ICON-PLUS:before {
-  content: "\e92b";
-}
-.ICON-POSTBOXIN:before {
-  content: "\e92c";
-}
-.ICON-POSTBOXOUT:before {
-  content: "\e92d";
-}
-.ICON-ROUNDHELP:before {
-  content: "\e92e";
-}
-.ICON-ROUNDINFO:before {
-  content: "\e92f";
-}
-.ICON-ROUNDMINUS:before {
-  content: "\e930";
-}
-.ICON-ROUNDPLUS:before {
-  content: "\e931";
-}
-.ICON-SEARCH:before {
-  content: "\e932";
-}
-.ICON-SELECT:before {
-  content: "\e933";
-}
-.ICON-SHIELD:before {
-  content: "\e934";
-}
-.ICON-SHIRT:before {
-  content: "\e935";
-}
-.ICON-STATUSALERT:before {
-  content: "\e936";
-}
-.ICON-STATUSCANCELED:before {
-  content: "\e937";
-}
-.ICON-STATUSCONCEPT:before {
-  content: "\e938";
-}
-.ICON-STATUSCONCEPTALERT:before {
-  content: "\e939";
-}
-.ICON-STATUSDONE:before {
-  content: "\e93a";
-}
-.ICON-STATUSERROR:before {
-  content: "\e93b";
-}
-.ICON-STATUSSUSPENDED:before {
-  content: "\e93c";
-}
-.ICON-TRASHCAN:before {
-  content: "\e93d";
-}
-.ICON-VISIBILITYOFF:before {
-  content: "\e93e";
-}
-.ICON-VISIBILITYON:before {
-  content: "\e93f";
-}
-.ICON-WORLD:before {
-  content: "\e940";
-}
+  .ICON-FieldSoccer:before {
+    content: "\e96a";
+  }
+  .ICON-ClubPlaceholder1:before {
+    content: "\e96b";
+  }
+  .ICON-ClubPlaceholder2:before {
+    content: "\e96c";
+  }
+  .ICON-ClubPlaceholder4:before {
+    content: "\e96d";
+  }
+  .ICON-ClubPlaceholder3:before {
+    content: "\e96e";
+  }
+  .ICON-GenderFemale:before {
+    content: "\e96f";
+  }
+  .ICON-GenderMale:before {
+    content: "\e970";
+  }
+  .ICON-GenderMixed:before {
+    content: "\e971";
+  }
+  .ICON-CHECKBOXMINUS1:before {
+    content: "\e968";
+  }
+  .ICON-CHECKBOXCHECK:before {
+    content: "\e969";
+  }
+  .ICON-NEWS:before {
+    content: "\e964";
+  }
+  .ICON-TWITTER:before {
+    content: "\e965";
+  }
+  .ICON-TUTORIAL:before {
+    content: "\e966";
+  }
+  .ICON-STAR:before {
+    content: "\e967";
+  }
+  .ICON-CALENDARACCEPT:before {
+    content: "\e909";
+  }
+  .ICON-CALENDARDECLINE:before {
+    content: "\e962";
+  }
+  .ICON-MATCHRESUME:before {
+    content: "\e963";
+  }
+  .ICON-CABLE:before {
+    content: "\e94f";
+  }
+  .ICON-COMMUNICATIONPHONE:before {
+    content: "\e950";
+  }
+  .ICON-PRODUCTADS:before {
+    content: "\e951";
+  }
+  .ICON-PRODUCTAVG:before {
+    content: "\e952";
+  }
+  .ICON-PRODUCTBOEKHOUDING:before {
+    content: "\e953";
+  }
+  .ICON-PRODUCTCONTRIBUTIE:before {
+    content: "\e954";
+  }
+  .ICON-PRODUCTDATASERVICE:before {
+    content: "\e955";
+  }
+  .ICON-PRODUCTDWF:before {
+    content: "\e956";
+  }
+  .ICON-PRODUCTMOBIEL:before {
+    content: "\e957";
+  }
+  .ICON-PRODUCTOPLEIDINGEN:before {
+    content: "\e958";
+  }
+  .ICON-PRODUCTTOERNOOIEN:before {
+    content: "\e959";
+  }
+  .ICON-PRODUCTTRAININGEN:before {
+    content: "\e95a";
+  }
+  .ICON-PRODUCTTV:before {
+    content: "\e95b";
+  }
+  .ICON-PRODUCTVRIJWILLIGERS:before {
+    content: "\e95c";
+  }
+  .ICON-PRODUCTWEBSITE:before {
+    content: "\e95d";
+  }
+  .ICON-ROUNDCHECK:before {
+    content: "\e95e";
+  }
+  .ICON-ROUNDCROSS:before {
+    content: "\e95f";
+  }
+  .ICON-USERDOUBLE:before {
+    content: "\e960";
+  }
+  .ICON-CHEVRONFIRST:before {
+    content: "\e941";
+  }
+  .ICON-CHEVRONLAST:before {
+    content: "\e942";
+  }
+  .ICON-COMMUNICATIONMAIL:before {
+    content: "\e961";
+  }
+  .ICON-SPORTATLETIEK:before {
+    content: "\e943";
+  }
+  .ICON-SPORTBASKETBAL:before {
+    content: "\e944";
+  }
+  .ICON-SPORTHANDBAL:before {
+    content: "\e945";
+  }
+  .ICON-SPORTHOCKEY:before {
+    content: "\e946";
+  }
+  .ICON-SPORTHONKBAL:before {
+    content: "\e947";
+  }
+  .ICON-SPORTJUDO:before {
+    content: "\e948";
+  }
+  .ICON-SPORTKORFBAL:before {
+    content: "\e949";
+  }
+  .ICON-SPORTKRACHT:before {
+    content: "\e94a";
+  }
+  .ICON-SPORTREDDINGSBRIGADE:before {
+    content: "\e94b";
+  }
+  .ICON-SPORTVOETBAL:before {
+    content: "\e94c";
+  }
+  .ICON-SPORTVOLLEYBAL:before {
+    content: "\e94d";
+  }
+  .ICON-SPORTZWEMMEN:before {
+    content: "\e94e";
+  }
+  .ICON-CALENDAR:before {
+    content: "\e900";
+  }
+  .ICON-CARDS:before {
+    content: "\e901";
+  }
+  .ICON-CHANGE:before {
+    content: "\e902";
+  }
+  .ICON-CHECK:before {
+    content: "\e903";
+  }
+  .ICON-CHEVRONDOWN:before {
+    content: "\e904";
+  }
+  .ICON-CHEVRONLEFT:before {
+    content: "\e905";
+  }
+  .ICON-CHEVRONRIGHT:before {
+    content: "\e906";
+  }
+  .ICON-CHEVRONUP:before {
+    content: "\e907";
+  }
+  .ICON-CLOCK:before {
+    content: "\e908";
+  }
+  .ICON-QUESTION:before {
+    content: "\e90a";
+  }
+  .ICON-SHARE:before {
+    content: "\e90b";
+  }
+  .ICON-USER:before {
+    content: "\e90c";
+  }
+  .ICON-CROSS:before {
+    content: "\e90d";
+  }
+  .ICON-DROPDOWN:before {
+    content: "\e90e";
+  }
+  .ICON-DROPLEFT:before {
+    content: "\e90f";
+  }
+  .ICON-DROPRIGHT:before {
+    content: "\e910";
+  }
+  .ICON-DROPUP:before {
+    content: "\e911";
+  }
+  .ICON-EVENTGENERIC:before {
+    content: "\e912";
+  }
+  .ICON-EVENTREDCARD:before {
+    content: "\e913";
+  }
+  .ICON-EVENTYELLOWCARD:before {
+    content: "\e914";
+  }
+  .ICON-FLAG:before {
+    content: "\e915";
+  }
+  .ICON-GEAR:before {
+    content: "\e916";
+  }
+  .ICON-INDICATOR:before {
+    content: "\e917";
+  }
+  .ICON-LIGHTBULB:before {
+    content: "\e918";
+  }
+  .ICON-LOCKOFF:before {
+    content: "\e919";
+  }
+  .ICON-LOCKON:before {
+    content: "\e91a";
+  }
+  .ICON-LOGOUT:before {
+    content: "\e91b";
+  }
+  .ICON-MATCHCANCEL:before {
+    content: "\e91c";
+  }
+  .ICON-MATCHCOMPA:before {
+    content: "\e91d";
+  }
+  .ICON-MATCHCOMPB:before {
+    content: "\e91e";
+  }
+  .ICON-MATCHCUP:before {
+    content: "\e91f";
+  }
+  .ICON-MATCHDELETE:before {
+    content: "\e920";
+  }
+  .ICON-MATCHOWN:before {
+    content: "\e921";
+  }
+  .ICON-MENU:before {
+    content: "\e922";
+  }
+  .ICON-MINUS:before {
+    content: "\e923";
+  }
+  .ICON-MOVEALL:before {
+    content: "\e924";
+  }
+  .ICON-MOVELEFTRIGHT:before {
+    content: "\e925";
+  }
+  .ICON-MOVEUPDOWN:before {
+    content: "\e926";
+  }
+  .ICON-OPTIONS:before {
+    content: "\e927";
+  }
+  .ICON-PENCIL:before {
+    content: "\e928";
+  }
+  .ICON-PLACEHOLDER:before {
+    content: "\e929";
+  }
+  .ICON-PLANE:before {
+    content: "\e92a";
+  }
+  .ICON-PLUS:before {
+    content: "\e92b";
+  }
+  .ICON-POSTBOXIN:before {
+    content: "\e92c";
+  }
+  .ICON-POSTBOXOUT:before {
+    content: "\e92d";
+  }
+  .ICON-ROUNDHELP:before {
+    content: "\e92e";
+  }
+  .ICON-ROUNDINFO:before {
+    content: "\e92f";
+  }
+  .ICON-ROUNDMINUS:before {
+    content: "\e930";
+  }
+  .ICON-ROUNDPLUS:before {
+    content: "\e931";
+  }
+  .ICON-SEARCH:before {
+    content: "\e932";
+  }
+  .ICON-SELECT:before {
+    content: "\e933";
+  }
+  .ICON-SHIELD:before {
+    content: "\e934";
+  }
+  .ICON-SHIRT:before {
+    content: "\e935";
+  }
+  .ICON-STATUSALERT:before {
+    content: "\e936";
+  }
+  .ICON-STATUSCANCELED:before {
+    content: "\e937";
+  }
+  .ICON-STATUSCONCEPT:before {
+    content: "\e938";
+  }
+  .ICON-STATUSCONCEPTALERT:before {
+    content: "\e939";
+  }
+  .ICON-STATUSDONE:before {
+    content: "\e93a";
+  }
+  .ICON-STATUSERROR:before {
+    content: "\e93b";
+  }
+  .ICON-STATUSSUSPENDED:before {
+    content: "\e93c";
+  }
+  .ICON-TRASHCAN:before {
+    content: "\e93d";
+  }
+  .ICON-VISIBILITYOFF:before {
+    content: "\e93e";
+  }
+  .ICON-VISIBILITYON:before {
+    content: "\e93f";
+  }
+  .ICON-WORLD:before {
+    content: "\e940";
+  }
