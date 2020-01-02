@@ -26,28 +26,28 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .ICON-FieldSoccer:before {
+  .ICON-FIELDSOCCER:before {
     content: "\e96a";
   }
-  .ICON-ClubPlaceholder1:before {
+  .ICON-CLUBPLACEHOLDER1:before {
     content: "\e96b";
   }
-  .ICON-ClubPlaceholder2:before {
+  .ICON-CLUBPLACEHOLDER2:before {
     content: "\e96c";
   }
-  .ICON-ClubPlaceholder4:before {
+  .ICON-CLUBPLACEHOLDER4:before {
     content: "\e96d";
   }
-  .ICON-ClubPlaceholder3:before {
+  .ICON-CLUBPLACEHOLDER3:before {
     content: "\e96e";
   }
-  .ICON-GenderFemale:before {
+  .ICON-GENDERFEMALE:before {
     content: "\e96f";
   }
-  .ICON-GenderMale:before {
+  .ICON-GENDERMALE:before {
     content: "\e970";
   }
-  .ICON-GenderMixed:before {
+  .ICON-GENDERMIXED:before {
     content: "\e971";
   }
   .ICON-CHECKBOXMINUS1:before {
