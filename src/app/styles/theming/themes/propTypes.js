@@ -77,6 +77,8 @@ export const themePropTypes = PropTypes.shape({
             hover: PropTypes.string.isRequired,
             hoverInverted: PropTypes.string.isRequired,
             inverted: PropTypes.string.isRequired,
+            loader: PropTypes.string.isRequired,
+            loaderInverted: PropTypes.string.isRequired,
             primary: PropTypes.string.isRequired,
         }),
     }).isRequired,
