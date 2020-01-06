@@ -317,6 +317,7 @@ export interface ButtonProps {
     className?: string;
     direction?: Directions;
     iconType?: IconTypes;
+    isCapitalized?: boolean;
     isDisabled?: boolean;
     isFullWidth?: boolean;
     isInverted?: boolean;

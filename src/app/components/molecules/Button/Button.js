@@ -16,6 +16,7 @@ const Button = ({
     className,
     direction,
     iconType,
+    isCapitalized,
     isDisabled,
     isFullWidth,
     isInverted,
@@ -51,7 +52,7 @@ const Button = ({
                 direction={direction}
                 iconSize={size}
                 iconType={iconType}
-                isCapitalized
+                isCapitalized={isCapitalized}
             >
                 {children}
             </TextWithOptionalIcon>
@@ -71,6 +72,7 @@ Button.propTypes = {
     className: PropTypes.string,
     direction: PropTypes.oneOf(Object.values(Button.directions)),
     iconType: PropTypes.oneOf(Object.values(Button.iconTypes)),
+    isCapitalized: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     isInverted: PropTypes.bool,
@@ -87,6 +89,7 @@ Button.defaultProps = {
     className: '',
     direction: Button.directions.LTR,
     iconType: null,
+    isCapitalized: true,
     isDisabled: false,
     isFullWidth: false,
     isInverted: false,
