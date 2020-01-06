@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.56
+// Type definitions for dexels-ui-kit 2.0.59
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -63,6 +63,8 @@ export interface Theme {
                 hover: string;
                 hoverInverted: string;
                 inverted: string;
+                loader: string;
+                loaderInverted: string;
                 primary: string;
             };
             color: {
@@ -79,6 +81,8 @@ export interface Theme {
                 hover: string;
                 hoverInverted: string;
                 inverted: string;
+                loader: string;
+                loaderInverted: string;
                 primary: string;
             };
             color: {
@@ -95,6 +99,8 @@ export interface Theme {
             hover: string;
             hoverInverted: string;
             inverted: string;
+            loader: string;
+            loaderInverted: string;
             primary: string;
         };
     };
@@ -135,6 +141,10 @@ export interface Theme {
     };
     hover: {
         backgroundColor: string;
+    };
+    loader: {
+        primary: string;
+        secondary: string;
     };
     table: {
         row: {
@@ -183,10 +193,13 @@ export type EasingsMap = {
     NONE: 'none';
 }
 
+export type ButtonVariants = 'FILLED' | 'OUTLINE' | 'TEXT_ONLY';
+export type ButtonVariantsMap = { [ButtonVariant in ButtonVariants]: ButtonVariant }
+
 export type Elevations = 'LEVEL_0' | 'LEVEL_1' | 'LEVEL_2' | 'LEVEL_3' | 'LEVEL_4' | 'LEVEL_6' | 'LEVEL_8' | 'LEVEL_12' | 'LEVEL_16' | 'LEVEL_24';
 export type ElevationsMap = { [Elevation in Elevations]: Elevation }
 
-export type IconTypes = 'CABLE' | 'CALENDAR' | 'CALENDARACCEPT' | 'CALENDARDECLINE' | 'CARDS' | 'CHANGE' | 'CHECK' | 'CHECKBOXCHECK' | 'CHECKBOXMINUS1' | 'CHEVRONDOWN' | 'CHEVRONFIRST' | 'CHEVRONLAST' | 'CHEVRONLEFT' | 'CHEVRONRIGHT' | 'CHEVRONUP' | 'CLOCK' | 'COMMUNICATIONMAIL' | 'COMMUNICATIONPHONE' | 'CROSS' | 'DROPDOWN' | 'DROPLEFT' | 'DROPRIGHT' | 'DROPUP' | 'EVENTGENERIC' | 'EVENTREDCARD' | 'EVENTYELLOWCARD' | 'FLAG' | 'GEAR' | 'INDICATOR' | 'LIGHTBULB' | 'LOCKOFF' | 'LOCKON' | 'LOGOUT' | 'MATCHCANCEL' | 'MATCHCOMPA' | 'MATCHCOMPB' | 'MATCHCUP' | 'MATCHDELETE' | 'MATCHOWN' | 'MATCHRESUME' | 'MENU' | 'MINUS' | 'MOVEALL' | 'MOVELEFTRIGHT' | 'MOVEUPDOWN' | 'NEWS' | 'OPTIONS' | 'PENCIL' | 'PLACEHOLDER' | 'PLANE' | 'PLUS' | 'POSTBOXIN' | 'POSTBOXOUT' | 'PRODUCTADS' | 'PRODUCTAVG' | 'PRODUCTBOEKHOUDING' | 'PRODUCTCONTRIBUTIE' | 'PRODUCTDATASERVICE' | 'PRODUCTDWF' | 'PRODUCTMOBIEL' | 'PRODUCTOPLEIDINGEN' | 'PRODUCTTOERNOOIEN' | 'PRODUCTTRAININGEN' | 'PRODUCTTV' | 'PRODUCTVRIJWILLIGERS' | 'PRODUCTWEBSITE' | 'QUESTION' | 'ROUNDCHECK' | 'ROUNDCROSS' | 'ROUNDHELP' | 'ROUNDINFO' | 'ROUNDMINUS' | 'ROUNDPLUS' | 'SEARCH' | 'SELECT' | 'SHARE' | 'SHIELD' | 'SHIRT' | 'SPORTATLETIEK' | 'SPORTBASKETBAL' | 'SPORTHANDBAL' | 'SPORTHOCKEY' | 'SPORTHONKBAL' | 'SPORTJUDO' | 'SPORTKORFBAL' | 'SPORTKRACHT' | 'SPORTREDDINGSBRIGADE' | 'SPORTVOETBAL' | 'SPORTVOLLEYBAL' | 'SPORTZWEMMEN' | 'STAR' | 'STATUSALERT' | 'STATUSCANCELED' | 'STATUSCONCEPT' | 'STATUSCONCEPTALERT' | 'STATUSDONE' | 'STATUSERROR' | 'STATUSSUSPENDED' | 'TRASHCAN' | 'TUTORIAL' | 'TWITTER' | 'USER' | 'USERDOUBLE' | 'VISIBILITYOFF' | 'VISIBILITYON' | 'WORLD';
+export type IconTypes = 'CABLE' | 'CALENDAR' | 'CALENDARACCEPT' | 'CALENDARDECLINE' | 'CARDS' | 'CHANGE' | 'CHECK' | 'CHECKBOXCHECK' | 'CHECKBOXMINUS1' | 'CHEVRONDOWN' | 'CHEVRONFIRST' | 'CHEVRONLAST' | 'CHEVRONLEFT' | 'CHEVRONRIGHT' | 'CHEVRONUP' | 'CLOCK' | 'CLUBPLACEHOLDER1' | 'CLUBPLACEHOLDER2' | 'CLUBPLACEHOLDER3' | 'CLUBPLACEHOLDER4' | 'COMMUNICATIONMAIL' | 'COMMUNICATIONPHONE' | 'CROSS' | 'DROPDOWN' | 'DROPLEFT' | 'DROPRIGHT' | 'DROPUP' | 'EVENTGENERIC' | 'EVENTREDCARD' | 'EVENTYELLOWCARD' | 'FIELDSOCCER' | 'FLAG' | 'GEAR' | 'GENDERFEMALE' | 'GENDERMALE' | 'GENDERMIXED' | 'INDICATOR' | 'LIGHTBULB' | 'LOCKOFF' | 'LOCKON' | 'LOGOUT' | 'MATCHCANCEL' | 'MATCHCOMPA' | 'MATCHCOMPB' | 'MATCHCUP' | 'MATCHDELETE' | 'MATCHOWN' | 'MATCHRESUME' | 'MENU' | 'MINUS' | 'MOVEALL' | 'MOVELEFTRIGHT' | 'MOVEUPDOWN' | 'NEWS' | 'OPTIONS' | 'PENCIL' | 'PLACEHOLDER' | 'PLANE' | 'PLUS' | 'POSTBOXIN' | 'POSTBOXOUT' | 'PRODUCTADS' | 'PRODUCTAVG' | 'PRODUCTBOEKHOUDING' | 'PRODUCTCONTRIBUTIE' | 'PRODUCTDATASERVICE' | 'PRODUCTDWF' | 'PRODUCTMOBIEL' | 'PRODUCTOPLEIDINGEN' | 'PRODUCTTOERNOOIEN' | 'PRODUCTTRAININGEN' | 'PRODUCTTV' | 'PRODUCTVRIJWILLIGERS' | 'PRODUCTWEBSITE' | 'QUESTION' | 'ROUNDCHECK' | 'ROUNDCROSS' | 'ROUNDHELP' | 'ROUNDINFO' | 'ROUNDMINUS' | 'ROUNDPLUS' | 'SEARCH' | 'SELECT' | 'SHARE' | 'SHIELD' | 'SHIRT' | 'SPORTATLETIEK' | 'SPORTBASKETBAL' | 'SPORTHANDBAL' | 'SPORTHOCKEY' | 'SPORTHONKBAL' | 'SPORTJUDO' | 'SPORTKORFBAL' | 'SPORTKRACHT' | 'SPORTREDDINGSBRIGADE' | 'SPORTVOETBAL' | 'SPORTVOLLEYBAL' | 'SPORTZWEMMEN' | 'STAR' | 'STATUSALERT' | 'STATUSCANCELED' | 'STATUSCONCEPT' | 'STATUSCONCEPTALERT' | 'STATUSDONE' | 'STATUSERROR' | 'STATUSSUSPENDED' | 'TRASHCAN' | 'TUTORIAL' | 'TWITTER' | 'USER' | 'USERDOUBLE' | 'VISIBILITYOFF' | 'VISIBILITYON' | 'WORLD';
 export type IconTypesMap = { [IconType in IconTypes]: IconType }
 
 export type InputVariants = 'COMPACT' | 'OUTLINE';
@@ -313,7 +326,7 @@ export interface ButtonProps {
     size?: 'LARGE' | 'MEDIUM' | 'SMALL';
     transitionDuration?: number;
     transitionEasing?: Easings;
-    variant?: 'FILLED' | 'OUTLINE' | 'TEXT_ONLY';
+    variant?: ButtonVariants;
     [key: string]: any;
 }
 
@@ -324,9 +337,7 @@ interface Button<P> extends React.FunctionComponent<P> {
         [Size in ButtonProps['size']]: Size;
     };
     transitionEasings: EasingsMap;
-    variants: {
-        [Variant in ButtonProps['variant']]: Variant;
-    };
+    variants: ButtonVariantsMap;
 }
 
 export const Button: Button<ButtonProps>;
@@ -503,6 +514,14 @@ export const Input: Input<InputProps>;
 
 export interface LoaderProps {
     className?: string;
+    isInverted?: boolean;
+    size?: Sizes;
+    variant: ButtonVariants;
+}
+
+interface Loader<P> extends React.FunctionComponent<P> {
+    sizes: SizesMap;
+    variants: ButtonVariantsMap;
 }
 
 export const Loader: React.FunctionComponent<LoaderProps>;
@@ -514,6 +533,23 @@ export interface OverlayProps {
 }
 
 export const Overlay: React.FunctionComponent<OverlayProps>;
+
+export interface PanelStatusProps {
+    children: React.ReactNode;
+    elevation?: Elevations;
+    iconType?: IconTypes;
+    options?: React.ReactNode;
+    status?: Statuses;
+    title: React.ReactNode;
+}
+
+interface PanelStatus<P> extends React.FunctionComponent<P> {
+    elevations: ElevationsMap;
+    iconTypes: IconTypesMap;
+    statuses: StatusesMap;
+}
+
+export const PanelStatus: PanelStatus<PanelStatusProps>;
 
 export interface SelectionControlProps {
     className?: string;

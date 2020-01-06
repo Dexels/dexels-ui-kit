@@ -112,6 +112,7 @@ export const StyledButton = styled.button`
         border-radius: 0;
         background-color: transparent !important;
         padding: 0;
+        min-width: 0;
         min-height: 0;
         color: ${isInverted ? button.textOnly.inverted : button.textOnly.primary};
 
@@ -157,27 +158,10 @@ StyledButton.defaultProps = {
 
 export const LoaderWrapper = styled.div`
     position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translate3d(-50%, 0, 0);
-
-    ${({ buttonSize, theme }) => css`
-        ${buttonSize === BUTTON_SIZES.SMALL && css`
-            top: ${theme.spacing(-1)};
-        `}
-
-        ${buttonSize === BUTTON_SIZES.MEDIUM && css`
-            top: ${theme.spacing(-0.5)};
-        `}
-
-        ${buttonSize === BUTTON_SIZES.LARGE && css`
-            top: 0;
-        `}
-    `}
+    transform: translate3d(-50%, -50%, 0);
 `;
-
-LoaderWrapper.propTypes = {
-    buttonSize: PropTypes.oneOf(Object.values(BUTTON_SIZES)).isRequired,
-};
 
 export const TextWrapper = styled.div`
     ${({ isLoading }) => isLoading && css`
