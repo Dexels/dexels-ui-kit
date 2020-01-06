@@ -25,7 +25,6 @@ export const StyledLoader = styled.div`
     display: flex;
 
     div {
-        flex-direction: row;
         margin: ${({ theme }) => theme.spacing(0.5)};
         border-radius: 50%;
         background-color: ${({ theme }) => theme.loader.primary};
