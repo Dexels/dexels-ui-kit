@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Type definitions for dexels-ui-kit 2.0.59
-=======
-// Type definitions for dexels-ui-kit 2.0.58
->>>>>>> master
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
