@@ -512,6 +512,7 @@ interface Input<P> extends React.FunctionComponent<P> {
 export const Input: Input<InputProps>;
 
 export interface LoaderProps {
+    className?: string;
     isInverted?: boolean;
     size?: Sizes;
     variant: ButtonVariants;
