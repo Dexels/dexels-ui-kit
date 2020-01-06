@@ -43,11 +43,7 @@ const Button = ({
     >
         {isLoading && (
             <LoaderWrapper buttonSize={size} variant={variant}>
-                <Loader
-                    isInverted={isInverted}
-                    size={size}
-                    variant={variant}
-                />
+                <Loader isInverted={isInverted} size={size} variant={variant} />
             </LoaderWrapper>
         )}
         <TextWrapper isLoading={isLoading}>
