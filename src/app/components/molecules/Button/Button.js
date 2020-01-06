@@ -42,7 +42,7 @@ const Button = ({
         {...rest}
     >
         {isLoading && (
-            <LoaderWrapper buttonSize={size} variant={variant}>
+            <LoaderWrapper>
                 <Loader isInverted={isInverted} size={size} variant={variant} />
             </LoaderWrapper>
         )}

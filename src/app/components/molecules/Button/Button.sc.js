@@ -157,18 +157,10 @@ StyledButton.defaultProps = {
 
 export const LoaderWrapper = styled.div`
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
-    transform: translate3d(-50%, 0, 0);
-
-    ${({ variant }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
-        top: 0;
-    `}
+    transform: translate3d(-50%, -50%, 0);
 `;
-
-LoaderWrapper.propTypes = {
-    variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)).isRequired,
-};
 
 export const TextWrapper = styled.div`
     ${({ isLoading }) => isLoading && css`
