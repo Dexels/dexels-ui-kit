@@ -26,6 +26,7 @@ import FullscreenLoader from '../app/components/molecules/FullscreenLoader/Fulls
 import Input from '../app/components/molecules/Input/Input';
 import Loader from '../app/components/molecules/Loader/Loader';
 import Overlay from '../app/components/molecules/Overlay/Overlay';
+import PanelStatus from '../app/components/molecules/PanelStatus/PanelStatus';
 import SelectionControl from '../app/components/molecules/SelectionControl/SelectionControl';
 import TextIcon from '../app/components/molecules/TextIcon/TextIcon';
 import TextWithOptionalIcon from '../app/components/molecules/TextWithOptionalIcon/TextWithOptionalIcon';
@@ -83,6 +84,7 @@ export {
     Input,
     Loader,
     Overlay,
+    PanelStatus,
     SelectionControl,
     TextIcon,
     TextWithOptionalIcon,

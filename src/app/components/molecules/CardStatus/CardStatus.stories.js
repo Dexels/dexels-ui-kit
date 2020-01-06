@@ -1,4 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Button from '../Button/Button';
 import CardStatus from './CardStatus';
 import React from 'react';
@@ -32,7 +33,7 @@ export const ConfigurableWithComponent = () => (
         status={select('Status', CardStatus.statuses, CardStatus.defaultProps.status)}
     >
         <Button
-            onClick={() => {}}
+            onClick={action('On click')}
         >
             {'Button for testing'}
         </Button>

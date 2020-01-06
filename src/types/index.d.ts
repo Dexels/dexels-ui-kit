@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.58
+// Type definitions for dexels-ui-kit 2.0.59
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.3
@@ -532,6 +532,23 @@ export interface OverlayProps {
 }
 
 export const Overlay: React.FunctionComponent<OverlayProps>;
+
+export interface PanelStatusProps {
+    children: React.ReactNode;
+    elevation?: Elevations;
+    iconType?: IconTypes;
+    options?: React.ReactNode;
+    status?: Statuses;
+    title: React.ReactNode;
+}
+
+interface PanelStatus<P> extends React.FunctionComponent<P> {
+    elevations: ElevationsMap;
+    iconTypes: IconTypesMap;
+    statuses: StatusesMap;
+}
+
+export const PanelStatus: PanelStatus<PanelStatusProps>;
 
 export interface SelectionControlProps {
     className?: string;
