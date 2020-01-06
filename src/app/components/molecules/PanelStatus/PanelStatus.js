@@ -40,14 +40,16 @@ const PanelStatus = ({
     </>
 );
 
+PanelStatus.elevations = CardStatus.elevations;
 PanelStatus.iconTypes = PANEL_STATUS_ICON_TYPES;
+PanelStatus.statuses = CardStatus.statuses;
 
 PanelStatus.propTypes = {
     children: PropTypes.node.isRequired,
-    elevation: PropTypes.oneOf(Object.values(CardStatus.elevations)),
+    elevation: PropTypes.oneOf(Object.values(PanelStatus.elevations)),
     iconType: PropTypes.oneOf(Object.values(PanelStatus.iconTypes)),
     options: PropTypes.node,
-    status: PropTypes.oneOf(Object.values(CardStatus.statuses)),
+    status: PropTypes.oneOf(Object.values(PanelStatus.statuses)),
     title: PropTypes.node.isRequired,
 };
 
