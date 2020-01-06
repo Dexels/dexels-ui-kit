@@ -4,7 +4,7 @@ import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 
 export const StyledHeader = styled.div`
     display: flex;
-    flex-direction: row;
+    align-items: center;
     padding: ${({ theme }) => theme.spacing(0, 0, 1, 0)};
 `;
 
@@ -30,14 +30,5 @@ Title.defaultProps = {
 };
 
 export const FunctionalWrapper = styled.div`
-    align-self: center;
     margin: 0 0 0 auto;
 `;
-
-FunctionalWrapper.propTypes = {
-    theme: themePropTypes,
-};
-
-FunctionalWrapper.defaultProps = {
-    theme: themeBasic,
-};
