@@ -109,6 +109,8 @@ themeBasic.button = {
             hover: themeBasic.colorSecondary,
             hoverInverted: themeBasic.colorSecondary,
             inverted: themeBasic.shades.nine,
+            loader: themeBasic.colorTextContrast.primary,
+            loaderInverted: themeBasic.colorText.primary,
             primary: themeBasic.colorPrimary,
         },
         color: {
@@ -125,6 +127,8 @@ themeBasic.button = {
             hover: themeBasic.colorSecondary,
             hoverInverted: themeBasic.colorSecondary,
             inverted: themeBasic.shades.nine,
+            loader: themeBasic.colorText.primary,
+            loaderInverted: themeBasic.colorTextContrast.primary,
             primary: themeBasic.colorPrimary,
         },
         color: {
@@ -141,6 +145,8 @@ themeBasic.button = {
         hover: themeBasic.colorSecondary,
         hoverInverted: themeBasic.colorSecondary,
         inverted: themeBasic.shades.nine,
+        loader: themeBasic.shades.one,
+        loaderInverted: themeBasic.shades.nine,
         primary: themeBasic.colorPrimary,
     },
 };
@@ -185,6 +191,11 @@ themeBasic.header = {
 
 themeBasic.hover = {
     backgroundColor: themeBasic.background.primary,
+};
+
+themeBasic.loader = {
+    primary: themeBasic.colorText.primary,
+    secondary: themeBasic.colorTextContrast.primary,
 };
 
 themeBasic.table = {
