@@ -46,7 +46,7 @@ export const Configurable = () => (
         >
             <Button
                 data-tooltip-component={renderToString(<CustomTestComponent />)}
-                data-tooltip-delay
+                data-tooltip-delay={number('Delay', Tooltip.defaultProps.delay)}
                 data-tooltip-position={Tooltip.positions.TOP}
                 onClick={action('On button click top')}
             >

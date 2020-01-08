@@ -15,7 +15,6 @@ const dataTooltipDelay = 'data-tooltip-delay';
 const dataTooltipPosition = 'data-tooltip-position';
 const thresholdVertical = 100;
 const thresholdHorizontal = 150;
-const delay = 4000;
 
 const getTooltipPosition = (hoveredItem, tooltipPosition, tooltipPositions) => {
     const docWidth = document.documentElement.clientWidth;
@@ -85,6 +84,7 @@ const getTooltipPosition = (hoveredItem, tooltipPosition, tooltipPositions) => {
 
 const Tooltip = ({
     className,
+    delay,
     elevation,
     position,
     transitionDuration,
@@ -212,6 +212,7 @@ Tooltip.transitionEasings = TOOLTIP_EASINGS;
 
 Tooltip.propTypes = {
     className: PropTypes.string,
+    delay: PropTypes.number,
     elevation: PropTypes.oneOf(Object.values(Tooltip.elevations)),
     position: PropTypes.oneOf(Object.values(Tooltip.positions)),
     transitionDuration: PropTypes.number,
@@ -220,6 +221,7 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
     className: '',
+    delay: 4000,
     elevation: Tooltip.elevations.LEVEL_6,
     position: Tooltip.positions.BOTTOM,
     transitionDuration: 300,
