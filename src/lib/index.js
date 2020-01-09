@@ -64,6 +64,11 @@ import setBoxSizing from '../app/styles/mixins/setBoxSizing';
 import setCentered from '../app/styles/mixins/setCentered';
 import setTruncate from '../app/styles/mixins/setTruncate';
 
+// Functions
+import { cloneArray } from '../app/utils/functions/arrayFunctions';
+import { areAllOptionsSelected } from '../app/utils/functions/arrayObjectFunctions';
+import { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
+
 export {
     // Export atoms
     Card,
@@ -120,4 +125,9 @@ export {
     setBoxSizing,
     setCentered,
     setTruncate,
+    // Export functions
+    cloneArray,
+    areAllOptionsSelected,
+    hexToRgb,
+    invertColor,
 };
