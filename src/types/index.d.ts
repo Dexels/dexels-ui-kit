@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.62
+// Type definitions for dexels-ui-kit 2.0.63
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.4
@@ -217,7 +217,7 @@ export type SizesMap = { [Size in Sizes]: Size }
 export type Statuses = 'ALERT' | 'DEFAULT' | 'DISABLED' | 'INVALID' | 'NONE' | 'VALID';
 export type StatusesMap = { [Status in Statuses]: Status }
 
-export function areAllOptionsSelected(data: [], propertyName: string) : boolean;
+export function areAllOptionsSelected(data: [], propertyName: string): boolean;
 
 export function createDuiTheme(baseTheme: Theme, overrides: object): Theme;
 
@@ -229,7 +229,9 @@ export function getElevation(elevation: Elevations): string;
 
 export function getPosition(position: Positions): string;
 
-export function getSelectedElements(data: [], propertyName: string) : boolean;
+export function getSelectedElements(data: [], propertyName: string): boolean;
+
+export function getSelectedText(selectedOptions: [], propertyNameDescription: string, delimiter: string): string;
 
 export function getStatusColor(status: Statuses, theme: Theme): string;
 
@@ -239,7 +241,7 @@ export function hexToRgb(hex: string, transparency?: number): object;
 
 export function invertColor(hex: string, bw?: boolean): object;
 
-export function isAnyOptionSelected(data: [], propertyName: string) : boolean;
+export function isAnyOptionSelected(data: [], propertyName: string): boolean;
 
 export function rippleEffect(backgroundColor: string): string;
 
@@ -256,9 +258,9 @@ export function setElementSelected(
 
 ) : boolean;
 
-export function setAllElementsDeselected(data: [], propertyName: string) : boolean;
+export function setAllElementsDeselected(data: [], propertyName: string): boolean;
 
-export function setAllElementsSelected(data: [], propertyName: string) : boolean;
+export function setAllElementsSelected(data: [], propertyName: string): boolean;
 
 export function setBoxSizing(): string;
 
