@@ -255,7 +255,6 @@ export function setElementSelected(
     propertySelectedName: string,
     selectedProperty: object,
     unsetOtherValues?: boolean,
-
 ) : boolean;
 
 export function setAllElementsDeselected(data: [], propertyName: string): [];
