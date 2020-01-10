@@ -639,6 +639,7 @@ export const TextWithOptionalIcon: TextWithOptionalIcon<TextWithOptionalIconProp
 
 export interface TooltipProps {
     className?: string;
+    delay?: number;
     elevation?: Elevations;
     position?: Positions;
     transitionDuration?: number;
