@@ -78,6 +78,7 @@ export const Configurable = () => (
             {'This tooltip should render on the right'}
         </Button>
         <Tooltip
+            delay={number('Delay', Tooltip.defaultProps.delay)}
             elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
             position={select('Position', Tooltip.positions, Tooltip.defaultProps.position)}
             transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}

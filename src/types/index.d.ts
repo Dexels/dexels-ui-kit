@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.60
+// Type definitions for dexels-ui-kit 2.0.61
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.4
@@ -613,6 +613,7 @@ export const TextWithOptionalIcon: TextWithOptionalIcon<TextWithOptionalIconProp
 
 export interface TooltipProps {
     className?: string;
+    delay?: number;
     elevation?: Elevations;
     position?: Positions;
     transitionDuration?: number;
