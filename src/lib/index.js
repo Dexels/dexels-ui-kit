@@ -65,8 +65,8 @@ import setCentered from '../app/styles/mixins/setCentered';
 import setTruncate from '../app/styles/mixins/setTruncate';
 
 // Functions
-import { cloneArray } from '../app/utils/functions/arrayFunctions';
 import { areAllOptionsSelected } from '../app/utils/functions/arrayObjectFunctions';
+import { cloneArray } from '../app/utils/functions/arrayFunctions';
 import { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 
 export {
@@ -126,8 +126,8 @@ export {
     setCentered,
     setTruncate,
     // Export functions
-    cloneArray,
     areAllOptionsSelected,
+    cloneArray,
     hexToRgb,
     invertColor,
 };
