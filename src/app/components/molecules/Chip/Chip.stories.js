@@ -22,6 +22,17 @@ export const Configurable = () => (
     </Chip>
 );
 
+export const ConfigurableWithoutOnClick = () => (
+    <Chip
+        isDisabled={boolean('Is disabled', Chip.defaultProps.isDisabled)}
+        isSelected={boolean('Is selected', Chip.defaultProps.isSelected)}
+        transitionDuration={number('Transition duration', Chip.defaultProps.transitionDuration)}
+        transitionEasing={select('Transition type', Chip.transitionEasings, Chip.defaultProps.transitionEasing)}
+    >
+        {text('Text', 'Configure me!')}
+    </Chip>
+);
+
 export const ConfigurableWithIcon = () => (
     <Chip
         direction={select('Direction', Chip.directions, Chip.defaultProps.direction)}

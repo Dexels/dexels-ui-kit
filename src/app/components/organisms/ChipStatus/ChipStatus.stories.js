@@ -15,3 +15,13 @@ export const Configurable = () => (
         {text('Text', 'Configure me!')}
     </ChipStatus>
 );
+
+export const ConfigurableWithoutOnClick = () => (
+    <ChipStatus
+        direction={select('Direction', ChipStatus.directions, ChipStatus.defaultProps.direction)}
+        isDisabled={boolean('Is disabled', ChipStatus.defaultProps.isDisabled)}
+        variant={select('Variant', ChipStatus.variants, ChipStatus.defaultProps.variant)}
+    >
+        {text('Text', 'Configure me!')}
+    </ChipStatus>
+);

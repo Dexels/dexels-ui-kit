@@ -37,7 +37,7 @@ const ChipStatus = ({
         iconType={getIconType(variant)}
         isDisabled={isDisabled}
         isSelected={isSelected(variant)}
-        onClick={onClick}
+        onClick={isDisabled ? null : onClick}
     >
         {children}
     </Chip>
@@ -52,7 +52,7 @@ ChipStatus.propTypes = {
     className: PropTypes.string,
     direction: PropTypes.oneOf(Object.values(ChipStatus.directions)),
     isDisabled: PropTypes.bool,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     variant: PropTypes.oneOf(Object.values(ChipStatus.variants)),
 };
 
@@ -60,6 +60,7 @@ ChipStatus.defaultProps = {
     className: '',
     direction: ChipStatus.directions.LTR,
     isDisabled: false,
+    onClick: null,
     variant: ChipStatus.variants.SELECTED,
 };
 
