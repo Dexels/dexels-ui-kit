@@ -34,7 +34,7 @@ export const StyledChip = styled.button`
     `}
 
     &::after {
-        ${({ isHoverable, theme }) => (isHoverable ? rippleEffect(theme.colorTertiary) : null)}
+        ${({ isHoverable, theme }) => isHoverable && rippleEffect(theme.colorTertiary)}
     }
 
     &:active,
