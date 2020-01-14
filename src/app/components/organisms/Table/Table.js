@@ -7,6 +7,7 @@ import {
     TableBody,
     TableCaption,
     TableCell,
+    TableCellContent,
     TableFooter,
     TableHead,
     TableHeaderCell,
@@ -98,7 +99,9 @@ const Table = ({
                                         } : undefined}
                                     {...cell.getCellProps()}
                                 >
-                                    {cell.render('Cell')}
+                                    <TableCellContent>
+                                        {cell.render('Cell')}
+                                    </TableCellContent>
                                 </TableCell>
                             ))}
                         </TableRow>

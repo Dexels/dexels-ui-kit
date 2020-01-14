@@ -77,21 +77,30 @@ TableBody.defaultProps = {
 };
 
 export const TableRow = styled.tr`
+    position: relative;
+
     ${({ isClickable }) => isClickable && css`
         cursor: pointer;
     `}
 
     &:nth-child(odd) {
         background-color: ${({ theme }) => theme.table.row.backgroundColorOdd};
+
+        &:hover td::after {
+            background-color: ${({ theme }) => theme.table.row.backgroundColorOdd};
+        }
     }
 
     &:nth-child(even) {
         background-color: ${({ theme }) => theme.table.row.backgroundColorEven};
+
+        &:hover td::after {
+            background-color: ${({ theme }) => theme.table.row.backgroundColorEven};
+        }
     }
 
-    &:hover {
+    &:hover td {
         ${getElevation(TABLE_ELEVATIONS.LEVEL_3)}
-        transform: scale(1);
     }
 `;
 
@@ -106,9 +115,24 @@ TableRow.defaultProps = {
 
 export const TableCell = styled.td`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    position: relative;
     padding: ${({ hasCellPadding, theme }) => theme.spacing(hasCellPadding ? 0.5 : 0)};
     height: ${({ theme }) => theme.spacing(6)};
     color: ${({ theme }) => theme.colorText.primary};
+
+    &::after {
+        position: absolute;
+        top: 0;
+        right: -10px;
+        z-index: 1;
+        width: 20px;
+        height: 100%;
+        content: '';
+    }
+
+    &:last-child {
+        overflow: hidden;
+    }
 
     ${({ isClickable }) => isClickable && css`
         cursor: pointer;
@@ -125,6 +149,14 @@ TableCell.defaultProps = {
     hasCellPadding: true,
     theme: themeBasic,
 };
+
+export const TableCellContent = styled.div`
+    display: flex;
+    position: relative;
+    align-items: center;
+    z-index: 2;
+    height: 100%;
+`;
 
 export const IconWrapper = styled.span`
     padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
