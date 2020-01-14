@@ -7,7 +7,6 @@ import CardStatus from '../CardStatus/CardStatus';
 import { PANEL_STATUS_ICON_TYPES } from './PanelStatus.consts';
 import PropTypes from 'prop-types';
 import React from 'react';
-import StatusIndicator from '../../atoms/StatusIndicator/StatusIndicator';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 const PanelStatus = ({
@@ -29,12 +28,7 @@ const PanelStatus = ({
                 {options}
             </FunctionalWrapper>
         </StyledHeader>
-        <CardStatus
-            elevation={elevation}
-            placement={CardStatus.placements.TOP}
-            size={StatusIndicator.defaultProps.size}
-            status={status}
-        >
+        <CardStatus elevation={elevation} placement={CardStatus.placements.TOP} status={status}>
             {children}
         </CardStatus>
     </>

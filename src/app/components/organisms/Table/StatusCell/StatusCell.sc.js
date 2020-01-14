@@ -13,6 +13,8 @@ export const StyledStatusCell = styled.div`
 `;
 
 export const IconWrapper = styled.div`
+    display: flex;
+    align-items: center;
     padding: ${({ theme }) => theme.spacing(1.5)};
     color: ${({ status, theme }) => getStatusColor(status, theme)};
     font-size: ${({ theme }) => theme.spacing(3)};

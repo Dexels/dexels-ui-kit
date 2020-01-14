@@ -2,7 +2,6 @@ import { CARD_STATUS_PLACEMENTS, CARD_STATUS_STATUSES } from './CardStatus.const
 import Card from '../../atoms/Card/Card';
 import PropTypes from 'prop-types';
 import React from 'react';
-import StatusIndicator from '../../atoms/StatusIndicator/StatusIndicator';
 import { StyledCardStatus } from './CardStatus.sc';
 
 const CardStatus = ({
@@ -18,7 +17,6 @@ const CardStatus = ({
         elevation={elevation}
         hasBorderRadius={hasBorderRadius}
         placement={placement}
-        size={StatusIndicator.sizes.SMALL}
         status={status}
     >
         {children}
