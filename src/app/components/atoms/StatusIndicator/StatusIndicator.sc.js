@@ -17,6 +17,8 @@ export const StyledStatusIndicator = styled.div`
         status,
         theme,
     }) => getStatusIndicator(status, theme, placement, size)}
+    display: flex;
+    align-items: stretch;
     border-radius: inherit;
     color: ${({ status, theme }) => getStatusColor(status, theme)};
 

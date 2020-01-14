@@ -13,15 +13,13 @@ import { themePropTypes } from '../../../styles/theming/themes/propTypes';
 export const StyledCardStatus = styled(Card)`
     ${({
         placement,
-        size,
         status,
         theme,
-    }) => getStatusIndicator(status, theme, placement, size)}
+    }) => getStatusIndicator(status, theme, placement, STATUS_INDICATOR_SIZES.SMALL)}
 `;
 
 StyledCardStatus.propTypes = {
     placement: PropTypes.oneOf(Object.values(STATUS_INDICATOR_PLACEMENTS)).isRequired,
-    size: PropTypes.oneOf(Object.values(STATUS_INDICATOR_SIZES)).isRequired,
     status: PropTypes.oneOf(Object.values(STATUS_INDICATOR_STATUSES)).isRequired,
     theme: themePropTypes,
 };
