@@ -15,6 +15,7 @@ const Input = ({
     label,
     name,
     onChange,
+    onKeyDown,
     type,
     value,
     variant,
@@ -51,6 +52,7 @@ const Input = ({
                     onFocus={() => {
                         setIsFocused(true);
                     }}
+                    onKeyDown={onKeyDown}
                     onMouseEnter={() => {
                         setIsHovered(true);
                     }}
@@ -97,6 +99,7 @@ Input.propTypes = {
     label: PropTypes.node.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    onKeyDown: PropTypes.func,
     type: PropTypes.oneOf(Object.values(Input.types)),
     value: PropTypes.string,
     variant: PropTypes.oneOf(Object.values(Input.variants)),
@@ -109,6 +112,7 @@ Input.defaultProps = {
     isDisabled: false,
     isTextarea: false,
     isValid: false,
+    onKeyDown: null,
     type: Input.types.TEXT,
     value: '',
     variant: Input.variants.OUTLINE,
