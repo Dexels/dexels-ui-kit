@@ -19,8 +19,9 @@ const Chip = ({
     <StyledChip
         className={className}
         isDisabled={isDisabled}
+        isHoverable={!isDisabled && Boolean(onClick)}
         isSelected={isSelected}
-        onClick={onClick}
+        onClick={isDisabled ? null : onClick}
         transitionDuration={transitionDuration}
         transitionEasing={transitionEasing}
         {...rest}
@@ -44,7 +45,7 @@ Chip.propTypes = {
     iconType: PropTypes.oneOf(Object.values(Chip.iconTypes)),
     isDisabled: PropTypes.bool,
     isSelected: PropTypes.bool,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     transitionDuration: PropTypes.number,
     transitionEasing: PropTypes.oneOf(Object.values(Chip.transitionEasings)),
 };
@@ -56,6 +57,7 @@ Chip.defaultProps = {
     iconType: null,
     isDisabled: false,
     isSelected: true,
+    onClick: null,
     transitionDuration: 300,
     transitionEasing: Chip.transitionEasings.EASE,
 };

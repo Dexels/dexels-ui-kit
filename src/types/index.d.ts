@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.64
+// Type definitions for dexels-ui-kit 2.0.65
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.4
@@ -426,7 +426,7 @@ export interface ChipProps {
     iconType?: IconTypes
     isDisabled?: boolean;
     isSelected?: boolean;
-    onClick: (...args: any[]) => any;
+    onClick?: (...args: any[]) => any;
     transitionDuration?: number;
     transitionEasing?: Easings;
     [key: string]: any;
@@ -660,7 +660,7 @@ export interface ChipStatusProps {
     className?: string;
     direction?: Directions;
     isDisabled?: boolean;
-    onClick: (...args: any[]) => any;
+    onClick?: (...args: any[]) => any;
     variant?: 'DESELECTED' | 'INDETERMINATE' | 'SELECTED';
 }
 

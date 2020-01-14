@@ -19,7 +19,7 @@ export const StyledChip = styled.button`
     border: 1px solid ${({ theme }) => theme.shades.two};
     border-radius: ${({ theme }) => theme.spacing(1)};
     background-color: transparent;
-    cursor: pointer;
+    cursor: ${({ isHoverable }) => (isHoverable ? 'pointer' : 'default')};
     padding: ${({ theme }) => theme.spacing(0.5, 1)};
     min-height: ${({ theme }) => theme.spacing(4)};
     color: ${({ theme }) => theme.colorText.primary};
@@ -34,13 +34,15 @@ export const StyledChip = styled.button`
     `}
 
     &::after {
-        ${({ theme }) => rippleEffect(theme.colorTertiary)}
+        ${({ isHoverable, theme }) => isHoverable && rippleEffect(theme.colorTertiary)}
     }
 
     &:active,
     &:hover {
-        border-color: ${({ theme }) => theme.colorSecondary};
-        color: ${({ theme }) => theme.colorSecondary};
+        ${({ isHoverable }) => isHoverable && css`
+            border-color: ${({ theme }) => theme.colorSecondary};
+            color: ${({ theme }) => theme.colorSecondary};
+        `}
     }
 
     &:active::after {
@@ -50,6 +52,7 @@ export const StyledChip = styled.button`
 
 StyledChip.propTypes = {
     isDisabled: PropTypes.bool.isRequired,
+    isHoverable: PropTypes.bool.isRequired,
     isSelected: PropTypes.bool.isRequired,
     theme: themePropTypes,
 };
