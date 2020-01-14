@@ -251,9 +251,9 @@ export function rippleEffectReset(): string;
 
 export function setElementSelected(
     data: [],
+    selectedProperty: object,
     propertyIdName: string,
     propertySelectedName: string,
-    selectedProperty: object,
     unsetOtherValues?: boolean,
 ) : [];
 
