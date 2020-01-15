@@ -151,6 +151,7 @@ export const StyledWrapper = styled.div`
         outline: none;
         border: 1px solid transparent;
         background-color: ${({ theme }) => theme.datePicker.day.backgroundColor};
+        vertical-align: middle;
         color: ${({ theme }) => theme.datePicker.day.color};
 
         &:hover {
