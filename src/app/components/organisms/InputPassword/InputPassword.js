@@ -15,6 +15,7 @@ const InputPassword = ({
     label,
     name,
     onChange,
+    onKeyDown,
     value,
     variant,
 }) => {
@@ -30,6 +31,7 @@ const InputPassword = ({
                 label={label}
                 name={name}
                 onChange={onChange}
+                onKeyDown={onKeyDown}
                 type={isVisible ? Input.types.TEXT : Input.types.PASSWORD}
                 value={value}
                 variant={variant}
@@ -59,6 +61,7 @@ InputPassword.propTypes = {
     label: PropTypes.node.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    onKeyDown: PropTypes.func,
     value: PropTypes.string,
     variant: PropTypes.oneOf(Object.values(InputPassword.variants)),
 };
@@ -70,6 +73,7 @@ InputPassword.defaultProps = {
     isDisabled: false,
     isValid: false,
     isVisibleDefault: false,
+    onKeyDown: null,
     value: '',
     variant: InputPassword.variants.OUTLINE,
 };

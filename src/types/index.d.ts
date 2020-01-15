@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.68
+// Type definitions for dexels-ui-kit 2.0.69
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.4
@@ -464,7 +464,7 @@ export interface DropdownProps {
     isValid?: boolean;
     label?: React.ReactNode;
     name: string;
-    onChange?: (...args: any[]) => any;
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
     onClick?: (...args: any[]) => any;
     placeholder?: React.ReactNode;
     value: number | string;
@@ -518,7 +518,8 @@ export interface InputProps {
     isValid?: boolean;
     label: React.ReactNode;
     name: string;
-    onChange: (...args: any[]) => any;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     type?: 'email' | 'number' | 'password' | 'tel' | 'text';
     value?: string;
     variant?: InputVariants;
@@ -589,7 +590,7 @@ export interface SelectionControlProps {
     isValid?: boolean;
     label: React.ReactNode;
     name: string;
-    onChange: (...args: any[]) => any;
+    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
     transitionDuration?: number;
     transitionEasing?: Easings;
     type?: 'CHECKBOX' | 'RADIO';
@@ -809,7 +810,8 @@ export interface InputPasswordProps {
     isVisibleDefault?: boolean;
     label: React.ReactNode;
     name: string;
-    onChange: (...args: any[]) => any;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     value?: string;
     variant?: InputVariants;
 }
