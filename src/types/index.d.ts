@@ -423,8 +423,8 @@ export interface ChipProps {
     children: React.ReactNode;
     className?: string;
     direction?: Directions;
-    iconType?: IconTypes
     iconSize?: 'LARGE' | 'MEDIUM' | 'SMALL';
+    iconType?: IconTypes
     isDisabled?: boolean;
     isSelected?: boolean;
     onClick?: (...args: any[]) => any;
