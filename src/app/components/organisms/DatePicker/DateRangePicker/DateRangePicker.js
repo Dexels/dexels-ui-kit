@@ -4,7 +4,7 @@ import {
     HORIZONTAL_ORIENTATION,
     START_DATE,
     VERTICAL_ORIENTATION,
-} from 'react-dates/constants';
+} from 'react-dates/lib/constants';
 import React, { useContext, useState } from 'react';
 import { DateRangePicker as AirbnbDateRangePicker } from 'react-dates';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';

@@ -5,4 +5,8 @@ node_modules
 fonts
 index.d.ts
 index.js
+index.esm.js
 main.css
+
+# Stats
+stats.html
