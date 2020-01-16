@@ -21,7 +21,7 @@ export const StyledChip = styled.button`
     background-color: transparent;
     cursor: ${({ isHoverable }) => (isHoverable ? 'pointer' : 'default')};
     padding: ${({ theme }) => theme.spacing(0.5, 1)};
-    min-height: ${({ theme }) => theme.spacing(4)};
+    min-height: ${({ theme }) => theme.spacing(3.75)};
     color: ${({ theme }) => theme.colorText.primary};
 
     ${({ isDisabled, isSelected }) => (isDisabled || !isSelected) && css`

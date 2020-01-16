@@ -1,4 +1,4 @@
-// Type definitions for dexels-ui-kit 2.0.69
+// Type definitions for dexels-ui-kit 2.0.70
 // Project: dexels-ui-kit
 // Definitions by: David de Lusenet <https://github.com/daviddelusenet>
 // TypeScript Version: 3.7.4
@@ -424,6 +424,7 @@ export interface ChipProps {
     className?: string;
     direction?: Directions;
     iconType?: IconTypes
+    iconSize?: 'LARGE' | 'MEDIUM' | 'SMALL';
     isDisabled?: boolean;
     isSelected?: boolean;
     onClick?: (...args: any[]) => any;
@@ -434,6 +435,9 @@ export interface ChipProps {
 
 interface Chip<P> extends React.FunctionComponent<P> {
     directions: DirectionsMap;
+    iconSizes: {
+        [Size in ChipProps['iconSize']]: Size;
+    };
     iconTypes: IconTypesMap;
     transitionEasings: EasingsMap;
 }
