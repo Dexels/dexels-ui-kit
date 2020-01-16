@@ -9,6 +9,7 @@ const Chip = ({
     className,
     direction,
     iconType,
+    iconSize,
     isDisabled,
     isSelected,
     onClick,
@@ -26,7 +27,7 @@ const Chip = ({
         transitionEasing={transitionEasing}
         {...rest}
     >
-        <TextWithOptionalIcon direction={direction} iconType={iconType}>
+        <TextWithOptionalIcon direction={direction} iconSize={iconSize} iconType={iconType}>
             {children}
         </TextWithOptionalIcon>
     </StyledChip>
