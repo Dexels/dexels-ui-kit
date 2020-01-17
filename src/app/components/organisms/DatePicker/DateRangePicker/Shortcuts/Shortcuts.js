@@ -9,9 +9,11 @@ import React from 'react';
 
 const Shortcuts = ({ shortcuts, text }) => (
     <StyledShortcuts>
-        <Text>
-            {text}
-        </Text>
+        {text && (
+            <Text>
+                {text}
+            </Text>
+        )}
         {shortcuts.map(({ onClick, text: shortcutText }) => (
             <ButtonWrapper key={shortcutText}>
                 <Chip onClick={onClick}>
@@ -25,9 +27,9 @@ const Shortcuts = ({ shortcuts, text }) => (
 Shortcuts.propTypes = {
     shortcuts: PropTypes.arrayOf(PropTypes.shape({
         onClick: PropTypes.func.isRequired,
-        text: PropTypes.string.isRequired,
+        text: PropTypes.node.isRequired,
     })).isRequired,
-    text: PropTypes.string,
+    text: PropTypes.node,
 };
 
 Shortcuts.defaultProps = {
