@@ -4,9 +4,8 @@ import { themePropTypes } from '../../../../../styles/theming/themes/propTypes';
 
 export const StyledShortcuts = styled.div`
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    padding: ${({ theme }) => theme.spacing(0, 4, 1.5)};
+    padding: ${({ theme }) => theme.spacing(0, 2.75, 1.5)};
 `;
 
 StyledShortcuts.propTypes = {
@@ -30,6 +29,19 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
+    theme: themeBasic,
+};
+
+export const Wrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
+Wrapper.propTypes = {
+    theme: themePropTypes,
+};
+
+Wrapper.defaultProps = {
     theme: themeBasic,
 };
 
