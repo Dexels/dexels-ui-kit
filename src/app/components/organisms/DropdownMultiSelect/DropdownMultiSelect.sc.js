@@ -15,6 +15,7 @@ export const StyledDropdownMultiSelect = styled.div`
 export const ListWrapper = styled.div`
     ${({ elevation }) => getElevation(elevation)}
     position: absolute;
+    z-index: 2;
     margin: ${({ theme }) => theme.spacing(1, 0, 0, 0)};
     border-radius: ${({ theme }) => theme.spacing(1)};
     background-color: ${({ theme }) => theme.shades.nine};
