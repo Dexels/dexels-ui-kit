@@ -1,5 +1,5 @@
 /* eslint react/jsx-props-no-spreading: 0 */
-import { HORIZONTAL_ORIENTATION, VERTICAL_ORIENTATION } from 'react-dates/constants';
+import { HORIZONTAL_ORIENTATION, VERTICAL_ORIENTATION } from 'react-dates/lib/constants';
 import React, { useContext, useState } from 'react';
 import { SingleDatePicker as AirbnbSingleDatePicker } from 'react-dates';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
