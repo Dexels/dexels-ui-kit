@@ -8,4 +8,4 @@
 An React UI kit built with Styled Components.
 
 
-Tip for Windows users: you'll need to run *npm install -g windows-build-tools* in order to make it work
+Tip for Windows users: you'll need to run *npm install -g windows-build-tools ([]: https://www.npmjs.com/package/windows-build-tools)* in order to make it work
