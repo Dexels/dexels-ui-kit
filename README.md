@@ -6,3 +6,6 @@
 
 # Dexels UI kit
 An React UI kit built with Styled Components.
+
+
+Tip for Windows users: you'll need to run *npm install -g windows-build-tools* in order to make it work
