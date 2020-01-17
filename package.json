@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "2.0.73",
+    "version": "2.0.74",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -91,7 +91,7 @@
         "eslint-plugin-react": "^7.18.0",
         "eslint-plugin-react-hooks": "^2.3.0",
         "moment": "^2.24.0",
-        "postcss-smart-asset": "^1.0.2",
+        "postcss-url": "^8.0.0",
         "prop-types": "^15.7.2",
         "react": "^16.12.0",
         "react-dates": "^21.7.0",
