@@ -74,6 +74,7 @@ export const Default = () => {
                     text: 'de volgende maand',
                 },
             ]}
+            shortcutsText={text('Shortcuts text', 'Snelkeuzes')}
             startDate={startDate}
             startDateId="daterangepicker_start"
             startDatePlaceholderText={text('Start date placeholder text', 'Start datum')}
