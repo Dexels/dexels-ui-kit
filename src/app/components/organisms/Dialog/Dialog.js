@@ -31,6 +31,7 @@ const Dialog = ({
     hasOverlay,
     header,
     headerAlignment,
+    height,
     isVisible,
     onCancel,
     onClose,
@@ -51,6 +52,7 @@ const Dialog = ({
         <StyledDialog
             className={className}
             elevation={elevation}
+            height={height}
             isVisible={isVisible}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
@@ -97,6 +99,7 @@ Dialog.propTypes = {
     hasOverlay: PropTypes.bool,
     header: PropTypes.node,
     headerAlignment: PropTypes.oneOf(Object.values(Dialog.headerAlignments)),
+    height: PropTypes.string,
     isVisible: PropTypes.bool.isRequired,
     onCancel: PropTypes.func,
     onClose: PropTypes.func,
@@ -118,6 +121,7 @@ Dialog.defaultProps = {
     hasOverlay: true,
     header: null,
     headerAlignment: Dialog.headerAlignments.CENTER,
+    height: 'inherit',
     onCancel: null,
     onClose: null,
     transitionDuration: 500,

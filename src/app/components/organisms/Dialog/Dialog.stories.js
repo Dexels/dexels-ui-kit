@@ -34,6 +34,7 @@ const ConfigurableDialog = ({
         hasOverlay={boolean('Has overlay', Dialog.defaultProps.hasOverlay)}
         header={text('Header', '')}
         headerAlignment={select('Align header', Dialog.headerAlignments, Dialog.defaultProps.headerAlignment)}
+        height={text('Set height in px or %', Dialog.defaultProps.height)}
         isVisible={isVisible}
         onCancel={onCancel}
         onClose={onClose}

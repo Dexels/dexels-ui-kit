@@ -29,11 +29,13 @@ export const StyledDialog = styled.div`
     z-index: 3;
     border-radius: ${({ theme }) => theme.spacing(1)};
     width: ${({ width }) => width};
+    height: ${({ height }) => height};
     pointer-events: ${({ isVisible }) => (isVisible ? 'auto' : 'none')};
 `;
 
 StyledDialog.propTypes = {
     elevation: PropTypes.oneOf(Object.values(DIALOG_ELEVATIONS)).isRequired,
+    height: PropTypes.string.isRequired,
     isVisible: PropTypes.bool.isRequired,
     theme: themePropTypes,
     transitionDuration: PropTypes.number.isRequired,
@@ -111,8 +113,10 @@ Header.defaultProps = {
 export const Body = styled.div`
     ${({ alignment }) => getAlignment(alignment)}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
+    display: grid;
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.spacing(2)};
+    height: 100%;
     color: ${({ theme }) => theme.colorText.primary};
 
     ${({ hasHeader, theme }) => !hasHeader && css`
