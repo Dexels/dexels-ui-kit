@@ -117,6 +117,7 @@ export const Body = styled.div`
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.spacing(2)};
     height: 100%;
+    overflow: scroll;
     color: ${({ theme }) => theme.colorText.primary};
 
     ${({ hasHeader, theme }) => !hasHeader && css`
