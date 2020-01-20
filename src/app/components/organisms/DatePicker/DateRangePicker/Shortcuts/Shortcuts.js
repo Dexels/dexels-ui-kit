@@ -17,8 +17,8 @@ const Shortcuts = ({ shortcuts, text }) => (
             </Text>
         )}
         <Wrapper>
-            {shortcuts.map(({ onClick, text: shortcutText }) => (
-                <ButtonWrapper key={shortcutText}>
+            {shortcuts.map(({ onClick, text: shortcutText }, index) => (
+                <ButtonWrapper key={typeof shortcutText === 'string' ? shortcutText : index}>
                     <Chip iconType={ICON_TYPES.SELECT} onClick={onClick}>
                         {shortcutText}
                     </Chip>
