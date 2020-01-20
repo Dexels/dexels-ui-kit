@@ -1,0 +1,166 @@
+import {
+    InputWrapper,
+    PageSizeSelector,
+    PageSizeSelectorText,
+    Paging,
+    PagingButtons,
+    PagingText,
+    StyledPaginator,
+} from './Paginator.sc';
+import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
+import Dropdown from '../../../molecules/Dropdown/Dropdown';
+import Input from '../../../molecules/Input/Input';
+import React from 'react';
+
+export interface PaginatorTexts {
+    page: React.ReactNode;
+    pageGoto: React.ReactNode;
+    pageOf: React.ReactNode;
+    resultsOf: React.ReactNode;
+    rowsPerPage: React.ReactNode;
+    show: React.ReactNode;
+}
+
+export interface PaginatorProps {
+    className?: string;
+    hasAllPagingButtons?: boolean;
+    hasGoToPage?: boolean;
+    hasPageSizeSelector?: boolean;
+    instance: {
+        canNextPage: boolean;
+        canPreviousPage: boolean;
+        gotoPage: (...args: any[]) => any;
+        nextPage: (...args: any[]) => any;
+        pageCount: number;
+        pageIndex: number;
+        pageSize: number;
+        previousPage: (...args: any[]) => any;
+        rows: object[];
+        setPageSize: (...args: any[]) => any;
+    };
+    pageSizes?: (number | string)[];
+    texts: PaginatorTexts;
+    useResultsOfText?: boolean;
+}
+
+const pagingResultsText = (pageIndex: number, pageSize: number, rowCount: number, texts: PaginatorTexts) => {
+    let result = '';
+    let start = -1;
+    let end = -1;
+
+    if (pageIndex === 0) {
+        start = pageIndex + 1;
+        end = pageSize <= rowCount ? pageSize : rowCount;
+    }
+
+    if (pageIndex !== 0) {
+        start = (pageIndex * pageSize) + 1;
+        end = (pageIndex + 1) * pageSize <= rowCount ? (pageIndex + 1) * pageSize : rowCount;
+    }
+
+    result = `${start} - ${end}`;
+
+    return `${result} ${texts.resultsOf} ${rowCount}`;
+};
+
+const pagingText = (pageIndex: number, pageCount: number, texts: PaginatorTexts) => (
+    `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`
+);
+
+export const Paginator: React.FunctionComponent<PaginatorProps> = ({
+    hasAllPagingButtons,
+    hasGoToPage,
+    hasPageSizeSelector,
+    instance,
+    pageSizes,
+    texts,
+    useResultsOfText,
+}) => (
+    <StyledPaginator>
+        {hasPageSizeSelector && (
+            <PageSizeSelector>
+                <PageSizeSelectorText>
+                    {texts.show}
+                </PageSizeSelectorText>
+                <Dropdown
+                    name="DROPDOWN_PAGE_SIZES"
+                    onChange={(e) => {
+                        instance.setPageSize(Number(e.target.value));
+                    }}
+                    value={instance.pageSize}
+                >
+                    {pageSizes.map((pageSize) => (
+                        <option key={pageSize} value={pageSize}>
+                            {pageSize}
+                        </option>
+                    ))}
+                </Dropdown>
+                <PageSizeSelectorText>
+                    {texts.rowsPerPage && texts.rowsPerPage}
+                </PageSizeSelectorText>
+            </PageSizeSelector>
+        )}
+        {hasGoToPage && (
+            <InputWrapper hasPageSizeSelector={hasPageSizeSelector}>
+                <Input
+                    label={texts.pageGoto}
+                    name="INPUT_PAGE_INDEX"
+                    onChange={(event) => {
+                        const page = event.target.value ? Number(event.target.value) - 1 : 0;
+                        instance.gotoPage(page);
+                    }}
+                    type={Input.types.NUMBER}
+                    value={(instance.pageIndex + 1).toString()}
+                    variant={Input.variants.COMPACT}
+                />
+            </InputWrapper>
+        )}
+        <Paging>
+            <PagingText>
+                {useResultsOfText
+                    ? pagingResultsText(instance.pageIndex, instance.pageSize, instance.rows.length, texts)
+                    : pagingText(instance.pageIndex, instance.pageCount, texts)}
+            </PagingText>
+            <PagingButtons>
+                {hasAllPagingButtons && (
+                    <ButtonIcon
+                        iconType={ButtonIcon.iconTypes.CHEVRONFIRST}
+                        isDisabled={!instance.canPreviousPage}
+                        onClick={() => instance.gotoPage(0)}
+                        size={ButtonIcon.sizes.XLARGE}
+                    />
+                )}
+                <ButtonIcon
+                    iconType={ButtonIcon.iconTypes.CHEVRONLEFT}
+                    isDisabled={!instance.canPreviousPage}
+                    onClick={() => instance.previousPage()}
+                    size={ButtonIcon.sizes.XLARGE}
+                />
+                <ButtonIcon
+                    iconType={ButtonIcon.iconTypes.CHEVRONRIGHT}
+                    isDisabled={!instance.canNextPage}
+                    onClick={() => instance.nextPage()}
+                    size={ButtonIcon.sizes.XLARGE}
+                />
+                {hasAllPagingButtons && (
+                    <ButtonIcon
+                        iconType={ButtonIcon.iconTypes.CHEVRONLAST}
+                        isDisabled={!instance.canNextPage}
+                        onClick={() => instance.gotoPage(instance.pageCount - 1)}
+                        size={ButtonIcon.sizes.XLARGE}
+                    />
+                )}
+            </PagingButtons>
+        </Paging>
+    </StyledPaginator>
+);
+
+Paginator.defaultProps = {
+    hasAllPagingButtons: true,
+    hasGoToPage: false,
+    hasPageSizeSelector: true,
+    pageSizes: [5, 10, 20],
+    useResultsOfText: true,
+};
+
+export default Paginator;

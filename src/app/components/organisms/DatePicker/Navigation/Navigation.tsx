@@ -1,0 +1,87 @@
+import { CurrentDate, DropdownWrapper, StyledNavigation } from './Navigation.sc';
+import moment, { Moment } from 'moment';
+import Dropdown from '../../../molecules/Dropdown/Dropdown';
+import React from 'react';
+
+interface NavigationProps {
+    hasYearSelector: boolean;
+    labelMonth?: string | React.ReactNode;
+    labelYear?: string | React.ReactNode;
+    month: Moment;
+    onMonthSelect: (moment: Moment, value: string) => void;
+    onYearSelect: (moment: Moment, value: string) => void;
+    yearCount: number;
+}
+
+const Navigation: React.FunctionComponent<NavigationProps> = ({
+    hasYearSelector,
+    labelMonth,
+    labelYear,
+    month,
+    onMonthSelect,
+    onYearSelect,
+    yearCount,
+}) => {
+    if (!hasYearSelector) {
+        return (
+            <CurrentDate>
+                {`${month.format('MMMM')} ${month.year()}`}
+            </CurrentDate>
+        );
+    }
+
+    const monthArray = moment.months().map((label, value) => (
+        <option key={label} value={value}>
+            {label}
+        </option>
+    ));
+
+    const currentYear = moment().year();
+    const yearArray = [];
+
+    for (let i = currentYear - yearCount; i <= currentYear; i += 1) {
+        yearArray.push(
+            <option key={i} value={i}>
+                {i}
+            </option>,
+        );
+    }
+
+    return (
+        <StyledNavigation>
+            <DropdownWrapper>
+                <Dropdown
+                    label={labelMonth}
+                    name="month-dropdown"
+                    onChange={(e) => {
+                        onMonthSelect(month, e.target.value);
+                    }}
+                    value={month.month()}
+                    variant={Dropdown.variants.OUTLINE}
+                >
+                    {monthArray}
+                </Dropdown>
+            </DropdownWrapper>
+            <DropdownWrapper>
+                <Dropdown
+                    label={labelYear}
+                    name="year-dropdown"
+                    onChange={(e) => {
+                        onYearSelect(month, e.target.value);
+                    }}
+                    value={month.year()}
+                    variant={Dropdown.variants.OUTLINE}
+                >
+                    {yearArray}
+                </Dropdown>
+            </DropdownWrapper>
+        </StyledNavigation>
+    );
+};
+
+Navigation.defaultProps = {
+    labelMonth: '',
+    labelYear: '',
+};
+
+export default Navigation;

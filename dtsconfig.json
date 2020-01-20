@@ -1,0 +1,25 @@
+{
+    "compilationOptions": {
+        "preferredConfigPath": "./tsconfig.dts.json"
+    },
+    "entries": [
+        {
+            "filePath": "./src/lib/index.ts",
+            "outFile": "./index.d.ts",
+            "libraries": {
+                "allowedTypesLibraries": [
+                    "react",
+                    "styled-components"
+                ],
+                "importedLibraries": [
+                    "moment",
+                    "react-dates"
+                ]
+            },
+            "output": {
+                "sortNodes": true,
+                "umdModuleName": "DexelsUIKit"
+            }
+        }
+    ]
+}
