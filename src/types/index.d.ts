@@ -223,7 +223,7 @@ export function createDuiTheme(baseTheme: Theme, overrides: object): Theme;
 
 export function cloneArray(array: []): [];
 
-export function getAlignment(alignment: Alignments): string;
+export function getAlignment(alignment: Alignments, centerText?: boolean): string;
 
 export function getElevation(elevation: Elevations): string;
 
