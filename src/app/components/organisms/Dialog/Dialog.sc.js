@@ -109,7 +109,7 @@ Header.defaultProps = {
 };
 
 export const Body = styled.div`
-    ${({ alignment }) => getAlignment(alignment)}
+    ${({ alignment }) => getAlignment(alignment, false)}
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.spacing(2)};
