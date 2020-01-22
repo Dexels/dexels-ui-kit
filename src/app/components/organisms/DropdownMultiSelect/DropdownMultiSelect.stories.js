@@ -16,6 +16,7 @@ import SelectionControl from '../../molecules/SelectionControl/SelectionControl'
 
 export default { title: 'organisms/DropdownMultiSelect' };
 
+const TEXT_OPTION_ALL_SELECTED = 'All fruits selected';
 const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 const originalOptionValues = cloneArray(data);
@@ -53,7 +54,9 @@ const BaseComponent = (
 ) => {
     const [optionValues, setOptionValues] = useState(options);
     const [isOpen, setIsOpen] = useState(false);
-    const value = getSelectedText(getSelectedElements(optionValues));
+
+    const value = areAllOptionsSelected(optionValues)
+        ? TEXT_OPTION_ALL_SELECTED : getSelectedText(getSelectedElements(optionValues));
 
     const [selectAllOption, setSelectAllOption] = useState(getSelectAllOption(
         optionValues,
