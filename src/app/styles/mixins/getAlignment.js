@@ -33,10 +33,10 @@ const getAlignContent = (alignment) => {
     }
 };
 
-const getAlignment = (alignment, centerText = true) => (css`
+const getAlignment = (alignment, alignText = true) => (css`
     align-content: ${getAlignContent(alignment)};
     justify-content: ${getAlignContent(alignment)};
-    text-align: ${centerText && getTextAlign(alignment)};
+    text-align: ${alignText && getTextAlign(alignment)};
 `);
 
 export default getAlignment;
