@@ -425,7 +425,6 @@ export interface ChipProps {
     direction?: Directions;
     iconSize?: 'LARGE' | 'MEDIUM' | 'SMALL';
     iconType?: IconTypes
-    iconSize?: 'LARGE' | 'MEDIUM' | 'SMALL';
     isDisabled?: boolean;
     isSelected?: boolean;
     onClick?: (...args: any[]) => any;
