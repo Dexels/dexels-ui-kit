@@ -1,0 +1,142 @@
+/* eslint react/jsx-props-no-spreading: 0 */
+import {
+    SingleDatePicker as AirbnbSingleDatePicker,
+    OrientationShape,
+    SingleDatePickerShape,
+} from 'react-dates';
+import React, { useContext, useState } from 'react';
+import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
+import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
+import { HORIZONTAL_ORIENTATION } from 'react-dates/lib/constants';
+import InputIcon from '../InputIcon/InputIcon';
+import { Moment } from 'moment';
+import Navigation from '../Navigation/Navigation';
+import { StyledSingleDatePicker } from './SingleDatePicker.sc';
+import { ThemeContext } from 'styled-components';
+import Wrapper from '../Wrapper/Wrapper';
+
+export interface SingleDatePickerProps {
+    className?: string;
+    date?: Moment;
+    daySize?: number;
+    displayFormat?: string;
+    hasYearSelector?: boolean;
+    id: string;
+    isDayHighlighted?: (day: any) => boolean;
+    isDisabled?: boolean;
+    isFocused: boolean;
+    isOutsideRange?: (day: any) => boolean;
+    keepOpenOnDateSelect?: boolean;
+    label: React.ReactNode;
+    labelMonth?: React.ReactNode;
+    labelYear?: React.ReactNode;
+    numberOfMonths?: number;
+    onClose?: SingleDatePickerShape['onClose'];
+    onDateChange: SingleDatePickerShape['onDateChange'];
+    onFocusChange: SingleDatePickerShape['onFocusChange'];
+    orientation?: OrientationShape;
+    placeholder?: string;
+    yearCount?: number;
+}
+
+export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = ({
+    className,
+    date,
+    daySize,
+    displayFormat,
+    hasYearSelector,
+    id,
+    isDayHighlighted,
+    isDisabled,
+    isFocused,
+    isOutsideRange,
+    keepOpenOnDateSelect,
+    label,
+    labelMonth,
+    labelYear,
+    numberOfMonths,
+    onClose,
+    onDateChange,
+    onFocusChange,
+    placeholder,
+    yearCount,
+}) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const { spacingValue } = useContext(ThemeContext);
+
+    return (
+        <Wrapper
+            className={className}
+            hasYearSelector={hasYearSelector}
+            isFocused={isFocused}
+            onMouseEnter={() => {
+                setIsHovered(true);
+            }}
+            onMouseLeave={() => {
+                setIsHovered(false);
+            }}
+        >
+            <StyledSingleDatePicker hasYearSelector={hasYearSelector}>
+                <FormElementLabel
+                    isActive
+                    isDisabled={isDisabled}
+                    isFocused={isFocused}
+                    isHovered={isHovered}
+                >
+                    {label}
+                </FormElementLabel>
+                <AirbnbSingleDatePicker
+                    customInputIcon={<InputIcon isDisabled={isDisabled} isFocused={isFocused} />}
+                    date={date}
+                    daySize={daySize}
+                    disabled={isDisabled}
+                    displayFormat={displayFormat}
+                    focused={isFocused}
+                    hideKeyboardShortcutsPanel
+                    id={id}
+                    isDayHighlighted={isDayHighlighted}
+                    isOutsideRange={isOutsideRange}
+                    keepOpenOnDateSelect={keepOpenOnDateSelect}
+                    navNext={<ButtonNavigation isNext />}
+                    navPrev={<ButtonNavigation isPrev />}
+                    numberOfMonths={numberOfMonths}
+                    onClose={onClose}
+                    onDateChange={onDateChange}
+                    onFocusChange={onFocusChange}
+                    placeholder={placeholder}
+                    renderMonthElement={(props) => (
+                        <Navigation
+                            {...props}
+                            hasYearSelector={hasYearSelector}
+                            labelMonth={labelMonth}
+                            labelYear={labelYear}
+                            yearCount={yearCount}
+                        />
+                    )}
+                    verticalSpacing={(spacingValue * 6) - 40}
+                />
+            </StyledSingleDatePicker>
+        </Wrapper>
+    );
+};
+
+SingleDatePicker.defaultProps = {
+    className: '',
+    date: null,
+    daySize: 40,
+    displayFormat: 'ddd D MMM Y',
+    hasYearSelector: false,
+    isDayHighlighted: AirbnbSingleDatePicker.defaultProps.isDayHighlighted,
+    isDisabled: false,
+    isOutsideRange: AirbnbSingleDatePicker.defaultProps.isOutsideRange,
+    keepOpenOnDateSelect: AirbnbSingleDatePicker.defaultProps.keepOpenOnDateSelect,
+    labelMonth: null,
+    labelYear: null,
+    numberOfMonths: 1,
+    onClose: AirbnbSingleDatePicker.defaultProps.onClose,
+    orientation: HORIZONTAL_ORIENTATION,
+    placeholder: AirbnbSingleDatePicker.defaultProps.placeholder,
+    yearCount: 100,
+};
+
+export default SingleDatePicker;

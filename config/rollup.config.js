@@ -11,6 +11,7 @@ const postcssUrl = require('postcss-url');
 const { resolve } = require('path');
 const rollupResolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
+const typescript = require('rollup-plugin-typescript2');
 const visualizer = require('rollup-plugin-visualizer');
 
 const { analyze } = process.env;
@@ -19,7 +20,6 @@ module.exports = {
     external: [
         '@babel/runtime',
         'moment',
-        'prop-types',
         'react',
         'react-dates',
         'react-dom',
@@ -28,14 +28,13 @@ module.exports = {
         'react-with-direction',
         'styled-components',
     ],
-    input: resolve(__dirname, `${libPath}/index.js`),
+    input: resolve(__dirname, `${libPath}/index.ts`),
     output: [
         {
             file: resolve(__dirname, `${distPath}/index.js`),
             format: 'umd',
             globals: {
                 moment: 'moment',
-                'prop-types': 'PropTypes',
                 react: 'React',
                 'react-dates': 'reactDates',
                 'react-router-dom': 'ReactRouterDOM',
@@ -65,6 +64,9 @@ module.exports = {
                 }),
             ],
         }),
+        typescript({
+            objectHashIgnoreUnknownHack: true,
+        }),
         babel({
             exclude: 'node_modules/**',
         }),
@@ -74,9 +76,6 @@ module.exports = {
             targets: [{
                 dest: resolve(__dirname, `${distPath}/fonts`),
                 src: 'public/fonts/**/*.*',
-            }, {
-                dest: distPath,
-                src: 'src/types/index.d.ts',
             }],
             verbose: true,
         }),
