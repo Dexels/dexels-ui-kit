@@ -1,5 +1,4 @@
-import { ButtonVariants, Sizes } from '../../../types';
-import { LOADER_SIZES, LOADER_VARIANTS } from './Loader.consts';
+import { ButtonVariant, Size } from '../../../types';
 import styled, { css, keyframes } from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -22,8 +21,8 @@ const loaderAnimation = keyframes`
 
 interface StyledLoaderProps {
     isInverted: boolean;
-    size: Sizes;
-    variant: ButtonVariants;
+    size: Size;
+    variant: ButtonVariant;
 }
 
 export const StyledLoader = styled.div<StyledLoaderProps>`
@@ -41,35 +40,35 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
 
         /* This is a special part for loader inside a button */
         /* Should only do something when variant is not empty (null by default) */
-        ${({ isInverted, theme: { button }, variant }) => variant === LOADER_VARIANTS.FILLED && css`
+        ${({ isInverted, theme: { button }, variant }) => variant === ButtonVariant.FILLED && css`
             background-color: ${isInverted ? button.filled.backgroundColor.loaderInverted : button.filled.backgroundColor.loader};
         `}
 
-        ${({ isInverted, theme: { button }, variant }) => variant === LOADER_VARIANTS.OUTLINE && css`
+        ${({ isInverted, theme: { button }, variant }) => variant === ButtonVariant.OUTLINE && css`
             background-color: ${isInverted ? button.outline.backgroundColor.loaderInverted : button.outline.backgroundColor.loader};
         `}
 
-        ${({ isInverted, theme: { button }, variant }) => variant === LOADER_VARIANTS.TEXT_ONLY && css`
+        ${({ isInverted, theme: { button }, variant }) => variant === ButtonVariant.TEXT_ONLY && css`
             background-color: ${isInverted ? button.textOnly.loaderInverted : button.textOnly.loader};
         `}
 
         ${({ size, theme }) => css`
-            ${size === LOADER_SIZES.SMALL && css`
+            ${size === Size.SMALL && css`
                 width: ${theme.spacing(1)};
                 height: ${theme.spacing(1)};
             `}
 
-            ${size === LOADER_SIZES.MEDIUM && css`
+            ${size === Size.MEDIUM && css`
                 width: ${theme.spacing(1.25)};
                 height: ${theme.spacing(1.25)};
             `}
 
-            ${size === LOADER_SIZES.LARGE && css`
+            ${size === Size.LARGE && css`
                 width: ${theme.spacing(1.5)};
                 height: ${theme.spacing(1.5)};
             `}
 
-            ${size === LOADER_SIZES.XLARGE && css`
+            ${size === Size.XLARGE && css`
                 width: ${theme.spacing(1.75)};
                 height: ${theme.spacing(1.75)};
             `}

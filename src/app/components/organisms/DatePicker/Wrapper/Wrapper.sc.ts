@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ELEVATIONS } from '../../../../utils/constants';
+import { Elevation } from '../../../../types';
 import getElevation from '../../../../styles/mixins/getElevation';
 import { hexToRgb } from '../../../../utils/functions/colorFunctions';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
@@ -102,7 +102,7 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
     }
 
     .DayPicker__withBorder {
-        ${getElevation(ELEVATIONS.LEVEL_6)}
+        ${getElevation(Elevation.LEVEL_6)}
         border-radius: ${({ theme }) => theme.spacing(1)};
         background-color: ${({ theme }) => theme.datePicker.backgroundColor};
         overflow: hidden;

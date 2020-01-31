@@ -1,9 +1,8 @@
-import { InputVariants, InputVariantsMap } from '../../../types';
+import { IconType, InputType, InputVariant } from '../../../types';
 import React, { useState } from 'react';
 import { StyledInputPassword, VisibilitySwitch } from './InputPassword.sc';
 import Icon from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
-import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
 
 export interface InputPasswordProps {
     className?: string;
@@ -17,14 +16,10 @@ export interface InputPasswordProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     value?: string;
-    variant?: InputVariants;
+    variant?: InputVariant;
 }
 
-interface InputPasswordComponent extends React.FunctionComponent<InputPasswordProps> {
-    variants: InputVariantsMap;
-}
-
-export const InputPassword: InputPasswordComponent = ({
+export const InputPassword: React.FunctionComponent<InputPasswordProps> = ({
     className,
     errorMessage,
     hasError,
@@ -51,7 +46,7 @@ export const InputPassword: InputPasswordComponent = ({
                 name={name}
                 onChange={onChange}
                 onKeyDown={onKeyDown}
-                type={isVisible ? Input.types.TEXT : Input.types.PASSWORD}
+                type={isVisible ? InputType.TEXT : InputType.PASSWORD}
                 value={value}
                 variant={variant}
             />
@@ -62,13 +57,11 @@ export const InputPassword: InputPasswordComponent = ({
                 }}
                 variant={variant}
             >
-                <Icon type={isVisible ? Icon.types.VISIBILITYON : Icon.types.VISIBILITYOFF} />
+                <Icon type={isVisible ? IconType.VISIBILITYON : IconType.VISIBILITYOFF} />
             </VisibilitySwitch>
         </StyledInputPassword>
     );
 };
-
-InputPassword.variants = INPUT_PASSWORD_VARIANTS;
 
 InputPassword.defaultProps = {
     className: '',
@@ -79,7 +72,7 @@ InputPassword.defaultProps = {
     isVisibleDefault: false,
     onKeyDown: null,
     value: '',
-    variant: InputPassword.variants.OUTLINE,
+    variant: InputVariant.OUTLINE,
 };
 
 export default InputPassword;

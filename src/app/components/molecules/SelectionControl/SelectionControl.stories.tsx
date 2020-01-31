@@ -4,23 +4,24 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
+import { Direction, Easing } from '../../../types';
 import React, { useState } from 'react';
-import { Easings } from '../../../types';
 import SelectionControl from './SelectionControl';
+import { SelectionControlType } from './types';
 
 export default { title: 'molecules/SelectionControl' };
 
 export const ConfigurableRadioButton = () => {
     const [gender, setGender] = useState('female');
-    const direction = select('Direction', SelectionControl.directions, SelectionControl.defaultProps.direction);
+    const direction = select('Direction', Direction, SelectionControl.defaultProps.direction);
     const hasError = boolean('Has error', SelectionControl.defaultProps.hasError);
     const isDisabled = boolean('Is disabled', SelectionControl.defaultProps.isDisabled);
     const isValid = boolean('Is valid', SelectionControl.defaultProps.isValid);
     const transitionDuration = number('Transition duration', SelectionControl.defaultProps.transitionDuration);
 
-    const transitionEasing = select<Easings>(
+    const transitionEasing = select(
         'Transition type',
-        SelectionControl.transitionEasings,
+        Easing,
         SelectionControl.defaultProps.transitionEasing,
     );
 
@@ -43,7 +44,7 @@ export const ConfigurableRadioButton = () => {
                 }}
                 transitionDuration={transitionDuration}
                 transitionEasing={transitionEasing}
-                type={SelectionControl.types.RADIO}
+                type={SelectionControlType.RADIO}
                 value="female"
             />
             <div style={{ height: '12px' }} />
@@ -61,7 +62,7 @@ export const ConfigurableRadioButton = () => {
                 }}
                 transitionDuration={transitionDuration}
                 transitionEasing={transitionEasing}
-                type={SelectionControl.types.RADIO}
+                type={SelectionControlType.RADIO}
                 value="male"
             />
         </>
@@ -72,15 +73,15 @@ export const ConfigurableCheckbox = () => {
     const [isChecked, setIsChecked] = useState(false);
     const transitionDuration = number('Transition duration', SelectionControl.defaultProps.transitionDuration);
 
-    const transitionEasing = select<Easings>(
+    const transitionEasing = select(
         'Transition type',
-        SelectionControl.transitionEasings,
+        Easing,
         SelectionControl.defaultProps.transitionEasing,
     );
 
     return (
         <SelectionControl
-            direction={select('Direction', SelectionControl.directions, SelectionControl.defaultProps.direction)}
+            direction={select('Direction', Direction, SelectionControl.defaultProps.direction)}
             errorMessage={text('Errormessage', 'Oops, something went wrong!')}
             hasError={boolean('Has error', SelectionControl.defaultProps.hasError)}
             isChecked={isChecked}
@@ -94,7 +95,7 @@ export const ConfigurableCheckbox = () => {
             }}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
-            type={SelectionControl.types.CHECKBOX}
+            type={SelectionControlType.CHECKBOX}
             value="female"
         />
     );

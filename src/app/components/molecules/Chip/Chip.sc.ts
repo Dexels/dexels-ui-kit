@@ -1,6 +1,6 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { Easings } from '../../../types';
+import { Easing } from '../../../types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
@@ -10,7 +10,7 @@ interface StyledChipProps {
     isHoverable: boolean;
     isSelected: boolean;
     transitionDuration: number;
-    transitionEasing: Easings;
+    transitionEasing: Easing;
 }
 
 export const StyledChip = styled.button<StyledChipProps>`

@@ -1,26 +1,15 @@
-import {
-    ButtonVariants,
-    ButtonVariantsMap,
-    Sizes,
-    SizesMap,
-} from '../../../types';
-import { LOADER_SIZES, LOADER_VARIANTS } from './Loader.consts';
+import { ButtonVariant, Size } from '../../../types';
 import React from 'react';
 import { StyledLoader } from './Loader.sc';
 
 export interface LoaderProps {
     className?: string;
     isInverted?: boolean;
-    size?: Sizes;
-    variant?: ButtonVariants;
+    size?: Size;
+    variant?: ButtonVariant;
 }
 
-interface LoaderComponent extends React.FunctionComponent<LoaderProps> {
-    sizes: SizesMap;
-    variants: ButtonVariantsMap;
-}
-
-export const Loader: LoaderComponent = ({
+export const Loader: React.FunctionComponent<LoaderProps> = ({
     className,
     isInverted,
     size,
@@ -38,13 +27,9 @@ export const Loader: LoaderComponent = ({
     </StyledLoader>
 );
 
-Loader.sizes = LOADER_SIZES;
-Loader.variants = LOADER_VARIANTS;
-
 Loader.defaultProps = {
     className: '',
     isInverted: false,
-    variant: null,
 };
 
 export default Loader;

@@ -1,4 +1,4 @@
-import { IconTypes } from '../../../types';
+import { IconType } from '../../../types';
 
 export interface MenuItemChild {
     exact?: boolean;
@@ -9,7 +9,7 @@ export interface MenuItemChild {
 
 export interface MenuItem extends MenuItemChild {
     children?: MenuItemChild[];
-    iconType: IconTypes;
+    iconType: IconType;
 }
 
 export type MenuItems = MenuItem[];

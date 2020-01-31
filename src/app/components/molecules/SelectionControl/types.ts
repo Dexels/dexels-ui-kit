@@ -1,4 +1,4 @@
-export type SelectionControlTypes = 'CHECKBOX' | 'RADIO';
-export type SelectionControlTypesMap = {
-    [Type in SelectionControlTypes]: Type;
+export enum SelectionControlType {
+    CHECKBOX = 'CHECKBOX',
+    RADIO = 'RADIO',
 }

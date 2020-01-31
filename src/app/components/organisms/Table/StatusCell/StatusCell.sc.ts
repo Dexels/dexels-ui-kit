@@ -1,6 +1,6 @@
 import getStatusColor from '../../../../styles/mixins/getStatusColor';
 import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
-import { Statuses } from '../../../../types';
+import { Status } from '../../../../types';
 import styled from 'styled-components';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
@@ -11,7 +11,7 @@ export const StyledStatusCell = styled.div`
 `;
 
 interface IconWrapperProps {
-    status: Statuses;
+    status: Status;
 }
 
 export const IconWrapper = styled.div<IconWrapperProps>`

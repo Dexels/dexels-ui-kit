@@ -1,31 +1,20 @@
-import {
-    IconTypes,
-    IconTypesMap,
-    Sizes,
-    SizesMap,
-} from '../../../types';
-import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
+import { IconType, Size } from '../../../types';
 import Icon from '../../atoms/Icon/Icon';
 import React from 'react';
 import { StyledButtonIcon } from './ButtonIcon.sc';
 
 export interface ButtonIconProps {
     className?: string;
-    iconType: IconTypes;
+    iconType: IconType;
     isDisabled?: boolean;
     isInverted?: boolean;
     onClick?: React.MouseEventHandler;
-    size?: Sizes;
+    size?: Size;
     /* eslint-disable-next-line typescript-sort-keys/interface */
     [key: string]: any;
 }
 
-interface ButtonIconComponent extends React.FunctionComponent<ButtonIconProps> {
-    iconTypes: IconTypesMap;
-    sizes: SizesMap;
-}
-
-export const ButtonIcon: ButtonIconComponent = ({
+export const ButtonIcon: React.FunctionComponent<ButtonIconProps> = ({
     className,
     iconType,
     isDisabled,
@@ -46,15 +35,12 @@ export const ButtonIcon: ButtonIconComponent = ({
     </StyledButtonIcon>
 );
 
-ButtonIcon.iconTypes = Icon.types;
-ButtonIcon.sizes = BUTTON_ICON_SIZES;
-
 ButtonIcon.defaultProps = {
     className: '',
     isDisabled: false,
     isInverted: false,
     onClick: null,
-    size: ButtonIcon.sizes.LARGE,
+    size: Size.LARGE,
 };
 
 export default ButtonIcon;

@@ -1,11 +1,7 @@
-import { Directions, Easings } from '../../../types';
+import { Direction, Easing } from '../../../types';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
-import {
-    SELECTION_CONTROL_DIRECTIONS,
-    SELECTION_CONTROL_TYPES,
-} from './SelectionControl.consts';
 import styled, { css } from 'styled-components';
-import { SelectionControlTypes } from './types';
+import { SelectionControlType } from './types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setCentered from '../../../styles/mixins/setCentered';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -13,7 +9,7 @@ import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 interface StyledSelectionControlProps {
     hasHorizontalCorrection: boolean;
-    type: SelectionControlTypes;
+    type: SelectionControlType;
 }
 
 export const StyledSelectionControl = styled.div<StyledSelectionControlProps>`
@@ -21,21 +17,21 @@ export const StyledSelectionControl = styled.div<StyledSelectionControlProps>`
     display: flex;
 
     ${({ hasHorizontalCorrection, theme, type }) => hasHorizontalCorrection && css`
-        ${type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+        ${type === SelectionControlType.CHECKBOX && css`
             margin: ${theme.spacing(0, 0, 0, -1)};
         `}
 
-        ${type === SELECTION_CONTROL_TYPES.RADIO && css`
+        ${type === SelectionControlType.RADIO && css`
             margin: ${theme.spacing(0, 0, 0, -1.25)};
         `}
     `}
 `;
 
 interface InputWrapperProps {
-    direction: Directions;
+    direction: Direction;
     isDisabled: boolean;
     transitionDuration: number;
-    transitionEasing: Easings;
+    transitionEasing: Easing;
 }
 
 /* eslint-disable indent, @typescript-eslint/indent */
@@ -44,7 +40,7 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     display: flex;
     position: relative;
     flex: 0 0 auto;
-    order: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 1 : 2)};
+    order: ${({ direction }) => (direction === Direction.LTR ? 1 : 2)};
     z-index: 1;
     border-radius: 100%;
     width: ${({ theme }) => theme.spacing(5)};
@@ -119,7 +115,7 @@ interface FakeInputProps {
     isHovered: boolean;
     isIndeterminate: boolean;
     isValid: boolean;
-    type: SelectionControlTypes;
+    type: SelectionControlType;
 }
 
 export const FakeInput = styled.div<FakeInputProps>`
@@ -130,13 +126,13 @@ export const FakeInput = styled.div<FakeInputProps>`
     border: 2px solid ${({ theme }) => theme.colorPrimary};
     background-color: transparent;
 
-    ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.CHECKBOX && css`
+    ${({ theme, type }) => type === SelectionControlType.CHECKBOX && css`
         border-radius: ${theme.spacing(0.5)};
         width: ${theme.spacing(3)};
         height: ${theme.spacing(3)};
     `}
 
-    ${({ theme, type }) => type === SELECTION_CONTROL_TYPES.RADIO && css`
+    ${({ theme, type }) => type === SelectionControlType.RADIO && css`
         border-radius: 100%;
         width: ${theme.spacing(2.5)};
         height: ${theme.spacing(2.5)};
@@ -147,7 +143,7 @@ export const FakeInput = styled.div<FakeInputProps>`
         isIndeterminate,
         theme,
         type,
-    }) => (isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+    }) => (isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
         &::after {
             ${setCentered()}
             position: absolute;
@@ -172,7 +168,7 @@ export const FakeInput = styled.div<FakeInputProps>`
     }) => isValid && css`
         border-color: ${theme.colorValid};
 
-        ${(isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+        ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
             &::after {
                 background-color: ${theme.colorValid};
             }
@@ -188,7 +184,7 @@ export const FakeInput = styled.div<FakeInputProps>`
     }) => hasError && css`
         border-color: ${theme.colorInvalid};
 
-        ${(isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+        ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
             &::after {
                 background-color: ${theme.colorInvalid};
             }
@@ -204,7 +200,7 @@ export const FakeInput = styled.div<FakeInputProps>`
     }) => isDisabled && css`
         border-color: ${theme.colorDisabled};
 
-        ${(isChecked || isIndeterminate) && type === SELECTION_CONTROL_TYPES.RADIO && css`
+        ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
             &::after {
                 background-color: ${theme.colorDisabled};
             }
@@ -252,19 +248,19 @@ IconWrapper.defaultProps = {
 };
 
 interface LabelWrapperProps {
-    direction: Directions;
+    direction: Direction;
     isDisabled: boolean;
 }
 
 export const LabelWrapper = styled.button<LabelWrapperProps>`
     flex: 1 1 auto;
-    order: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 2 : 1)};
+    order: ${({ direction }) => (direction === Direction.LTR ? 2 : 1)};
     outline: none;
     border: 0;
     background: transparent;
     cursor: pointer;
     padding: 0;
-    text-align: ${({ direction }) => (direction === SELECTION_CONTROL_DIRECTIONS.LTR ? 'left' : 'right')};
+    text-align: ${({ direction }) => (direction === Direction.LTR ? 'left' : 'right')};
 
     ${({ isDisabled }) => isDisabled && css`
         pointer-events: none;

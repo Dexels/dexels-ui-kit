@@ -1,55 +1,37 @@
 import {
-    BUTTON_DIRECTIONS,
-    BUTTON_EASINGS,
-    BUTTON_SIZES,
-    BUTTON_VARIANTS,
-} from './Button.consts';
-import {
-    ButtonSizes,
-    ButtonVariants,
-    ButtonVariantsMap,
-    Directions,
-    DirectionsMap,
-    Easings,
-    EasingsMap,
-    IconTypes,
-    IconTypesMap,
+    ButtonSize,
+    ButtonVariant,
+    Direction,
+    Easing,
+    IconSize,
+    IconType,
+    Size,
 } from '../../../types';
 import { LoaderWrapper, StyledButton, TextWrapper } from './Button.sc';
 import Loader from '../Loader/Loader';
 import React from 'react';
-import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
+import { TextWithOptionalIcon } from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface ButtonProps {
     autoFocus?: boolean;
     className?: string;
-    direction?: Directions;
-    iconType?: IconTypes;
+    direction?: Direction;
+    iconType?: IconType;
     isCapitalized?: boolean;
     isDisabled?: boolean;
     isFullWidth?: boolean;
     isInverted?: boolean;
     isLoading?: boolean;
     onClick?: React.MouseEventHandler;
-    size?: ButtonSizes;
+    size?: ButtonSize;
     transitionDuration?: number;
-    transitionEasing?: Easings;
-    variant?: ButtonVariants;
+    transitionEasing?: Easing;
+    variant?: ButtonVariant;
     /* eslint-disable-next-line typescript-sort-keys/interface */
     [key: string]: any;
 }
 
-interface ButtonComponent extends React.FunctionComponent<ButtonProps> {
-    directions: DirectionsMap;
-    iconTypes: IconTypesMap;
-    sizes: {
-        [Size in ButtonProps['size']]: Size;
-    };
-    transitionEasings: EasingsMap;
-    variants: ButtonVariantsMap;
-}
-
-export const Button: ButtonComponent = ({
+export const Button: React.FunctionComponent<ButtonProps> = ({
     autoFocus,
     children,
     className,
@@ -83,13 +65,13 @@ export const Button: ButtonComponent = ({
     >
         {isLoading && (
             <LoaderWrapper>
-                <Loader isInverted={isInverted} size={size} variant={variant} />
+                <Loader isInverted={isInverted} size={Size[size]} variant={variant} />
             </LoaderWrapper>
         )}
         <TextWrapper isLoading={isLoading}>
             <TextWithOptionalIcon
                 direction={direction}
-                iconSize={size}
+                iconSize={IconSize[size]}
                 iconType={iconType}
                 isCapitalized={isCapitalized}
             >
@@ -99,16 +81,10 @@ export const Button: ButtonComponent = ({
     </StyledButton>
 );
 
-Button.directions = BUTTON_DIRECTIONS;
-Button.iconTypes = TextWithOptionalIcon.iconTypes;
-Button.sizes = BUTTON_SIZES;
-Button.transitionEasings = BUTTON_EASINGS;
-Button.variants = BUTTON_VARIANTS;
-
 Button.defaultProps = {
     autoFocus: false,
     className: '',
-    direction: Button.directions.LTR,
+    direction: Direction.LTR,
     iconType: null,
     isCapitalized: true,
     isDisabled: false,
@@ -116,10 +92,10 @@ Button.defaultProps = {
     isInverted: false,
     isLoading: false,
     onClick: null,
-    size: Button.sizes.LARGE,
+    size: ButtonSize.LARGE,
     transitionDuration: 300,
-    transitionEasing: Button.transitionEasings.EASE as Easings,
-    variant: Button.variants.OUTLINE,
+    transitionEasing: Easing.EASE,
+    variant: ButtonVariant.OUTLINE,
 };
 
 export default Button;

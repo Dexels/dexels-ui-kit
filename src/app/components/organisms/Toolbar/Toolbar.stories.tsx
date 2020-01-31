@@ -1,8 +1,8 @@
+import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
-import Icon from '../../atoms/Icon/Icon';
 import React from 'react';
 import Toolbar from './Toolbar';
 
@@ -14,45 +14,45 @@ export const Configurable = () => {
     return (
         <Toolbar isInverted={isInverted}>
             <ButtonIcon
-                iconType={Icon.types.PLUS}
+                iconType={IconType.PLUS}
                 key={1}
                 onClick={action('On buttonicon PLUS')}
             />
             <ButtonIcon
-                iconType={Icon.types.SEARCH}
+                iconType={IconType.SEARCH}
                 key={2}
                 onClick={action('On buttonicon SEARCH')}
             />
             <ButtonIcon
-                iconType={Icon.types.SHARE}
+                iconType={IconType.SHARE}
                 key={3}
                 onClick={action('On buttonicon SHARE')}
             />
             <ButtonIcon
-                iconType={Icon.types.GEAR}
+                iconType={IconType.GEAR}
                 key={4}
                 onClick={action('On buttonicon GEAR')}
             />
             <ButtonIcon
-                iconType={Icon.types.ROUNDHELP}
+                iconType={IconType.ROUNDHELP}
                 key={5}
                 onClick={action('On buttonicon ROUNDHELP')}
             />
             <Button
-                iconType={Icon.types.ROUNDINFO}
+                iconType={IconType.ROUNDINFO}
                 key={6}
                 onClick={action('On buttonicon ROUNDINFO')}
-                size={Button.sizes.SMALL}
-                variant={Button.variants.OUTLINE}
+                size={ButtonSize.SMALL}
+                variant={ButtonVariant.OUTLINE}
             >
                 {'label'}
             </Button>
             <Button
-                iconType={Icon.types.ROUNDINFO}
+                iconType={IconType.ROUNDINFO}
                 key={7}
                 onClick={action('On buttonicon ROUNDINFO')}
-                size={Button.sizes.SMALL}
-                variant={Button.variants.OUTLINE}
+                size={ButtonSize.SMALL}
+                variant={ButtonVariant.OUTLINE}
             >
                 {'label'}
             </Button>

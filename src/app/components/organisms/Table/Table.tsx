@@ -1,6 +1,5 @@
 // In this file we want to use prop spreading because React Table passes a lot of props
 /* eslint-disable react/jsx-props-no-spreading */
-import { Elevations, ElevationsMap } from '../../../types';
 import {
     IconWrapper,
     Paging,
@@ -15,15 +14,15 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
+import { Elevation } from '../../../types';
 import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
-import { TABLE_ELEVATIONS } from './Table.consts';
 
 export interface TableProps {
     caption?: React.ReactNode;
     className?: string;
     debug?: boolean;
-    elevation?: Elevations;
+    elevation?: Elevation;
     footerComponent?: React.ReactNode;
     hasUnsortedStateIcon?: boolean;
     instance: {
@@ -40,13 +39,9 @@ export interface TableProps {
     };
 }
 
-interface TableComponent extends React.FunctionComponent<TableProps> {
-    elevations: ElevationsMap;
-}
-
 const dataSource = (instance: any, hasPaging: boolean) => (hasPaging ? instance.page : instance.rows);
 
-export const Table: TableComponent = ({
+export const Table: React.FunctionComponent<TableProps> = ({
     caption,
     className,
     debug,
@@ -147,13 +142,11 @@ export const Table: TableComponent = ({
     );
 };
 
-Table.elevations = TABLE_ELEVATIONS;
-
 Table.defaultProps = {
     caption: null,
     className: '',
     debug: false,
-    elevation: Table.elevations.LEVEL_1,
+    elevation: Elevation.LEVEL_1,
     footerComponent: undefined,
     hasUnsortedStateIcon: true,
     isFullWidth: true,

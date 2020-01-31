@@ -1,4 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { InputType, InputVariant } from '../../../types';
 import React, { useState } from 'react';
 import Input from './Input';
 
@@ -19,9 +20,9 @@ export const Configurable = () => {
             onChange={(event) => {
                 setValue(event.currentTarget.value);
             }}
-            type={select('Type', Input.types, Input.defaultProps.type)}
+            type={select('Type', InputType, Input.defaultProps.type)}
             value={value}
-            variant={select('Variant', Input.variants, Input.defaultProps.variant)}
+            variant={select('Variant', InputVariant, Input.defaultProps.variant)}
         />
     );
 };

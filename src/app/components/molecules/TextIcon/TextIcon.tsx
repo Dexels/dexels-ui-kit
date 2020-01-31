@@ -1,21 +1,16 @@
-import { Sizes, SizesMap } from '../../../types';
 import React from 'react';
+import { Size } from '../../../types';
 import { StyledTextIcon } from './TextIcon.sc';
-import { TEXT_ICON_SIZES } from './TextIcon.consts';
 
 export interface TextIconProps {
     className?: string;
-    size?: Sizes;
+    size?: Size;
     text: string;
     /* eslint-disable-next-line typescript-sort-keys/interface */
     [key: string]: any;
 }
 
-interface TextIconComponent extends React.FunctionComponent<TextIconProps> {
-    sizes: SizesMap;
-}
-
-export const TextIcon: TextIconComponent = ({
+export const TextIcon: React.FunctionComponent<TextIconProps> = ({
     className,
     size,
     text,
@@ -26,11 +21,9 @@ export const TextIcon: TextIconComponent = ({
     </StyledTextIcon>
 );
 
-TextIcon.sizes = TEXT_ICON_SIZES;
-
 TextIcon.defaultProps = {
     className: '',
-    size: TextIcon.sizes.LARGE,
+    size: Size.LARGE,
 };
 
 export default TextIcon;

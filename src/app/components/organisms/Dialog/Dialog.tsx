@@ -1,12 +1,8 @@
 import {
-    Alignments,
-    AlignmentsMap,
-    Easings,
-    EasingsMap,
-    Elevations,
-    ElevationsMap,
-    IconTypes,
-    IconTypesMap,
+    Alignment,
+    Easing,
+    Elevation,
+    IconType,
 } from '../../../types';
 import {
     Body,
@@ -14,53 +10,37 @@ import {
     Header,
     StyledDialog,
 } from './Dialog.sc';
-import {
-    DIALOG_BODY_ALIGNMENTS,
-    DIALOG_BUTTON_CLOSE_POSITIONS,
-    DIALOG_EASINGS,
-    DIALOG_ELEVATIONS,
-    DIALOG_HEADER_ALIGNMENTS,
-} from './Dialog.consts';
-import { DialogCloseButtonPositions, DialogCloseButtonPositionsMap } from './types';
+import { DialogButtonClosePosition } from './types';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import Icon from '../../atoms/Icon/Icon';
 import Overlay from '../../molecules/Overlay/Overlay';
 import React from 'react';
 
 export interface DialogProps {
-    bodyAlignment?: Alignments;
+    bodyAlignment?: Alignment;
     buttonCancelText?: React.ReactNode;
-    buttonClosePosition?: DialogCloseButtonPositions;
-    buttonConfirmIconType?: IconTypes;
+    buttonClosePosition?: DialogButtonClosePosition;
+    buttonConfirmIconType?: IconType;
     buttonConfirmText: React.ReactNode;
     children: React.ReactNode;
     className?: string;
-    elevation?: Elevations;
+    elevation?: Elevation;
     footerText?: React.ReactNode;
     hasButtonClose?: boolean;
     hasOverlay?: boolean;
     header?: React.ReactNode;
-    headerAlignment?: Alignments;
+    headerAlignment?: Alignment;
     height?: string;
     isVisible: boolean;
     onCancel?: React.MouseEventHandler;
     onClose?: React.MouseEventHandler;
     onConfirm: React.MouseEventHandler;
     transitionDuration?: number;
-    transitionEasing?: Easings;
+    transitionEasing?: Easing;
     width?: string;
 }
 
-interface DialogComponent extends React.FunctionComponent<DialogProps> {
-    bodyAlignments: AlignmentsMap;
-    buttonClosePositions: DialogCloseButtonPositionsMap;
-    buttonConfirmIconTypes: IconTypesMap;
-    elevations: ElevationsMap;
-    headerAlignments: AlignmentsMap;
-    transitionEasings: EasingsMap;
-}
-
-export const Dialog: DialogComponent = ({
+export const Dialog: React.FunctionComponent<DialogProps> = ({
     bodyAlignment,
     buttonCancelText,
     buttonClosePosition,
@@ -89,7 +69,7 @@ export const Dialog: DialogComponent = ({
         )}
         {hasButtonClose && hasOverlay && isVisible && (
             <ButtonClose onClick={onClose} position={buttonClosePosition}>
-                <Icon type={Icon.types.CROSS} />
+                <Icon type={IconType.CROSS} />
             </ButtonClose>
         )}
         <StyledDialog
@@ -121,30 +101,23 @@ export const Dialog: DialogComponent = ({
     </>
 );
 
-Dialog.bodyAlignments = DIALOG_BODY_ALIGNMENTS;
-Dialog.buttonClosePositions = DIALOG_BUTTON_CLOSE_POSITIONS;
-Dialog.buttonConfirmIconTypes = Icon.types;
-Dialog.elevations = DIALOG_ELEVATIONS;
-Dialog.headerAlignments = DIALOG_HEADER_ALIGNMENTS;
-Dialog.transitionEasings = DIALOG_EASINGS;
-
 Dialog.defaultProps = {
-    bodyAlignment: Dialog.bodyAlignments.CENTER,
+    bodyAlignment: Alignment.CENTER,
     buttonCancelText: null,
-    buttonClosePosition: Dialog.buttonClosePositions.LEFT,
-    buttonConfirmIconType: Dialog.buttonConfirmIconTypes.CHECK,
+    buttonClosePosition: DialogButtonClosePosition.LEFT,
+    buttonConfirmIconType: IconType.CHECK,
     className: '',
-    elevation: Dialog.elevations.LEVEL_12,
+    elevation: Elevation.LEVEL_12,
     footerText: null,
     hasButtonClose: true,
     hasOverlay: true,
     header: null,
-    headerAlignment: Dialog.headerAlignments.CENTER,
+    headerAlignment: Alignment.CENTER,
     height: 'inherit',
     onCancel: null,
     onClose: null,
     transitionDuration: 500,
-    transitionEasing: Dialog.transitionEasings.EASE as Easings,
+    transitionEasing: Easing.EASE,
     width: '300px',
 };
 

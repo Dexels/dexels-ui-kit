@@ -1,13 +1,13 @@
-export enum WRAPPER_WIDTHS {
-    'LARGE' = 'LARGE',
-    'MEDIUM' = 'MEDIUM',
-    'SMALL' = 'SMALL',
+export enum WrapperWidth {
+    LARGE = 'LARGE',
+    MEDIUM = 'MEDIUM',
+    SMALL = 'SMALL',
 }
 
 export interface WrapperProps {
     children?: React.ReactNode;
     isTransparent: boolean;
-    width: WRAPPER_WIDTHS;
+    width: WrapperWidth;
 }
 
 export interface StyledWrapperProps extends WrapperProps {}

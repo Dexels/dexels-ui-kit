@@ -1,5 +1,4 @@
-import { InputVariants, InputVariantsMap } from '../../../types';
-import { FORM_ELEMENT_LABEL_VARIANTS } from './FormElementLabel.consts';
+import { InputVariant } from '../../../types';
 import Label from '../../atoms/Label/Label';
 import React from 'react';
 import { StyledFormElementLabel } from './FormElementLabel.sc';
@@ -14,14 +13,10 @@ export interface FormElementLabelProps {
     isFocused?: boolean;
     isHovered?: boolean;
     isValid?: boolean;
-    variant?: InputVariants;
+    variant?: InputVariant;
 }
 
-interface FormElementLabelComponent extends React.FunctionComponent<FormElementLabelProps> {
-    variants: InputVariantsMap;
-}
-
-export const FormElementLabel: FormElementLabelComponent = ({
+export const FormElementLabel: React.FunctionComponent<FormElementLabelProps> = ({
     backgroundColor,
     children,
     className,
@@ -58,8 +53,6 @@ export const FormElementLabel: FormElementLabelComponent = ({
     );
 };
 
-FormElementLabel.variants = FORM_ELEMENT_LABEL_VARIANTS;
-
 FormElementLabel.defaultProps = {
     backgroundColor: '',
     className: '',
@@ -69,7 +62,7 @@ FormElementLabel.defaultProps = {
     isFocused: false,
     isHovered: false,
     isValid: false,
-    variant: FormElementLabel.variants.OUTLINE,
+    variant: InputVariant.OUTLINE,
 };
 
 export default FormElementLabel;

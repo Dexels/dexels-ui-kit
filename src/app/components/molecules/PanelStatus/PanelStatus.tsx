@@ -1,10 +1,8 @@
 import {
-    Elevations,
-    ElevationsMap,
-    IconTypes,
-    IconTypesMap,
-    Statuses,
-    StatusesMap,
+    Elevation,
+    IconType,
+    Placement,
+    Status,
 } from '../../../types';
 import {
     FunctionalWrapper,
@@ -12,26 +10,19 @@ import {
     Title,
 } from './PanelStatus.sc';
 import CardStatus from '../CardStatus/CardStatus';
-import { PANEL_STATUS_ICON_TYPES } from './PanelStatus.consts';
 import React from 'react';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface PanelStatusProps {
     children: React.ReactNode;
-    elevation?: Elevations;
-    iconType?: IconTypes;
+    elevation?: Elevation;
+    iconType?: IconType;
     options?: React.ReactNode;
-    status?: Statuses;
+    status?: Status;
     title: React.ReactNode;
 }
 
-interface PanelStatusComponent extends React.FunctionComponent<PanelStatusProps> {
-    elevations: ElevationsMap;
-    iconTypes: IconTypesMap;
-    statuses: StatusesMap;
-}
-
-export const PanelStatus: PanelStatusComponent = ({
+export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
     children,
     elevation,
     iconType,
@@ -50,15 +41,11 @@ export const PanelStatus: PanelStatusComponent = ({
                 {options}
             </FunctionalWrapper>
         </StyledHeader>
-        <CardStatus elevation={elevation} placement={CardStatus.placements.TOP} status={status}>
+        <CardStatus elevation={elevation} placement={Placement.TOP} status={status}>
             {children}
         </CardStatus>
     </>
 );
-
-PanelStatus.elevations = CardStatus.elevations;
-PanelStatus.iconTypes = PANEL_STATUS_ICON_TYPES;
-PanelStatus.statuses = CardStatus.statuses;
 
 PanelStatus.defaultProps = {
     elevation: CardStatus.defaultProps.elevation,

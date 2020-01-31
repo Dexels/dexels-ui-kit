@@ -1,25 +1,28 @@
-import { IconTypes, Statuses } from '../../../../types';
+import {
+    IconType,
+    Placement,
+    Status,
+    StatusIndicatorSize,
+} from '../../../../types';
 import { IconWrapper, StyledStatusCell } from './StatusCell.sc';
 import Icon from '../../../atoms/Icon/Icon';
-import { ICON_TYPES } from '../../../atoms/Icon/Icon.consts';
-import { MATCH_TASK_STATUSES } from './StatusCell.consts';
 import { MatchTaskStatuses } from './types';
 import React from 'react';
-import StatusIndicator from '../../../atoms/StatusIndicator/StatusIndicator';
+import { StatusIndicator } from '../../../atoms/StatusIndicator/StatusIndicator';
 
-const iconType = (matchTaskStatus: MatchTaskStatuses): IconTypes | null => {
+const iconType = (matchTaskStatus: MatchTaskStatuses): IconType | null => {
     switch (matchTaskStatus) {
-        case MATCH_TASK_STATUSES.NO_DRESSINGROOMS:
-            return ICON_TYPES.STATUSALERT;
+        case MatchTaskStatuses.NO_DRESSINGROOMS:
+            return IconType.STATUSALERT;
 
-        case MATCH_TASK_STATUSES.NO_FIELD:
-            return ICON_TYPES.STATUSALERT;
+        case MatchTaskStatuses.NO_FIELD:
+            return IconType.STATUSALERT;
 
-        case MATCH_TASK_STATUSES.NO_OFFICIALS:
-            return ICON_TYPES.STATUSALERT;
+        case MatchTaskStatuses.NO_OFFICIALS:
+            return IconType.STATUSALERT;
 
-        case MATCH_TASK_STATUSES.NONE:
-            return ICON_TYPES.STATUSDONE;
+        case MatchTaskStatuses.NONE:
+            return IconType.STATUSDONE;
 
         default:
             return null;
@@ -28,15 +31,15 @@ const iconType = (matchTaskStatus: MatchTaskStatuses): IconTypes | null => {
 
 interface StatusCellProps {
     matchTaskStatus: MatchTaskStatuses;
-    status: Statuses;
+    status: Status;
 }
 
 const StatusCell: React.FunctionComponent<StatusCellProps> = ({ matchTaskStatus, status }) => (
     <StyledStatusCell>
         <StatusIndicator
             background="inherit"
-            placement={StatusIndicator.placements.LEFT}
-            size={StatusIndicator.sizes.LARGE}
+            placement={Placement.LEFT}
+            size={StatusIndicatorSize.LARGE}
             status={status}
         >
             <IconWrapper status={status}>
@@ -47,8 +50,8 @@ const StatusCell: React.FunctionComponent<StatusCellProps> = ({ matchTaskStatus,
 );
 
 StatusCell.defaultProps = {
-    matchTaskStatus: MATCH_TASK_STATUSES.SCHEDULED,
-    status: StatusIndicator.statuses.DEFAULT,
+    matchTaskStatus: MatchTaskStatuses.SCHEDULED,
+    status: Status.DEFAULT,
 };
 
 export default StatusCell;

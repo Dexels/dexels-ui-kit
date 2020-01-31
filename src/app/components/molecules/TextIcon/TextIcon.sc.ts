@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { Sizes } from '../../../types';
-import { TEXT_ICON_SIZES } from './TextIcon.consts';
+import { Size } from '../../../types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledTextIcon {
-    size: Sizes;
+    size: Size;
 }
 
 export const StyledTextIcon = styled.div<StyledTextIcon>`
@@ -17,28 +16,28 @@ export const StyledTextIcon = styled.div<StyledTextIcon>`
     font-family: ${({ theme }) => theme.fontFamilyPrimary};
 
     ${({ size, theme }) => css`
-        ${size === TEXT_ICON_SIZES.SMALL && css`
+        ${size === Size.SMALL && css`
             width: ${theme.spacing(2.25)};
             height: ${theme.spacing(2.25)};
             line-height: ${theme.spacing(2.25)};
             font-size: ${theme.spacing(1.25)};
         `}
 
-        ${size === TEXT_ICON_SIZES.MEDIUM && css`
+        ${size === Size.MEDIUM && css`
             width: ${theme.spacing(2.5)};
             height: ${theme.spacing(2.5)};
             line-height: ${theme.spacing(2.5)};
             font-size: ${theme.spacing(1.5)};
         `}
 
-        ${size === TEXT_ICON_SIZES.LARGE && css`
+        ${size === Size.LARGE && css`
             width: ${theme.spacing(3)};
             height: ${theme.spacing(3)};
             line-height: ${theme.spacing(3)};
             font-size: ${theme.spacing(2)};
         `}
 
-        ${size === TEXT_ICON_SIZES.XLARGE && css`
+        ${size === Size.XLARGE && css`
             width: ${theme.spacing(3.5)};
             height: ${theme.spacing(3.5)};
             line-height: ${theme.spacing(3.5)};

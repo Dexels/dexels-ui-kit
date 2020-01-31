@@ -1,4 +1,10 @@
 import {
+    IconType,
+    InputType,
+    InputVariant,
+    Size,
+} from '../../../../types';
+import {
     InputWrapper,
     PageSizeSelector,
     PageSizeSelectorText,
@@ -109,9 +115,9 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
                         const page = event.target.value ? Number(event.target.value) - 1 : 0;
                         instance.gotoPage(page);
                     }}
-                    type={Input.types.NUMBER}
+                    type={InputType.NUMBER}
                     value={(instance.pageIndex + 1).toString()}
-                    variant={Input.variants.COMPACT}
+                    variant={InputVariant.COMPACT}
                 />
             </InputWrapper>
         )}
@@ -124,30 +130,30 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
             <PagingButtons>
                 {hasAllPagingButtons && (
                     <ButtonIcon
-                        iconType={ButtonIcon.iconTypes.CHEVRONFIRST}
+                        iconType={IconType.CHEVRONFIRST}
                         isDisabled={!instance.canPreviousPage}
                         onClick={() => instance.gotoPage(0)}
-                        size={ButtonIcon.sizes.XLARGE}
+                        size={Size.XLARGE}
                     />
                 )}
                 <ButtonIcon
-                    iconType={ButtonIcon.iconTypes.CHEVRONLEFT}
+                    iconType={IconType.CHEVRONLEFT}
                     isDisabled={!instance.canPreviousPage}
                     onClick={() => instance.previousPage()}
-                    size={ButtonIcon.sizes.XLARGE}
+                    size={Size.XLARGE}
                 />
                 <ButtonIcon
-                    iconType={ButtonIcon.iconTypes.CHEVRONRIGHT}
+                    iconType={IconType.CHEVRONRIGHT}
                     isDisabled={!instance.canNextPage}
                     onClick={() => instance.nextPage()}
-                    size={ButtonIcon.sizes.XLARGE}
+                    size={Size.XLARGE}
                 />
                 {hasAllPagingButtons && (
                     <ButtonIcon
-                        iconType={ButtonIcon.iconTypes.CHEVRONLAST}
+                        iconType={IconType.CHEVRONLAST}
                         isDisabled={!instance.canNextPage}
                         onClick={() => instance.gotoPage(instance.pageCount - 1)}
-                        size={ButtonIcon.sizes.XLARGE}
+                        size={Size.XLARGE}
                     />
                 )}
             </PagingButtons>

@@ -1,7 +1,12 @@
+import {
+    ButtonSize,
+    Easing,
+    Elevation,
+    Placement,
+} from '../../../types';
 import { number, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button/Button';
-import { Easings } from '../../../types';
 import notes from './notes.md';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -48,7 +53,7 @@ export const Configurable = () => (
             <Button
                 data-tooltip-component={renderToString(<CustomTestComponent />)}
                 data-tooltip-delay
-                data-tooltip-position={Tooltip.positions.TOP}
+                data-tooltip-position={Placement.TOP}
                 onClick={action('On button click top')}
             >
                 {'This tooltip should render on the top'}
@@ -63,29 +68,29 @@ export const Configurable = () => (
         >
             <Button
                 data-tooltip-component="Check out this tooltip!"
-                data-tooltip-position={Tooltip.positions.LEFT}
+                data-tooltip-position={Placement.LEFT}
                 onClick={action('On button click left')}
-                size={Button.sizes.SMALL}
+                size={ButtonSize.SMALL}
             >
                 {'This tooltip should render on the left'}
             </Button>
         </div>
         <Button
             data-tooltip-component="Check out this tooltip!"
-            data-tooltip-position={Tooltip.positions.RIGHT}
+            data-tooltip-position={Placement.RIGHT}
             onClick={action('On button click right')}
-            size={Button.sizes.SMALL}
+            size={ButtonSize.SMALL}
         >
             {'This tooltip should render on the right'}
         </Button>
         <Tooltip
             delay={number('Delay', Tooltip.defaultProps.delay)}
-            elevation={select('Elevation', Tooltip.elevations, Tooltip.defaultProps.elevation)}
-            position={select('Position', Tooltip.positions, Tooltip.defaultProps.position)}
+            elevation={select('Elevation', Elevation, Tooltip.defaultProps.elevation)}
+            position={select('Position', Placement, Tooltip.defaultProps.position)}
             transitionDuration={number('Transition duration', Tooltip.defaultProps.transitionDuration)}
-            transitionEasing={select<Easings>(
+            transitionEasing={select(
                 'Transition type',
-                Tooltip.transitionEasings,
+                Easing,
                 Tooltip.defaultProps.transitionEasing,
             )}
         />

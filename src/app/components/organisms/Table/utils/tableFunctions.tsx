@@ -1,10 +1,10 @@
 import { CellProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import { formatDate, isValidDate } from '../../../../utils/validators/dateFunctions';
+import { IconType, Status } from '../../../../types';
 import Icon from '../../../atoms/Icon/Icon';
 import { MatchTaskStatuses } from '../StatusCell/types';
 import React from 'react';
 import StatusCell from '../StatusCell/StatusCell';
-import { Statuses } from '../../../../types';
 
 export const compareValues = <T extends object>(
     key: any, desc = false, caseSensitive = false,
@@ -90,14 +90,14 @@ export const renderSortIcon = <T extends object>(
 
     if (column.isSorted) {
         if (column.isSortedDesc) {
-            sortIcon = <Icon type={Icon.types.DROPDOWN} />;
+            sortIcon = <Icon type={IconType.DROPDOWN} />;
         } else {
-            sortIcon = <Icon type={Icon.types.DROPUP} />;
+            sortIcon = <Icon type={IconType.DROPUP} />;
         }
     }
 
     if (hasUnsortedStateIcon && !column.isSorted) {
-        sortIcon = <Icon type={Icon.types.DROPDOWN} />;
+        sortIcon = <Icon type={IconType.DROPDOWN} />;
     }
 
     return sortIcon;
@@ -124,6 +124,6 @@ export const getColumnWidth = <T extends object>(
     return `${Math.min(maxWidth, cellLength * magicSpacing)}px`;
 };
 
-export const renderStatusCell = (matchTaskStatus: MatchTaskStatuses, status: Statuses) => (
+export const renderStatusCell = (matchTaskStatus: MatchTaskStatuses, status: Status) => (
     <StatusCell matchTaskStatus={matchTaskStatus} status={status} />
 );

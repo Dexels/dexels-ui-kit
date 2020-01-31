@@ -1,33 +1,21 @@
-import {
-    Directions,
-    DirectionsMap,
-    IconTypes,
-    IconTypesMap,
-    SizesMap,
-} from '../../../types';
+import { Direction, IconSize, IconType } from '../../../types';
 import { IconWrapper, StyledTextWithOptionalIcon, Text } from './TextWithOptionalIcon.sc';
-import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS, TEXT_WITH_OPTIONAL_ICON_SIZES } from './TextWithOptionalIcon.consts';
 import Icon from '../../atoms/Icon/Icon';
 import React from 'react';
 
 export interface TextWithOptionalIconProps {
     children: React.ReactNode;
     className?: string;
-    direction?: Directions;
-    iconType?: IconTypes;
+    direction?: Direction;
+    iconSize?: IconSize;
+    iconType?: IconType;
     isCapitalized?: boolean;
     isTruncatable?: boolean;
     /* eslint-disable-next-line typescript-sort-keys/interface */
     [key: string]: any;
 }
 
-interface TextWithOptionalIconComponent extends React.FunctionComponent<TextWithOptionalIconProps> {
-    directions: DirectionsMap;
-    iconSizes: SizesMap;
-    iconTypes: IconTypesMap;
-}
-
-export const TextWithOptionalIcon: TextWithOptionalIconComponent = ({
+export const TextWithOptionalIcon: React.FunctionComponent<TextWithOptionalIconProps> = ({
     children,
     className,
     direction,
@@ -49,14 +37,10 @@ export const TextWithOptionalIcon: TextWithOptionalIconComponent = ({
     </StyledTextWithOptionalIcon>
 );
 
-TextWithOptionalIcon.directions = TEXT_WITH_OPTIONAL_ICON_DIRECTIONS;
-TextWithOptionalIcon.iconSizes = TEXT_WITH_OPTIONAL_ICON_SIZES;
-TextWithOptionalIcon.iconTypes = Icon.types;
-
 TextWithOptionalIcon.defaultProps = {
     className: '',
-    direction: TextWithOptionalIcon.directions.LTR,
-    iconSize: TextWithOptionalIcon.iconSizes.LARGE,
+    direction: Direction.LTR,
+    iconSize: IconSize.LARGE,
     iconType: null,
     isCapitalized: false,
     isTruncatable: false,

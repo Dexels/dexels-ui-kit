@@ -1,9 +1,10 @@
 import { css } from 'styled-components';
+import { Easing } from '../../types';
 
 export const transitionEffect = ({
     duration = 400,
     delay = 0,
-    easing = 'ease',
+    easing = Easing.EASE,
     property = 'all',
 } = {}) => (css`
     transition: ${`${property} ${duration}ms ${easing} ${delay}ms`};
@@ -11,7 +12,7 @@ export const transitionEffect = ({
 
 export const slideUpEffect = ({
     duration = 500,
-    easing = 'ease',
+    easing = Easing.EASE,
     isVisible = false,
     property = 'all',
 } = {}) => (css`
@@ -25,7 +26,7 @@ export const slideUpEffect = ({
 
 export const fadeInEffect = ({
     duration = 500,
-    easing = 'ease',
+    easing = Easing.EASE,
     isVisible = false,
     property = 'all',
 } = {}) => (css`

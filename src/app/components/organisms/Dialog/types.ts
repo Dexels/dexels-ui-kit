@@ -1,4 +1,4 @@
-export type DialogCloseButtonPositions = 'LEFT' | 'RIGHT';
-export type DialogCloseButtonPositionsMap = {
-    [Position in DialogCloseButtonPositions]: Position;
+export enum DialogButtonClosePosition {
+    LEFT = 'LEFT',
+    RIGHT = 'RIGHT',
 }

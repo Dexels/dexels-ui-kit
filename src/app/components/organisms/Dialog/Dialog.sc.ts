@@ -1,7 +1,6 @@
-import { Alignments, Easings, Elevations } from '../../../types';
+import { Alignment, Easing, Elevation } from '../../../types';
 import styled, { css } from 'styled-components';
-import { DIALOG_BUTTON_CLOSE_POSITIONS } from './Dialog.consts';
-import { DialogCloseButtonPositions } from './types';
+import { DialogButtonClosePosition } from './types';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import getElevation from '../../../styles/mixins/getElevation';
@@ -10,11 +9,11 @@ import setCentered from '../../../styles/mixins/setCentered';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledDialogProps {
-    elevation: Elevations;
+    elevation: Elevation;
     height: string;
     isVisible: boolean;
     transitionDuration: number;
-    transitionEasing: Easings;
+    transitionEasing: Easing;
     width: string;
 }
 
@@ -41,7 +40,7 @@ StyledDialog.defaultProps = {
 };
 
 interface ButtonCloseProps {
-    position: DialogCloseButtonPositions;
+    position: DialogButtonClosePosition;
 }
 
 export const ButtonClose = styled.button<ButtonCloseProps>`
@@ -53,15 +52,15 @@ export const ButtonClose = styled.button<ButtonCloseProps>`
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }) => theme.spacing(1)};
-    text-align: ${({ position }) => (position === DIALOG_BUTTON_CLOSE_POSITIONS.LEFT ? 'left' : 'right')};
+    text-align: ${({ position }) => (position === DialogButtonClosePosition.LEFT ? 'left' : 'right')};
     color: ${({ theme }) => theme.colorText.primary};
     font-size: ${({ theme }) => theme.spacing(3)};
 
-    ${({ position }) => position === DIALOG_BUTTON_CLOSE_POSITIONS.LEFT && css`
+    ${({ position }) => position === DialogButtonClosePosition.LEFT && css`
         left: 2px;
     `}
 
-    ${({ position }) => position === DIALOG_BUTTON_CLOSE_POSITIONS.RIGHT && css`
+    ${({ position }) => position === DialogButtonClosePosition.RIGHT && css`
         right: 2px;
     `}
 
@@ -81,7 +80,7 @@ ButtonClose.defaultProps = {
 };
 
 interface HeaderProps {
-    alignment: Alignments;
+    alignment: Alignment;
 }
 
 export const Header = styled.header<HeaderProps>`
@@ -102,7 +101,7 @@ Header.defaultProps = {
 };
 
 interface BodyProps {
-    alignment: Alignments;
+    alignment: Alignment;
     hasHeader: boolean;
 }
 

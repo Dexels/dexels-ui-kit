@@ -1,19 +1,14 @@
-import { Elevations, ElevationsMap } from '../../../types';
-import CARD_ELEVATIONS from './Card.consts';
+import { Elevation } from '../../../types';
 import React from 'react';
 import { StyledCard } from './Card.sc';
 
 export interface CardProps {
     className?: string;
-    elevation?: Elevations;
+    elevation?: Elevation;
     hasBorderRadius?: boolean;
 }
 
-export interface CardComponent extends React.FunctionComponent<CardProps> {
-    elevations: ElevationsMap;
-}
-
-export const Card: CardComponent = ({
+export const Card: React.FunctionComponent<CardProps> = ({
     children,
     className,
     elevation,
@@ -24,11 +19,9 @@ export const Card: CardComponent = ({
     </StyledCard>
 );
 
-Card.elevations = CARD_ELEVATIONS;
-
 Card.defaultProps = {
     className: '',
-    elevation: Card.elevations.LEVEL_1,
+    elevation: Elevation.LEVEL_1,
     hasBorderRadius: true,
 };
 

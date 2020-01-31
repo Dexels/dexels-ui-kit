@@ -1,9 +1,4 @@
-import {
-    Directions,
-    DirectionsMap,
-    Easings,
-    EasingsMap,
-} from '../../../types';
+import { Direction, Easing, IconType } from '../../../types';
 import {
     ErrorMessageWrapper,
     FakeInput,
@@ -13,19 +8,14 @@ import {
     StyledSelectionControl,
 } from './SelectionControl.sc';
 import React, { useState } from 'react';
-import {
-    SELECTION_CONTROL_DIRECTIONS,
-    SELECTION_CONTROL_EASINGS,
-    SELECTION_CONTROL_TYPES,
-} from './SelectionControl.consts';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import Icon from '../../atoms/Icon/Icon';
 import Label from '../../atoms/Label/Label';
-import { SelectionControlTypes } from './types';
+import { SelectionControlType } from './types';
 
 export interface SelectionControlProps {
     className?: string;
-    direction?: Directions;
+    direction?: Direction;
     errorMessage?: React.ReactNode;
     hasError?: boolean;
     hasHorizontalCorrection?: boolean;
@@ -37,22 +27,14 @@ export interface SelectionControlProps {
     name: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>) => void;
     transitionDuration?: number;
-    transitionEasing?: Easings;
-    type?: SelectionControlTypes;
+    transitionEasing?: Easing;
+    type?: SelectionControlType;
     value: string;
     /* eslint-disable-next-line typescript-sort-keys/interface */
     [key: string]: any;
 }
 
-interface SelectionControlComponent extends React.FunctionComponent<SelectionControlProps> {
-    directions: DirectionsMap;
-    transitionEasings: EasingsMap;
-    types: {
-        [Type in SelectionControlProps['type']]: Type;
-    };
-}
-
-export const SelectionControl: SelectionControlComponent = ({
+export const SelectionControl: React.FunctionComponent<SelectionControlProps> = ({
     className,
     direction,
     errorMessage,
@@ -102,9 +84,9 @@ export const SelectionControl: SelectionControlComponent = ({
                         isValid={isValid}
                         type={type}
                     />
-                    {(isChecked || isIndeterminate) && type === SelectionControl.types.CHECKBOX && (
+                    {(isChecked || isIndeterminate) && type === SelectionControlType.CHECKBOX && (
                         <IconWrapper hasError={hasError} isDisabled={isDisabled} isValid={isValid}>
-                            <Icon type={isChecked ? Icon.types.CHECKBOXCHECK : Icon.types.CHECKBOXMINUS1} />
+                            <Icon type={isChecked ? IconType.CHECKBOXCHECK : IconType.CHECKBOXMINUS1} />
                         </IconWrapper>
                     )}
                     <input
@@ -133,13 +115,9 @@ export const SelectionControl: SelectionControlComponent = ({
     );
 };
 
-SelectionControl.directions = SELECTION_CONTROL_DIRECTIONS;
-SelectionControl.transitionEasings = SELECTION_CONTROL_EASINGS;
-SelectionControl.types = SELECTION_CONTROL_TYPES;
-
 SelectionControl.defaultProps = {
     className: '',
-    direction: SelectionControl.directions.LTR,
+    direction: Direction.LTR,
     errorMessage: null,
     hasError: false,
     hasHorizontalCorrection: true,
@@ -148,8 +126,8 @@ SelectionControl.defaultProps = {
     isIndeterminate: false,
     isValid: false,
     transitionDuration: 300,
-    transitionEasing: SelectionControl.transitionEasings.EASE as Easings,
-    type: SelectionControl.types.CHECKBOX,
+    transitionEasing: Easing.EASE,
+    type: SelectionControlType.CHECKBOX,
 };
 
 export default SelectionControl;

@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
-import { Elevations } from '../../../types';
+import { Elevation } from '../../../types';
 import getElevation from '../../../styles/mixins/getElevation';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import { TABLE_ELEVATIONS } from './Table.consts';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export const TableCaption = styled.div`
@@ -60,7 +59,7 @@ TableHeaderCell.defaultProps = {
 };
 
 interface TableBodyProps {
-    elevation: Elevations;
+    elevation: Elevation;
 }
 
 export const TableBody = styled.tbody<TableBodyProps>`
@@ -100,7 +99,7 @@ export const TableRow = styled.tr<TableRowProps>`
     }
 
     &:hover td {
-        ${getElevation(TABLE_ELEVATIONS.LEVEL_3)}
+        ${getElevation(Elevation.LEVEL_3)}
     }
 `;
 
@@ -166,7 +165,7 @@ IconWrapper.defaultProps = {
 };
 
 interface TableFooterProps {
-    elevation: Elevations;
+    elevation: Elevation;
 }
 
 export const TableFooter = styled.tfoot<TableFooterProps>`

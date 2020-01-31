@@ -1,7 +1,5 @@
+import { InputType, InputVariant } from '../../../types';
 import styled, { css } from 'styled-components';
-import { INPUT_VARIANTS } from '../../../utils/constants';
-import { InputTypes } from './types';
-import { InputVariants } from '../../../types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -10,7 +8,7 @@ interface StyledInputProps {
     isDisabled: boolean;
     isFocused: boolean;
     isValid: boolean;
-    variant: InputVariants;
+    variant: InputVariant;
 }
 
 export const StyledInput = styled.div<StyledInputProps>`
@@ -30,7 +28,7 @@ export const StyledInput = styled.div<StyledInputProps>`
         isValid,
         theme,
         variant,
-    }) => variant === INPUT_VARIANTS.COMPACT && css`
+    }) => variant === InputVariant.COMPACT && css`
         &::after {
             display: block;
             height: 1px;
@@ -62,7 +60,7 @@ StyledInput.defaultProps = {
 interface TextFieldProps extends StyledInputProps {
     isHovered: boolean;
     isTextarea: boolean;
-    type: InputTypes;
+    type: InputType;
 }
 
 export const TextField = styled.input<TextFieldProps>`
@@ -73,14 +71,14 @@ export const TextField = styled.input<TextFieldProps>`
     width: 100%;
     color: ${({ theme }) => theme.colorTextBody.primary};
 
-    ${({ theme, variant }) => variant === INPUT_VARIANTS.COMPACT && css`
+    ${({ theme, variant }) => variant === InputVariant.COMPACT && css`
         border: 0;
         border-bottom: 1px solid ${theme.colorPrimary};
         padding: 0;
         height: ${theme.spacing(3)};
     `}
 
-    ${({ theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
+    ${({ theme, variant }) => variant === InputVariant.OUTLINE && css`
         border: 1px solid ${theme.colorPrimary};
         border-radius: ${theme.spacing(1)};
         padding: ${theme.spacing(0, 1.5)};
@@ -116,11 +114,11 @@ TextField.defaultProps = {
 };
 
 interface ErrorMessageWrapperProps {
-    variant: InputVariants;
+    variant: InputVariant;
 }
 
 export const ErrorMessageWrapper = styled.div<ErrorMessageWrapperProps>`
-    ${({ theme, variant }) => variant === INPUT_VARIANTS.OUTLINE && css`
+    ${({ theme, variant }) => variant === InputVariant.OUTLINE && css`
         margin: ${theme.spacing(0.5, 0, 0, 1.5)};
     `}
 `;

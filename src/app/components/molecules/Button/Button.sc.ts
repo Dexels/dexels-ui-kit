@@ -1,12 +1,4 @@
-import {
-    BUTTON_SIZES,
-    BUTTON_VARIANTS,
-} from './Button.consts';
-import {
-    ButtonSizes,
-    ButtonVariants,
-    Easings,
-} from '../../../types';
+import { ButtonSize, ButtonVariant, Easing } from '../../../types';
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -17,10 +9,10 @@ interface StyledButtonProps {
     isFullWidth: boolean;
     isInverted: boolean;
     isLoading: boolean;
-    size: ButtonSizes;
+    size: ButtonSize;
     transitionDuration: number;
-    transitionEasing: Easings;
-    variant: ButtonVariants;
+    transitionEasing: Easing;
+    variant: ButtonVariant;
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -45,7 +37,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         pointer-events: none;
     `}
 
-    ${({ size, theme }) => size === BUTTON_SIZES.SMALL && css`
+    ${({ size, theme }) => size === ButtonSize.SMALL && css`
         ${theme.textStyling(theme.availableTextStyles().buttonSmall)}
         border-radius: ${theme.spacing(2)};
         padding: ${theme.spacing(0.5, 2)};
@@ -53,7 +45,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         min-height: ${theme.spacing(4)};
     `}
 
-    ${({ size, theme }) => size === BUTTON_SIZES.MEDIUM && css`
+    ${({ size, theme }) => size === ButtonSize.MEDIUM && css`
         ${theme.textStyling(theme.availableTextStyles().buttonMedium)}
         border-radius: ${theme.spacing(2.5)};
         padding: ${theme.spacing(1, 2)};
@@ -61,7 +53,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         min-height: ${theme.spacing(5)};
     `}
 
-    ${({ size, theme }) => size === BUTTON_SIZES.LARGE && css`
+    ${({ size, theme }) => size === ButtonSize.LARGE && css`
         ${theme.textStyling(theme.availableTextStyles().buttonLarge)}
         border-radius: ${theme.spacing(3)};
         padding: ${theme.spacing(1, 2)};
@@ -74,7 +66,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         isInverted,
         theme: { button },
         variant,
-    }) => variant === BUTTON_VARIANTS.FILLED && css`
+    }) => variant === ButtonVariant.FILLED && css`
         border-color: ${isInverted ? button.filled.backgroundColor.inverted : button.filled.backgroundColor.primary};
         background-color: ${isInverted ? button.filled.backgroundColor.inverted : button.filled.backgroundColor.primary};
         color: ${isInverted ? button.filled.color.inverted : button.filled.color.primary};
@@ -98,7 +90,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         isInverted,
         theme: { button },
         variant,
-    }) => variant === BUTTON_VARIANTS.OUTLINE && css`
+    }) => variant === ButtonVariant.OUTLINE && css`
         border-color: ${isInverted ? button.outline.backgroundColor.inverted : button.outline.backgroundColor.primary};
         background-color: transparent !important;
         color: ${isInverted ? button.outline.color.inverted : button.outline.color.primary};
@@ -120,7 +112,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         isInverted,
         theme: { button },
         variant,
-    }) => variant === BUTTON_VARIANTS.TEXT_ONLY && css`
+    }) => variant === ButtonVariant.TEXT_ONLY && css`
         border: 0;
         border-radius: 0;
         background-color: transparent !important;
@@ -144,8 +136,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
     `}
 
     &::after {
-        ${({ variant, theme: { button } }) => variant !== BUTTON_VARIANTS.TEXT_ONLY
-            && rippleEffect(variant === BUTTON_VARIANTS.FILLED ? button.filled.color.primary : button.outline.backgroundColor.primary)}
+        ${({ variant, theme: { button } }) => variant !== ButtonVariant.TEXT_ONLY
+            && rippleEffect(variant === ButtonVariant.FILLED ? button.filled.color.primary : button.outline.backgroundColor.primary)}
     }
 
     &:active::after {
