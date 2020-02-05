@@ -6,7 +6,7 @@ import {
     StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import { Elevation } from '../../../types';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
@@ -48,6 +48,7 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
     label,
     maxHeight,
     name,
+    onCancel,
     onClick,
     onConfirm,
     optionAll,
@@ -66,6 +67,29 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
 
     const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
+    const onCancelCallback = useCallback(() => {
+        setIsSelectOpen(false);
+        onCancel();
+    }, []);
+
+    const onClickCallback = useCallback(() => {
+        setIsSelectOpen(true);
+        onClick();
+    }, []);
+
+    const onConfirmCallback = useCallback(() => {
+        setIsSelectOpen(false);
+        onConfirm();
+    }, []);
+
+    const onMouseEnterCallback = useCallback(() => {
+        setIsHovered(true);
+    }, [isHovered]);
+
+    const onMouseLeaveCallback = useCallback(() => {
+        setIsHovered(false);
+    }, [isHovered]);
+
     return (
         <StyledDropdownMultiSelect className={className}>
             <Dropdown
@@ -78,16 +102,9 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
                 isValid={isValid}
                 label={label}
                 name={name}
-                onClick={() => {
-                    setIsSelectOpen(true);
-                    onClick();
-                }}
-                onMouseEnter={() => {
-                    setIsHovered(true);
-                }}
-                onMouseLeave={() => {
-                    setIsHovered(false);
-                }}
+                onClick={onClickCallback}
+                onMouseEnter={onMouseEnterCallback}
+                onMouseLeave={onMouseLeaveCallback}
                 placeholder={placeholder}
                 value={value || placeholder}
                 variant={variant}
@@ -111,10 +128,8 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
                     <DialogFooter
                         buttonCancelText={buttonCancelText}
                         buttonConfirmText={buttonConfirmText}
-                        onConfirm={() => {
-                            setIsSelectOpen(false);
-                            onConfirm();
-                        }}
+                        onCancel={onCancelCallback}
+                        onConfirm={onConfirmCallback}
                     />
                 </ListWrapper>
             )}
@@ -132,6 +147,7 @@ DropdownMultiSelect.defaultProps = {
     isValid: false,
     label: null,
     maxHeight: '',
+    onCancel: null,
     onClick: null,
     optionAll: null,
     placeholder: null,
