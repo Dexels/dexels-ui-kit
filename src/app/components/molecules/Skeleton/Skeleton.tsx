@@ -1,13 +1,18 @@
-import React, { FunctionComponent, useContext } from 'react';
-import SkeletonLoader, { SkeletonProps as SkeletonLoaderProps, SkeletonTheme } from 'react-loading-skeleton';
+import React, { useContext } from 'react';
+import SkeletonLoader, { SkeletonTheme } from 'react-loading-skeleton';
 import { ThemeContext } from 'styled-components';
 
-export interface SkeletonProps extends SkeletonLoaderProps {
+export interface SkeletonProps {
+    circle?: boolean;
     color?: string;
+    count?: number;
+    duration?: number;
+    height?: string | number;
     highlightColor?: string;
+    width?: string | number;
 }
 
-export const Skeleton: FunctionComponent<SkeletonProps> = ({
+export const Skeleton: React.FunctionComponent<SkeletonProps> = ({
     circle,
     color,
     count,
