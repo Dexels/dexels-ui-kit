@@ -90,6 +90,7 @@ export {
     SelectionControlProps,
     SelectionControlType,
 } from '../app/components/molecules/SelectionControl';
+export { Skeleton } from '../app/components/molecules/Skeleton/Skeleton';
 export {
     TextIcon,
     TextIconProps,

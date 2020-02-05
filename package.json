@@ -126,5 +126,8 @@
         "stylelint-config-styled-components": "^0.1.1",
         "stylelint-junit-formatter": "^0.2.2",
         "typescript": "^3.7.5"
+    },
+    "dependencies": {
+        "react-loading-skeleton": "^2.0.1"
     }
 }
