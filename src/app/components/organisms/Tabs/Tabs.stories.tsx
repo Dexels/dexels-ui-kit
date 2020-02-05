@@ -1,6 +1,7 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
+import { Elevation } from '../../../types';
 import React from 'react';
 import Tabs from './Tabs';
 
@@ -14,7 +15,7 @@ const comp = (
 
 export const Configurable = () => (
     <Tabs
-        elevation={select('Elevation', Tabs.elevations, Tabs.defaultProps.elevation)}
+        elevation={select('Elevation', Elevation, Tabs.defaultProps.elevation)}
         hasFullWidthTabHeaders={boolean('Has fullwidth tab headers', Tabs.defaultProps.hasFullWidthTabHeaders)}
         tabs={[{
             content: comp,

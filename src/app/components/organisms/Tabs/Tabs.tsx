@@ -1,4 +1,3 @@
-import { Elevations, ElevationsMap } from '../../../types';
 import React, { useState } from 'react';
 import {
     StyledTabs,
@@ -6,7 +5,7 @@ import {
     TabHeaderList,
     TabPanel,
 } from './Tabs.sc';
-import { ELEVATIONS } from '../../../utils/constants';
+import { Elevation } from '../../../types';
 
 export interface Tab {
     content: React.ReactNode;
@@ -16,21 +15,17 @@ export interface Tab {
 
 export interface TabsProps {
     className?: string;
-    elevation?: Elevations;
+    elevation?: Elevation;
     hasFullWidthTabHeaders?: boolean;
     initiallyActiveTabIndex?: number;
     tabs: Tab[];
-}
-
-interface TabsComponent extends React.FunctionComponent<TabsProps> {
-    elevations: ElevationsMap;
 }
 
 const setInitiallyActiveTabIndex = (tab: Tab) => (
     !tab.isDisabled && tab
 );
 
-export const Tabs: TabsComponent = ({
+export const Tabs: React.FunctionComponent<TabsProps> = ({
     className,
     elevation,
     hasFullWidthTabHeaders,
@@ -67,11 +62,9 @@ export const Tabs: TabsComponent = ({
     );
 };
 
-Tabs.elevations = ELEVATIONS;
-
 Tabs.defaultProps = {
     className: '',
-    elevation: Tabs.elevations.LEVEL_1,
+    elevation: Elevation.LEVEL_1,
     hasFullWidthTabHeaders: true,
     initiallyActiveTabIndex: null,
 };

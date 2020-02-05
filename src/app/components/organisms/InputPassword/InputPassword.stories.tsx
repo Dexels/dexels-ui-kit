@@ -1,6 +1,7 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import InputPassword from './InputPassword';
+import { InputVariant } from '../../../types';
 
 export default { title: 'organisms/InputPassword' };
 
@@ -19,7 +20,7 @@ export const Configurable = () => {
                 setValue(event.currentTarget.value);
             }}
             value={value}
-            variant={select('Variant', InputPassword.variants, InputPassword.defaultProps.variant)}
+            variant={select('Variant', InputVariant, InputPassword.defaultProps.variant)}
         />
     );
 };

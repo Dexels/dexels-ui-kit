@@ -1,3 +1,4 @@
+import { ButtonSize, ButtonVariant, IconType } from '../../../../types';
 import { action } from '@storybook/addon-actions';
 import Button from '../../../molecules/Button/Button';
 import { CellProps } from 'react-table';
@@ -44,14 +45,14 @@ export const getTableRow = (event: any, row: any): any => {
 
 export const renderButton = (row: CellProps<TableData>, isInverted = false) => (
     <Button
-        iconType={Button.iconTypes.SELECT}
+        iconType={IconType.SELECT}
         isInverted={isInverted}
         onClick={(event) => {
             event.stopPropagation();
             action(`On click => ${row.cell.row.index}`);
         }}
-        size={Button.sizes.SMALL}
-        variant={Button.variants.TEXT_ONLY}
+        size={ButtonSize.SMALL}
+        variant={ButtonVariant.TEXT_ONLY}
     >
         {`BUTTON ${row.cell.row.index}`}
     </Button>

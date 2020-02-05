@@ -1,16 +1,15 @@
-import { Alignments } from '../../types';
-import { ALIGNMENTS } from '../../utils/constants';
+import { Alignment } from '../../types';
 import { css } from 'styled-components';
 
-const getTextAlign = (alignment: Alignments) => {
+const getTextAlign = (alignment: Alignment) => {
     switch (alignment) {
-        case ALIGNMENTS.LEFT:
+        case Alignment.LEFT:
             return 'left';
 
-        case ALIGNMENTS.CENTER:
+        case Alignment.CENTER:
             return 'center';
 
-        case ALIGNMENTS.RIGHT:
+        case Alignment.RIGHT:
             return 'right';
 
         default:
@@ -18,15 +17,15 @@ const getTextAlign = (alignment: Alignments) => {
     }
 };
 
-const getAlignContent = (alignment: Alignments) => {
+const getAlignContent = (alignment: Alignment) => {
     switch (alignment) {
-        case ALIGNMENTS.LEFT:
+        case Alignment.LEFT:
             return 'flex-start';
 
-        case ALIGNMENTS.CENTER:
+        case Alignment.CENTER:
             return 'center';
 
-        case ALIGNMENTS.RIGHT:
+        case Alignment.RIGHT:
             return 'flex-end';
 
         default:
@@ -34,7 +33,7 @@ const getAlignContent = (alignment: Alignments) => {
     }
 };
 
-export const getAlignment = (alignment: Alignments, alignText = true) => (css`
+export const getAlignment = (alignment: Alignment, alignText = true) => (css`
     align-content: ${getAlignContent(alignment)};
     justify-content: ${getAlignContent(alignment)};
     text-align: ${alignText && getTextAlign(alignment)};

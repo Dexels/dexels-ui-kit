@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IconTypesMap } from '../../../types';
 import Item from './Item/Item';
 import { MenuItems } from './types';
 import { StyledMenu } from './Menu.sc';
@@ -10,11 +9,7 @@ export interface MenuProps {
     items: MenuItems;
 }
 
-interface MenuComponent extends React.FunctionComponent<MenuProps> {
-    iconTypes: IconTypesMap;
-}
-
-export const Menu: MenuComponent = ({ className, defaultOpenItemPath, items }) => {
+export const Menu: React.FunctionComponent<MenuProps> = ({ className, defaultOpenItemPath, items }) => {
     const [openItemPath, setOpenItemPath] = useState(defaultOpenItemPath);
 
     const handleSetOpenItem = (path: string) => {
@@ -78,8 +73,6 @@ export const Menu: MenuComponent = ({ className, defaultOpenItemPath, items }) =
         </StyledMenu>
     );
 };
-
-Menu.iconTypes = Item.iconTypes;
 
 Menu.defaultProps = {
     className: '',

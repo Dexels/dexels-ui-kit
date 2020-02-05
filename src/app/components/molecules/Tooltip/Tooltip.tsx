@@ -1,10 +1,7 @@
 import {
-    Easings,
-    EasingsMap,
-    Elevations,
-    ElevationsMap,
-    Placements,
-    PlacementsMap,
+    Easing,
+    Elevation,
+    Placement,
 } from '../../../types';
 import React, {
     useCallback,
@@ -13,7 +10,6 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import { TOOLTIP_EASINGS, TOOLTIP_ELEVATIONS, TOOLTIP_POSITIONS } from './Tooltip.consts';
 import { StyledTooltip } from './Tooltip.sc';
 import { ThemeContext } from 'styled-components';
 
@@ -23,9 +19,7 @@ const dataTooltipPosition = 'data-tooltip-position';
 const thresholdVertical = 100;
 const thresholdHorizontal = 150;
 
-const getTooltipPosition = (
-    hoveredItem: DOMRect, tooltipPosition: Placements, tooltipPositions: PlacementsMap,
-): Placements => {
+const getTooltipPosition = (hoveredItem: DOMRect, tooltipPosition: Placement): Placement => {
     const docWidth = document.documentElement.clientWidth;
     const docHeight = document.documentElement.clientHeight;
     const spaceFromBottom = docHeight - hoveredItem.bottom;
@@ -34,56 +28,56 @@ const getTooltipPosition = (
     const spaceFromLeftSide = hoveredItem.left;
     let position = tooltipPosition;
 
-    if (tooltipPosition === tooltipPositions.BOTTOM) {
+    if (tooltipPosition === Placement.BOTTOM) {
         if (spaceFromBottom < thresholdVertical) {
             if (spaceFromTop < thresholdVertical) {
                 if (spaceFromRightSide < thresholdHorizontal) {
-                    position = tooltipPositions.LEFT;
+                    position = Placement.LEFT;
                 } else if (spaceFromLeftSide < thresholdHorizontal) {
-                    position = tooltipPositions.RIGHT;
+                    position = Placement.RIGHT;
                 } else {
-                    position = tooltipPositions.LEFT;
+                    position = Placement.LEFT;
                 }
             } else {
-                position = tooltipPositions.TOP;
+                position = Placement.TOP;
             }
         }
-    } else if (tooltipPosition === tooltipPositions.TOP) {
+    } else if (tooltipPosition === Placement.TOP) {
         if (spaceFromTop < thresholdVertical) {
             if (spaceFromBottom < thresholdVertical) {
                 if (spaceFromRightSide < thresholdHorizontal) {
-                    position = tooltipPositions.LEFT;
+                    position = Placement.LEFT;
                 } else if (spaceFromBottom < thresholdVertical) {
-                    position = tooltipPositions.RIGHT;
+                    position = Placement.RIGHT;
                 } else {
-                    position = tooltipPositions.LEFT;
+                    position = Placement.LEFT;
                 }
             } else {
-                position = tooltipPositions.BOTTOM;
+                position = Placement.BOTTOM;
             }
         }
-    } else if (tooltipPosition === tooltipPositions.RIGHT) {
+    } else if (tooltipPosition === Placement.RIGHT) {
         if (spaceFromRightSide < thresholdHorizontal) {
             if (spaceFromBottom < thresholdVertical) {
                 if (spaceFromTop < thresholdVertical) {
-                    position = tooltipPositions.LEFT;
+                    position = Placement.LEFT;
                 } else {
-                    position = tooltipPositions.TOP;
+                    position = Placement.TOP;
                 }
             } else {
-                position = tooltipPositions.BOTTOM;
+                position = Placement.BOTTOM;
             }
         }
-    } else if (tooltipPosition === tooltipPositions.LEFT) {
+    } else if (tooltipPosition === Placement.LEFT) {
         if (spaceFromLeftSide < thresholdHorizontal) {
             if (spaceFromBottom < thresholdVertical) {
                 if (spaceFromTop < thresholdVertical) {
-                    position = tooltipPositions.RIGHT;
+                    position = Placement.RIGHT;
                 } else {
-                    position = tooltipPositions.TOP;
+                    position = Placement.TOP;
                 }
             } else {
-                position = tooltipPositions.BOTTOM;
+                position = Placement.BOTTOM;
             }
         }
     }
@@ -94,19 +88,13 @@ const getTooltipPosition = (
 export interface TooltipProps {
     className?: string;
     delay?: number;
-    elevation?: Elevations;
-    position?: Placements;
+    elevation?: Elevation;
+    position?: Placement;
     transitionDuration?: number;
-    transitionEasing?: Easings;
+    transitionEasing?: Easing;
 }
 
-interface TooltipComponent extends React.FunctionComponent<TooltipProps> {
-    elevations: ElevationsMap;
-    positions: PlacementsMap;
-    transitionEasings: EasingsMap;
-}
-
-export const Tooltip: TooltipComponent = ({
+export const Tooltip: React.FunctionComponent<TooltipProps> = ({
     className,
     delay,
     elevation,
@@ -124,7 +112,7 @@ export const Tooltip: TooltipComponent = ({
     const tooltipRef = useRef(null);
 
     const showTooltip = (hoveredItem: DOMRect) => {
-        setTooltipPosition(getTooltipPosition(hoveredItem, tooltipPosition, Tooltip.positions));
+        setTooltipPosition(getTooltipPosition(hoveredItem, tooltipPosition));
         setTooltipVisiblity(true);
     };
 
@@ -140,7 +128,7 @@ export const Tooltip: TooltipComponent = ({
         setTooltipDelay(!!element.getAttribute(dataTooltipDelay));
 
         if (element.getAttribute(dataTooltipPosition)) {
-            setTooltipPosition(element.getAttribute(dataTooltipPosition) as Placements);
+            setTooltipPosition(element.getAttribute(dataTooltipPosition) as Placement);
         }
 
         setHoveredElement(element.getBoundingClientRect());
@@ -196,13 +184,13 @@ export const Tooltip: TooltipComponent = ({
     }
 
     if (hoveredElement) {
-        if (tooltipPosition === Tooltip.positions.TOP) {
+        if (tooltipPosition === Placement.TOP) {
             bottom = `${document.documentElement.clientHeight - hoveredElement.top + (spacingValue * 2)}px`;
             left = `${hoveredElement.left + ((hoveredElement.width - tooltipWidth) / 2)}px`;
-        } else if (tooltipPosition === Tooltip.positions.RIGHT) {
+        } else if (tooltipPosition === Placement.RIGHT) {
             top = `${hoveredElement.top + ((hoveredElement.height - tooltipHeight) / 2)}px`;
             left = `${hoveredElement.right + (spacingValue * 2)}px`;
-        } else if (tooltipPosition === Tooltip.positions.BOTTOM) {
+        } else if (tooltipPosition === Placement.BOTTOM) {
             top = `${hoveredElement.bottom + (spacingValue * 2)}px`;
             left = `${hoveredElement.left + ((hoveredElement.width - tooltipWidth) / 2)}px`;
         } else {
@@ -230,17 +218,13 @@ export const Tooltip: TooltipComponent = ({
     );
 };
 
-Tooltip.elevations = TOOLTIP_ELEVATIONS;
-Tooltip.positions = TOOLTIP_POSITIONS;
-Tooltip.transitionEasings = TOOLTIP_EASINGS;
-
 Tooltip.defaultProps = {
     className: '',
     delay: 4000,
-    elevation: Tooltip.elevations.LEVEL_6,
-    position: Tooltip.positions.BOTTOM,
+    elevation: Elevation.LEVEL_6,
+    position: Placement.BOTTOM,
     transitionDuration: 300,
-    transitionEasing: Tooltip.transitionEasings.EASE as Easings,
+    transitionEasing: Easing.EASE,
 };
 
 export default Tooltip;

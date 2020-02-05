@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-import { INPUT_PASSWORD_VARIANTS } from './InputPassword.consts';
-import { InputVariants } from '../../../types';
+import { InputVariant } from '../../../types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -11,7 +10,7 @@ export const StyledInputPassword = styled.div`
 
 interface VisibilitySwitchProps {
     isDisabled: boolean;
-    variant: InputVariants;
+    variant: InputVariant;
 }
 
 export const VisibilitySwitch = styled.button<VisibilitySwitchProps>`
@@ -29,13 +28,13 @@ export const VisibilitySwitch = styled.button<VisibilitySwitchProps>`
         display: block;
     }
 
-    ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.COMPACT && css`
+    ${({ theme, variant }) => variant === InputVariant.COMPACT && css`
         top: 0;
         right: 0;
         padding: ${theme.spacing(0, 0, 0, 1)};
     `}
 
-    ${({ theme, variant }) => variant === INPUT_PASSWORD_VARIANTS.OUTLINE && css`
+    ${({ theme, variant }) => variant === InputVariant.OUTLINE && css`
         top: ${theme.spacing(1)};
         right: ${theme.spacing(1)};
         padding: ${theme.spacing(0.5, 1)};

@@ -1,14 +1,4 @@
-import {
-    DROPDOWN_MULTISELECT_ELEVATIONS,
-    DROPDOWN_MULTISELECT_VARIANTS,
-    DROPDOWN_OPTION_ALL_TEXTS,
-} from './DropdownMultiSelect.consts';
-import {
-    DropdownVariants,
-    DropdownVariantsMap,
-    Elevations,
-    ElevationsMap,
-} from '../../../types';
+import { Dropdown, DropdownVariant } from '../../molecules/Dropdown';
 import {
     List,
     ListItem,
@@ -18,15 +8,14 @@ import {
 } from './DropdownMultiSelect.sc';
 import React, { useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
-import Dropdown from '../../molecules/Dropdown/Dropdown';
-import { DropdownOptionAllTextsMap } from './types';
+import { Elevation } from '../../../types';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 export interface DropdownMultiSelectProps {
     buttonCancelText?: React.ReactNode;
     buttonConfirmText: React.ReactNode;
     className?: string;
-    elevation?: Elevations;
+    elevation?: Elevation;
     errorMessage?: React.ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
@@ -43,16 +32,10 @@ export interface DropdownMultiSelectProps {
     placeholder?: string;
     resetOnOutsideClick?: boolean;
     value: string;
-    variant?: DropdownVariants;
+    variant?: DropdownVariant;
 }
 
-interface DropdownMultiSelectComponent extends React.FunctionComponent<DropdownMultiSelectProps> {
-    elevations: ElevationsMap;
-    optionAllTexts: DropdownOptionAllTextsMap;
-    variants: DropdownVariantsMap;
-}
-
-export const DropdownMultiSelect: DropdownMultiSelectComponent = ({
+export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectProps> = ({
     buttonCancelText,
     buttonConfirmText,
     className,
@@ -114,7 +97,7 @@ export const DropdownMultiSelect: DropdownMultiSelectComponent = ({
             {isSelectOpen && (
                 <ListWrapper elevation={elevation} ref={componentRef}>
                     {optionAll && (
-                        <StaticItem elevation={DropdownMultiSelect.elevations.LEVEL_1}>
+                        <StaticItem elevation={Elevation.LEVEL_1}>
                             {optionAll}
                         </StaticItem>
                     )}
@@ -139,14 +122,10 @@ export const DropdownMultiSelect: DropdownMultiSelectComponent = ({
     );
 };
 
-DropdownMultiSelect.elevations = DROPDOWN_MULTISELECT_ELEVATIONS;
-DropdownMultiSelect.optionAllTexts = DROPDOWN_OPTION_ALL_TEXTS;
-DropdownMultiSelect.variants = DROPDOWN_MULTISELECT_VARIANTS;
-
 DropdownMultiSelect.defaultProps = {
     buttonCancelText: null,
     className: '',
-    elevation: DropdownMultiSelect.elevations.LEVEL_6,
+    elevation: Elevation.LEVEL_6,
     errorMessage: null,
     hasError: false,
     isDisabled: false,
@@ -156,7 +135,7 @@ DropdownMultiSelect.defaultProps = {
     onClick: null,
     optionAll: null,
     placeholder: null,
-    variant: DropdownMultiSelect.variants.COMPACT,
+    variant: DropdownVariant.COMPACT,
 };
 
 export default DropdownMultiSelect;

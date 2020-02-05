@@ -1,14 +1,13 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { BUTTON_ICON_SIZES } from './ButtonIcon.consts';
 import { hexToRgb } from '../../../utils/functions/colorFunctions';
-import { Sizes } from '../../../types';
+import { Size } from '../../../types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledButtonIconProps {
     isDisabled: boolean;
     isInverted: boolean;
-    size: Sizes;
+    size: Size;
 }
 
 export const StyledButtonIcon = styled.button<StyledButtonIconProps>`
@@ -25,19 +24,19 @@ export const StyledButtonIcon = styled.button<StyledButtonIconProps>`
     overflow: hidden;
     color: ${({ isInverted, theme }) => (isInverted ? theme.colorTextContrast.primary : theme.colorText.primary)};
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.SMALL && css`
+    ${({ size }) => size === Size.SMALL && css`
         font-size: 14px;
     `}
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.MEDIUM && css`
+    ${({ size }) => size === Size.MEDIUM && css`
         font-size: 18px;
     `}
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.LARGE && css`
+    ${({ size }) => size === Size.LARGE && css`
         font-size: 20px;
     `}
 
-    ${({ size }) => size === BUTTON_ICON_SIZES.XLARGE && css`
+    ${({ size }) => size === Size.XLARGE && css`
         font-size: 24px;
     `}
 

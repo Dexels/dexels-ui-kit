@@ -1,6 +1,6 @@
 import { CurrentDate, DropdownWrapper, StyledNavigation } from './Navigation.sc';
+import { Dropdown, DropdownVariant } from '../../../molecules/Dropdown';
 import moment, { Moment } from 'moment';
-import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import React from 'react';
 
 interface NavigationProps {
@@ -57,7 +57,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({
                         onMonthSelect(month, e.target.value);
                     }}
                     value={month.month()}
-                    variant={Dropdown.variants.OUTLINE}
+                    variant={DropdownVariant.OUTLINE}
                 >
                     {monthArray}
                 </Dropdown>
@@ -70,7 +70,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({
                         onYearSelect(month, e.target.value);
                     }}
                     value={month.year()}
-                    variant={Dropdown.variants.OUTLINE}
+                    variant={DropdownVariant.OUTLINE}
                 >
                     {yearArray}
                 </Dropdown>

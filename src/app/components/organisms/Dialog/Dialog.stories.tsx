@@ -1,4 +1,11 @@
 import {
+    Alignment,
+    ButtonVariant,
+    Easing,
+    Elevation,
+    IconType,
+} from '../../../types';
+import {
     boolean,
     number,
     select,
@@ -8,7 +15,7 @@ import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import Dialog from './Dialog';
-import { Easings } from '../../../types';
+import { DialogButtonClosePosition } from './types';
 
 export default { title: 'organisms/Dialog' };
 
@@ -26,30 +33,30 @@ const ConfigurableDialog: React.FunctionComponent<ConfigurableDialogProps> = ({
     onConfirm,
 }) => (
     <Dialog
-        bodyAlignment={select('Body alignment', Dialog.bodyAlignments, Dialog.defaultProps.bodyAlignment)}
+        bodyAlignment={select('Body alignment', Alignment, Dialog.defaultProps.bodyAlignment)}
         buttonCancelText={text('ButtonCancel text', 'Cancel')}
         buttonClosePosition={select(
-            'ButtonClose position', Dialog.buttonClosePositions, Dialog.defaultProps.buttonClosePosition,
+            'ButtonClose position', DialogButtonClosePosition, Dialog.defaultProps.buttonClosePosition,
         )}
         buttonConfirmIconType={select(
-            'Icon type confirm button', Dialog.buttonConfirmIconTypes, Dialog.defaultProps.buttonConfirmIconType,
+            'Icon type confirm button', IconType, Dialog.defaultProps.buttonConfirmIconType,
         )}
         buttonConfirmText={text('Button confirm text', 'Ok')}
-        elevation={select('Elevation', Dialog.elevations, Dialog.defaultProps.elevation)}
+        elevation={select('Elevation', Elevation, Dialog.defaultProps.elevation)}
         footerText={text('Text in footer', '')}
         hasButtonClose={boolean('Show close button', Dialog.defaultProps.hasButtonClose)}
         hasOverlay={boolean('Has overlay', Dialog.defaultProps.hasOverlay)}
         header={text('Header', '')}
-        headerAlignment={select('Align header', Dialog.headerAlignments, Dialog.defaultProps.headerAlignment)}
+        headerAlignment={select('Align header', Alignment, Dialog.defaultProps.headerAlignment)}
         height={text('Set height in px or %', Dialog.defaultProps.height)}
         isVisible={isVisible}
         onCancel={onCancel}
         onClose={onClose}
         onConfirm={onConfirm}
         transitionDuration={number('Transition duration', Dialog.defaultProps.transitionDuration)}
-        transitionEasing={select<Easings>(
+        transitionEasing={select(
             'Transition type',
-            Dialog.transitionEasings,
+            Easing,
             Dialog.defaultProps.transitionEasing,
         )}
         width={text('Set width in px or %', Dialog.defaultProps.width)}
@@ -76,7 +83,7 @@ export const ConfigurableAlert = () => {
                 onClick={() => {
                     setIsVisible(true);
                 }}
-                variant={Button.variants.FILLED}
+                variant={ButtonVariant.FILLED}
             >
                 {isVisible ? 'DIALOG IS SHOWING' : 'SHOW DIALOG'}
             </Button>

@@ -2,13 +2,14 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import Card from './Card';
+import { Elevation } from '../../../types';
 import React from 'react';
 
 export default { title: 'atoms/Card' };
 
 export const Configurable = () => (
     <Card
-        elevation={select('Elevation', Card.elevations, Card.defaultProps.elevation)}
+        elevation={select('Elevation', Elevation, Card.defaultProps.elevation)}
         hasBorderRadius={boolean('Has border radius', Card.defaultProps.hasBorderRadius)}
     >
         {text('Text', 'Configure me!')}
@@ -17,7 +18,7 @@ export const Configurable = () => (
 
 export const ConfigurableWithComponent = () => (
     <Card
-        elevation={select('Elevation', Card.elevations, Card.defaultProps.elevation)}
+        elevation={select('Elevation', Elevation, Card.defaultProps.elevation)}
         hasBorderRadius={boolean('Has border radius', Card.defaultProps.hasBorderRadius)}
     >
         <Button

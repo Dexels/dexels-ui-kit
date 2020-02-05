@@ -1,6 +1,7 @@
 import { boolean, text } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import Dropdown from './Dropdown';
+import { DropdownVariant } from './types';
 
 export default { title: 'molecules/Dropdown' };
 
@@ -66,7 +67,7 @@ export const ConfigurableOutlineVariant = () => {
                 }}
                 placeholder={placeholder}
                 value={value}
-                variant={Dropdown.variants.OUTLINE}
+                variant={DropdownVariant.OUTLINE}
             >
                 {optionArray}
             </Dropdown>

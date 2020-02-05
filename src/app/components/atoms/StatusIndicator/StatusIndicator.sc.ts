@@ -1,6 +1,7 @@
 import {
-    Placements,
-    Statuses,
+    Placement,
+    Status,
+    StatusIndicatorSize,
 } from '../../../types';
 import styled, { css } from 'styled-components';
 import getStatusColor from '../../../styles/mixins/getStatusColor';
@@ -9,9 +10,9 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledStatusIndicatorProps {
     background?: string;
-    placement: Placements;
-    size?: 'LARGE' | 'SMALL';
-    status: Statuses;
+    placement: Placement;
+    size?: StatusIndicatorSize;
+    status: Status;
 }
 
 export const StyledStatusIndicator = styled.div<StyledStatusIndicatorProps>`

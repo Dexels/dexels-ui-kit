@@ -1,9 +1,4 @@
-import {
-    Elevations,
-    ElevationsMap,
-    IconTypes,
-    IconTypesMap,
-} from '../../../types';
+import { Elevation, IconType } from '../../../types';
 import {
     Header,
     IconWrapper,
@@ -13,26 +8,20 @@ import {
     StyledCardNoResults,
     Title,
 } from './CardNoResults.sc';
-import Card from '../../atoms/Card/Card';
 import Icon from '../../atoms/Icon/Icon';
 import React from 'react';
 
 export interface CardNoResultsProps {
     className?: string;
-    elevation?: Elevations;
+    elevation?: Elevation;
     header: React.ReactNode;
-    iconType: IconTypes;
+    iconType: IconType;
     itemPrefix?: string;
     items?: React.ReactNode[];
     title: React.ReactNode;
 }
 
-interface CardNoResultsComponent extends React.FunctionComponent<CardNoResultsProps> {
-    elevations: ElevationsMap;
-    iconTypes: IconTypesMap;
-}
-
-export const CardNoResults: CardNoResultsComponent = ({
+export const CardNoResults: React.FunctionComponent<CardNoResultsProps> = ({
     className,
     elevation,
     header,
@@ -63,12 +52,9 @@ export const CardNoResults: CardNoResultsComponent = ({
     </StyledCardNoResults>
 );
 
-CardNoResults.elevations = Card.elevations;
-CardNoResults.iconTypes = Icon.types;
-
 CardNoResults.defaultProps = {
     className: '',
-    elevation: CardNoResults.elevations.LEVEL_1,
+    elevation: Elevation.LEVEL_1,
     itemPrefix: '-',
     items: null,
 };

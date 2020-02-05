@@ -12,7 +12,8 @@ import { data, Options } from './mockup/data';
 import React, { useState } from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
 import DropdownMultiSelect from './DropdownMultiSelect';
-import { DropdownVariants } from '../../../types';
+import { DropdownOptionAllTexts } from './types';
+import { DropdownVariant } from '../../molecules/Dropdown';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 
 export default { title: 'organisms/DropdownMultiSelect' };
@@ -29,27 +30,27 @@ const getSelectAllOption = (options: Options, textOptionDeselectAll: string, tex
     if (allSelected) {
         return {
             text: textOptionDeselectAll,
-            value: DropdownMultiSelect.optionAllTexts.ON,
+            value: DropdownOptionAllTexts.ON,
         };
     }
 
     if (hasSelected) {
         return {
             text: textOptionDeselectAll,
-            value: DropdownMultiSelect.optionAllTexts.INDETERMINATE,
+            value: DropdownOptionAllTexts.INDETERMINATE,
         };
     }
 
     return {
         text: textOptionSelectAll,
-        value: DropdownMultiSelect.optionAllTexts.OFF,
+        value: DropdownOptionAllTexts.OFF,
     };
 };
 
 const BaseComponent = (
     options: Options,
     originalOptions: Options,
-    variant: DropdownVariants = DropdownMultiSelect.variants.COMPACT,
+    variant: DropdownVariant = DropdownVariant.COMPACT,
     maxHeight = '',
     label = '',
 ) => {
@@ -108,8 +109,8 @@ const BaseComponent = (
                 }}
                 optionAll={(
                     <SelectionControl
-                        isChecked={selectAllOption.value === DropdownMultiSelect.optionAllTexts.ON}
-                        isIndeterminate={selectAllOption.value === DropdownMultiSelect.optionAllTexts.INDETERMINATE}
+                        isChecked={selectAllOption.value === DropdownOptionAllTexts.ON}
+                        isIndeterminate={selectAllOption.value === DropdownOptionAllTexts.INDETERMINATE}
                         label={selectAllOption.text}
                         name="DROPDOWN_MULTISELECT_OPTION_ALL"
                         onChange={onChangeAll}
@@ -164,7 +165,7 @@ export const ConfigurableOutlineVariant = () => (
     BaseComponent(
         data,
         originalOptionValues,
-        DropdownMultiSelect.variants.OUTLINE as DropdownVariants,
+        DropdownVariant.OUTLINE,
         '150px',
         'What are the best fruits?',
     )

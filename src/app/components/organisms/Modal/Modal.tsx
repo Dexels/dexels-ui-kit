@@ -3,9 +3,8 @@ import {
     HeaderWrapper,
     StyledModal,
 } from './Modal.sc';
-import { Easings, EasingsMap } from '../../../types';
+import { Easing } from '../../../types';
 import Header from '../Header/Header';
-import { MODAL_EASINGS } from './Modal.consts';
 import Overlay from '../../molecules/Overlay/Overlay';
 import React from 'react';
 
@@ -17,14 +16,10 @@ export interface ModalProps {
     options?: React.ReactNode;
     title: React.ReactNode;
     transitionDuration?: number;
-    transitionEasing?: Easings;
+    transitionEasing?: Easing;
 }
 
-interface ModalComponent extends React.FunctionComponent<ModalProps> {
-    transitionEasings: EasingsMap;
-}
-
-export const Modal: ModalComponent = ({
+export const Modal: React.FunctionComponent<ModalProps> = ({
     children,
     className,
     isVisible,
@@ -54,14 +49,12 @@ export const Modal: ModalComponent = ({
     </>
 );
 
-Modal.transitionEasings = MODAL_EASINGS;
-
 Modal.defaultProps = {
     className: '',
     onBack: null,
     options: null,
     transitionDuration: 500,
-    transitionEasing: Modal.transitionEasings.EASE as Easings,
+    transitionEasing: Easing.EASE,
 };
 
 export default Modal;

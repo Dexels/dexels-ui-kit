@@ -1,22 +1,15 @@
-import { IconTypes, IconTypesMap } from '../../../types';
-import { ICON_TYPES } from './Icon.consts';
+import { IconType } from '../../../types';
 import React from 'react';
 
 export interface IconProps {
     children?: never;
     className?: string;
-    type: IconTypes;
+    type: IconType;
 }
 
-interface IconComponent extends React.FunctionComponent<IconProps> {
-    types: IconTypesMap;
-}
-
-export const Icon: IconComponent = ({ className, type }) => (
+export const Icon: React.FunctionComponent<IconProps> = ({ className, type }) => (
     <span className={`${className} ICON-${type}`} />
 );
-
-Icon.types = ICON_TYPES;
 
 Icon.defaultProps = {
     className: '',

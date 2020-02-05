@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-import { DROPDOWN_VARIANTS } from './Dropdown.consts';
-import { DropdownVariants } from '../../../types';
+import { DropdownVariant } from './types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -10,7 +9,7 @@ interface StyledDropdownProps {
     isDisabled: boolean;
     isFocused: boolean;
     isValid: boolean;
-    variant: DropdownVariants;
+    variant: DropdownVariant;
 }
 
 export const StyledDropdown = styled.div<StyledDropdownProps>`
@@ -24,7 +23,7 @@ export const StyledDropdown = styled.div<StyledDropdownProps>`
         isValid,
         theme,
         variant,
-    }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
+    }) => variant === DropdownVariant.COMPACT && css`
         &::after {
             display: block;
             height: 1px;
@@ -56,6 +55,7 @@ StyledDropdown.defaultProps = {
 interface SelectProps extends StyledDropdownProps {
     isHovered: boolean;
     isPlaceholderSelected: boolean;
+    variant: DropdownVariant;
 }
 
 export const Select = styled.select<SelectProps>`
@@ -69,7 +69,7 @@ export const Select = styled.select<SelectProps>`
     width: 100%;
     color: ${({ theme }) => theme.colorTextBody.primary};
 
-    ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
+    ${({ theme, variant }) => variant === DropdownVariant.COMPACT && css`
         border: 0;
         border-bottom: 1px solid ${theme.colorText.primary};
         border-radius: 0;
@@ -78,7 +78,7 @@ export const Select = styled.select<SelectProps>`
         line-height: ${theme.spacing(3.5)};
     `}
 
-    ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.OUTLINE && css`
+    ${({ theme, variant }) => variant === DropdownVariant.OUTLINE && css`
         border: 1px solid ${theme.colorText.primary};
         border-radius: ${theme.spacing(1)};
         padding: ${theme.spacing(0, 4.5, 0, 1.5)};
@@ -117,6 +117,7 @@ Select.defaultProps = {
 
 interface IconWrapperProps extends StyledDropdownProps {
     isHovered: boolean;
+    variant: DropdownVariant;
 }
 
 export const IconWrapper = styled.div<IconWrapperProps>`
@@ -129,12 +130,12 @@ export const IconWrapper = styled.div<IconWrapperProps>`
         display: block;
     }
 
-    ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.COMPACT && css`
+    ${({ theme, variant }) => variant === DropdownVariant.COMPACT && css`
         top: ${theme.spacing(0.25)};
         right: 0;
     `}
 
-    ${({ theme, variant }) => variant === DROPDOWN_VARIANTS.OUTLINE && css`
+    ${({ theme, variant }) => variant === DropdownVariant.OUTLINE && css`
         top: ${theme.spacing(1.5)};
         right: ${theme.spacing(1.5)};
     `}

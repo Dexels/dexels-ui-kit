@@ -6,7 +6,7 @@ import {
 } from './Shortcuts.sc';
 import React, { ReactNode } from 'react';
 import Chip from '../../../../molecules/Chip/Chip';
-import { ICON_TYPES } from '../../../../atoms/Icon/Icon.consts';
+import { IconType } from '../../../../../types';
 
 export interface Shortcut {
     onClick: React.MouseEventHandler;
@@ -28,7 +28,7 @@ export const Shortcuts: React.FunctionComponent<ShortCutsProps> = ({ shortcuts, 
         <Wrapper>
             {shortcuts.map(({ onClick, text: shortcutText }, index) => (
                 <ButtonWrapper key={typeof shortcutText === 'string' ? shortcutText : index}>
-                    <Chip iconType={ICON_TYPES.SELECT} onClick={onClick}>
+                    <Chip iconType={IconType.SELECT} onClick={onClick}>
                         {shortcutText}
                     </Chip>
                 </ButtonWrapper>

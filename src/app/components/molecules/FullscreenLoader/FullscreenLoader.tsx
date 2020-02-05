@@ -1,5 +1,4 @@
-import { FullscreenLoaderTypes, FullscreenLoaderTypesMap } from './types';
-import { FULLSCREEN_LOADER_TYPES } from './FullscreenLoader.consts';
+import { FullscreenLoaderType } from './types';
 import { LoaderCircles } from './LoaderCircles.sc';
 import { LoaderWrapper } from './FullscreenLoader.sc';
 import React from 'react';
@@ -17,17 +16,13 @@ const constructLoaderCircle = (amount: number) => {
 export interface FullscreenLoaderProps {
     amount?: number;
     className?: string;
-    type?: FullscreenLoaderTypes;
-}
-
-interface FullscreenLoaderComponent extends React.FunctionComponent<FullscreenLoaderProps> {
-    types: FullscreenLoaderTypesMap;
+    type?: FullscreenLoaderType;
 }
 
 // @TODO: Add other loaders
-export const FullscreenLoader: FullscreenLoaderComponent = ({ amount, className, type }) => {
+export const FullscreenLoader: React.FunctionComponent<FullscreenLoaderProps> = ({ amount, className, type }) => {
     switch (type) {
-        case FULLSCREEN_LOADER_TYPES.CIRCLES:
+        case FullscreenLoaderType.CIRCLES:
             return (
                 <LoaderWrapper className={className}>
                     {constructLoaderCircle(amount)}
@@ -43,12 +38,10 @@ export const FullscreenLoader: FullscreenLoaderComponent = ({ amount, className,
     }
 };
 
-FullscreenLoader.types = FULLSCREEN_LOADER_TYPES;
-
 FullscreenLoader.defaultProps = {
     amount: 5,
     className: '',
-    type: FullscreenLoader.types.CIRCLES,
+    type: FullscreenLoaderType.CIRCLES,
 };
 
 export default FullscreenLoader;

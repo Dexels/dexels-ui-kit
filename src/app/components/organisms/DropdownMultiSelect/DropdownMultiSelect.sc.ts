@@ -1,6 +1,6 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { Elevations } from '../../../types';
+import { Elevation } from '../../../types';
 import getElevation from '../../../styles/mixins/getElevation';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -11,7 +11,7 @@ export const StyledDropdownMultiSelect = styled.div`
 `;
 
 interface ListWrapperProps {
-    elevation: Elevations;
+    elevation: Elevation;
 }
 
 export const ListWrapper = styled.div<ListWrapperProps>`
@@ -29,7 +29,7 @@ ListWrapper.defaultProps = {
 };
 
 interface StaticItemProps {
-    elevation: Elevations;
+    elevation: Elevation;
 }
 
 export const StaticItem = styled.div<StaticItemProps>`

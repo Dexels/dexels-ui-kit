@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -18,11 +18,12 @@
     ],
     "scripts": {
         "start": "npm run storybook",
-        "build:prod": "npm run clean && cross-env BABEL_ENV=prod rollup --config config/rollup.config.js && npm run generateTypes",
+        "build:prod": "npm run clean && cross-env BABEL_ENV=prod rollup --config config/rollup.config.js && npm run generate:types",
         "check-types": "tsc",
         "dist": "npm run build:prod",
         "dist:analyze": "npm run build:prod -- --environment analyze",
-        "generateTypes": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json",
+        "generate:types": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json",
+        "generate:iconTypes": "node ./scripts/generateIconTypes.js",
         "lint:css": "stylelint \"src/**/*.sc.ts\"",
         "lint:js": "eslint \"src\" --ext \".js,.ts,.tsx\"",
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",

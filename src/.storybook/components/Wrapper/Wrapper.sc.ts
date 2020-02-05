@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { StyledWrapperProps, WRAPPER_WIDTHS } from './types';
+import { StyledWrapperProps, WrapperWidth } from './types';
 import { themeBasic } from '../../../app/styles/theming/themes/basic';
 
 export const StyledWrapper = styled.div<StyledWrapperProps>`
@@ -9,17 +9,17 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
     min-height: 100vh;
 
     ${({ width }) => css`
-        ${width === WRAPPER_WIDTHS.SMALL && css`
+        ${width === WrapperWidth.SMALL && css`
             padding-right: 25%;
             padding-left: 25%;
         `}
 
-        ${width === WRAPPER_WIDTHS.MEDIUM && css`
+        ${width === WrapperWidth.MEDIUM && css`
             padding-right: 15%;
             padding-left: 15%;
         `}
 
-        ${width === WRAPPER_WIDTHS.LARGE && css`
+        ${width === WrapperWidth.LARGE && css`
             padding-right: 5%;
             padding-left: 5%;
         `}

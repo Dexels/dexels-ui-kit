@@ -1,4 +1,4 @@
-import { Easings, Elevations } from '../../../types';
+import { Easing, Elevation } from '../../../types';
 import getElevation from '../../../styles/mixins/getElevation';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
@@ -7,13 +7,13 @@ import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 interface StyledTooltipProps {
     bottom: string;
-    elevation: Elevations;
+    elevation: Elevation;
     isVisible: boolean;
     left: string;
     right: string;
     top: string;
     transitionDuration: number;
-    transitionEasing: Easings;
+    transitionEasing: Easing;
 }
 
 export const StyledTooltip = styled.span<StyledTooltipProps>`

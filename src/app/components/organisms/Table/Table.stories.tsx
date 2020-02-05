@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
 import { createTable } from './mockup/createTable';
+import { Elevation } from '../../../types';
 import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
@@ -75,7 +76,7 @@ export const Configurable = () => {
                 <Table
                     caption={text('Table caption', 'Table caption')}
                     debug={boolean('Show table debug info', Table.defaultProps.debug)}
-                    elevation={select('Elevation', Table.elevations, Table.defaultProps.elevation)}
+                    elevation={select('Elevation', Elevation, Table.defaultProps.elevation)}
                     footerComponent={isFooterVisible && (
                         <tr style={{
                             backgroundColor: 'yellow',

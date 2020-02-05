@@ -1,6 +1,5 @@
-import { Directions, Sizes } from '../../../types';
+import { Direction, IconSize } from '../../../types';
 import styled, { css } from 'styled-components';
-import { TEXT_WITH_OPTIONAL_ICON_DIRECTIONS, TEXT_WITH_OPTIONAL_ICON_SIZES } from './TextWithOptionalIcon.consts';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import setTruncate from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -27,7 +26,7 @@ export const Text = styled.p<TextProps>`
 `;
 
 interface IconWrapperProps {
-    size: Sizes;
+    size: IconSize;
 }
 
 export const IconWrapper = styled.div<IconWrapperProps>`
@@ -39,15 +38,15 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     }
 
     ${({ size }) => css`
-        ${size === TEXT_WITH_OPTIONAL_ICON_SIZES.SMALL && css`
+        ${size === IconSize.SMALL && css`
             font-size: 18px;
         `}
 
-        ${size === TEXT_WITH_OPTIONAL_ICON_SIZES.MEDIUM && css`
+        ${size === IconSize.MEDIUM && css`
             font-size: 20px;
         `}
 
-        ${size === TEXT_WITH_OPTIONAL_ICON_SIZES.LARGE && css`
+        ${size === IconSize.LARGE && css`
             font-size: 24px;
         `}
     `}
@@ -58,7 +57,7 @@ IconWrapper.defaultProps = {
 };
 
 interface StyledTextWithOptionalIconProps {
-    direction: Directions;
+    direction: Direction;
 }
 
 export const StyledTextWithOptionalIcon = styled.div<StyledTextWithOptionalIconProps>`
@@ -67,7 +66,7 @@ export const StyledTextWithOptionalIcon = styled.div<StyledTextWithOptionalIconP
     align-items: center;
     justify-content: center;
 
-    ${({ direction, theme }) => direction === TEXT_WITH_OPTIONAL_ICON_DIRECTIONS.RTL && css`
+    ${({ direction, theme }) => direction === Direction.RTL && css`
         ${Text} {
             order: 1;
         }

@@ -1,6 +1,7 @@
 import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import DialogFooter from './DialogFooter';
+import { IconType } from '../../../types';
 import React from 'react';
 
 export default { title: 'molecules/DialogFooter' };
@@ -10,7 +11,7 @@ export const Configurable = () => (
         buttonCancelText={text('Button cancel text', 'Cancel')}
         buttonConfirmIconType={select(
             'Icon type confirm button',
-            DialogFooter.buttonConfirmIconTypes,
+            IconType,
             DialogFooter.defaultProps.buttonConfirmIconType,
         )}
         buttonConfirmText={text('Button confirm text', 'Ok')}

@@ -1,25 +1,24 @@
 import { css } from 'styled-components';
-import { Positions } from '../../types';
-import { POSITIONS } from '../../utils/constants';
+import { Position } from '../../types';
 
-const getHorizontalPosition = (position: Positions) => {
+const getHorizontalPosition = (position: Position) => {
     switch (position) {
-        case POSITIONS.TOP_RIGHT:
+        case Position.TOP_RIGHT:
             return 'flex-end';
 
-        case POSITIONS.MIDDLE_RIGHT:
+        case Position.MIDDLE_RIGHT:
             return 'flex-end';
 
-        case POSITIONS.BOTTOM_RIGHT:
+        case Position.BOTTOM_RIGHT:
             return 'flex-end';
 
-        case POSITIONS.TOP_CENTER:
+        case Position.TOP_CENTER:
             return 'center';
 
-        case POSITIONS.MIDDLE_CENTER:
+        case Position.MIDDLE_CENTER:
             return 'center';
 
-        case POSITIONS.BOTTOM_CENTER:
+        case Position.BOTTOM_CENTER:
             return 'center';
 
         default:
@@ -27,24 +26,24 @@ const getHorizontalPosition = (position: Positions) => {
     }
 };
 
-const getVerticalPosition = (position: Positions) => {
+const getVerticalPosition = (position: Position) => {
     switch (position) {
-        case POSITIONS.BOTTOM_LEFT:
+        case Position.BOTTOM_LEFT:
             return 'flex-end';
 
-        case POSITIONS.BOTTOM_CENTER:
+        case Position.BOTTOM_CENTER:
             return 'flex-end';
 
-        case POSITIONS.BOTTOM_RIGHT:
+        case Position.BOTTOM_RIGHT:
             return 'flex-end';
 
-        case POSITIONS.MIDDLE_LEFT:
+        case Position.MIDDLE_LEFT:
             return 'center';
 
-        case POSITIONS.MIDDLE_CENTER:
+        case Position.MIDDLE_CENTER:
             return 'center';
 
-        case POSITIONS.MIDDLE_RIGHT:
+        case Position.MIDDLE_RIGHT:
             return 'center';
 
         default:
@@ -52,7 +51,7 @@ const getVerticalPosition = (position: Positions) => {
     }
 };
 
-export const getPosition = (position: Positions) => (css`
+export const getPosition = (position: Position) => (css`
     align-items: ${getVerticalPosition(position)};
     justify-content: ${getHorizontalPosition(position)};
 `);

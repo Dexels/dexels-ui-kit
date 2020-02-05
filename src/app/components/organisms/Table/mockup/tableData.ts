@@ -1,9 +1,7 @@
 import moment, { Moment } from 'moment';
-import { MATCH_TASK_STATUSES } from '../StatusCell/StatusCell.consts';
 import { MatchTaskStatuses } from '../StatusCell/types';
 import React from 'react';
-import { STATUS_INDICATOR_STATUSES } from '../../../atoms/StatusIndicator/StatusIndicator.consts';
-import { Statuses } from '../../../../types';
+import { Status } from '../../../../types';
 
 export interface TableData {
     companyName: string;
@@ -13,7 +11,7 @@ export interface TableData {
     lastName: string;
     matchTaskStatus: MatchTaskStatuses;
     relationStart: Moment;
-    status: Statuses;
+    status: Status;
 }
 
 const makeTableData = (amount = 15) => {
@@ -26,9 +24,9 @@ const makeTableData = (amount = 15) => {
             infix: undefined,
             info: undefined,
             lastName: `Lastname ${i}`,
-            matchTaskStatus: MATCH_TASK_STATUSES.NO_FIELD,
+            matchTaskStatus: MatchTaskStatuses.NO_FIELD,
             relationStart: moment(),
-            status: STATUS_INDICATOR_STATUSES.VALID,
+            status: Status.VALID,
         });
     }
 
@@ -44,9 +42,9 @@ export function tableData() {
         infix: undefined,
         info: 66,
         lastName: 'Versteeg',
-        matchTaskStatus: MATCH_TASK_STATUSES.NO_FIELD,
+        matchTaskStatus: MatchTaskStatuses.NO_FIELD,
         relationStart: moment(),
-        status: STATUS_INDICATOR_STATUSES.INVALID,
+        status: Status.INVALID,
     });
 
     result.push({
@@ -55,9 +53,9 @@ export function tableData() {
         infix: 'een net iets te lange infix',
         info: 66,
         lastName: 'Achternaam met best veel tekens in de naam',
-        matchTaskStatus: MATCH_TASK_STATUSES.NO_FIELD,
+        matchTaskStatus: MatchTaskStatuses.NO_FIELD,
         relationStart: moment(),
-        status: STATUS_INDICATOR_STATUSES.INVALID,
+        status: Status.INVALID,
     });
 
     result.push({
@@ -66,9 +64,9 @@ export function tableData() {
         infix: undefined,
         info: 66,
         lastName: 'Versteeg',
-        matchTaskStatus: MATCH_TASK_STATUSES.NO_FIELD,
+        matchTaskStatus: MatchTaskStatuses.NO_FIELD,
         relationStart: moment(),
-        status: STATUS_INDICATOR_STATUSES.INVALID,
+        status: Status.INVALID,
     });
 
     result.push({
@@ -77,9 +75,9 @@ export function tableData() {
         infix: null,
         info: 45,
         lastName: 'Papadaki',
-        matchTaskStatus: MATCH_TASK_STATUSES.NO_DRESSINGROOMS,
+        matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
         relationStart: undefined,
-        status: STATUS_INDICATOR_STATUSES.ALERT,
+        status: Status.ALERT,
     });
 
     result.push({
@@ -88,9 +86,9 @@ export function tableData() {
         infix: 'de',
         info: 30,
         lastName: 'Lusenet',
-        matchTaskStatus: MATCH_TASK_STATUSES.NONE,
+        matchTaskStatus: MatchTaskStatuses.NONE,
         relationStart: moment('2019-10-01'),
-        status: STATUS_INDICATOR_STATUSES.VALID,
+        status: Status.VALID,
     });
 
     result.push({
@@ -99,9 +97,9 @@ export function tableData() {
         infix: undefined,
         info: 1,
         lastName: 'Lastname 1',
-        matchTaskStatus: MATCH_TASK_STATUSES.NO_OFFICIALS,
+        matchTaskStatus: MatchTaskStatuses.NO_OFFICIALS,
         relationStart: moment('2018-10-01'),
-        status: STATUS_INDICATOR_STATUSES.INVALID,
+        status: Status.INVALID,
     });
 
     result.push({
@@ -110,9 +108,9 @@ export function tableData() {
         infix: undefined,
         info: null,
         lastName: 'Lastname 2',
-        matchTaskStatus: MATCH_TASK_STATUSES.NO_DRESSINGROOMS,
+        matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
         relationStart: moment(),
-        status: STATUS_INDICATOR_STATUSES.DEFAULT,
+        status: Status.DEFAULT,
     });
 
     result.push({
@@ -121,9 +119,9 @@ export function tableData() {
         infix: undefined,
         info: 90,
         lastName: 'Lastname 3',
-        matchTaskStatus: MATCH_TASK_STATUSES.NONE,
+        matchTaskStatus: MatchTaskStatuses.NONE,
         relationStart: moment('2019-10-02'),
-        status: STATUS_INDICATOR_STATUSES.DISABLED,
+        status: Status.DISABLED,
     });
 
     result.push({
@@ -132,9 +130,9 @@ export function tableData() {
         infix: undefined,
         info: 120,
         lastName: 'Lastname 4',
-        matchTaskStatus: MATCH_TASK_STATUSES.NONE,
+        matchTaskStatus: MatchTaskStatuses.NONE,
         relationStart: moment('2012-10-01'),
-        status: STATUS_INDICATOR_STATUSES.NONE,
+        status: Status.NONE,
     });
 
     result.push({
@@ -143,9 +141,9 @@ export function tableData() {
         infix: undefined,
         info: undefined,
         lastName: 'Lastname 5',
-        matchTaskStatus: MATCH_TASK_STATUSES.NO_FIELD,
+        matchTaskStatus: MatchTaskStatuses.NO_FIELD,
         relationStart: moment('2020-01-01'),
-        status: STATUS_INDICATOR_STATUSES.VALID,
+        status: Status.VALID,
     });
 
     return React.useMemo(() => result, []);

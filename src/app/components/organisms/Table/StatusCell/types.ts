@@ -1,4 +1,7 @@
-export type MatchTaskStatuses = 'NO_DRESSINGROOMS' | 'NO_FIELD' | 'NO_OFFICIALS' | 'NONE' | 'SCHEDULED';
-export type MatchTaskStatusesMap = {
-    [Status in MatchTaskStatuses]: Status;
+export enum MatchTaskStatuses {
+    NONE = 'NONE',
+    NO_DRESSINGROOMS = 'NO_DRESSINGROOMS',
+    NO_FIELD = 'NO_FIELD',
+    NO_OFFICIALS = 'NO_OFFICIALS',
+    SCHEDULED = 'SCHEDULED',
 }

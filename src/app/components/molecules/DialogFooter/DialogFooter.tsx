@@ -4,13 +4,13 @@ import {
     StyledDialogFooter,
     Text,
 } from './DialogFooter.sc';
-import { IconTypes, IconTypesMap } from '../../../types';
+import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import Button from '../Button/Button';
 import React from 'react';
 
 export interface DialogFooterProps {
     buttonCancelText?: React.ReactNode;
-    buttonConfirmIconType?: IconTypes;
+    buttonConfirmIconType?: IconType;
     buttonConfirmText?: React.ReactNode;
     className?: string;
     onCancel?: React.MouseEventHandler;
@@ -18,11 +18,7 @@ export interface DialogFooterProps {
     text?: React.ReactNode;
 }
 
-interface DialogFooterComponent extends React.FunctionComponent<DialogFooterProps> {
-    buttonConfirmIconTypes: IconTypesMap;
-}
-
-export const DialogFooter: DialogFooterComponent = ({
+export const DialogFooter: React.FunctionComponent<DialogFooterProps> = ({
     buttonCancelText,
     buttonConfirmIconType,
     buttonConfirmText,
@@ -41,10 +37,10 @@ export const DialogFooter: DialogFooterComponent = ({
             {buttonCancelText && onCancel && (
                 <ButtonWrapper>
                     <Button
-                        iconType={Button.iconTypes.CROSS}
+                        iconType={IconType.CROSS}
                         onClick={onCancel}
-                        size={Button.sizes.SMALL}
-                        variant={Button.variants.TEXT_ONLY}
+                        size={ButtonSize.SMALL}
+                        variant={ButtonVariant.TEXT_ONLY}
                     >
                         {buttonCancelText}
                     </Button>
@@ -55,8 +51,8 @@ export const DialogFooter: DialogFooterComponent = ({
                     autoFocus
                     iconType={buttonConfirmIconType}
                     onClick={onConfirm}
-                    size={Button.sizes.SMALL}
-                    variant={Button.variants.OUTLINE}
+                    size={ButtonSize.SMALL}
+                    variant={ButtonVariant.OUTLINE}
                 >
                     {buttonConfirmText}
                 </Button>
@@ -65,11 +61,9 @@ export const DialogFooter: DialogFooterComponent = ({
     </StyledDialogFooter>
 );
 
-DialogFooter.buttonConfirmIconTypes = Button.iconTypes;
-
 DialogFooter.defaultProps = {
     buttonCancelText: null,
-    buttonConfirmIconType: DialogFooter.buttonConfirmIconTypes.CHECK,
+    buttonConfirmIconType: IconType.CHECK,
     buttonConfirmText: null,
     className: '',
     onCancel: null,

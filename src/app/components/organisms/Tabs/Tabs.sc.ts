@@ -1,11 +1,11 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
-import { Elevations } from '../../../types';
+import { Elevation } from '../../../types';
 import getElevation from '../../../styles/mixins/getElevation';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledTabsProps {
-    elevation: Elevations;
+    elevation: Elevation;
 }
 
 export const StyledTabs = styled.div<StyledTabsProps>`

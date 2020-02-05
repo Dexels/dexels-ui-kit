@@ -1,4 +1,4 @@
-import { Easings } from '../../../types';
+import { Easing } from '../../../types';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
 import styled from 'styled-components';
@@ -7,7 +7,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 interface StyledModalProps {
     isVisible: boolean;
     transitionDuration: number;
-    transitionEasing: Easings;
+    transitionEasing: Easing;
 }
 
 export const StyledModal = styled.div<StyledModalProps>`

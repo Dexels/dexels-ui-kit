@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
-import { Elevations } from '../../../types';
+import { Elevation } from '../../../types';
 import getElevation from '../../../styles/mixins/getElevation';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export interface StyledCardProps {
-    elevation?: Elevations;
+    elevation?: Elevation;
     hasBorderRadius?: boolean;
 }
 

@@ -1,4 +1,5 @@
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
+import { IconType } from '../../../../types';
 import React from 'react';
 import { StyledButtonNavigation } from './ButtonNavigation.sc';
 
@@ -9,7 +10,7 @@ interface ButtonNavigationProps {
 
 const ButtonNavigation: React.FunctionComponent<ButtonNavigationProps> = ({ isNext, isPrev }) => (
     <StyledButtonNavigation isNext={isNext} isPrev={isPrev}>
-        <ButtonIcon iconType={ButtonIcon.iconTypes.CHEVRONLEFT} />
+        <ButtonIcon iconType={IconType.CHEVRONLEFT} />
     </StyledButtonNavigation>
 );
 

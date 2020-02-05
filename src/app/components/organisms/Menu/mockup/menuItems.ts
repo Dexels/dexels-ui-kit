@@ -1,23 +1,23 @@
-import { ICON_TYPES } from '../../../atoms/Icon/Icon.consts';
+import { IconType } from '../../../../types';
 import { MenuItems } from '../types';
 
 export const menuItems: MenuItems = [
     {
         children: [],
         exact: true,
-        iconType: ICON_TYPES.WORLD,
+        iconType: IconType.WORLD,
         path: '/',
         text: 'Home',
     },
     {
         children: [],
-        iconType: ICON_TYPES.SHIRT,
+        iconType: IconType.SHIRT,
         path: '/toernooi',
         text: 'Toernooi met een extreem lange titel',
     },
     {
         children: [],
-        iconType: ICON_TYPES.SHIELD,
+        iconType: IconType.SHIELD,
         isDisabled: true,
         path: '/club',
         text: 'Club',
@@ -34,7 +34,7 @@ export const menuItems: MenuItems = [
                 text: 'Velden',
             },
         ],
-        iconType: ICON_TYPES.MATCHOWN,
+        iconType: IconType.MATCHOWN,
         path: '/wedstrijden',
         text: 'Wedstrijden',
     },
@@ -49,7 +49,7 @@ export const menuItems: MenuItems = [
                 text: 'Officials',
             },
         ],
-        iconType: ICON_TYPES.LIGHTBULB,
+        iconType: IconType.LIGHTBULB,
         path: '/competitie',
         text: 'Competitie',
     },

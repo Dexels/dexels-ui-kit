@@ -1,4 +1,5 @@
-export type ChipStatusVariants = 'DESELECTED' | 'INDETERMINATE' | 'SELECTED';
-export type ChipStatusVariantsMap = {
-    [Variant in ChipStatusVariants]: Variant;
+export enum ChipStatusVariant {
+    DESELECTED = 'DESELECTED',
+    INDETERMINATE = 'INDETERMINATE',
+    SELECTED = 'SELECTED',
 }

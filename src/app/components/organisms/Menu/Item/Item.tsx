@@ -1,4 +1,4 @@
-import { IconTypes, IconTypesMap } from '../../../../types';
+import { IconSize, IconType } from '../../../../types';
 import {
     IconWrapper,
     Inner,
@@ -13,7 +13,7 @@ import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWi
 interface ItemsProps {
     exact?: boolean;
     hasChildren?: boolean;
-    iconType?: IconTypes;
+    iconType?: IconType;
     isDisabled?: boolean;
     isOpen?: boolean;
     isParent?: boolean;
@@ -21,11 +21,7 @@ interface ItemsProps {
     path?: string;
 }
 
-interface ItemComponent<P> extends React.FunctionComponent<P> {
-    iconTypes: IconTypesMap;
-}
-
-const Item: ItemComponent<ItemsProps> = ({
+const Item: React.FunctionComponent<ItemsProps> = ({
     children,
     exact,
     hasChildren,
@@ -49,7 +45,7 @@ const Item: ItemComponent<ItemsProps> = ({
         >
             <TextWrapper>
                 <TextWithOptionalIcon
-                    iconSize={TextWithOptionalIcon.iconSizes.MEDIUM}
+                    iconSize={IconSize.MEDIUM}
                     iconType={iconType}
                     isTruncatable
                 >
@@ -58,14 +54,12 @@ const Item: ItemComponent<ItemsProps> = ({
             </TextWrapper>
             {hasChildren && (
                 <IconWrapper>
-                    <Icon type={isOpen ? Icon.types.CHEVRONUP : Icon.types.CHEVRONDOWN} />
+                    <Icon type={isOpen ? IconType.CHEVRONUP : IconType.CHEVRONDOWN} />
                 </IconWrapper>
             )}
         </Inner>
     </StyledItem>
 );
-
-Item.iconTypes = TextWithOptionalIcon.iconTypes;
 
 Item.defaultProps = {
     exact: false,

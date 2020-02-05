@@ -1,4 +1,4 @@
-import { Elevations, ElevationsMap } from '../../../types';
+import { Elevation, IconType } from '../../../types';
 import {
     FunctionalWrapper,
     NavigationWrapper,
@@ -6,26 +6,20 @@ import {
     Title,
 } from './Header.sc';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
-import { ELEVATIONS } from '../../../utils/constants';
-import Icon from '../../atoms/Icon/Icon';
 import React from 'react';
 import Toolbar from '../Toolbar/Toolbar';
 
 export interface HeaderProps {
     children?: React.ReactNode;
     className?: string;
-    elevation?: Elevations;
+    elevation?: Elevation;
     isInverted?: boolean;
     onBack?: React.MouseEventHandler;
     onToggleMenu?: React.MouseEventHandler;
     title: React.ReactNode;
 }
 
-interface HeaderComponent extends React.FunctionComponent<HeaderProps> {
-    elevations: ElevationsMap;
-}
-
-export const Header: HeaderComponent = ({
+export const Header: React.FunctionComponent<HeaderProps> = ({
     children,
     className,
     elevation,
@@ -38,10 +32,10 @@ export const Header: HeaderComponent = ({
         {(onBack || onToggleMenu) && (
             <NavigationWrapper>
                 {onToggleMenu && (
-                    <ButtonIcon iconType={Icon.types.MENU} isInverted={!isInverted} onClick={onToggleMenu} />
+                    <ButtonIcon iconType={IconType.MENU} isInverted={!isInverted} onClick={onToggleMenu} />
                 )}
                 {onBack && (
-                    <ButtonIcon iconType={Icon.types.CHEVRONLEFT} isInverted={!isInverted} onClick={onBack} />
+                    <ButtonIcon iconType={IconType.CHEVRONLEFT} isInverted={!isInverted} onClick={onBack} />
                 )}
             </NavigationWrapper>
         )}
@@ -56,12 +50,10 @@ export const Header: HeaderComponent = ({
     </StyledHeader>
 );
 
-Header.elevations = ELEVATIONS;
-
 Header.defaultProps = {
     children: null,
     className: '',
-    elevation: Header.elevations.LEVEL_1,
+    elevation: Elevation.LEVEL_1,
     isInverted: false,
     onBack: null,
     onToggleMenu: null,

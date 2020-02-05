@@ -1,6 +1,7 @@
 import { colorKeys } from '../../../styles/theming/colorKeys';
 import getColorsFromTheme from '../../../styles/theming/getColorsFromTheme';
 import Icon from './Icon';
+import { IconType } from '../../../types';
 import React from 'react';
 import { select } from '@storybook/addon-knobs';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -30,7 +31,7 @@ export const Configurable = () => {
                     '24px'),
             }}
         >
-            <Icon type={select('Type', Icon.types, Icon.types.CALENDAR)} />
+            <Icon type={select('Type', IconType, IconType.CALENDAR)} />
         </div>
     );
 };

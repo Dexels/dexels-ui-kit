@@ -4,9 +4,14 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
+import {
+    Direction,
+    Easing,
+    IconSize,
+    IconType,
+} from '../../../types';
 import { action } from '@storybook/addon-actions';
 import Chip from './Chip';
-import { Easings } from '../../../types';
 import React from 'react';
 
 export default { title: 'molecules/Chip' };
@@ -17,8 +22,8 @@ export const Configurable = () => (
         isSelected={boolean('Is selected', Chip.defaultProps.isSelected)}
         onClick={action('On click')}
         transitionDuration={number('Transition duration', Chip.defaultProps.transitionDuration)}
-        transitionEasing={select<Easings>(
-            'Transition type', Chip.transitionEasings, Chip.defaultProps.transitionEasing,
+        transitionEasing={select(
+            'Transition type', Easing, Chip.defaultProps.transitionEasing,
         )}
     >
         {text('Text', 'Configure me!')}
@@ -30,8 +35,8 @@ export const ConfigurableWithoutOnClick = () => (
         isDisabled={boolean('Is disabled', Chip.defaultProps.isDisabled)}
         isSelected={boolean('Is selected', Chip.defaultProps.isSelected)}
         transitionDuration={number('Transition duration', Chip.defaultProps.transitionDuration)}
-        transitionEasing={select<Easings>(
-            'Transition type', Chip.transitionEasings, Chip.defaultProps.transitionEasing,
+        transitionEasing={select(
+            'Transition type', Easing, Chip.defaultProps.transitionEasing,
         )}
     >
         {text('Text', 'Configure me!')}
@@ -40,15 +45,15 @@ export const ConfigurableWithoutOnClick = () => (
 
 export const ConfigurableWithIcon = () => (
     <Chip
-        direction={select('Direction', Chip.directions, Chip.defaultProps.direction)}
-        iconSize={select('Icon size', Chip.iconSizes, Chip.defaultProps.iconSize)}
-        iconType={select('Type', Chip.iconTypes, Chip.iconTypes.CHECK)}
+        direction={select('Direction', Direction, Chip.defaultProps.direction)}
+        iconSize={select('Icon size', IconSize, Chip.defaultProps.iconSize)}
+        iconType={select('Type', IconType, IconType.CHECK)}
         isDisabled={boolean('Is disabled', Chip.defaultProps.isDisabled)}
         isSelected={boolean('Is selected', Chip.defaultProps.isSelected)}
         onClick={action('On click')}
         transitionDuration={number('Transition duration', Chip.defaultProps.transitionDuration)}
-        transitionEasing={select<Easings>(
-            'Transition type', Chip.transitionEasings, Chip.defaultProps.transitionEasing,
+        transitionEasing={select(
+            'Transition type', Easing, Chip.defaultProps.transitionEasing,
         )}
     >
         {text('Text', 'Configure me!')}

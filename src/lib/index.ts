@@ -58,7 +58,8 @@ export {
 export {
     Dropdown,
     DropdownProps,
-} from '../app/components/molecules/Dropdown/Dropdown';
+    DropdownVariant,
+} from '../app/components/molecules/Dropdown';
 export {
     FormElementLabel,
     FormElementLabelProps,
@@ -66,7 +67,8 @@ export {
 export {
     FullscreenLoader,
     FullscreenLoaderProps,
-} from '../app/components/molecules/FullscreenLoader/FullscreenLoader';
+    FullscreenLoaderType,
+} from '../app/components/molecules/FullscreenLoader';
 export {
     Input,
     InputProps,
@@ -86,7 +88,8 @@ export {
 export {
     SelectionControl,
     SelectionControlProps,
-} from '../app/components/molecules/SelectionControl/SelectionControl';
+    SelectionControlType,
+} from '../app/components/molecules/SelectionControl';
 export {
     TextIcon,
     TextIconProps,
@@ -104,19 +107,22 @@ export {
 export {
     ChipStatus,
     ChipStatusProps,
-} from '../app/components/organisms/ChipStatus/ChipStatus';
+    ChipStatusVariant,
+} from '../app/components/organisms/ChipStatus';
 export {
     DateRangePicker,
     DateRangePickerProps,
 } from '../app/components/organisms/DatePicker/DateRangePicker/DateRangePicker';
 export {
     Dialog,
+    DialogButtonClosePosition,
     DialogProps,
-} from '../app/components/organisms/Dialog/Dialog';
+} from '../app/components/organisms/Dialog';
 export {
     DropdownMultiSelect,
     DropdownMultiSelectProps,
-} from '../app/components/organisms/DropdownMultiSelect/DropdownMultiSelect';
+    DropdownOptionAllTexts,
+} from '../app/components/organisms/DropdownMultiSelect';
 export {
     Header,
     HeaderProps,

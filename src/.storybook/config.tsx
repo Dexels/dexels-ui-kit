@@ -15,7 +15,7 @@ import { themeDark } from '../app/styles/theming/themes/dark';
 import { withInfo } from '@storybook/addon-info';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import Wrapper from './components/Wrapper/Wrapper';
-import { WRAPPER_WIDTHS } from './components/Wrapper/types';
+import { WrapperWidth } from './components/Wrapper/types';
 
 // Set Moment locale to Dutch
 moment.locale('nl');
@@ -28,7 +28,7 @@ addDecorator(withKnobs);
 addDecorator((storyFn) => (
     <Wrapper
         isTransparent={boolean('Wrapper is transparent', false)}
-        width={select<WRAPPER_WIDTHS>('Wrapper width', Object.values(WRAPPER_WIDTHS), WRAPPER_WIDTHS.LARGE)}
+        width={select<WrapperWidth>('Wrapper width', WrapperWidth, WrapperWidth.LARGE)}
     >
         {storyFn()}
     </Wrapper>

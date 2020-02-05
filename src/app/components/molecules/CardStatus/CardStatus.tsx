@@ -1,11 +1,7 @@
-import { CARD_STATUS_PLACEMENTS, CARD_STATUS_STATUSES } from './CardStatus.consts';
 import {
-    Elevations,
-    ElevationsMap,
-    Placements,
-    PlacementsMap,
-    Statuses,
-    StatusesMap,
+    Elevation,
+    Placement,
+    Status,
 } from '../../../types';
 import Card from '../../atoms/Card/Card';
 import React from 'react';
@@ -14,19 +10,13 @@ import { StyledCardStatus } from './CardStatus.sc';
 export interface CardStatusProps {
     children: React.ReactNode;
     className?: string;
-    elevation?: Elevations;
+    elevation?: Elevation;
     hasBorderRadius?: boolean;
-    placement?: Placements;
-    status?: Statuses;
+    placement?: Placement;
+    status?: Status;
 }
 
-interface CardStatusComponent extends React.FunctionComponent<CardStatusProps> {
-    elevations: ElevationsMap;
-    placements: PlacementsMap;
-    statuses: StatusesMap;
-}
-
-export const CardStatus: CardStatusComponent = ({
+export const CardStatus: React.FunctionComponent<CardStatusProps> = ({
     children,
     className,
     elevation,
@@ -45,16 +35,12 @@ export const CardStatus: CardStatusComponent = ({
     </StyledCardStatus>
 );
 
-CardStatus.elevations = Card.elevations;
-CardStatus.placements = CARD_STATUS_PLACEMENTS;
-CardStatus.statuses = CARD_STATUS_STATUSES;
-
 CardStatus.defaultProps = {
     className: '',
     elevation: Card.defaultProps.elevation,
     hasBorderRadius: false,
-    placement: CardStatus.placements.TOP,
-    status: CardStatus.statuses.DEFAULT,
+    placement: Placement.TOP,
+    status: Status.DEFAULT,
 };
 
 export default CardStatus;

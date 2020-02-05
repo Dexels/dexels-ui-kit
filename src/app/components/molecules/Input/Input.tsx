@@ -1,13 +1,5 @@
 import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
-import { INPUT_TYPES, INPUT_VARIANTS } from './Input.consts';
-import {
-    InputTypes,
-    InputTypesMap,
-} from './types';
-import {
-    InputVariants,
-    InputVariantsMap,
-} from '../../../types';
+import { InputType, InputVariant } from '../../../types';
 import React, { useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
@@ -23,19 +15,14 @@ export interface InputProps {
     name: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-    type?: InputTypes;
+    type?: InputType;
     value?: string;
-    variant?: InputVariants;
+    variant?: InputVariant;
     /* eslint-disable-next-line typescript-sort-keys/interface */
     [key: string]: any;
 }
 
-interface InputComponent extends React.FunctionComponent<InputProps> {
-    types: InputTypesMap;
-    variants: InputVariantsMap;
-}
-
-export const Input: InputComponent = ({
+export const Input: React.FunctionComponent<InputProps> = ({
     className,
     errorMessage,
     hasError,
@@ -116,9 +103,6 @@ export const Input: InputComponent = ({
     );
 };
 
-Input.types = INPUT_TYPES;
-Input.variants = INPUT_VARIANTS;
-
 Input.defaultProps = {
     className: '',
     errorMessage: null,
@@ -127,9 +111,9 @@ Input.defaultProps = {
     isTextarea: false,
     isValid: false,
     onKeyDown: null,
-    type: Input.types.TEXT,
+    type: InputType.TEXT,
     value: '',
-    variant: Input.variants.OUTLINE,
+    variant: InputVariant.OUTLINE,
 };
 
 export default Input;

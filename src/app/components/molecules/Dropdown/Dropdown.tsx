@@ -1,4 +1,3 @@
-import { DropdownVariants, DropdownVariantsMap } from '../../../types';
 import {
     ErrorMessageWrapper,
     IconWrapper,
@@ -6,10 +5,11 @@ import {
     StyledDropdown,
 } from './Dropdown.sc';
 import React, { useState } from 'react';
-import { DROPDOWN_VARIANTS } from './Dropdown.consts';
+import { DropdownVariant } from './types';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import Icon from '../../atoms/Icon/Icon';
+import { IconType } from '../../../types';
 
 export interface DropdownProps {
     as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
@@ -27,16 +27,12 @@ export interface DropdownProps {
     onClick?: (...args: any[]) => any;
     placeholder?: string;
     value: number | string;
-    variant?: DropdownVariants;
+    variant?: DropdownVariant;
     /* eslint-disable-next-line typescript-sort-keys/interface */
     [key: string]: any;
 }
 
-interface DropdownComponent extends React.FunctionComponent<DropdownProps> {
-    variants: DropdownVariantsMap;
-}
-
-export const Dropdown: DropdownComponent = ({
+export const Dropdown: React.FunctionComponent<DropdownProps> = ({
     as,
     children,
     className,
@@ -123,7 +119,7 @@ export const Dropdown: DropdownComponent = ({
                     isValid={isValid}
                     variant={variant}
                 >
-                    <Icon type={Icon.types.DROPDOWN} />
+                    <Icon type={IconType.DROPDOWN} />
                 </IconWrapper>
             </StyledDropdown>
             {errorMessage && hasError && !isDisabled && (
@@ -136,8 +132,6 @@ export const Dropdown: DropdownComponent = ({
         </>
     );
 };
-
-Dropdown.variants = DROPDOWN_VARIANTS;
 
 Dropdown.defaultProps = {
     as: 'select',
@@ -152,7 +146,7 @@ Dropdown.defaultProps = {
     onChange: null,
     onClick: null,
     placeholder: null,
-    variant: Dropdown.variants.COMPACT,
+    variant: DropdownVariant.COMPACT,
 };
 
 export default Dropdown;

@@ -1,50 +1,38 @@
-import { CHIP_STATUS_DIRECTIONS, CHIP_STATUS_ICON_TYPES, CHIP_STATUS_VARIANTS } from './ChipStatus.consts';
-import { ChipStatusVariants, ChipStatusVariantsMap } from './types';
-import {
-    Directions,
-    DirectionsMap,
-    IconTypes,
-    IconTypesMap,
-} from '../../../types';
+import { Direction, IconType } from '../../../types';
 import Chip from '../../molecules/Chip/Chip';
+import { ChipStatusVariant } from './types';
 import React from 'react';
 
 export interface ChipStatusProps {
     children: React.ReactNode;
     className?: string;
-    direction?: Directions;
+    direction?: Direction;
     isDisabled?: boolean;
     onClick?: React.MouseEventHandler;
-    variant?: ChipStatusVariants;
+    variant?: ChipStatusVariant;
 }
 
-interface ChipStatusComponent extends React.FunctionComponent<ChipStatusProps> {
-    directions: DirectionsMap;
-    iconTypes: IconTypesMap;
-    variants: ChipStatusVariantsMap;
-}
-
-const getIconType = (variant: ChipStatusVariants): IconTypes | null => {
+const getIconType = (variant: ChipStatusVariant): IconType | null => {
     switch (variant) {
-        case CHIP_STATUS_VARIANTS.SELECTED:
-            return CHIP_STATUS_ICON_TYPES.CHECK;
+        case ChipStatusVariant.SELECTED:
+            return IconType.CHECK;
 
-        case CHIP_STATUS_VARIANTS.DESELECTED:
+        case ChipStatusVariant.DESELECTED:
             return null;
 
-        case CHIP_STATUS_VARIANTS.INDETERMINATE:
-            return CHIP_STATUS_ICON_TYPES.MINUS;
+        case ChipStatusVariant.INDETERMINATE:
+            return IconType.MINUS;
 
         default:
             return null;
     }
 };
 
-const isSelected = (variant: ChipStatusVariants) => (
-    variant === CHIP_STATUS_VARIANTS.SELECTED
+const isSelected = (variant: ChipStatusVariant) => (
+    variant === ChipStatusVariant.SELECTED
 );
 
-export const ChipStatus: ChipStatusComponent = ({
+export const ChipStatus: React.FunctionComponent<ChipStatusProps> = ({
     children,
     className,
     direction,
@@ -64,16 +52,12 @@ export const ChipStatus: ChipStatusComponent = ({
     </Chip>
 );
 
-ChipStatus.directions = CHIP_STATUS_DIRECTIONS;
-ChipStatus.iconTypes = CHIP_STATUS_ICON_TYPES;
-ChipStatus.variants = CHIP_STATUS_VARIANTS;
-
 ChipStatus.defaultProps = {
     className: '',
-    direction: ChipStatus.directions.LTR,
+    direction: Direction.LTR,
     isDisabled: false,
     onClick: null,
-    variant: ChipStatus.variants.SELECTED,
+    variant: ChipStatusVariant.SELECTED,
 };
 
 export default ChipStatus;

@@ -1,24 +1,23 @@
-import { Statuses, Theme } from '../../types';
-import { STATUSES } from '../../utils/constants';
+import { Status, Theme } from '../../types';
 
-export const getStatusColor = (status: Statuses, theme: Theme) => {
+export const getStatusColor = (status: Status, theme: Theme) => {
     switch (status) {
-        case STATUSES.NONE:
+        case Status.NONE:
             return theme.shades.six;
 
-        case STATUSES.DEFAULT:
+        case Status.DEFAULT:
             return theme.colorPrimary;
 
-        case STATUSES.DISABLED:
+        case Status.DISABLED:
             return theme.colorDisabled;
 
-        case STATUSES.INVALID:
+        case Status.INVALID:
             return theme.colorInvalid;
 
-        case STATUSES.VALID:
+        case Status.VALID:
             return theme.colorValid;
 
-        case STATUSES.ALERT:
+        case Status.ALERT:
             return theme.colorAlert;
 
         default:

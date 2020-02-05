@@ -1,11 +1,11 @@
-import { Elevations } from '../../../types';
+import { Elevation } from '../../../types';
 import getElevation from '../../../styles/mixins/getElevation';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledCardNoResultsProps {
-    elevation: Elevations;
+    elevation: Elevation;
 }
 
 export const StyledCardNoResults = styled.div<StyledCardNoResultsProps>`
