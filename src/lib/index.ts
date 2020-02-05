@@ -91,6 +91,10 @@ export {
     SelectionControlType,
 } from '../app/components/molecules/SelectionControl';
 export {
+    Skeleton,
+    SkeletonProps,
+} from '../app/components/molecules/Skeleton/Skeleton';
+export {
     TextIcon,
     TextIconProps,
 } from '../app/components/molecules/TextIcon/TextIcon';
