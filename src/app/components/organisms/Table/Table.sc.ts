@@ -118,6 +118,7 @@ export const TableCell = styled.td<TableCellProps>`
     padding: ${({ hasCellPadding, theme }) => theme.spacing(hasCellPadding ? 0.5 : 0)};
     height: ${({ theme }) => theme.spacing(6)};
     color: ${({ theme }) => theme.colorText.primary};
+    vertical-align: middle;
 
     &::after {
         position: absolute;
