@@ -48,6 +48,7 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
     label,
     maxHeight,
     name,
+    onCancel,
     onClick,
     onConfirm,
     optionAll,
@@ -111,6 +112,10 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
                     <DialogFooter
                         buttonCancelText={buttonCancelText}
                         buttonConfirmText={buttonConfirmText}
+                        onCancel={() => {
+                            setIsSelectOpen(false);
+                            onCancel();
+                        }}
                         onConfirm={() => {
                             setIsSelectOpen(false);
                             onConfirm();
@@ -132,6 +137,7 @@ DropdownMultiSelect.defaultProps = {
     isValid: false,
     label: null,
     maxHeight: '',
+    onCancel: null,
     onClick: null,
     optionAll: null,
     placeholder: null,
