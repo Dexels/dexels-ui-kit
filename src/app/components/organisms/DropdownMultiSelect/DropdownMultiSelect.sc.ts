@@ -62,7 +62,7 @@ interface ListProps {
 }
 
 export const List = styled.ul<ListProps>`
-    margin: 0;
+    margin: ${({ theme }) => theme.spacing(1, 0)};
     background-color: ${({ theme }) => theme.card.backgroundColor};
     padding: ${({ theme }) => theme.spacing(0)};
     overflow: auto;
