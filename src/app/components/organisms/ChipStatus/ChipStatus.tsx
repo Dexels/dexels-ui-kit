@@ -12,6 +12,7 @@ export interface ChipStatusProps {
     variant?: ChipStatusVariant;
 }
 
+// Leaving the switch, because this might change in the (near) future
 const getIconType = (variant: ChipStatusVariant): IconType | null => {
     switch (variant) {
         case ChipStatusVariant.SELECTED:
@@ -21,7 +22,7 @@ const getIconType = (variant: ChipStatusVariant): IconType | null => {
             return null;
 
         case ChipStatusVariant.INDETERMINATE:
-            return IconType.MINUS;
+            return null;
 
         default:
             return null;
