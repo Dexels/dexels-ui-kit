@@ -48,7 +48,6 @@ export const DialogFooter: React.FunctionComponent<DialogFooterProps> = ({
             )}
             {buttonConfirmText && onConfirm && (
                 <Button
-                    autoFocus
                     iconType={buttonConfirmIconType}
                     onClick={onConfirm}
                     size={ButtonSize.SMALL}
