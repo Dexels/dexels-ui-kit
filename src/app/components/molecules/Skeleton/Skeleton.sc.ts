@@ -3,7 +3,7 @@ import styled from 'styled-components';
 interface StyledSkeletonProps {
     color?: string;
     highlightColor?: string;
-};
+}
 
 export const StyledSkeleton = styled.span<StyledSkeletonProps>`
     .react-loading-skeleton {

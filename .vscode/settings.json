@@ -1,7 +1,7 @@
 {
     "eslint.enable": true,
     "eslint.options": {
-        "configFile": "./config/.eslintrc.js",
+        "configFile": "./.eslintrc.js",
     },
     "files.associations": {
         "*.js": "javascriptreact",
