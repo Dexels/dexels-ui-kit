@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import SkeletonLoader, { SkeletonTheme } from 'react-loading-skeleton';
-import { ThemeContext } from 'styled-components';
+import React from 'react';
+import SkeletonLoader from 'react-loading-skeleton';
+import { StyledSkeleton } from './Skeleton.sc';
 
 export interface SkeletonProps {
     circle?: boolean;
@@ -20,21 +20,17 @@ export const Skeleton: React.FunctionComponent<SkeletonProps> = ({
     height,
     highlightColor,
     width,
-}) => {
-    const theme = useContext(ThemeContext);
-
-    return (
-        <SkeletonTheme color={color || theme.shades.seven} highlightColor={highlightColor || theme.shades.nine}>
-            <SkeletonLoader
-                circle={circle}
-                count={count}
-                duration={duration}
-                height={height}
-                width={width}
-            />
-        </SkeletonTheme>
-    );
-};
+}) => (
+    <StyledSkeleton color={color} highlightColor={highlightColor}>
+        <SkeletonLoader
+            circle={circle}
+            count={count}
+            duration={duration}
+            height={height}
+            width={width}
+        />
+    </StyledSkeleton>
+);
 
 Skeleton.defaultProps = {
     circle: false,
