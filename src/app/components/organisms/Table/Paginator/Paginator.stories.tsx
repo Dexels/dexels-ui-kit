@@ -9,6 +9,7 @@ import Paginator from './Paginator';
 import SelectionControl from '../../../molecules/SelectionControl/SelectionControl';
 import { tableColumns } from '../mockup/tableColumns';
 import { tableData } from '../mockup/tableData';
+import { TableInstance } from '../types';
 
 export default { title: 'organisms/Table/Paginator' };
 
@@ -37,7 +38,7 @@ export const Configurable = () => {
                     'Has page size selector',
                     Paginator.defaultProps.hasPageSizeSelector,
                 )}
-                instance={instance as any}
+                instance={instance as unknown as TableInstance}
                 pageSizes={array('Page sizes', ['5', '10', '20', '50'])}
                 texts={{
                     page: localizedTexts.page,

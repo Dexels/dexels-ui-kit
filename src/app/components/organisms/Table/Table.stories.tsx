@@ -13,6 +13,7 @@ import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
+import { TableInstance } from './types';
 
 export default {
     parameters: {
@@ -102,12 +103,12 @@ export const Configurable = () => {
                         </tr>
                     )}
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', Table.defaultProps.hasUnsortedStateIcon)}
-                    instance={instance}
+                    instance={instance as unknown as TableInstance}
                     isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
                     onClickRow={getTableRow}
                     pagingComponent={(
                         <Paginator
-                            instance={instance as any}
+                            instance={instance as unknown as TableInstance}
                             texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
                         />
                     )}

@@ -17,6 +17,7 @@ import {
 import { Elevation } from '../../../types';
 import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
+import { TableInstance } from './types';
 
 export interface TableProps {
     caption?: React.ReactNode;
@@ -25,12 +26,7 @@ export interface TableProps {
     elevation?: Elevation;
     footerComponent?: React.ReactNode;
     hasUnsortedStateIcon?: boolean;
-    instance: {
-        getTableBodyProps: (...args: any[]) => any;
-        getTableProps: (...args: any[]) => any;
-        headerGroups: any[];
-        prepareRow: (...args: any[]) => any;
-    };
+    instance: TableInstance;
     isFullWidth?: boolean;
     onClickRow?: (...args: any[]) => any;
     pagingComponent?: React.ReactNode;
@@ -39,7 +35,7 @@ export interface TableProps {
     };
 }
 
-const dataSource = (instance: any, hasPaging: boolean) => (hasPaging ? instance.page : instance.rows);
+const dataSource = (instance: TableInstance, hasPaging: boolean) => (hasPaging ? instance.page : instance.rows);
 
 export const Table: React.FunctionComponent<TableProps> = ({
     caption,
