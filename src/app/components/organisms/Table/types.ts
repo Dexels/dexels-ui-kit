@@ -1,3 +1,6 @@
+import { Row } from 'react-table';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface TableInstance {
     canNextPage: boolean;
     canPreviousPage: boolean;
@@ -6,7 +9,7 @@ export interface TableInstance {
     gotoPage: (...args: any[]) => any;
     headerGroups: any[];
     nextPage: (...args: any[]) => any;
-    page: [];
+    page: Row[];
     pageCount: number;
     prepareRow: (...args: any[]) => any;
     previousPage: (...args: any[]) => any;
