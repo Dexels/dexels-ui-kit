@@ -78,20 +78,23 @@ export const Table: React.FunctionComponent<TableProps> = ({
                     {headerGroups.map((headerGroup) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column: any) => (
-                                <TableHeaderCell
-                                    hasCellPadding={column.hasCellPadding}
-                                    key={column}
-                                    {...column.getHeaderProps(column.getSortByToggleProps({
-                                        title: column.canSort
-                                            ? `${texts.toggleSortTooltip} ${column.render('Header')}`
-                                            : '',
-                                    }))}
-                                >
-                                    {column.render('Header')}
-                                    <IconWrapper isSorted={column.isSorted}>
-                                        {renderSortIcon(column, hasUnsortedStateIcon)}
-                                    </IconWrapper>
-                                </TableHeaderCell>
+                                <>
+                                    {console.log(column, column.getSortByToggleProps())}
+                                    <TableHeaderCell
+                                        hasCellPadding={column.hasCellPadding}
+                                        key={column}
+                                        {...column.getHeaderProps(column.getSortByToggleProps({
+                                            title: column.canSort
+                                                ? `${texts.toggleSortTooltip} ${column.render('Header')}`
+                                                : '',
+                                        }))}
+                                    >
+                                        {column.render('Header')}
+                                        <IconWrapper isSorted={column.isSorted}>
+                                            {renderSortIcon(column, hasUnsortedStateIcon)}
+                                        </IconWrapper>
+                                    </TableHeaderCell>
+                                </>
                             ))}
                         </TableHeaderRow>
                     ))}
