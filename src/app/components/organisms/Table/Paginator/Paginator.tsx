@@ -17,6 +17,7 @@ import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
 import React from 'react';
+import { TableInstance } from 'react-table';
 
 export interface PaginatorTexts {
     page: React.ReactNode;
@@ -38,8 +39,6 @@ export interface PaginatorProps {
         gotoPage: (...args: any[]) => any;
         nextPage: (...args: any[]) => any;
         pageCount: number;
-        pageIndex: number;
-        pageSize: number;
         previousPage: (...args: any[]) => any;
         rows: object[];
         setPageSize: (...args: any[]) => any;
@@ -50,10 +49,10 @@ export interface PaginatorProps {
 }
 
 const pagingResultsText = (
-    instance: any,
+    instance: TableInstance,
     texts: PaginatorTexts,
 ) => {
-    const { pageIndex, pageSize } = instance.state;
+    const { state: { pageIndex, pageSize } } = instance;
     const rowCount = instance.rows.length || 0;
     let result = '';
     let start = -1;
@@ -74,8 +73,8 @@ const pagingResultsText = (
     return `${result} ${texts.resultsOf} ${rowCount}`;
 };
 
-const pagingText = (instance: any, texts: PaginatorTexts) => {
-    const { pageIndex, pageSize } = instance.state;
+const pagingText = (instance: TableInstance, texts: PaginatorTexts) => {
+    const { state: { pageIndex, pageSize } } = instance;
     const pageCount = instance.rows.length / pageSize;
 
     return `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`;
