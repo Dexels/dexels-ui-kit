@@ -14,7 +14,8 @@ export default { title: 'organisms/Table/Paginator' };
 
 export const Configurable = () => {
     const [isNL, setIsNL] = useState(true);
-    const instance = createTable(tableColumns(), tableData());
+    const initialState = { pageIndex: 0 };
+    const instance = createTable(tableColumns(), tableData(), initialState);
     const localizedTexts = createLocalizedPagingTexts(isNL ? 'nl' : 'en');
 
     return (

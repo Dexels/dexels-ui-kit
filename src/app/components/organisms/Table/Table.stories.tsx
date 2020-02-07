@@ -32,6 +32,18 @@ export const Configurable = () => {
     const instance = createTable<TableData>(
         hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(data),
         data,
+        {
+            sortBy: [
+                {
+                    desc: false,
+                    id: 'lastName',
+                },
+                {
+                    desc: false,
+                    id: 'firstName',
+                },
+            ],
+        },
         disableSorting,
     );
 

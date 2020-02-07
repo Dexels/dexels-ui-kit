@@ -10,6 +10,7 @@ import {
 export const createTable = <T extends object>(
     columns: Column<T>[],
     data: T[],
+    initialState: object,
     disableMultiSort = false,
     disableSorting = false,
     // orderByFn = customSortByCaseInsensitive,
@@ -20,19 +21,7 @@ export const createTable = <T extends object>(
             data,
             disableMultiSort,
             disableSorting,
-            initialState: {
-                pageIndex: 0,
-                sortBy: [
-                    {
-                        desc: false,
-                        id: 'lastName',
-                    },
-                    {
-                        desc: false,
-                        id: 'firstName',
-                    },
-                ],
-            },
+            initialState,
             // orderByFn,
         },
         useSortBy,

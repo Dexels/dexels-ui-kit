@@ -49,7 +49,12 @@ export interface PaginatorProps {
     useResultsOfText?: boolean;
 }
 
-const pagingResultsText = (pageIndex: number, pageSize: number, rowCount: number, texts: PaginatorTexts) => {
+const pagingResultsText = (
+    instance: any,
+    texts: PaginatorTexts,
+) => {
+    const { pageIndex, pageSize } = instance.state;
+    const rowCount = instance.rows.length || 0;
     let result = '';
     let start = -1;
     let end = -1;
@@ -69,9 +74,12 @@ const pagingResultsText = (pageIndex: number, pageSize: number, rowCount: number
     return `${result} ${texts.resultsOf} ${rowCount}`;
 };
 
-const pagingText = (pageIndex: number, pageCount: number, texts: PaginatorTexts) => (
-    `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`
-);
+const pagingText = (instance: any, texts: PaginatorTexts) => {
+    const { pageIndex, pageSize } = instance.state;
+    const pageCount = instance.rows.length / pageSize;
+
+    return `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`;
+};
 
 export const Paginator: React.FunctionComponent<PaginatorProps> = ({
     hasAllPagingButtons,
@@ -124,8 +132,8 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
         <Paging>
             <PagingText>
                 {useResultsOfText
-                    ? pagingResultsText(instance.pageIndex, instance.pageSize, instance.rows.length, texts)
-                    : pagingText(instance.pageIndex, instance.pageCount, texts)}
+                    ? pagingResultsText(instance, texts)
+                    : pagingText(instance, texts)}
             </PagingText>
             <PagingButtons>
                 {hasAllPagingButtons && (
