@@ -17,9 +17,9 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             ),
             // Header: '',
             accessor: 'status',
-            disableSorting: true,
+            disableSortBy: true,
             hasCellPadding: false,
-            show: true,
+            isVisible: true,
             width: '50px',
         },
         {
@@ -66,7 +66,7 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             Cell: (row: CellProps<TableData>) => renderButton(row),
             Header: 'Action',
             accessor: 'action',
-            disableSorting: true,
+            disableSortBy: true,
             width: getColumnWidth(data, 'action'),
         },
     ], [])
@@ -83,7 +83,7 @@ export const tableColumnsWithGroupHeader: () => Column<TableData>[] = () => (
                     ),
                     // Header: 'Status',
                     accessor: 'status',
-                    disableSorting: true,
+                    disableSortBy: true,
                 },
                 {
                     Cell: (row: CellProps<TableData>) => renderCell(row),
@@ -128,7 +128,7 @@ export const tableColumnsWithGroupHeader: () => Column<TableData>[] = () => (
                     Cell: (row: CellProps<TableData>) => renderButton(row),
                     Header: 'Action',
                     accessor: 'action',
-                    disableSorting: true,
+                    disableSortBy: true,
                 },
             ],
         },
