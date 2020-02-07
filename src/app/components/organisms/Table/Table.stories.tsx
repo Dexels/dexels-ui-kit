@@ -75,7 +75,6 @@ export const Configurable = () => {
             {instance && (
                 <Table
                     caption={text('Table caption', 'Table caption')}
-                    debug={boolean('Show table debug info', Table.defaultProps.debug)}
                     elevation={select('Elevation', Elevation, Table.defaultProps.elevation)}
                     footerComponent={isFooterVisible && (
                         <tr style={{

@@ -1,8 +1,17 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
 import getElevation from '../../../styles/mixins/getElevation';
 import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
+
+interface ColumnProps {
+    hasCellPadding?: boolean;
+    width?: string;
+}
+
+interface ClickableProps {
+    isClickable: boolean;
+}
 
 export const TableCaption = styled.div`
     ${setBoxSizing()}
@@ -37,9 +46,7 @@ export const TableHeaderRow = styled.tr`
     background-color: transparent;
 `;
 
-interface TableHeaderCellProps {
-    hasCellPadding?: boolean;
-}
+interface TableHeaderCellProps extends ColumnProps {}
 
 export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
@@ -51,6 +58,10 @@ export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     text-align: left;
     color: ${({ theme }) => theme.colorText.primary};
     font-weight: 600;
+
+    ${({ width }): SimpleInterpolation => width && css`
+        width: ${typeof width === 'number' ? `${width}px` : width};
+    `}
 `;
 
 TableHeaderCell.defaultProps = {
@@ -71,9 +82,7 @@ TableBody.defaultProps = {
     theme: themeBasic,
 };
 
-interface TableRowProps {
-    isClickable: boolean;
-}
+interface TableRowProps extends ClickableProps {}
 
 export const TableRow = styled.tr<TableRowProps>`
     position: relative;
@@ -107,10 +116,7 @@ TableRow.defaultProps = {
     theme: themeBasic,
 };
 
-interface TableCellProps {
-    hasCellPadding?: boolean;
-    isClickable: boolean;
-}
+interface TableCellProps extends ColumnProps, ClickableProps {}
 
 export const TableCell = styled.td<TableCellProps>`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}

@@ -1,5 +1,6 @@
 import {
     Column,
+    TableInstance,
     usePagination,
     useSortBy,
     useTable,
@@ -12,7 +13,7 @@ export const createTable = <T extends object>(
     disableMultiSort = false,
     disableSorting = false,
     // orderByFn = customSortByCaseInsensitive,
-) => (
+): TableInstance => (
     useTable(
         {
             columns,
