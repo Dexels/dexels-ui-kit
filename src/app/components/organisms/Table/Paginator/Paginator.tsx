@@ -17,7 +17,6 @@ import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
 import React from 'react';
-import { TableInstance } from 'react-table';
 
 export interface PaginatorTexts {
     page: React.ReactNode;
@@ -42,6 +41,10 @@ export interface PaginatorProps {
         previousPage: (...args: any[]) => any;
         rows: object[];
         setPageSize: (...args: any[]) => any;
+        state: {
+            pageIndex: number;
+            pageSize: number;
+        };
     };
     pageSizes?: (number | string)[];
     texts: PaginatorTexts;
@@ -49,7 +52,7 @@ export interface PaginatorProps {
 }
 
 const pagingResultsText = (
-    instance: TableInstance,
+    instance: any,
     texts: PaginatorTexts,
 ) => {
     const { state: { pageIndex, pageSize } } = instance;
@@ -73,7 +76,7 @@ const pagingResultsText = (
     return `${result} ${texts.resultsOf} ${rowCount}`;
 };
 
-const pagingText = (instance: TableInstance, texts: PaginatorTexts) => {
+const pagingText = (instance: any, texts: PaginatorTexts) => {
     const { state: { pageIndex, pageSize } } = instance;
     const pageCount = instance.rows.length / pageSize;
 
@@ -88,85 +91,89 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
     pageSizes,
     texts,
     useResultsOfText,
-}) => (
-    <StyledPaginator>
-        {hasPageSizeSelector && (
-            <PageSizeSelector>
-                <PageSizeSelectorText>
-                    {texts.show}
-                </PageSizeSelectorText>
-                <Dropdown
-                    name="DROPDOWN_PAGE_SIZES"
-                    onChange={(e) => {
-                        instance.setPageSize(Number(e.target.value));
-                    }}
-                    value={instance.pageSize}
-                >
-                    {pageSizes.map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            {pageSize}
-                        </option>
-                    ))}
-                </Dropdown>
-                <PageSizeSelectorText>
-                    {texts.rowsPerPage && texts.rowsPerPage}
-                </PageSizeSelectorText>
-            </PageSizeSelector>
-        )}
-        {hasGoToPage && (
-            <InputWrapper hasPageSizeSelector={hasPageSizeSelector}>
-                <Input
-                    label={texts.pageGoto}
-                    name="INPUT_PAGE_INDEX"
-                    onChange={(event) => {
-                        const page = event.target.value ? Number(event.target.value) - 1 : 0;
-                        instance.gotoPage(page);
-                    }}
-                    type={InputType.NUMBER}
-                    value={(instance.pageIndex + 1).toString()}
-                    variant={InputVariant.COMPACT}
-                />
-            </InputWrapper>
-        )}
-        <Paging>
-            <PagingText>
-                {useResultsOfText
-                    ? pagingResultsText(instance, texts)
-                    : pagingText(instance, texts)}
-            </PagingText>
-            <PagingButtons>
-                {hasAllPagingButtons && (
+}) => {
+    const { pageIndex, pageSize } = instance.state;
+
+    return (
+        <StyledPaginator>
+            {hasPageSizeSelector && (
+                <PageSizeSelector>
+                    <PageSizeSelectorText>
+                        {texts.show}
+                    </PageSizeSelectorText>
+                    <Dropdown
+                        name="DROPDOWN_PAGE_SIZES"
+                        onChange={(e) => {
+                            instance.setPageSize(Number(e.target.value));
+                        }}
+                        value={pageSize}
+                    >
+                        {pageSizes.map((size) => (
+                            <option key={size} value={size}>
+                                {size}
+                            </option>
+                        ))}
+                    </Dropdown>
+                    <PageSizeSelectorText>
+                        {texts.rowsPerPage && texts.rowsPerPage}
+                    </PageSizeSelectorText>
+                </PageSizeSelector>
+            )}
+            {hasGoToPage && (
+                <InputWrapper hasPageSizeSelector={hasPageSizeSelector}>
+                    <Input
+                        label={texts.pageGoto}
+                        name="INPUT_PAGE_INDEX"
+                        onChange={(event) => {
+                            const page = event.target.value ? Number(event.target.value) - 1 : 0;
+                            instance.gotoPage(page);
+                        }}
+                        type={InputType.NUMBER}
+                        value={(pageIndex + 1).toString()}
+                        variant={InputVariant.COMPACT}
+                    />
+                </InputWrapper>
+            )}
+            <Paging>
+                <PagingText>
+                    {useResultsOfText
+                        ? pagingResultsText(instance, texts)
+                        : pagingText(instance, texts)}
+                </PagingText>
+                <PagingButtons>
+                    {hasAllPagingButtons && (
+                        <ButtonIcon
+                            iconType={IconType.CHEVRONFIRST}
+                            isDisabled={!instance.canPreviousPage}
+                            onClick={() => instance.gotoPage(0)}
+                            size={Size.XLARGE}
+                        />
+                    )}
                     <ButtonIcon
-                        iconType={IconType.CHEVRONFIRST}
+                        iconType={IconType.CHEVRONLEFT}
                         isDisabled={!instance.canPreviousPage}
-                        onClick={() => instance.gotoPage(0)}
+                        onClick={() => instance.previousPage()}
                         size={Size.XLARGE}
                     />
-                )}
-                <ButtonIcon
-                    iconType={IconType.CHEVRONLEFT}
-                    isDisabled={!instance.canPreviousPage}
-                    onClick={() => instance.previousPage()}
-                    size={Size.XLARGE}
-                />
-                <ButtonIcon
-                    iconType={IconType.CHEVRONRIGHT}
-                    isDisabled={!instance.canNextPage}
-                    onClick={() => instance.nextPage()}
-                    size={Size.XLARGE}
-                />
-                {hasAllPagingButtons && (
                     <ButtonIcon
-                        iconType={IconType.CHEVRONLAST}
+                        iconType={IconType.CHEVRONRIGHT}
                         isDisabled={!instance.canNextPage}
-                        onClick={() => instance.gotoPage(instance.pageCount - 1)}
+                        onClick={() => instance.nextPage()}
                         size={Size.XLARGE}
                     />
-                )}
-            </PagingButtons>
-        </Paging>
-    </StyledPaginator>
-);
+                    {hasAllPagingButtons && (
+                        <ButtonIcon
+                            iconType={IconType.CHEVRONLAST}
+                            isDisabled={!instance.canNextPage}
+                            onClick={() => instance.gotoPage(instance.pageCount - 1)}
+                            size={Size.XLARGE}
+                        />
+                    )}
+                </PagingButtons>
+            </Paging>
+        </StyledPaginator>
+    );
+};
 
 Paginator.defaultProps = {
     hasAllPagingButtons: true,
