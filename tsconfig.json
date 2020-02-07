@@ -12,12 +12,12 @@
         "noUnusedLocals": true,
         "resolveJsonModule": true,
         "target": "ESNext",
+        "types": [
+            "node"
+        ],
     },
     "include": [
         "src/**/*",
         "src/.storybook/**/*"
-    ],
-    "types": [
-        "node"
     ]
 }
