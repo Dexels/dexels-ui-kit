@@ -13,7 +13,8 @@
                 ],
                 "importedLibraries": [
                     "moment",
-                    "react-dates"
+                    "react-dates",
+                    "react-table"
                 ]
             },
             "output": {
