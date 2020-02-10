@@ -17,7 +17,7 @@ import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
 import React from 'react';
-import { TableInstance } from '../types';
+import { TableInstance } from 'react-table';
 
 export interface PaginatorTexts {
     page: React.ReactNode;

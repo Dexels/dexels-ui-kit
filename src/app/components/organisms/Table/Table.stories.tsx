@@ -13,7 +13,7 @@ import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
-import { TableInstance } from './types';
+import { TableInstance } from 'react-table';
 
 export default {
     parameters: {

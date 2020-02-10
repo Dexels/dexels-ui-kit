@@ -154,10 +154,8 @@ export {
 } from '../app/components/organisms/DatePicker/SingleDatePicker/SingleDatePicker';
 export {
     Table,
-    TableColumnInstance,
-    TableInstance,
     TableProps,
-} from '../app/components/organisms/Table';
+} from '../app/components/organisms/Table/Table';
 export {
     Tab,
     Tabs,

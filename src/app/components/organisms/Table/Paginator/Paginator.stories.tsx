@@ -9,7 +9,7 @@ import Paginator from './Paginator';
 import SelectionControl from '../../../molecules/SelectionControl/SelectionControl';
 import { tableColumns } from '../mockup/tableColumns';
 import { tableData } from '../mockup/tableData';
-import { TableInstance } from '../types';
+import { TableInstance } from 'react-table';
 
 export default { title: 'organisms/Table/Paginator' };
 

@@ -24,6 +24,7 @@ declare module 'react-table' {
     export interface TableState<D extends object = {}> {
         hiddenColumns?: Array<IdType<D>>;
         pageIndex: number;
+        pageSize: number;
         sortBy: SortingRule<D>[];
     }
 
@@ -31,5 +32,8 @@ declare module 'react-table' {
         extends UseFiltersColumnProps<D>,
         UseGroupByColumnProps<D>,
         UseResizeColumnsColumnProps<D>,
-        UseSortByColumnProps<D> {}
+        UseSortByColumnProps<D> {
+        hasCellPadding?: boolean;
+        show?: boolean;
+    }
 }
