@@ -6,7 +6,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface ColumnProps {
     hasCellPadding?: boolean;
-    width?: string;
+    width?: string | number;
 }
 
 interface ClickableProps {

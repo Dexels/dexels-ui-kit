@@ -41,6 +41,7 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             Header: 'Infix',
             accessor: 'infix',
             isVisible: false,
+            show: false,
             width: getColumnWidth(data, 'infix'),
         },
         {

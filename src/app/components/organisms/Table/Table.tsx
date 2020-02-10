@@ -14,10 +14,10 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
+import { TableColumnInstance, TableInstance } from './types';
 import { Elevation } from '../../../types';
 import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
-import { TableInstance } from './types';
 
 export interface TableProps {
     caption?: React.ReactNode;
@@ -57,6 +57,20 @@ export const Table: React.FunctionComponent<TableProps> = ({
         prepareRow,
     } = instance;
 
+    // @TODO: most unfortunate, but the isVisible column prop doesn't seem to be overridable (yet)
+    // The previous prop (show) can be set, but has no effect, so handle it manually
+    const isColumnVisible = (column: TableColumnInstance): boolean => {
+        if (Object.prototype.hasOwnProperty.call(column, 'show')) {
+            return column.show;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(column, 'isVisible')) {
+            return column.isVisible;
+        }
+
+        return false;
+    };
+
     return (
         <>
             {caption && (
@@ -73,7 +87,7 @@ export const Table: React.FunctionComponent<TableProps> = ({
                 <TableHead>
                     {headerGroups.map((headerGroup) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: any) => (
+                            {headerGroup.headers.map((column: TableColumnInstance) => isColumnVisible(column) && (
                                 <TableHeaderCell
                                     hasCellPadding={column.hasCellPadding}
                                     key={column}
@@ -95,6 +109,7 @@ export const Table: React.FunctionComponent<TableProps> = ({
                 </TableHead>
                 <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {dataSource(instance, Boolean(pagingComponent)).map((row: any) => prepareRow(row) || (
                         <TableRow
                             isClickable={Boolean(onClickRow)}
@@ -104,7 +119,7 @@ export const Table: React.FunctionComponent<TableProps> = ({
                                 } : undefined}
                             {...row.getRowProps()}
                         >
-                            {row.cells.map((cell: any) => (
+                            {row.cells.map((cell: any) => isColumnVisible(cell.column) && (
                                 <TableCell
                                     hasCellPadding={cell.column.hasCellPadding}
                                     isClickable={Boolean(cell.column.onClick)}

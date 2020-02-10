@@ -1,4 +1,9 @@
-import { Row } from 'react-table';
+import {
+    ColumnInstance,
+    Row,
+    UseFiltersColumnProps,
+    UseSortByColumnProps,
+} from 'react-table';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface TableInstance {
@@ -19,4 +24,12 @@ export interface TableInstance {
         pageIndex: number;
         pageSize: number;
     };
+}
+
+export interface TableColumnInstance<D extends object = {}>
+    extends ColumnInstance<D>,
+    UseSortByColumnProps<D>,
+    UseFiltersColumnProps<D> {
+    hasCellPadding?: boolean;
+    show?: boolean;
 }
