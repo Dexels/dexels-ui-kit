@@ -20,7 +20,7 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             disableSortBy: true,
             hasCellPadding: false,
             isVisible: true,
-            width: '50px',
+            width: 50,
         },
         {
             Cell: (row: CellProps<TableData>) => renderCell(row),
@@ -40,6 +40,8 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             Cell: (row: CellProps<TableData>) => renderCell(row),
             Header: 'Infix',
             accessor: 'infix',
+            isVisible: false,
+            show: false,
             width: getColumnWidth(data, 'infix'),
         },
         {

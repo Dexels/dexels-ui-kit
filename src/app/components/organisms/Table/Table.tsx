@@ -1,5 +1,6 @@
 // In this file we want to use prop spreading because React Table passes a lot of props
 /* eslint-disable react/jsx-props-no-spreading */
+import { ColumnInstance, TableInstance } from 'react-table';
 import {
     IconWrapper,
     Paging,
@@ -21,16 +22,10 @@ import { renderSortIcon } from './utils/tableFunctions';
 export interface TableProps {
     caption?: React.ReactNode;
     className?: string;
-    debug?: boolean;
     elevation?: Elevation;
     footerComponent?: React.ReactNode;
     hasUnsortedStateIcon?: boolean;
-    instance: {
-        getTableBodyProps: (...args: any[]) => any;
-        getTableProps: (...args: any[]) => any;
-        headerGroups: any[];
-        prepareRow: (...args: any[]) => any;
-    };
+    instance: TableInstance;
     isFullWidth?: boolean;
     onClickRow?: (...args: any[]) => any;
     pagingComponent?: React.ReactNode;
@@ -39,12 +34,11 @@ export interface TableProps {
     };
 }
 
-const dataSource = (instance: any, hasPaging: boolean) => (hasPaging ? instance.page : instance.rows);
+const dataSource = (instance: TableInstance, hasPaging: boolean) => (hasPaging ? instance.page : instance.rows);
 
 export const Table: React.FunctionComponent<TableProps> = ({
     caption,
     className,
-    debug,
     elevation,
     footerComponent,
     hasUnsortedStateIcon,
@@ -61,6 +55,20 @@ export const Table: React.FunctionComponent<TableProps> = ({
         prepareRow,
     } = instance;
 
+    // @TODO: most unfortunate, but the isVisible column prop doesn't seem to be overridable (yet)
+    // The previous prop (show) can be set, but has no effect, so handle it manually
+    const isColumnVisible = (column: ColumnInstance): boolean => {
+        if (Object.prototype.hasOwnProperty.call(column, 'show')) {
+            return column.show;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(column, 'isVisible')) {
+            return column.isVisible;
+        }
+
+        return false;
+    };
+
     return (
         <>
             {caption && (
@@ -70,17 +78,17 @@ export const Table: React.FunctionComponent<TableProps> = ({
             )}
             <StyledTable
                 className={className}
-                debug={debug}
                 isFullWidth={isFullWidth}
                 {...getTableProps()}
             >
                 <TableHead>
-                    {headerGroups.map((headerGroup) => (
+                    {headerGroups.map((headerGroup: any) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: any) => (
+                            {headerGroup.headers.map((column: ColumnInstance) => isColumnVisible(column) && (
                                 <TableHeaderCell
                                     hasCellPadding={column.hasCellPadding}
                                     key={column}
+                                    width={column.width}
                                     {...column.getHeaderProps(column.getSortByToggleProps({
                                         title: column.canSort
                                             ? `${texts.toggleSortTooltip} ${column.render('Header')}`
@@ -98,34 +106,41 @@ export const Table: React.FunctionComponent<TableProps> = ({
                 </TableHead>
                 <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                    {dataSource(instance, Boolean(pagingComponent)).map((row: any) => prepareRow(row) || (
-                        <TableRow
-                            isClickable={Boolean(onClickRow)}
-                            onClick={onClickRow
-                                ? (event) => {
-                                    onClickRow(event, row);
-                                } : undefined}
-                            {...row.getRowProps()}
-                        >
-                            {row.cells.map((cell: any) => (
-                                <TableCell
-                                    hasCellPadding={cell.column.hasCellPadding}
-                                    isClickable={Boolean(cell.column.onClick)}
-                                    key={cell}
-                                    onClick={cell.column.onClick
-                                        ? (event) => {
-                                            event.stopPropagation();
-                                            cell.column.onClick(cell, row, event);
-                                        } : undefined}
-                                    {...cell.getCellProps()}
-                                >
-                                    <TableCellContent>
-                                        {cell.render('Cell')}
-                                    </TableCellContent>
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    ))}
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                    {dataSource(instance, Boolean(pagingComponent)).map((row: any) => {
+                        prepareRow(row);
+
+                        return (
+                            <TableRow
+                                isClickable={Boolean(onClickRow)}
+                                key={row}
+                                onClick={onClickRow
+                                    ? (event: any) => {
+                                        onClickRow(event, row);
+                                    } : undefined}
+                                {...row.getRowProps()}
+                            >
+                                {row.cells.map((cell: any) => isColumnVisible(cell.column) && (
+                                    <TableCell
+                                        hasCellPadding={cell.column.hasCellPadding}
+                                        isClickable={Boolean(cell.column.onClick)}
+                                        key={cell}
+                                        onClick={cell.column.onClick
+                                            ? (event: any) => {
+                                                event.stopPropagation();
+                                                cell.column.onClick(cell, row, event);
+                                            } : undefined}
+                                        {...cell.getCellProps()}
+                                        width={cell.column.width}
+                                    >
+                                        <TableCellContent>
+                                            {cell.render('Cell')}
+                                        </TableCellContent>
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        );
+                    })}
                 </TableBody>
                 {footerComponent && (
                     <TableFooter elevation={elevation}>
@@ -145,7 +160,6 @@ export const Table: React.FunctionComponent<TableProps> = ({
 Table.defaultProps = {
     caption: null,
     className: '',
-    debug: false,
     elevation: Elevation.LEVEL_1,
     footerComponent: undefined,
     hasUnsortedStateIcon: true,
