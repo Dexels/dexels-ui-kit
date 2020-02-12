@@ -26,6 +26,48 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .ICON-CLUBPLACEHOLDER5:before {
+    content: "\e972";
+  }
+  .ICON-CLUBPLACEHOLDER6:before {
+    content: "\e973";
+  }
+  .ICON-CLUBPLACEHOLDER7:before {
+    content: "\e974";
+  }
+  .ICON-CLUBPLACEHOLDER8:before {
+    content: "\e975";
+  }
+  .ICON-ARROWDOWN:before {
+    content: "\e976";
+  }
+  .ICON-ARROWLEFT:before {
+    content: "\e977";
+  }
+  .ICON-ARROWRIGHT:before {
+    content: "\e978";
+  }
+  .ICON-ARROWUP:before {
+    content: "\e979";
+  }
+  .ICON-HELPDESK:before {
+    content: "\e97a";
+  }
+  .ICON-LOCATION:before {
+    content: "\e97b";
+  }
+  .ICON-SPARKLE:before {
+    content: "\e97c";
+  }
+  .ICON-STAREMPTY:before {
+    content: "\e97d";
+  }
+  .ICON-STARFULL:before {
+    content: "\e97e";
+  }
+  .ICON-SUPPORT:before {
+    content: "\e97f";
+  }
   .ICON-FIELDSOCCER:before {
     content: "\e96a";
   }
@@ -65,7 +107,7 @@
   .ICON-TUTORIAL:before {
     content: "\e966";
   }
-  .ICON-STAR:before {
+  .ICON-STARHALF:before {
     content: "\e967";
   }
   .ICON-CALENDARACCEPT:before {
