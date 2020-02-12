@@ -12,7 +12,6 @@ import {
 } from 'react-table';
 
 declare module 'react-table' {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
     export interface TableInstance<D extends object = {}>
         extends Omit<TableOptions<D>, 'columns' | 'pageCount'>,
         UsePaginationInstanceProps<D>,
