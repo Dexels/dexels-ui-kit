@@ -14,7 +14,7 @@ import {
 declare module 'react-table' {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     export interface TableInstance<D extends object = {}>
-        extends TableOptions<D>,
+        extends Omit<TableOptions<D>, 'columns' | 'pageCount'>,
         UsePaginationInstanceProps<D>,
         UseTableInstanceProps<D> {}
     export interface TableOptions<D extends object> extends UseTableOptions<D> {
@@ -27,7 +27,6 @@ declare module 'react-table' {
         pageSize: number;
         sortBy: SortingRule<D>[];
     }
-
     export interface ColumnInstance<D extends object = {}>
         extends UseFiltersColumnProps<D>,
         UseGroupByColumnProps<D>,
