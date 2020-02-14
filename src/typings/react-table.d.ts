@@ -1,13 +1,6 @@
 import {
     Cell,
-    CellProps,
     Column,
-    FilterProps,
-    FilterValue,
-    HeaderGroup,
-    HeaderProps,
-    Hooks,
-    IdType,
     Row,
     UseExpandedInstanceProps,
     UseExpandedOptions,
@@ -74,6 +67,7 @@ declare module 'react-table' {
         UseGroupByColumnProps<D>,
         UseSortByColumnProps<D> {
         hasCellPadding?: boolean;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick?: (...args: any[]) => any;
         show?: boolean;
     }
