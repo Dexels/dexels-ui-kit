@@ -33,6 +33,7 @@ export interface TableProps {
     hasUnsortedStateIcon?: boolean;
     instance: TableInstance;
     isFullWidth?: boolean;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onClickRow?: (...args: any[]) => any;
     pagingComponent?: React.ReactNode;
     texts?: {
