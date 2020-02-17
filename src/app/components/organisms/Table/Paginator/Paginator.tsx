@@ -13,10 +13,10 @@ import {
     PagingText,
     StyledPaginator,
 } from './Paginator.sc';
-import React, { SyntheticEvent } from 'react';
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
+import React from 'react';
 import { TableInstance } from 'react-table';
 
 export interface PaginatorTexts {
@@ -112,7 +112,7 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
                     <Input
                         label={texts.pageGoto}
                         name="INPUT_PAGE_INDEX"
-                        onChange={(event: SyntheticEvent) => {
+                        onChange={(event) => {
                             const page = event.target.value ? Number(event.target.value) - 1 : 0;
                             instance.gotoPage(page);
                         }}
