@@ -19,7 +19,7 @@ export interface ChipProps {
     onClick?: React.MouseEventHandler;
     transitionDuration?: number;
     transitionEasing?: Easing;
-    /* eslint-disable-next-line typescript-sort-keys/interface */
+    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

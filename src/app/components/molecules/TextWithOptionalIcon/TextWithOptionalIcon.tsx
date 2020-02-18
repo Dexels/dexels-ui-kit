@@ -11,7 +11,7 @@ export interface TextWithOptionalIconProps {
     iconType?: IconType;
     isCapitalized?: boolean;
     isTruncatable?: boolean;
-    /* eslint-disable-next-line typescript-sort-keys/interface */
+    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

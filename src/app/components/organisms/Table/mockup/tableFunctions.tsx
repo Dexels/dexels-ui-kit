@@ -26,8 +26,8 @@ export const createLocalizedPagingTexts = (language = 'nl') => {
     return localizedTexts;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getTableCell = (cell: any, row: any, event: any = null) => {
-    // console.log('************************* cell event', event);
     // eslint-disable-next-line no-console
     console.log('Clicked cell:', cell);
     // eslint-disable-next-line no-console
@@ -37,8 +37,8 @@ export const getTableCell = (cell: any, row: any, event: any = null) => {
     return cell;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getTableRow = (event: any, row: any): any => {
-    // console.log('************************* row event', event);
     // eslint-disable-next-line no-console
     console.log('Clicked row:', row);
     alert(`Clicked on row: ${row.id}`);

@@ -44,6 +44,7 @@ export const CardNoResults: React.FunctionComponent<CardNoResultsProps> = ({
                 {title}
             </Title>
             {items.length > 0 && items.map((item) => (
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 <Item key={item as any}>
                     {`${itemPrefix} ${item}`}
                 </Item>

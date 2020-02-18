@@ -2,6 +2,7 @@ const DEFAULT_PROPERTYNAME_ID = 'Id';
 const DEFAULT_PROPERTYNAME_DESCRIPTION = 'Description';
 const DEFAULT_PROPERTYNAME_SELECTED = 'Selected';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Option = { [key: string]: any };
 type Options = Option[];
 
@@ -40,6 +41,7 @@ export const setElementSelected = (
     propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED,
     unsetOtherValues = false,
 ) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const output: any[] = [];
     let newElement = null;
 
@@ -59,6 +61,7 @@ export const setElementSelected = (
 };
 
 const setAllElements = (data: Options, selected: boolean, propertySelectedName: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const output: any[] = [];
 
     data.forEach((element) => {

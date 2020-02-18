@@ -3,6 +3,7 @@ import React from 'react';
 import { StyledStatusIndicator } from './StatusIndicator.sc';
 
 export interface StatusIndicatorProps {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
     background?: string;
     className?: string;

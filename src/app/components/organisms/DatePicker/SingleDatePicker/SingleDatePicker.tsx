@@ -22,9 +22,11 @@ export interface SingleDatePickerProps {
     displayFormat?: string;
     hasYearSelector?: boolean;
     id: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     isDayHighlighted?: (day: any) => boolean;
     isDisabled?: boolean;
     isFocused: boolean;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     isOutsideRange?: (day: any) => boolean;
     keepOpenOnDateSelect?: boolean;
     label: React.ReactNode;
