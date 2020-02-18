@@ -387,6 +387,7 @@ export interface Theme {
     availableTextStyles: () => ThemeTextStylesMap;
     spacing: (factor1: number, factor2?: number, factor3?: number, factor4?: number) => string;
     textStyling: (textStyleSelector: keyof Theme['textStyles']) => string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 
