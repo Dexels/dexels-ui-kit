@@ -42,11 +42,7 @@
         "React",
         "Styled Components"
     ],
-    "browserslist": [
-        "Last 1 Chrome versions",
-        "Last 1 Edge versions",
-        "Last 1 Firefox versions"
-    ],
+    "browserslist": ["defaults"],
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/Dexels/dexels-ui-kit/issues"
