@@ -66,9 +66,7 @@ module.exports = {
                 }),
             ],
         }),
-        typescript({
-            objectHashIgnoreUnknownHack: true,
-        }),
+        typescript(),
         babel({
             exclude: 'node_modules/**',
         }),
