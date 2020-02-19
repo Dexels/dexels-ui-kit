@@ -8,5 +8,6 @@ ${icons.map(name => `    ${name} = '${name}',`).join('\n')}
 }
 `;
 
+
 // Out
 console.log(iconTypes);
