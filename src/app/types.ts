@@ -5,7 +5,6 @@ export enum Alignment {
     RIGHT = 'RIGHT',
 }
 
-
 export enum ButtonSize {
     LARGE = 'LARGE',
     MEDIUM = 'MEDIUM',
