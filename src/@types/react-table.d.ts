@@ -33,7 +33,7 @@ import {
 } from 'react-table';
 
 declare module 'react-table' {
-    interface TableOptions<D extends object>
+    export interface TableOptions<D extends object>
         extends UseExpandedOptions<D>,
         UseFiltersOptions<D>,
         UseGroupByOptions<D>,
@@ -41,7 +41,7 @@ declare module 'react-table' {
         UseRowSelectOptions<D>,
         UseSortByOptions<D> {}
 
-    interface TableInstance<D extends object = {}>
+    export interface TableInstance<D extends object = {}>
         extends UseExpandedInstanceProps<D>,
         UseFiltersInstanceProps<D>,
         UseGroupByInstanceProps<D>,
@@ -49,7 +49,7 @@ declare module 'react-table' {
         UseRowSelectInstanceProps<D>,
         UseSortByInstanceProps<D> {}
 
-    interface TableState<D extends object = {}>
+    export interface TableState<D extends object = {}>
         extends UseExpandedState<D>,
         UseFiltersState<D>,
         UseGroupByState<D>,
@@ -57,12 +57,12 @@ declare module 'react-table' {
         UseRowSelectState<D>,
         UseSortByState<D> {}
 
-    interface Column<D extends object = {}>
+    export interface Column<D extends object = {}>
         extends UseFiltersColumnOptions<D>,
         UseGroupByColumnOptions<D>,
         UseSortByColumnOptions<D> {}
 
-    interface ColumnInstance<D extends object = {}>
+    export interface ColumnInstance<D extends object = {}>
         extends UseFiltersColumnProps<D>,
         UseGroupByColumnProps<D>,
         UseSortByColumnProps<D> {
@@ -72,9 +72,9 @@ declare module 'react-table' {
         show?: boolean;
     }
 
-    interface Cell<D extends object = {}> extends UseGroupByCellProps<D> {}
+    export interface Cell<D extends object = {}> extends UseGroupByCellProps<D> {}
 
-    interface Row<D extends object = {}>
+    export interface Row<D extends object = {}>
         extends UseExpandedRowProps<D>,
         UseGroupByRowProps<D>,
         UseRowSelectRowProps<D> {}

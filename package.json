@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "2.4.0",
+    "version": "2.4.13",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -22,7 +22,7 @@
         "check-types": "tsc",
         "dist": "npm run build:prod",
         "dist:analyze": "npm run build:prod -- --environment analyze",
-        "generate:types": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json --inline-declare-externals",
+        "generate:types": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json",
         "generate:iconTypes": "node ./scripts/generateIconTypes.js",
         "lint:css": "stylelint \"src/**/*.sc.ts\"",
         "lint:js": "eslint \"src\" --ext \".js,.ts,.tsx\"",
@@ -42,7 +42,9 @@
         "React",
         "Styled Components"
     ],
-    "browserslist": ["defaults"],
+    "browserslist": [
+        "defaults"
+    ],
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/Dexels/dexels-ui-kit/issues"
@@ -90,6 +92,7 @@
         "babel-eslint": "^10.0.3",
         "babel-loader": "^8.0.6",
         "babel-plugin-styled-components": "^1.10.7",
+        "core-js": "^3.6.4",
         "cross-env": "^7.0.0",
         "dts-bundle-generator": "^3.3.1",
         "eslint": "^6.8.0",

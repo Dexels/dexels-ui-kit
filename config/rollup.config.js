@@ -65,6 +65,10 @@ module.exports = {
         typescript(),
         babel({
             exclude: 'node_modules/**',
+            extensions: [
+                'ts',
+                'tsx'
+            ],
         }),
         terser(),
         copy({

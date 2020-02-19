@@ -1,4 +1,7 @@
 /* eslint-disable max-len, typescript-sort-keys/interface */
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference, spaced-comment
+/// <reference path="../@types/react-table.d.ts" />
+
 export enum Alignment {
     CENTER = 'CENTER',
     LEFT = 'LEFT',
