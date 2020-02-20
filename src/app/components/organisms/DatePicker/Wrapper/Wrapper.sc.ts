@@ -98,6 +98,7 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
 
     .DateRangePicker_picker,
     .SingleDatePicker_picker {
+        z-index: 2;
         background-color: transparent;
     }
 
