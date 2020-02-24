@@ -38,6 +38,7 @@ const Item: React.FunctionComponent<ItemsProps> = ({
         isParent={isParent}
     >
         <Inner
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             as={path ? NavLink : 'div' as any}
             exact={exact}
             onClick={isDisabled ? null : onClick}

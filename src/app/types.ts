@@ -1,4 +1,7 @@
 /* eslint-disable max-len, typescript-sort-keys/interface */
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference, spaced-comment
+/// <reference path="../@types/react-table.d.ts" />
+
 export enum Alignment {
     CENTER = 'CENTER',
     LEFT = 'LEFT',
@@ -387,6 +390,7 @@ export interface Theme {
     availableTextStyles: () => ThemeTextStylesMap;
     spacing: (factor1: number, factor2?: number, factor3?: number, factor4?: number) => string;
     textStyling: (textStyleSelector: keyof Theme['textStyles']) => string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

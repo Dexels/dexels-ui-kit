@@ -1,8 +1,4 @@
-const {
-    distPath,
-    libPath,
-} = require('./paths');
-
+const { distPath, libPath } = require('./paths');
 const babel = require('rollup-plugin-babel');
 const commonjs = require('@rollup/plugin-commonjs');
 const copy = require('rollup-plugin-copy');
@@ -13,7 +9,6 @@ const rollupResolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const typescript = require('rollup-plugin-typescript2');
 const visualizer = require('rollup-plugin-visualizer');
-
 const { analyze } = process.env;
 
 module.exports = {
@@ -40,6 +35,7 @@ module.exports = {
                 'react-dates': 'reactDates',
                 'react-loading-skeleton': 'reactSkeleton',
                 'react-router-dom': 'ReactRouterDOM',
+                'react-table': 'ReactTable',
                 'styled-components': 'styled',
             },
             name: 'DexelsUIKit',
@@ -66,11 +62,13 @@ module.exports = {
                 }),
             ],
         }),
-        typescript({
-            objectHashIgnoreUnknownHack: true,
-        }),
+        typescript(),
         babel({
             exclude: 'node_modules/**',
+            extensions: [
+                'ts',
+                'tsx'
+            ],
         }),
         terser(),
         copy({

@@ -30,7 +30,7 @@ export interface SelectionControlProps {
     transitionEasing?: Easing;
     type?: SelectionControlType;
     value: string;
-    /* eslint-disable-next-line typescript-sort-keys/interface */
+    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

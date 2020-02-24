@@ -26,19 +26,22 @@ export const createLocalizedPagingTexts = (language = 'nl') => {
     return localizedTexts;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getTableCell = (cell: any, row: any, event: any = null) => {
-    // console.log('************************* cell event', event);
-    // console.log('************************* cell value', cell);
-    // console.log('************************* row value', row);
+    // eslint-disable-next-line no-console
+    console.log('Clicked cell:', cell);
+    // eslint-disable-next-line no-console
+    console.log('Clicked row:', row);
     alert(`Clicked on cell/row: ${cell} \n ${row} \n ${event}`);
 
     return cell;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getTableRow = (event: any, row: any): any => {
-    // console.log('************************* row event', event);
-    // console.log('************************* row value', row);
-    alert(`Clicked on row: ${row}`);
+    // eslint-disable-next-line no-console
+    console.log('Clicked row:', row);
+    alert(`Clicked on row: ${row.id}`);
 
     return row;
 };

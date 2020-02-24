@@ -12,6 +12,7 @@ import Icon from '../../atoms/Icon/Icon';
 import { IconType } from '../../../types';
 
 export interface DropdownProps {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
     children: React.ReactNode;
     className?: string;
@@ -24,11 +25,12 @@ export interface DropdownProps {
     label?: React.ReactNode;
     name: string;
     onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-    onClick?: (...args: any[]) => any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onClick?: (...args: any[]) => void;
     placeholder?: string;
     value: number | string;
     variant?: DropdownVariant;
-    /* eslint-disable-next-line typescript-sort-keys/interface */
+    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

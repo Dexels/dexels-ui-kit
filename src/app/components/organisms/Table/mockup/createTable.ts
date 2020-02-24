@@ -1,30 +1,38 @@
 import {
     Column,
     TableInstance,
+    useColumnOrder,
+    useExpanded,
+    useFilters,
+    useGlobalFilter,
+    useGroupBy,
     usePagination,
+    useRowSelect,
+    useRowState,
     useSortBy,
     useTable,
 } from 'react-table';
-// import { customSortByCaseInsensitive } from '../utils/tableFunctions';
 
+// Mind the order of the hooks, this is not random, but required by the package
 export const createTable = <T extends object>(
-    columns: Column<T>[],
-    data: T[],
-    initialState: object,
-    disableMultiSort = false,
-    disableSorting = false,
-    // orderByFn = customSortByCaseInsensitive,
-): TableInstance => (
-    useTable(
+    columns: Array<Column<T>>,
+    data: Array<T>,
+    initialState?: object,
+): TableInstance<T> => (
+    useTable<T>(
         {
             columns,
             data,
-            disableMultiSort,
-            disableSorting,
             initialState,
-            // orderByFn,
         },
+        useColumnOrder,
+        useGlobalFilter,
+        useGroupBy,
+        useExpanded,
+        useFilters,
+        useRowState,
         useSortBy,
+        useRowSelect,
         usePagination,
     )
 );

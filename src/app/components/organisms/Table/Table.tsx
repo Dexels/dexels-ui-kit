@@ -1,6 +1,12 @@
 // In this file we want to use prop spreading because React Table passes a lot of props
 /* eslint-disable react/jsx-props-no-spreading */
-import { ColumnInstance, TableInstance } from 'react-table';
+import {
+    Cell,
+    ColumnInstance,
+    HeaderGroup,
+    Row,
+    TableInstance,
+} from 'react-table';
 import {
     IconWrapper,
     Paging,
@@ -15,8 +21,8 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
+import React, { SyntheticEvent } from 'react';
 import { Elevation } from '../../../types';
-import React from 'react';
 import { renderSortIcon } from './utils/tableFunctions';
 
 export interface TableProps {
@@ -27,6 +33,7 @@ export interface TableProps {
     hasUnsortedStateIcon?: boolean;
     instance: TableInstance;
     isFullWidth?: boolean;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onClickRow?: (...args: any[]) => any;
     pagingComponent?: React.ReactNode;
     texts?: {
@@ -82,7 +89,7 @@ export const Table: React.FunctionComponent<TableProps> = ({
                 {...getTableProps()}
             >
                 <TableHead>
-                    {headerGroups.map((headerGroup: any) => (
+                    {headerGroups.map((headerGroup: HeaderGroup) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column: ColumnInstance) => isColumnVisible(column) && (
                                 <TableHeaderCell
@@ -106,8 +113,7 @@ export const Table: React.FunctionComponent<TableProps> = ({
                 </TableHead>
                 <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                    {dataSource(instance, Boolean(pagingComponent)).map((row: any) => {
+                    {dataSource(instance, Boolean(pagingComponent)).map((row: Row) => {
                         prepareRow(row);
 
                         return (
@@ -115,18 +121,18 @@ export const Table: React.FunctionComponent<TableProps> = ({
                                 isClickable={Boolean(onClickRow)}
                                 key={row}
                                 onClick={onClickRow
-                                    ? (event: any) => {
+                                    ? (event: SyntheticEvent) => {
                                         onClickRow(event, row);
                                     } : undefined}
                                 {...row.getRowProps()}
                             >
-                                {row.cells.map((cell: any) => isColumnVisible(cell.column) && (
+                                {row.cells.map((cell: Cell) => isColumnVisible(cell.column) && (
                                     <TableCell
                                         hasCellPadding={cell.column.hasCellPadding}
                                         isClickable={Boolean(cell.column.onClick)}
                                         key={cell}
                                         onClick={cell.column.onClick
-                                            ? (event: any) => {
+                                            ? (event: SyntheticEvent) => {
                                                 event.stopPropagation();
                                                 cell.column.onClick(cell, row, event);
                                             } : undefined}

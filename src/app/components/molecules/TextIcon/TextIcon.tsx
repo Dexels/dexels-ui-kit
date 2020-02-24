@@ -6,7 +6,7 @@ export interface TextIconProps {
     className?: string;
     size?: Size;
     text: string;
-    /* eslint-disable-next-line typescript-sort-keys/interface */
+    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

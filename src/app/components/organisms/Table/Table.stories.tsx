@@ -26,7 +26,6 @@ export default {
 export const Configurable = () => {
     const [isNL, setIsNL] = useState(true);
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
-    const [disableSorting, setDisableSorting] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
     const data = tableData();
 
@@ -45,7 +44,6 @@ export const Configurable = () => {
                 },
             ],
         },
-        disableSorting,
     );
 
     return (
@@ -64,13 +62,6 @@ export const Configurable = () => {
                     name={'GROUPHEADER'}
                     onChange={() => setHasGroupHeader(!hasGroupHeader)}
                     value={'hasGroupHeader'}
-                />
-                <SelectionControl
-                    isChecked={disableSorting}
-                    label={disableSorting ? 'ENABLE SORTING' : 'DISABLE SORTING'}
-                    name={'SORTING'}
-                    onChange={() => setDisableSorting(!disableSorting)}
-                    value={'disableSorting'}
                 />
                 <SelectionControl
                     isChecked={isFooterVisible}

@@ -19,7 +19,7 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             accessor: 'status',
             disableSortBy: true,
             hasCellPadding: false,
-            isVisible: true,
+            show: true,
             width: 50,
         },
         {
@@ -27,6 +27,7 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             Header: 'First Name',
             accessor: 'firstName',
             // TIP: event can be left out. Default = null
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onClick: (cell: any, row: any, event: any) => getTableCell(cell, row, event),
             width: getColumnWidth(data, 'firstName', 'First Name'),
         },
@@ -40,8 +41,6 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             Cell: (row: CellProps<TableData>) => renderCell(row),
             Header: 'Infix',
             accessor: 'infix',
-            isVisible: false,
-            show: false,
             width: getColumnWidth(data, 'infix'),
         },
         {
@@ -54,6 +53,7 @@ export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) 
             Cell: (row: CellProps<TableData>) => renderCell(row),
             Header: 'Startdate',
             accessor: 'relationStart',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             sortType: (a: any, b: any, propName: any) => customSortByDate(a, b, propName),
             width: getColumnWidth(data, 'relationStart', 'Startdate'),
         },
@@ -92,6 +92,7 @@ export const tableColumnsWithGroupHeader: () => Column<TableData>[] = () => (
                     Header: 'First Name',
                     accessor: 'firstName',
                     // TIP: event can be left out. Default = null
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     onClick: (cell: any, row: any, event: any) => getTableCell(cell, row, event),
                 },
                 {
@@ -108,6 +109,7 @@ export const tableColumnsWithGroupHeader: () => Column<TableData>[] = () => (
                     Cell: (row: CellProps<TableData>) => renderCell(row),
                     Header: 'Startdate',
                     accessor: 'relationStart',
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     sortType: (a: any, b: any, propName: any) => customSortByDate(a, b, propName),
                 },
             ],

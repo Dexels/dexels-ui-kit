@@ -7,13 +7,12 @@ import React from 'react';
 import StatusCell from '../StatusCell/StatusCell';
 
 export const compareValues = <T extends object>(
-    key: any, desc = false, caseSensitive = false,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    key: any,
+    desc = false,
+    caseSensitive = false,
 ) => (
     ((a: UseTableRowProps<T>, b: UseTableRowProps<T>) => {
-        // console.log('******************** a/b', a, b, key);
-        // console.log('******************** a', a.values[key]);
-        // console.log('******************** b', b.values[key]);
-
         if (!Object.prototype.hasOwnProperty.call(a.values, key)) {
             return 0;
         }
@@ -39,7 +38,11 @@ export const compareValues = <T extends object>(
 );
 
 export const customSortByDate = <T extends object>(
-    a: UseTableRowProps<T>, b: UseTableRowProps<T>, key: any, emptyValuesAtEnd = true,
+    a: UseTableRowProps<T>,
+    b: UseTableRowProps<T>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    key: any,
+    emptyValuesAtEnd = true,
 ) => {
     const valueA = a.values[key];
     const valueB = b.values[key];
@@ -56,7 +59,9 @@ export const customSortByDate = <T extends object>(
 };
 
 export const customSortByCaseInsensitive = <T extends object>(
-    rows: UseTableRowProps<T>[], key: any,
+    rows: UseTableRowProps<T>[],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    key: any,
 ) => (
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key))
@@ -104,9 +109,13 @@ export const renderSortIcon = <T extends object>(
 };
 
 export const getColumnWidth = <T extends object>(
-    data: T[], accessor: any, headerText = accessor,
+    data: T[],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    accessor: any,
+    headerText = accessor,
 ) => {
     if (typeof accessor === 'string' || accessor instanceof String) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         accessor = (d: any) => d[accessor]; // eslint-disable-line no-param-reassign
     }
 

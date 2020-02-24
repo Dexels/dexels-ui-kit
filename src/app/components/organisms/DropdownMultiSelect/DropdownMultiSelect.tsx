@@ -24,9 +24,9 @@ export interface DropdownMultiSelectProps {
     label?: React.ReactNode;
     maxHeight?: string;
     name: string;
-    onCancel: (...args: any[]) => any;
-    onClick?: (...args: any[]) => any;
-    onConfirm: (...args: any[]) => any;
+    onCancel: () => void;
+    onClick?: () => void;
+    onConfirm: () => void;
     optionAll?: React.ReactNode;
     options: React.ReactElement[];
     placeholder?: string;
@@ -70,17 +70,17 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
     const onCancelCallback = useCallback(() => {
         setIsSelectOpen(false);
         onCancel();
-    }, []);
+    }, [onCancel]);
 
     const onClickCallback = useCallback(() => {
         setIsSelectOpen(true);
         onClick();
-    }, []);
+    }, [onClick]);
 
     const onConfirmCallback = useCallback(() => {
         setIsSelectOpen(false);
         onConfirm();
-    }, []);
+    }, [onConfirm]);
 
     const onMouseEnterCallback = useCallback(() => {
         setIsHovered(true);
