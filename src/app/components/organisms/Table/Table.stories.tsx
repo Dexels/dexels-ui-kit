@@ -7,7 +7,7 @@ import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } fr
 import React, { useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
-import { createTable } from './mockup/createTable';
+import { createTable } from '../../../utils/functions/createTable';
 import { Elevation } from '../../../types';
 import notes from './notes.md';
 import Paginator from './Paginator/Paginator';

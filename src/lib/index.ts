@@ -189,4 +189,5 @@ export { setTruncate } from '../app/styles/mixins/setTruncate';
 // Export functions
 export { areAllOptionsSelected } from '../app/utils/functions/arrayObjectFunctions';
 export { cloneArray } from '../app/utils/functions/arrayFunctions';
+export { createTable } from '../app/utils/functions/createTable';
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';

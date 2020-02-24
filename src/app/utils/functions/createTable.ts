@@ -15,8 +15,8 @@ import {
 
 // Mind the order of the hooks, this is not random, but required by the package
 export const createTable = <T extends object>(
-    columns: Array<Column<T>>,
-    data: Array<T>,
+    columns: Column<T>[],
+    data: T[],
     initialState?: object,
 ): TableInstance<T> => (
     useTable<T>(

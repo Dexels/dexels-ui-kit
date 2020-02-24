@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { createLocalizedPagingTexts } from '../mockup/tableFunctions';
-import { createTable } from '../mockup/createTable';
+import { createTable } from '../../../../utils/functions/createTable';
 import Paginator from './Paginator';
 import SelectionControl from '../../../molecules/SelectionControl/SelectionControl';
 import { tableColumns } from '../mockup/tableColumns';
