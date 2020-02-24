@@ -27,11 +27,11 @@ export const createTable = <T extends object>(
         },
         useColumnOrder,
         useGlobalFilter,
-        useGroupBy,
-        useExpanded,
         useFilters,
+        useGroupBy,
         useRowState,
         useSortBy,
+        useExpanded,
         useRowSelect,
         usePagination,
     )
