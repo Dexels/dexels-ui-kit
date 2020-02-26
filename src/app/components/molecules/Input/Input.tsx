@@ -1,6 +1,6 @@
 import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import { InputType, InputVariant } from '../../../types';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 
@@ -12,6 +12,8 @@ export interface InputProps {
     isTextarea?: boolean;
     isValid?: boolean;
     label: React.ReactNode;
+    max?: number;
+    min?: number;
     name: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -30,6 +32,8 @@ export const Input: React.FunctionComponent<InputProps> = ({
     isTextarea,
     isValid,
     label,
+    max,
+    min,
     name,
     onChange,
     onKeyDown,
@@ -41,6 +45,20 @@ export const Input: React.FunctionComponent<InputProps> = ({
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const hasValue = value.length > 0;
+    const textFieldProps: { [key: string]: number } = {};
+
+    const toggleIsFocusedCallback = useCallback(() => {
+        setIsFocused(!isFocused);
+    }, [isFocused]);
+
+    const toggleIsHoveredCallback = useCallback(() => {
+        setIsHovered(!isHovered);
+    }, [isHovered]);
+
+    if (!isTextarea) {
+        textFieldProps.max = max;
+        textFieldProps.min = min;
+    }
 
     return (
         <>
@@ -62,23 +80,16 @@ export const Input: React.FunctionComponent<InputProps> = ({
                     isTextarea={isTextarea}
                     isValid={isValid}
                     name={name}
-                    onBlur={() => {
-                        setIsFocused(false);
-                    }}
+                    onBlur={toggleIsFocusedCallback}
                     onChange={onChange}
-                    onFocus={() => {
-                        setIsFocused(true);
-                    }}
+                    onFocus={toggleIsFocusedCallback}
                     onKeyDown={onKeyDown}
-                    onMouseEnter={() => {
-                        setIsHovered(true);
-                    }}
-                    onMouseLeave={() => {
-                        setIsHovered(false);
-                    }}
+                    onMouseEnter={toggleIsHoveredCallback}
+                    onMouseLeave={toggleIsHoveredCallback}
                     type={type}
                     value={value}
                     variant={variant}
+                    {...textFieldProps}
                 />
                 <FormElementLabel
                     hasError={hasError}
@@ -110,6 +121,8 @@ Input.defaultProps = {
     isDisabled: false,
     isTextarea: false,
     isValid: false,
+    max: null,
+    min: null,
     onKeyDown: null,
     type: InputType.TEXT,
     value: '',
