@@ -52,7 +52,6 @@ export const ConfigurableRadioButton = () => {
                 direction={direction}
                 errorMessage={text('Errormessage', 'Oops, something went wrong!')}
                 hasError={hasError}
-                hasVerticalCorrection
                 isChecked={gender === 'male'}
                 isDisabled={isDisabled}
                 isValid={isValid}
