@@ -1,6 +1,6 @@
 import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import { InputType, InputVariant } from '../../../types';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 
@@ -47,6 +47,14 @@ export const Input: React.FunctionComponent<InputProps> = ({
     const hasValue = value.length > 0;
     const textFieldProps: { [key: string]: number } = {};
 
+    const toggleIsFocusedCallback = useCallback(() => {
+        setIsFocused(!isFocused);
+    }, [isFocused]);
+
+    const toggleIsHoveredCallback = useCallback(() => {
+        setIsHovered(!isHovered);
+    }, [isHovered]);
+
     if (!isTextarea) {
         textFieldProps.max = max;
         textFieldProps.min = min;
@@ -72,20 +80,12 @@ export const Input: React.FunctionComponent<InputProps> = ({
                     isTextarea={isTextarea}
                     isValid={isValid}
                     name={name}
-                    onBlur={() => {
-                        setIsFocused(false);
-                    }}
+                    onBlur={toggleIsFocusedCallback}
                     onChange={onChange}
-                    onFocus={() => {
-                        setIsFocused(true);
-                    }}
+                    onFocus={toggleIsFocusedCallback}
                     onKeyDown={onKeyDown}
-                    onMouseEnter={() => {
-                        setIsHovered(true);
-                    }}
-                    onMouseLeave={() => {
-                        setIsHovered(false);
-                    }}
+                    onMouseEnter={toggleIsHoveredCallback}
+                    onMouseLeave={toggleIsHoveredCallback}
                     type={type}
                     value={value}
                     variant={variant}
