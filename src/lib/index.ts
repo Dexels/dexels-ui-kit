@@ -191,3 +191,4 @@ export { areAllOptionsSelected } from '../app/utils/functions/arrayObjectFunctio
 export { cloneArray } from '../app/utils/functions/arrayFunctions';
 export { createTable } from '../app/utils/functions/createTable';
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
+export { parseInputValue } from '../app/utils/functions/parseInputValue';
