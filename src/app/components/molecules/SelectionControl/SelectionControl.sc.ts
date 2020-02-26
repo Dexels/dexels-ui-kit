@@ -9,6 +9,7 @@ import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 interface StyledSelectionControlProps {
     hasHorizontalCorrection: boolean;
+    hasVerticalCorrection: boolean;
     type: SelectionControlType;
 }
 
@@ -16,13 +17,32 @@ export const StyledSelectionControl = styled.div<StyledSelectionControlProps>`
     ${setBoxSizing()}
     display: flex;
 
-    ${({ hasHorizontalCorrection, theme, type }) => hasHorizontalCorrection && css`
+    ${({
+        hasHorizontalCorrection,
+        hasVerticalCorrection,
+        theme,
+        type,
+    }) => css`
         ${type === SelectionControlType.CHECKBOX && css`
-            margin: ${theme.spacing(0, 0, 0, -1)};
+            ${hasHorizontalCorrection && css`
+                margin-left: ${theme.spacing(-1)};
+            `}
+
+            ${hasVerticalCorrection && css`
+                margin-top: ${theme.spacing(-1)};
+                margin-bottom: ${theme.spacing(-1)};
+            `}
         `}
 
         ${type === SelectionControlType.RADIO && css`
-            margin: ${theme.spacing(0, 0, 0, -1.25)};
+            ${hasHorizontalCorrection && css`
+                margin-left: ${theme.spacing(-1.25)};
+            `}
+
+            ${hasVerticalCorrection && css`
+                margin-top: ${theme.spacing(-1.25)};
+                margin-bottom: ${theme.spacing(-1.25)};
+            `}
         `}
     `}
 `;
