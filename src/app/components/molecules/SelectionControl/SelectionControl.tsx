@@ -7,7 +7,7 @@ import {
     LabelWrapper,
     StyledSelectionControl,
 } from './SelectionControl.sc';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import Icon from '../../atoms/Icon/Icon';
 import Label from '../../atoms/Label/Label';
@@ -19,6 +19,7 @@ export interface SelectionControlProps {
     errorMessage?: React.ReactNode;
     hasError?: boolean;
     hasHorizontalCorrection?: boolean;
+    hasVerticalCorrection?: boolean;
     isChecked?: boolean;
     isDisabled?: boolean;
     isIndeterminate?: boolean;
@@ -40,6 +41,7 @@ export const SelectionControl: React.FunctionComponent<SelectionControlProps> = 
     errorMessage,
     hasError,
     hasHorizontalCorrection,
+    hasVerticalCorrection,
     isChecked,
     isDisabled,
     isIndeterminate,
@@ -55,17 +57,18 @@ export const SelectionControl: React.FunctionComponent<SelectionControlProps> = 
 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
+    const onToggleHover = useCallback(() => {
+        setIsHovered(!isHovered);
+    }, [isHovered]);
+
     return (
         <>
             <StyledSelectionControl
                 className={className}
                 hasHorizontalCorrection={hasHorizontalCorrection}
-                onMouseEnter={() => {
-                    setIsHovered(true);
-                }}
-                onMouseLeave={() => {
-                    setIsHovered(false);
-                }}
+                hasVerticalCorrection={hasVerticalCorrection}
+                onMouseEnter={onToggleHover}
+                onMouseLeave={onToggleHover}
                 type={type}
                 {...rest}
             >
@@ -121,6 +124,7 @@ SelectionControl.defaultProps = {
     errorMessage: null,
     hasError: false,
     hasHorizontalCorrection: true,
+    hasVerticalCorrection: false,
     isChecked: false,
     isDisabled: false,
     isIndeterminate: false,
