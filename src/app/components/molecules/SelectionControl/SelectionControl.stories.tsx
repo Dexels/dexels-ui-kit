@@ -34,6 +34,10 @@ export const ConfigurableRadioButton = () => {
             <SelectionControl
                 direction={direction}
                 hasError={hasError}
+                hasHorizontalCorrection={boolean('Has horizontal correction',
+                    SelectionControl.defaultProps.hasHorizontalCorrection)}
+                hasVerticalCorrection={boolean('Has vertical correction',
+                    SelectionControl.defaultProps.hasVerticalCorrection)}
                 isChecked={gender === 'female'}
                 isDisabled={isDisabled}
                 isValid={isValid}
@@ -52,6 +56,10 @@ export const ConfigurableRadioButton = () => {
                 direction={direction}
                 errorMessage={text('Errormessage', 'Oops, something went wrong!')}
                 hasError={hasError}
+                hasHorizontalCorrection={boolean('Has horizontal correction',
+                    SelectionControl.defaultProps.hasHorizontalCorrection)}
+                hasVerticalCorrection={boolean('Has vertical correction',
+                    SelectionControl.defaultProps.hasVerticalCorrection)}
                 isChecked={gender === 'male'}
                 isDisabled={isDisabled}
                 isValid={isValid}
@@ -84,6 +92,10 @@ export const ConfigurableCheckbox = () => {
             direction={select('Direction', Direction, SelectionControl.defaultProps.direction)}
             errorMessage={text('Errormessage', 'Oops, something went wrong!')}
             hasError={boolean('Has error', SelectionControl.defaultProps.hasError)}
+            hasHorizontalCorrection={boolean('Has horizontal correction',
+                SelectionControl.defaultProps.hasHorizontalCorrection)}
+            hasVerticalCorrection={boolean('Has vertical correction',
+                SelectionControl.defaultProps.hasVerticalCorrection)}
             isChecked={isChecked}
             isDisabled={boolean('Is disabled', SelectionControl.defaultProps.isDisabled)}
             isIndeterminate={boolean('Is indeterminate', SelectionControl.defaultProps.isIndeterminate)}
