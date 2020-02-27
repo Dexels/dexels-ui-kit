@@ -6,9 +6,11 @@ import {
 } from 'react-dates';
 import React, { useContext, useState } from 'react';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
+import { DatePickerVariant } from '../types';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import { HORIZONTAL_ORIENTATION } from 'react-dates/lib/constants';
 import InputIcon from '../InputIcon/InputIcon';
+import { InputVariant } from '../../../../types';
 import Navigation from '../Navigation/Navigation';
 import { StyledSingleDatePicker } from './SingleDatePicker.sc';
 import { ThemeContext } from 'styled-components';
@@ -37,6 +39,7 @@ export interface SingleDatePickerProps {
     onFocusChange: SingleDatePickerShape['onFocusChange'];
     orientation?: OrientationShape;
     placeholder?: string;
+    variant?: DatePickerVariant;
     yearCount?: number;
 }
 
@@ -60,6 +63,7 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = 
     onDateChange,
     onFocusChange,
     placeholder,
+    variant,
     yearCount,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -77,17 +81,18 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = 
                 setIsHovered(false);
             }}
         >
-            <StyledSingleDatePicker hasYearSelector={hasYearSelector}>
+            <StyledSingleDatePicker isFocused={isFocused} variant={variant}>
                 <FormElementLabel
                     isActive
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
+                    variant={variant === DatePickerVariant.OUTLINE ? InputVariant.OUTLINE : InputVariant.COMPACT}
                 >
                     {label}
                 </FormElementLabel>
                 <AirbnbSingleDatePicker
-                    customInputIcon={<InputIcon isDisabled={isDisabled} isFocused={isFocused} />}
+                    customInputIcon={<InputIcon isDisabled={isDisabled} isFocused={isFocused} variant={variant} />}
                     date={date}
                     daySize={daySize}
                     disabled={isDisabled}
@@ -114,7 +119,7 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = 
                             yearCount={yearCount}
                         />
                     )}
-                    verticalSpacing={(spacingValue * 6) - 40}
+                    verticalSpacing={(spacingValue * (variant === DatePickerVariant.OUTLINE ? 6 : 3.25)) - 40}
                 />
             </StyledSingleDatePicker>
         </Wrapper>
@@ -137,6 +142,7 @@ SingleDatePicker.defaultProps = {
     onClose: AirbnbSingleDatePicker.defaultProps.onClose,
     orientation: HORIZONTAL_ORIENTATION,
     placeholder: AirbnbSingleDatePicker.defaultProps.placeholder,
+    variant: DatePickerVariant.OUTLINE,
     yearCount: 100,
 };
 
