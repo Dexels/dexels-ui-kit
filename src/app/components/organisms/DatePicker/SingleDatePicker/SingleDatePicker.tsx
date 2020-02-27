@@ -9,7 +9,6 @@ import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import { HORIZONTAL_ORIENTATION } from 'react-dates/lib/constants';
 import InputIcon from '../InputIcon/InputIcon';
-import { Moment } from 'moment';
 import Navigation from '../Navigation/Navigation';
 import { StyledSingleDatePicker } from './SingleDatePicker.sc';
 import { ThemeContext } from 'styled-components';
@@ -17,7 +16,7 @@ import Wrapper from '../Wrapper/Wrapper';
 
 export interface SingleDatePickerProps {
     className?: string;
-    date?: Moment;
+    date: SingleDatePickerShape['date'];
     daySize?: number;
     displayFormat?: string;
     hasYearSelector?: boolean;
