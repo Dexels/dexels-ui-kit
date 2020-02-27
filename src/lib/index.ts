@@ -116,7 +116,10 @@ export {
 export {
     DateRangePicker,
     DateRangePickerProps,
-} from '../app/components/organisms/DatePicker/DateRangePicker/DateRangePicker';
+    SingleDatePicker,
+    SingleDatePickerProps,
+    SingleDatePickerVariant,
+} from '../app/components/organisms/DatePicker';
 export {
     Dialog,
     DialogButtonClosePosition,
@@ -148,10 +151,6 @@ export {
     PaginatorProps,
     PaginatorTexts,
 } from '../app/components/organisms/Table/Paginator/Paginator';
-export {
-    SingleDatePicker,
-    SingleDatePickerProps,
-} from '../app/components/organisms/DatePicker/SingleDatePicker/SingleDatePicker';
 export {
     Table,
     TableProps,
