@@ -6,7 +6,7 @@ import {
 } from 'react-dates';
 import React, { useContext, useState } from 'react';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
-import { DatePickerVariant } from '../types';
+import { SingleDatePickerVariant } from '../types';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import { HORIZONTAL_ORIENTATION } from 'react-dates/lib/constants';
 import InputIcon from '../InputIcon/InputIcon';
@@ -39,7 +39,7 @@ export interface SingleDatePickerProps {
     onFocusChange: SingleDatePickerShape['onFocusChange'];
     orientation?: OrientationShape;
     placeholder?: string;
-    variant?: DatePickerVariant;
+    variant?: SingleDatePickerVariant;
     yearCount?: number;
 }
 
@@ -87,7 +87,7 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = 
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
-                    variant={variant === DatePickerVariant.OUTLINE ? InputVariant.OUTLINE : InputVariant.COMPACT}
+                    variant={variant === SingleDatePickerVariant.OUTLINE ? InputVariant.OUTLINE : InputVariant.COMPACT}
                 >
                     {label}
                 </FormElementLabel>
@@ -119,7 +119,7 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = 
                             yearCount={yearCount}
                         />
                     )}
-                    verticalSpacing={(spacingValue * (variant === DatePickerVariant.OUTLINE ? 6 : 3.25)) - 40}
+                    verticalSpacing={(spacingValue * (variant === SingleDatePickerVariant.OUTLINE ? 6 : 3.25)) - 40}
                 />
             </StyledSingleDatePicker>
         </Wrapper>
@@ -142,7 +142,7 @@ SingleDatePicker.defaultProps = {
     onClose: AirbnbSingleDatePicker.defaultProps.onClose,
     orientation: HORIZONTAL_ORIENTATION,
     placeholder: AirbnbSingleDatePicker.defaultProps.placeholder,
-    variant: DatePickerVariant.OUTLINE,
+    variant: SingleDatePickerVariant.OUTLINE,
     yearCount: 100,
 };
 

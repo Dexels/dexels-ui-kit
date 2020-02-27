@@ -1,4 +1,4 @@
-export enum DatePickerVariant {
+export enum SingleDatePickerVariant {
     COMPACT = 'COMPACT',
     OUTLINE = 'OUTLINE',
 }

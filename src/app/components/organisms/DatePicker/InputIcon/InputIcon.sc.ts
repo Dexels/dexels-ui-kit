@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
-import { DatePickerVariant } from '../types';
+import { SingleDatePickerVariant } from '../types';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 interface StyledInputIconProps {
     isDisabled: boolean;
     isFocused: boolean;
-    variant: DatePickerVariant;
+    variant: SingleDatePickerVariant;
 }
 
 export const StyledInputIcon = styled.div<StyledInputIconProps>`
@@ -24,7 +24,7 @@ export const StyledInputIcon = styled.div<StyledInputIconProps>`
         color: ${theme.colorDisabled};
     `}
 
-    ${({ theme, variant }) => variant === DatePickerVariant.OUTLINE && css`
+    ${({ theme, variant }) => variant === SingleDatePickerVariant.OUTLINE && css`
         padding: ${theme.spacing(1.5)};
     `}
 `;

@@ -1,4 +1,4 @@
-import { DatePickerVariant } from '../types';
+import { SingleDatePickerVariant } from '../types';
 import Icon from '../../../atoms/Icon/Icon';
 import { IconType } from '../../../../types';
 import React from 'react';
@@ -7,7 +7,7 @@ import { StyledInputIcon } from './InputIcon.sc';
 interface InputIconProps {
     isDisabled: boolean;
     isFocused: boolean;
-    variant?: DatePickerVariant;
+    variant?: SingleDatePickerVariant;
 }
 
 const InputIcon: React.FunctionComponent<InputIconProps> = ({ isDisabled, isFocused, variant }) => (
@@ -17,7 +17,7 @@ const InputIcon: React.FunctionComponent<InputIconProps> = ({ isDisabled, isFocu
 );
 
 InputIcon.defaultProps = {
-    variant: DatePickerVariant.OUTLINE,
+    variant: SingleDatePickerVariant.OUTLINE,
 };
 
 export default InputIcon;

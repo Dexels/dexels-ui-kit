@@ -5,7 +5,7 @@ import {
     text,
 } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
-import { DatePickerVariant } from '../types';
+import { SingleDatePickerVariant } from '../types';
 import moment from 'moment';
 import SingleDatePicker from './SingleDatePicker';
 
@@ -36,7 +36,7 @@ export const Default = () => {
                 setIsFocused(focused);
             }}
             placeholder={text('Placeholder', 'Selecteer je datum')}
-            variant={select('Variant', DatePickerVariant, SingleDatePicker.defaultProps.variant)}
+            variant={select('Variant', SingleDatePickerVariant, SingleDatePicker.defaultProps.variant)}
         />
     );
 };
@@ -70,7 +70,7 @@ export const WithYearSelector = () => {
                 setIsFocused(focused);
             }}
             placeholder={text('Placeholder', 'Selecteer je datum')}
-            variant={select('Variant', DatePickerVariant, SingleDatePicker.defaultProps.variant)}
+            variant={select('Variant', SingleDatePickerVariant, SingleDatePicker.defaultProps.variant)}
             yearCount={number('Year count', SingleDatePicker.defaultProps.yearCount)}
         />
     );
