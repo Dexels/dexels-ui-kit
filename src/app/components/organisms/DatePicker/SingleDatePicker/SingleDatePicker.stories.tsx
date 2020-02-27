@@ -5,9 +5,9 @@ import {
     text,
 } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
-import { SingleDatePickerVariant } from '../types';
 import moment from 'moment';
 import SingleDatePicker from './SingleDatePicker';
+import { SingleDatePickerVariant } from '../types';
 
 export default { title: 'organisms/DatePicker' };
 

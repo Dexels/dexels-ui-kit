@@ -6,12 +6,12 @@ import {
 } from 'react-dates';
 import React, { useContext, useState } from 'react';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
-import { SingleDatePickerVariant } from '../types';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import { HORIZONTAL_ORIENTATION } from 'react-dates/lib/constants';
 import InputIcon from '../InputIcon/InputIcon';
 import { InputVariant } from '../../../../types';
 import Navigation from '../Navigation/Navigation';
+import { SingleDatePickerVariant } from '../types';
 import { StyledSingleDatePicker } from './SingleDatePicker.sc';
 import { ThemeContext } from 'styled-components';
 import Wrapper from '../Wrapper/Wrapper';

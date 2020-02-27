@@ -1,7 +1,7 @@
-import { SingleDatePickerVariant } from '../types';
 import Icon from '../../../atoms/Icon/Icon';
 import { IconType } from '../../../../types';
 import React from 'react';
+import { SingleDatePickerVariant } from '../types';
 import { StyledInputIcon } from './InputIcon.sc';
 
 interface InputIconProps {
