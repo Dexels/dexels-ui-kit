@@ -4,14 +4,9 @@ import {
     Placement,
     Status,
 } from '../../../types';
-import {
-    FunctionalWrapper,
-    StyledHeader,
-    Title,
-} from './PanelStatus.sc';
 import CardStatus from '../CardStatus/CardStatus';
+import PanelHeader from '../PanelHeader/PanelHeader';
 import React from 'react';
-import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface PanelStatusProps {
     children: React.ReactNode;
@@ -31,16 +26,7 @@ export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
     title,
 }) => (
     <>
-        <StyledHeader>
-            <Title>
-                <TextWithOptionalIcon iconType={iconType}>
-                    {title}
-                </TextWithOptionalIcon>
-            </Title>
-            <FunctionalWrapper>
-                {options}
-            </FunctionalWrapper>
-        </StyledHeader>
+        <PanelHeader iconType={iconType} options={options} title={title} />
         <CardStatus elevation={elevation} placement={Placement.TOP} status={status}>
             {children}
         </CardStatus>

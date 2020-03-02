@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
-export const StyledHeader = styled.div`
+export const StyledPanelHeader = styled.div`
     display: flex;
     align-items: center;
     padding: ${({ theme }) => theme.spacing(0, 0, 1, 0)};
 `;
 
-StyledHeader.defaultProps = {
+StyledPanelHeader.defaultProps = {
     theme: themeBasic,
 };
 
