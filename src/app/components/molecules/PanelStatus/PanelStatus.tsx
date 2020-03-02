@@ -1,32 +1,30 @@
-import {
-    Elevation,
-    IconType,
-    Placement,
-    Status,
-} from '../../../types';
+import { Elevation, Placement, Status } from '../../../types';
+import PanelHeader, { PanelHeaderProps } from '../PanelHeader/PanelHeader';
 import CardStatus from '../CardStatus/CardStatus';
-import PanelHeader from '../PanelHeader/PanelHeader';
 import React from 'react';
 
-export interface PanelStatusProps {
+export interface PanelStatusProps extends PanelHeaderProps {
     children: React.ReactNode;
     elevation?: Elevation;
-    iconType?: IconType;
-    options?: React.ReactNode;
     status?: Status;
-    title: React.ReactNode;
 }
 
 export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
     children,
     elevation,
     iconType,
+    isTitleCapitalized,
     options,
     status,
     title,
 }) => (
     <>
-        <PanelHeader iconType={iconType} options={options} title={title} />
+        <PanelHeader
+            iconType={iconType}
+            isTitleCapitalized={isTitleCapitalized}
+            options={options}
+            title={title}
+        />
         <CardStatus elevation={elevation} placement={Placement.TOP} status={status}>
             {children}
         </CardStatus>
@@ -36,6 +34,7 @@ export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
 PanelStatus.defaultProps = {
     elevation: CardStatus.defaultProps.elevation,
     iconType: null,
+    isTitleCapitalized: false,
     options: null,
     status: CardStatus.defaultProps.status,
 };
