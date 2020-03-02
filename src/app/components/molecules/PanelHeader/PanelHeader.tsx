@@ -34,6 +34,7 @@ export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
 
 PanelHeader.defaultProps = {
     iconType: null,
+    isTitleCapitalized: false,
     options: null,
 };
 

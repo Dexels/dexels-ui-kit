@@ -82,6 +82,10 @@ export {
     OverlayProps,
 } from '../app/components/molecules/Overlay/Overlay';
 export {
+    PanelHeader,
+    PanelHeaderProps,
+} from '../app/components/molecules/PanelHeader/PanelHeader';
+export {
     PanelStatus,
     PanelStatusProps,
 } from '../app/components/molecules/PanelStatus/PanelStatus';
