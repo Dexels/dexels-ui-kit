@@ -1,5 +1,5 @@
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button/Button';
 import PanelHeader from './PanelHeader';
@@ -11,6 +11,7 @@ export default { title: 'molecules/PanelHeader' };
 export const Configurable = () => (
     <PanelHeader
         iconType={select('Icon type', IconType, IconType.GEAR)}
+        isTitleCapitalized={boolean('Is title capitalized', true)}
         options={(
             <Button
                 iconType={IconType.CHECK}
@@ -20,13 +21,14 @@ export const Configurable = () => (
                 {'Apply'}
             </Button>
         )}
-        title={text('Title', 'Settings')}
+        title={text('Title', 'settings')}
     />
 );
 
 export const ConfigurableWithMultipleButtons = () => (
     <PanelHeader
         iconType={select('Icon type', IconType, IconType.GEAR)}
+        isTitleCapitalized={boolean('Is title capitalized', true)}
         options={(
             <Toolbar>
                 <Button
@@ -46,6 +48,6 @@ export const ConfigurableWithMultipleButtons = () => (
                 </Button>
             </Toolbar>
         )}
-        title={text('Title', 'Settings')}
+        title={text('Title', 'settings')}
     />
 );

@@ -9,14 +9,20 @@ import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface PanelHeaderProps {
     iconType?: IconType;
+    isTitleCapitalized?: boolean;
     options?: React.ReactNode;
     title: React.ReactNode;
 }
 
-export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({ iconType, options, title }) => (
+export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
+    iconType,
+    isTitleCapitalized,
+    options,
+    title,
+}) => (
     <StyledPanelHeader>
         <Title>
-            <TextWithOptionalIcon iconType={iconType}>
+            <TextWithOptionalIcon iconType={iconType} isCapitalized={isTitleCapitalized}>
                 {title}
             </TextWithOptionalIcon>
         </Title>
