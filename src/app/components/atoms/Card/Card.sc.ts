@@ -5,8 +5,8 @@ import setBoxSizing from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export interface StyledCardProps {
-    elevation?: Elevation;
-    hasBorderRadius?: boolean;
+    elevation: Elevation;
+    hasBorderRadius: boolean;
 }
 
 export const StyledCard = styled.div<StyledCardProps>`

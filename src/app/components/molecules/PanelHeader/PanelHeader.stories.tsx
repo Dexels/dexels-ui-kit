@@ -1,5 +1,10 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import {
+    ButtonSize,
+    ButtonVariant,
+    IconType,
+    Status,
+} from '../../../types';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button/Button';
 import PanelHeader from './PanelHeader';
@@ -10,6 +15,7 @@ export default { title: 'molecules/PanelHeader' };
 
 export const Configurable = () => (
     <PanelHeader
+        hasTitleStatusAppearance={boolean('Has title status appearance', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
         isTitleCapitalized={boolean('Is title capitalized', true)}
         options={(
@@ -21,12 +27,14 @@ export const Configurable = () => (
                 {'Apply'}
             </Button>
         )}
+        status={select('Status', Status, Status.ALERT)}
         title={text('Title', 'settings')}
     />
 );
 
 export const ConfigurableWithMultipleButtons = () => (
     <PanelHeader
+        hasTitleStatusAppearance={boolean('Has title status appearance', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
         isTitleCapitalized={boolean('Is title capitalized', true)}
         options={(
@@ -48,6 +56,7 @@ export const ConfigurableWithMultipleButtons = () => (
                 </Button>
             </Toolbar>
         )}
+        status={select('Status', Status, Status.DEFAULT)}
         title={text('Title', 'settings')}
     />
 );

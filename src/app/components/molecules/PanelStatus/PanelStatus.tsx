@@ -31,12 +31,4 @@ export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
     </>
 );
 
-PanelStatus.defaultProps = {
-    elevation: CardStatus.defaultProps.elevation,
-    iconType: null,
-    isTitleCapitalized: false,
-    options: null,
-    status: CardStatus.defaultProps.status,
-};
-
 export default PanelStatus;
