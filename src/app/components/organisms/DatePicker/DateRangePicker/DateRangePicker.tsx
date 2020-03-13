@@ -10,7 +10,6 @@ import { Shortcut, Shortcuts } from './Shortcuts/Shortcuts';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import DialogFooter from '../../../molecules/DialogFooter/DialogFooter';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
-import { HORIZONTAL_ORIENTATION } from 'react-dates/lib/constants';
 import InputIcon from '../InputIcon/InputIcon';
 import { Moment } from 'moment';
 import Navigation from '../Navigation/Navigation';
@@ -190,7 +189,7 @@ DateRangePicker.defaultProps = {
     numberOfMonths: 2,
     onCancel: null,
     onConfirm: null,
-    orientation: HORIZONTAL_ORIENTATION,
+    orientation: 'horizontal',
     shortcuts: [],
     shortcutsText: null,
     startDate: null,

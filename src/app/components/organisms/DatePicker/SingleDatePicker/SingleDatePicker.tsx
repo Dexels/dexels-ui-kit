@@ -7,7 +7,6 @@ import {
 import React, { useContext, useState } from 'react';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
-import { HORIZONTAL_ORIENTATION } from 'react-dates/lib/constants';
 import InputIcon from '../InputIcon/InputIcon';
 import { InputVariant } from '../../../../types';
 import Navigation from '../Navigation/Navigation';
@@ -140,7 +139,7 @@ SingleDatePicker.defaultProps = {
     labelYear: null,
     numberOfMonths: 1,
     onClose: AirbnbSingleDatePicker.defaultProps.onClose,
-    orientation: HORIZONTAL_ORIENTATION,
+    orientation: 'horizontal',
     placeholder: AirbnbSingleDatePicker.defaultProps.placeholder,
     variant: SingleDatePickerVariant.OUTLINE,
     yearCount: 100,
