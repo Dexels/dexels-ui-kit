@@ -1,6 +1,6 @@
 import { InputType, InputVariant } from '../../../types';
 import styled, { css } from 'styled-components';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledInputProps {

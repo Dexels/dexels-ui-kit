@@ -1,5 +1,5 @@
 import { colorKeys } from '../../../styles/theming/colorKeys';
-import getColorsFromTheme from '../../../styles/theming/getColorsFromTheme';
+import { getColorsFromTheme } from '../../../styles/theming/getColorsFromTheme';
 import Icon from './Icon';
 import { IconType } from '../../../types';
 import React from 'react';

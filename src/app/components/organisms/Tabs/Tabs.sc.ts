@@ -1,7 +1,7 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { Elevation } from '../../../types';
-import getElevation from '../../../styles/mixins/getElevation';
+import { getElevation } from '../../../styles/mixins/getElevation';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledTabsProps {

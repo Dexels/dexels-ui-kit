@@ -1,5 +1,5 @@
 import { Easing } from '../../../types';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';

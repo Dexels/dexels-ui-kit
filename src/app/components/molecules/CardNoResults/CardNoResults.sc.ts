@@ -1,6 +1,6 @@
 import { Elevation } from '../../../types';
-import getElevation from '../../../styles/mixins/getElevation';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { getElevation } from '../../../styles/mixins/getElevation';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 

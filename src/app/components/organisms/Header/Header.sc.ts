@@ -1,5 +1,5 @@
 import { Elevation } from '../../../types';
-import getElevation from '../../../styles/mixins/getElevation';
+import { getElevation } from '../../../styles/mixins/getElevation';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 

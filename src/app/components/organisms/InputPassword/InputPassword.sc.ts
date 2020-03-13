@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { InputVariant } from '../../../types';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export const StyledInputPassword = styled.div`

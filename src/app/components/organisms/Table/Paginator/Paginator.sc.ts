@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
+import { setBoxSizing } from '../../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 export const StyledPaginator = styled.div`

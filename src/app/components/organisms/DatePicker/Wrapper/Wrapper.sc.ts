@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 import { Elevation } from '../../../../types';
-import getElevation from '../../../../styles/mixins/getElevation';
+import { getElevation } from '../../../../styles/mixins/getElevation';
 import { hexToRgb } from '../../../../utils/functions/colorFunctions';
-import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
-import setTruncate from '../../../../styles/mixins/setTruncate';
+import { setBoxSizing } from '../../../../styles/mixins/setBoxSizing';
+import { setTruncate } from '../../../../styles/mixins/setTruncate';
 import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 

@@ -1,4 +1,4 @@
-import { getStatusColor } from '../../../../lib';
+import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import { Status } from '../../../types';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';

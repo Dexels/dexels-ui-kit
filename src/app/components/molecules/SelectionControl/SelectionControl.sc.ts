@@ -2,8 +2,8 @@ import { Direction, Easing } from '../../../types';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { SelectionControlType } from './types';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import setCentered from '../../../styles/mixins/setCentered';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
+import { setCentered } from '../../../styles/mixins/setCentered';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 

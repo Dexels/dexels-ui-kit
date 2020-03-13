@@ -1,4 +1,4 @@
-import setCentered from '../../../../styles/mixins/setCentered';
+import { setCentered } from '../../../../styles/mixins/setCentered';
 import styled from 'styled-components';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 

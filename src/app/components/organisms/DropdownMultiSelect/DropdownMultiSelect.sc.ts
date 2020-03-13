@@ -1,8 +1,8 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css } from 'styled-components';
 import { Elevation } from '../../../types';
-import getElevation from '../../../styles/mixins/getElevation';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { getElevation } from '../../../styles/mixins/getElevation';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export const StyledDropdownMultiSelect = styled.div`

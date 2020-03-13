@@ -1,6 +1,6 @@
 import { Theme } from '../../types';
 
-const getColorsFromTheme = (theme: Theme, colorKeys: string[]) => {
+export const getColorsFromTheme = (theme: Theme, colorKeys: string[]) => {
     const colors: { [key: string]: string } = {};
 
     colorKeys.forEach((colorKey) => {
