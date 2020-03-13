@@ -1,5 +1,3 @@
-// In this file we want to use prop spreading because React Table passes a lot of props
-/* eslint-disable react/jsx-props-no-spreading */
 import {
     Cell,
     ColumnInstance,

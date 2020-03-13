@@ -1,7 +1,8 @@
-const { distPath, libPath } = require('./paths');
 const babel = require('rollup-plugin-babel');
 const commonjs = require('@rollup/plugin-commonjs');
 const copy = require('rollup-plugin-copy');
+const distPath = resolve(__dirname, './../'),
+const libPath = resolve(__dirname, './../src/lib'),
 const postcss = require('rollup-plugin-postcss');
 const postcssUrl = require('postcss-url');
 const { resolve } = require('path');
@@ -9,6 +10,7 @@ const rollupResolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const typescript = require('rollup-plugin-typescript2');
 const visualizer = require('rollup-plugin-visualizer');
+
 const { analyze } = process.env;
 
 module.exports = {
