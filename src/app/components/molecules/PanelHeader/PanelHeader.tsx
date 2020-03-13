@@ -8,25 +8,25 @@ import React from 'react';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface PanelHeaderProps {
+    hasCapitalizedTitle?: boolean;
     hasTitleStatusAppearance?: boolean;
     iconType?: IconType;
-    isTitleCapitalized?: boolean;
     options?: React.ReactNode;
     status?: Status;
     title: React.ReactNode;
 }
 
 export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
+    hasCapitalizedTitle,
     hasTitleStatusAppearance,
     iconType,
-    isTitleCapitalized,
     options,
     status,
     title,
 }) => (
     <StyledPanelHeader>
         <Title status={hasTitleStatusAppearance ? status : undefined}>
-            <TextWithOptionalIcon iconType={iconType} isCapitalized={isTitleCapitalized}>
+            <TextWithOptionalIcon iconType={iconType} isCapitalized={hasCapitalizedTitle}>
                 {title}
             </TextWithOptionalIcon>
         </Title>

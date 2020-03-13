@@ -15,9 +15,9 @@ export default { title: 'molecules/PanelHeader' };
 
 export const Configurable = () => (
     <PanelHeader
+        hasCapitalizedTitle={boolean('Is title capitalized', true)}
         hasTitleStatusAppearance={boolean('Has title status appearance', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
-        isTitleCapitalized={boolean('Is title capitalized', true)}
         options={(
             <Button
                 iconType={IconType.CHECK}
@@ -34,9 +34,9 @@ export const Configurable = () => (
 
 export const ConfigurableWithMultipleButtons = () => (
     <PanelHeader
+        hasCapitalizedTitle={boolean('Is title capitalized', true)}
         hasTitleStatusAppearance={boolean('Has title status appearance', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
-        isTitleCapitalized={boolean('Is title capitalized', true)}
         options={(
             <Toolbar>
                 <Button
