@@ -1,15 +1,10 @@
 const babel = require('rollup-plugin-babel');
-const commonjs = require('@rollup/plugin-commonjs');
 const copy = require('rollup-plugin-copy');
-const distPath = resolve(__dirname, './../'),
-const libPath = resolve(__dirname, './../src/lib'),
 const postcss = require('rollup-plugin-postcss');
 const postcssUrl = require('postcss-url');
-const { resolve } = require('path');
-const rollupResolve = require('@rollup/plugin-node-resolve');
+const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
-const typescript = require('rollup-plugin-typescript2');
-const visualizer = require('rollup-plugin-visualizer');
+const typescript = require('@rollup/plugin-typescript');
 
 const { analyze } = process.env;
 
@@ -26,34 +21,17 @@ module.exports = {
         'react-with-direction',
         'styled-components',
     ],
-    input: resolve(__dirname, `${libPath}/index.ts`),
+    input: 'src/lib/index.ts',
     output: [
         {
-            file: resolve(__dirname, `${distPath}/index.js`),
-            format: 'umd',
-            globals: {
-                moment: 'moment',
-                react: 'React',
-                'react-dates': 'reactDates',
-                'react-loading-skeleton': 'reactSkeleton',
-                'react-router-dom': 'ReactRouterDOM',
-                'react-table': 'ReactTable',
-                'styled-components': 'styled',
-            },
-            name: 'DexelsUIKit',
-        },
-        {
-            file: resolve(__dirname, `${distPath}/index.esm.js`),
-            format: 'esm',
+            file: 'index.js',
+            format: 'cjs',
         },
     ],
     plugins: [
-        rollupResolve(),
-        commonjs({
-            exclude: 'src/**',
-        }),
+        resolve(),
         postcss({
-            extract: resolve(__dirname, `${distPath}/main.css`),
+            extract: 'main.css',
             minimize: true,
             plugins: [
                 // Drops the preceeding '~' (needed for Storybook webpack loaders) &
@@ -76,11 +54,10 @@ module.exports = {
         copy({
             // src must be relative to project root for copy to work both on Win & Unix hosts
             targets: [{
-                dest: resolve(__dirname, `${distPath}/fonts`),
+                dest: 'fonts',
                 src: 'public/fonts/**/*.*',
             }],
             verbose: true,
         }),
-        ...analyze ? [visualizer()] : [],
     ],
 };
