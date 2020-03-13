@@ -8,21 +8,21 @@ import React from 'react';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface PanelHeaderProps {
+    hasCapitalizedTitle?: boolean;
     iconType?: IconType;
-    isTitleCapitalized?: boolean;
     options?: React.ReactNode;
     title: React.ReactNode;
 }
 
 export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
+    hasCapitalizedTitle,
     iconType,
-    isTitleCapitalized,
     options,
     title,
 }) => (
     <StyledPanelHeader>
         <Title>
-            <TextWithOptionalIcon iconType={iconType} isCapitalized={isTitleCapitalized}>
+            <TextWithOptionalIcon iconType={iconType} isCapitalized={hasCapitalizedTitle}>
                 {title}
             </TextWithOptionalIcon>
         </Title>
@@ -33,8 +33,8 @@ export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
 );
 
 PanelHeader.defaultProps = {
+    hasCapitalizedTitle: false,
     iconType: null,
-    isTitleCapitalized: false,
     options: null,
 };
 
