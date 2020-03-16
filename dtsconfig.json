@@ -5,7 +5,6 @@
     "entries": [
         {
             "filePath": "./src/lib/index.ts",
-            "outFile": "./index.d.ts",
             "libraries": {
                 "allowedTypesLibraries": [
                     "react",
@@ -17,7 +16,9 @@
                     "react-table"
                 ]
             },
+            "outFile": "./index.d.ts",
             "output": {
+                "inlineDeclareExternals": true,
                 "sortNodes": true,
                 "umdModuleName": "DexelsUIKit"
             }
