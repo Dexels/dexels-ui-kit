@@ -1,3 +1,4 @@
+import { boolean, select, text } from '@storybook/addon-knobs';
 import {
     ButtonSize,
     ButtonVariant,
@@ -5,7 +6,6 @@ import {
     IconType,
     Status,
 } from '../../../types';
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button/Button';
 import PanelStatus from './PanelStatus';
@@ -17,6 +17,7 @@ export default { title: 'molecules/PanelStatus' };
 export const Configurable = () => (
     <PanelStatus
         elevation={select('Elevation', Elevation, PanelStatus.defaultProps.elevation)}
+        hasCapitalizedTitle={boolean('Is title capitalized', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
         options={(
             <Button
@@ -28,7 +29,7 @@ export const Configurable = () => (
             </Button>
         )}
         status={select('Status', Status, PanelStatus.defaultProps.status)}
-        title={text('Title', 'Settings')}
+        title={text('Title', 'settings')}
     >
         {text('Text', 'Configure me!')}
     </PanelStatus>
@@ -37,6 +38,7 @@ export const Configurable = () => (
 export const ConfigurableWithMultipleButtons = () => (
     <PanelStatus
         elevation={select('Elevation', Elevation, PanelStatus.defaultProps.elevation)}
+        hasCapitalizedTitle={boolean('Is title capitalized', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
         options={(
             <Toolbar>
@@ -58,7 +60,7 @@ export const ConfigurableWithMultipleButtons = () => (
             </Toolbar>
         )}
         status={select('Status', Status, PanelStatus.defaultProps.status)}
-        title={text('Title', 'Settings')}
+        title={text('Title', 'settings')}
     >
         {text('Text', 'Configure me!')}
     </PanelStatus>

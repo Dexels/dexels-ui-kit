@@ -12,16 +12,16 @@ export interface PanelStatusProps extends PanelHeaderProps {
 export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
     children,
     elevation,
+    hasCapitalizedTitle,
     iconType,
-    isTitleCapitalized,
     options,
     status,
     title,
 }) => (
     <>
         <PanelHeader
+            hasCapitalizedTitle={hasCapitalizedTitle}
             iconType={iconType}
-            isTitleCapitalized={isTitleCapitalized}
             options={options}
             title={title}
         />
@@ -33,8 +33,8 @@ export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
 
 PanelStatus.defaultProps = {
     elevation: CardStatus.defaultProps.elevation,
+    hasCapitalizedTitle: false,
     iconType: null,
-    isTitleCapitalized: false,
     options: null,
     status: CardStatus.defaultProps.status,
 };
