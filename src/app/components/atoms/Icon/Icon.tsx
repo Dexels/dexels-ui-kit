@@ -11,8 +11,4 @@ export const Icon: React.FunctionComponent<IconProps> = ({ className, type }) =>
     <span className={`${className} ICON-${type}`} />
 );
 
-Icon.defaultProps = {
-    className: '',
-};
-
 export default Icon;

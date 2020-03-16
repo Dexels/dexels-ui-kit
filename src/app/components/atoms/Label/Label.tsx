@@ -43,17 +43,4 @@ export const Label: React.FunctionComponent<LabelProps> = ({
     </StyledLabel>
 );
 
-Label.defaultProps = {
-    className: '',
-    hasError: false,
-    isActive: false,
-    isCheckboxLabel: false,
-    isDisabled: false,
-    isFocused: false,
-    isHovered: false,
-    isSmall: false,
-    isTruncatable: false,
-    isValid: false,
-};
-
 export default Label;
