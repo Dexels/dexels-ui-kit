@@ -13,7 +13,6 @@ import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import Table from './Table';
-import { TableInstance } from 'react-table';
 
 export default {
     parameters: {
@@ -52,23 +51,29 @@ export const Configurable = () => {
                 <SelectionControl
                     isChecked={isNL}
                     label={isNL ? 'Is NL' : 'Is EN'}
-                    name={'LANGUAGE'}
-                    onChange={() => setIsNL(!isNL)}
-                    value={'isNL'}
+                    name="LANGUAGE"
+                    onChange={() => {
+                        setIsNL(!isNL);
+                    }}
+                    value="isNL"
                 />
                 <SelectionControl
                     isChecked={hasGroupHeader}
                     label={hasGroupHeader ? 'WITH GROUP HEADER' : 'WITHOUT GROUP HEADER'}
-                    name={'GROUPHEADER'}
-                    onChange={() => setHasGroupHeader(!hasGroupHeader)}
-                    value={'hasGroupHeader'}
+                    name="GROUPHEADER"
+                    onChange={() => {
+                        setHasGroupHeader(!hasGroupHeader);
+                    }}
+                    value="hasGroupHeader"
                 />
                 <SelectionControl
                     isChecked={isFooterVisible}
                     label={isFooterVisible ? 'WITHOUT TABLE FOOTER' : 'WITH TABLE FOOTER'}
-                    name={'FOOTER'}
-                    onChange={() => setIsFooterVisible(!isFooterVisible)}
-                    value={'isFooterVisible'}
+                    name="FOOTER"
+                    onChange={() => {
+                        setIsFooterVisible(!isFooterVisible);
+                    }}
+                    value="isFooterVisible"
                 />
             </div>
             {!instance && (
@@ -77,14 +82,15 @@ export const Configurable = () => {
                 </div>
             )}
             {instance && (
-                <Table
+                <Table<TableData>
                     caption={text('Table caption', 'Table caption')}
                     elevation={select('Elevation', Elevation, Table.defaultProps.elevation)}
                     footerComponent={isFooterVisible && (
-                        <tr style={{
-                            backgroundColor: 'yellow',
-                            height: '50px',
-                        }}
+                        <tr
+                            style={{
+                                backgroundColor: 'yellow',
+                                height: '50px',
+                            }}
                         >
                             {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT.
                             OK WITH THAT FOR NOW IN HERE */}
@@ -94,12 +100,12 @@ export const Configurable = () => {
                         </tr>
                     )}
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', Table.defaultProps.hasUnsortedStateIcon)}
-                    instance={instance as unknown as TableInstance}
+                    instance={instance}
                     isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
                     onClickRow={getTableRow}
                     pagingComponent={(
-                        <Paginator
-                            instance={instance as unknown as TableInstance}
+                        <Paginator<TableData>
+                            instance={instance}
                             texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
                         />
                     )}

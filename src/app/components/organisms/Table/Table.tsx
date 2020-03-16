@@ -23,16 +23,15 @@ import React, { SyntheticEvent } from 'react';
 import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
-export interface TableProps {
+export interface TableProps<T extends object> {
     caption?: React.ReactNode;
     className?: string;
     elevation?: Elevation;
     footerComponent?: React.ReactNode;
     hasUnsortedStateIcon?: boolean;
-    instance: TableInstance;
+    instance: TableInstance<T>;
     isFullWidth?: boolean;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClickRow?: (...args: any[]) => any;
+    onClickRow?: (event: React.SyntheticEvent, row: Row<T>) => void;
     pagingComponent?: React.ReactNode;
     texts?: {
         toggleSortTooltip?: React.ReactNode;
@@ -41,7 +40,7 @@ export interface TableProps {
 
 const dataSource = (instance: TableInstance, hasPaging: boolean) => (hasPaging ? instance.page : instance.rows);
 
-export const Table: React.FunctionComponent<TableProps> = ({
+export const Table = <T extends object>({
     caption,
     className,
     elevation,
@@ -52,7 +51,7 @@ export const Table: React.FunctionComponent<TableProps> = ({
     onClickRow,
     pagingComponent,
     texts,
-}) => {
+}: TableProps<T>): JSX.Element => {
     const {
         getTableBodyProps,
         getTableProps,
@@ -111,7 +110,7 @@ export const Table: React.FunctionComponent<TableProps> = ({
                 </TableHead>
                 <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                    {dataSource(instance, Boolean(pagingComponent)).map((row: Row) => {
+                    {dataSource(instance, Boolean(pagingComponent)).map((row: Row<T>) => {
                         prepareRow(row);
 
                         return (

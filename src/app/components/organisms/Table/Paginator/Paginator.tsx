@@ -28,7 +28,7 @@ export interface PaginatorTexts {
     show: React.ReactNode;
 }
 
-export interface PaginatorProps {
+export interface PaginatorProps<T extends object> {
     className?: string;
     hasAllPagingButtons?: boolean;
     hasGoToPage?: boolean;
@@ -71,7 +71,7 @@ const pagingText = (instance: TableInstance, texts: PaginatorTexts) => {
     return `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`;
 };
 
-export const Paginator: React.FunctionComponent<PaginatorProps> = ({
+export const Paginator = <T extends object>({
     hasAllPagingButtons,
     hasGoToPage,
     hasPageSizeSelector,
@@ -79,7 +79,7 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
     pageSizes,
     texts,
     useResultsOfText,
-}) => {
+}: PaginatorProps<T>) => {
     const { pageIndex, pageSize } = instance.state;
 
     return (
@@ -91,7 +91,7 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
                     </PageSizeSelectorText>
                     <Dropdown
                         name="DROPDOWN_PAGE_SIZES"
-                        onChange={(e) => {
+                        onChange={(e): void => {
                             instance.setPageSize(Number(e.target.value));
                         }}
                         value={pageSize}
@@ -112,7 +112,7 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
                     <Input
                         label={texts.pageGoto}
                         name="INPUT_PAGE_INDEX"
-                        onChange={(event) => {
+                        onChange={(event): void => {
                             const page = event.target.value ? Number(event.target.value) - 1 : 0;
                             instance.gotoPage(page);
                         }}
@@ -124,36 +124,42 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
             )}
             <Paging>
                 <PagingText>
-                    {useResultsOfText
-                        ? pagingResultsText(instance, texts)
-                        : pagingText(instance, texts)}
+                    {useResultsOfText ? pagingResultsText(instance, texts) : pagingText(instance, texts)}
                 </PagingText>
                 <PagingButtons>
                     {hasAllPagingButtons && (
                         <ButtonIcon
                             iconType={IconType.CHEVRONFIRST}
                             isDisabled={!instance.canPreviousPage}
-                            onClick={() => instance.gotoPage(0)}
+                            onClick={(): void => {
+                                instance.gotoPage(0);
+                            }}
                             size={Size.XLARGE}
                         />
                     )}
                     <ButtonIcon
                         iconType={IconType.CHEVRONLEFT}
                         isDisabled={!instance.canPreviousPage}
-                        onClick={() => instance.previousPage()}
+                        onClick={(): void => {
+                            instance.previousPage();
+                        }}
                         size={Size.XLARGE}
                     />
                     <ButtonIcon
                         iconType={IconType.CHEVRONRIGHT}
                         isDisabled={!instance.canNextPage}
-                        onClick={() => instance.nextPage()}
+                        onClick={(): void => {
+                            instance.nextPage();
+                        }}
                         size={Size.XLARGE}
                     />
                     {hasAllPagingButtons && (
                         <ButtonIcon
                             iconType={IconType.CHEVRONLAST}
                             isDisabled={!instance.canNextPage}
-                            onClick={() => instance.gotoPage(instance.pageCount - 1)}
+                            onClick={(): void => {
+                                instance.gotoPage(instance.pageCount - 1);
+                            }}
                             size={Size.XLARGE}
                         />
                     )}
