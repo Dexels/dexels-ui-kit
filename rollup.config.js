@@ -6,8 +6,6 @@ const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const typescript = require('@rollup/plugin-typescript');
 
-const { analyze } = process.env;
-
 module.exports = {
     external: [
         '@babel/runtime',
