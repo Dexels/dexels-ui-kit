@@ -11,7 +11,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 interface StyledStatusIndicatorProps {
     background?: string;
     placement: Placement;
-    size?: StatusIndicatorSize;
+    size: StatusIndicatorSize;
     status: Status;
 }
 

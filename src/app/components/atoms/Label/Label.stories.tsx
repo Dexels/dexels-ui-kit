@@ -6,13 +6,13 @@ export default { title: 'atoms/Label' };
 
 export const Configurable = () => (
     <Label
-        hasError={boolean('Has error', Label.defaultProps.hasError)}
-        isActive={boolean('Is active', Label.defaultProps.isActive)}
-        isDisabled={boolean('Is disabled', Label.defaultProps.isDisabled)}
-        isFocused={boolean('Is focused', Label.defaultProps.isFocused)}
-        isSmall={boolean('Is small', Label.defaultProps.isSmall)}
-        isTruncatable={boolean('Is truncatable', Label.defaultProps.isTruncatable)}
-        isValid={boolean('Is valid', Label.defaultProps.isValid)}
+        hasError={boolean('Has error', false)}
+        isActive={boolean('Is active', false)}
+        isDisabled={boolean('Is disabled', false)}
+        isFocused={boolean('Is focused', false)}
+        isSmall={boolean('Is small', false)}
+        isTruncatable={boolean('Is truncatable', false)}
+        isValid={boolean('Is valid', false)}
     >
         {text('Label', 'This is a label, awesome!')}
     </Label>
