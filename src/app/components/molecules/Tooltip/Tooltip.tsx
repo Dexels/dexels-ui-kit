@@ -96,20 +96,20 @@ export interface TooltipProps {
 
 export const Tooltip: React.FunctionComponent<TooltipProps> = ({
     className,
-    delay,
-    elevation,
-    position,
-    transitionDuration,
-    transitionEasing,
+    delay = 4000,
+    elevation = Elevation.LEVEL_6,
+    position = Placement.BOTTOM,
+    transitionDuration = 300,
+    transitionEasing = Easing.EASE,
 }) => {
     const [hasTooltipDelay, setTooltipDelay] = useState(false);
-    const [hoveredElement, setHoveredElement] = useState(null);
+    const [hoveredElement, setHoveredElement] = useState<DOMRect | null>(null);
     const [isTooltipVisible, setTooltipVisiblity] = useState(false);
-    const [timeoutId, setTimeoutId] = useState(null);
+    const [timeoutId, setTimeoutId] = useState<number | null>(null);
     const [tooltipPosition, setTooltipPosition] = useState(position);
     const [tooltipTitle, setTooltipTitle] = useState('');
     const { spacingValue } = useContext(ThemeContext);
-    const tooltipRef = useRef(null);
+    const tooltipRef = useRef<HTMLDivElement>(null);
 
     const showTooltip = (hoveredItem: DOMRect) => {
         setTooltipPosition(getTooltipPosition(hoveredItem, tooltipPosition));
@@ -124,7 +124,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
             setTimeoutId(null);
         }
 
-        setTooltipTitle(element.getAttribute(dataTooltipComponent));
+        setTooltipTitle(element.getAttribute(dataTooltipComponent) || '');
         setTooltipDelay(!!element.getAttribute(dataTooltipDelay));
 
         if (element.getAttribute(dataTooltipPosition)) {
@@ -136,7 +136,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
 
     const handleOnMouseOut = () => {
         if (hasTooltipDelay) {
-            setTimeoutId(setTimeout(() => {
+            setTimeoutId(window.setTimeout(() => {
                 setTooltipVisiblity(false);
                 setTooltipDelay(false);
             }, delay));
@@ -220,7 +220,6 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
 
 Tooltip.defaultProps = {
     className: '',
-    delay: 4000,
     elevation: Elevation.LEVEL_6,
     position: Placement.BOTTOM,
     transitionDuration: 300,

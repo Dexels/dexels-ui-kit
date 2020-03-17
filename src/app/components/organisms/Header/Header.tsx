@@ -22,8 +22,8 @@ export interface HeaderProps {
 export const Header: React.FunctionComponent<HeaderProps> = ({
     children,
     className,
-    elevation,
-    isInverted,
+    elevation = Elevation.LEVEL_1,
+    isInverted = false,
     onBack,
     onToggleMenu,
     title,
@@ -49,14 +49,5 @@ export const Header: React.FunctionComponent<HeaderProps> = ({
         </FunctionalWrapper>
     </StyledHeader>
 );
-
-Header.defaultProps = {
-    children: null,
-    className: '',
-    elevation: Elevation.LEVEL_1,
-    isInverted: false,
-    onBack: null,
-    onToggleMenu: null,
-};
 
 export default Header;

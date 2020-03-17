@@ -22,12 +22,12 @@ export interface ModalProps {
 export const Modal: React.FunctionComponent<ModalProps> = ({
     children,
     className,
-    isVisible,
+    isVisible = false,
     onBack,
     options,
     title,
-    transitionDuration,
-    transitionEasing,
+    transitionDuration = 500,
+    transitionEasing = Easing.EASE,
 }) => (
     <>
         <Overlay isVisible={isVisible} />
@@ -48,13 +48,5 @@ export const Modal: React.FunctionComponent<ModalProps> = ({
         </StyledModal>
     </>
 );
-
-Modal.defaultProps = {
-    className: '',
-    onBack: null,
-    options: null,
-    transitionDuration: 500,
-    transitionEasing: Easing.EASE,
-};
 
 export default Modal;

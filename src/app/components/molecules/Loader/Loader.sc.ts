@@ -22,7 +22,7 @@ const loaderAnimation = keyframes`
 interface StyledLoaderProps {
     isInverted: boolean;
     size: Size;
-    variant: ButtonVariant;
+    variant?: ButtonVariant;
 }
 
 export const StyledLoader = styled.div<StyledLoaderProps>`
@@ -39,7 +39,7 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
         `}
 
         /* This is a special part for loader inside a button */
-        /* Should only do something when variant is not empty (null by default) */
+        /* Should only do something when variant is not undefined */
         ${({ isInverted, theme: { button }, variant }) => variant === ButtonVariant.FILLED && css`
             background-color: ${isInverted ? button.filled.backgroundColor.loaderInverted : button.filled.backgroundColor.loader};
         `}

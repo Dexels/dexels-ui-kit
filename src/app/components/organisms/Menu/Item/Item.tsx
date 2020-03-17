@@ -23,12 +23,12 @@ interface ItemsProps {
 
 const Item: React.FunctionComponent<ItemsProps> = ({
     children,
-    exact,
-    hasChildren,
+    exact = false,
+    hasChildren = false,
     iconType,
-    isDisabled,
-    isOpen,
-    isParent,
+    isDisabled = false,
+    isOpen = false,
+    isParent = false,
     onClick,
     path,
 }) => (
@@ -61,16 +61,5 @@ const Item: React.FunctionComponent<ItemsProps> = ({
         </Inner>
     </StyledItem>
 );
-
-Item.defaultProps = {
-    exact: false,
-    hasChildren: false,
-    iconType: null,
-    isDisabled: false,
-    isOpen: false,
-    isParent: false,
-    onClick: null,
-    path: '',
-};
 
 export default Item;

@@ -9,17 +9,15 @@ import { getTableCell, renderButton } from './tableFunctions';
 import React from 'react';
 import { TableData } from './tableData';
 
-export const tableColumns: (data?: TableData[]) => Column<TableData>[] = (data) => (
+export const tableColumns: (data: TableData[]) => Column<TableData>[] = (data) => (
     React.useMemo(() => [
         {
             Cell: (row: CellProps<TableData>) => renderStatusCell(
                 row.cell.row.original.matchTaskStatus, row.cell.value,
             ),
-            // Header: '',
             accessor: 'status',
             disableSortBy: true,
             hasCellPadding: false,
-            show: true,
             width: 50,
         },
         {

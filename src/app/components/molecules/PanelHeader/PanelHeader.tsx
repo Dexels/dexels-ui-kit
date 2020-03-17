@@ -25,7 +25,7 @@ export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
     title,
 }) => (
     <StyledPanelHeader>
-        <Title status={hasTitleStatusAppearance ? status : undefined}>
+        <Title status={hasTitleStatusAppearance && status ? status : Status.DEFAULT}>
             <TextWithOptionalIcon iconType={iconType} isCapitalized={hasCapitalizedTitle}>
                 {title}
             </TextWithOptionalIcon>

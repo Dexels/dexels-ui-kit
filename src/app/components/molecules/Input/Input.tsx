@@ -27,19 +27,19 @@ export interface InputProps {
 export const Input: React.FunctionComponent<InputProps> = ({
     className,
     errorMessage,
-    hasError,
-    isDisabled,
-    isTextarea,
-    isValid,
+    hasError = false,
+    isDisabled = false,
+    isTextarea = false,
+    isValid = false,
     label,
     max,
     min,
     name,
     onChange,
     onKeyDown,
-    type,
-    value,
-    variant,
+    type = InputType.TEXT,
+    value = '',
+    variant = InputVariant.OUTLINE,
     ...rest
 }) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -56,8 +56,13 @@ export const Input: React.FunctionComponent<InputProps> = ({
     }, [isHovered]);
 
     if (!isTextarea) {
-        textFieldProps.max = max;
-        textFieldProps.min = min;
+        if (max) {
+            textFieldProps.max = max;
+        }
+
+        if (min) {
+            textFieldProps.min = min;
+        }
     }
 
     return (
@@ -112,21 +117,6 @@ export const Input: React.FunctionComponent<InputProps> = ({
             )}
         </>
     );
-};
-
-Input.defaultProps = {
-    className: '',
-    errorMessage: null,
-    hasError: false,
-    isDisabled: false,
-    isTextarea: false,
-    isValid: false,
-    max: null,
-    min: null,
-    onKeyDown: null,
-    type: InputType.TEXT,
-    value: '',
-    variant: InputVariant.OUTLINE,
 };
 
 export default Input;

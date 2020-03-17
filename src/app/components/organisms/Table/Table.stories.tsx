@@ -84,7 +84,7 @@ export const Configurable = () => {
             {instance && (
                 <Table<TableData>
                     caption={text('Table caption', 'Table caption')}
-                    elevation={select('Elevation', Elevation, Table.defaultProps.elevation)}
+                    elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
                     footerComponent={isFooterVisible && (
                         <tr
                             style={{
@@ -99,9 +99,9 @@ export const Configurable = () => {
                             </td>
                         </tr>
                     )}
-                    hasUnsortedStateIcon={boolean('Has unsorted state icon', Table.defaultProps.hasUnsortedStateIcon)}
+                    hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
                     instance={instance}
-                    isFullWidth={boolean('Is full width', Table.defaultProps.isFullWidth)}
+                    isFullWidth={boolean('Is full width', true)}
                     onClickRow={getTableRow}
                     pagingComponent={(
                         <Paginator<TableData>

@@ -74,9 +74,4 @@ export const Menu: React.FunctionComponent<MenuProps> = ({ className, defaultOpe
     );
 };
 
-Menu.defaultProps = {
-    className: '',
-    defaultOpenItemPath: '',
-};
-
 export default Menu;

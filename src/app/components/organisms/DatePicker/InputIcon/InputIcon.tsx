@@ -10,14 +10,14 @@ interface InputIconProps {
     variant?: SingleDatePickerVariant;
 }
 
-const InputIcon: React.FunctionComponent<InputIconProps> = ({ isDisabled, isFocused, variant }) => (
+const InputIcon: React.FunctionComponent<InputIconProps> = ({
+    isDisabled,
+    isFocused,
+    variant = SingleDatePickerVariant.OUTLINE,
+}) => (
     <StyledInputIcon isDisabled={isDisabled} isFocused={isFocused} variant={variant}>
         <Icon type={IconType.CALENDAR} />
     </StyledInputIcon>
 );
-
-InputIcon.defaultProps = {
-    variant: SingleDatePickerVariant.OUTLINE,
-};
 
 export default InputIcon;

@@ -33,14 +33,14 @@ export interface PaginatorProps<T extends object> {
     hasAllPagingButtons?: boolean;
     hasGoToPage?: boolean;
     hasPageSizeSelector?: boolean;
-    instance: TableInstance;
+    instance: TableInstance<T>;
     pageSizes?: (number | string)[];
     texts: PaginatorTexts;
     useResultsOfText?: boolean;
 }
 
-const pagingResultsText = (
-    instance: TableInstance,
+const pagingResultsText = <T extends object>(
+    instance: TableInstance<T>,
     texts: PaginatorTexts,
 ) => {
     const { state: { pageIndex, pageSize } } = instance;
@@ -64,7 +64,7 @@ const pagingResultsText = (
     return `${result} ${texts.resultsOf} ${rowCount}`;
 };
 
-const pagingText = (instance: TableInstance, texts: PaginatorTexts) => {
+const pagingText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts) => {
     const { state: { pageIndex, pageSize } } = instance;
     const pageCount = instance.rows.length / pageSize;
 
@@ -72,13 +72,13 @@ const pagingText = (instance: TableInstance, texts: PaginatorTexts) => {
 };
 
 export const Paginator = <T extends object>({
-    hasAllPagingButtons,
-    hasGoToPage,
-    hasPageSizeSelector,
+    hasAllPagingButtons = true,
+    hasGoToPage = false,
+    hasPageSizeSelector = true,
     instance,
-    pageSizes,
+    pageSizes = [5, 10, 20],
     texts,
-    useResultsOfText,
+    useResultsOfText = true,
 }: PaginatorProps<T>) => {
     const { pageIndex, pageSize } = instance.state;
 
@@ -167,14 +167,6 @@ export const Paginator = <T extends object>({
             </Paging>
         </StyledPaginator>
     );
-};
-
-Paginator.defaultProps = {
-    hasAllPagingButtons: true,
-    hasGoToPage: false,
-    hasPageSizeSelector: true,
-    pageSizes: [5, 10, 20],
-    useResultsOfText: true,
 };
 
 export default Paginator;

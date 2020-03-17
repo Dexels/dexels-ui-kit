@@ -33,33 +33,25 @@ const ConfigurableDialog: React.FunctionComponent<ConfigurableDialogProps> = ({
     onConfirm,
 }) => (
     <Dialog
-        bodyAlignment={select('Body alignment', Alignment, Dialog.defaultProps.bodyAlignment)}
+        bodyAlignment={select('Body alignment', Alignment, Alignment.CENTER)}
         buttonCancelText={text('ButtonCancel text', 'Cancel')}
-        buttonClosePosition={select(
-            'ButtonClose position', DialogButtonClosePosition, Dialog.defaultProps.buttonClosePosition,
-        )}
-        buttonConfirmIconType={select(
-            'Icon type confirm button', IconType, Dialog.defaultProps.buttonConfirmIconType,
-        )}
+        buttonClosePosition={select('ButtonClose position', DialogButtonClosePosition, DialogButtonClosePosition.LEFT)}
+        buttonConfirmIconType={select('Icon type confirm button', IconType, IconType.CHECK)}
         buttonConfirmText={text('Button confirm text', 'Ok')}
-        elevation={select('Elevation', Elevation, Dialog.defaultProps.elevation)}
+        elevation={select('Elevation', Elevation, Elevation.LEVEL_12)}
         footerText={text('Text in footer', '')}
-        hasButtonClose={boolean('Show close button', Dialog.defaultProps.hasButtonClose)}
-        hasOverlay={boolean('Has overlay', Dialog.defaultProps.hasOverlay)}
+        hasButtonClose={boolean('Show close button', true)}
+        hasOverlay={boolean('Has overlay', true)}
         header={text('Header', '')}
-        headerAlignment={select('Align header', Alignment, Dialog.defaultProps.headerAlignment)}
-        height={text('Set height in px or %', Dialog.defaultProps.height)}
+        headerAlignment={select('Align header', Alignment, Alignment.CENTER)}
+        height={text('Set height in px or %', 'Inherit')}
         isVisible={isVisible}
         onCancel={onCancel}
         onClose={onClose}
         onConfirm={onConfirm}
-        transitionDuration={number('Transition duration', Dialog.defaultProps.transitionDuration)}
-        transitionEasing={select(
-            'Transition type',
-            Easing,
-            Dialog.defaultProps.transitionEasing,
-        )}
-        width={text('Set width in px or %', Dialog.defaultProps.width)}
+        transitionDuration={number('Transition duration', 500)}
+        transitionEasing={select('Transition type', Easing, Easing.EASE)}
+        width={text('Set width in px or %', '300px')}
     >
         {text('Body', 'Some body text')}
     </Dialog>

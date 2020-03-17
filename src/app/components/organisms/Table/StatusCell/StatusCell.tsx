@@ -10,7 +10,7 @@ import { MatchTaskStatuses } from './types';
 import React from 'react';
 import { StatusIndicator } from '../../../atoms/StatusIndicator/StatusIndicator';
 
-const iconType = (matchTaskStatus: MatchTaskStatuses): IconType | null => {
+const iconType = (matchTaskStatus: MatchTaskStatuses): IconType => {
     switch (matchTaskStatus) {
         case MatchTaskStatuses.NO_DRESSINGROOMS:
             return IconType.STATUSALERT;
@@ -25,7 +25,7 @@ const iconType = (matchTaskStatus: MatchTaskStatuses): IconType | null => {
             return IconType.STATUSDONE;
 
         default:
-            return null;
+            return IconType.STATUSDONE;
     }
 };
 

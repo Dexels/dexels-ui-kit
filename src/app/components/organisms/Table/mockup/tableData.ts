@@ -7,10 +7,10 @@ export interface TableData {
     companyName: string;
     firstName: string;
     infix?: string;
-    info: number;
+    info?: number;
     lastName: string;
     matchTaskStatus: MatchTaskStatuses;
-    relationStart: Moment;
+    relationStart?: Moment;
     status: Status;
 }
 
@@ -72,7 +72,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Maria',
-        infix: null,
+        infix: undefined,
         info: 45,
         lastName: 'Papadaki',
         matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
@@ -106,7 +106,7 @@ export function tableData() {
         companyName: 'Dexels',
         firstName: 'Firstname',
         infix: undefined,
-        info: null,
+        info: undefined,
         lastName: 'Lastname 2',
         matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
         relationStart: moment(),

@@ -58,7 +58,7 @@ StaticItem.defaultProps = {
 };
 
 interface ListProps {
-    maxHeight: string;
+    maxHeight?: string;
 }
 
 export const List = styled.ul<ListProps>`

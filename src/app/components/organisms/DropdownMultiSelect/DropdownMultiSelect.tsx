@@ -39,12 +39,12 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
     buttonCancelText,
     buttonConfirmText,
     className,
-    elevation,
+    elevation = Elevation.LEVEL_6,
     errorMessage,
-    hasError,
-    isDisabled,
+    hasError = false,
+    isDisabled = false,
     isOpen,
-    isValid,
+    isValid = false,
     label,
     maxHeight,
     name,
@@ -55,7 +55,7 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
     options,
     placeholder,
     value,
-    variant,
+    variant = DropdownVariant.COMPACT,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isSelectOpen, setIsSelectOpen] = useState(isOpen);
@@ -74,7 +74,10 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
 
     const onClickCallback = useCallback(() => {
         setIsSelectOpen(true);
-        onClick();
+
+        if (onClick) {
+            onClick();
+        }
     }, [onClick]);
 
     const onConfirmCallback = useCallback(() => {
@@ -106,7 +109,7 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
                 onMouseEnter={onMouseEnterCallback}
                 onMouseLeave={onMouseLeaveCallback}
                 placeholder={placeholder}
-                value={value || placeholder}
+                value={value || placeholder || ''}
                 variant={variant}
             >
                 {value || placeholder}
@@ -120,7 +123,7 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
                     )}
                     <List maxHeight={maxHeight}>
                         {options.map((item) => (
-                            <ListItem key={item.key}>
+                            <ListItem key={item.key as string}>
                                 {item}
                             </ListItem>
                         ))}
@@ -140,17 +143,10 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
 DropdownMultiSelect.defaultProps = {
     buttonCancelText: null,
     className: '',
-    elevation: Elevation.LEVEL_6,
     errorMessage: null,
-    hasError: false,
-    isDisabled: false,
-    isValid: false,
     label: null,
     maxHeight: '',
-    onCancel: null,
-    onClick: null,
     optionAll: null,
-    placeholder: null,
     variant: DropdownVariant.COMPACT,
 };
 

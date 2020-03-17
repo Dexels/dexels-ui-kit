@@ -4,74 +4,71 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
+import moment, { Moment } from 'moment';
 import React, { useState } from 'react';
-import moment from 'moment';
 import SingleDatePicker from './SingleDatePicker';
 import { SingleDatePickerVariant } from '../types';
 
 export default { title: 'organisms/DatePicker' };
 
 export const Default = () => {
-    const [date, setDate] = useState(moment());
+    const [date, setDate] = useState<Moment | null>(moment());
     const [isFocused, setIsFocused] = useState(true);
 
     return (
         <SingleDatePicker
             date={date}
-            displayFormat={text('Display format', SingleDatePicker.defaultProps.displayFormat)}
+            displayFormat={text('Display format', 'ddd D MMM Y')}
             id="datepicker"
             isDayHighlighted={(day) => day.day() === 6}
-            isDisabled={boolean('Is disabled', SingleDatePicker.defaultProps.isDisabled)}
+            isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}
             keepOpenOnDateSelect={boolean(
                 'Keep open on date select',
-                SingleDatePicker.defaultProps.keepOpenOnDateSelect,
+                true,
             )}
             label={text('Label', 'Speeldatum')}
-            numberOfMonths={number('Number of months', SingleDatePicker.defaultProps.numberOfMonths)}
+            numberOfMonths={number('Number of months', 1)}
             onDateChange={(newDate) => {
                 setDate(newDate);
             }}
             onFocusChange={({ focused }) => {
-                setIsFocused(focused);
+                setIsFocused(Boolean(focused));
             }}
             placeholder={text('Placeholder', 'Selecteer je datum')}
-            variant={select('Variant', SingleDatePickerVariant, SingleDatePicker.defaultProps.variant)}
+            variant={select('Variant', SingleDatePickerVariant, SingleDatePickerVariant.OUTLINE)}
         />
     );
 };
 
 export const WithYearSelector = () => {
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState<Moment | null>(moment());
     const [isFocused, setIsFocused] = useState(true);
 
     return (
         <SingleDatePicker
             date={date}
-            displayFormat={text('Display format', SingleDatePicker.defaultProps.displayFormat)}
+            displayFormat={text('Display format', 'ddd D MMM Y')}
             hasYearSelector
             id="datepickerWithYearSelector"
             isDayHighlighted={(day) => day.day() === 5}
-            isDisabled={boolean('Is disabled', SingleDatePicker.defaultProps.isDisabled)}
+            isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}
             isOutsideRange={(day) => day.isAfter(moment(), 'day')}
-            keepOpenOnDateSelect={boolean(
-                'Keep open on date select',
-                SingleDatePicker.defaultProps.keepOpenOnDateSelect,
-            )}
+            keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Geboortedatum')}
             labelMonth={text('Label month', 'Maand')}
             labelYear={text('Label year', 'Jaar')}
-            numberOfMonths={number('Number of months', SingleDatePicker.defaultProps.numberOfMonths)}
+            numberOfMonths={number('Number of months', 1)}
             onDateChange={(newDate) => {
                 setDate(newDate);
             }}
             onFocusChange={({ focused }) => {
-                setIsFocused(focused);
+                setIsFocused(Boolean(focused));
             }}
             placeholder={text('Placeholder', 'Selecteer je datum')}
-            variant={select('Variant', SingleDatePickerVariant, SingleDatePicker.defaultProps.variant)}
-            yearCount={number('Year count', SingleDatePicker.defaultProps.yearCount)}
+            variant={select('Variant', SingleDatePickerVariant, SingleDatePickerVariant.OUTLINE)}
+            yearCount={number('Year count', 100)}
         />
     );
 };

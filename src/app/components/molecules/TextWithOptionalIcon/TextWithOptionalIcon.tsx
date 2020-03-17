@@ -18,11 +18,11 @@ export interface TextWithOptionalIconProps {
 export const TextWithOptionalIcon: React.FunctionComponent<TextWithOptionalIconProps> = ({
     children,
     className,
-    direction,
-    iconSize,
+    direction = Direction.LTR,
+    iconSize = IconSize.LARGE,
     iconType,
-    isCapitalized,
-    isTruncatable,
+    isCapitalized = false,
+    isTruncatable = false,
     ...rest
 }) => (
     <StyledTextWithOptionalIcon className={className} direction={direction} {...rest}>
@@ -36,14 +36,5 @@ export const TextWithOptionalIcon: React.FunctionComponent<TextWithOptionalIconP
         )}
     </StyledTextWithOptionalIcon>
 );
-
-TextWithOptionalIcon.defaultProps = {
-    className: '',
-    direction: Direction.LTR,
-    iconSize: IconSize.LARGE,
-    iconType: null,
-    isCapitalized: false,
-    isTruncatable: false,
-};
 
 export default TextWithOptionalIcon;

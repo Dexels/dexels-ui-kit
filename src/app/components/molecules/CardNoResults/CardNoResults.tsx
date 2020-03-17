@@ -23,11 +23,11 @@ export interface CardNoResultsProps {
 
 export const CardNoResults: React.FunctionComponent<CardNoResultsProps> = ({
     className,
-    elevation,
+    elevation = Elevation.LEVEL_1,
     header,
     iconType,
-    itemPrefix,
-    items,
+    itemPrefix = '-',
+    items = [],
     title,
 }) => (
     <StyledCardNoResults className={className} elevation={elevation}>
@@ -52,12 +52,5 @@ export const CardNoResults: React.FunctionComponent<CardNoResultsProps> = ({
         </Right>
     </StyledCardNoResults>
 );
-
-CardNoResults.defaultProps = {
-    className: '',
-    elevation: Elevation.LEVEL_1,
-    itemPrefix: '-',
-    items: null,
-};
 
 export default CardNoResults;

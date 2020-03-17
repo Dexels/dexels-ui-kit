@@ -15,16 +15,14 @@ export interface Shortcut {
 
 interface ShortCutsProps {
     shortcuts: Shortcut[];
-    text?: string | ReactNode;
+    text: string | ReactNode;
 }
 
 export const Shortcuts: React.FunctionComponent<ShortCutsProps> = ({ shortcuts, text }) => (
     <StyledShortcuts>
-        {text && (
-            <Text>
-                {text}
-            </Text>
-        )}
+        <Text>
+            {text}
+        </Text>
         <Wrapper>
             {shortcuts.map(({ onClick, text: shortcutText }, index) => (
                 <ButtonWrapper key={typeof shortcutText === 'string' ? shortcutText : index}>
@@ -36,9 +34,5 @@ export const Shortcuts: React.FunctionComponent<ShortCutsProps> = ({ shortcuts, 
         </Wrapper>
     </StyledShortcuts>
 );
-
-Shortcuts.defaultProps = {
-    text: 'Snelkeuzes',
-};
 
 export default Shortcuts;

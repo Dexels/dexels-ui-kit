@@ -1,7 +1,7 @@
 import {
-    Cell,
+    // Cell,
     ColumnInstance,
-    HeaderGroup,
+    // HeaderGroup,
     Row,
     TableInstance,
 } from 'react-table';
@@ -38,16 +38,18 @@ export interface TableProps<T extends object> {
     };
 }
 
-const dataSource = (instance: TableInstance, hasPaging: boolean) => (hasPaging ? instance.page : instance.rows);
+const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean) => (
+    hasPaging ? instance.page : instance.rows
+);
 
 export const Table = <T extends object>({
     caption,
     className,
-    elevation,
+    elevation = Elevation.LEVEL_1,
     footerComponent,
-    hasUnsortedStateIcon,
+    hasUnsortedStateIcon = true,
     instance,
-    isFullWidth,
+    isFullWidth = true,
     onClickRow,
     pagingComponent,
     texts,
@@ -61,13 +63,9 @@ export const Table = <T extends object>({
 
     // @TODO: most unfortunate, but the isVisible column prop doesn't seem to be overridable (yet)
     // The previous prop (show) can be set, but has no effect, so handle it manually
-    const isColumnVisible = (column: ColumnInstance): boolean => {
-        if (Object.prototype.hasOwnProperty.call(column, 'show')) {
-            return column.show;
-        }
-
-        if (Object.prototype.hasOwnProperty.call(column, 'isVisible')) {
-            return column.isVisible;
+    const isColumnVisible = (column: ColumnInstance<T>): boolean => {
+        if (typeof column.isVisible === 'boolean' || typeof column.show === 'boolean') {
+            return column.isVisible || column.show || false;
         }
 
         return false;
@@ -86,17 +84,17 @@ export const Table = <T extends object>({
                 {...getTableProps()}
             >
                 <TableHead>
-                    {headerGroups.map((headerGroup: HeaderGroup) => (
+                    {headerGroups.map((headerGroup) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: ColumnInstance) => isColumnVisible(column) && (
+                            {headerGroup.headers.map((column) => isColumnVisible(column) && (
                                 <TableHeaderCell
                                     hasCellPadding={column.hasCellPadding}
                                     key={column}
                                     width={column.width}
                                     {...column.getHeaderProps(column.getSortByToggleProps({
-                                        title: column.canSort
-                                            ? `${texts.toggleSortTooltip} ${column.render('Header')}`
-                                            : '',
+                                        title: column.canSort && texts ? (
+                                            `${texts.toggleSortTooltip} ${column.render('Header')}`
+                                        ) : '',
                                     }))}
                                 >
                                     {column.render('Header')}
@@ -123,16 +121,18 @@ export const Table = <T extends object>({
                                     } : undefined}
                                 {...row.getRowProps()}
                             >
-                                {row.cells.map((cell: Cell) => isColumnVisible(cell.column) && (
+                                {row.cells.map((cell) => isColumnVisible(cell.column) && (
                                     <TableCell
                                         hasCellPadding={cell.column.hasCellPadding}
                                         isClickable={Boolean(cell.column.onClick)}
                                         key={cell}
-                                        onClick={cell.column.onClick
-                                            ? (event: SyntheticEvent) => {
-                                                event.stopPropagation();
+                                        onClick={(event: SyntheticEvent) => {
+                                            event.stopPropagation();
+
+                                            if (cell.column.onClick) {
                                                 cell.column.onClick(cell, row, event);
-                                            } : undefined}
+                                            }
+                                        }}
                                         {...cell.getCellProps()}
                                         width={cell.column.width}
                                     >
@@ -158,20 +158,6 @@ export const Table = <T extends object>({
             )}
         </>
     );
-};
-
-Table.defaultProps = {
-    caption: null,
-    className: '',
-    elevation: Elevation.LEVEL_1,
-    footerComponent: undefined,
-    hasUnsortedStateIcon: true,
-    isFullWidth: true,
-    onClickRow: undefined,
-    pagingComponent: undefined,
-    texts: {
-        toggleSortTooltip: null,
-    },
 };
 
 export default Table;

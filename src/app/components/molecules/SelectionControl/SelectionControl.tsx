@@ -37,21 +37,21 @@ export interface SelectionControlProps {
 
 export const SelectionControl: React.FunctionComponent<SelectionControlProps> = ({
     className,
-    direction,
+    direction = Direction.LTR,
     errorMessage,
-    hasError,
-    hasHorizontalCorrection,
-    hasVerticalCorrection,
-    isChecked,
-    isDisabled,
-    isIndeterminate,
-    isValid,
+    hasError = false,
+    hasHorizontalCorrection = true,
+    hasVerticalCorrection = false,
+    isChecked = false,
+    isDisabled = false,
+    isIndeterminate = false,
+    isValid = false,
     label,
     name,
     onChange,
-    transitionDuration,
-    transitionEasing,
-    type,
+    transitionDuration = 300,
+    transitionEasing = Easing.EASE,
+    type = SelectionControlType.CHECKBOX,
     value,
     ...rest
 }) => {
@@ -116,22 +116,6 @@ export const SelectionControl: React.FunctionComponent<SelectionControlProps> = 
             )}
         </>
     );
-};
-
-SelectionControl.defaultProps = {
-    className: '',
-    direction: Direction.LTR,
-    errorMessage: null,
-    hasError: false,
-    hasHorizontalCorrection: true,
-    hasVerticalCorrection: false,
-    isChecked: false,
-    isDisabled: false,
-    isIndeterminate: false,
-    isValid: false,
-    transitionDuration: 300,
-    transitionEasing: Easing.EASE,
-    type: SelectionControlType.CHECKBOX,
 };
 
 export default SelectionControl;

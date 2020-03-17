@@ -17,10 +17,10 @@ export const Configurable = () => {
     return (
         <Input
             errorMessage={text('Error message', 'Help, something went wrong!')}
-            hasError={boolean('Has error', Input.defaultProps.hasError)}
-            isDisabled={boolean('Is disabled', Input.defaultProps.isDisabled)}
-            isTextarea={boolean('Is textarea', Input.defaultProps.isTextarea)}
-            isValid={boolean('Is valid', Input.defaultProps.isValid)}
+            hasError={boolean('Has error', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isTextarea={boolean('Is textarea', false)}
+            isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
             max={number('Max', 100)}
             min={number('Min', 0)}
@@ -28,9 +28,9 @@ export const Configurable = () => {
             onChange={({ currentTarget }) => {
                 setValue(parseInputValue(currentTarget));
             }}
-            type={select('Type', InputType, Input.defaultProps.type)}
+            type={select('Type', InputType, InputType.TEXT)}
             value={value}
-            variant={select('Variant', InputVariant, Input.defaultProps.variant)}
+            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />
     );
 };

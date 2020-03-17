@@ -8,26 +8,24 @@ export interface ToolbarProps {
     isInverted?: boolean;
 }
 
-export const Toolbar: React.FunctionComponent<ToolbarProps> = ({ children, className, isInverted }) => (
+export const Toolbar: React.FunctionComponent<ToolbarProps> = ({ children, className, isInverted = false }) => (
     <StyledToolbar className={className}>
-        {React.Children.map(children, (child: React.ReactElement) => {
-            if (child.type === Button) {
-                return (
-                    <ButtonWrapper key={child.key}>
-                        {React.cloneElement(child, { isInverted })}
-                    </ButtonWrapper>
-                );
+        {children ? React.Children.map(children, (child, index) => {
+            if (React.isValidElement(child)) {
+                if (child.type === Button) {
+                    return (
+                        <ButtonWrapper key={child.key || index}>
+                            {React.cloneElement(child, { isInverted })}
+                        </ButtonWrapper>
+                    );
+                }
+
+                return React.cloneElement(child, { isInverted });
             }
 
-            return React.cloneElement(child, { isInverted });
-        })}
+            return child;
+        }) : children}
     </StyledToolbar>
 );
-
-Toolbar.defaultProps = {
-    children: null,
-    className: '',
-    isInverted: false,
-};
 
 export default Toolbar;

@@ -79,9 +79,4 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({
     );
 };
 
-Navigation.defaultProps = {
-    labelMonth: '',
-    labelYear: '',
-};
-
 export default Navigation;

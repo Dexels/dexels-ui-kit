@@ -7,7 +7,7 @@ export default { title: 'molecules/Overlay' };
 export const Configurable = () => (
     <>
         <Overlay
-            isVisible={boolean('Is visible', Overlay.defaultProps.isVisible)}
+            isVisible={boolean('Is visible', true)}
         />
         <p
             style={{

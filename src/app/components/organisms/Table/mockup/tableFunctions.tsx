@@ -41,7 +41,8 @@ export const getTableCell = (cell: any, row: any, event: any = null) => {
 export const getTableRow = (event: any, row: any): any => {
     // eslint-disable-next-line no-console
     console.log('Clicked row:', row);
-    alert(`Clicked on row: ${row.id}`);
+    // eslint-disable-next-line no-console
+    console.log('Event:', event);
 
     return row;
 };

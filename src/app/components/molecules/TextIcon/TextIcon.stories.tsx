@@ -7,7 +7,7 @@ export default { title: 'molecules/TextIcon' };
 
 export const Configurable = () => (
     <TextIcon
-        size={select('Size', Size, TextIcon.defaultProps.size)}
+        size={select('Size', Size, Size.LARGE)}
         text={text('Text', 'A')}
     />
 );
