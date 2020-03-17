@@ -49,9 +49,4 @@ const StatusCell: React.FunctionComponent<StatusCellProps> = ({ matchTaskStatus,
     </StyledStatusCell>
 );
 
-StatusCell.defaultProps = {
-    matchTaskStatus: MatchTaskStatuses.SCHEDULED,
-    status: Status.DEFAULT,
-};
-
 export default StatusCell;

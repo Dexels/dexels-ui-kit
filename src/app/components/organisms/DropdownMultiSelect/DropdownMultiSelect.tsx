@@ -140,14 +140,4 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
     );
 };
 
-DropdownMultiSelect.defaultProps = {
-    buttonCancelText: null,
-    className: '',
-    errorMessage: null,
-    label: null,
-    maxHeight: '',
-    optionAll: null,
-    variant: DropdownVariant.COMPACT,
-};
-
 export default DropdownMultiSelect;

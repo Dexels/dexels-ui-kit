@@ -218,12 +218,4 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
     );
 };
 
-Tooltip.defaultProps = {
-    className: '',
-    elevation: Elevation.LEVEL_6,
-    position: Placement.BOTTOM,
-    transitionDuration: 300,
-    transitionEasing: Easing.EASE,
-};
-
 export default Tooltip;

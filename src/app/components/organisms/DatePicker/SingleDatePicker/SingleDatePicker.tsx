@@ -119,15 +119,4 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = 
     );
 };
 
-// SingleDatePicker.defaultProps = {
-//     date: null,
-//     isDayHighlighted: AirbnbSingleDatePicker.defaultProps.isDayHighlighted,
-//     isOutsideRange: AirbnbSingleDatePicker.defaultProps.isOutsideRange,
-//     keepOpenOnDateSelect: AirbnbSingleDatePicker.defaultProps.keepOpenOnDateSelect,
-//     labelMonth: null,
-//     labelYear: null,
-//     onClose: AirbnbSingleDatePicker.defaultProps.onClose,
-//     placeholder: AirbnbSingleDatePicker.defaultProps.placeholder,
-// };
-
 export default SingleDatePicker;

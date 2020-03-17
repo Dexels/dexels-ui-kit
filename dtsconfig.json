@@ -1,7 +1,4 @@
 {
-    "compilationOptions": {
-        "preferredConfigPath": "./tsconfig.dts.json"
-    },
     "entries": [
         {
             "filePath": "./src/lib/index.ts",
