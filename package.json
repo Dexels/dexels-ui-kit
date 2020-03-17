@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "2.5.1",
+    "version": "2.5.3",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -71,6 +71,7 @@
         "@babel/preset-env": "^7.8.7",
         "@babel/preset-react": "^7.8.3",
         "@babel/runtime": "^7.8.7",
+        "@rollup/plugin-commonjs": "^11.0.2",
         "@rollup/plugin-node-resolve": "^7.1.1",
         "@rollup/plugin-typescript": "^4.0.0",
         "@storybook/addon-actions": "^5.3.17",

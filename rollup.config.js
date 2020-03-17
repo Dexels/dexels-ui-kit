@@ -1,4 +1,5 @@
 const babel = require('rollup-plugin-babel');
+const commonjs = require('@rollup/plugin-commonjs');
 const copy = require('rollup-plugin-copy');
 const postcss = require('rollup-plugin-postcss');
 const postcssUrl = require('postcss-url');
@@ -28,6 +29,7 @@ module.exports = {
     ],
     plugins: [
         resolve(),
+        commonjs(),
         postcss({
             extract: 'main.css',
             minimize: true,
