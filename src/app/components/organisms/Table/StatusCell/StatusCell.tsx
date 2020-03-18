@@ -10,6 +10,7 @@ import { MatchTaskStatuses } from './types';
 import React from 'react';
 import { StatusIndicator } from '../../../atoms/StatusIndicator/StatusIndicator';
 
+// If you ever want to use this organism in another project please make sure the MatchTaskStatuses type is up to date
 const iconType = (matchTaskStatus: MatchTaskStatuses): IconType => {
     switch (matchTaskStatus) {
         case MatchTaskStatuses.NO_DRESSINGROOMS:

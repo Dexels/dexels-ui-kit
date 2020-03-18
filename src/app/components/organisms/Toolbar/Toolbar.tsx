@@ -3,14 +3,14 @@ import Button from '../../molecules/Button/Button';
 import React from 'react';
 
 export interface ToolbarProps {
-    children?: React.ReactNode;
+    children: React.ReactNode;
     className?: string;
     isInverted?: boolean;
 }
 
 export const Toolbar: React.FunctionComponent<ToolbarProps> = ({ children, className, isInverted = false }) => (
     <StyledToolbar className={className}>
-        {children ? React.Children.map(children, (child, index) => {
+        {React.Children.map(children, (child, index) => {
             if (React.isValidElement(child)) {
                 if (child.type === Button) {
                     return (
@@ -24,7 +24,7 @@ export const Toolbar: React.FunctionComponent<ToolbarProps> = ({ children, class
             }
 
             return child;
-        }) : children}
+        })}
     </StyledToolbar>
 );
 
