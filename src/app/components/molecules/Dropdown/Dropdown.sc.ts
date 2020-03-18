@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { DropdownVariant } from './types';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import setTruncate from '../../../styles/mixins/setTruncate';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
+import { setTruncate } from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledDropdownProps {

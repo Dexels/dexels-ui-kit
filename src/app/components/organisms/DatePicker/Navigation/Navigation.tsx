@@ -5,8 +5,8 @@ import React from 'react';
 
 interface NavigationProps {
     hasYearSelector: boolean;
-    labelMonth?: string | React.ReactNode;
-    labelYear?: string | React.ReactNode;
+    labelMonth?: React.ReactNode;
+    labelYear?: React.ReactNode;
     month: Moment;
     onMonthSelect: (moment: Moment, value: string) => void;
     onYearSelect: (moment: Moment, value: string) => void;
@@ -77,11 +77,6 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({
             </DropdownWrapper>
         </StyledNavigation>
     );
-};
-
-Navigation.defaultProps = {
-    labelMonth: '',
-    labelYear: '',
 };
 
 export default Navigation;

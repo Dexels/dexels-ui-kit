@@ -20,7 +20,7 @@ export interface DialogFooterProps {
 
 export const DialogFooter: React.FunctionComponent<DialogFooterProps> = ({
     buttonCancelText,
-    buttonConfirmIconType,
+    buttonConfirmIconType = IconType.CHECK,
     buttonConfirmText,
     className,
     onCancel,
@@ -59,15 +59,5 @@ export const DialogFooter: React.FunctionComponent<DialogFooterProps> = ({
         </ButtonBarWrapper>
     </StyledDialogFooter>
 );
-
-DialogFooter.defaultProps = {
-    buttonCancelText: null,
-    buttonConfirmIconType: IconType.CHECK,
-    buttonConfirmText: null,
-    className: '',
-    onCancel: null,
-    onConfirm: null,
-    text: null,
-};
 
 export default DialogFooter;

@@ -1,3 +1,5 @@
+import { getStatusColor } from '../../../styles/mixins/getStatusColor';
+import { Status } from '../../../types';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -11,9 +13,13 @@ StyledPanelHeader.defaultProps = {
     theme: themeBasic,
 };
 
-export const Title = styled.div`
+interface TitleProps {
+    status: Status;
+}
+
+export const Title = styled.div<TitleProps>`
     ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ status, theme }) => getStatusColor(status, theme)};
 `;
 
 Title.defaultProps = {

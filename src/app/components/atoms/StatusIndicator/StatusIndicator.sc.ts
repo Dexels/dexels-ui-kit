@@ -4,14 +4,14 @@ import {
     StatusIndicatorSize,
 } from '../../../types';
 import styled, { css } from 'styled-components';
-import getStatusColor from '../../../styles/mixins/getStatusColor';
-import getStatusIndicator from '../../../styles/mixins/getStatusIndicator';
+import { getStatusColor } from '../../../styles/mixins/getStatusColor';
+import { getStatusIndicator } from '../../../styles/mixins/getStatusIndicator';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledStatusIndicatorProps {
     background?: string;
     placement: Placement;
-    size?: StatusIndicatorSize;
+    size: StatusIndicatorSize;
     status: Status;
 }
 

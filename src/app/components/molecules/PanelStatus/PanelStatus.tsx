@@ -13,6 +13,7 @@ export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
     children,
     elevation,
     hasCapitalizedTitle,
+    hasTitleStatusAppearance,
     iconType,
     options,
     status,
@@ -21,8 +22,10 @@ export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
     <>
         <PanelHeader
             hasCapitalizedTitle={hasCapitalizedTitle}
+            hasTitleStatusAppearance={hasTitleStatusAppearance}
             iconType={iconType}
             options={options}
+            status={status}
             title={title}
         />
         <CardStatus elevation={elevation} placement={Placement.TOP} status={status}>
@@ -30,13 +33,5 @@ export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
         </CardStatus>
     </>
 );
-
-PanelStatus.defaultProps = {
-    elevation: CardStatus.defaultProps.elevation,
-    hasCapitalizedTitle: false,
-    iconType: null,
-    options: null,
-    status: CardStatus.defaultProps.status,
-};
 
 export default PanelStatus;

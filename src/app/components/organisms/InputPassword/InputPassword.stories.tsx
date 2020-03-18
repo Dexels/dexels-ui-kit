@@ -11,16 +11,16 @@ export const Configurable = () => {
     return (
         <InputPassword
             errorMessage={text('Error message', 'Help, something went wrong!')}
-            hasError={boolean('Has error', InputPassword.defaultProps.hasError)}
-            isDisabled={boolean('Is disabled', InputPassword.defaultProps.isDisabled)}
-            isValid={boolean('Is valid', InputPassword.defaultProps.isValid)}
+            hasError={boolean('Has error', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isValid={boolean('Is valid', false)}
             label={text('Label', 'Your password')}
             name="a-inputpassword-name"
             onChange={(event) => {
                 setValue(event.currentTarget.value);
             }}
             value={value}
-            variant={select('Variant', InputVariant, InputPassword.defaultProps.variant)}
+            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />
     );
 };

@@ -1,20 +1,16 @@
 {
     "compilerOptions": {
-        "allowJs": false,
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "jsx": "react",
-        "module": "ES2015",
-        "moduleResolution": "node",
         "noEmit": true,
-        "noImplicitAny": true,
+        "noImplicitReturns": true,
         "noUnusedLocals": true,
-        "resolveJsonModule": true,
-        "target": "ESNext",
-        "types": [
-            "node"
-        ],
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "types": ["node"]
     },
     "include": [
         "src/**/*",

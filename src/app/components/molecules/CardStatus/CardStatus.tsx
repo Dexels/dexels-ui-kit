@@ -3,7 +3,6 @@ import {
     Placement,
     Status,
 } from '../../../types';
-import Card from '../../atoms/Card/Card';
 import React from 'react';
 import { StyledCardStatus } from './CardStatus.sc';
 
@@ -20,9 +19,9 @@ export const CardStatus: React.FunctionComponent<CardStatusProps> = ({
     children,
     className,
     elevation,
-    hasBorderRadius,
-    placement,
-    status,
+    hasBorderRadius = false,
+    placement = Placement.TOP,
+    status = Status.DEFAULT,
 }) => (
     <StyledCardStatus
         className={className}
@@ -34,13 +33,5 @@ export const CardStatus: React.FunctionComponent<CardStatusProps> = ({
         {children}
     </StyledCardStatus>
 );
-
-CardStatus.defaultProps = {
-    className: '',
-    elevation: Card.defaultProps.elevation,
-    hasBorderRadius: false,
-    placement: Placement.TOP,
-    status: Status.DEFAULT,
-};
 
 export default CardStatus;

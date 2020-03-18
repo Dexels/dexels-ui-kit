@@ -6,5 +6,5 @@ import { select } from '@storybook/addon-knobs';
 export default { title: 'molecules/FullscreenLoader' };
 
 export const Configurable = () => (
-    <FullscreenLoader type={select('Type', FullscreenLoaderType, FullscreenLoader.defaultProps.type)} />
+    <FullscreenLoader type={select('Type', FullscreenLoaderType, FullscreenLoaderType.CIRCLES)} />
 );

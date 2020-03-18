@@ -1,5 +1,4 @@
-/* eslint-disable max-len, typescript-sort-keys/interface */
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference, spaced-comment
+/* eslint-disable @typescript-eslint/triple-slash-reference, max-len, spaced-comment, typescript-sort-keys/interface */
 /// <reference path="../@types/react-table.d.ts" />
 
 export enum Alignment {
@@ -49,9 +48,9 @@ export enum Elevation {
 }
 /* eslint-enable typescript-sort-keys/string-enum */
 
-// Since we don't want to include a selection.json in our distribution bundle we've come up with the following solution:
-// - If the contents of selection.json ever change just run `npm run generate:iconTypes` and
-//   replace the enum with output from console.
+// Since we don't want to include selection.json in our distribution bundle we came up with the following solution:
+// If the contents of selection.json ever change just run `npm run generate:iconTypes` and replace the enum with
+// the output from the console.
 export enum IconType {
     ARROWDOWN = 'ARROWDOWN',
     ARROWLEFT = 'ARROWLEFT',
@@ -63,6 +62,7 @@ export enum IconType {
     CALENDARDECLINE = 'CALENDARDECLINE',
     CARDS = 'CARDS',
     CHANGE = 'CHANGE',
+    CHANGE2 = 'CHANGE2',
     CHECK = 'CHECK',
     CHECKBOXCHECK = 'CHECKBOXCHECK',
     CHECKBOXMINUS1 = 'CHECKBOXMINUS1',
@@ -81,6 +81,8 @@ export enum IconType {
     CLUBPLACEHOLDER6 = 'CLUBPLACEHOLDER6',
     CLUBPLACEHOLDER7 = 'CLUBPLACEHOLDER7',
     CLUBPLACEHOLDER8 = 'CLUBPLACEHOLDER8',
+    CLUBUNKNOWN = 'CLUBUNKNOWN',
+    COFFEE = 'COFFEE',
     COMMUNICATIONMAIL = 'COMMUNICATIONMAIL',
     COMMUNICATIONPHONE = 'COMMUNICATIONPHONE',
     CROSS = 'CROSS',

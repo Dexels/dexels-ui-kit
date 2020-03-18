@@ -13,13 +13,13 @@ export interface StatusIndicatorProps {
 }
 
 export const StatusIndicator: React.FunctionComponent<StatusIndicatorProps> = ({
-    as,
+    as = 'div',
     background,
     children,
     className,
-    placement,
-    size,
-    status,
+    placement = Placement.TOP,
+    size = StatusIndicatorSize.LARGE,
+    status = Status.DEFAULT,
 }) => (
     <StyledStatusIndicator
         as={as}
@@ -32,14 +32,5 @@ export const StatusIndicator: React.FunctionComponent<StatusIndicatorProps> = ({
         {children}
     </StyledStatusIndicator>
 );
-
-StatusIndicator.defaultProps = {
-    as: 'div',
-    background: undefined,
-    className: '',
-    placement: Placement.TOP,
-    size: StatusIndicatorSize.LARGE,
-    status: Status.DEFAULT,
-};
 
 export default StatusIndicator;

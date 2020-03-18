@@ -20,13 +20,13 @@ export const FormElementLabel: React.FunctionComponent<FormElementLabelProps> = 
     backgroundColor,
     children,
     className,
-    hasError,
-    isActive,
-    isDisabled,
-    isFocused,
-    isHovered,
-    isValid,
-    variant,
+    hasError = false,
+    isActive = true,
+    isDisabled = false,
+    isFocused = false,
+    isHovered = false,
+    isValid = false,
+    variant = InputVariant.OUTLINE,
 }) => {
     const isSmall = isActive || isFocused;
 
@@ -51,18 +51,6 @@ export const FormElementLabel: React.FunctionComponent<FormElementLabelProps> = 
             </Label>
         </StyledFormElementLabel>
     );
-};
-
-FormElementLabel.defaultProps = {
-    backgroundColor: '',
-    className: '',
-    hasError: false,
-    isActive: true,
-    isDisabled: false,
-    isFocused: false,
-    isHovered: false,
-    isValid: false,
-    variant: InputVariant.OUTLINE,
 };
 
 export default FormElementLabel;

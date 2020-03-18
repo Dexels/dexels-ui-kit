@@ -13,19 +13,19 @@ export interface ChipStatusProps {
 }
 
 // Leaving the switch, because this might change in the (near) future
-const getIconType = (variant: ChipStatusVariant): IconType | null => {
+const getIconType = (variant: ChipStatusVariant): IconType | undefined => {
     switch (variant) {
         case ChipStatusVariant.SELECTED:
             return IconType.CHECK;
 
         case ChipStatusVariant.DESELECTED:
-            return null;
+            return undefined;
 
         case ChipStatusVariant.INDETERMINATE:
-            return null;
+            return undefined;
 
         default:
-            return null;
+            return undefined;
     }
 };
 
@@ -37,9 +37,9 @@ export const ChipStatus: React.FunctionComponent<ChipStatusProps> = ({
     children,
     className,
     direction,
-    variant,
     isDisabled,
     onClick,
+    variant = ChipStatusVariant.SELECTED,
 }) => (
     <Chip
         className={className}
@@ -47,18 +47,10 @@ export const ChipStatus: React.FunctionComponent<ChipStatusProps> = ({
         iconType={getIconType(variant)}
         isDisabled={isDisabled}
         isSelected={isSelected(variant)}
-        onClick={isDisabled ? null : onClick}
+        onClick={isDisabled ? undefined : onClick}
     >
         {children}
     </Chip>
 );
-
-ChipStatus.defaultProps = {
-    className: '',
-    direction: Direction.LTR,
-    isDisabled: false,
-    onClick: null,
-    variant: ChipStatusVariant.SELECTED,
-};
 
 export default ChipStatus;

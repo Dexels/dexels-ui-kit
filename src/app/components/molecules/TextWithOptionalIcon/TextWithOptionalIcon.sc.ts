@@ -1,7 +1,7 @@
 import { Direction, IconSize } from '../../../types';
 import styled, { css } from 'styled-components';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import setTruncate from '../../../styles/mixins/setTruncate';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
+import { setTruncate } from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface TextProps {

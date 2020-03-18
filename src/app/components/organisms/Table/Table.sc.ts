@@ -1,7 +1,7 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
-import getElevation from '../../../styles/mixins/getElevation';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { getElevation } from '../../../styles/mixins/getElevation';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface ColumnProps {
@@ -123,8 +123,8 @@ export const TableCell = styled.td<TableCellProps>`
     position: relative;
     padding: ${({ hasCellPadding, theme }) => theme.spacing(hasCellPadding ? 0.5 : 0)};
     height: ${({ theme }) => theme.spacing(6)};
-    color: ${({ theme }) => theme.colorText.primary};
     vertical-align: middle;
+    color: ${({ theme }) => theme.colorText.primary};
 
     &::after {
         position: absolute;

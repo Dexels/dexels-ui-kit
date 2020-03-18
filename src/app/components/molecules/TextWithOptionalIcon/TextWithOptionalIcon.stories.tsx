@@ -7,7 +7,7 @@ export default { title: 'molecules/TextWithOptionalIcon' };
 
 export const Configurable = () => (
     <TextWithOptionalIcon
-        isCapitalized={boolean('Is capitalized', TextWithOptionalIcon.defaultProps.isCapitalized)}
+        isCapitalized={boolean('Is capitalized', false)}
     >
         {text('Text', 'Configure me!')}
     </TextWithOptionalIcon>
@@ -15,12 +15,10 @@ export const Configurable = () => (
 
 export const ConfigurableWithIcon = () => (
     <TextWithOptionalIcon
-        direction={select('Direction', Direction, TextWithOptionalIcon.defaultProps.direction)}
-        iconSize={select(
-            'Icon size', IconSize, TextWithOptionalIcon.defaultProps.iconSize,
-        )}
+        direction={select('Direction', Direction, Direction.LTR)}
+        iconSize={select('Icon size', IconSize, IconSize.LARGE)}
         iconType={select('Icon type', IconType, IconType.CHECK)}
-        isCapitalized={boolean('Is capitalized', TextWithOptionalIcon.defaultProps.isCapitalized)}
+        isCapitalized={boolean('Is capitalized', false)}
     >
         {text('Text', 'Configure me!')}
     </TextWithOptionalIcon>

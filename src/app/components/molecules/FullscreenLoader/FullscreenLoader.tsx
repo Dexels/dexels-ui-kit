@@ -3,15 +3,11 @@ import { LoaderCircles } from './LoaderCircles.sc';
 import { LoaderWrapper } from './FullscreenLoader.sc';
 import React from 'react';
 
-const constructLoaderCircle = (amount: number) => {
-    const LoaderCirclesArray = [];
-
-    for (let i = 0; i < amount + 1; i += 1) {
-        LoaderCirclesArray.push(<LoaderCircles key={i} opacity={i * 0.2} order={i} />);
-    }
-
-    return LoaderCirclesArray;
-};
+const constructLoaderCircle = (amount: number) => (
+    Array.from(Array(amount).keys()).map((key) => (
+        <LoaderCircles key={key} opacity={key * 0.2} order={key} />
+    ))
+);
 
 export interface FullscreenLoaderProps {
     amount?: number;
@@ -19,8 +15,11 @@ export interface FullscreenLoaderProps {
     type?: FullscreenLoaderType;
 }
 
-// @TODO: Add other loaders
-export const FullscreenLoader: React.FunctionComponent<FullscreenLoaderProps> = ({ amount, className, type }) => {
+export const FullscreenLoader: React.FunctionComponent<FullscreenLoaderProps> = ({
+    amount = 5,
+    className,
+    type = FullscreenLoaderType.CIRCLES,
+}) => {
     switch (type) {
         case FullscreenLoaderType.CIRCLES:
             return (
@@ -36,12 +35,6 @@ export const FullscreenLoader: React.FunctionComponent<FullscreenLoaderProps> = 
                 </LoaderWrapper>
             );
     }
-};
-
-FullscreenLoader.defaultProps = {
-    amount: 5,
-    className: '',
-    type: FullscreenLoaderType.CIRCLES,
 };
 
 export default FullscreenLoader;

@@ -2,10 +2,10 @@ import { Alignment, Easing, Elevation } from '../../../types';
 import styled, { css } from 'styled-components';
 import { DialogButtonClosePosition } from './types';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
-import getAlignment from '../../../styles/mixins/getAlignment';
-import getElevation from '../../../styles/mixins/getElevation';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
-import setCentered from '../../../styles/mixins/setCentered';
+import { getAlignment } from '../../../styles/mixins/getAlignment';
+import { getElevation } from '../../../styles/mixins/getElevation';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
+import { setCentered } from '../../../styles/mixins/setCentered';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledDialogProps {

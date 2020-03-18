@@ -10,8 +10,6 @@ import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
 import { themeDark } from '../app/styles/theming/themes/dark';
-// This seems like a ESLint bug
-// eslint-disable-next-line import/no-unresolved
 import { withInfo } from '@storybook/addon-info';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import Wrapper from './components/Wrapper/Wrapper';
@@ -71,6 +69,7 @@ addParameters({
             value: themeBasic.colorPrimary,
         },
     ],
+    info: {},
 });
 
 // Import all stories

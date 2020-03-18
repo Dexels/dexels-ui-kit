@@ -16,8 +16,9 @@ export default { title: 'molecules/PanelStatus' };
 
 export const Configurable = () => (
     <PanelStatus
-        elevation={select('Elevation', Elevation, PanelStatus.defaultProps.elevation)}
+        elevation={select('Elevation', Elevation, Elevation.LEVEL_2)}
         hasCapitalizedTitle={boolean('Is title capitalized', true)}
+        hasTitleStatusAppearance={boolean('Has title status appearance', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
         options={(
             <Button
@@ -28,8 +29,8 @@ export const Configurable = () => (
                 {'Apply'}
             </Button>
         )}
-        status={select('Status', Status, PanelStatus.defaultProps.status)}
-        title={text('Title', 'settings')}
+        status={select('Status', Status, Status.ALERT)}
+        title={text('Title', 'Settings')}
     >
         {text('Text', 'Configure me!')}
     </PanelStatus>
@@ -37,8 +38,9 @@ export const Configurable = () => (
 
 export const ConfigurableWithMultipleButtons = () => (
     <PanelStatus
-        elevation={select('Elevation', Elevation, PanelStatus.defaultProps.elevation)}
+        elevation={select('Elevation', Elevation, Elevation.LEVEL_16)}
         hasCapitalizedTitle={boolean('Is title capitalized', true)}
+        hasTitleStatusAppearance={boolean('Has title status appearance', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
         options={(
             <Toolbar>
@@ -59,8 +61,8 @@ export const ConfigurableWithMultipleButtons = () => (
                 </Button>
             </Toolbar>
         )}
-        status={select('Status', Status, PanelStatus.defaultProps.status)}
-        title={text('Title', 'settings')}
+        status={select('Status', Status, Status.VALID)}
+        title={text('Title', 'Settings')}
     >
         {text('Text', 'Configure me!')}
     </PanelStatus>

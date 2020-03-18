@@ -3,25 +3,29 @@ import {
     StyledPanelHeader,
     Title,
 } from './PanelHeader.sc';
-import { IconType } from '../../../types';
+import { IconType, Status } from '../../../types';
 import React from 'react';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface PanelHeaderProps {
     hasCapitalizedTitle?: boolean;
+    hasTitleStatusAppearance?: boolean;
     iconType?: IconType;
     options?: React.ReactNode;
+    status?: Status;
     title: React.ReactNode;
 }
 
 export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
     hasCapitalizedTitle,
+    hasTitleStatusAppearance,
     iconType,
     options,
+    status,
     title,
 }) => (
     <StyledPanelHeader>
-        <Title>
+        <Title status={hasTitleStatusAppearance && status ? status : Status.DEFAULT}>
             <TextWithOptionalIcon iconType={iconType} isCapitalized={hasCapitalizedTitle}>
                 {title}
             </TextWithOptionalIcon>
@@ -31,11 +35,5 @@ export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
         </FunctionalWrapper>
     </StyledPanelHeader>
 );
-
-PanelHeader.defaultProps = {
-    hasCapitalizedTitle: false,
-    iconType: null,
-    options: null,
-};
 
 export default PanelHeader;

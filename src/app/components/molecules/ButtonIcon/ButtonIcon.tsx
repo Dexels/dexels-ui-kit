@@ -17,10 +17,10 @@ export interface ButtonIconProps {
 export const ButtonIcon: React.FunctionComponent<ButtonIconProps> = ({
     className,
     iconType,
-    isDisabled,
-    isInverted,
+    isDisabled = false,
+    isInverted = false,
     onClick,
-    size,
+    size = Size.LARGE,
     ...rest
 }) => (
     <StyledButtonIcon
@@ -34,13 +34,5 @@ export const ButtonIcon: React.FunctionComponent<ButtonIconProps> = ({
         <Icon type={iconType} />
     </StyledButtonIcon>
 );
-
-ButtonIcon.defaultProps = {
-    className: '',
-    isDisabled: false,
-    isInverted: false,
-    onClick: null,
-    size: Size.LARGE,
-};
 
 export default ButtonIcon;

@@ -1,5 +1,5 @@
-import getStatusColor from '../../../../styles/mixins/getStatusColor';
-import setBoxSizing from '../../../../styles/mixins/setBoxSizing';
+import { getStatusColor } from '../../../../styles/mixins/getStatusColor';
+import { setBoxSizing } from '../../../../styles/mixins/setBoxSizing';
 import { Status } from '../../../../types';
 import styled from 'styled-components';
 import { themeBasic } from '../../../../styles/theming/themes/basic';

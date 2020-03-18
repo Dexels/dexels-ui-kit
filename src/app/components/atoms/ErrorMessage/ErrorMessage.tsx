@@ -11,8 +11,4 @@ export const ErrorMessage: React.FunctionComponent<ErrorMessageProps> = ({ child
     </StyledErrorMessage>
 );
 
-ErrorMessage.defaultProps = {
-    className: '',
-};
-
 export default ErrorMessage;

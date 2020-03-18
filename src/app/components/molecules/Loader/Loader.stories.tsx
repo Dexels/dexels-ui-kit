@@ -7,7 +7,7 @@ export default { title: 'molecules/Loader' };
 
 export const Configurable = () => (
     <Loader
-        isInverted={boolean('Is inverted', Loader.defaultProps.isInverted)}
+        isInverted={boolean('Is inverted', false)}
         size={select('Size', Size, Size.LARGE)}
     />
 );
