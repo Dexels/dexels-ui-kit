@@ -69,7 +69,6 @@ declare module 'react-table' {
         hasCellPadding?: boolean;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick?: (...args: any[]) => any;
-        show?: boolean;
     }
 
     export interface Cell<D extends object = {}> extends UseGroupByCellProps<D> {}
