@@ -1,14 +1,13 @@
 @font-face {
   font-family: 'SL-Small-Icons';
-  src:  url('~fonts/iconfont/SL-Small-Icons.eot?3xhcow');
-  src:  url('~fonts/iconfont/SL-Small-Icons.eot?3xhcow#iefix') format('embedded-opentype'),
-    url('~fonts/iconfont/SL-Small-Icons.ttf?3xhcow') format('truetype'),
-    url('~fonts/iconfont/SL-Small-Icons.woff?3xhcow') format('woff'),
-    url('~fonts/iconfont/SL-Small-Icons.svg?3xhcow#SL-Small-Icons') format('svg');
+  src: url('~fonts/iconfont/SL-Small-Icons.eot?f3hwy9');
+  src: url('~fonts/iconfont/SL-Small-Icons.eot?f3hwy9#iefix') format('embedded-opentype'),
+    url('~fonts/iconfont/SL-Small-Icons.ttf?f3hwy9') format('truetype'),
+    url('~fonts/iconfont/SL-Small-Icons.woff?f3hwy9') format('woff'),
+    url('~fonts/iconfont/SL-Small-Icons.svg?f3hwy9#SL-Small-Icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
-  font-display: fallback;
 }
 
 [class^="ICON-"], [class*=" ICON-"] {
@@ -26,6 +25,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .ICON-CHANGE2:before {
+    content: "\e980";
+  }
+  .ICON-CLUBUNKNOWN:before {
+    content: "\e981";
+  }
+  .ICON-COFFEE:before {
+    content: "\e982";
+  }
   .ICON-CLUBPLACEHOLDER5:before {
     content: "\e972";
   }
