@@ -11,7 +11,6 @@ export const tableColumns = () => (
     React.useMemo(() => [
         {
             accessor: 'id',
-            show: false,
         },
         {
             Cell: (row) => renderCell(row),

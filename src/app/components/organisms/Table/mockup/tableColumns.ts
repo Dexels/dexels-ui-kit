@@ -12,7 +12,6 @@ import { TableData } from './tableData';
 export const tableColumns: (data: TableData[]) => Column<TableData>[] = (data) => (
     React.useMemo(() => [
         {
-            Cell: (row: CellProps<TableData>) => renderCell(row),
             accessor: 'id',
         },
         {
