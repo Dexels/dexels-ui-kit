@@ -29,7 +29,7 @@ export const Default = () => {
             isOutsideRange={() => false}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
-            minimumNights={1}
+            minimumNights={number('Minimum nights', 1)}
             numberOfMonths={number('Number of months', 2)}
             onCancel={() => {
                 setStartDate(defaultStartDate);
@@ -102,7 +102,7 @@ export const DefaultWithoutShortcuts = () => {
             isOutsideRange={() => false}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
-            minimumNights={number('Minimum night', 1)}
+            minimumNights={number('Minimum nights', 1)}
             numberOfMonths={number('Number of months', 2)}
             onCancel={() => {
                 setStartDate(defaultStartDate);
@@ -144,7 +144,7 @@ export const DefaultWithoutFooter = () => {
             isOutsideRange={() => false}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Je favoriete periode')}
-            minimumNights={number('Minimum night', 1)}
+            minimumNights={number('Minimum nights', 1)}
             numberOfMonths={number('Number of months', 2)}
             onDatesChange={(event) => {
                 setStartDate(event.startDate);
@@ -212,7 +212,7 @@ export const WithYearSelector = () => {
             label={text('Label', 'Vakantie periode')}
             labelMonth={text('Label month', 'Maand')}
             labelYear={text('Label year', 'Jaar')}
-            minimumNights={number('Minimum night', 1)}
+            minimumNights={number('Minimum nights', 1)}
             numberOfMonths={1}
             onDatesChange={(event) => {
                 setStartDate(event.startDate);

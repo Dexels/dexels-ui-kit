@@ -70,7 +70,7 @@ export const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = ({
     label,
     labelMonth,
     labelYear,
-    minimumNights,
+    minimumNights = 0,
     numberOfMonths = 2,
     onCancel,
     onConfirm,
