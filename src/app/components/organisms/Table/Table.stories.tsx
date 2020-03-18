@@ -32,6 +32,7 @@ export const Configurable = () => {
         hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(data),
         data,
         {
+            hiddenColumns: ['id'],
             sortBy: [
                 {
                     desc: false,

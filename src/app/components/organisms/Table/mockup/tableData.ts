@@ -6,6 +6,7 @@ import { Status } from '../../../../types';
 export interface TableData {
     companyName: string;
     firstName: string;
+    id: number;
     infix?: string;
     info?: number;
     lastName: string;
@@ -21,6 +22,7 @@ const makeTableData = (amount = 15) => {
         result.push({
             companyName: `Dexels ${i}`,
             firstName: `Firstname ${i}`,
+            id: i,
             infix: undefined,
             info: undefined,
             lastName: `Lastname ${i}`,
@@ -39,6 +41,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Erik',
+        id: 187,
         infix: undefined,
         info: 66,
         lastName: 'Versteeg',
@@ -50,6 +53,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Lange voornaam',
+        id: 188,
         infix: 'een net iets te lange infix',
         info: 66,
         lastName: 'Achternaam met best veel tekens in de naam',
@@ -61,6 +65,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'erik',
+        id: 189,
         infix: undefined,
         info: 66,
         lastName: 'Versteeg',
@@ -72,6 +77,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Maria',
+        id: 190,
         infix: undefined,
         info: 45,
         lastName: 'Papadaki',
@@ -83,6 +89,7 @@ export function tableData() {
     result.push({
         companyName: 'Cygni',
         firstName: 'David',
+        id: 200,
         infix: 'de',
         info: 30,
         lastName: 'Lusenet',
@@ -94,6 +101,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Firstname',
+        id: 300,
         infix: undefined,
         info: 1,
         lastName: 'Lastname 1',
@@ -105,6 +113,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Firstname',
+        id: 400,
         infix: undefined,
         info: undefined,
         lastName: 'Lastname 2',
@@ -116,6 +125,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Firstname',
+        id: 500,
         infix: undefined,
         info: 90,
         lastName: 'Lastname 3',
@@ -127,6 +137,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Firstname',
+        id: 600,
         infix: undefined,
         info: 120,
         lastName: 'Lastname 4',
@@ -138,6 +149,7 @@ export function tableData() {
     result.push({
         companyName: 'Dexels',
         firstName: 'Firstname',
+        id: 700,
         infix: undefined,
         info: undefined,
         lastName: 'Lastname 5',

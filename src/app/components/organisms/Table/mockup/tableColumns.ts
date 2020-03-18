@@ -12,6 +12,10 @@ import { TableData } from './tableData';
 export const tableColumns: (data: TableData[]) => Column<TableData>[] = (data) => (
     React.useMemo(() => [
         {
+            Cell: (row: CellProps<TableData>) => renderCell(row),
+            accessor: 'id',
+        },
+        {
             Cell: (row: CellProps<TableData>) => renderStatusCell(
                 row.cell.row.original.matchTaskStatus, row.cell.value,
             ),

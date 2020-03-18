@@ -1,11 +1,4 @@
 import {
-    // Cell,
-    ColumnInstance,
-    // HeaderGroup,
-    Row,
-    TableInstance,
-} from 'react-table';
-import {
     IconWrapper,
     Paging,
     StyledTable,
@@ -20,6 +13,7 @@ import {
     TableRow,
 } from './Table.sc';
 import React, { SyntheticEvent } from 'react';
+import { Row, TableInstance } from 'react-table';
 import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
@@ -61,16 +55,6 @@ export const Table = <T extends object>({
         prepareRow,
     } = instance;
 
-    // @TODO: most unfortunate, but the isVisible column prop doesn't seem to be overridable (yet)
-    // The previous prop (show) can be set, but has no effect, so handle it manually
-    const isColumnVisible = (column: ColumnInstance<T>): boolean => {
-        if (typeof column.isVisible === 'boolean' || typeof column.show === 'boolean') {
-            return column.isVisible || column.show || false;
-        }
-
-        return false;
-    };
-
     return (
         <>
             {caption && (
@@ -86,7 +70,7 @@ export const Table = <T extends object>({
                 <TableHead>
                     {headerGroups.map((headerGroup) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => isColumnVisible(column) && (
+                            {headerGroup.headers.filter(({ isVisible }) => isVisible).map((column) => (
                                 <TableHeaderCell
                                     hasCellPadding={column.hasCellPadding}
                                     key={column}
@@ -108,7 +92,7 @@ export const Table = <T extends object>({
                 </TableHead>
                 <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                    {dataSource(instance, Boolean(pagingComponent)).map((row: Row<T>) => {
+                    {dataSource(instance, Boolean(pagingComponent)).map((row) => {
                         prepareRow(row);
 
                         return (
@@ -121,15 +105,14 @@ export const Table = <T extends object>({
                                     } : undefined}
                                 {...row.getRowProps()}
                             >
-                                {row.cells.map((cell) => isColumnVisible(cell.column) && (
+                                {row.cells.filter(({ column }) => column.isVisible).map((cell) => (
                                     <TableCell
                                         hasCellPadding={cell.column.hasCellPadding}
                                         isClickable={Boolean(cell.column.onClick)}
                                         key={cell}
                                         onClick={(event: SyntheticEvent) => {
-                                            event.stopPropagation();
-
                                             if (cell.column.onClick) {
+                                                event.stopPropagation();
                                                 cell.column.onClick(cell, row, event);
                                             }
                                         }}
