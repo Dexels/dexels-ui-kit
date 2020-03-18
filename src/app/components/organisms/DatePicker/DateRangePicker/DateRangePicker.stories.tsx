@@ -205,10 +205,7 @@ export const WithYearSelector = () => {
             hasYearSelector
             isDayHighlighted={(day) => day.day() === 3}
             isDisabled={boolean('Is disabled', false)}
-            keepOpenOnDateSelect={boolean(
-                'Keep open on date select',
-                true,
-            )}
+            keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Vakantie periode')}
             labelMonth={text('Label month', 'Maand')}
             labelYear={text('Label year', 'Jaar')}
