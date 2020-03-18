@@ -92,12 +92,8 @@ export const ConfigurableModal = () => {
                 }}
                 options={functionalItems}
                 title={text('Header title', 'Heading')}
-                transitionDuration={number('Transition duration', Modal.defaultProps.transitionDuration)}
-                transitionEasing={select(
-                    'Transition type',
-                    Easing,
-                    Modal.defaultProps.transitionEasing,
-                )}
+                transitionDuration={number('Transition duration', 500)}
+                transitionEasing={select('Transition type', Easing, Easing.EASE)}
             >
                 {text('Body', 'Some body text')}
             </Modal>

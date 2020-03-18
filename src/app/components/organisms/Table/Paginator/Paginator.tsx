@@ -28,19 +28,19 @@ export interface PaginatorTexts {
     show: React.ReactNode;
 }
 
-export interface PaginatorProps {
+export interface PaginatorProps<T extends object> {
     className?: string;
     hasAllPagingButtons?: boolean;
     hasGoToPage?: boolean;
     hasPageSizeSelector?: boolean;
-    instance: TableInstance;
+    instance: TableInstance<T>;
     pageSizes?: (number | string)[];
     texts: PaginatorTexts;
     useResultsOfText?: boolean;
 }
 
-const pagingResultsText = (
-    instance: TableInstance,
+const pagingResultsText = <T extends object>(
+    instance: TableInstance<T>,
     texts: PaginatorTexts,
 ) => {
     const { state: { pageIndex, pageSize } } = instance;
@@ -64,22 +64,22 @@ const pagingResultsText = (
     return `${result} ${texts.resultsOf} ${rowCount}`;
 };
 
-const pagingText = (instance: TableInstance, texts: PaginatorTexts) => {
+const pagingText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts) => {
     const { state: { pageIndex, pageSize } } = instance;
     const pageCount = instance.rows.length / pageSize;
 
     return `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`;
 };
 
-export const Paginator: React.FunctionComponent<PaginatorProps> = ({
-    hasAllPagingButtons,
-    hasGoToPage,
-    hasPageSizeSelector,
+export const Paginator = <T extends object>({
+    hasAllPagingButtons = true,
+    hasGoToPage = false,
+    hasPageSizeSelector = true,
     instance,
-    pageSizes,
+    pageSizes = [5, 10, 20],
     texts,
-    useResultsOfText,
-}) => {
+    useResultsOfText = true,
+}: PaginatorProps<T>) => {
     const { pageIndex, pageSize } = instance.state;
 
     return (
@@ -91,7 +91,7 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
                     </PageSizeSelectorText>
                     <Dropdown
                         name="DROPDOWN_PAGE_SIZES"
-                        onChange={(e) => {
+                        onChange={(e): void => {
                             instance.setPageSize(Number(e.target.value));
                         }}
                         value={pageSize}
@@ -112,7 +112,7 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
                     <Input
                         label={texts.pageGoto}
                         name="INPUT_PAGE_INDEX"
-                        onChange={(event) => {
+                        onChange={(event): void => {
                             const page = event.target.value ? Number(event.target.value) - 1 : 0;
                             instance.gotoPage(page);
                         }}
@@ -124,36 +124,42 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
             )}
             <Paging>
                 <PagingText>
-                    {useResultsOfText
-                        ? pagingResultsText(instance, texts)
-                        : pagingText(instance, texts)}
+                    {useResultsOfText ? pagingResultsText(instance, texts) : pagingText(instance, texts)}
                 </PagingText>
                 <PagingButtons>
                     {hasAllPagingButtons && (
                         <ButtonIcon
                             iconType={IconType.CHEVRONFIRST}
                             isDisabled={!instance.canPreviousPage}
-                            onClick={() => instance.gotoPage(0)}
+                            onClick={(): void => {
+                                instance.gotoPage(0);
+                            }}
                             size={Size.XLARGE}
                         />
                     )}
                     <ButtonIcon
                         iconType={IconType.CHEVRONLEFT}
                         isDisabled={!instance.canPreviousPage}
-                        onClick={() => instance.previousPage()}
+                        onClick={(): void => {
+                            instance.previousPage();
+                        }}
                         size={Size.XLARGE}
                     />
                     <ButtonIcon
                         iconType={IconType.CHEVRONRIGHT}
                         isDisabled={!instance.canNextPage}
-                        onClick={() => instance.nextPage()}
+                        onClick={(): void => {
+                            instance.nextPage();
+                        }}
                         size={Size.XLARGE}
                     />
                     {hasAllPagingButtons && (
                         <ButtonIcon
                             iconType={IconType.CHEVRONLAST}
                             isDisabled={!instance.canNextPage}
-                            onClick={() => instance.gotoPage(instance.pageCount - 1)}
+                            onClick={(): void => {
+                                instance.gotoPage(instance.pageCount - 1);
+                            }}
                             size={Size.XLARGE}
                         />
                     )}
@@ -161,14 +167,6 @@ export const Paginator: React.FunctionComponent<PaginatorProps> = ({
             </Paging>
         </StyledPaginator>
     );
-};
-
-Paginator.defaultProps = {
-    hasAllPagingButtons: true,
-    hasGoToPage: false,
-    hasPageSizeSelector: true,
-    pageSizes: [5, 10, 20],
-    useResultsOfText: true,
 };
 
 export default Paginator;

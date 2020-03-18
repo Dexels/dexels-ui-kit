@@ -32,21 +32,21 @@ export interface ButtonProps {
 }
 
 export const Button: React.FunctionComponent<ButtonProps> = ({
-    autoFocus,
+    autoFocus = false,
     children,
     className,
-    direction,
+    direction = Direction.LTR,
     iconType,
-    isCapitalized,
-    isDisabled,
-    isFullWidth,
-    isInverted,
-    isLoading,
+    isCapitalized = true,
+    isDisabled = false,
+    isFullWidth = false,
+    isInverted = false,
+    isLoading = false,
     onClick,
-    size,
-    transitionDuration,
-    transitionEasing,
-    variant,
+    size = ButtonSize.LARGE,
+    transitionDuration = 300,
+    transitionEasing = Easing.EASE,
+    variant = ButtonVariant.OUTLINE,
     ...rest
 }) => (
     <StyledButton
@@ -56,7 +56,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
         isFullWidth={isFullWidth}
         isInverted={isInverted}
         isLoading={isLoading}
-        onClick={isDisabled ? null : onClick}
+        onClick={isDisabled ? undefined : onClick}
         size={size}
         transitionDuration={transitionDuration}
         transitionEasing={transitionEasing}
@@ -80,22 +80,5 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
         </TextWrapper>
     </StyledButton>
 );
-
-Button.defaultProps = {
-    autoFocus: false,
-    className: '',
-    direction: Direction.LTR,
-    iconType: null,
-    isCapitalized: true,
-    isDisabled: false,
-    isFullWidth: false,
-    isInverted: false,
-    isLoading: false,
-    onClick: null,
-    size: ButtonSize.LARGE,
-    transitionDuration: 300,
-    transitionEasing: Easing.EASE,
-    variant: ButtonVariant.OUTLINE,
-};
 
 export default Button;

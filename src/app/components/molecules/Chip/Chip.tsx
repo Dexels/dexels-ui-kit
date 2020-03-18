@@ -26,14 +26,14 @@ export interface ChipProps {
 export const Chip: React.FunctionComponent<ChipProps> = ({
     children,
     className,
-    direction,
+    direction = Direction.LTR,
+    iconSize = IconSize.MEDIUM,
     iconType,
-    iconSize,
-    isDisabled,
-    isSelected,
+    isDisabled = false,
+    isSelected = true,
     onClick,
-    transitionDuration,
-    transitionEasing,
+    transitionDuration = 300,
+    transitionEasing = Easing.EASE,
     ...rest
 }) => (
     <StyledChip
@@ -41,7 +41,7 @@ export const Chip: React.FunctionComponent<ChipProps> = ({
         isDisabled={isDisabled}
         isHoverable={!isDisabled && Boolean(onClick)}
         isSelected={isSelected}
-        onClick={isDisabled ? null : onClick}
+        onClick={isDisabled ? undefined : onClick}
         transitionDuration={transitionDuration}
         transitionEasing={transitionEasing}
         {...rest}
@@ -55,17 +55,5 @@ export const Chip: React.FunctionComponent<ChipProps> = ({
         </TextWithOptionalIcon>
     </StyledChip>
 );
-
-Chip.defaultProps = {
-    className: '',
-    direction: Direction.LTR,
-    iconSize: IconSize.MEDIUM,
-    iconType: null,
-    isDisabled: false,
-    isSelected: true,
-    onClick: null,
-    transitionDuration: 300,
-    transitionEasing: Easing.EASE,
-};
 
 export default Chip;

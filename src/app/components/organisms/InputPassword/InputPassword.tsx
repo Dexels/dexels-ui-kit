@@ -22,16 +22,16 @@ export interface InputPasswordProps {
 export const InputPassword: React.FunctionComponent<InputPasswordProps> = ({
     className,
     errorMessage,
-    hasError,
-    isDisabled,
-    isValid,
-    isVisibleDefault,
+    hasError = false,
+    isDisabled = false,
+    isValid = false,
+    isVisibleDefault = false,
     label,
     name,
     onChange,
     onKeyDown,
     value,
-    variant,
+    variant = InputVariant.OUTLINE,
 }) => {
     const [isVisible, setIsVisible] = useState(isVisibleDefault);
 
@@ -61,18 +61,6 @@ export const InputPassword: React.FunctionComponent<InputPasswordProps> = ({
             </VisibilitySwitch>
         </StyledInputPassword>
     );
-};
-
-InputPassword.defaultProps = {
-    className: '',
-    errorMessage: null,
-    hasError: false,
-    isDisabled: false,
-    isValid: false,
-    isVisibleDefault: false,
-    onKeyDown: null,
-    value: '',
-    variant: InputVariant.OUTLINE,
 };
 
 export default InputPassword;

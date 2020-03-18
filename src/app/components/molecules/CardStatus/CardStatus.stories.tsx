@@ -9,14 +9,14 @@ export default { title: 'molecules/CardStatus' };
 
 export const Configurable = () => (
     <CardStatus
-        elevation={select('Elevation', Elevation, CardStatus.defaultProps.elevation)}
-        hasBorderRadius={boolean('Has border radius', CardStatus.defaultProps.hasBorderRadius)}
+        elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
+        hasBorderRadius={boolean('Has border radius', false)}
         placement={select(
             'Status placement',
             Placement,
-            CardStatus.defaultProps.placement,
+            Placement.TOP,
         )}
-        status={select('Status', Status, CardStatus.defaultProps.status)}
+        status={select('Status', Status, Status.DEFAULT)}
     >
         {text('Text', 'Configure me!')}
     </CardStatus>
@@ -24,14 +24,14 @@ export const Configurable = () => (
 
 export const ConfigurableWithComponent = () => (
     <CardStatus
-        elevation={select('Elevation', Elevation, CardStatus.defaultProps.elevation)}
-        hasBorderRadius={boolean('Has border radius', CardStatus.defaultProps.hasBorderRadius)}
+        elevation={select('Elevation', Elevation, Elevation.LEVEL_16)}
+        hasBorderRadius={boolean('Has border radius', true)}
         placement={select(
             'Status placement',
             Placement,
-            CardStatus.defaultProps.placement,
+            Placement.BOTTOM,
         )}
-        status={select('Status', Status, CardStatus.defaultProps.status)}
+        status={select('Status', Status, Status.ALERT)}
     >
         <Button
             onClick={action('On click')}

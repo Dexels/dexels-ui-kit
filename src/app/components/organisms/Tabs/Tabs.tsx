@@ -27,8 +27,8 @@ const setInitiallyActiveTabIndex = (tab: Tab) => (
 
 export const Tabs: React.FunctionComponent<TabsProps> = ({
     className,
-    elevation,
-    hasFullWidthTabHeaders,
+    elevation = Elevation.LEVEL_1,
+    hasFullWidthTabHeaders = true,
     initiallyActiveTabIndex,
     tabs,
 }) => {
@@ -39,17 +39,17 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
     return (
         <StyledTabs className={className} elevation={elevation}>
             <TabHeaderList>
-                {tabs.length > 0 && tabs.map((tab: Tab, index: number) => (
+                {tabs.length > 0 && tabs.map(({ isDisabled = false, title }: Tab, index: number) => (
                     <TabHeader
                         isActive={activeTabIndex === index}
-                        isDisabled={tab.isDisabled}
+                        isDisabled={isDisabled}
                         isFullWidth={hasFullWidthTabHeaders}
-                        key={tab.title}
+                        key={title}
                         onClick={() => {
                             setActiveTabIndex(index);
                         }}
                     >
-                        {tab.title}
+                        {title}
                     </TabHeader>
                 ))}
             </TabHeaderList>
@@ -60,13 +60,6 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
             )}
         </StyledTabs>
     );
-};
-
-Tabs.defaultProps = {
-    className: '',
-    elevation: Elevation.LEVEL_1,
-    hasFullWidthTabHeaders: true,
-    initiallyActiveTabIndex: null,
 };
 
 export default Tabs;

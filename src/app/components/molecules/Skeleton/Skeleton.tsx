@@ -13,10 +13,10 @@ export interface SkeletonProps {
 }
 
 export const Skeleton: React.FunctionComponent<SkeletonProps> = ({
-    circle,
+    circle = false,
     color,
-    count,
-    duration,
+    count = 1,
+    duration = 1.2,
     height,
     highlightColor,
     width,
@@ -31,13 +31,5 @@ export const Skeleton: React.FunctionComponent<SkeletonProps> = ({
         />
     </StyledSkeleton>
 );
-
-Skeleton.defaultProps = {
-    circle: false,
-    count: 1,
-    duration: 1.2,
-    height: undefined,
-    width: undefined,
-};
 
 export default Skeleton;

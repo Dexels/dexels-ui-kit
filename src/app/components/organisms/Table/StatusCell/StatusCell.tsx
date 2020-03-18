@@ -10,7 +10,8 @@ import { MatchTaskStatuses } from './types';
 import React from 'react';
 import { StatusIndicator } from '../../../atoms/StatusIndicator/StatusIndicator';
 
-const iconType = (matchTaskStatus: MatchTaskStatuses): IconType | null => {
+// If you ever want to use this organism in another project please make sure the MatchTaskStatuses type is up to date
+const iconType = (matchTaskStatus: MatchTaskStatuses): IconType => {
     switch (matchTaskStatus) {
         case MatchTaskStatuses.NO_DRESSINGROOMS:
             return IconType.STATUSALERT;
@@ -25,7 +26,7 @@ const iconType = (matchTaskStatus: MatchTaskStatuses): IconType | null => {
             return IconType.STATUSDONE;
 
         default:
-            return null;
+            return IconType.STATUSDONE;
     }
 };
 
@@ -48,10 +49,5 @@ const StatusCell: React.FunctionComponent<StatusCellProps> = ({ matchTaskStatus,
         </StatusIndicator>
     </StyledStatusCell>
 );
-
-StatusCell.defaultProps = {
-    matchTaskStatus: MatchTaskStatuses.SCHEDULED,
-    status: Status.DEFAULT,
-};
 
 export default StatusCell;

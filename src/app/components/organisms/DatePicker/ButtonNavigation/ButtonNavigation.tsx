@@ -14,9 +14,4 @@ const ButtonNavigation: React.FunctionComponent<ButtonNavigationProps> = ({ isNe
     </StyledButtonNavigation>
 );
 
-ButtonNavigation.defaultProps = {
-    isNext: false,
-    isPrev: false,
-};
-
 export default ButtonNavigation;

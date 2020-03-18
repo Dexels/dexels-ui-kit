@@ -23,9 +23,9 @@ export const ConfigurableCompactVariant = () => {
             </p>
             <Dropdown
                 errorMessage={text('Error message', 'Everything is broken, oops')}
-                hasError={boolean('Has error', Dropdown.defaultProps.hasError)}
-                isDisabled={boolean('Is disabled', Dropdown.defaultProps.isDisabled)}
-                isValid={boolean('Is valid', Dropdown.defaultProps.isValid)}
+                hasError={boolean('Has error', false)}
+                isDisabled={boolean('Is disabled', false)}
+                isValid={boolean('Is valid', false)}
                 name="the-best-fruit"
                 onChange={(event) => {
                     setValue(event.currentTarget.value);
@@ -57,9 +57,9 @@ export const ConfigurableOutlineVariant = () => {
         <>
             <Dropdown
                 errorMessage={text('Error message', 'Everything is broken, oops')}
-                hasError={boolean('Has error', Dropdown.defaultProps.hasError)}
-                isDisabled={boolean('Is disabled', Dropdown.defaultProps.isDisabled)}
-                isValid={boolean('Is valid', Dropdown.defaultProps.isValid)}
+                hasError={boolean('Has error', false)}
+                isDisabled={boolean('Is disabled', false)}
+                isValid={boolean('Is valid', false)}
                 label="Your favorite fruit"
                 name="the-best-fruit"
                 onChange={(event) => {

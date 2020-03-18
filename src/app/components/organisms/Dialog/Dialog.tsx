@@ -41,27 +41,27 @@ export interface DialogProps {
 }
 
 export const Dialog: React.FunctionComponent<DialogProps> = ({
-    bodyAlignment,
+    bodyAlignment = Alignment.CENTER,
     buttonCancelText,
-    buttonClosePosition,
+    buttonClosePosition = DialogButtonClosePosition.LEFT,
     buttonConfirmIconType,
     buttonConfirmText,
     children,
     className,
-    elevation,
+    elevation = Elevation.LEVEL_12,
     footerText,
-    hasButtonClose,
-    hasOverlay,
+    hasButtonClose = true,
+    hasOverlay = true,
     header,
-    headerAlignment,
-    height,
+    headerAlignment = Alignment.CENTER,
+    height = 'inherit',
     isVisible,
     onCancel,
     onClose,
     onConfirm,
-    transitionDuration,
-    transitionEasing,
-    width,
+    transitionDuration = 500,
+    transitionEasing = Easing.EASE,
+    width = '300px',
 }) => (
     <>
         {hasOverlay && (
@@ -100,25 +100,5 @@ export const Dialog: React.FunctionComponent<DialogProps> = ({
         </StyledDialog>
     </>
 );
-
-Dialog.defaultProps = {
-    bodyAlignment: Alignment.CENTER,
-    buttonCancelText: null,
-    buttonClosePosition: DialogButtonClosePosition.LEFT,
-    buttonConfirmIconType: IconType.CHECK,
-    className: '',
-    elevation: Elevation.LEVEL_12,
-    footerText: null,
-    hasButtonClose: true,
-    hasOverlay: true,
-    header: null,
-    headerAlignment: Alignment.CENTER,
-    height: 'inherit',
-    onCancel: null,
-    onClose: null,
-    transitionDuration: 500,
-    transitionEasing: Easing.EASE,
-    width: '300px',
-};
 
 export default Dialog;

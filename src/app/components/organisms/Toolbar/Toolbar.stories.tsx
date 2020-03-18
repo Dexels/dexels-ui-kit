@@ -9,7 +9,7 @@ import Toolbar from './Toolbar';
 export default { title: 'organisms/Toolbar' };
 
 export const Configurable = () => {
-    const isInverted = boolean('Is inverted', Toolbar.defaultProps.isInverted);
+    const isInverted = boolean('Is inverted', false);
 
     return (
         <Toolbar isInverted={isInverted}>

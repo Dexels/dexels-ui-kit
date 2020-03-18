@@ -58,19 +58,16 @@ declare module 'react-table' {
         UseSortByState<D> {}
 
     export interface Column<D extends object = {}>
-        extends UseFiltersColumnOptions<D>,
-        UseGroupByColumnOptions<D>,
-        UseSortByColumnOptions<D> {}
+        extends UseFiltersColumnOptions<D>, UseGroupByColumnOptions<D>, UseSortByColumnOptions<D> {
+        hasCellPadding?: boolean;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onClick?: (...args: any[]) => void;
+    }
 
     export interface ColumnInstance<D extends object = {}>
         extends UseFiltersColumnProps<D>,
         UseGroupByColumnProps<D>,
-        UseSortByColumnProps<D> {
-        hasCellPadding?: boolean;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onClick?: (...args: any[]) => any;
-        show?: boolean;
-    }
+        UseSortByColumnProps<D> {}
 
     export interface Cell<D extends object = {}> extends UseGroupByCellProps<D> {}
 

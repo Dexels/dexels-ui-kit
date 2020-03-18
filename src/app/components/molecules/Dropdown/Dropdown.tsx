@@ -35,22 +35,22 @@ export interface DropdownProps {
 }
 
 export const Dropdown: React.FunctionComponent<DropdownProps> = ({
-    as,
+    as = 'select',
     children,
     className,
     errorMessage,
-    hasError,
-    isDisabled,
-    isOpen,
-    isRequired,
-    isValid,
+    hasError = false,
+    isDisabled = false,
+    isOpen = false,
+    isRequired = false,
+    isValid = false,
     label,
     name,
     onChange,
     onClick,
     placeholder,
     value,
-    variant,
+    variant = DropdownVariant.COMPACT,
     ...rest
 }) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -106,7 +106,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
                     value={value}
                     variant={variant}
                 >
-                    {placeholder && as === Dropdown.defaultProps.as && (
+                    {as === 'select' && placeholder && (
                         <option disabled hidden value={placeholder}>
                             {placeholder}
                         </option>
@@ -133,22 +133,6 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
             )}
         </>
     );
-};
-
-Dropdown.defaultProps = {
-    as: 'select',
-    className: '',
-    errorMessage: null,
-    hasError: false,
-    isDisabled: false,
-    isOpen: false,
-    isRequired: false,
-    isValid: false,
-    label: null,
-    onChange: null,
-    onClick: null,
-    placeholder: null,
-    variant: DropdownVariant.COMPACT,
 };
 
 export default Dropdown;

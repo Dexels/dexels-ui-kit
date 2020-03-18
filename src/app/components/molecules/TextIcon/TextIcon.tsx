@@ -12,7 +12,7 @@ export interface TextIconProps {
 
 export const TextIcon: React.FunctionComponent<TextIconProps> = ({
     className,
-    size,
+    size = Size.LARGE,
     text,
     ...rest
 }) => (
@@ -20,10 +20,5 @@ export const TextIcon: React.FunctionComponent<TextIconProps> = ({
         {text}
     </StyledTextIcon>
 );
-
-TextIcon.defaultProps = {
-    className: '',
-    size: Size.LARGE,
-};
 
 export default TextIcon;

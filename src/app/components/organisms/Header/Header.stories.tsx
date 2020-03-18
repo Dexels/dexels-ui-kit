@@ -14,8 +14,8 @@ import React from 'react';
 export default { title: 'organisms/Header' };
 
 export const Configurable = () => {
-    const elevation = select('Elevation', Elevation, Header.defaultProps.elevation);
-    const isInverted = boolean('Is inverted', Header.defaultProps.isInverted);
+    const elevation = select('Elevation', Elevation, Elevation.LEVEL_1);
+    const isInverted = boolean('Is inverted', false);
     const onBack = action('On back');
     const onToggleMenu = action('On toggle menu');
     const title = text('Header title', 'Wedstrijden');

@@ -19,17 +19,17 @@ export default { title: 'molecules/Button' };
 
 export const Configurable = () => (
     <Button
-        isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
-        isFullWidth={boolean('Is full width', Button.defaultProps.isFullWidth)}
-        isInverted={boolean('Is inverted', Button.defaultProps.isInverted)}
-        isLoading={boolean('Is loading', Button.defaultProps.isLoading)}
+        isDisabled={boolean('Is disabled', false)}
+        isFullWidth={boolean('Is full width', false)}
+        isInverted={boolean('Is inverted', false)}
+        isLoading={boolean('Is loading', false)}
         onClick={action('On click')}
-        size={select('Size', ButtonSize, Button.defaultProps.size)}
-        transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
+        size={select('Size', ButtonSize, ButtonSize.MEDIUM)}
+        transitionDuration={number('Transition duration', 300)}
         transitionEasing={select(
-            'Transition type', Easing, Button.defaultProps.transitionEasing,
+            'Transition type', Easing, Easing.EASE,
         )}
-        variant={select('Variant', ButtonVariant, Button.defaultProps.variant)}
+        variant={select('Variant', ButtonVariant, ButtonVariant.OUTLINE)}
     >
         {text('Text', 'Configure me!')}
     </Button>
@@ -37,19 +37,19 @@ export const Configurable = () => (
 
 export const ConfigurableWithIcon = () => (
     <Button
-        direction={select('Direction', Direction, Button.defaultProps.direction)}
+        direction={select('Direction', Direction, Direction.LTR)}
         iconType={select('Icon type', IconType, IconType.CHECK)}
-        isDisabled={boolean('Is disabled', Button.defaultProps.isDisabled)}
-        isFullWidth={boolean('Use full width', Button.defaultProps.isFullWidth)}
-        isInverted={boolean('Is inverted', Button.defaultProps.isInverted)}
-        isLoading={boolean('Is loading', Button.defaultProps.isLoading)}
+        isDisabled={boolean('Is disabled', false)}
+        isFullWidth={boolean('Use full width', false)}
+        isInverted={boolean('Is inverted', false)}
+        isLoading={boolean('Is loading', false)}
         onClick={action('On click')}
-        size={select('Size', ButtonSize, Button.defaultProps.size)}
-        transitionDuration={number('Transition duration', Button.defaultProps.transitionDuration)}
+        size={select('Size', ButtonSize, ButtonSize.LARGE)}
+        transitionDuration={number('Transition duration', 300)}
         transitionEasing={select(
-            'Transition type', Easing, Button.defaultProps.transitionEasing,
+            'Transition type', Easing, Easing.EASE,
         )}
-        variant={select('Variant', ButtonVariant, Button.defaultProps.variant)}
+        variant={select('Variant', ButtonVariant, ButtonVariant.OUTLINE)}
     >
         {text('Text', 'Configure me!')}
     </Button>

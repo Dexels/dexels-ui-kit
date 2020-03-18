@@ -12,7 +12,7 @@ interface WrapperProps {
 const Wrapper: React.FunctionComponent<WrapperProps> = ({
     children,
     className,
-    hasYearSelector,
+    hasYearSelector = false,
     isFocused,
     onMouseEnter,
     onMouseLeave,
@@ -27,10 +27,5 @@ const Wrapper: React.FunctionComponent<WrapperProps> = ({
         {children}
     </StyledWrapper>
 );
-
-Wrapper.defaultProps = {
-    className: '',
-    hasYearSelector: false,
-};
 
 export default Wrapper;

@@ -5,13 +5,13 @@ import { StyledLoader } from './Loader.sc';
 export interface LoaderProps {
     className?: string;
     isInverted?: boolean;
-    size?: Size;
+    size: Size;
     variant?: ButtonVariant;
 }
 
 export const Loader: React.FunctionComponent<LoaderProps> = ({
     className,
-    isInverted,
+    isInverted = false,
     size,
     variant,
 }) => (
@@ -26,10 +26,5 @@ export const Loader: React.FunctionComponent<LoaderProps> = ({
         <div />
     </StyledLoader>
 );
-
-Loader.defaultProps = {
-    className: '',
-    isInverted: false,
-};
 
 export default Loader;

@@ -1,12 +1,3 @@
-// In this file we want to use prop spreading because React Table passes a lot of props
-/* eslint-disable react/jsx-props-no-spreading */
-import {
-    Cell,
-    ColumnInstance,
-    HeaderGroup,
-    Row,
-    TableInstance,
-} from 'react-table';
 import {
     IconWrapper,
     Paging,
@@ -22,59 +13,47 @@ import {
     TableRow,
 } from './Table.sc';
 import React, { SyntheticEvent } from 'react';
+import { Row, TableInstance } from 'react-table';
 import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
-export interface TableProps {
+export interface TableProps<T extends object> {
     caption?: React.ReactNode;
     className?: string;
     elevation?: Elevation;
     footerComponent?: React.ReactNode;
     hasUnsortedStateIcon?: boolean;
-    instance: TableInstance;
+    instance: TableInstance<T>;
     isFullWidth?: boolean;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClickRow?: (...args: any[]) => any;
+    onClickRow?: (event: React.SyntheticEvent, row: Row<T>) => void;
     pagingComponent?: React.ReactNode;
     texts?: {
         toggleSortTooltip?: React.ReactNode;
     };
 }
 
-const dataSource = (instance: TableInstance, hasPaging: boolean) => (hasPaging ? instance.page : instance.rows);
+const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean) => (
+    hasPaging ? instance.page : instance.rows
+);
 
-export const Table: React.FunctionComponent<TableProps> = ({
+export const Table = <T extends object>({
     caption,
     className,
-    elevation,
+    elevation = Elevation.LEVEL_1,
     footerComponent,
-    hasUnsortedStateIcon,
+    hasUnsortedStateIcon = true,
     instance,
-    isFullWidth,
+    isFullWidth = true,
     onClickRow,
     pagingComponent,
     texts,
-}) => {
+}: TableProps<T>): JSX.Element => {
     const {
         getTableBodyProps,
         getTableProps,
         headerGroups,
         prepareRow,
     } = instance;
-
-    // @TODO: most unfortunate, but the isVisible column prop doesn't seem to be overridable (yet)
-    // The previous prop (show) can be set, but has no effect, so handle it manually
-    const isColumnVisible = (column: ColumnInstance): boolean => {
-        if (Object.prototype.hasOwnProperty.call(column, 'show')) {
-            return column.show;
-        }
-
-        if (Object.prototype.hasOwnProperty.call(column, 'isVisible')) {
-            return column.isVisible;
-        }
-
-        return false;
-    };
 
     return (
         <>
@@ -89,17 +68,17 @@ export const Table: React.FunctionComponent<TableProps> = ({
                 {...getTableProps()}
             >
                 <TableHead>
-                    {headerGroups.map((headerGroup: HeaderGroup) => (
+                    {headerGroups.map((headerGroup) => (
                         <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: ColumnInstance) => isColumnVisible(column) && (
+                            {headerGroup.headers.filter(({ isVisible }) => isVisible).map((column) => (
                                 <TableHeaderCell
                                     hasCellPadding={column.hasCellPadding}
                                     key={column}
                                     width={column.width}
                                     {...column.getHeaderProps(column.getSortByToggleProps({
-                                        title: column.canSort
-                                            ? `${texts.toggleSortTooltip} ${column.render('Header')}`
-                                            : '',
+                                        title: column.canSort && texts ? (
+                                            `${texts.toggleSortTooltip} ${column.render('Header')}`
+                                        ) : '',
                                     }))}
                                 >
                                     {column.render('Header')}
@@ -113,7 +92,7 @@ export const Table: React.FunctionComponent<TableProps> = ({
                 </TableHead>
                 <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                    {dataSource(instance, Boolean(pagingComponent)).map((row: Row) => {
+                    {dataSource(instance, Boolean(pagingComponent)).map((row) => {
                         prepareRow(row);
 
                         return (
@@ -126,16 +105,17 @@ export const Table: React.FunctionComponent<TableProps> = ({
                                     } : undefined}
                                 {...row.getRowProps()}
                             >
-                                {row.cells.map((cell: Cell) => isColumnVisible(cell.column) && (
+                                {row.cells.filter(({ column }) => column.isVisible).map((cell) => (
                                     <TableCell
                                         hasCellPadding={cell.column.hasCellPadding}
                                         isClickable={Boolean(cell.column.onClick)}
                                         key={cell}
-                                        onClick={cell.column.onClick
-                                            ? (event: SyntheticEvent) => {
+                                        onClick={(event: SyntheticEvent) => {
+                                            if (cell.column.onClick) {
                                                 event.stopPropagation();
                                                 cell.column.onClick(cell, row, event);
-                                            } : undefined}
+                                            }
+                                        }}
                                         {...cell.getCellProps()}
                                         width={cell.column.width}
                                     >
@@ -161,20 +141,6 @@ export const Table: React.FunctionComponent<TableProps> = ({
             )}
         </>
     );
-};
-
-Table.defaultProps = {
-    caption: null,
-    className: '',
-    elevation: Elevation.LEVEL_1,
-    footerComponent: undefined,
-    hasUnsortedStateIcon: true,
-    isFullWidth: true,
-    onClickRow: undefined,
-    pagingComponent: undefined,
-    texts: {
-        toggleSortTooltip: null,
-    },
 };
 
 export default Table;

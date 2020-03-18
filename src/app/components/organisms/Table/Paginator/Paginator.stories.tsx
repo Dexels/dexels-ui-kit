@@ -3,20 +3,38 @@ import {
     boolean,
 } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
+import { tableData, TableData } from '../mockup/tableData';
 import { createLocalizedPagingTexts } from '../mockup/tableFunctions';
 import { createTable } from '../../../../utils/functions/createTable';
 import Paginator from './Paginator';
 import SelectionControl from '../../../molecules/SelectionControl/SelectionControl';
 import { tableColumns } from '../mockup/tableColumns';
-import { tableData } from '../mockup/tableData';
 
 export default { title: 'organisms/Table/Paginator' };
 
 export const Configurable = () => {
     const [isNL, setIsNL] = useState(true);
-    const initialState = { pageIndex: 0 };
-    const instance = createTable(tableColumns(), tableData(), initialState);
     const localizedTexts = createLocalizedPagingTexts(isNL ? 'nl' : 'en');
+    const data = tableData();
+
+    const instance = createTable<TableData>(
+        tableColumns(data),
+        data,
+        {
+            hiddenColumns: ['id'],
+            pageIndex: 0,
+            sortBy: [
+                {
+                    desc: false,
+                    id: 'lastName',
+                },
+                {
+                    desc: false,
+                    id: 'firstName',
+                },
+            ],
+        },
+    );
 
     return (
         <>
@@ -24,19 +42,15 @@ export const Configurable = () => {
                 isChecked={isNL}
                 label={isNL ? 'Is NL' : 'Is EN'}
                 name={'LANGUAGE'}
-                onChange={() => setIsNL(!isNL)}
+                onChange={() => {
+                    setIsNL(!isNL);
+                }}
                 value={'isNL'}
             />
             <Paginator
-                hasAllPagingButtons={boolean(
-                    'Has all paging buttons',
-                    Paginator.defaultProps.hasAllPagingButtons,
-                )}
-                hasGoToPage={boolean('Has goto page', Paginator.defaultProps.hasGoToPage)}
-                hasPageSizeSelector={boolean(
-                    'Has page size selector',
-                    Paginator.defaultProps.hasPageSizeSelector,
-                )}
+                hasAllPagingButtons={boolean('Has all paging buttons', true)}
+                hasGoToPage={boolean('Has goto page', false)}
+                hasPageSizeSelector={boolean('Has page size selector', true)}
                 instance={instance}
                 pageSizes={array('Page sizes', ['5', '10', '20', '50'])}
                 texts={{
@@ -47,7 +61,7 @@ export const Configurable = () => {
                     rowsPerPage: localizedTexts.rowsPerPage,
                     show: localizedTexts.show,
                 }}
-                useResultsOfText={boolean('Use results of text', Paginator.defaultProps.useResultsOfText)}
+                useResultsOfText={boolean('Use results of text', true)}
             />
         </>
     );

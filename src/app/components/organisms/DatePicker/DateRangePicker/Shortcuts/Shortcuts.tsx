@@ -10,12 +10,12 @@ import { IconType } from '../../../../../types';
 
 export interface Shortcut {
     onClick: React.MouseEventHandler;
-    text: string | React.ReactNode;
+    text: React.ReactNode;
 }
 
 interface ShortCutsProps {
     shortcuts: Shortcut[];
-    text?: string | ReactNode;
+    text?: ReactNode;
 }
 
 export const Shortcuts: React.FunctionComponent<ShortCutsProps> = ({ shortcuts, text }) => (
@@ -36,9 +36,5 @@ export const Shortcuts: React.FunctionComponent<ShortCutsProps> = ({ shortcuts, 
         </Wrapper>
     </StyledShortcuts>
 );
-
-Shortcuts.defaultProps = {
-    text: 'Snelkeuzes',
-};
 
 export default Shortcuts;

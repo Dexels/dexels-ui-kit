@@ -7,7 +7,7 @@ export default { title: 'molecules/CardNoResults' };
 
 export const Configurable = () => (
     <CardNoResults
-        elevation={select('Elevation', Elevation, CardNoResults.defaultProps.elevation)}
+        elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
         header={text('Header', 'Some header text')}
         iconType={select('Type', IconType, IconType.SEARCH)}
         itemPrefix={text('Item prefix', '-')}

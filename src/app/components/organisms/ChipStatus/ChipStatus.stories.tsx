@@ -9,10 +9,10 @@ export default { title: 'organisms/ChipStatus' };
 
 export const Configurable = () => (
     <ChipStatus
-        direction={select('Direction', Direction, ChipStatus.defaultProps.direction)}
-        isDisabled={boolean('Is disabled', ChipStatus.defaultProps.isDisabled)}
+        direction={select('Direction', Direction, Direction.LTR)}
+        isDisabled={boolean('Is disabled', false)}
         onClick={action('On click')}
-        variant={select('Variant', ChipStatusVariant, ChipStatus.defaultProps.variant)}
+        variant={select('Variant', ChipStatusVariant, ChipStatusVariant.SELECTED)}
     >
         {text('Text', 'Configure me!')}
     </ChipStatus>
@@ -20,9 +20,9 @@ export const Configurable = () => (
 
 export const ConfigurableWithoutOnClick = () => (
     <ChipStatus
-        direction={select('Direction', Direction, ChipStatus.defaultProps.direction)}
-        isDisabled={boolean('Is disabled', ChipStatus.defaultProps.isDisabled)}
-        variant={select('Variant', ChipStatusVariant, ChipStatus.defaultProps.variant)}
+        direction={select('Direction', Direction, Direction.LTR)}
+        isDisabled={boolean('Is disabled', false)}
+        variant={select('Variant', ChipStatusVariant, ChipStatusVariant.SELECTED)}
     >
         {text('Text', 'Configure me!')}
     </ChipStatus>

@@ -1,5 +1,5 @@
 import { invertColor } from '../../../utils/functions/colorFunctions';
-import setBoxSizing from '../../../styles/mixins/setBoxSizing';
+import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
