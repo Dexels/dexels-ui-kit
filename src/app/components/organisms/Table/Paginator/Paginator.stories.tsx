@@ -3,18 +3,38 @@ import {
     boolean,
 } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
+import { tableData, TableData } from '../mockup/tableData';
 import { createLocalizedPagingTexts } from '../mockup/tableFunctions';
 import { createTable } from '../../../../utils/functions/createTable';
 import Paginator from './Paginator';
 import SelectionControl from '../../../molecules/SelectionControl/SelectionControl';
+import { tableColumns } from '../mockup/tableColumns';
 
 export default { title: 'organisms/Table/Paginator' };
 
 export const Configurable = () => {
     const [isNL, setIsNL] = useState(true);
-    const initialState = { pageIndex: 0 };
-    const instance = createTable([], [], initialState);
     const localizedTexts = createLocalizedPagingTexts(isNL ? 'nl' : 'en');
+    const data = tableData();
+
+    const instance = createTable<TableData>(
+        tableColumns(data),
+        data,
+        {
+            hiddenColumns: ['id'],
+            pageIndex: 0,
+            sortBy: [
+                {
+                    desc: false,
+                    id: 'lastName',
+                },
+                {
+                    desc: false,
+                    id: 'firstName',
+                },
+            ],
+        },
+    );
 
     return (
         <>
@@ -22,7 +42,9 @@ export const Configurable = () => {
                 isChecked={isNL}
                 label={isNL ? 'Is NL' : 'Is EN'}
                 name={'LANGUAGE'}
-                onChange={() => setIsNL(!isNL)}
+                onChange={() => {
+                    setIsNL(!isNL);
+                }}
                 value={'isNL'}
             />
             <Paginator
