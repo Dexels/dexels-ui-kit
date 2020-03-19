@@ -56,11 +56,11 @@ export const Input: React.FunctionComponent<InputProps> = ({
     }, [isHovered]);
 
     if (!isTextarea) {
-        if (max) {
+        if (typeof max === 'number') {
             textFieldProps.max = max;
         }
 
-        if (min) {
+        if (typeof min === 'number') {
             textFieldProps.min = min;
         }
     }

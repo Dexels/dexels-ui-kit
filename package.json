@@ -24,7 +24,7 @@
         "generate:types": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json",
         "generate:iconTypes": "node ./scripts/generateIconTypes.js",
         "lint:css": "stylelint \"./src/**/*.ts\"",
-        "lint:js": "eslint \"src\" --ext \".js,.ts,.tsx\"",
+        "lint:js": "eslint \"src\" --ext \".ts,.tsx\"",
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
         "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist",

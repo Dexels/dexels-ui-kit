@@ -1,14 +1,14 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { StyledWrapperProps, WrapperWidth } from './types';
 import { themeBasic } from '../../../app/styles/theming/themes/basic';
 
 export const StyledWrapper = styled.div<StyledWrapperProps>`
-    background-color: ${({ isTransparent, theme }) => (isTransparent ? 'transparent' : theme.background.primary)};
+    background-color: ${({ isTransparent, theme }): string => (isTransparent ? 'transparent' : theme.background.primary)};
     padding-top: ${({ theme }): string => theme.spacing(3)};
     padding-bottom: ${({ theme }): string => theme.spacing(3)};
     min-height: 100vh;
 
-    ${({ width }) => css`
+    ${({ width }): FlattenSimpleInterpolation => css`
         ${width === WrapperWidth.SMALL && css`
             padding-right: 25%;
             padding-left: 25%;
