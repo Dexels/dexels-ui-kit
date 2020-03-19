@@ -19,11 +19,12 @@
     "scripts": {
         "start": "npm run storybook",
         "build:prod": "npm run clean && cross-env BABEL_ENV=prod rollup -c",
+        "ckeck-all": "npm run lint:js & npm run check-types && npm run lint:css",
         "check-types": "tsc",
         "dist": "npm run build:prod && npm run generate:types",
         "generate:types": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json",
         "generate:iconTypes": "node ./scripts/generateIconTypes.js",
-        "lint:css": "stylelint \"src/**/*.sc.ts\"",
+        "lint:css": "stylelint \"./src/**/*.ts\"",
         "lint:js": "eslint \"src\" --ext \".js,.ts,.tsx\"",
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
