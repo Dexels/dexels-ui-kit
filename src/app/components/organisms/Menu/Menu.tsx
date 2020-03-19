@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, FunctionComponent, useState } from 'react';
 import Item from './Item/Item';
 import { MenuItems } from './types';
 import { StyledMenu } from './Menu.sc';
@@ -9,7 +9,7 @@ export interface MenuProps {
     items: MenuItems;
 }
 
-export const Menu: React.FunctionComponent<MenuProps> = ({ className, defaultOpenItemPath, items }) => {
+export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemPath, items }) => {
     const [openItemPath, setOpenItemPath] = useState(defaultOpenItemPath);
 
     const handleSetOpenItem = (path: string): void => {
@@ -30,7 +30,7 @@ export const Menu: React.FunctionComponent<MenuProps> = ({ className, defaultOpe
                     const isOpen = openItemPath === path;
 
                     return (
-                        <React.Fragment key={path}>
+                        <Fragment key={path}>
                             <Item
                                 hasChildren
                                 iconType={iconType}
@@ -53,7 +53,7 @@ export const Menu: React.FunctionComponent<MenuProps> = ({ className, defaultOpe
                                     {child.text}
                                 </Item>
                             ))}
-                        </React.Fragment>
+                        </Fragment>
                     );
                 }
 

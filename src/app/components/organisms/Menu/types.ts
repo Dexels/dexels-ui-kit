@@ -1,10 +1,11 @@
 import { IconType } from '../../../types';
+import { ReactNode } from 'react';
 
 export interface MenuItemChild {
     exact?: boolean;
     isDisabled?: boolean;
     path: string;
-    text: React.ReactNode;
+    text: ReactNode;
 }
 
 export interface MenuItem extends MenuItemChild {

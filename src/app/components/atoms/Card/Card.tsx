@@ -1,15 +1,15 @@
+import React, { FunctionComponent, ReactNode } from 'react';
 import { Elevation } from '../../../types';
-import React from 'react';
 import { StyledCard } from './Card.sc';
 
 export interface CardProps {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     elevation?: Elevation;
     hasBorderRadius?: boolean;
 }
 
-export const Card: React.FunctionComponent<CardProps> = ({
+export const Card: FunctionComponent<CardProps> = ({
     children,
     className,
     elevation = Elevation.LEVEL_1,

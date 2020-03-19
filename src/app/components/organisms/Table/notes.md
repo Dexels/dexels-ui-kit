@@ -8,7 +8,7 @@ The latter can be established by using the Cell prop in the column definition.
 
 ```jsx
 export const tableColumns = () => (
-    React.useMemo(() => [
+    useMemo(() => [
         {
             accessor: 'id',
         },

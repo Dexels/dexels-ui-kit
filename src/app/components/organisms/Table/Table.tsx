@@ -12,23 +12,23 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
-import React, { SyntheticEvent } from 'react';
+import React, { ReactNode, SyntheticEvent } from 'react';
 import { Row, TableInstance } from 'react-table';
 import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
 export interface TableProps<T extends object> {
-    caption?: React.ReactNode;
+    caption?: ReactNode;
     className?: string;
     elevation?: Elevation;
-    footerComponent?: React.ReactNode;
+    footerComponent?: ReactNode;
     hasUnsortedStateIcon?: boolean;
     instance: TableInstance<T>;
     isFullWidth?: boolean;
-    onClickRow?: (event: React.SyntheticEvent, row: Row<T>) => void;
-    pagingComponent?: React.ReactNode;
+    onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
+    pagingComponent?: ReactNode;
     texts?: {
-        toggleSortTooltip?: React.ReactNode;
+        toggleSortTooltip?: ReactNode;
     };
 }
 

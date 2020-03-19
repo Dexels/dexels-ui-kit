@@ -5,11 +5,11 @@ import {
     ColorText,
     StyledColors,
 } from './Colors.sc';
-import React, { useContext } from 'react';
+import React, { FunctionComponent, useContext } from 'react';
 import { colorKeys } from '../../../styles/theming/colorKeys';
 import { ThemeContext } from 'styled-components';
 
-const Colors: React.FunctionComponent = () => {
+const Colors: FunctionComponent = () => {
     const theme = useContext(ThemeContext);
 
     return (

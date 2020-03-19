@@ -6,11 +6,11 @@ import {
     renderStatusCell,
 } from '../utils/tableFunctions';
 import { getTableCell, renderButton } from './tableFunctions';
-import React, { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { TableData } from './tableData';
 
 export const tableColumns: (data: TableData[]) => Column<TableData>[] = (data) => (
-    React.useMemo(() => [
+    useMemo(() => [
         {
             accessor: 'id',
         },
@@ -76,7 +76,7 @@ export const tableColumns: (data: TableData[]) => Column<TableData>[] = (data) =
 );
 
 export const tableColumnsWithGroupHeader: () => Column<TableData>[] = () => (
-    React.useMemo(() => [
+    useMemo(() => [
         {
             Header: 'Name',
             columns: [

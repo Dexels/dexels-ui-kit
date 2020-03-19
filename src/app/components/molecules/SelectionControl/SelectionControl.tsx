@@ -7,7 +7,14 @@ import {
     LabelWrapper,
     StyledSelectionControl,
 } from './SelectionControl.sc';
-import React, { useCallback, useState } from 'react';
+import React, {
+    ChangeEvent,
+    FunctionComponent,
+    MouseEvent,
+    ReactNode,
+    useCallback,
+    useState,
+} from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import Icon from '../../atoms/Icon/Icon';
 import Label from '../../atoms/Label/Label';
@@ -16,7 +23,7 @@ import { SelectionControlType } from './types';
 export interface SelectionControlProps {
     className?: string;
     direction?: Direction;
-    errorMessage?: React.ReactNode;
+    errorMessage?: ReactNode;
     hasError?: boolean;
     hasHorizontalCorrection?: boolean;
     hasVerticalCorrection?: boolean;
@@ -24,9 +31,9 @@ export interface SelectionControlProps {
     isDisabled?: boolean;
     isIndeterminate?: boolean;
     isValid?: boolean;
-    label: React.ReactNode;
+    label: ReactNode;
     name: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>) => void;
+    onChange: (event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>) => void;
     transitionDuration?: number;
     transitionEasing?: Easing;
     type?: SelectionControlType;
@@ -35,7 +42,7 @@ export interface SelectionControlProps {
     [key: string]: any;
 }
 
-export const SelectionControl: React.FunctionComponent<SelectionControlProps> = ({
+export const SelectionControl: FunctionComponent<SelectionControlProps> = ({
     className,
     direction = Direction.LTR,
     errorMessage,

@@ -6,36 +6,42 @@ import {
     StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
-import React, { useCallback, useState } from 'react';
+import React, {
+    FunctionComponent,
+    ReactElement,
+    ReactNode,
+    useCallback,
+    useState,
+} from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import { Elevation } from '../../../types';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 export interface DropdownMultiSelectProps {
-    buttonCancelText?: React.ReactNode;
-    buttonConfirmText: React.ReactNode;
+    buttonCancelText?: ReactNode;
+    buttonConfirmText: ReactNode;
     className?: string;
     elevation?: Elevation;
-    errorMessage?: React.ReactNode;
+    errorMessage?: ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
     isOpen: boolean;
     isValid?: boolean;
-    label?: React.ReactNode;
+    label?: ReactNode;
     maxHeight?: string;
     name: string;
     onCancel: () => void;
     onClick?: () => void;
     onConfirm: () => void;
-    optionAll?: React.ReactNode;
-    options: React.ReactElement[];
+    optionAll?: ReactNode;
+    options: ReactElement[];
     placeholder?: string;
     resetOnOutsideClick?: boolean;
     value: string;
     variant?: DropdownVariant;
 }
 
-export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectProps> = ({
+export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = ({
     buttonCancelText,
     buttonConfirmText,
     className,

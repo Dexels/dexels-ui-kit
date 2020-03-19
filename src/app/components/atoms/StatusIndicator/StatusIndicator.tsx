@@ -1,10 +1,10 @@
 import { Placement, Status, StatusIndicatorSize } from '../../../types';
-import React from 'react';
+import React, { ComponentType, FunctionComponent } from 'react';
 import { StyledStatusIndicator } from './StatusIndicator.sc';
 
 export interface StatusIndicatorProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+    as?: keyof JSX.IntrinsicElements | ComponentType<any>;
     background?: string;
     className?: string;
     placement?: Placement;
@@ -12,7 +12,7 @@ export interface StatusIndicatorProps {
     status?: Status;
 }
 
-export const StatusIndicator: React.FunctionComponent<StatusIndicatorProps> = ({
+export const StatusIndicator: FunctionComponent<StatusIndicatorProps> = ({
     as = 'div',
     background,
     children,

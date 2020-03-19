@@ -4,26 +4,26 @@ import {
     IconSize,
     IconType,
 } from '../../../types';
-import React from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode} from 'react';
 import { StyledChip } from './Chip.sc';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface ChipProps {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     direction?: Direction;
     iconSize?: IconSize;
     iconType?: IconType;
     isDisabled?: boolean;
     isSelected?: boolean;
-    onClick?: React.MouseEventHandler;
+    onClick?: MouseEventHandler;
     transitionDuration?: number;
     transitionEasing?: Easing;
     // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 
-export const Chip: React.FunctionComponent<ChipProps> = ({
+export const Chip: FunctionComponent<ChipProps> = ({
     children,
     className,
     direction = Direction.LTR,

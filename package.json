@@ -22,15 +22,15 @@
         "build:prod": "npm run clean && cross-env BABEL_ENV=prod rollup -c",
         "build:types": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json",
         "check-types": "tsc",
+        "clean": "npx rimraf index.d.ts index.js index.esm.js fonts main.css stats.html",
         "dist": "npm run build:prod && npm run build:types",
         "lint:css": "stylelint \"./src/**/*.ts\"",
         "lint:js": "eslint \"src\" --ext \".ts,.tsx\"",
         "storybook": "start-storybook -c ./src/.storybook -s ./public --port 3434 --quiet",
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
-        "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist",
         "postinstall": "npx rimraf node_modules/@types/react-native",
         "postpublish": "npm run clean",
-        "clean": "npx rimraf index.d.ts index.js index.esm.js fonts main.css stats.html"
+        "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist"
     },
     "repository": {
         "type": "git",

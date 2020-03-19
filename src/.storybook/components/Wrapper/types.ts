@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export enum WrapperWidth {
     LARGE = 'LARGE',
     MEDIUM = 'MEDIUM',
@@ -5,7 +7,7 @@ export enum WrapperWidth {
 }
 
 export interface WrapperProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     isTransparent: boolean;
     width: WrapperWidth;
 }

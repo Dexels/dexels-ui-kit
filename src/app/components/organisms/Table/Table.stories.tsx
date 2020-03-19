@@ -21,7 +21,7 @@ export default {
     title: 'organisms/Table',
 };
 
-/* @TODO: figure out how to rerender the table instance after state changes. Most likely with React.useEffect */
+/* @TODO: figure out how to rerender the table instance after state changes. Most likely with useEffect */
 export const Configurable: FunctionComponent = () => {
     const [isNL, setIsNL] = useState(true);
     const [hasGroupHeader, setHasGroupHeader] = useState(false);

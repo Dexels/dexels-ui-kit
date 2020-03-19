@@ -1,19 +1,19 @@
 import { CurrentDate, DropdownWrapper, StyledNavigation } from './Navigation.sc';
 import { Dropdown, DropdownVariant } from '../../../molecules/Dropdown';
 import moment, { Moment } from 'moment';
-import React from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 
 interface NavigationProps {
     hasYearSelector: boolean;
-    labelMonth?: React.ReactNode;
-    labelYear?: React.ReactNode;
+    labelMonth?: ReactNode;
+    labelYear?: ReactNode;
     month: Moment;
     onMonthSelect: (moment: Moment, value: string) => void;
     onYearSelect: (moment: Moment, value: string) => void;
     yearCount: number;
 }
 
-const Navigation: React.FunctionComponent<NavigationProps> = ({
+const Navigation: FunctionComponent<NavigationProps> = ({
     hasYearSelector,
     labelMonth,
     labelYear,

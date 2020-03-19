@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { FullscreenLoaderType } from './types';
 import { LoaderCircles } from './LoaderCircles.sc';
 import { LoaderWrapper } from './FullscreenLoader.sc';
@@ -15,7 +15,7 @@ export interface FullscreenLoaderProps {
     type?: FullscreenLoaderType;
 }
 
-export const FullscreenLoader: React.FunctionComponent<FullscreenLoaderProps> = ({
+export const FullscreenLoader: FunctionComponent<FullscreenLoaderProps> = ({
     amount = 5,
     className,
     type = FullscreenLoaderType.CIRCLES,

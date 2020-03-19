@@ -1,15 +1,15 @@
 import { Elevation, Placement, Status } from '../../../types';
 import PanelHeader, { PanelHeaderProps } from '../PanelHeader/PanelHeader';
+import React, { FunctionComponent, ReactNode } from 'react';
 import CardStatus from '../CardStatus/CardStatus';
-import React from 'react';
 
 export interface PanelStatusProps extends PanelHeaderProps {
-    children: React.ReactNode;
+    children: ReactNode;
     elevation?: Elevation;
     status?: Status;
 }
 
-export const PanelStatus: React.FunctionComponent<PanelStatusProps> = ({
+export const PanelStatus: FunctionComponent<PanelStatusProps> = ({
     children,
     elevation,
     hasCapitalizedTitle,

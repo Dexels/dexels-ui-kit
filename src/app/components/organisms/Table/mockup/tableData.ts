@@ -1,7 +1,7 @@
 import moment, { Moment } from 'moment';
 import { MatchTaskStatuses } from '../StatusCell/types';
-import React from 'react';
 import { Status } from '../../../../types';
+import { useMemo } from 'react';
 
 export interface TableData {
     companyName: string;
@@ -158,7 +158,7 @@ export const tableData = (): TableData[] => {
         status: Status.VALID,
     });
 
-    return React.useMemo(() => result, []);
+    return useMemo(() => result, []);
 };
 
 export default tableData;

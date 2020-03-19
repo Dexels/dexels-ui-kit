@@ -13,19 +13,19 @@ import {
     PagingText,
     StyledPaginator,
 } from './Paginator.sc';
+import React, { ReactNode } from 'react';
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
-import React from 'react';
 import { TableInstance } from 'react-table';
 
 export interface PaginatorTexts {
-    page: React.ReactNode;
-    pageGoto: React.ReactNode;
-    pageOf: React.ReactNode;
-    resultsOf: React.ReactNode;
-    rowsPerPage: React.ReactNode;
-    show: React.ReactNode;
+    page: ReactNode;
+    pageGoto: ReactNode;
+    pageOf: ReactNode;
+    resultsOf: ReactNode;
+    rowsPerPage: ReactNode;
+    show: ReactNode;
 }
 
 export interface PaginatorProps<T extends object> {

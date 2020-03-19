@@ -1,11 +1,11 @@
+import React, { FunctionComponent, ReactNode } from 'react';
 import { InputVariant } from '../../../types';
 import Label from '../../atoms/Label/Label';
-import React from 'react';
 import { StyledFormElementLabel } from './FormElementLabel.sc';
 
 export interface FormElementLabelProps {
     backgroundColor?: string;
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     hasError?: boolean;
     isActive?: boolean;
@@ -16,7 +16,7 @@ export interface FormElementLabelProps {
     variant?: InputVariant;
 }
 
-export const FormElementLabel: React.FunctionComponent<FormElementLabelProps> = ({
+export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
     backgroundColor,
     children,
     className,

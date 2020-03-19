@@ -4,6 +4,7 @@ import {
     Placement,
 } from '../../../types';
 import React, {
+    FunctionComponent,
     useCallback,
     useContext,
     useEffect,
@@ -94,7 +95,7 @@ export interface TooltipProps {
     transitionEasing?: Easing;
 }
 
-export const Tooltip: React.FunctionComponent<TooltipProps> = ({
+export const Tooltip: FunctionComponent<TooltipProps> = ({
     className,
     delay = 4000,
     elevation = Elevation.LEVEL_6,

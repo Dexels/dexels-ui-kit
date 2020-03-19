@@ -65,7 +65,6 @@ export const customSortByCaseInsensitive = <T extends object>(
 ): UseTableRowProps<T>[] => (
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key))
-    // return React.useMemo(() => rows.sort(compareValues('firstName')), []);
 );
 
 export const renderCell = <T extends object>(row: CellProps<T>): ReactNode => {

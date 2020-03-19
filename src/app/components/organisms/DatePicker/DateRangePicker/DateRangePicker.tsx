@@ -4,7 +4,13 @@ import {
     DateRangePickerShape,
     FocusedInputShape,
 } from 'react-dates';
-import React, { useContext, useState } from 'react';
+import React, {
+    FunctionComponent,
+    MouseEventHandler,
+    ReactNode,
+    useContext,
+    useState,
+} from 'react';
 import { Shortcut, Shortcuts } from './Shortcuts/Shortcuts';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import DialogFooter from '../../../molecules/DialogFooter/DialogFooter';
@@ -17,8 +23,8 @@ import { ThemeContext } from 'styled-components';
 import Wrapper from '../Wrapper/Wrapper';
 
 export interface DateRangePickerProps {
-    buttonCancelText?: React.ReactNode;
-    buttonConfirmText?: React.ReactNode;
+    buttonCancelText?: ReactNode;
+    buttonConfirmText?: ReactNode;
     className?: string;
     daySize?: number;
     displayFormat?: string;
@@ -26,7 +32,7 @@ export interface DateRangePickerProps {
     endDateId: string;
     endDatePlaceholderText?: string;
     focusedInput: FocusedInputShape | null;
-    footerText?: React.ReactNode;
+    footerText?: ReactNode;
     hasYearSelector?: boolean;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     isDayHighlighted?: (day: any) => boolean;
@@ -34,24 +40,24 @@ export interface DateRangePickerProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     isOutsideRange?: (day: any) => boolean;
     keepOpenOnDateSelect?: boolean;
-    label: React.ReactNode;
-    labelMonth?: React.ReactNode;
-    labelYear?: React.ReactNode;
+    label: ReactNode;
+    labelMonth?: ReactNode;
+    labelYear?: ReactNode;
     minimumNights?: number;
     numberOfMonths?: number;
-    onCancel?: React.MouseEventHandler;
-    onConfirm?: React.MouseEventHandler;
+    onCancel?: MouseEventHandler;
+    onConfirm?: MouseEventHandler;
     onDatesChange: DateRangePickerShape['onDatesChange'];
     onFocusChange: DateRangePickerShape['onFocusChange'];
     shortcuts?: Shortcut[];
-    shortcutsText?: React.ReactNode;
+    shortcutsText?: ReactNode;
     startDate: Moment | null;
     startDateId: string;
     startDatePlaceholderText?: string;
     yearCount?: number;
 }
 
-export const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = ({
+export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     buttonCancelText,
     buttonConfirmText,
     className,

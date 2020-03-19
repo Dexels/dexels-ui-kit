@@ -11,7 +11,7 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, MouseEventHandler, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import Dialog from './Dialog';
@@ -21,12 +21,12 @@ export default { title: 'organisms/Dialog' };
 
 interface ConfigurableDialogProps {
     isVisible: boolean;
-    onCancel: React.MouseEventHandler;
-    onClose: React.MouseEventHandler;
-    onConfirm: React.MouseEventHandler;
+    onCancel: MouseEventHandler;
+    onClose: MouseEventHandler;
+    onConfirm: MouseEventHandler;
 }
 
-const ConfigurableDialog: React.FunctionComponent<ConfigurableDialogProps> = ({
+const ConfigurableDialog: FunctionComponent<ConfigurableDialogProps> = ({
     isVisible,
     onCancel,
     onClose,

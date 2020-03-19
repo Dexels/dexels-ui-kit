@@ -5,21 +5,21 @@ import {
     StyledHeader,
     Title,
 } from './Header.sc';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
-import React from 'react';
 import Toolbar from '../Toolbar/Toolbar';
 
 export interface HeaderProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     className?: string;
     elevation?: Elevation;
     isInverted?: boolean;
-    onBack?: React.MouseEventHandler;
-    onToggleMenu?: React.MouseEventHandler;
-    title: React.ReactNode;
+    onBack?: MouseEventHandler;
+    onToggleMenu?: MouseEventHandler;
+    title: ReactNode;
 }
 
-export const Header: React.FunctionComponent<HeaderProps> = ({
+export const Header: FunctionComponent<HeaderProps> = ({
     children,
     className,
     elevation = Elevation.LEVEL_1,

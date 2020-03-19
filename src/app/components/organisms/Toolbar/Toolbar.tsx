@@ -1,26 +1,32 @@
 import { ButtonWrapper, StyledToolbar } from './Toolbar.sc';
+import React, {
+    Children,
+    cloneElement,
+    FunctionComponent,
+    isValidElement,
+    ReactNode,
+} from 'react';
 import Button from '../../molecules/Button/Button';
-import React from 'react';
 
 export interface ToolbarProps {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     isInverted?: boolean;
 }
 
-export const Toolbar: React.FunctionComponent<ToolbarProps> = ({ children, className, isInverted = false }) => (
+export const Toolbar: FunctionComponent<ToolbarProps> = ({ children, className, isInverted = false }) => (
     <StyledToolbar className={className}>
-        {React.Children.map(children, (child, index) => {
-            if (React.isValidElement(child)) {
+        {Children.map(children, (child, index) => {
+            if (isValidElement(child)) {
                 if (child.type === Button) {
                     return (
                         <ButtonWrapper key={child.key || index}>
-                            {React.cloneElement(child, { isInverted })}
+                            {cloneElement(child, { isInverted })}
                         </ButtonWrapper>
                     );
                 }
 
-                return React.cloneElement(child, { isInverted });
+                return cloneElement(child, { isInverted });
             }
 
             return child;
