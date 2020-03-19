@@ -46,17 +46,19 @@ export const TableHeaderRow = styled.tr`
     background-color: transparent;
 `;
 
-interface TableHeaderCellProps extends ColumnProps {}
+interface TableHeaderCellProps extends ColumnProps {
+    isDisabled: boolean;
+}
 
 export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     border-bottom: 4px solid;
-    border-color: ${({ theme }): string => theme.colorPrimary};
+    border-color: ${({ isDisabled, theme }): SimpleInterpolation => (isDisabled ? theme.colorDisabled : theme.colorPrimary)};
     background-color: transparent;
     padding: ${({ hasCellPadding, theme }): string => (hasCellPadding ? theme.spacing(0.5, 0.5, 1, 0.5) : theme.spacing(0))};
     height: ${({ theme }): string => theme.spacing(5)};
     text-align: left;
-    color: ${({ theme }): string => theme.colorText.primary};
+    color: ${({ isDisabled, theme }): SimpleInterpolation => (isDisabled ? theme.colorDisabled : theme.colorText.primary)};
     font-weight: 600;
 
     ${({ width }): SimpleInterpolation => width && css`
