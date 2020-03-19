@@ -49,7 +49,7 @@ export enum Elevation {
 /* eslint-enable typescript-sort-keys/string-enum */
 
 // Since we don't want to include selection.json in our distribution bundle we came up with the following solution:
-// If the contents of selection.json ever change just run `npm run generate:iconTypes` and replace the enum with
+// If the contents of selection.json ever change just run `npm run build:iconTypes` and replace the enum with
 // the output from the console.
 export enum IconType {
     ARROWDOWN = 'ARROWDOWN',
