@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { SingleDatePickerVariant } from '../types';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
@@ -9,22 +9,22 @@ interface StyledInputIconProps {
 }
 
 export const StyledInputIcon = styled.div<StyledInputIconProps>`
-    color: ${({ theme }) => theme.colorPrimary};
-    font-size: ${({ theme }) => theme.spacing(3)};
+    color: ${({ theme }): string => theme.colorPrimary};
+    font-size: ${({ theme }): string => theme.spacing(3)};
 
     span {
         display: block;
     }
 
-    ${({ isFocused, theme }) => isFocused && css`
+    ${({ isFocused, theme }): SimpleInterpolation => isFocused && css`
         color: ${theme.colorSecondary};
     `}
 
-    ${({ isDisabled, theme }) => isDisabled && css`
+    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
         color: ${theme.colorDisabled};
     `}
 
-    ${({ theme, variant }) => variant === SingleDatePickerVariant.OUTLINE && css`
+    ${({ theme, variant }): SimpleInterpolation => variant === SingleDatePickerVariant.OUTLINE && css`
         padding: ${theme.spacing(1.5)};
     `}
 `;

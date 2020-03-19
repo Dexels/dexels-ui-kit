@@ -6,7 +6,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 export const StyledPanelHeader = styled.div`
     display: flex;
     align-items: center;
-    padding: ${({ theme }) => theme.spacing(0, 0, 1, 0)};
+    padding: ${({ theme }): string => theme.spacing(0, 0, 1, 0)};
 `;
 
 StyledPanelHeader.defaultProps = {
@@ -18,8 +18,8 @@ interface TitleProps {
 }
 
 export const Title = styled.div<TitleProps>`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
-    color: ${({ status, theme }) => getStatusColor(status, theme)};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
+    color: ${({ status, theme }): string => getStatusColor(status, theme)};
 `;
 
 Title.defaultProps = {

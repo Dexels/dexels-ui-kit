@@ -1,14 +1,14 @@
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
-import React from 'react';
 import Toolbar from './Toolbar';
 
 export default { title: 'organisms/Toolbar' };
 
-export const Configurable = () => {
+export const Configurable: FunctionComponent = () => {
     const isInverted = boolean('Is inverted', false);
 
     return (

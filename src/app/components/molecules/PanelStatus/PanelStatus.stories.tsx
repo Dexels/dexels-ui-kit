@@ -6,15 +6,15 @@ import {
     IconType,
     Status,
 } from '../../../types';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button/Button';
 import PanelStatus from './PanelStatus';
-import React from 'react';
 import Toolbar from '../../organisms/Toolbar/Toolbar';
 
 export default { title: 'molecules/PanelStatus' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <PanelStatus
         elevation={select('Elevation', Elevation, Elevation.LEVEL_2)}
         hasCapitalizedTitle={boolean('Is title capitalized', true)}
@@ -36,7 +36,7 @@ export const Configurable = () => (
     </PanelStatus>
 );
 
-export const ConfigurableWithMultipleButtons = () => (
+export const ConfigurableWithMultipleButtons: FunctionComponent = () => (
     <PanelStatus
         elevation={select('Elevation', Elevation, Elevation.LEVEL_16)}
         hasCapitalizedTitle={boolean('Is title capitalized', true)}

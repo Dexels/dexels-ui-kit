@@ -5,15 +5,15 @@ import {
     Elevation,
     IconType,
 } from '../../../types';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import Header from './Header';
-import React from 'react';
 
 export default { title: 'organisms/Header' };
 
-export const Configurable = () => {
+export const Configurable: FunctionComponent = () => {
     const elevation = select('Elevation', Elevation, Elevation.LEVEL_1);
     const isInverted = boolean('Is inverted', false);
     const onBack = action('On back');

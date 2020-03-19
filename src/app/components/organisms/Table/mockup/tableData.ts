@@ -15,7 +15,7 @@ export interface TableData {
     status: Status;
 }
 
-const makeTableData = (amount = 15) => {
+const makeTableData = (amount = 15): TableData[] => {
     const result: TableData[] = [];
 
     for (let i = 1; i <= amount; i += 1) {
@@ -35,7 +35,7 @@ const makeTableData = (amount = 15) => {
     return result;
 };
 
-export function tableData() {
+export const tableData = (): TableData[] => {
     const result = makeTableData(100);
 
     result.push({
@@ -159,6 +159,6 @@ export function tableData() {
     });
 
     return React.useMemo(() => result, []);
-}
+};
 
 export default tableData;

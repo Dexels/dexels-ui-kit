@@ -1,13 +1,13 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import ChipStatus from './ChipStatus';
 import { ChipStatusVariant } from './types';
 import { Direction } from '../../../types';
-import React from 'react';
 
 export default { title: 'organisms/ChipStatus' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <ChipStatus
         direction={select('Direction', Direction, Direction.LTR)}
         isDisabled={boolean('Is disabled', false)}
@@ -18,7 +18,7 @@ export const Configurable = () => (
     </ChipStatus>
 );
 
-export const ConfigurableWithoutOnClick = () => (
+export const ConfigurableWithoutOnClick: FunctionComponent = () => (
     <ChipStatus
         direction={select('Direction', Direction, Direction.LTR)}
         isDisabled={boolean('Is disabled', false)}

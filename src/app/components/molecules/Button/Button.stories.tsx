@@ -11,13 +11,13 @@ import {
     Easing,
     IconType,
 } from '../../../types';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from './Button';
-import React from 'react';
 
 export default { title: 'molecules/Button' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <Button
         isDisabled={boolean('Is disabled', false)}
         isFullWidth={boolean('Is full width', false)}
@@ -35,7 +35,7 @@ export const Configurable = () => (
     </Button>
 );
 
-export const ConfigurableWithIcon = () => (
+export const ConfigurableWithIcon: FunctionComponent = () => (
     <Button
         direction={select('Direction', Direction, Direction.LTR)}
         iconType={select('Icon type', IconType, IconType.CHECK)}

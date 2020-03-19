@@ -53,8 +53,8 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({
                 <Dropdown
                     label={labelMonth}
                     name="month-dropdown"
-                    onChange={(e) => {
-                        onMonthSelect(month, e.target.value);
+                    onChange={(event): void => {
+                        onMonthSelect(month, event.target.value);
                     }}
                     value={month.month()}
                     variant={DropdownVariant.OUTLINE}
@@ -66,8 +66,8 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({
                 <Dropdown
                     label={labelYear}
                     name="year-dropdown"
-                    onChange={(e) => {
-                        onYearSelect(month, e.target.value);
+                    onChange={(event): void => {
+                        onYearSelect(month, event.target.value);
                     }}
                     value={month.year()}
                     variant={DropdownVariant.OUTLINE}

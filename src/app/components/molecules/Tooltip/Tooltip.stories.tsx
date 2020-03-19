@@ -5,10 +5,10 @@ import {
     Placement,
 } from '../../../types';
 import { number, select } from '@storybook/addon-knobs';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button/Button';
 import notes from './notes.md';
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Tooltip from './Tooltip';
 
@@ -19,7 +19,7 @@ export default {
     title: 'molecules/Tooltip',
 };
 
-const CustomTestComponent = () => (
+const CustomTestComponent: FunctionComponent = () => (
     <span>
         {'CLICK TO REDIRECT TO '}
         <a href="https://www.google.nl" rel="noopener noreferrer" target="_blank">
@@ -28,7 +28,7 @@ const CustomTestComponent = () => (
     </span>
 );
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <>
         <div
             data-tooltip-component="Hi!"

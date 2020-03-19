@@ -13,11 +13,11 @@ export const StyledOverlay = styled.div<OverlayProps>`
     position: fixed;
     top: 0;
     left: 0;
-    visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
-    opacity: ${({ isVisible }) => (isVisible ? '0.4' : '0')};
+    visibility: ${({ isVisible }): string => (isVisible ? 'visible' : 'hidden')};
+    opacity: ${({ isVisible }): string => (isVisible ? '0.4' : '0')};
     z-index: 2;
     background-color: black;
-    cursor: ${({ isClickable }) => (isClickable ? 'pointer' : 'auto')};
+    cursor: ${({ isClickable }): string => (isClickable ? 'pointer' : 'auto')};
     width: 100%;
     height: 100%;
 `;

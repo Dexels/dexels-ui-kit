@@ -1,10 +1,10 @@
 import { boolean, text } from '@storybook/addon-knobs';
+import React, { FunctionComponent } from 'react';
 import Label from './Label';
-import React from 'react';
 
 export default { title: 'atoms/Label' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <Label
         hasError={boolean('Has error', false)}
         isActive={boolean('Is active', false)}

@@ -32,7 +32,7 @@ export interface TableProps<T extends object> {
     };
 }
 
-const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean) => (
+const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean): Row<T>[] => (
     hasPaging ? instance.page : instance.rows
 );
 
@@ -100,7 +100,7 @@ export const Table = <T extends object>({
                                 isClickable={Boolean(onClickRow)}
                                 key={row}
                                 onClick={onClickRow
-                                    ? (event: SyntheticEvent) => {
+                                    ? (event: SyntheticEvent): void => {
                                         onClickRow(event, row);
                                     } : undefined}
                                 {...row.getRowProps()}
@@ -110,7 +110,7 @@ export const Table = <T extends object>({
                                         hasCellPadding={cell.column.hasCellPadding}
                                         isClickable={Boolean(cell.column.onClick)}
                                         key={cell}
-                                        onClick={(event: SyntheticEvent) => {
+                                        onClick={(event: SyntheticEvent): void => {
                                             if (cell.column.onClick) {
                                                 event.stopPropagation();
                                                 cell.column.onClick(cell, row, event);

@@ -5,13 +5,13 @@ import {
     text,
 } from '@storybook/addon-knobs';
 import { InputType, InputVariant } from '../../../types';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import Input from './Input';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
 
 export default { title: 'molecules/Input' };
 
-export const Configurable = () => {
+export const Configurable: FunctionComponent = () => {
     const [value, setValue] = useState('');
 
     return (
@@ -25,10 +25,10 @@ export const Configurable = () => {
             max={number('Max', 100)}
             min={number('Min', 0)}
             name="a-input-name"
-            onChange={({ currentTarget }) => {
+            onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}
-            type={select('Type', InputType, InputType.TEXT)}
+            type={select('Type', InputType, InputType.NUMBER)}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />

@@ -12,7 +12,7 @@ export interface MenuProps {
 export const Menu: React.FunctionComponent<MenuProps> = ({ className, defaultOpenItemPath, items }) => {
     const [openItemPath, setOpenItemPath] = useState(defaultOpenItemPath);
 
-    const handleSetOpenItem = (path: string) => {
+    const handleSetOpenItem = (path: string): void => {
         setOpenItemPath(openItemPath === path ? '' : path);
     };
 
@@ -37,7 +37,7 @@ export const Menu: React.FunctionComponent<MenuProps> = ({ className, defaultOpe
                                 isDisabled={isDisabled}
                                 isOpen={isOpen}
                                 isParent
-                                onClick={() => {
+                                onClick={(): void => {
                                     handleSetOpenItem(path);
                                 }}
                             >

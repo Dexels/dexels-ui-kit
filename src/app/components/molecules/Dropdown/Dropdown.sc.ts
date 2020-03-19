@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { DropdownVariant } from './types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { setTruncate } from '../../../styles/mixins/setTruncate';
@@ -23,7 +23,7 @@ export const StyledDropdown = styled.div<StyledDropdownProps>`
         isValid,
         theme,
         variant,
-    }) => variant === DropdownVariant.COMPACT && css`
+    }): SimpleInterpolation => variant === DropdownVariant.COMPACT && css`
         &::after {
             display: block;
             height: 1px;
@@ -60,16 +60,16 @@ interface SelectProps extends StyledDropdownProps {
 
 export const Select = styled.select<SelectProps>`
     ${setTruncate()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     appearance: none;
     display: block;
     outline: none;
     background-color: transparent;
     cursor: pointer;
     width: 100%;
-    color: ${({ theme }) => theme.colorTextBody.primary};
+    color: ${({ theme }): string => theme.colorTextBody.primary};
 
-    ${({ theme, variant }) => variant === DropdownVariant.COMPACT && css`
+    ${({ theme, variant }): SimpleInterpolation => variant === DropdownVariant.COMPACT && css`
         border: 0;
         border-bottom: 1px solid ${theme.colorText.primary};
         border-radius: 0;
@@ -78,7 +78,7 @@ export const Select = styled.select<SelectProps>`
         line-height: ${theme.spacing(3.5)};
     `}
 
-    ${({ theme, variant }) => variant === DropdownVariant.OUTLINE && css`
+    ${({ theme, variant }): SimpleInterpolation => variant === DropdownVariant.OUTLINE && css`
         border: 1px solid ${theme.colorText.primary};
         border-radius: ${theme.spacing(1)};
         padding: ${theme.spacing(0, 4.5, 0, 1.5)};
@@ -86,25 +86,25 @@ export const Select = styled.select<SelectProps>`
         line-height: ${theme.spacing(6)};
     `}
 
-    ${({ isPlaceholderSelected, theme }) => isPlaceholderSelected && css`
+    ${({ isPlaceholderSelected, theme }): SimpleInterpolation => isPlaceholderSelected && css`
         color: ${theme.shades.four};
     `}
 
-    ${({ isFocused, isHovered, theme }) => (isFocused || isHovered) && css`
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation => (isFocused || isHovered) && css`
         border-color: ${theme.colorSecondary};
     `}
 
-    ${({ isValid, theme }) => isValid && css`
+    ${({ isValid, theme }): SimpleInterpolation => isValid && css`
         border-color: ${theme.colorValid};
         color: ${theme.colorValid};
     `}
 
-    ${({ hasError, theme }) => hasError && css`
+    ${({ hasError, theme }): SimpleInterpolation => hasError && css`
         border-color: ${theme.colorInvalid};
         color: ${theme.colorInvalid};
     `}
 
-    ${({ isDisabled, theme }) => isDisabled && css`
+    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
         border-color: ${theme.colorDisabled};
         color: ${theme.colorDisabled};
         pointer-events: none;
@@ -122,41 +122,41 @@ interface IconWrapperProps extends StyledDropdownProps {
 
 export const IconWrapper = styled.div<IconWrapperProps>`
     position: absolute;
-    color: ${({ theme }) => theme.colorText.primary};
-    font-size: ${({ theme }) => theme.spacing(3)};
+    color: ${({ theme }): string => theme.colorText.primary};
+    font-size: ${({ theme }): string => theme.spacing(3)};
     pointer-events: none;
 
     span {
         display: block;
     }
 
-    ${({ theme, variant }) => variant === DropdownVariant.COMPACT && css`
+    ${({ theme, variant }): SimpleInterpolation => variant === DropdownVariant.COMPACT && css`
         top: ${theme.spacing(0.25)};
         right: 0;
     `}
 
-    ${({ theme, variant }) => variant === DropdownVariant.OUTLINE && css`
+    ${({ theme, variant }): SimpleInterpolation => variant === DropdownVariant.OUTLINE && css`
         top: ${theme.spacing(1.5)};
         right: ${theme.spacing(1.5)};
     `}
 
-    ${({ isFocused, isHovered, theme }) => (isFocused || isHovered) && css`
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation => (isFocused || isHovered) && css`
         color: ${theme.colorSecondary};
     `}
 
-    ${({ isFocused }) => isFocused && css`
+    ${({ isFocused }): SimpleInterpolation => isFocused && css`
         transform: rotate(180deg);
     `}
 
-    ${({ isValid, theme }) => isValid && css`
+    ${({ isValid, theme }): SimpleInterpolation => isValid && css`
         color: ${theme.colorValid};
     `}
 
-    ${({ hasError, theme }) => hasError && css`
+    ${({ hasError, theme }): SimpleInterpolation => hasError && css`
         color: ${theme.colorInvalid};
     `}
 
-    ${({ isDisabled, theme }) => isDisabled && css`
+    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
         color: ${theme.colorDisabled};
     `}
 `;
@@ -166,7 +166,7 @@ IconWrapper.defaultProps = {
 };
 
 export const ErrorMessageWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0.5, 0, 0)};
+    margin: ${({ theme }): string => theme.spacing(0.5, 0, 0)};
 `;
 
 ErrorMessageWrapper.defaultProps = {

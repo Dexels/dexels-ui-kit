@@ -1,6 +1,6 @@
 import { Status, Theme } from '../../types';
 
-export const getStatusColor = (status: Status, theme: Theme) => {
+export const getStatusColor = (status: Status, theme: Theme): string => {
     switch (status) {
         case Status.NONE:
             return theme.shades.six;

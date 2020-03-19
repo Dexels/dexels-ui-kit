@@ -1,6 +1,6 @@
 import { ButtonSize, ButtonVariant, Easing } from '../../../types';
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
@@ -16,7 +16,7 @@ interface StyledButtonProps {
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
-    ${({ transitionDuration, transitionEasing }) => transitionEffect({
+    ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation => transitionEffect({
         duration: transitionDuration,
         easing: transitionEasing,
     })}
@@ -26,18 +26,18 @@ export const StyledButton = styled.button<StyledButtonProps>`
     border: 2px solid;
     cursor: pointer;
 
-    ${({ isFullWidth }) => isFullWidth && css`
+    ${({ isFullWidth }): SimpleInterpolation => isFullWidth && css`
         justify-content: center;
         width: 100%;
     `}
 
-    ${({ isDisabled, isInverted, theme }) => isDisabled && css`
+    ${({ isDisabled, isInverted, theme }): SimpleInterpolation => isDisabled && css`
         border-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
         background-color: ${isInverted ? theme.shades.seven : theme.colorDisabled};
         pointer-events: none;
     `}
 
-    ${({ size, theme }) => size === ButtonSize.SMALL && css`
+    ${({ size, theme }): SimpleInterpolation => size === ButtonSize.SMALL && css`
         ${theme.textStyling(theme.availableTextStyles().buttonSmall)}
         border-radius: ${theme.spacing(2)};
         padding: ${theme.spacing(0.5, 2)};
@@ -45,7 +45,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         min-height: ${theme.spacing(4)};
     `}
 
-    ${({ size, theme }) => size === ButtonSize.MEDIUM && css`
+    ${({ size, theme }): SimpleInterpolation => size === ButtonSize.MEDIUM && css`
         ${theme.textStyling(theme.availableTextStyles().buttonMedium)}
         border-radius: ${theme.spacing(2.5)};
         padding: ${theme.spacing(1, 2)};
@@ -53,7 +53,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         min-height: ${theme.spacing(5)};
     `}
 
-    ${({ size, theme }) => size === ButtonSize.LARGE && css`
+    ${({ size, theme }): SimpleInterpolation => size === ButtonSize.LARGE && css`
         ${theme.textStyling(theme.availableTextStyles().buttonLarge)}
         border-radius: ${theme.spacing(3)};
         padding: ${theme.spacing(1, 2)};
@@ -66,7 +66,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         isInverted,
         theme: { button },
         variant,
-    }) => variant === ButtonVariant.FILLED && css`
+    }): SimpleInterpolation => variant === ButtonVariant.FILLED && css`
         border-color: ${isInverted ? button.filled.backgroundColor.inverted : button.filled.backgroundColor.primary};
         background-color: ${isInverted ? button.filled.backgroundColor.inverted : button.filled.backgroundColor.primary};
         color: ${isInverted ? button.filled.color.inverted : button.filled.color.primary};
@@ -90,7 +90,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         isInverted,
         theme: { button },
         variant,
-    }) => variant === ButtonVariant.OUTLINE && css`
+    }): SimpleInterpolation => variant === ButtonVariant.OUTLINE && css`
         border-color: ${isInverted ? button.outline.backgroundColor.inverted : button.outline.backgroundColor.primary};
         background-color: transparent !important;
         color: ${isInverted ? button.outline.color.inverted : button.outline.color.primary};
@@ -112,7 +112,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         isInverted,
         theme: { button },
         variant,
-    }) => variant === ButtonVariant.TEXT_ONLY && css`
+    }): SimpleInterpolation => variant === ButtonVariant.TEXT_ONLY && css`
         border: 0;
         border-radius: 0;
         background-color: transparent !important;
@@ -131,12 +131,12 @@ export const StyledButton = styled.button<StyledButtonProps>`
         `}
     `}
 
-    ${({ isLoading }) => isLoading && css`
+    ${({ isLoading }): SimpleInterpolation => isLoading && css`
         pointer-events: none;
     `}
 
     &::after {
-        ${({ variant, theme: { button } }) => variant !== ButtonVariant.TEXT_ONLY
+        ${({ variant, theme: { button } }): SimpleInterpolation => variant !== ButtonVariant.TEXT_ONLY
             && rippleEffect(variant === ButtonVariant.FILLED ? button.filled.color.primary : button.outline.backgroundColor.primary)}
     }
 
@@ -161,7 +161,7 @@ interface TextWrapperProps {
 }
 
 export const TextWrapper = styled.div<TextWrapperProps>`
-    ${({ isLoading }) => isLoading && css`
+    ${({ isLoading }): SimpleInterpolation => isLoading && css`
         visibility: hidden;
     `}
 `;

@@ -42,7 +42,7 @@ export interface PaginatorProps<T extends object> {
 const pagingResultsText = <T extends object>(
     instance: TableInstance<T>,
     texts: PaginatorTexts,
-) => {
+): string => {
     const { state: { pageIndex, pageSize } } = instance;
     const rowCount = instance.rows.length || 0;
     let result = '';
@@ -64,7 +64,7 @@ const pagingResultsText = <T extends object>(
     return `${result} ${texts.resultsOf} ${rowCount}`;
 };
 
-const pagingText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts) => {
+const pagingText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts): string => {
     const { state: { pageIndex, pageSize } } = instance;
     const pageCount = instance.rows.length / pageSize;
 
@@ -79,7 +79,7 @@ export const Paginator = <T extends object>({
     pageSizes = [5, 10, 20],
     texts,
     useResultsOfText = true,
-}: PaginatorProps<T>) => {
+}: PaginatorProps<T>): JSX.Element => {
     const { pageIndex, pageSize } = instance.state;
 
     return (

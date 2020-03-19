@@ -1,8 +1,8 @@
 import { BrowserRouter, Route } from 'react-router-dom';
+import React, { FunctionComponent } from 'react';
 import Menu from './Menu';
 import { menuItems } from './mockup/menuItems';
 import notes from './notes.md';
-import React from 'react';
 
 export default {
     parameters: {
@@ -11,7 +11,7 @@ export default {
     title: 'organisms/Menu',
 };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <BrowserRouter>
         <div
             style={{

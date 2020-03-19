@@ -1,6 +1,6 @@
 import { boolean, number, text } from '@storybook/addon-knobs';
 import moment, { Moment } from 'moment';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import DateRangePicker from './DateRangePicker';
 import { FocusedInputShape } from 'react-dates';
 
@@ -9,7 +9,7 @@ const defaultStartDate = moment();
 
 export default { title: 'organisms/DateRangePicker' };
 
-export const Default = () => {
+export const Default: FunctionComponent = () => {
     const [endDate, setEndDate] = useState<Moment | null>(defaultEndDate);
     const [startDate, setStartDate] = useState<Moment | null>(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(null);
@@ -24,51 +24,51 @@ export const Default = () => {
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             footerText="Selecteer minimaal twee dagen"
-            isDayHighlighted={(day) => day.day() === 1}
+            isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
-            isOutsideRange={() => false}
+            isOutsideRange={(): false => false}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
             minimumNights={number('Minimum nights', 1)}
             numberOfMonths={number('Number of months', 2)}
-            onCancel={() => {
+            onCancel={(): void => {
                 setStartDate(defaultStartDate);
                 setEndDate(defaultEndDate);
             }}
-            onConfirm={() => {
+            onConfirm={(): void => {
                 setFocusedInput(null);
             }}
-            onDatesChange={(event) => {
+            onDatesChange={(event): void => {
                 setStartDate(event.startDate);
                 setEndDate(event.endDate);
             }}
-            onFocusChange={(input) => {
+            onFocusChange={(input): void => {
                 setFocusedInput(input);
             }}
             shortcuts={[
                 {
-                    onClick: () => {
+                    onClick: (): void => {
                         setStartDate(moment());
                         setEndDate(moment().add(1, 'd'));
                     },
                     text: 'vandaag en morgen',
                 },
                 {
-                    onClick: () => {
+                    onClick: (): void => {
                         setStartDate(moment().day(6));
                         setEndDate(moment().day(6).add(1, 'd'));
                     },
                     text: 'aankomend weekend',
                 },
                 {
-                    onClick: () => {
+                    onClick: (): void => {
                         setStartDate(moment());
                         setEndDate(moment().add(13, 'd'));
                     },
                     text: 'de komende twee weken',
                 },
                 {
-                    onClick: () => {
+                    onClick: (): void => {
                         setStartDate(moment().add(1, 'M').startOf('month'));
                         setEndDate(moment().add(1, 'M').endOf('month'));
                     },
@@ -83,7 +83,7 @@ export const Default = () => {
     );
 };
 
-export const DefaultWithoutShortcuts = () => {
+export const DefaultWithoutShortcuts: FunctionComponent = () => {
     const [endDate, setEndDate] = useState<Moment | null>(defaultEndDate);
     const [startDate, setStartDate] = useState<Moment | null>(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(null);
@@ -97,25 +97,25 @@ export const DefaultWithoutShortcuts = () => {
             endDateId="daterangepicker_end"
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
-            isDayHighlighted={(day) => day.day() === 1}
+            isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
-            isOutsideRange={() => false}
+            isOutsideRange={(): false => false}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
             minimumNights={number('Minimum nights', 1)}
             numberOfMonths={number('Number of months', 2)}
-            onCancel={() => {
+            onCancel={(): void => {
                 setStartDate(defaultStartDate);
                 setEndDate(defaultEndDate);
             }}
-            onConfirm={() => {
+            onConfirm={(): void => {
                 setFocusedInput(null);
             }}
-            onDatesChange={(event) => {
+            onDatesChange={(event): void => {
                 setStartDate(event.startDate);
                 setEndDate(event.endDate);
             }}
-            onFocusChange={(input) => {
+            onFocusChange={(input): void => {
                 setFocusedInput(input);
             }}
             startDate={startDate}
@@ -125,7 +125,7 @@ export const DefaultWithoutShortcuts = () => {
     );
 };
 
-export const DefaultWithoutFooter = () => {
+export const DefaultWithoutFooter: FunctionComponent = () => {
     const [endDate, setEndDate] = useState<Moment | null>(defaultEndDate);
     const [startDate, setStartDate] = useState<Moment | null>(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(null);
@@ -139,44 +139,44 @@ export const DefaultWithoutFooter = () => {
             endDateId="daterangepicker_end"
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
-            isDayHighlighted={(day) => day.day() === 1}
+            isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
-            isOutsideRange={() => false}
+            isOutsideRange={(): false => false}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Je favoriete periode')}
             minimumNights={number('Minimum nights', 1)}
             numberOfMonths={number('Number of months', 2)}
-            onDatesChange={(event) => {
+            onDatesChange={(event): void => {
                 setStartDate(event.startDate);
                 setEndDate(event.endDate);
             }}
-            onFocusChange={(input) => {
+            onFocusChange={(input): void => {
                 setFocusedInput(input);
             }}
             shortcuts={[
                 {
-                    onClick: () => {
+                    onClick: (): void => {
                         setStartDate(moment());
                         setEndDate(moment().add(1, 'd'));
                     },
                     text: 'vandaag en morgen',
                 },
                 {
-                    onClick: () => {
+                    onClick: (): void => {
                         setStartDate(moment().day(6));
                         setEndDate(moment().day(6).add(1, 'd'));
                     },
                     text: 'aankomend weekend',
                 },
                 {
-                    onClick: () => {
+                    onClick: (): void => {
                         setStartDate(moment());
                         setEndDate(moment().add(13, 'd'));
                     },
                     text: 'de komende twee weken',
                 },
                 {
-                    onClick: () => {
+                    onClick: (): void => {
                         setStartDate(moment().add(1, 'M').startOf('month'));
                         setEndDate(moment().add(1, 'M').endOf('month'));
                     },
@@ -190,7 +190,7 @@ export const DefaultWithoutFooter = () => {
     );
 };
 
-export const WithYearSelector = () => {
+export const WithYearSelector: FunctionComponent = () => {
     const [endDate, setEndDate] = useState<Moment | null>(defaultEndDate);
     const [startDate, setStartDate] = useState<Moment | null>(defaultStartDate);
     const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(null);
@@ -203,7 +203,7 @@ export const WithYearSelector = () => {
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             hasYearSelector
-            isDayHighlighted={(day) => day.day() === 3}
+            isDayHighlighted={(day): boolean => day.day() === 3}
             isDisabled={boolean('Is disabled', false)}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Vakantie periode')}
@@ -211,11 +211,11 @@ export const WithYearSelector = () => {
             labelYear={text('Label year', 'Jaar')}
             minimumNights={number('Minimum nights', 1)}
             numberOfMonths={1}
-            onDatesChange={(event) => {
+            onDatesChange={(event): void => {
                 setStartDate(event.startDate);
                 setEndDate(event.endDate);
             }}
-            onFocusChange={(input) => {
+            onFocusChange={(input): void => {
                 setFocusedInput(input);
             }}
             startDate={startDate}

@@ -1,5 +1,5 @@
 import { Alignment, Easing, Elevation } from '../../../types';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { DialogButtonClosePosition } from './types';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
 import { getAlignment } from '../../../styles/mixins/getAlignment';
@@ -20,19 +20,19 @@ interface StyledDialogProps {
 export const StyledDialog = styled.div<StyledDialogProps>`
     ${setBoxSizing()}
     ${setCentered()}
-    ${({ elevation }) => getElevation(elevation)}
-    ${({ isVisible, transitionDuration, transitionEasing }) => fadeInEffect({
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation => fadeInEffect({
         duration: transitionDuration,
         easing: transitionEasing,
         isVisible,
     })}
     position: fixed;
-    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
     z-index: 3;
-    border-radius: ${({ theme }) => theme.spacing(1)};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    pointer-events: ${({ isVisible }) => (isVisible ? 'auto' : 'none')};
+    border-radius: ${({ theme }): string => theme.spacing(1)};
+    width: ${({ width }): string => width};
+    height: ${({ height }): string => height};
+    pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};
 `;
 
 StyledDialog.defaultProps = {
@@ -51,23 +51,23 @@ export const ButtonClose = styled.button<ButtonCloseProps>`
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    padding: ${({ theme }) => theme.spacing(1)};
-    text-align: ${({ position }) => (position === DialogButtonClosePosition.LEFT ? 'left' : 'right')};
-    color: ${({ theme }) => theme.colorText.primary};
-    font-size: ${({ theme }) => theme.spacing(3)};
+    padding: ${({ theme }): string => theme.spacing(1)};
+    text-align: ${({ position }): string => (position === DialogButtonClosePosition.LEFT ? 'left' : 'right')};
+    color: ${({ theme }): string => theme.colorText.primary};
+    font-size: ${({ theme }): string => theme.spacing(3)};
 
-    ${({ position }) => position === DialogButtonClosePosition.LEFT && css`
+    ${({ position }): SimpleInterpolation => position === DialogButtonClosePosition.LEFT && css`
         left: 2px;
     `}
 
-    ${({ position }) => position === DialogButtonClosePosition.RIGHT && css`
+    ${({ position }): SimpleInterpolation => position === DialogButtonClosePosition.RIGHT && css`
         right: 2px;
     `}
 
     &:active,
     &:hover {
         background-color: transparent;
-        color: ${({ theme }) => theme.colorTextContrast.primary};
+        color: ${({ theme }): string => theme.colorTextContrast.primary};
     }
 
     span {
@@ -84,16 +84,16 @@ interface HeaderProps {
 }
 
 export const Header = styled.header<HeaderProps>`
-    ${({ alignment }) => getAlignment(alignment)}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
+    ${({ alignment }): FlattenSimpleInterpolation => getAlignment(alignment)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
     display: flex;
     align-items: center;
-    border-top-left-radius: ${({ theme }) => theme.spacing(1)};
-    border-top-right-radius: ${({ theme }) => theme.spacing(1)};
-    background-color: ${({ theme }) => theme.colorPrimary};
-    padding: ${({ theme }) => theme.spacing(2)};
-    min-height: ${({ theme }) => theme.spacing(7)};
-    color: ${({ theme }) => theme.colorTextContrast.primary};
+    border-top-left-radius: ${({ theme }): string => theme.spacing(1)};
+    border-top-right-radius: ${({ theme }): string => theme.spacing(1)};
+    background-color: ${({ theme }): string => theme.colorPrimary};
+    padding: ${({ theme }): string => theme.spacing(2)};
+    min-height: ${({ theme }): string => theme.spacing(7)};
+    color: ${({ theme }): string => theme.colorTextContrast.primary};
 `;
 
 Header.defaultProps = {
@@ -106,16 +106,16 @@ interface BodyProps {
 }
 
 export const Body = styled.div<BodyProps>`
-    ${({ alignment }) => getAlignment(alignment, false)}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
+    ${({ alignment }): FlattenSimpleInterpolation => getAlignment(alignment, false)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     display: grid;
-    background-color: ${({ theme }) => theme.card.backgroundColor};
-    padding: ${({ theme }) => theme.spacing(2)};
+    background-color: ${({ theme }): string => theme.card.backgroundColor};
+    padding: ${({ theme }): string => theme.spacing(2)};
     height: 100%;
     overflow: auto;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ hasHeader, theme }) => !hasHeader && css`
+    ${({ hasHeader, theme }): SimpleInterpolation => !hasHeader && css`
         border-radius: ${theme.spacing(1, 1, 0, 0)};
     `}
 `;

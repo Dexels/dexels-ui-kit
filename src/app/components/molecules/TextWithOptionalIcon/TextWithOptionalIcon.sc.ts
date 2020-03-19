@@ -1,5 +1,5 @@
 import { Direction, IconSize } from '../../../types';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { setTruncate } from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -11,13 +11,13 @@ interface TextProps {
 
 export const Text = styled.p<TextProps>`
     ${setBoxSizing()}
-    ${({ isTruncatable }) => isTruncatable && setTruncate()}
+    ${({ isTruncatable }): SimpleInterpolation => isTruncatable && setTruncate()}
     flex: 0 1 auto;
     order: 2;
     margin: 0;
     word-break: break-word;
 
-    ${({ isCapitalized }) => isCapitalized && css`
+    ${({ isCapitalized }): SimpleInterpolation => isCapitalized && css`
         &::first-letter,
         span::first-letter {
             text-transform: uppercase;
@@ -31,13 +31,13 @@ interface IconWrapperProps {
 
 export const IconWrapper = styled.div<IconWrapperProps>`
     order: 1;
-    margin: ${({ theme }) => theme.spacing(0, 0.75, 0, 0)};
+    margin: ${({ theme }): string => theme.spacing(0, 0.75, 0, 0)};
 
     span {
         display: block;
     }
 
-    ${({ size }) => css`
+    ${({ size }): FlattenSimpleInterpolation => css`
         ${size === IconSize.SMALL && css`
             font-size: 18px;
         `}
@@ -66,7 +66,7 @@ export const StyledTextWithOptionalIcon = styled.div<StyledTextWithOptionalIconP
     align-items: center;
     justify-content: center;
 
-    ${({ direction, theme }) => direction === Direction.RTL && css`
+    ${({ direction, theme }): SimpleInterpolation => direction === Direction.RTL && css`
         ${Text} {
             order: 1;
         }

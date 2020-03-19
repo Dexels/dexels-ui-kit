@@ -1,9 +1,9 @@
+import React, { ReactNode } from 'react';
 import { FullscreenLoaderType } from './types';
 import { LoaderCircles } from './LoaderCircles.sc';
 import { LoaderWrapper } from './FullscreenLoader.sc';
-import React from 'react';
 
-const constructLoaderCircle = (amount: number) => (
+const constructLoaderCircle = (amount: number): ReactNode => (
     Array.from(Array(amount).keys()).map((key) => (
         <LoaderCircles key={key} opacity={key * 0.2} order={key} />
     ))

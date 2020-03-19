@@ -29,7 +29,7 @@ const getIconType = (variant: ChipStatusVariant): IconType | undefined => {
     }
 };
 
-const isSelected = (variant: ChipStatusVariant) => (
+const isSelected = (variant: ChipStatusVariant): boolean => (
     variant === ChipStatusVariant.SELECTED
 );
 

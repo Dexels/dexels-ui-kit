@@ -1,8 +1,8 @@
+import React, { FunctionComponent } from 'react';
 import Colors from './Colors';
-import React from 'react';
 
 export default { title: 'atoms/Colors' };
 
-export const Overview = () => (
+export const Overview: FunctionComponent = () => (
     <Colors />
 );

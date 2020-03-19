@@ -1,7 +1,7 @@
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 
 /* @TODO: use default theme color instead of hardcoded variant */
-export const rippleEffect = (backgroundColor = '#FFFFFF') => (css`
+export const rippleEffect = (backgroundColor = '#FFFFFF'): FlattenSimpleInterpolation => (css`
     display: block;
     position: absolute;
     top: 0;
@@ -18,12 +18,12 @@ export const rippleEffect = (backgroundColor = '#FFFFFF') => (css`
     pointer-events: none;
 `);
 
-export const rippleEffectInit = () => (css`
+export const rippleEffectInit = (): FlattenSimpleInterpolation => (css`
     position: relative;
     overflow: hidden;
 `);
 
-export const rippleEffectReset = () => (css`
+export const rippleEffectReset = (): FlattenSimpleInterpolation => (css`
     transform: scale(0, 0);
     transition: none;
     opacity: .2;

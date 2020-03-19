@@ -1,4 +1,4 @@
-import createDuiTheme from '../createDuiTheme';
+import { createDuiTheme } from '../createDuiTheme';
 import { Theme } from '../../../types';
 import { themeBasic } from './basic';
 

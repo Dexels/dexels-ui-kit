@@ -1,5 +1,5 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
@@ -15,12 +15,12 @@ interface ListWrapperProps {
 }
 
 export const ListWrapper = styled.div<ListWrapperProps>`
-    ${({ elevation }) => getElevation(elevation)}
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     position: absolute;
     z-index: 2;
-    margin: ${({ theme }) => theme.spacing(1, 0, 0, 0)};
-    border-radius: ${({ theme }) => theme.spacing(1)};
-    background-color: ${({ theme }) => theme.shades.nine};
+    margin: ${({ theme }): string => theme.spacing(1, 0, 0, 0)};
+    border-radius: ${({ theme }): string => theme.spacing(1)};
+    background-color: ${({ theme }): string => theme.shades.nine};
     width: 100%;
 `;
 
@@ -34,14 +34,14 @@ interface StaticItemProps {
 
 export const StaticItem = styled.div<StaticItemProps>`
     ${rippleEffectInit()}
-    ${({ elevation }) => getElevation(elevation)}
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     margin: 0 0 2px;
-    border-radius: ${({ theme }) => theme.spacing(1, 1, 0, 0)};
-    background-color: ${({ theme }) => theme.hover.backgroundColor};
-    padding: ${({ theme }) => theme.spacing(1, 1, 1, 2)};
+    border-radius: ${({ theme }): string => theme.spacing(1, 1, 0, 0)};
+    background-color: ${({ theme }): string => theme.hover.backgroundColor};
+    padding: ${({ theme }): string => theme.spacing(1, 1, 1, 2)};
 
     &::after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)}
+        ${({ theme }): FlattenSimpleInterpolation => rippleEffect(theme.colorSecondary)}
     }
 
     &:active::after {
@@ -49,7 +49,7 @@ export const StaticItem = styled.div<StaticItemProps>`
     }
 
     &:hover {
-        background-color: ${({ theme }) => theme.shades.six};
+        background-color: ${({ theme }): string => theme.shades.six};
     }
 `;
 
@@ -62,13 +62,13 @@ interface ListProps {
 }
 
 export const List = styled.ul<ListProps>`
-    margin: ${({ theme }) => theme.spacing(1, 0)};
-    background-color: ${({ theme }) => theme.card.backgroundColor};
-    padding: ${({ theme }) => theme.spacing(0)};
+    margin: ${({ theme }): string => theme.spacing(1, 0)};
+    background-color: ${({ theme }): string => theme.card.backgroundColor};
+    padding: ${({ theme }): string => theme.spacing(0)};
     overflow: auto;
     list-style-type: none;
 
-    ${({ maxHeight }) => maxHeight && css`
+    ${({ maxHeight }): SimpleInterpolation => maxHeight && css`
         max-height: ${maxHeight};
     `}
 `;
@@ -79,11 +79,11 @@ List.defaultProps = {
 
 export const ListItem = styled.li`
     ${rippleEffectInit()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
-    padding: ${({ theme }) => theme.spacing(0, 0, 0, 2)};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
+    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 2)};
 
     &::after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)}
+        ${({ theme }): FlattenSimpleInterpolation => rippleEffect(theme.colorSecondary)}
     }
 
     &:active::after {
@@ -91,7 +91,7 @@ export const ListItem = styled.li`
     }
 
     &:hover {
-        background-color: ${({ theme }) => theme.hover.backgroundColor};
+        background-color: ${({ theme }): string => theme.hover.backgroundColor};
     }
 `;
 

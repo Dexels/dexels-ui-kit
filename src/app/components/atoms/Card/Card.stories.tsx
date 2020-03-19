@@ -1,13 +1,13 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import Card from './Card';
 import { Elevation } from '../../../types';
-import React from 'react';
 
 export default { title: 'atoms/Card' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <Card
         elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
         hasBorderRadius={boolean('Has border radius', true)}
@@ -16,7 +16,7 @@ export const Configurable = () => (
     </Card>
 );
 
-export const ConfigurableWithComponent = () => (
+export const ConfigurableWithComponent: FunctionComponent = () => (
     <Card
         elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
         hasBorderRadius={boolean('Has border radius', false)}

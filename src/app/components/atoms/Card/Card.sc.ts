@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
@@ -11,12 +11,12 @@ export interface StyledCardProps {
 
 export const StyledCard = styled.div<StyledCardProps>`
     ${setBoxSizing()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
-    ${({ elevation }) => getElevation(elevation)}
-    background-color: ${({ theme }) => theme.card.backgroundColor};
-    color: ${({ theme }) => theme.colorText.primary};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    background-color: ${({ theme }): string => theme.card.backgroundColor};
+    color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ hasBorderRadius, theme }) => hasBorderRadius && css`
+    ${({ hasBorderRadius, theme }): SimpleInterpolation => hasBorderRadius && css`
         border-radius: ${theme.spacing(0.5)};
     `}
 `;

@@ -1,12 +1,12 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { IconType, Size } from '../../../types';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import ButtonIcon from './ButtonIcon';
-import React from 'react';
 
 export default { title: 'molecules/ButtonIcon' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <ButtonIcon
         iconType={select('Type', IconType, IconType.CHEVRONDOWN)}
         isDisabled={boolean('Is disabled', false)}

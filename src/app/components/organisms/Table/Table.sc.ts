@@ -1,4 +1,4 @@
-import styled, { css, SimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
@@ -15,9 +15,9 @@ interface ClickableProps {
 
 export const TableCaption = styled.div`
     ${setBoxSizing()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
-    padding: ${({ theme }) => theme.spacing(0, 0, 4, 0)};
-    color: ${({ theme }) => theme.colorText.primary};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
+    padding: ${({ theme }): string => theme.spacing(0, 0, 4, 0)};
+    color: ${({ theme }): string => theme.colorText.primary};
 `;
 
 interface StyledTableProps {
@@ -29,7 +29,7 @@ export const StyledTable = styled.table<StyledTableProps>`
     background-color: transparent;
     border-spacing: 0;
 
-    ${({ isFullWidth }) => isFullWidth && css`
+    ${({ isFullWidth }): SimpleInterpolation => isFullWidth && css`
         width: 100%;
     `}
 `;
@@ -49,14 +49,14 @@ export const TableHeaderRow = styled.tr`
 interface TableHeaderCellProps extends ColumnProps {}
 
 export const TableHeaderCell = styled.th<TableHeaderCellProps>`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     border-bottom: 4px solid;
-    border-color: ${({ theme }) => theme.colorPrimary};
+    border-color: ${({ theme }): string => theme.colorPrimary};
     background-color: transparent;
-    padding: ${({ hasCellPadding, theme }) => (hasCellPadding ? theme.spacing(0.5, 0.5, 1, 0.5) : theme.spacing(0))};
-    height: ${({ theme }) => theme.spacing(5)};
+    padding: ${({ hasCellPadding, theme }): string => (hasCellPadding ? theme.spacing(0.5, 0.5, 1, 0.5) : theme.spacing(0))};
+    height: ${({ theme }): string => theme.spacing(5)};
     text-align: left;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorText.primary};
     font-weight: 600;
 
     ${({ width }): SimpleInterpolation => width && css`
@@ -74,8 +74,8 @@ interface TableBodyProps {
 }
 
 export const TableBody = styled.tbody<TableBodyProps>`
-    ${({ elevation }) => getElevation(elevation)}
-    color: ${({ theme }) => theme.shades.nine};
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    color: ${({ theme }): string => theme.shades.nine};
 `;
 
 TableBody.defaultProps = {
@@ -87,23 +87,23 @@ interface TableRowProps extends ClickableProps {}
 export const TableRow = styled.tr<TableRowProps>`
     position: relative;
 
-    ${({ isClickable }) => isClickable && css`
+    ${({ isClickable }): SimpleInterpolation => isClickable && css`
         cursor: pointer;
     `}
 
     &:nth-child(odd) {
-        background-color: ${({ theme }) => theme.table.row.backgroundColorOdd};
+        background-color: ${({ theme }): string => theme.table.row.backgroundColorOdd};
 
         &:hover td::after {
-            background-color: ${({ theme }) => theme.table.row.backgroundColorOdd};
+            background-color: ${({ theme }): string => theme.table.row.backgroundColorOdd};
         }
     }
 
     &:nth-child(even) {
-        background-color: ${({ theme }) => theme.table.row.backgroundColorEven};
+        background-color: ${({ theme }): string => theme.table.row.backgroundColorEven};
 
         &:hover td::after {
-            background-color: ${({ theme }) => theme.table.row.backgroundColorEven};
+            background-color: ${({ theme }): string => theme.table.row.backgroundColorEven};
         }
     }
 
@@ -119,12 +119,12 @@ TableRow.defaultProps = {
 interface TableCellProps extends ColumnProps, ClickableProps {}
 
 export const TableCell = styled.td<TableCellProps>`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     position: relative;
-    padding: ${({ hasCellPadding, theme }) => theme.spacing(hasCellPadding ? 0.5 : 0)};
-    height: ${({ theme }) => theme.spacing(6)};
+    padding: ${({ hasCellPadding, theme }): string => theme.spacing(hasCellPadding ? 0.5 : 0)};
+    height: ${({ theme }): string => theme.spacing(6)};
     vertical-align: middle;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorText.primary};
 
     &::after {
         position: absolute;
@@ -140,7 +140,7 @@ export const TableCell = styled.td<TableCellProps>`
         overflow: hidden;
     }
 
-    ${({ isClickable }) => isClickable && css`
+    ${({ isClickable }): SimpleInterpolation => isClickable && css`
         cursor: pointer;
     `}
 `;
@@ -163,8 +163,8 @@ interface IconWrapperProps {
 }
 
 export const IconWrapper = styled.span<IconWrapperProps>`
-    padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
-    color: ${({ isSorted, theme }) => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
+    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
+    color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
 `;
 
 IconWrapper.defaultProps = {
@@ -176,7 +176,7 @@ interface TableFooterProps {
 }
 
 export const TableFooter = styled.tfoot<TableFooterProps>`
-    ${({ elevation }) => getElevation(elevation)}
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     background-color: transparent;
 `;
 

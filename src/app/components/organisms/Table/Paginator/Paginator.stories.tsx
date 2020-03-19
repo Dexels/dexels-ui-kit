@@ -2,7 +2,7 @@ import {
     array,
     boolean,
 } from '@storybook/addon-knobs';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { tableData, TableData } from '../mockup/tableData';
 import { createLocalizedPagingTexts } from '../mockup/tableFunctions';
 import { createTable } from '../../../../utils/functions/createTable';
@@ -12,7 +12,7 @@ import { tableColumns } from '../mockup/tableColumns';
 
 export default { title: 'organisms/Table/Paginator' };
 
-export const Configurable = () => {
+export const Configurable: FunctionComponent = () => {
     const [isNL, setIsNL] = useState(true);
     const localizedTexts = createLocalizedPagingTexts(isNL ? 'nl' : 'en');
     const data = tableData();
@@ -42,7 +42,7 @@ export const Configurable = () => {
                 isChecked={isNL}
                 label={isNL ? 'Is NL' : 'Is EN'}
                 name={'LANGUAGE'}
-                onChange={() => {
+                onChange={(): void => {
                     setIsNL(!isNL);
                 }}
                 value={'isNL'}

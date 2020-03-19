@@ -111,12 +111,12 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
     const { spacingValue } = useContext(ThemeContext);
     const tooltipRef = useRef<HTMLDivElement>(null);
 
-    const showTooltip = (hoveredItem: DOMRect) => {
+    const showTooltip = (hoveredItem: DOMRect): void => {
         setTooltipPosition(getTooltipPosition(hoveredItem, tooltipPosition));
         setTooltipVisiblity(true);
     };
 
-    const handleOnMouseOver = (element: HTMLElement) => {
+    const handleOnMouseOver = (element: HTMLElement): void => {
         setTooltipPosition(position);
 
         if (timeoutId) {
@@ -134,7 +134,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
         setHoveredElement(element.getBoundingClientRect());
     };
 
-    const handleOnMouseOut = () => {
+    const handleOnMouseOut = (): void => {
         if (hasTooltipDelay) {
             setTimeoutId(window.setTimeout(() => {
                 setTooltipVisiblity(false);
@@ -157,7 +157,7 @@ export const Tooltip: React.FunctionComponent<TooltipProps> = ({
     useEffect(() => {
         window.addEventListener('mousemove', onMouseMove);
 
-        return () => {
+        return (): void => {
             window.removeEventListener('mousemove', onMouseMove);
         };
     }, [onMouseMove]);

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { SingleDatePickerVariant } from '../types';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
@@ -13,7 +13,7 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
         display: block;
 
         &.SingleDatePickerInput__disabled {
-            ${({ theme, variant }) => variant === SingleDatePickerVariant.COMPACT && css`
+            ${({ theme, variant }): SimpleInterpolation => variant === SingleDatePickerVariant.COMPACT && css`
                 border-color: ${theme.colorDisabled};
 
                 &::after {
@@ -22,19 +22,19 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
             `}
         }
 
-        ${({ theme, variant }) => variant === SingleDatePickerVariant.COMPACT && css`
+        ${({ theme, variant }): SimpleInterpolation => variant === SingleDatePickerVariant.COMPACT && css`
             border: 0;
             border-bottom: 1px solid ${theme.colorPrimary};
             border-radius: 0;
             padding: 0;
-            height: ${(): string => `calc(${theme.spacing(3)} + 1px)`};
+            height: ${`calc(${theme.spacing(3)} + 1px)`};
         `}
 
         ${({
             isFocused,
             theme,
             variant,
-        }) => variant === SingleDatePickerVariant.COMPACT && css`
+        }): SimpleInterpolation => variant === SingleDatePickerVariant.COMPACT && css`
             overflow: visible;
 
             &::after {
@@ -50,7 +50,7 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
     }
 
     .DateInput_input {
-        ${({ theme, variant }) => variant === SingleDatePickerVariant.COMPACT && css`
+        ${({ theme, variant }): SimpleInterpolation => variant === SingleDatePickerVariant.COMPACT && css`
             height: ${theme.spacing(3)};
         `}
     }

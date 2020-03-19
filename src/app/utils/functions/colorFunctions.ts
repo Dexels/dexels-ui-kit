@@ -1,8 +1,8 @@
-const padZero = (string: string, length = 2) => (
+const padZero = (string: string, length = 2): string => (
     string.padStart(length, '0')
 );
 
-export const invertColor = (hex: string, bw = false) => {
+export const invertColor = (hex: string, bw = false): string => {
     let hexTmp = hex;
 
     if (hexTmp.startsWith('#')) {
@@ -35,7 +35,7 @@ export const invertColor = (hex: string, bw = false) => {
     return `#${padZero(stringR)}${padZero(stringG)}${padZero(stringb)}`;
 };
 
-export const hexToRgb = (hex: string, transparency = 1) => {
+export const hexToRgb = (hex: string, transparency = 1): string => {
     let hexTmp = hex;
 
     if (hexTmp.startsWith('#')) {

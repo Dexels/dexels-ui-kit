@@ -1,7 +1,7 @@
+import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
-import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledCardNoResultsProps {
@@ -10,12 +10,12 @@ interface StyledCardNoResultsProps {
 
 export const StyledCardNoResults = styled.div<StyledCardNoResultsProps>`
     ${setBoxSizing()}
-    ${({ elevation }) => getElevation(elevation)}
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    background-color: ${({ theme }) => theme.card.backgroundColor};
-    padding: ${({ theme }) => theme.spacing(3)};
+    background-color: ${({ theme }): string => theme.card.backgroundColor};
+    padding: ${({ theme }): string => theme.spacing(3)};
 `;
 
 StyledCardNoResults.defaultProps = {
@@ -23,9 +23,9 @@ StyledCardNoResults.defaultProps = {
 };
 
 export const Header = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h1)}
-    margin: ${({ theme }) => theme.spacing(0, 0, 2)};
-    color: ${({ theme }) => theme.colorText.primary};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
+    margin: ${({ theme }): string => theme.spacing(0, 0, 2)};
+    color: ${({ theme }): string => theme.colorText.primary};
 `;
 
 Header.defaultProps = {
@@ -33,9 +33,9 @@ Header.defaultProps = {
 };
 
 export const Title = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
-    margin: ${({ theme }) => theme.spacing(0.5, 0.5, 0.5, 0)};
-    color: ${({ theme }) => theme.colorText.secondary};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h3)}
+    margin: ${({ theme }): string => theme.spacing(0.5, 0.5, 0.5, 0)};
+    color: ${({ theme }): string => theme.colorText.secondary};
 `;
 
 Title.defaultProps = {
@@ -43,9 +43,9 @@ Title.defaultProps = {
 };
 
 export const Item = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
-    margin: ${({ theme }) => theme.spacing(0, 0, 0.5)};
-    color: ${({ theme }) => theme.colorText.primary};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
+    margin: ${({ theme }): string => theme.spacing(0, 0, 0.5)};
+    color: ${({ theme }): string => theme.colorText.primary};
 `;
 
 Item.defaultProps = {
@@ -55,7 +55,7 @@ Item.defaultProps = {
 export const Left = styled.div`
     flex: 0 0 auto;
     margin-top: 4px; /* Correction for line-height Title element */
-    width: ${({ theme }) => theme.spacing(6)};
+    width: ${({ theme }): string => theme.spacing(6)};
 `;
 
 Left.defaultProps = {
@@ -63,7 +63,7 @@ Left.defaultProps = {
 };
 
 export const IconWrapper = styled.div`
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorText.primary};
     font-size: 30px;
 
     span {

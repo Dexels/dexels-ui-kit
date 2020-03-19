@@ -1,5 +1,10 @@
 import { ButtonVariant, Size } from '../../../types';
-import styled, { css, keyframes } from 'styled-components';
+import styled, {
+    css,
+    FlattenSimpleInterpolation,
+    keyframes,
+    SimpleInterpolation,
+} from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 const loaderAnimation = keyframes`
@@ -29,30 +34,30 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
     display: flex;
 
     div {
-        margin: ${({ theme }) => theme.spacing(0.5)};
+        margin: ${({ theme }): string => theme.spacing(0.5)};
         border-radius: 50%;
-        background-color: ${({ theme }) => theme.loader.primary};
+        background-color: ${({ theme }): string => theme.loader.primary};
         animation: ${loaderAnimation} 1.5s infinite ease-in-out;
 
-        ${({ isInverted, theme }) => isInverted && css`
+        ${({ isInverted, theme }): SimpleInterpolation => isInverted && css`
             background-color: ${theme.loader.secondary};
         `}
 
         /* This is a special part for loader inside a button */
         /* Should only do something when variant is not undefined */
-        ${({ isInverted, theme: { button }, variant }) => variant === ButtonVariant.FILLED && css`
+        ${({ isInverted, theme: { button }, variant }): SimpleInterpolation => variant === ButtonVariant.FILLED && css`
             background-color: ${isInverted ? button.filled.backgroundColor.loaderInverted : button.filled.backgroundColor.loader};
         `}
 
-        ${({ isInverted, theme: { button }, variant }) => variant === ButtonVariant.OUTLINE && css`
+        ${({ isInverted, theme: { button }, variant }): SimpleInterpolation => variant === ButtonVariant.OUTLINE && css`
             background-color: ${isInverted ? button.outline.backgroundColor.loaderInverted : button.outline.backgroundColor.loader};
         `}
 
-        ${({ isInverted, theme: { button }, variant }) => variant === ButtonVariant.TEXT_ONLY && css`
+        ${({ isInverted, theme: { button }, variant }): SimpleInterpolation => variant === ButtonVariant.TEXT_ONLY && css`
             background-color: ${isInverted ? button.textOnly.loaderInverted : button.textOnly.loader};
         `}
 
-        ${({ size, theme }) => css`
+        ${({ size, theme }): FlattenSimpleInterpolation => css`
             ${size === Size.SMALL && css`
                 width: ${theme.spacing(1)};
                 height: ${theme.spacing(1)};

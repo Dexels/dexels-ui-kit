@@ -1,11 +1,11 @@
 import { array, select, text } from '@storybook/addon-knobs';
 import { Elevation, IconType } from '../../../types';
+import React, { FunctionComponent } from 'react';
 import CardNoResults from './CardNoResults';
-import React from 'react';
 
 export default { title: 'molecules/CardNoResults' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <CardNoResults
         elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
         header={text('Header', 'Some header text')}

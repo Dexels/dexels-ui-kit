@@ -4,8 +4,8 @@ import { themeBasic } from '../../../app/styles/theming/themes/basic';
 
 export const StyledWrapper = styled.div<StyledWrapperProps>`
     background-color: ${({ isTransparent, theme }) => (isTransparent ? 'transparent' : theme.background.primary)};
-    padding-top: ${({ theme }) => theme.spacing(3)};
-    padding-bottom: ${({ theme }) => theme.spacing(3)};
+    padding-top: ${({ theme }): string => theme.spacing(3)};
+    padding-bottom: ${({ theme }): string => theme.spacing(3)};
     min-height: 100vh;
 
     ${({ width }) => css`

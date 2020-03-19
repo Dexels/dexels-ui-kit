@@ -88,18 +88,18 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
                     isPlaceholderSelected={placeholder === value}
                     isValid={isValid}
                     name={name}
-                    onBlur={() => {
+                    onBlur={(): void => {
                         setIsFocused(false);
                     }}
                     onChange={onChange}
                     onClick={onClick}
-                    onFocus={() => {
+                    onFocus={(): void => {
                         setIsFocused(true);
                     }}
-                    onMouseEnter={() => {
+                    onMouseEnter={(): void => {
                         setIsHovered(true);
                     }}
-                    onMouseLeave={() => {
+                    onMouseLeave={(): void => {
                         setIsHovered(false);
                     }}
                     required={isRequired}

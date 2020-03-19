@@ -92,10 +92,10 @@ export const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = ({
             className={className}
             hasYearSelector={hasYearSelector}
             isFocused={isFocused}
-            onMouseEnter={() => {
+            onMouseEnter={(): void => {
                 setIsHovered(true);
             }}
-            onMouseLeave={() => {
+            onMouseLeave={(): void => {
                 setIsHovered(false);
             }}
         >
@@ -129,7 +129,7 @@ export const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = ({
                     numberOfMonths={numberOfMonths}
                     onDatesChange={onDatesChange}
                     onFocusChange={onFocusChange}
-                    renderCalendarInfo={() => (
+                    renderCalendarInfo={(): JSX.Element => (
                         <>
                             {shortcuts.length > 0 && (
                                 <Shortcuts shortcuts={shortcuts} text={shortcutsText} />
@@ -145,7 +145,7 @@ export const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = ({
                             )}
                         </>
                     )}
-                    renderMonthElement={(props) => (
+                    renderMonthElement={(props): JSX.Element => (
                         <Navigation
                             {...props}
                             hasYearSelector={hasYearSelector}

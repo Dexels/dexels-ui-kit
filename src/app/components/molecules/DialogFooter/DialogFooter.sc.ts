@@ -8,8 +8,8 @@ export const StyledDialogFooter = styled.footer`
     align-items: center;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
-    background-color: ${({ theme }) => theme.shades.seven};
-    padding: ${({ theme }) => theme.spacing(2)};
+    background-color: ${({ theme }): string => theme.shades.seven};
+    padding: ${({ theme }): string => theme.spacing(2)};
 `;
 
 StyledDialogFooter.defaultProps = {
@@ -17,10 +17,10 @@ StyledDialogFooter.defaultProps = {
 };
 
 export const Text = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
-    padding: ${({ theme }) => theme.spacing(0, 2, 0, 0)};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
+    padding: ${({ theme }): string => theme.spacing(0, 2, 0, 0)};
     word-break: break-word;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorText.primary};
 `;
 
 Text.defaultProps = {
@@ -36,7 +36,7 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0, 1, 0, 1)};
+    margin: ${({ theme }): string => theme.spacing(0, 1, 0, 1)};
 `;
 
 ButtonWrapper.defaultProps = {

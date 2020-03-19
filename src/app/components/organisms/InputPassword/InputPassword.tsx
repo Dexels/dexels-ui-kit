@@ -52,7 +52,7 @@ export const InputPassword: React.FunctionComponent<InputPasswordProps> = ({
             />
             <VisibilitySwitch
                 isDisabled={isDisabled}
-                onClick={() => {
+                onClick={(): void => {
                     setIsVisible(!isVisible);
                 }}
                 variant={variant}

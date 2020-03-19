@@ -1,11 +1,11 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import InputPassword from './InputPassword';
 import { InputVariant } from '../../../types';
 
 export default { title: 'organisms/InputPassword' };
 
-export const Configurable = () => {
+export const Configurable: FunctionComponent = () => {
     const [value, setValue] = useState('');
 
     return (
@@ -16,7 +16,7 @@ export const Configurable = () => {
             isValid={boolean('Is valid', false)}
             label={text('Label', 'Your password')}
             name="a-inputpassword-name"
-            onChange={(event) => {
+            onChange={(event): void => {
                 setValue(event.currentTarget.value);
             }}
             value={value}

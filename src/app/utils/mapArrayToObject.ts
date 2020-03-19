@@ -1,4 +1,4 @@
-const mapArrayToObject = (array: string[], toLowerCase = false) => {
+const mapArrayToObject = (array: string[], toLowerCase = false): { [key: string]: string } => {
     const object: { [key: string]: string } = {};
 
     array.forEach((entry) => {

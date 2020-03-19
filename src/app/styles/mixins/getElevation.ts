@@ -1,8 +1,8 @@
 /* eslint-disable typescript-sort-keys/string-enum */
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../types';
 
-export const getElevation = (level = Elevation.LEVEL_1) => {
+export const getElevation = (level = Elevation.LEVEL_1): FlattenSimpleInterpolation => {
     switch (level) {
         case Elevation.LEVEL_0:
             return css`

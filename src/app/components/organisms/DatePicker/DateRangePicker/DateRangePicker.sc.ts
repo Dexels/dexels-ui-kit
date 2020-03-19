@@ -17,7 +17,7 @@ export const StyledDateRangePicker = styled.div`
         flex: 0 0 auto;
         width: 20px;
         text-align: center;
-        color: ${({ theme }) => theme.colorText.primary};
+        color: ${({ theme }): string => theme.colorText.primary};
 
         &::after {
             ${setCentered()}
@@ -33,13 +33,13 @@ export const StyledDateRangePicker = styled.div`
 
     .DateRangePickerInput__disabled {
         .DateRangePickerInput_arrow {
-            color: ${({ theme }) => theme.colorDisabled};
+            color: ${({ theme }): string => theme.colorDisabled};
         }
     }
 
     .CalendarDay__default.CalendarDay__selected_span {
-        background-color: ${({ theme }) => theme.colorTertiary};
-        color: ${({ theme }) => theme.colorTextContrast.primary};
+        background-color: ${({ theme }): string => theme.colorTertiary};
+        color: ${({ theme }): string => theme.colorTextContrast.primary};
     }
 `;
 

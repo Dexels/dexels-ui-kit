@@ -60,7 +60,7 @@ export const DropdownMultiSelect: React.FunctionComponent<DropdownMultiSelectPro
     const [isHovered, setIsHovered] = useState(false);
     const [isSelectOpen, setIsSelectOpen] = useState(isOpen);
 
-    const handleClickOutsideComponent = () => {
+    const handleClickOutsideComponent = (): void => {
         setIsSelectOpen(false);
         onConfirm();
     };

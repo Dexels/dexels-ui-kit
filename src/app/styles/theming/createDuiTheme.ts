@@ -1,6 +1,6 @@
 import { Theme } from '../../types';
 
-const checkIfPropertyExists = (object: object, property: string, completePropertyName?: string) => {
+const checkIfPropertyExists = (object: object, property: string, completePropertyName?: string): Error | void => {
     if (!Object.prototype.hasOwnProperty.call(object, property)) {
         throw Error(`The theme you provided doesn't have a '${completePropertyName || property}' property on it`);
     }

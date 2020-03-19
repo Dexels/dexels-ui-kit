@@ -1,7 +1,7 @@
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Alignment } from '../../types';
-import { css } from 'styled-components';
 
-const getTextAlign = (alignment: Alignment) => {
+const getTextAlign = (alignment: Alignment): string => {
     switch (alignment) {
         case Alignment.LEFT:
             return 'left';
@@ -17,7 +17,7 @@ const getTextAlign = (alignment: Alignment) => {
     }
 };
 
-const getAlignContent = (alignment: Alignment) => {
+const getAlignContent = (alignment: Alignment): string => {
     switch (alignment) {
         case Alignment.LEFT:
             return 'flex-start';
@@ -33,7 +33,7 @@ const getAlignContent = (alignment: Alignment) => {
     }
 };
 
-export const getAlignment = (alignment: Alignment, alignText = true) => (css`
+export const getAlignment = (alignment: Alignment, alignText = true): FlattenSimpleInterpolation => (css`
     align-content: ${getAlignContent(alignment)};
     justify-content: ${getAlignContent(alignment)};
     text-align: ${alignText && getTextAlign(alignment)};

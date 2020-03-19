@@ -21,7 +21,7 @@ export interface TabsProps {
     tabs: Tab[];
 }
 
-const setInitiallyActiveTabIndex = (tab: Tab) => (
+const setInitiallyActiveTabIndex = (tab: Tab): false | Tab => (
     !tab.isDisabled && tab
 );
 
@@ -45,7 +45,7 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
                         isDisabled={isDisabled}
                         isFullWidth={hasFullWidthTabHeaders}
                         key={title}
-                        onClick={() => {
+                        onClick={(): void => {
                             setActiveTabIndex(index);
                         }}
                     >

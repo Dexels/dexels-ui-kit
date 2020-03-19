@@ -1,16 +1,16 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 export const StyledPaginator = styled.div`
     ${setBoxSizing()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: flex-end;
-    padding: ${({ theme }) => theme.spacing(3, 0, 0, 0)};
-    color: ${({ theme }) => theme.colorText.primary};
+    padding: ${({ theme }): string => theme.spacing(3, 0, 0, 0)};
+    color: ${({ theme }): string => theme.colorText.primary};
 `;
 
 StyledPaginator.defaultProps = {
@@ -23,10 +23,10 @@ interface InputWrapperProps {
 
 export const InputWrapper = styled.div<InputWrapperProps>`
     margin: 0 0 -1px; /* The -1px is a correction for the input components border */
-    padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
+    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
 
-    ${({ hasPageSizeSelector }) => hasPageSizeSelector && css`
-        padding: ${({ theme }) => theme.spacing(0, 0, 0, 3)};
+    ${({ hasPageSizeSelector, theme }): SimpleInterpolation => hasPageSizeSelector && css`
+        padding: ${theme.spacing(0, 0, 0, 3)};
     `}
 `;
 
@@ -35,7 +35,7 @@ InputWrapper.defaultProps = {
 };
 
 export const PageSizeSelector = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -47,11 +47,11 @@ PageSizeSelector.defaultProps = {
 
 export const PageSizeSelectorText = styled.div`
     &:first-of-type {
-        padding: ${({ theme }) => theme.spacing(0, 1)};
+        padding: ${({ theme }): string => theme.spacing(0, 1)};
     }
 
     &:last-of-type {
-        padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
+        padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
         text-transform: lowercase;
     }
 `;
@@ -70,7 +70,7 @@ export const Paging = styled.div`
 
 export const PagingText = styled.div`
     align-items: center;
-    padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
+    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
     text-transform: lowercase;
 `;
 
@@ -82,7 +82,7 @@ export const PagingButtons = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: ${({ theme }) => theme.spacing(0, 0, 0, 1)};
+    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
 `;
 
 PagingButtons.defaultProps = {

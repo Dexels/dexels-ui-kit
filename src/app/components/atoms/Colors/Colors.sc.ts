@@ -22,7 +22,7 @@ export const ColorGroup = styled.div`
 `;
 
 export const ColorGroupName = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h3)}
     position: absolute;
     top: -32px;
     left: 50%;
@@ -46,7 +46,7 @@ export const Color = styled.div<ColorProps>`
     margin: 0 8px 8px;
     border: 1px solid #000;
     border-radius: 100%;
-    background-color: ${({ color }) => color};
+    background-color: ${({ color }): string => color};
     width: 100px;
     height: 100px;
 `;
@@ -55,10 +55,10 @@ interface ColorTextProps {
     color: string;
 }
 export const ColorText = styled.p<ColorTextProps>`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     flex: 0 0 auto;
     margin: 0;
     text-align: center;
     text-transform: capitalize;
-    color: ${({ color }) => invertColor(color, true)};
+    color: ${({ color }): string => invertColor(color, true)};
 `;

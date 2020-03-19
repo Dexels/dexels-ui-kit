@@ -1,11 +1,11 @@
 import { boolean, text } from '@storybook/addon-knobs';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import Dropdown from './Dropdown';
 import { DropdownVariant } from './types';
 
 export default { title: 'molecules/Dropdown' };
 
-export const ConfigurableCompactVariant = () => {
+export const ConfigurableCompactVariant: FunctionComponent = () => {
     const placeholder = 'Select the best fruit';
     const fruits = ['Banana', 'Apple', 'Orange', 'Pear', 'Strawberry'];
     const [value, setValue] = useState(placeholder);
@@ -27,7 +27,7 @@ export const ConfigurableCompactVariant = () => {
                 isDisabled={boolean('Is disabled', false)}
                 isValid={boolean('Is valid', false)}
                 name="the-best-fruit"
-                onChange={(event) => {
+                onChange={(event): void => {
                     setValue(event.currentTarget.value);
                 }}
                 placeholder={placeholder}
@@ -42,7 +42,7 @@ export const ConfigurableCompactVariant = () => {
     );
 };
 
-export const ConfigurableOutlineVariant = () => {
+export const ConfigurableOutlineVariant: FunctionComponent = () => {
     const placeholder = 'Select a fruit';
     const fruits = ['Banana', 'Apple', 'Orange', 'Pear', 'Strawberry'];
     const [value, setValue] = useState(placeholder);
@@ -62,7 +62,7 @@ export const ConfigurableOutlineVariant = () => {
                 isValid={boolean('Is valid', false)}
                 label="Your favorite fruit"
                 name="the-best-fruit"
-                onChange={(event) => {
+                onChange={(event): void => {
                     setValue(event.currentTarget.value);
                 }}
                 placeholder={placeholder}

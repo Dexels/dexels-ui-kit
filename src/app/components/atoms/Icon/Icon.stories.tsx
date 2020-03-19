@@ -1,8 +1,8 @@
+import React, { FunctionComponent } from 'react';
 import { colorKeys } from '../../../styles/theming/colorKeys';
 import { getColorsFromTheme } from '../../../styles/theming/getColorsFromTheme';
 import Icon from './Icon';
 import { IconType } from '../../../types';
-import React from 'react';
 import { select } from '@storybook/addon-knobs';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -12,7 +12,7 @@ export default { title: 'atoms/Icon' };
 // The sort-keys ESLint rule is disabled so that we can order the sizes from small to large
 // @TODO try to use the ThemeContext here, doesn't work atm
 // Already opened an issue: https://github.com/storybookjs/storybook/issues/8531
-export const Configurable = () => {
+export const Configurable: FunctionComponent = () => {
     const colors = getColorsFromTheme(themeBasic, colorKeys);
 
     return (
