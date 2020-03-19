@@ -19,7 +19,6 @@
     "scripts": {
         "start": "npm run storybook",
         "build:prod": "npm run clean && cross-env BABEL_ENV=prod rollup -c",
-        "check-all": "npm run lint:js & npm run check-types && npm run lint:css",
         "check-types": "tsc",
         "dist": "npm run build:prod && npm run generate:types",
         "generate:types": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json",
