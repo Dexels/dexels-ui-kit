@@ -24,6 +24,7 @@ export interface TableProps<T extends object> {
     footerComponent?: React.ReactNode;
     hasUnsortedStateIcon?: boolean;
     instance: TableInstance<T>;
+    isDisabled?: boolean;
     isFullWidth?: boolean;
     onClickRow?: (event: React.SyntheticEvent, row: Row<T>) => void;
     pagingComponent?: React.ReactNode;
@@ -43,6 +44,7 @@ export const Table = <T extends object>({
     footerComponent,
     hasUnsortedStateIcon = true,
     instance,
+    isDisabled = false,
     isFullWidth = true,
     onClickRow,
     pagingComponent,
@@ -73,6 +75,7 @@ export const Table = <T extends object>({
                             {headerGroup.headers.filter(({ isVisible }) => isVisible).map((column) => (
                                 <TableHeaderCell
                                     hasCellPadding={column.hasCellPadding}
+                                    isDisabled={isDisabled}
                                     key={column}
                                     width={column.width}
                                     {...column.getHeaderProps(column.getSortByToggleProps({
