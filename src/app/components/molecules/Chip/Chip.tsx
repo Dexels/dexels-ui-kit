@@ -4,7 +4,7 @@ import {
     IconSize,
     IconType,
 } from '../../../types';
-import React, { FunctionComponent, MouseEventHandler, ReactNode} from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { StyledChip } from './Chip.sc';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
