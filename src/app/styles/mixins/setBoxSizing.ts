@@ -1,6 +1,6 @@
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 
-export const setBoxSizing = (boxSizing = 'border-box') => (css`
+export const setBoxSizing = (boxSizing = 'border-box'): FlattenSimpleInterpolation => (css`
     box-sizing: ${boxSizing};
 
     * {

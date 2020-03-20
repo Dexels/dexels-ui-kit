@@ -1,6 +1,6 @@
 import { IconType, Size } from '../../../types';
+import React, { FunctionComponent, MouseEventHandler } from 'react';
 import Icon from '../../atoms/Icon/Icon';
-import React from 'react';
 import { StyledButtonIcon } from './ButtonIcon.sc';
 
 export interface ButtonIconProps {
@@ -8,13 +8,13 @@ export interface ButtonIconProps {
     iconType: IconType;
     isDisabled?: boolean;
     isInverted?: boolean;
-    onClick?: React.MouseEventHandler;
+    onClick?: MouseEventHandler;
     size?: Size;
     // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 
-export const ButtonIcon: React.FunctionComponent<ButtonIconProps> = ({
+export const ButtonIcon: FunctionComponent<ButtonIconProps> = ({
     className,
     iconType,
     isDisabled = false,

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { StyledLabel } from './Label.sc';
 
 export interface LabelProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     className?: string;
     hasError?: boolean;
     isActive?: boolean;
@@ -15,7 +15,7 @@ export interface LabelProps {
     isValid?: boolean;
 }
 
-export const Label: React.FunctionComponent<LabelProps> = ({
+export const Label: FunctionComponent<LabelProps> = ({
     children,
     className,
     hasError = false,

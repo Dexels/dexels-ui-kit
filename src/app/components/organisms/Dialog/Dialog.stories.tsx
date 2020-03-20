@@ -11,7 +11,7 @@ import {
     select,
     text,
 } from '@storybook/addon-knobs';
-import React, { useState } from 'react';
+import React, { FunctionComponent, MouseEventHandler, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import Dialog from './Dialog';
@@ -21,12 +21,12 @@ export default { title: 'organisms/Dialog' };
 
 interface ConfigurableDialogProps {
     isVisible: boolean;
-    onCancel: React.MouseEventHandler;
-    onClose: React.MouseEventHandler;
-    onConfirm: React.MouseEventHandler;
+    onCancel: MouseEventHandler;
+    onClose: MouseEventHandler;
+    onConfirm: MouseEventHandler;
 }
 
-const ConfigurableDialog: React.FunctionComponent<ConfigurableDialogProps> = ({
+const ConfigurableDialog: FunctionComponent<ConfigurableDialogProps> = ({
     isVisible,
     onCancel,
     onClose,
@@ -57,7 +57,7 @@ const ConfigurableDialog: React.FunctionComponent<ConfigurableDialogProps> = ({
     </Dialog>
 );
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <ConfigurableDialog
         isVisible
         onCancel={action('OnCancel click')}
@@ -66,13 +66,13 @@ export const Configurable = () => (
     />
 );
 
-export const ConfigurableAlert = () => {
+export const ConfigurableAlert: FunctionComponent = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
         <>
             <Button
-                onClick={() => {
+                onClick={(): void => {
                     setIsVisible(true);
                 }}
                 variant={ButtonVariant.FILLED}
@@ -81,15 +81,15 @@ export const ConfigurableAlert = () => {
             </Button>
             <ConfigurableDialog
                 isVisible={isVisible}
-                onCancel={() => {
+                onCancel={(): void => {
                     action('OnCancel');
                     setIsVisible(false);
                 }}
-                onClose={() => {
+                onClose={(): void => {
                     action('onClose');
                     setIsVisible(false);
                 }}
-                onConfirm={() => {
+                onConfirm={(): void => {
                     action('onConfirm');
                     setIsVisible(false);
                 }}

@@ -8,7 +8,7 @@ export const StyledToolbar = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0, 1, 0, 1)};
+    margin: ${({ theme }): string => theme.spacing(0, 1, 0, 1)};
 `;
 
 ButtonWrapper.defaultProps = {

@@ -9,7 +9,7 @@ import {
 } from '../../../utils/functions/arrayObjectFunctions';
 import { boolean, text } from '@storybook/addon-knobs';
 import { data, Options } from './mockup/data';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
 import DropdownMultiSelect from './DropdownMultiSelect';
 import { DropdownOptionAllTexts } from './types';
@@ -23,7 +23,10 @@ const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 const originalOptionValues = cloneArray(data);
 
-const getSelectAllOption = (options: Options, textOptionDeselectAll: string, textOptionSelectAll: string) => {
+const getSelectAllOption = (options: Options, textOptionDeselectAll: string, textOptionSelectAll: string): {
+    text: string;
+    value: DropdownOptionAllTexts;
+} => {
     const hasSelected = isAnyOptionSelected(options);
     const allSelected = areAllOptionsSelected(options);
 
@@ -53,7 +56,7 @@ const BaseComponent = (
     variant: DropdownVariant = DropdownVariant.COMPACT,
     maxHeight = '',
     label = '',
-) => {
+): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -66,7 +69,7 @@ const BaseComponent = (
         TEXT_OPTION_SELECT_ALL,
     ));
 
-    const setStates = (values: Options) => {
+    const setStates = (values: Options): void => {
         setOptionValues(cloneArray(values));
 
         setSelectAllOption(
@@ -78,10 +81,10 @@ const BaseComponent = (
         );
     };
 
-    const onChangeAll = () => {
-        setStates(isAnyOptionSelected(optionValues)
+    const onChangeAll = (): void => {
+        setStates((isAnyOptionSelected(optionValues)
             ? setAllElementsDeselected(optionValues)
-            : setAllElementsSelected(optionValues));
+            : setAllElementsSelected(optionValues)) as Options);
     };
 
     return (
@@ -97,14 +100,14 @@ const BaseComponent = (
                 label={label}
                 maxHeight={maxHeight}
                 name="the-best-fruit"
-                onCancel={() => {
+                onCancel={(): void => {
                     setStates(originalOptions);
                     setIsOpen(false);
                 }}
-                onClick={() => {
+                onClick={(): void => {
                     setIsOpen(!isOpen);
                 }}
-                onConfirm={() => {
+                onConfirm={(): void => {
                     setIsOpen(false);
                 }}
                 optionAll={(
@@ -123,8 +126,8 @@ const BaseComponent = (
                         key={item.Id}
                         label={item.Description}
                         name={`DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
-                        onChange={() => {
-                            setStates(setElementSelected(optionValues, item));
+                        onChange={(): void => {
+                            setStates(setElementSelected(optionValues, item) as Options);
                         }}
                         value={item.Id}
                     />
@@ -149,7 +152,7 @@ const BaseComponent = (
     );
 };
 
-export const ConfigurableCompactVariant = () => (
+export const ConfigurableCompactVariant: FunctionComponent = () => (
     <>
         <p>
             {'What is the best fruit?'}
@@ -161,7 +164,7 @@ export const ConfigurableCompactVariant = () => (
     </>
 );
 
-export const ConfigurableOutlineVariant = () => (
+export const ConfigurableOutlineVariant: FunctionComponent = () => (
     BaseComponent(
         data,
         originalOptionValues,

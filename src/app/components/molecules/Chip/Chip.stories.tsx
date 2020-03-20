@@ -10,13 +10,13 @@ import {
     IconSize,
     IconType,
 } from '../../../types';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Chip from './Chip';
-import React from 'react';
 
 export default { title: 'molecules/Chip' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <Chip
         isDisabled={boolean('Is disabled', false)}
         isSelected={boolean('Is selected', true)}
@@ -28,7 +28,7 @@ export const Configurable = () => (
     </Chip>
 );
 
-export const ConfigurableWithoutOnClick = () => (
+export const ConfigurableWithoutOnClick: FunctionComponent = () => (
     <Chip
         isDisabled={boolean('Is disabled', false)}
         isSelected={boolean('Is selected', true)}
@@ -39,7 +39,7 @@ export const ConfigurableWithoutOnClick = () => (
     </Chip>
 );
 
-export const ConfigurableWithIcon = () => (
+export const ConfigurableWithIcon: FunctionComponent = () => (
     <Chip
         direction={select('Direction', Direction, Direction.LTR)}
         iconSize={select('Icon size', IconSize, IconSize.MEDIUM)}

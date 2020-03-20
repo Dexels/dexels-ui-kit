@@ -5,20 +5,20 @@ import {
     Text,
 } from './DialogFooter.sc';
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Button from '../Button/Button';
-import React from 'react';
 
 export interface DialogFooterProps {
-    buttonCancelText?: React.ReactNode;
+    buttonCancelText?: ReactNode;
     buttonConfirmIconType?: IconType;
-    buttonConfirmText?: React.ReactNode;
+    buttonConfirmText?: ReactNode;
     className?: string;
-    onCancel?: React.MouseEventHandler;
-    onConfirm?: React.MouseEventHandler;
-    text?: React.ReactNode;
+    onCancel?: MouseEventHandler;
+    onConfirm?: MouseEventHandler;
+    text?: ReactNode;
 }
 
-export const DialogFooter: React.FunctionComponent<DialogFooterProps> = ({
+export const DialogFooter: FunctionComponent<DialogFooterProps> = ({
     buttonCancelText,
     buttonConfirmIconType = IconType.CHECK,
     buttonConfirmText,

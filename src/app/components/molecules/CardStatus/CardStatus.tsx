@@ -3,11 +3,11 @@ import {
     Placement,
     Status,
 } from '../../../types';
-import React from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { StyledCardStatus } from './CardStatus.sc';
 
 export interface CardStatusProps {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     elevation?: Elevation;
     hasBorderRadius?: boolean;
@@ -15,7 +15,7 @@ export interface CardStatusProps {
     status?: Status;
 }
 
-export const CardStatus: React.FunctionComponent<CardStatusProps> = ({
+export const CardStatus: FunctionComponent<CardStatusProps> = ({
     children,
     className,
     elevation,

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { InputVariant } from '../../../types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -8,7 +8,6 @@ interface StyledFormElementLabelProps {
     variant: InputVariant;
 }
 
-// @TODO: refactor transitionEffect function to accept multiple properties
 export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
     position: absolute;
     transition: top 300ms ease, left 300ms ease;
@@ -17,7 +16,7 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
     text-align: left;
     pointer-events: none;
 
-    ${({ isActive, variant }) => variant === InputVariant.COMPACT && css`
+    ${({ isActive, variant }): SimpleInterpolation => variant === InputVariant.COMPACT && css`
         top: ${isActive ? '-16px' : 0};
         left: 0;
     `}
@@ -27,7 +26,7 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
         isActive,
         theme,
         variant,
-    }) => variant === InputVariant.OUTLINE && css`
+    }): SimpleInterpolation => variant === InputVariant.OUTLINE && css`
         top: ${isActive ? '-8px' : '50%'};
         left: ${theme.spacing(isActive ? 2.5 : 1.5)};
         transform: ${isActive ? 'none' : 'translate3d(0, -50%, 0)'};

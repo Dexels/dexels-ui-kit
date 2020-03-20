@@ -17,9 +17,9 @@ interface IconWrapperProps {
 export const IconWrapper = styled.div<IconWrapperProps>`
     display: flex;
     align-items: center;
-    padding: ${({ theme }) => theme.spacing(1.5)};
-    color: ${({ status, theme }) => getStatusColor(status, theme)};
-    font-size: ${({ theme }) => theme.spacing(3)};
+    padding: ${({ theme }): string => theme.spacing(1.5)};
+    color: ${({ status, theme }): string => getStatusColor(status, theme)};
+    font-size: ${({ theme }): string => theme.spacing(3)};
 `;
 
 IconWrapper.defaultProps = {

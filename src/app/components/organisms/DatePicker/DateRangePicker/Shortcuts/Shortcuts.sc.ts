@@ -4,7 +4,7 @@ import { themeBasic } from '../../../../../styles/theming/themes/basic';
 export const StyledShortcuts = styled.div`
     display: flex;
     align-items: center;
-    padding: ${({ theme }) => theme.spacing(0, 2.75, 1.5)};
+    padding: ${({ theme }): string => theme.spacing(0, 2.75, 1.5)};
 `;
 
 StyledShortcuts.defaultProps = {
@@ -12,10 +12,10 @@ StyledShortcuts.defaultProps = {
 };
 
 export const Text = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     flex: 0 0 auto;
-    margin: ${({ theme }) => theme.spacing(0, 2, 1, 0)};
-    color: ${({ theme }) => theme.colorText.primary};
+    margin: ${({ theme }): string => theme.spacing(0, 2, 1, 0)};
+    color: ${({ theme }): string => theme.colorText.primary};
     font-weight: 600;
 `;
 
@@ -34,7 +34,7 @@ Wrapper.defaultProps = {
 
 export const ButtonWrapper = styled.div`
     flex: 0 0 auto;
-    margin: ${({ theme }) => theme.spacing(0, 2, 1, 0)};
+    margin: ${({ theme }): string => theme.spacing(0, 2, 1, 0)};
 `;
 
 ButtonWrapper.defaultProps = {

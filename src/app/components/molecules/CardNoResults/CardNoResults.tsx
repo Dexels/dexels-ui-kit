@@ -8,20 +8,20 @@ import {
     StyledCardNoResults,
     Title,
 } from './CardNoResults.sc';
+import React, { FunctionComponent, ReactNode } from 'react';
 import Icon from '../../atoms/Icon/Icon';
-import React from 'react';
 
 export interface CardNoResultsProps {
     className?: string;
     elevation?: Elevation;
-    header: React.ReactNode;
+    header: ReactNode;
     iconType: IconType;
     itemPrefix?: string;
-    items?: React.ReactNode[];
-    title: React.ReactNode;
+    items?: ReactNode[];
+    title: ReactNode;
 }
 
-export const CardNoResults: React.FunctionComponent<CardNoResultsProps> = ({
+export const CardNoResults: FunctionComponent<CardNoResultsProps> = ({
     className,
     elevation = Elevation.LEVEL_1,
     header,

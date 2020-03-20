@@ -1,9 +1,9 @@
 import { CellProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import { formatDate, isValidDate } from '../../../../utils/validators/dateFunctions';
 import { IconType, Status } from '../../../../types';
+import React, { ReactNode } from 'react';
 import Icon from '../../../atoms/Icon/Icon';
 import { MatchTaskStatuses } from '../StatusCell/types';
-import React from 'react';
 import StatusCell from '../StatusCell/StatusCell';
 
 export const compareValues = <T extends object>(
@@ -12,7 +12,7 @@ export const compareValues = <T extends object>(
     desc = false,
     caseSensitive = false,
 ) => (
-    ((a: UseTableRowProps<T>, b: UseTableRowProps<T>) => {
+    ((a: UseTableRowProps<T>, b: UseTableRowProps<T>): number => {
         if (!Object.prototype.hasOwnProperty.call(a.values, key)) {
             return 0;
         }
@@ -43,7 +43,7 @@ export const customSortByDate = <T extends object>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     key: any,
     emptyValuesAtEnd = true,
-) => {
+): -1 | 1 => {
     const valueA = a.values[key];
     const valueB = b.values[key];
 
@@ -62,13 +62,12 @@ export const customSortByCaseInsensitive = <T extends object>(
     rows: UseTableRowProps<T>[],
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     key: any,
-) => (
+): UseTableRowProps<T>[] => (
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key))
-    // return React.useMemo(() => rows.sort(compareValues('firstName')), []);
 );
 
-export const renderCell = <T extends object>(row: CellProps<T>) => {
+export const renderCell = <T extends object>(row: CellProps<T>): ReactNode => {
     if (row.cell.value && row.cell.value === null) {
         return undefined;
     }
@@ -86,7 +85,7 @@ export const renderCell = <T extends object>(row: CellProps<T>) => {
 
 export const renderSortIcon = <T extends object>(
     column: UseSortByColumnProps<T>, hasUnsortedStateIcon = false,
-) => {
+): ReactNode => {
     let sortIcon = null;
 
     if (!column.canSort) {
@@ -113,10 +112,10 @@ export const getColumnWidth = <T extends object>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     accessor: any,
     headerText = accessor,
-) => {
+): string => {
     if (typeof accessor === 'string' || accessor instanceof String) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        accessor = (d: any) => d[accessor]; // eslint-disable-line no-param-reassign
+        accessor = (d: any): void => d[accessor]; // eslint-disable-line no-param-reassign
     }
 
     const maxWidth = 600;
@@ -133,6 +132,6 @@ export const getColumnWidth = <T extends object>(
     return `${Math.min(maxWidth, cellLength * magicSpacing)}px`;
 };
 
-export const renderStatusCell = (matchTaskStatus: MatchTaskStatuses, status: Status) => (
+export const renderStatusCell = (matchTaskStatus: MatchTaskStatuses, status: Status): JSX.Element => (
     <StatusCell matchTaskStatus={matchTaskStatus} status={status} />
 );

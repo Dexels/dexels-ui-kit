@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { Size } from '../../../types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -10,12 +10,12 @@ interface StyledTextIcon {
 export const StyledTextIcon = styled.div<StyledTextIcon>`
     ${setBoxSizing()}
     border-radius: 100%;
-    background-color: ${({ theme }) => theme.shades.seven};
+    background-color: ${({ theme }): string => theme.shades.seven};
     text-align: center;
-    color: ${({ theme }) => theme.shades.four};
-    font-family: ${({ theme }) => theme.fontFamilyPrimary};
+    color: ${({ theme }): string => theme.shades.four};
+    font-family: ${({ theme }): string => theme.fontFamilyPrimary};
 
-    ${({ size, theme }) => css`
+    ${({ size, theme }): FlattenSimpleInterpolation => css`
         ${size === Size.SMALL && css`
             width: ${theme.spacing(2.5)};
             height: ${theme.spacing(2.5)};

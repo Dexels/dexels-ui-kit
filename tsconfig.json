@@ -13,7 +13,7 @@
         "types": ["node"]
     },
     "include": [
-        "src/**/*",
-        "src/.storybook/**/*"
+        "./src",
+        "./src/.storybook/**/*"
     ]
 }

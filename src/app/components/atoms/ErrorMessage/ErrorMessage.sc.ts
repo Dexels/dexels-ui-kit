@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export const StyledErrorMessage = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().caption)}
-    color: ${({ theme }) => theme.colorInvalid};
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
+    color: ${({ theme }): string => theme.colorInvalid};
 `;
 
 StyledErrorMessage.defaultProps = {

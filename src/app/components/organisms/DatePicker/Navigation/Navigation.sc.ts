@@ -11,11 +11,11 @@ export const DropdownWrapper = styled.div`
     width: 50%;
 
     &:first-of-type {
-        margin: ${({ theme }) => theme.spacing(0, 0.75, 0, 0)};
+        margin: ${({ theme }): string => theme.spacing(0, 0.75, 0, 0)};
     }
 
     &:last-of-type {
-        margin: ${({ theme }) => theme.spacing(0, 0, 0, 0.75)};
+        margin: ${({ theme }): string => theme.spacing(0, 0, 0, 0.75)};
     }
 `;
 
@@ -24,10 +24,10 @@ DropdownWrapper.defaultProps = {
 };
 
 export const CurrentDate = styled.p`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h2)}
     margin: 0;
     text-transform: capitalize;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorText.primary};
 `;
 
 CurrentDate.defaultProps = {

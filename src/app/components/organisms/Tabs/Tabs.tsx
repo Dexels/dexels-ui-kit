@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import React, {
+    FunctionComponent,
+    ReactNode,
+    ReactText,
+    useState,
+} from 'react';
 import {
     StyledTabs,
     TabHeader,
@@ -8,9 +13,9 @@ import {
 import { Elevation } from '../../../types';
 
 export interface Tab {
-    content: React.ReactNode;
+    content: ReactNode;
     isDisabled?: boolean;
-    title: React.ReactText;
+    title: ReactText;
 }
 
 export interface TabsProps {
@@ -21,11 +26,11 @@ export interface TabsProps {
     tabs: Tab[];
 }
 
-const setInitiallyActiveTabIndex = (tab: Tab) => (
+const setInitiallyActiveTabIndex = (tab: Tab): false | Tab => (
     !tab.isDisabled && tab
 );
 
-export const Tabs: React.FunctionComponent<TabsProps> = ({
+export const Tabs: FunctionComponent<TabsProps> = ({
     className,
     elevation = Elevation.LEVEL_1,
     hasFullWidthTabHeaders = true,
@@ -45,7 +50,7 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
                         isDisabled={isDisabled}
                         isFullWidth={hasFullWidthTabHeaders}
                         key={title}
-                        onClick={() => {
+                        onClick={(): void => {
                             setActiveTabIndex(index);
                         }}
                     >

@@ -1,12 +1,12 @@
 import { Placement, Status, StatusIndicatorSize } from '../../../types';
+import React, { FunctionComponent } from 'react';
 import Colors from '../Colors/Colors';
-import React from 'react';
 import { select } from '@storybook/addon-knobs';
 import StatusIndicator from './StatusIndicator';
 
 export default { title: 'atoms/StatusIndicator' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <StatusIndicator
         placement={select('Placement', Placement, Placement.TOP)}
         size={select('Size', StatusIndicatorSize, StatusIndicatorSize.LARGE)}

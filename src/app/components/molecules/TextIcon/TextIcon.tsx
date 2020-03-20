@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Size } from '../../../types';
 import { StyledTextIcon } from './TextIcon.sc';
 
@@ -10,7 +10,7 @@ export interface TextIconProps {
     [key: string]: any;
 }
 
-export const TextIcon: React.FunctionComponent<TextIconProps> = ({
+export const TextIcon: FunctionComponent<TextIconProps> = ({
     className,
     size = Size.LARGE,
     text,

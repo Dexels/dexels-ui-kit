@@ -5,9 +5,9 @@ import {
     StyledItem,
     TextWrapper,
 } from './Item.sc';
+import React, { FunctionComponent, MouseEventHandler } from 'react';
 import Icon from '../../../atoms/Icon/Icon';
 import { NavLink } from 'react-router-dom';
-import React from 'react';
 import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
 
 interface ItemsProps {
@@ -17,11 +17,11 @@ interface ItemsProps {
     isDisabled?: boolean;
     isOpen?: boolean;
     isParent?: boolean;
-    onClick?: React.MouseEventHandler;
+    onClick?: MouseEventHandler;
     path?: string;
 }
 
-const Item: React.FunctionComponent<ItemsProps> = ({
+const Item: FunctionComponent<ItemsProps> = ({
     children,
     exact = false,
     hasChildren = false,

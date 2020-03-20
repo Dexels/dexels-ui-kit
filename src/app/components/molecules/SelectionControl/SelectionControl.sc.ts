@@ -1,6 +1,6 @@
 import { Direction, Easing } from '../../../types';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { SelectionControlType } from './types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { setCentered } from '../../../styles/mixins/setCentered';
@@ -22,7 +22,7 @@ export const StyledSelectionControl = styled.div<StyledSelectionControlProps>`
         hasVerticalCorrection,
         theme,
         type,
-    }) => css`
+    }): FlattenSimpleInterpolation => css`
         ${type === SelectionControlType.CHECKBOX && css`
             ${hasHorizontalCorrection && css`
                 margin-left: ${theme.spacing(-1)};
@@ -60,15 +60,15 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     display: flex;
     position: relative;
     flex: 0 0 auto;
-    order: ${({ direction }) => (direction === Direction.LTR ? 1 : 2)};
+    order: ${({ direction }): number => (direction === Direction.LTR ? 1 : 2)};
     z-index: 1;
     border-radius: 100%;
-    width: ${({ theme }) => theme.spacing(5)};
-    height: ${({ theme }) => theme.spacing(5)};
+    width: ${({ theme }): string => theme.spacing(5)};
+    height: ${({ theme }): string => theme.spacing(5)};
     overflow: hidden;
     pointer-events: none;
 
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ isDisabled }): SimpleInterpolation => isDisabled && css`
         input {
             pointer-events: none !important;
         }
@@ -76,7 +76,7 @@ export const InputWrapper = styled.div<InputWrapperProps>`
 
     &::before {
         ${setCentered()}
-        ${({ transitionDuration, transitionEasing }) => transitionEffect({
+        ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation => transitionEffect({
             duration: transitionDuration,
             easing: transitionEasing,
         })}
@@ -85,14 +85,14 @@ export const InputWrapper = styled.div<InputWrapperProps>`
         opacity: 0;
         z-index: 1;
         border-radius: 100%;
-        background-color: ${({ theme }) => theme.colorTertiary};
+        background-color: ${({ theme }): string => theme.colorTertiary};
         width: 100%;
         height: 100%;
         content: '';
     }
 
     &::after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)}
+        ${({ theme }): FlattenSimpleInterpolation => rippleEffect(theme.colorSecondary)}
         z-index: 2;
     }
 
@@ -143,16 +143,16 @@ export const FakeInput = styled.div<FakeInputProps>`
     flex: 0 0 auto;
     z-index: 3;
     margin: auto;
-    border: 2px solid ${({ theme }) => theme.colorPrimary};
+    border: 2px solid ${({ theme }): string => theme.colorPrimary};
     background-color: transparent;
 
-    ${({ theme, type }) => type === SelectionControlType.CHECKBOX && css`
+    ${({ theme, type }): SimpleInterpolation => type === SelectionControlType.CHECKBOX && css`
         border-radius: ${theme.spacing(0.5)};
         width: ${theme.spacing(3)};
         height: ${theme.spacing(3)};
     `}
 
-    ${({ theme, type }) => type === SelectionControlType.RADIO && css`
+    ${({ theme, type }): SimpleInterpolation => type === SelectionControlType.RADIO && css`
         border-radius: 100%;
         width: ${theme.spacing(2.5)};
         height: ${theme.spacing(2.5)};
@@ -163,7 +163,7 @@ export const FakeInput = styled.div<FakeInputProps>`
         isIndeterminate,
         theme,
         type,
-    }) => (isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
+    }): SimpleInterpolation => (isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
         &::after {
             ${setCentered()}
             position: absolute;
@@ -175,7 +175,7 @@ export const FakeInput = styled.div<FakeInputProps>`
         }
     `}
 
-    ${({ isHovered, theme }) => isHovered && css`
+    ${({ isHovered, theme }): SimpleInterpolation => isHovered && css`
         border-color: ${theme.colorSecondary};
     `}
 
@@ -185,7 +185,7 @@ export const FakeInput = styled.div<FakeInputProps>`
         isValid,
         theme,
         type,
-    }) => isValid && css`
+    }): SimpleInterpolation => isValid && css`
         border-color: ${theme.colorValid};
 
         ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
@@ -201,7 +201,7 @@ export const FakeInput = styled.div<FakeInputProps>`
         isIndeterminate,
         theme,
         type,
-    }) => hasError && css`
+    }): SimpleInterpolation => hasError && css`
         border-color: ${theme.colorInvalid};
 
         ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
@@ -217,7 +217,7 @@ export const FakeInput = styled.div<FakeInputProps>`
         isIndeterminate,
         theme,
         type,
-    }) => isDisabled && css`
+    }): SimpleInterpolation => isDisabled && css`
         border-color: ${theme.colorDisabled};
 
         ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
@@ -243,22 +243,22 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     position: absolute;
     z-index: 4;
     padding: 0 0 1px;
-    color: ${({ theme }) => theme.colorSecondary};
-    font-size: ${({ theme }) => theme.spacing(2.5)};
+    color: ${({ theme }): string => theme.colorSecondary};
+    font-size: ${({ theme }): string => theme.spacing(2.5)};
 
     span {
         display: block;
     }
 
-    ${({ hasError, theme }) => hasError && css`
+    ${({ hasError, theme }): SimpleInterpolation => hasError && css`
         color: ${theme.colorInvalid};
     `}
 
-    ${({ isDisabled, theme }) => isDisabled && css`
+    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
         color: ${theme.colorDisabled};
     `}
 
-    ${({ isValid, theme }) => isValid && css`
+    ${({ isValid, theme }): SimpleInterpolation => isValid && css`
         color: ${theme.colorValid};
     `}
 `;
@@ -274,15 +274,15 @@ interface LabelWrapperProps {
 
 export const LabelWrapper = styled.button<LabelWrapperProps>`
     flex: 1 1 auto;
-    order: ${({ direction }) => (direction === Direction.LTR ? 2 : 1)};
+    order: ${({ direction }): number => (direction === Direction.LTR ? 2 : 1)};
     outline: none;
     border: 0;
     background: transparent;
     cursor: pointer;
     padding: 0;
-    text-align: ${({ direction }) => (direction === Direction.LTR ? 'left' : 'right')};
+    text-align: ${({ direction }): string => (direction === Direction.LTR ? 'left' : 'right')};
 
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ isDisabled }): SimpleInterpolation => isDisabled && css`
         pointer-events: none;
     `}
 `;
@@ -292,7 +292,7 @@ LabelWrapper.defaultProps = {
 };
 
 export const ErrorMessageWrapper = styled.div`
-    margin: ${({ theme }) => theme.spacing(0.25, 0, 0, 0)};
+    margin: ${({ theme }): string => theme.spacing(0.25, 0, 0, 0)};
 `;
 
 ErrorMessageWrapper.defaultProps = {

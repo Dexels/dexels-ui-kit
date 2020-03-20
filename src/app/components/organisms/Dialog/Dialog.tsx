@@ -10,37 +10,37 @@ import {
     Header,
     StyledDialog,
 } from './Dialog.sc';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import Icon from '../../atoms/Icon/Icon';
 import Overlay from '../../molecules/Overlay/Overlay';
-import React from 'react';
 
 export interface DialogProps {
     bodyAlignment?: Alignment;
-    buttonCancelText?: React.ReactNode;
+    buttonCancelText?: ReactNode;
     buttonClosePosition?: DialogButtonClosePosition;
     buttonConfirmIconType?: IconType;
-    buttonConfirmText: React.ReactNode;
-    children: React.ReactNode;
+    buttonConfirmText: ReactNode;
+    children: ReactNode;
     className?: string;
     elevation?: Elevation;
-    footerText?: React.ReactNode;
+    footerText?: ReactNode;
     hasButtonClose?: boolean;
     hasOverlay?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerAlignment?: Alignment;
     height?: string;
     isVisible: boolean;
-    onCancel?: React.MouseEventHandler;
-    onClose?: React.MouseEventHandler;
-    onConfirm: React.MouseEventHandler;
+    onCancel?: MouseEventHandler;
+    onClose?: MouseEventHandler;
+    onConfirm: MouseEventHandler;
     transitionDuration?: number;
     transitionEasing?: Easing;
     width?: string;
 }
 
-export const Dialog: React.FunctionComponent<DialogProps> = ({
+export const Dialog: FunctionComponent<DialogProps> = ({
     bodyAlignment = Alignment.CENTER,
     buttonCancelText,
     buttonClosePosition = DialogButtonClosePosition.LEFT,

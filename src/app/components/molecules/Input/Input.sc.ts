@@ -1,5 +1,5 @@
 import { InputType, InputVariant } from '../../../types';
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -15,7 +15,7 @@ export const StyledInput = styled.div<StyledInputProps>`
     ${setBoxSizing()}
     position: relative;
 
-    ${({ isDisabled }) => isDisabled && css`
+    ${({ isDisabled }): SimpleInterpolation => isDisabled && css`
         * {
             pointer-events: none;
         }
@@ -28,7 +28,7 @@ export const StyledInput = styled.div<StyledInputProps>`
         isValid,
         theme,
         variant,
-    }) => variant === InputVariant.COMPACT && css`
+    }): SimpleInterpolation => variant === InputVariant.COMPACT && css`
         &::after {
             display: block;
             height: 1px;
@@ -64,46 +64,46 @@ interface TextFieldProps extends StyledInputProps {
 }
 
 export const TextField = styled.input<TextFieldProps>`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body1)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     display: block;
     outline: none;
     background-color: transparent;
     width: 100%;
-    color: ${({ theme }) => theme.colorTextBody.primary};
+    color: ${({ theme }): string => theme.colorTextBody.primary};
 
-    ${({ theme, variant }) => variant === InputVariant.COMPACT && css`
+    ${({ theme, variant }): SimpleInterpolation => variant === InputVariant.COMPACT && css`
         border: 0;
         border-bottom: 1px solid ${theme.colorPrimary};
         padding: 0;
         height: ${theme.spacing(3)};
     `}
 
-    ${({ theme, variant }) => variant === InputVariant.OUTLINE && css`
+    ${({ theme, variant }): SimpleInterpolation => variant === InputVariant.OUTLINE && css`
         border: 1px solid ${theme.colorPrimary};
         border-radius: ${theme.spacing(1)};
         padding: ${theme.spacing(0, 1.5)};
         height: ${theme.spacing(6)};
     `}
 
-    ${({ isTextarea, theme }) => isTextarea && css`
+    ${({ isTextarea, theme }): SimpleInterpolation => isTextarea && css`
         padding: ${theme.spacing(1.5)};
         height: ${theme.spacing(16)};
         resize: none;
     `}
 
-    ${({ isFocused, isHovered, theme }) => (isFocused || isHovered) && css`
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation => (isFocused || isHovered) && css`
         border-color: ${theme.colorSecondary};
     `}
 
-    ${({ isValid, theme }) => isValid && css`
+    ${({ isValid, theme }): SimpleInterpolation => isValid && css`
         border-color: ${theme.colorValid};
     `}
 
-    ${({ hasError, theme }) => hasError && css`
+    ${({ hasError, theme }): SimpleInterpolation => hasError && css`
         border-color: ${theme.colorInvalid};
     `}
 
-    ${({ isDisabled, theme }) => isDisabled && css`
+    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
         border-color: ${theme.colorDisabled};
         color: ${theme.colorDisabled};
     `}
@@ -118,7 +118,7 @@ interface ErrorMessageWrapperProps {
 }
 
 export const ErrorMessageWrapper = styled.div<ErrorMessageWrapperProps>`
-    ${({ theme, variant }) => variant === InputVariant.OUTLINE && css`
+    ${({ theme, variant }): SimpleInterpolation => variant === InputVariant.OUTLINE && css`
         margin: ${theme.spacing(0.5, 0, 0, 1.5)};
     `}
 `;

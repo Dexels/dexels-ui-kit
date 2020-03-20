@@ -1,5 +1,10 @@
 import { SingleDatePicker as AirbnbSingleDatePicker, SingleDatePickerShape } from 'react-dates';
-import React, { useContext, useState } from 'react';
+import React, {
+    FunctionComponent,
+    ReactNode,
+    useContext,
+    useState,
+} from 'react';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import InputIcon from '../InputIcon/InputIcon';
@@ -24,9 +29,9 @@ export interface SingleDatePickerProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     isOutsideRange?: (day: any) => boolean;
     keepOpenOnDateSelect?: boolean;
-    label: React.ReactNode;
-    labelMonth?: React.ReactNode;
-    labelYear?: React.ReactNode;
+    label: ReactNode;
+    labelMonth?: ReactNode;
+    labelYear?: ReactNode;
     numberOfMonths?: number;
     onClose?: SingleDatePickerShape['onClose'];
     onDateChange: SingleDatePickerShape['onDateChange'];
@@ -36,7 +41,7 @@ export interface SingleDatePickerProps {
     yearCount?: number;
 }
 
-export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = ({
+export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     className,
     date,
     daySize = 40,
@@ -67,10 +72,10 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = 
             className={className}
             hasYearSelector={hasYearSelector}
             isFocused={isFocused}
-            onMouseEnter={() => {
+            onMouseEnter={(): void => {
                 setIsHovered(true);
             }}
-            onMouseLeave={() => {
+            onMouseLeave={(): void => {
                 setIsHovered(false);
             }}
         >
@@ -103,7 +108,7 @@ export const SingleDatePicker: React.FunctionComponent<SingleDatePickerProps> = 
                     onDateChange={onDateChange}
                     onFocusChange={onFocusChange}
                     placeholder={placeholder}
-                    renderMonthElement={(props) => (
+                    renderMonthElement={(props): JSX.Element => (
                         <Navigation
                             {...props}
                             hasYearSelector={hasYearSelector}

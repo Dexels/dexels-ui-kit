@@ -8,8 +8,8 @@ import {
     Size,
 } from '../../../types';
 import { LoaderWrapper, StyledButton, TextWrapper } from './Button.sc';
+import React, { FunctionComponent, MouseEventHandler } from 'react';
 import Loader from '../Loader/Loader';
-import React from 'react';
 import { TextWithOptionalIcon } from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface ButtonProps {
@@ -22,7 +22,7 @@ export interface ButtonProps {
     isFullWidth?: boolean;
     isInverted?: boolean;
     isLoading?: boolean;
-    onClick?: React.MouseEventHandler;
+    onClick?: MouseEventHandler;
     size?: ButtonSize;
     transitionDuration?: number;
     transitionEasing?: Easing;
@@ -31,7 +31,7 @@ export interface ButtonProps {
     [key: string]: any;
 }
 
-export const Button: React.FunctionComponent<ButtonProps> = ({
+export const Button: FunctionComponent<ButtonProps> = ({
     autoFocus = false,
     children,
     className,

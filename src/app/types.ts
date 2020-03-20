@@ -49,7 +49,7 @@ export enum Elevation {
 /* eslint-enable typescript-sort-keys/string-enum */
 
 // Since we don't want to include selection.json in our distribution bundle we came up with the following solution:
-// If the contents of selection.json ever change just run `npm run generate:iconTypes` and replace the enum with
+// If the contents of selection.json ever change just run `npm run build:iconTypes` and replace the enum with
 // the output from the console.
 export enum IconType {
     ARROWDOWN = 'ARROWDOWN',
@@ -74,6 +74,13 @@ export enum IconType {
     CHEVRONUP = 'CHEVRONUP',
     CLOCK = 'CLOCK',
     CLUBPLACEHOLDER1 = 'CLUBPLACEHOLDER1',
+    CLUBPLACEHOLDER10 = 'CLUBPLACEHOLDER10',
+    CLUBPLACEHOLDER11 = 'CLUBPLACEHOLDER11',
+    CLUBPLACEHOLDER12 = 'CLUBPLACEHOLDER12',
+    CLUBPLACEHOLDER13 = 'CLUBPLACEHOLDER13',
+    CLUBPLACEHOLDER14 = 'CLUBPLACEHOLDER14',
+    CLUBPLACEHOLDER15 = 'CLUBPLACEHOLDER15',
+    CLUBPLACEHOLDER16 = 'CLUBPLACEHOLDER16',
     CLUBPLACEHOLDER2 = 'CLUBPLACEHOLDER2',
     CLUBPLACEHOLDER3 = 'CLUBPLACEHOLDER3',
     CLUBPLACEHOLDER4 = 'CLUBPLACEHOLDER4',
@@ -81,6 +88,7 @@ export enum IconType {
     CLUBPLACEHOLDER6 = 'CLUBPLACEHOLDER6',
     CLUBPLACEHOLDER7 = 'CLUBPLACEHOLDER7',
     CLUBPLACEHOLDER8 = 'CLUBPLACEHOLDER8',
+    CLUBPLACEHOLDER9 = 'CLUBPLACEHOLDER9',
     CLUBUNKNOWN = 'CLUBUNKNOWN',
     COFFEE = 'COFFEE',
     COMMUNICATIONMAIL = 'COMMUNICATIONMAIL',
@@ -99,6 +107,7 @@ export enum IconType {
     GENDERFEMALE = 'GENDERFEMALE',
     GENDERMALE = 'GENDERMALE',
     GENDERMIXED = 'GENDERMIXED',
+    HANGER = 'HANGER',
     HELPDESK = 'HELPDESK',
     INDICATOR = 'INDICATOR',
     LIGHTBULB = 'LIGHTBULB',
@@ -119,6 +128,7 @@ export enum IconType {
     MOVELEFTRIGHT = 'MOVELEFTRIGHT',
     MOVEUPDOWN = 'MOVEUPDOWN',
     NEWS = 'NEWS',
+    OFFICIALSHIRT = 'OFFICIALSHIRT',
     OPTIONS = 'OPTIONS',
     PENCIL = 'PENCIL',
     PLACEHOLDER = 'PLACEHOLDER',

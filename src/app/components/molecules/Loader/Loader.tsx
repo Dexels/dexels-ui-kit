@@ -1,5 +1,5 @@
 import { ButtonVariant, Size } from '../../../types';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { StyledLoader } from './Loader.sc';
 
 export interface LoaderProps {
@@ -9,7 +9,7 @@ export interface LoaderProps {
     variant?: ButtonVariant;
 }
 
-export const Loader: React.FunctionComponent<LoaderProps> = ({
+export const Loader: FunctionComponent<LoaderProps> = ({
     className,
     isInverted = false,
     size,

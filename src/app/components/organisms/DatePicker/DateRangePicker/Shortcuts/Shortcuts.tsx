@@ -4,13 +4,13 @@ import {
     Text,
     Wrapper,
 } from './Shortcuts.sc';
-import React, { ReactNode } from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Chip from '../../../../molecules/Chip/Chip';
 import { IconType } from '../../../../../types';
 
 export interface Shortcut {
-    onClick: React.MouseEventHandler;
-    text: React.ReactNode;
+    onClick: MouseEventHandler;
+    text: ReactNode;
 }
 
 interface ShortCutsProps {
@@ -18,7 +18,7 @@ interface ShortCutsProps {
     text?: ReactNode;
 }
 
-export const Shortcuts: React.FunctionComponent<ShortCutsProps> = ({ shortcuts, text }) => (
+export const Shortcuts: FunctionComponent<ShortCutsProps> = ({ shortcuts, text }) => (
     <StyledShortcuts>
         {text && (
             <Text>

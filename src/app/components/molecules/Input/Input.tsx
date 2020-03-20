@@ -1,22 +1,29 @@
 import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import { InputType, InputVariant } from '../../../types';
-import React, { useCallback, useState } from 'react';
+import React, {
+    ChangeEvent,
+    FunctionComponent,
+    KeyboardEvent,
+    ReactNode,
+    useCallback,
+    useState,
+} from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 
 export interface InputProps {
     className?: string;
-    errorMessage?: React.ReactNode;
+    errorMessage?: ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
     isTextarea?: boolean;
     isValid?: boolean;
-    label: React.ReactNode;
+    label: ReactNode;
     max?: number;
     min?: number;
     name: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     type?: InputType;
     value?: string;
     variant?: InputVariant;
@@ -24,7 +31,7 @@ export interface InputProps {
     [key: string]: any;
 }
 
-export const Input: React.FunctionComponent<InputProps> = ({
+export const Input: FunctionComponent<InputProps> = ({
     className,
     errorMessage,
     hasError = false,
@@ -56,11 +63,11 @@ export const Input: React.FunctionComponent<InputProps> = ({
     }, [isHovered]);
 
     if (!isTextarea) {
-        if (max) {
+        if (typeof max === 'number') {
             textFieldProps.max = max;
         }
 
-        if (min) {
+        if (typeof min === 'number') {
             textFieldProps.min = min;
         }
     }

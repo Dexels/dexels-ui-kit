@@ -1,6 +1,6 @@
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 
-export const setTruncate = () => (css`
+export const setTruncate = (): FlattenSimpleInterpolation => (css`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

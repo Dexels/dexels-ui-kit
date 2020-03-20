@@ -1,10 +1,10 @@
 import { Direction, IconSize, IconType } from '../../../types';
 import { IconWrapper, StyledTextWithOptionalIcon, Text } from './TextWithOptionalIcon.sc';
+import React, { FunctionComponent, ReactNode } from 'react';
 import Icon from '../../atoms/Icon/Icon';
-import React from 'react';
 
 export interface TextWithOptionalIconProps {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     direction?: Direction;
     iconSize?: IconSize;
@@ -15,7 +15,7 @@ export interface TextWithOptionalIconProps {
     [key: string]: any;
 }
 
-export const TextWithOptionalIcon: React.FunctionComponent<TextWithOptionalIconProps> = ({
+export const TextWithOptionalIcon: FunctionComponent<TextWithOptionalIconProps> = ({
     children,
     className,
     direction = Direction.LTR,

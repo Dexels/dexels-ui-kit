@@ -1,14 +1,14 @@
 import { Direction, IconType } from '../../../types';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Chip from '../../molecules/Chip/Chip';
 import { ChipStatusVariant } from './types';
-import React from 'react';
 
 export interface ChipStatusProps {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     direction?: Direction;
     isDisabled?: boolean;
-    onClick?: React.MouseEventHandler;
+    onClick?: MouseEventHandler;
     variant?: ChipStatusVariant;
 }
 
@@ -29,11 +29,11 @@ const getIconType = (variant: ChipStatusVariant): IconType | undefined => {
     }
 };
 
-const isSelected = (variant: ChipStatusVariant) => (
+const isSelected = (variant: ChipStatusVariant): boolean => (
     variant === ChipStatusVariant.SELECTED
 );
 
-export const ChipStatus: React.FunctionComponent<ChipStatusProps> = ({
+export const ChipStatus: FunctionComponent<ChipStatusProps> = ({
     children,
     className,
     direction,

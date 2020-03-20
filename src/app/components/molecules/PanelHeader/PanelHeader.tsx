@@ -4,19 +4,19 @@ import {
     Title,
 } from './PanelHeader.sc';
 import { IconType, Status } from '../../../types';
-import React from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface PanelHeaderProps {
     hasCapitalizedTitle?: boolean;
     hasTitleStatusAppearance?: boolean;
     iconType?: IconType;
-    options?: React.ReactNode;
+    options?: ReactNode;
     status?: Status;
-    title: React.ReactNode;
+    title: ReactNode;
 }
 
-export const PanelHeader: React.FunctionComponent<PanelHeaderProps> = ({
+export const PanelHeader: FunctionComponent<PanelHeaderProps> = ({
     hasCapitalizedTitle,
     hasTitleStatusAppearance,
     iconType,

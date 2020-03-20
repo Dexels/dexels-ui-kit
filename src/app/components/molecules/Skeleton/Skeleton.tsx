@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import SkeletonLoader from 'react-loading-skeleton';
 import { StyledSkeleton } from './Skeleton.sc';
 
@@ -12,7 +12,7 @@ export interface SkeletonProps {
     width?: string | number;
 }
 
-export const Skeleton: React.FunctionComponent<SkeletonProps> = ({
+export const Skeleton: FunctionComponent<SkeletonProps> = ({
     circle = false,
     color,
     count = 1,

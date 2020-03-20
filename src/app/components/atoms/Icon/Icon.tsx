@@ -1,5 +1,5 @@
+import React, { FunctionComponent } from 'react';
 import { IconType } from '../../../types';
-import React from 'react';
 
 export interface IconProps {
     children?: never;
@@ -7,7 +7,7 @@ export interface IconProps {
     type: IconType;
 }
 
-export const Icon: React.FunctionComponent<IconProps> = ({ className, type }) => (
+export const Icon: FunctionComponent<IconProps> = ({ className, type }) => (
     <span className={`${className} ICON-${type}`} />
 );
 

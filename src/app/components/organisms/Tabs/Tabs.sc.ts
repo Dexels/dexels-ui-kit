@@ -1,5 +1,5 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -9,7 +9,7 @@ interface StyledTabsProps {
 }
 
 export const StyledTabs = styled.div<StyledTabsProps>`
-    ${({ elevation }) => getElevation(elevation)}
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
 `;
 
 interface TabHeaderProps {
@@ -20,39 +20,39 @@ interface TabHeaderProps {
 
 export const TabHeader = styled.button<TabHeaderProps>`
     ${rippleEffectInit()}
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().h3)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h3)}
     appearance: none;
     outline: none;
     border: 0;
-    border-bottom: 2px solid ${({ theme }) => theme.shades.nine};
-    background-color: ${({ theme }) => theme.shades.nine};
+    border-bottom: 2px solid ${({ theme }): string => theme.shades.nine};
+    background-color: ${({ theme }): string => theme.shades.nine};
     cursor: pointer;
-    padding: ${({ theme }) => theme.spacing(0, 3)};
-    height: ${({ theme }) => theme.spacing(6)};
+    padding: ${({ theme }): string => theme.spacing(0, 3)};
+    height: ${({ theme }): string => theme.spacing(6)};
     text-align: center;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ isFullWidth }) => isFullWidth && css`
+    ${({ isFullWidth }): SimpleInterpolation => isFullWidth && css`
         width: 100%;
     `}
 
-    ${({ isActive, theme }) => isActive && css`
+    ${({ isActive, theme }): SimpleInterpolation => isActive && css`
         border-bottom-color: ${theme.colorPrimary};
     `}
 
-    ${({ isDisabled, theme }) => isDisabled && css`
+    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
         color: ${theme.colorDisabled};
         pointer-events: none;
     `}
 
     &::after {
-        ${({ theme }) => rippleEffect(theme.colorSecondary)}
+        ${({ theme }): FlattenSimpleInterpolation => rippleEffect(theme.colorSecondary)}
     }
 
     &:active,
     &:hover {
-        border-bottom-color: ${({ theme }) => theme.colorSecondary};
-        color: ${({ theme }) => theme.colorText.secondary};
+        border-bottom-color: ${({ theme }): string => theme.colorSecondary};
+        color: ${({ theme }): string => theme.colorText.secondary};
     }
 
     &:active::after {
@@ -65,10 +65,10 @@ TabHeader.defaultProps = {
 };
 
 export const TabHeaderList = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     display: flex;
     flex-wrap: nowrap;
-    border-bottom: 1px solid ${({ theme }) => theme.shades.five};
+    border-bottom: 1px solid ${({ theme }): string => theme.shades.five};
 `;
 
 TabHeaderList.defaultProps = {
@@ -76,7 +76,7 @@ TabHeaderList.defaultProps = {
 };
 
 export const TabPanel = styled.div`
-    ${({ theme }) => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
 `;
 
 TabPanel.defaultProps = {

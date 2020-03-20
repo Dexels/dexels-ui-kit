@@ -1,7 +1,7 @@
+import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { Easing } from '../../../types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
-import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledModalProps {
@@ -12,7 +12,7 @@ interface StyledModalProps {
 
 export const StyledModal = styled.div<StyledModalProps>`
     ${setBoxSizing()}
-    ${({ isVisible, transitionDuration, transitionEasing }) => slideUpEffect({
+    ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation => slideUpEffect({
         duration: transitionDuration,
         easing: transitionEasing,
         isVisible,
@@ -23,11 +23,11 @@ export const StyledModal = styled.div<StyledModalProps>`
     left: 50%;
     flex-direction: column;
     flex-wrap: nowrap;
-    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
     z-index: 3;
-    padding: ${({ theme }) => theme.spacing(3.5)} 0 0 0;
+    padding: ${({ theme }): string => theme.spacing(3.5)} 0 0 0;
     width: 100%;
-    max-width: ${({ theme }) => theme.spacing(128)};
+    max-width: ${({ theme }): string => theme.spacing(128)};
     height: 100%;
 `;
 
@@ -42,10 +42,10 @@ export const HeaderWrapper = styled.header`
 
 export const Body = styled.div`
     flex: 1 1 auto;
-    background-color: ${({ theme }) => theme.card.backgroundColor};
-    padding: ${({ theme }) => theme.spacing(2)};
+    background-color: ${({ theme }): string => theme.card.backgroundColor};
+    padding: ${({ theme }): string => theme.spacing(2)};
     overflow: auto;
-    color: ${({ theme }) => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorText.primary};
 `;
 
 Body.defaultProps = {

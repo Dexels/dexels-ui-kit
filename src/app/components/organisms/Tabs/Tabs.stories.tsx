@@ -1,8 +1,8 @@
 import { boolean, select } from '@storybook/addon-knobs';
+import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import { Elevation } from '../../../types';
-import React from 'react';
 import Tabs from './Tabs';
 
 export default { title: 'organisms/Tabs' };
@@ -13,7 +13,7 @@ const comp = (
     </Button>
 );
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <Tabs
         elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
         hasFullWidthTabHeaders={boolean('Has fullwidth tab headers', true)}

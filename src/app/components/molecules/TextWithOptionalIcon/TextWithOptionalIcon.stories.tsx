@@ -1,11 +1,11 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { Direction, IconSize, IconType } from '../../../types';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import TextWithOptionalIcon from './TextWithOptionalIcon';
 
 export default { title: 'molecules/TextWithOptionalIcon' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <TextWithOptionalIcon
         isCapitalized={boolean('Is capitalized', false)}
     >
@@ -13,7 +13,7 @@ export const Configurable = () => (
     </TextWithOptionalIcon>
 );
 
-export const ConfigurableWithIcon = () => (
+export const ConfigurableWithIcon: FunctionComponent = () => (
     <TextWithOptionalIcon
         direction={select('Direction', Direction, Direction.LTR)}
         iconSize={select('Icon size', IconSize, IconSize.LARGE)}

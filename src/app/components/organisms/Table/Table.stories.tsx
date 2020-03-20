@@ -4,7 +4,7 @@ import {
     text,
 } from '@storybook/addon-knobs';
 import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } from './mockup/tableFunctions';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
 import { createTable } from '../../../utils/functions/createTable';
@@ -21,8 +21,8 @@ export default {
     title: 'organisms/Table',
 };
 
-/* @TODO: figure out how to rerender the table instance after state changes. Most likely with React.useEffect */
-export const Configurable = () => {
+/* @TODO: figure out how to rerender the table instance after state changes. Most likely with useEffect */
+export const Configurable: FunctionComponent = () => {
     const [isNL, setIsNL] = useState(true);
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
@@ -53,7 +53,7 @@ export const Configurable = () => {
                     isChecked={isNL}
                     label={isNL ? 'Is NL' : 'Is EN'}
                     name="LANGUAGE"
-                    onChange={() => {
+                    onChange={(): void => {
                         setIsNL(!isNL);
                     }}
                     value="isNL"
@@ -62,7 +62,7 @@ export const Configurable = () => {
                     isChecked={hasGroupHeader}
                     label={hasGroupHeader ? 'WITH GROUP HEADER' : 'WITHOUT GROUP HEADER'}
                     name="GROUPHEADER"
-                    onChange={() => {
+                    onChange={(): void => {
                         setHasGroupHeader(!hasGroupHeader);
                     }}
                     value="hasGroupHeader"
@@ -71,7 +71,7 @@ export const Configurable = () => {
                     isChecked={isFooterVisible}
                     label={isFooterVisible ? 'WITHOUT TABLE FOOTER' : 'WITH TABLE FOOTER'}
                     name="FOOTER"
-                    onChange={() => {
+                    onChange={(): void => {
                         setIsFooterVisible(!isFooterVisible);
                     }}
                     value="isFooterVisible"

@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Easing } from '../../types';
 
 export const transitionEffect = ({
@@ -6,7 +6,7 @@ export const transitionEffect = ({
     delay = 0,
     easing = Easing.EASE,
     property = 'all',
-} = {}) => (css`
+} = {}): FlattenSimpleInterpolation => (css`
     transition: ${`${property} ${duration}ms ${easing} ${delay}ms`};
 `);
 
@@ -15,7 +15,7 @@ export const slideUpEffect = ({
     easing = Easing.EASE,
     isVisible = false,
     property = 'all',
-} = {}) => (css`
+} = {}): FlattenSimpleInterpolation => (css`
     ${transitionEffect({
         duration,
         easing,
@@ -29,7 +29,7 @@ export const fadeInEffect = ({
     easing = Easing.EASE,
     isVisible = false,
     property = 'all',
-} = {}) => (css`
+} = {}): FlattenSimpleInterpolation => (css`
     ${transitionEffect({
         duration,
         easing,

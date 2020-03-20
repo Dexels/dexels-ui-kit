@@ -4,7 +4,13 @@ import {
     Select,
     StyledDropdown,
 } from './Dropdown.sc';
-import React, { useState } from 'react';
+import React, {
+    ChangeEvent,
+    ComponentType,
+    FunctionComponent,
+    ReactNode,
+    useState,
+} from 'react';
 import { DropdownVariant } from './types';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
@@ -13,18 +19,18 @@ import { IconType } from '../../../types';
 
 export interface DropdownProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
-    children: React.ReactNode;
+    as?: keyof JSX.IntrinsicElements | ComponentType<any>;
+    children: ReactNode;
     className?: string;
-    errormessage?: React.ReactNode;
+    errormessage?: ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
     isOpen?: boolean;
     isRequired?: boolean;
     isValid?: boolean;
-    label?: React.ReactNode;
+    label?: ReactNode;
     name: string;
-    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onClick?: (...args: any[]) => void;
     placeholder?: string;
@@ -34,7 +40,7 @@ export interface DropdownProps {
     [key: string]: any;
 }
 
-export const Dropdown: React.FunctionComponent<DropdownProps> = ({
+export const Dropdown: FunctionComponent<DropdownProps> = ({
     as = 'select',
     children,
     className,
@@ -88,18 +94,18 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
                     isPlaceholderSelected={placeholder === value}
                     isValid={isValid}
                     name={name}
-                    onBlur={() => {
+                    onBlur={(): void => {
                         setIsFocused(false);
                     }}
                     onChange={onChange}
                     onClick={onClick}
-                    onFocus={() => {
+                    onFocus={(): void => {
                         setIsFocused(true);
                     }}
-                    onMouseEnter={() => {
+                    onMouseEnter={(): void => {
                         setIsHovered(true);
                     }}
-                    onMouseLeave={() => {
+                    onMouseLeave={(): void => {
                         setIsHovered(false);
                     }}
                     required={isRequired}

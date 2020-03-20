@@ -5,9 +5,9 @@ import {
     StatusIndicatorSize,
 } from '../../../../types';
 import { IconWrapper, StyledStatusCell } from './StatusCell.sc';
+import React, { FunctionComponent } from 'react';
 import Icon from '../../../atoms/Icon/Icon';
 import { MatchTaskStatuses } from './types';
-import React from 'react';
 import { StatusIndicator } from '../../../atoms/StatusIndicator/StatusIndicator';
 
 // If you ever want to use this organism in another project please make sure the MatchTaskStatuses type is up to date
@@ -35,7 +35,7 @@ interface StatusCellProps {
     status: Status;
 }
 
-const StatusCell: React.FunctionComponent<StatusCellProps> = ({ matchTaskStatus, status }) => (
+const StatusCell: FunctionComponent<StatusCellProps> = ({ matchTaskStatus, status }) => (
     <StyledStatusCell>
         <StatusIndicator
             background="inherit"

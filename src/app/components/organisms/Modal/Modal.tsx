@@ -3,23 +3,23 @@ import {
     HeaderWrapper,
     StyledModal,
 } from './Modal.sc';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { Easing } from '../../../types';
 import Header from '../Header/Header';
 import Overlay from '../../molecules/Overlay/Overlay';
-import React from 'react';
 
 export interface ModalProps {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     isVisible: boolean;
-    onBack?: React.MouseEventHandler;
-    options?: React.ReactNode;
-    title: React.ReactNode;
+    onBack?: MouseEventHandler;
+    options?: ReactNode;
+    title: ReactNode;
     transitionDuration?: number;
     transitionEasing?: Easing;
 }
 
-export const Modal: React.FunctionComponent<ModalProps> = ({
+export const Modal: FunctionComponent<ModalProps> = ({
     children,
     className,
     isVisible = false,

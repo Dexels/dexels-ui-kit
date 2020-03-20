@@ -5,7 +5,7 @@ import { CellProps } from 'react-table';
 import React from 'react';
 import { TableData } from './tableData';
 
-export const createLocalizedTableTexts = (language = 'nl') => {
+export const createLocalizedTableTexts = (language = 'nl'): { toggleSortTooltip: string } => {
     const localizedTexts = {
         toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer op',
     };
@@ -13,7 +13,14 @@ export const createLocalizedTableTexts = (language = 'nl') => {
     return localizedTexts;
 };
 
-export const createLocalizedPagingTexts = (language = 'nl') => {
+export const createLocalizedPagingTexts = (language = 'nl'): {
+    page: string;
+    pageGoto: string;
+    pageOf: string;
+    resultsOf: string;
+    rowsPerPage: string;
+    show: string;
+} => {
     const localizedTexts = {
         page: language === 'en' ? 'Page' : 'Pagina',
         pageGoto: language === 'en' ? 'Go to page' : 'Ga naar pagina',
@@ -27,12 +34,9 @@ export const createLocalizedPagingTexts = (language = 'nl') => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getTableCell = (cell: any, row: any, event: any = null) => {
+export const getTableCell = (cell: any, row: any, event: any = null): any => {
     // eslint-disable-next-line no-console
-    console.log('Clicked cell:', cell);
-    // eslint-disable-next-line no-console
-    console.log('Clicked row:', row);
-    alert(`Clicked on cell/row: ${cell} \n ${row} \n ${event}`);
+    console.log('Clicked:', cell, row, event);
 
     return cell;
 };
@@ -47,11 +51,11 @@ export const getTableRow = (event: any, row: any): any => {
     return row;
 };
 
-export const renderButton = (row: CellProps<TableData>, isInverted = false) => (
+export const renderButton = (row: CellProps<TableData>, isInverted = false): JSX.Element => (
     <Button
         iconType={IconType.SELECT}
         isInverted={isInverted}
-        onClick={(event) => {
+        onClick={(event): void => {
             event.stopPropagation();
             action(`On click => ${row.cell.row.index}`);
         }}

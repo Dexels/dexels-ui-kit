@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { setTruncate } from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
@@ -16,40 +16,40 @@ interface StyledLabelProps {
 }
 
 export const StyledLabel = styled.label<StyledLabelProps>`
-    ${({ isSmall, theme }) => theme.textStyling(
+    ${({ isSmall, theme }): string => theme.textStyling(
         isSmall ? theme.availableTextStyles().caption : theme.availableTextStyles().body1,
     )}
     ${transitionEffect({
         duration: 300,
         property: 'font-size',
     })}
-    ${({ isTruncatable }) => isTruncatable && setTruncate()}
+    ${({ isTruncatable }): SimpleInterpolation => isTruncatable && setTruncate()}
     display: block;
     cursor: inherit;
-    color: ${({ theme }) => theme.shades.three};
+    color: ${({ theme }): string => theme.shades.three};
 
-    ${({ isCheckboxLabel }) => isCheckboxLabel && css`
-        color: ${({ theme }) => theme.colorText.primary};
+    ${({ isCheckboxLabel, theme }): SimpleInterpolation => isCheckboxLabel && css`
+        color: ${theme.colorText.primary};
     `}
 
-    ${({ isActive }) => isActive && css`
-        color: ${({ theme }) => theme.colorText.primary};
+    ${({ isActive, theme }): SimpleInterpolation => isActive && css`
+        color: ${theme.colorText.primary};
     `}
 
-    ${({ isFocused, isHovered }) => (isFocused || isHovered) && css`
-        color: ${({ theme }) => theme.colorText.secondary};
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation => (isFocused || isHovered) && css`
+        color: ${theme.colorText.secondary};
     `}
 
-    ${({ isValid }) => isValid && css`
-        color: ${({ theme }) => theme.colorValid};
+    ${({ isValid, theme }): SimpleInterpolation => isValid && css`
+        color: ${theme.colorValid};
     `}
 
-    ${({ hasError }) => hasError && css`
-        color: ${({ theme }) => theme.colorInvalid};
+    ${({ hasError, theme }): SimpleInterpolation => hasError && css`
+        color: ${theme.colorInvalid};
     `}
 
-    ${({ isDisabled }) => isDisabled && css`
-        color: ${({ theme }) => theme.colorDisabled};
+    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
+        color: ${theme.colorDisabled};
     `}
 `;
 

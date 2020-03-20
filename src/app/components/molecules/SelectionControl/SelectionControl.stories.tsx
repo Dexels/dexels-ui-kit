@@ -5,13 +5,13 @@ import {
     text,
 } from '@storybook/addon-knobs';
 import { Direction, Easing } from '../../../types';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import SelectionControl from './SelectionControl';
 import { SelectionControlType } from './types';
 
 export default { title: 'molecules/SelectionControl' };
 
-export const ConfigurableRadioButton = () => {
+export const ConfigurableRadioButton: FunctionComponent = () => {
     const [gender, setGender] = useState('female');
     const direction = select('Direction', Direction, Direction.LTR);
     const hasError = boolean('Has error', false);
@@ -36,7 +36,7 @@ export const ConfigurableRadioButton = () => {
                 isValid={isValid}
                 label={text('Label 1', 'Im a girl')}
                 name="a-radio-button-name"
-                onChange={() => {
+                onChange={(): void => {
                     setGender('female');
                 }}
                 transitionDuration={transitionDuration}
@@ -56,7 +56,7 @@ export const ConfigurableRadioButton = () => {
                 isValid={isValid}
                 label={text('Label 2', 'Im a boy')}
                 name="a-radio-button-name"
-                onChange={() => {
+                onChange={(): void => {
                     setGender('male');
                 }}
                 transitionDuration={transitionDuration}
@@ -68,7 +68,7 @@ export const ConfigurableRadioButton = () => {
     );
 };
 
-export const ConfigurableCheckbox = () => {
+export const ConfigurableCheckbox: FunctionComponent = () => {
     const [isChecked, setIsChecked] = useState(false);
 
     return (
@@ -84,7 +84,7 @@ export const ConfigurableCheckbox = () => {
             isValid={boolean('Is valid', false)}
             label={text('Label', 'Im a girl')}
             name="a-checkbox-name"
-            onChange={() => {
+            onChange={(): void => {
                 setIsChecked(!isChecked);
             }}
             transitionDuration={number('Transition duration', 300)}

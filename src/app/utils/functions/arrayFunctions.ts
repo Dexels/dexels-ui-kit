@@ -1,4 +1,4 @@
-export function cloneArray<T = object>(data: T[]) {
+export function cloneArray<T = object>(data: T[]): T[] {
     const result: T[] = [];
 
     data.forEach((dataInstance) => {

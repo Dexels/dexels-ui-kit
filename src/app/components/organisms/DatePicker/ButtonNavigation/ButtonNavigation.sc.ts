@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 interface StyledButtonNavigationProps {
@@ -8,14 +8,14 @@ interface StyledButtonNavigationProps {
 
 export const StyledButtonNavigation = styled.div<StyledButtonNavigationProps>`
     position: absolute;
-    top: ${({ theme }) => theme.spacing(2.5)};
+    top: ${({ theme }): string => theme.spacing(2.5)};
 
-    ${({ isNext }) => isNext && css`
+    ${({ isNext }): SimpleInterpolation => isNext && css`
         right: 20px;
         transform: rotate(180deg);
     `}
 
-    ${({ isPrev }) => isPrev && css`
+    ${({ isPrev }): SimpleInterpolation => isPrev && css`
         left: 20px;
     `}
 `;

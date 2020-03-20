@@ -5,7 +5,7 @@ import {
     IconType,
 } from '../../../types';
 import { number, select, text } from '@storybook/addon-knobs';
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
@@ -59,7 +59,7 @@ const functionalItems = [
     </Button>,
 ];
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <Modal
         isVisible
         onBack={action('On back')}
@@ -70,13 +70,13 @@ export const Configurable = () => (
     </Modal>
 );
 
-export const ConfigurableModal = () => {
+export const ConfigurableModal: FunctionComponent = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
         <>
             <Button
-                onClick={() => {
+                onClick={(): void => {
                     action('On back');
                     setIsVisible(true);
                 }}
@@ -86,7 +86,7 @@ export const ConfigurableModal = () => {
             </Button>
             <Modal
                 isVisible={isVisible}
-                onBack={() => {
+                onBack={(): void => {
                     action('On back');
                     setIsVisible(false);
                 }}

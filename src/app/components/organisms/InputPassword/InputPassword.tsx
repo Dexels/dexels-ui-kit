@@ -1,25 +1,31 @@
 import { IconType, InputType, InputVariant } from '../../../types';
-import React, { useState } from 'react';
+import React, {
+    ChangeEvent,
+    FunctionComponent,
+    KeyboardEvent,
+    ReactNode,
+    useState,
+} from 'react';
 import { StyledInputPassword, VisibilitySwitch } from './InputPassword.sc';
 import Icon from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
 
 export interface InputPasswordProps {
     className?: string;
-    errorMessage?: React.ReactNode;
+    errorMessage?: ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
     isValid?: boolean;
     isVisibleDefault?: boolean;
-    label: React.ReactNode;
+    label: ReactNode;
     name: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     value?: string;
     variant?: InputVariant;
 }
 
-export const InputPassword: React.FunctionComponent<InputPasswordProps> = ({
+export const InputPassword: FunctionComponent<InputPasswordProps> = ({
     className,
     errorMessage,
     hasError = false,
@@ -52,7 +58,7 @@ export const InputPassword: React.FunctionComponent<InputPasswordProps> = ({
             />
             <VisibilitySwitch
                 isDisabled={isDisabled}
-                onClick={() => {
+                onClick={(): void => {
                     setIsVisible(!isVisible);
                 }}
                 variant={variant}

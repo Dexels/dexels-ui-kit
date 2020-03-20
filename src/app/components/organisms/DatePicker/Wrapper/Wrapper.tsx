@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { FunctionComponent, MouseEvent } from 'react';
 import { StyledWrapper } from './Wrapper.sc';
 
 interface WrapperProps {
     className?: string;
     hasYearSelector?: boolean;
     isFocused: boolean;
-    onMouseEnter: (e: React.MouseEvent) => void;
-    onMouseLeave: (e: React.MouseEvent) => void;
+    onMouseEnter: (e: MouseEvent) => void;
+    onMouseLeave: (e: MouseEvent) => void;
 }
 
-const Wrapper: React.FunctionComponent<WrapperProps> = ({
+const Wrapper: FunctionComponent<WrapperProps> = ({
     children,
     className,
     hasYearSelector = false,

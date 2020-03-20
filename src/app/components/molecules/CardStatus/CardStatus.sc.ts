@@ -18,7 +18,7 @@ export const StyledCardStatus = styled(Card)<StyledCardStatusProps>`
         placement,
         status,
         theme,
-    }) => getStatusIndicator(status, theme, placement, StatusIndicatorSize.SMALL)}
+    }): string => getStatusIndicator(status, theme, placement, StatusIndicatorSize.SMALL)}
 `;
 
 StyledCardStatus.defaultProps = {

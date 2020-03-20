@@ -3,18 +3,18 @@
         {
             "filePath": "./src/lib/index.ts",
             "libraries": {
-                "allowedTypesLibraries": [
-                    "react",
-                    "styled-components"
-                ],
+                "allowedTypesLibraries": [],
                 "importedLibraries": [
                     "moment",
+                    "react",
                     "react-dates",
-                    "react-table"
+                    "react-table",
+                    "styled-components"
                 ]
             },
             "outFile": "./index.d.ts",
             "output": {
+                "noBanner": true,
                 "inlineDeclareExternals": true,
                 "sortNodes": true,
                 "umdModuleName": "DexelsUIKit"

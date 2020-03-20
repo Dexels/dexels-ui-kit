@@ -1,10 +1,10 @@
+import React, { FunctionComponent } from 'react';
 import { boolean } from '@storybook/addon-knobs';
 import Overlay from './Overlay';
-import React from 'react';
 
 export default { title: 'molecules/Overlay' };
 
-export const Configurable = () => (
+export const Configurable: FunctionComponent = () => (
     <>
         <Overlay
             isVisible={boolean('Is visible', true)}

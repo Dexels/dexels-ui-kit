@@ -1,7 +1,7 @@
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Position } from '../../types';
 
-const getHorizontalPosition = (position: Position) => {
+const getHorizontalPosition = (position: Position): string => {
     switch (position) {
         case Position.TOP_RIGHT:
             return 'flex-end';
@@ -26,7 +26,7 @@ const getHorizontalPosition = (position: Position) => {
     }
 };
 
-const getVerticalPosition = (position: Position) => {
+const getVerticalPosition = (position: Position): string => {
     switch (position) {
         case Position.BOTTOM_LEFT:
             return 'flex-end';
@@ -51,7 +51,7 @@ const getVerticalPosition = (position: Position) => {
     }
 };
 
-export const getPosition = (position: Position) => (css`
+export const getPosition = (position: Position): FlattenSimpleInterpolation => (css`
     align-items: ${getVerticalPosition(position)};
     justify-content: ${getHorizontalPosition(position)};
 `);

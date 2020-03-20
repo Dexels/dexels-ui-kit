@@ -12,28 +12,28 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
-import React, { SyntheticEvent } from 'react';
+import React, { ReactNode, SyntheticEvent } from 'react';
 import { Row, TableInstance } from 'react-table';
 import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
 export interface TableProps<T extends object> {
-    caption?: React.ReactNode;
+    caption?: ReactNode;
     className?: string;
     elevation?: Elevation;
-    footerComponent?: React.ReactNode;
+    footerComponent?: ReactNode;
     hasUnsortedStateIcon?: boolean;
     instance: TableInstance<T>;
     isDisabled?: boolean;
     isFullWidth?: boolean;
-    onClickRow?: (event: React.SyntheticEvent, row: Row<T>) => void;
-    pagingComponent?: React.ReactNode;
+    onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
+    pagingComponent?: ReactNode;
     texts?: {
-        toggleSortTooltip?: React.ReactNode;
+        toggleSortTooltip?: ReactNode;
     };
 }
 
-const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean) => (
+const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean): Row<T>[] => (
     hasPaging ? instance.page : instance.rows
 );
 
@@ -103,7 +103,7 @@ export const Table = <T extends object>({
                                 isClickable={Boolean(onClickRow)}
                                 key={row}
                                 onClick={onClickRow
-                                    ? (event: SyntheticEvent) => {
+                                    ? (event: SyntheticEvent): void => {
                                         onClickRow(event, row);
                                     } : undefined}
                                 {...row.getRowProps()}
@@ -113,7 +113,7 @@ export const Table = <T extends object>({
                                         hasCellPadding={cell.column.hasCellPadding}
                                         isClickable={Boolean(cell.column.onClick)}
                                         key={cell}
-                                        onClick={(event: SyntheticEvent) => {
+                                        onClick={(event: SyntheticEvent): void => {
                                             if (cell.column.onClick) {
                                                 event.stopPropagation();
                                                 cell.column.onClick(cell, row, event);

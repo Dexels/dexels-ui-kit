@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { FunctionComponent, MouseEventHandler } from 'react';
 import { StyledOverlay } from './Overlay.sc';
 
 export interface OverlayProps {
     className?: string;
     isVisible?: boolean;
-    onClick?: React.MouseEventHandler;
+    onClick?: MouseEventHandler;
 }
 
-export const Overlay: React.FunctionComponent<OverlayProps> = ({
+export const Overlay: FunctionComponent<OverlayProps> = ({
     className,
     isVisible = true,
     onClick,
