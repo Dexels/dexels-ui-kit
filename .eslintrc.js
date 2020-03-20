@@ -94,6 +94,7 @@ module.exports = {
         'react/jsx-max-props-per-line': [2, {
             maximum: 3,
         }],
+        'react/jsx-no-useless-fragment': 2,
         'react/jsx-one-expression-per-line': [2, {
             allow: 'none',
         }],
