@@ -8,7 +8,6 @@ interface StyledFormElementLabelProps {
     variant: InputVariant;
 }
 
-// @TODO: refactor transitionEffect function to accept multiple properties
 export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
     position: absolute;
     transition: top 300ms ease, left 300ms ease;
