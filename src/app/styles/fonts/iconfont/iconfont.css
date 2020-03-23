@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'SL-Small-Icons';
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?f3hwy9');
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?f3hwy9#iefix') format('embedded-opentype'), url('~fonts/iconfont/SL-Small-Icons.ttf?f3hwy9') format('truetype'), url('~fonts/iconfont/SL-Small-Icons.woff?f3hwy9') format('woff'), url('~fonts/iconfont/SL-Small-Icons.svg?f3hwy9#SL-Small-Icons') format('svg');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?htmuy2');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?htmuy2#iefix') format('embedded-opentype'), url('~fonts/iconfont/SL-Small-Icons.ttf?htmuy2') format('truetype'), url('~fonts/iconfont/SL-Small-Icons.woff?htmuy2') format('woff'), url('~fonts/iconfont/SL-Small-Icons.svg?htmuy2#SL-Small-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -10,55 +10,55 @@
 [class^="ICON-"],
 [class*=" ICON-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    text-transform: none;
-    line-height: 1;
     font-family: 'SL-Small-Icons' !important;
     speak: none;
+    font-style: normal;
     font-weight: normal;
     font-variant: normal;
-    font-style: normal;
+    text-transform: none;
+    line-height: 1;
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.ICON-ClubPlaceholder9:before {
+.ICON-CLUBPLACEHOLDER09:before {
     content: "\e985";
 }
 
-.ICON-ClubPlaceholder10:before {
+.ICON-CLUBPLACEHOLDER10:before {
     content: "\e986";
 }
 
-.ICON-ClubPlaceholder11:before {
+.ICON-CLUBPLACEHOLDER11:before {
     content: "\e987";
 }
 
-.ICON-ClubPlaceholder12:before {
+.ICON-CLUBPLACEHOLDER12:before {
     content: "\e988";
 }
 
-.ICON-ClubPlaceholder13:before {
+.ICON-CLUBPLACEHOLDER13:before {
     content: "\e989";
 }
 
-.ICON-ClubPlaceholder14:before {
+.ICON-CLUBPLACEHOLDER14:before {
     content: "\e98a";
 }
 
-.ICON-ClubPlaceholder15:before {
+.ICON-CLUBPLACEHOLDER15:before {
     content: "\e98b";
 }
 
-.ICON-ClubPlaceholder16:before {
+.ICON-CLUBPLACEHOLDER16:before {
     content: "\e98c";
 }
 
-.ICON-Hanger:before {
+.ICON-HANGER:before {
     content: "\e983";
 }
 
-.ICON-OfficialShirt:before {
+.ICON-OFFICIALSHIRT:before {
     content: "\e984";
 }
 
