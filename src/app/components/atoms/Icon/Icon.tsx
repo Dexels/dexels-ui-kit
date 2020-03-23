@@ -8,7 +8,7 @@ export interface IconProps {
 }
 
 export const Icon: FunctionComponent<IconProps> = ({ className, type }) => (
-    <span className={`${className ? `${className} ` : ''}ICON-${type}`} />
+    <span className={`ICON-${type} ${className || ''}`} />
 );
 
 export default Icon;
