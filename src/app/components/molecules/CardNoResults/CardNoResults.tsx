@@ -12,6 +12,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import Icon from '../../atoms/Icon/Icon';
 
 export interface CardNoResultsProps {
+    children?: never;
     className?: string;
     elevation?: Elevation;
     header: ReactNode;

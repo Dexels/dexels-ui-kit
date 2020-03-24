@@ -31,6 +31,7 @@ const iconType = (matchTaskStatus: MatchTaskStatuses): IconType => {
 };
 
 interface StatusCellProps {
+    children?: never;
     matchTaskStatus: MatchTaskStatuses;
     status: Status;
 }

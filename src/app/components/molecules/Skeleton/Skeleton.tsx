@@ -3,6 +3,7 @@ import SkeletonLoader from 'react-loading-skeleton';
 import { StyledSkeleton } from './Skeleton.sc';
 
 export interface SkeletonProps {
+    children?: never;
     circle?: boolean;
     color?: string;
     count?: number;

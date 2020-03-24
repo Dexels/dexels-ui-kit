@@ -4,6 +4,7 @@ import moment, { Moment } from 'moment';
 import React, { FunctionComponent, ReactNode } from 'react';
 
 interface NavigationProps {
+    children?: never;
     hasYearSelector: boolean;
     labelMonth?: ReactNode;
     labelYear?: ReactNode;

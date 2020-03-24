@@ -16,6 +16,7 @@ import { ThemeContext } from 'styled-components';
 import Wrapper from '../Wrapper/Wrapper';
 
 export interface SingleDatePickerProps {
+    children?: never;
     className?: string;
     date: SingleDatePickerShape['date'];
     daySize?: number;

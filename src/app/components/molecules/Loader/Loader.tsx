@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { StyledLoader } from './Loader.sc';
 
 export interface LoaderProps {
+    children?: never;
     className?: string;
     isInverted?: boolean;
     size: Size;

@@ -19,6 +19,7 @@ export interface Tab {
 }
 
 export interface TabsProps {
+    children?: never;
     className?: string;
     elevation?: Elevation;
     hasFullWidthTabHeaders?: boolean;

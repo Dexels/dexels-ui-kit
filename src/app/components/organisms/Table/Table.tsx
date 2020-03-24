@@ -19,6 +19,7 @@ import { renderSortIcon } from './utils/tableFunctions';
 
 export interface TableProps<T extends object> {
     caption?: ReactNode;
+    children?: never;
     className?: string;
     elevation?: Elevation;
     footerComponent?: ReactNode;

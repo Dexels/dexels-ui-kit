@@ -25,6 +25,7 @@ import Wrapper from '../Wrapper/Wrapper';
 export interface DateRangePickerProps {
     buttonCancelText?: ReactNode;
     buttonConfirmText?: ReactNode;
+    children?: never;
     className?: string;
     daySize?: number;
     displayFormat?: string;

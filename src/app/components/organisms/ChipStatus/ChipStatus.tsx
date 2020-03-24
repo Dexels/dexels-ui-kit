@@ -4,7 +4,7 @@ import Chip from '../../molecules/Chip/Chip';
 import { ChipStatusVariant } from './types';
 
 export interface ChipStatusProps {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     direction?: Direction;
     isDisabled?: boolean;

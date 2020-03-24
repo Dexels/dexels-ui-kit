@@ -3,14 +3,14 @@ import { Size } from '../../../types';
 import { StyledTextIcon } from './TextIcon.sc';
 
 export interface TextIconProps {
+    children?: never;
     className?: string;
     size?: Size;
     text: string;
-    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
-export const TextIcon: FunctionComponent<TextIconProps> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const TextIcon: FunctionComponent<TextIconProps & { [key: string]: any }> = ({
     className,
     size = Size.LARGE,
     text,

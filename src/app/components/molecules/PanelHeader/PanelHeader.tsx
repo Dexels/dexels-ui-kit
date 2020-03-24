@@ -8,6 +8,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface PanelHeaderProps {
+    children?: never;
     hasCapitalizedTitle?: boolean;
     hasTitleStatusAppearance?: boolean;
     iconType?: IconType;
