@@ -7,23 +7,21 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 export interface StyledCardProps {
     elevation: Elevation;
     hasBorderRadius: boolean;
-    hasFullheightContent: boolean;
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
     ${setBoxSizing()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     background-color: ${({ theme }): string => theme.card.backgroundColor};
+    width: 100%;
     color: ${({ theme }): string => theme.colorText.primary};
 
     ${({ hasBorderRadius, theme }): SimpleInterpolation => hasBorderRadius && css`
         border-radius: ${theme.spacing(0.5)};
-    `}
-
-    ${({ hasFullheightContent }): SimpleInterpolation => hasFullheightContent && css`
-        display: flex;
-        align-items: stretch;
     `}
 `;
 
