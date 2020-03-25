@@ -29,6 +29,7 @@ export interface PaginatorTexts {
 }
 
 export interface PaginatorProps<T extends object> {
+    children?: never;
     className?: string;
     hasAllPagingButtons?: boolean;
     hasGoToPage?: boolean;

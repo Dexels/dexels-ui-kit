@@ -20,6 +20,7 @@ import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers
 export interface DropdownMultiSelectProps {
     buttonCancelText?: ReactNode;
     buttonConfirmText: ReactNode;
+    children?: never;
     className?: string;
     elevation?: Elevation;
     errorMessage?: ReactNode;

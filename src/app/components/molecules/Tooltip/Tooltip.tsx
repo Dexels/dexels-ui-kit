@@ -87,6 +87,7 @@ const getTooltipPosition = (hoveredItem: DOMRect, tooltipPosition: Placement): P
 };
 
 export interface TooltipProps {
+    children?: never;
     className?: string;
     delay?: number;
     elevation?: Elevation;

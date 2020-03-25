@@ -1,7 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { StyledErrorMessage } from './ErrorMessage.sc';
 
 export interface ErrorMessageProps {
+    children?: ReactNode;
     className?: string;
 }
 

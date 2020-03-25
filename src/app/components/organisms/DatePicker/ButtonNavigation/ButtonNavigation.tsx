@@ -4,6 +4,7 @@ import { IconType } from '../../../../types';
 import { StyledButtonNavigation } from './ButtonNavigation.sc';
 
 interface ButtonNavigationProps {
+    children?: never;
     isNext?: boolean;
     isPrev?: boolean;
 }

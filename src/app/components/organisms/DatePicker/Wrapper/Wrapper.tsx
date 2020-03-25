@@ -1,7 +1,8 @@
-import React, { FunctionComponent, MouseEvent } from 'react';
+import React, { FunctionComponent, MouseEvent, ReactNode } from 'react';
 import { StyledWrapper } from './Wrapper.sc';
 
 interface WrapperProps {
+    children?: ReactNode;
     className?: string;
     hasYearSelector?: boolean;
     isFocused: boolean;

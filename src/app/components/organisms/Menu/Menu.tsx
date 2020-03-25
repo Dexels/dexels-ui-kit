@@ -4,6 +4,7 @@ import { MenuItems } from './types';
 import { StyledMenu } from './Menu.sc';
 
 export interface MenuProps {
+    children?: never;
     className?: string;
     defaultOpenItemPath?: string;
     items: MenuItems;

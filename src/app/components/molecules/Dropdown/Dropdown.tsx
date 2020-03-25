@@ -8,6 +8,7 @@ import React, {
     ChangeEvent,
     ComponentType,
     FunctionComponent,
+    MouseEventHandler,
     ReactNode,
     useState,
 } from 'react';
@@ -20,7 +21,7 @@ import { IconType } from '../../../types';
 export interface DropdownProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     as?: keyof JSX.IntrinsicElements | ComponentType<any>;
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     errormessage?: ReactNode;
     hasError?: boolean;
@@ -31,16 +32,14 @@ export interface DropdownProps {
     label?: ReactNode;
     name: string;
     onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClick?: (...args: any[]) => void;
+    onClick?: MouseEventHandler;
     placeholder?: string;
     value: number | string;
     variant?: DropdownVariant;
-    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
-export const Dropdown: FunctionComponent<DropdownProps> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }> = ({
     as = 'select',
     children,
     className,
