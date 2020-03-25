@@ -5,6 +5,7 @@ import { SingleDatePickerVariant } from '../types';
 import { StyledInputIcon } from './InputIcon.sc';
 
 interface InputIconProps {
+    children?: never;
     isDisabled: boolean;
     isFocused: boolean;
     variant?: SingleDatePickerVariant;

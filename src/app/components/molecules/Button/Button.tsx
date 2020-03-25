@@ -8,12 +8,13 @@ import {
     Size,
 } from '../../../types';
 import { LoaderWrapper, StyledButton, TextWrapper } from './Button.sc';
-import React, { FunctionComponent, MouseEventHandler } from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Loader from '../Loader/Loader';
 import { TextWithOptionalIcon } from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface ButtonProps {
     autoFocus?: boolean;
+    children?: ReactNode;
     className?: string;
     direction?: Direction;
     iconType?: IconType;
@@ -27,11 +28,10 @@ export interface ButtonProps {
     transitionDuration?: number;
     transitionEasing?: Easing;
     variant?: ButtonVariant;
-    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
-export const Button: FunctionComponent<ButtonProps> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Button: FunctionComponent<ButtonProps & { [key: string]: any }> = ({
     autoFocus = false,
     children,
     className,

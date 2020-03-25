@@ -4,18 +4,17 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import Icon from '../../atoms/Icon/Icon';
 
 export interface TextWithOptionalIconProps {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     direction?: Direction;
     iconSize?: IconSize;
     iconType?: IconType;
     isCapitalized?: boolean;
     isTruncatable?: boolean;
-    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
-export const TextWithOptionalIcon: FunctionComponent<TextWithOptionalIconProps> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const TextWithOptionalIcon: FunctionComponent<TextWithOptionalIconProps & { [key: string]: any }> = ({
     children,
     className,
     direction = Direction.LTR,

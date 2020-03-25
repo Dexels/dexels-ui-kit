@@ -12,6 +12,7 @@ import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 
 export interface InputProps {
+    children?: never;
     className?: string;
     errorMessage?: ReactNode;
     hasError?: boolean;
@@ -27,11 +28,10 @@ export interface InputProps {
     type?: InputType;
     value?: string;
     variant?: InputVariant;
-    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
-export const Input: FunctionComponent<InputProps> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     className,
     errorMessage,
     hasError = false,

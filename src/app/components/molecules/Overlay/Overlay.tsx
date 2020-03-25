@@ -2,6 +2,7 @@ import React, { FunctionComponent, MouseEventHandler } from 'react';
 import { StyledOverlay } from './Overlay.sc';
 
 export interface OverlayProps {
+    children?: never;
     className?: string;
     isVisible?: boolean;
     onClick?: MouseEventHandler;

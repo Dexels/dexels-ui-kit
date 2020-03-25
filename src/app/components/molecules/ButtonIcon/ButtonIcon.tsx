@@ -4,17 +4,17 @@ import Icon from '../../atoms/Icon/Icon';
 import { StyledButtonIcon } from './ButtonIcon.sc';
 
 export interface ButtonIconProps {
+    children?: never;
     className?: string;
     iconType: IconType;
     isDisabled?: boolean;
     isInverted?: boolean;
     onClick?: MouseEventHandler;
     size?: Size;
-    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
-export const ButtonIcon: FunctionComponent<ButtonIconProps> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ButtonIcon: FunctionComponent<ButtonIconProps & { [key: string]: any }> = ({
     className,
     iconType,
     isDisabled = false,

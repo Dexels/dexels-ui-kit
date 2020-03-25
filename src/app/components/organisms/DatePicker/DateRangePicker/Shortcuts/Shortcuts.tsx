@@ -14,6 +14,7 @@ export interface Shortcut {
 }
 
 interface ShortCutsProps {
+    children?: never;
     shortcuts: Shortcut[];
     text?: ReactNode;
 }

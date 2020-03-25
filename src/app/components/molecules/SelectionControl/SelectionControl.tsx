@@ -21,6 +21,7 @@ import Label from '../../atoms/Label/Label';
 import { SelectionControlType } from './types';
 
 export interface SelectionControlProps {
+    children?: never;
     className?: string;
     direction?: Direction;
     errorMessage?: ReactNode;
@@ -38,11 +39,10 @@ export interface SelectionControlProps {
     transitionEasing?: Easing;
     type?: SelectionControlType;
     value: string;
-    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
-export const SelectionControl: FunctionComponent<SelectionControlProps> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const SelectionControl: FunctionComponent<SelectionControlProps & { [key: string]: any }> = ({
     className,
     direction = Direction.LTR,
     errorMessage,

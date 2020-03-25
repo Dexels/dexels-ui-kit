@@ -22,7 +22,7 @@ export interface DialogProps {
     buttonClosePosition?: DialogButtonClosePosition;
     buttonConfirmIconType?: IconType;
     buttonConfirmText: ReactNode;
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     elevation?: Elevation;
     footerText?: ReactNode;

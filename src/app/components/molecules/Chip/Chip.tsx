@@ -9,7 +9,7 @@ import { StyledChip } from './Chip.sc';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 
 export interface ChipProps {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     direction?: Direction;
     iconSize?: IconSize;
@@ -19,11 +19,10 @@ export interface ChipProps {
     onClick?: MouseEventHandler;
     transitionDuration?: number;
     transitionEasing?: Easing;
-    // eslint-disable-next-line typescript-sort-keys/interface, @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
-export const Chip: FunctionComponent<ChipProps> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Chip: FunctionComponent<ChipProps & { [key: string]: any }> = ({
     children,
     className,
     direction = Direction.LTR,

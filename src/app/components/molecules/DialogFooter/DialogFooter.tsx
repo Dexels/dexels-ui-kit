@@ -12,6 +12,7 @@ export interface DialogFooterProps {
     buttonCancelText?: ReactNode;
     buttonConfirmIconType?: IconType;
     buttonConfirmText?: ReactNode;
+    children?: never;
     className?: string;
     onCancel?: MouseEventHandler;
     onConfirm?: MouseEventHandler;

@@ -3,8 +3,8 @@ import PanelHeader, { PanelHeaderProps } from '../PanelHeader/PanelHeader';
 import React, { FunctionComponent, ReactNode } from 'react';
 import CardStatus from '../CardStatus/CardStatus';
 
-export interface PanelStatusProps extends PanelHeaderProps {
-    children: ReactNode;
+export interface PanelStatusProps extends Omit<PanelHeaderProps, 'children'> {
+    children?: ReactNode;
     elevation?: Elevation;
     status?: Status;
 }

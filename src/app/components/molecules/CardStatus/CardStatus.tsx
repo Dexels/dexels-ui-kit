@@ -7,7 +7,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import { StyledCardStatus } from './CardStatus.sc';
 
 export interface CardStatusProps {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     elevation?: Elevation;
     hasBorderRadius?: boolean;

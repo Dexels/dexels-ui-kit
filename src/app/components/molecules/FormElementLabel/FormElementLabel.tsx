@@ -5,7 +5,7 @@ import { StyledFormElementLabel } from './FormElementLabel.sc';
 
 export interface FormElementLabelProps {
     backgroundColor?: string;
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     hasError?: boolean;
     isActive?: boolean;
