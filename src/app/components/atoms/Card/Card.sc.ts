@@ -7,6 +7,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 export interface StyledCardProps {
     elevation: Elevation;
     hasBorderRadius: boolean;
+    hasFullheightContent: boolean;
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
@@ -18,6 +19,11 @@ export const StyledCard = styled.div<StyledCardProps>`
 
     ${({ hasBorderRadius, theme }): SimpleInterpolation => hasBorderRadius && css`
         border-radius: ${theme.spacing(0.5)};
+    `}
+
+    ${({ hasFullheightContent }): SimpleInterpolation => hasFullheightContent && css`
+        display: flex;
+        align-items: stretch;
     `}
 `;
 

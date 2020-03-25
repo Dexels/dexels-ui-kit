@@ -7,6 +7,7 @@ export interface CardProps {
     className?: string;
     elevation?: Elevation;
     hasBorderRadius?: boolean;
+    hasFullheightContent?: boolean;
 }
 
 export const Card: FunctionComponent<CardProps> = ({
@@ -14,8 +15,14 @@ export const Card: FunctionComponent<CardProps> = ({
     className,
     elevation = Elevation.LEVEL_1,
     hasBorderRadius = true,
+    hasFullheightContent = false,
 }) => (
-    <StyledCard className={className} elevation={elevation} hasBorderRadius={hasBorderRadius}>
+    <StyledCard
+        className={className}
+        elevation={elevation}
+        hasBorderRadius={hasBorderRadius}
+        hasFullheightContent={hasFullheightContent}
+    >
         {children}
     </StyledCard>
 );

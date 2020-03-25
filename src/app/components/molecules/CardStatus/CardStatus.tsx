@@ -1,16 +1,9 @@
-import {
-    Elevation,
-    Placement,
-    Status,
-} from '../../../types';
-import React, { FunctionComponent, ReactNode } from 'react';
+import { Placement, Status } from '../../../types';
+import React, { FunctionComponent } from 'react';
+import { CardProps } from '../../atoms/Card/Card';
 import { StyledCardStatus } from './CardStatus.sc';
 
-export interface CardStatusProps {
-    children?: ReactNode;
-    className?: string;
-    elevation?: Elevation;
-    hasBorderRadius?: boolean;
+export interface CardStatusProps extends CardProps {
     placement?: Placement;
     status?: Status;
 }
@@ -19,7 +12,8 @@ export const CardStatus: FunctionComponent<CardStatusProps> = ({
     children,
     className,
     elevation,
-    hasBorderRadius = false,
+    hasBorderRadius,
+    hasFullheightContent,
     placement = Placement.TOP,
     status = Status.DEFAULT,
 }) => (
@@ -27,6 +21,7 @@ export const CardStatus: FunctionComponent<CardStatusProps> = ({
         className={className}
         elevation={elevation}
         hasBorderRadius={hasBorderRadius}
+        hasFullheightContent={hasFullheightContent}
         placement={placement}
         status={status}
     >
