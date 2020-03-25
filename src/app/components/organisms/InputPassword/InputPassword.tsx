@@ -11,6 +11,7 @@ import Icon from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
 
 export interface InputPasswordProps {
+    children?: never;
     className?: string;
     errorMessage?: ReactNode;
     hasError?: boolean;

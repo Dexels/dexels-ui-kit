@@ -9,7 +9,7 @@ import Header from '../Header/Header';
 import Overlay from '../../molecules/Overlay/Overlay';
 
 export interface ModalProps {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     isVisible: boolean;
     onBack?: MouseEventHandler;

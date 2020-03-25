@@ -11,6 +11,7 @@ const constructLoaderCircle = (amount: number): ReactNode => (
 
 export interface FullscreenLoaderProps {
     amount?: number;
+    children?: never;
     className?: string;
     type?: FullscreenLoaderType;
 }

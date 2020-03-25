@@ -9,7 +9,7 @@ import React, {
 import Button from '../../molecules/Button/Button';
 
 export interface ToolbarProps {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     isInverted?: boolean;
 }

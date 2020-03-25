@@ -5,12 +5,13 @@ import {
     StyledItem,
     TextWrapper,
 } from './Item.sc';
-import React, { FunctionComponent, MouseEventHandler } from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Icon from '../../../atoms/Icon/Icon';
 import { NavLink } from 'react-router-dom';
 import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
 
 interface ItemsProps {
+    children?: ReactNode;
     exact?: boolean;
     hasChildren?: boolean;
     iconType?: IconType;

@@ -3,7 +3,7 @@ import { Elevation } from '../../../types';
 import { StyledCard } from './Card.sc';
 
 export interface CardProps {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     elevation?: Elevation;
     hasBorderRadius?: boolean;
