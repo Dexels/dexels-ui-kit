@@ -14,8 +14,8 @@ export const Card: FunctionComponent<CardProps> = ({
     children,
     className,
     elevation = Elevation.LEVEL_1,
-    hasBorderRadius = true,
-    hasFullheightContent = true,
+    hasBorderRadius = false,
+    hasFullheightContent = false,
 }) => (
     <StyledCard
         className={className}

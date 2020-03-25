@@ -1,18 +1,19 @@
-import { Elevation, Placement, Status } from '../../../types';
+import CardStatus, { CardStatusProps } from '../CardStatus/CardStatus';
 import PanelHeader, { PanelHeaderProps } from '../PanelHeader/PanelHeader';
-import React, { FunctionComponent, ReactNode } from 'react';
-import CardStatus from '../CardStatus/CardStatus';
+import React, { FunctionComponent } from 'react';
+import { Placement } from '../../../types';
 
-export interface PanelStatusProps extends Omit<PanelHeaderProps, 'children'> {
-    children?: ReactNode;
-    elevation?: Elevation;
-    status?: Status;
+export interface PanelStatusProps extends
+    Omit<CardStatusProps, 'className' | 'placement'>,
+    Omit<PanelHeaderProps, 'children'> {
 }
 
 export const PanelStatus: FunctionComponent<PanelStatusProps> = ({
     children,
     elevation,
+    hasBorderRadius,
     hasCapitalizedTitle,
+    hasFullheightContent,
     hasTitleStatusAppearance,
     iconType,
     options,
@@ -28,7 +29,13 @@ export const PanelStatus: FunctionComponent<PanelStatusProps> = ({
             status={status}
             title={title}
         />
-        <CardStatus elevation={elevation} placement={Placement.TOP} status={status}>
+        <CardStatus
+            elevation={elevation}
+            hasBorderRadius={hasBorderRadius}
+            hasFullheightContent={hasFullheightContent}
+            placement={Placement.TOP}
+            status={status}
+        >
             {children}
         </CardStatus>
     </>
