@@ -6,6 +6,20 @@
         "email": "info@dexels.com"
     },
     "description": "An UI kit which can be used in Dexels applications",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Dexels/dexels-ui-kit.git"
+    },
+    "keywords": [
+        "UI kit",
+        "React",
+        "Styled Components"
+    ],
+    "bugs": {
+        "url": "https://github.com/Dexels/dexels-ui-kit/issues"
+    },
+    "homepage": "https://github.com/Dexels/dexels-ui-kit#readme",
+    "license": "MIT",
     "main": "index.js",
     "module": "index.esm.js",
     "types": "index.d.ts",
@@ -33,23 +47,9 @@
         "postpublish": "npm run clean",
         "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Dexels/dexels-ui-kit.git"
-    },
-    "keywords": [
-        "UI kit",
-        "React",
-        "Styled Components"
-    ],
     "browserslist": [
         "defaults"
     ],
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Dexels/dexels-ui-kit/issues"
-    },
-    "homepage": "https://github.com/Dexels/dexels-ui-kit#readme",
     "peerDependencies": {
         "@babel/runtime": "^7.8.7",
         "@types/react": "^16.9.23",
