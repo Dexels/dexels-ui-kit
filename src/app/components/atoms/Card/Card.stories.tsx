@@ -61,11 +61,11 @@ export const FullheightContent: FunctionComponent = () => (
                         {'Some title'}
                     </h2>
                     <p>
-                        {'Some content'}
+                        {'Some content about sports.'}
                     </p>
                     <div style={{ marginTop: 'auto' }} />
                     <Button isFullWidth onClick={action('On click')}>
-                        {'Buttons on same line!'}
+                        {'Buttons on same line, nice!'}
                     </Button>
                 </Content>
             </Card>
@@ -82,11 +82,11 @@ export const FullheightContent: FunctionComponent = () => (
                     </h2>
                     <p>
                         {'Some content that is so much longer than in the other card. In fact, it is so long, the '}
-                        {'writers said they never saw a text go long! It was perfect: perfectly long. Actually, it '}
+                        {'writers said they never saw a text this long! It was perfect: perfect length. Actually, it '}
                         {'was hugely perfectly long.'}
                     </p>
                     <Button onClick={action('On click')}>
-                        {'Buttons on same line!'}
+                        {'Buttons on same line, nice!'}
                     </Button>
                 </Content>
             </Card>
