@@ -41,41 +41,54 @@ const CardWrapper = styled.div`
     max-width: 304px;
 `;
 
+const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+`;
+
 export const FullheightContent: FunctionComponent = () => (
     <Cards>
         <CardWrapper>
             <Card
                 elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
                 hasBorderRadius={boolean('Has border radius', false)}
+                hasFullheightContent
             >
-                <h2>
-                    {'Some title'}
-                </h2>
-                <p>
-                    {'Some content'}
-                </p>
-                <div style={{ marginTop: 'auto' }} />
-                <Button isFullWidth onClick={action('On click')}>
-                    {'Buttons on same line!'}
-                </Button>
+                <Content>
+                    <h2 style={{ marginTop: 0 }}>
+                        {'Some title'}
+                    </h2>
+                    <p>
+                        {'Some content'}
+                    </p>
+                    <div style={{ marginTop: 'auto' }} />
+                    <Button isFullWidth onClick={action('On click')}>
+                        {'Buttons on same line!'}
+                    </Button>
+                </Content>
             </Card>
         </CardWrapper>
         <CardWrapper>
             <Card
                 elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
                 hasBorderRadius={boolean('Has border radius', false)}
+                hasFullheightContent
             >
-                <h2>
-                    {'Some title'}
-                </h2>
-                <p>
-                    {'Some content that is so much longer than in the other card. In fact, it is so long, the '}
-                    {'writers said they never saw a text go long! It was perfect: perfectly long. Actually, it '}
-                    {'was hugely perfectly long.'}
-                </p>
-                <Button onClick={action('On click')}>
-                    {'Buttons on same line!'}
-                </Button>
+                <Content>
+                    <h2 style={{ marginTop: 0 }}>
+                        {'Some title'}
+                    </h2>
+                    <p>
+                        {'Some content that is so much longer than in the other card. In fact, it is so long, the '}
+                        {'writers said they never saw a text go long! It was perfect: perfectly long. Actually, it '}
+                        {'was hugely perfectly long.'}
+                    </p>
+                    <Button onClick={action('On click')}>
+                        {'Buttons on same line!'}
+                    </Button>
+                </Content>
             </Card>
         </CardWrapper>
     </Cards>

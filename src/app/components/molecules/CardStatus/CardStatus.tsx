@@ -13,6 +13,7 @@ export const CardStatus: FunctionComponent<CardStatusProps> = ({
     className,
     elevation,
     hasBorderRadius,
+    hasFullheightContent,
     placement = Placement.TOP,
     status = Status.DEFAULT,
 }) => (
@@ -20,6 +21,7 @@ export const CardStatus: FunctionComponent<CardStatusProps> = ({
         className={className}
         elevation={elevation}
         hasBorderRadius={hasBorderRadius}
+        hasFullheightContent={hasFullheightContent}
         placement={placement}
         status={status}
     >
