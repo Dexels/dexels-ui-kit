@@ -41,7 +41,7 @@ const CardWrapper = styled.div`
     max-width: 304px;
 `;
 
-export const FullheightContentExample: FunctionComponent = () => (
+export const FullheightContent: FunctionComponent = () => (
     <Cards>
         <CardWrapper>
             <Card
