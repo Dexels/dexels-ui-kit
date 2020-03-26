@@ -16,11 +16,11 @@ export interface ToolbarProps {
 
 export const Toolbar: FunctionComponent<ToolbarProps> = ({ children, className, isInverted = false }) => (
     <StyledToolbar className={className}>
-        {Children.map(children, (child, index) => {
+        {Children.map(children, (child) => {
             if (isValidElement(child)) {
                 if (child.type === Button) {
                     return (
-                        <ButtonWrapper key={child.key || index}>
+                        <ButtonWrapper>
                             {cloneElement(child, { isInverted })}
                         </ButtonWrapper>
                     );
