@@ -19,6 +19,8 @@ export interface InputPasswordProps {
     isValid?: boolean;
     isVisibleDefault?: boolean;
     label: ReactNode;
+    maxLength?: number;
+    minLength?: number;
     name: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -34,6 +36,8 @@ export const InputPassword: FunctionComponent<InputPasswordProps> = ({
     isValid = false,
     isVisibleDefault = false,
     label,
+    maxLength,
+    minLength,
     name,
     onChange,
     onKeyDown,
@@ -50,6 +54,8 @@ export const InputPassword: FunctionComponent<InputPasswordProps> = ({
                 isDisabled={isDisabled}
                 isValid={isValid}
                 label={label}
+                maxLength={maxLength}
+                minLength={minLength}
                 name={name}
                 onChange={onChange}
                 onKeyDown={onKeyDown}
