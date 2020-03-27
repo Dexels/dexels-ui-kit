@@ -17,29 +17,30 @@ export const StyledSelectionControl = styled.div<StyledSelectionControlProps>`
     ${setBoxSizing()}
     display: flex;
 
-    ${({
-        hasHorizontalCorrection,
-        hasVerticalCorrection,
-        theme,
-        type,
-    }): FlattenSimpleInterpolation => css`
-        ${type === SelectionControlType.CHECKBOX && css`
-            ${hasHorizontalCorrection && css`
+    ${({ hasHorizontalCorrection, hasVerticalCorrection, theme, type }): FlattenSimpleInterpolation => css`
+        ${type === SelectionControlType.CHECKBOX &&
+        css`
+            ${hasHorizontalCorrection &&
+            css`
                 margin-left: ${theme.spacing(-1)};
             `}
 
-            ${hasVerticalCorrection && css`
+            ${hasVerticalCorrection &&
+            css`
                 margin-top: ${theme.spacing(-1)};
                 margin-bottom: ${theme.spacing(-1)};
             `}
         `}
 
-        ${type === SelectionControlType.RADIO && css`
-            ${hasHorizontalCorrection && css`
+        ${type === SelectionControlType.RADIO &&
+        css`
+            ${hasHorizontalCorrection &&
+            css`
                 margin-left: ${theme.spacing(-1.25)};
             `}
 
-            ${hasVerticalCorrection && css`
+            ${hasVerticalCorrection &&
+            css`
                 margin-top: ${theme.spacing(-1.25)};
                 margin-bottom: ${theme.spacing(-1.25)};
             `}
@@ -68,18 +69,21 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     overflow: hidden;
     pointer-events: none;
 
-    ${({ isDisabled }): SimpleInterpolation => isDisabled && css`
-        input {
-            pointer-events: none !important;
-        }
-    `}
+    ${({ isDisabled }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            input {
+                pointer-events: none !important;
+            }
+        `}
 
     &::before {
         ${setCentered()}
-        ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation => transitionEffect({
-            duration: transitionDuration,
-            easing: transitionEasing,
-        })}
+        ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
+            transitionEffect({
+                duration: transitionDuration,
+                easing: transitionEasing,
+            })}
         display: block;
         position: absolute;
         opacity: 0;
@@ -146,86 +150,84 @@ export const FakeInput = styled.div<FakeInputProps>`
     border: 2px solid ${({ theme }): string => theme.colorPrimary};
     background-color: transparent;
 
-    ${({ theme, type }): SimpleInterpolation => type === SelectionControlType.CHECKBOX && css`
-        border-radius: ${theme.spacing(0.5)};
-        width: ${theme.spacing(3)};
-        height: ${theme.spacing(3)};
-    `}
+    ${({ theme, type }): SimpleInterpolation =>
+        type === SelectionControlType.CHECKBOX &&
+        css`
+            border-radius: ${theme.spacing(0.5)};
+            width: ${theme.spacing(3)};
+            height: ${theme.spacing(3)};
+        `}
 
-    ${({ theme, type }): SimpleInterpolation => type === SelectionControlType.RADIO && css`
-        border-radius: 100%;
-        width: ${theme.spacing(2.5)};
-        height: ${theme.spacing(2.5)};
-    `}
-
-    ${({
-        isChecked,
-        isIndeterminate,
-        theme,
-        type,
-    }): SimpleInterpolation => (isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
-        &::after {
-            ${setCentered()}
-            position: absolute;
+    ${({ theme, type }): SimpleInterpolation =>
+        type === SelectionControlType.RADIO &&
+        css`
             border-radius: 100%;
-            background-color: ${theme.colorSecondary};
-            width: ${theme.spacing(1.5)};
-            height: ${theme.spacing(1.5)};
-            content: '';
-        }
-    `}
+            width: ${theme.spacing(2.5)};
+            height: ${theme.spacing(2.5)};
+        `}
 
-    ${({ isHovered, theme }): SimpleInterpolation => isHovered && css`
-        border-color: ${theme.colorSecondary};
-    `}
-
-    ${({
-        isChecked,
-        isIndeterminate,
-        isValid,
-        theme,
-        type,
-    }): SimpleInterpolation => isValid && css`
-        border-color: ${theme.colorValid};
-
-        ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
+    ${({ isChecked, isIndeterminate, theme, type }): SimpleInterpolation =>
+        (isChecked || isIndeterminate) &&
+        type === SelectionControlType.RADIO &&
+        css`
             &::after {
-                background-color: ${theme.colorValid};
+                ${setCentered()}
+                position: absolute;
+                border-radius: 100%;
+                background-color: ${theme.colorSecondary};
+                width: ${theme.spacing(1.5)};
+                height: ${theme.spacing(1.5)};
+                content: '';
             }
         `}
-    `}
 
-    ${({
-        hasError,
-        isChecked,
-        isIndeterminate,
-        theme,
-        type,
-    }): SimpleInterpolation => hasError && css`
-        border-color: ${theme.colorInvalid};
-
-        ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
-            &::after {
-                background-color: ${theme.colorInvalid};
-            }
+    ${({ isHovered, theme }): SimpleInterpolation =>
+        isHovered &&
+        css`
+            border-color: ${theme.colorSecondary};
         `}
-    `}
 
-    ${({
-        isChecked,
-        isDisabled,
-        isIndeterminate,
-        theme,
-        type,
-    }): SimpleInterpolation => isDisabled && css`
-        border-color: ${theme.colorDisabled};
+    ${({ isChecked, isIndeterminate, isValid, theme, type }): SimpleInterpolation =>
+        isValid &&
+        css`
+            border-color: ${theme.colorValid};
 
-        ${(isChecked || isIndeterminate) && type === SelectionControlType.RADIO && css`
-            &::after {
-                background-color: ${theme.colorDisabled};
-            }
+            ${(isChecked || isIndeterminate) &&
+            type === SelectionControlType.RADIO &&
+            css`
+                &::after {
+                    background-color: ${theme.colorValid};
+                }
+            `}
         `}
-    `}
+
+    ${({ hasError, isChecked, isIndeterminate, theme, type }): SimpleInterpolation =>
+        hasError &&
+        css`
+            border-color: ${theme.colorInvalid};
+
+            ${(isChecked || isIndeterminate) &&
+            type === SelectionControlType.RADIO &&
+            css`
+                &::after {
+                    background-color: ${theme.colorInvalid};
+                }
+            `}
+        `}
+
+    ${({ isChecked, isDisabled, isIndeterminate, theme, type }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            border-color: ${theme.colorDisabled};
+
+            ${(isChecked || isIndeterminate) &&
+            type === SelectionControlType.RADIO &&
+            css`
+                &::after {
+                    background-color: ${theme.colorDisabled};
+                }
+            `}
+        `}
 `;
 
 FakeInput.defaultProps = {
@@ -250,17 +252,23 @@ export const IconWrapper = styled.div<IconWrapperProps>`
         display: block;
     }
 
-    ${({ hasError, theme }): SimpleInterpolation => hasError && css`
-        color: ${theme.colorInvalid};
-    `}
+    ${({ hasError, theme }): SimpleInterpolation =>
+        hasError &&
+        css`
+            color: ${theme.colorInvalid};
+        `}
 
-    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
-        color: ${theme.colorDisabled};
-    `}
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+        `}
 
-    ${({ isValid, theme }): SimpleInterpolation => isValid && css`
-        color: ${theme.colorValid};
-    `}
+    ${({ isValid, theme }): SimpleInterpolation =>
+        isValid &&
+        css`
+            color: ${theme.colorValid};
+        `}
 `;
 
 IconWrapper.defaultProps = {
@@ -282,9 +290,11 @@ export const LabelWrapper = styled.button<LabelWrapperProps>`
     padding: 0;
     text-align: ${({ direction }): string => (direction === Direction.LTR ? 'left' : 'right')};
 
-    ${({ isDisabled }): SimpleInterpolation => isDisabled && css`
-        pointer-events: none;
-    `}
+    ${({ isDisabled }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            pointer-events: none;
+        `}
 `;
 
 LabelWrapper.defaultProps = {

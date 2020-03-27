@@ -32,18 +32,24 @@ export const TabHeader = styled.button<TabHeaderProps>`
     text-align: center;
     color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ isFullWidth }): SimpleInterpolation => isFullWidth && css`
-        width: 100%;
-    `}
+    ${({ isFullWidth }): SimpleInterpolation =>
+        isFullWidth &&
+        css`
+            width: 100%;
+        `}
 
-    ${({ isActive, theme }): SimpleInterpolation => isActive && css`
-        border-bottom-color: ${theme.colorPrimary};
-    `}
+    ${({ isActive, theme }): SimpleInterpolation =>
+        isActive &&
+        css`
+            border-bottom-color: ${theme.colorPrimary};
+        `}
 
-    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
-        color: ${theme.colorDisabled};
-        pointer-events: none;
-    `}
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+            pointer-events: none;
+        `}
 
     &::after {
         ${({ theme }): FlattenSimpleInterpolation => rippleEffect(theme.colorSecondary)}

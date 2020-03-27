@@ -12,9 +12,11 @@ export const StyledHeader = styled.div<StyledHeaderProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     display: flex;
     flex-direction: row;
-    background: ${({ isInverted, theme }): string => (isInverted ? theme.header.backgroundColor.secondary : theme.header.backgroundColor.primary)};
+    background: ${({ isInverted, theme }): string =>
+        isInverted ? theme.header.backgroundColor.secondary : theme.header.backgroundColor.primary};
     height: ${({ theme }): string => theme.spacing(6.5)};
-    color: ${({ isInverted, theme }): string => (isInverted ? theme.colorText.primary : theme.colorTextContrast.primary)};
+    color: ${({ isInverted, theme }): string =>
+        isInverted ? theme.colorText.primary : theme.colorTextContrast.primary};
 `;
 
 StyledHeader.defaultProps = {

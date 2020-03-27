@@ -1,8 +1,4 @@
-import {
-    Placement,
-    Status,
-    StatusIndicatorSize,
-} from '../../../types';
+import { Placement, Status, StatusIndicatorSize } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import { getStatusIndicator } from '../../../styles/mixins/getStatusIndicator';
@@ -16,12 +12,7 @@ interface StyledStatusIndicatorProps {
 }
 
 export const StyledStatusIndicator = styled.div<StyledStatusIndicatorProps>`
-    ${({
-        placement,
-        size,
-        status,
-        theme,
-    }): string => getStatusIndicator(status, theme, placement, size)}
+    ${({ placement, size, status, theme }): string => getStatusIndicator(status, theme, placement, size)}
     display: flex;
     align-items: stretch;
     border-radius: inherit;

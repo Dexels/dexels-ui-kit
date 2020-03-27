@@ -12,11 +12,12 @@ interface StyledModalProps {
 
 export const StyledModal = styled.div<StyledModalProps>`
     ${setBoxSizing()}
-    ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation => slideUpEffect({
-        duration: transitionDuration,
-        easing: transitionEasing,
-        isVisible,
-    })}
+    ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
+        slideUpEffect({
+            duration: transitionDuration,
+            easing: transitionEasing,
+            isVisible,
+        })}
     display: flex;
     position: fixed;
     top: 0;

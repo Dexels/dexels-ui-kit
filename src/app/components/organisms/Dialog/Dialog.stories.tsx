@@ -1,16 +1,5 @@
-import {
-    Alignment,
-    ButtonVariant,
-    Easing,
-    Elevation,
-    IconType,
-} from '../../../types';
-import {
-    boolean,
-    number,
-    select,
-    text,
-} from '@storybook/addon-knobs';
+import { Alignment, ButtonVariant, Easing, Elevation, IconType } from '../../../types';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, MouseEventHandler, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';

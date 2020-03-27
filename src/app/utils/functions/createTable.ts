@@ -17,8 +17,8 @@ import {
 export const createTable = <T extends object>(
     columns: Column<T>[],
     data: T[],
-    initialState?: object,
-): TableInstance<T> => (
+    initialState?: object
+): TableInstance<T> =>
     useTable<T>(
         {
             columns,
@@ -33,8 +33,7 @@ export const createTable = <T extends object>(
         useSortBy,
         useExpanded,
         useRowSelect,
-        usePagination,
-    )
-);
+        usePagination
+    );
 
 export default createTable;

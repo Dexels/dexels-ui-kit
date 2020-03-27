@@ -1,9 +1,4 @@
-import {
-    ButtonWrapper,
-    StyledShortcuts,
-    Text,
-    Wrapper,
-} from './Shortcuts.sc';
+import { ButtonWrapper, StyledShortcuts, Text, Wrapper } from './Shortcuts.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Chip from '../../../../molecules/Chip/Chip';
 import { IconType } from '../../../../../types';
@@ -21,11 +16,7 @@ interface ShortCutsProps {
 
 export const Shortcuts: FunctionComponent<ShortCutsProps> = ({ shortcuts, text }) => (
     <StyledShortcuts>
-        {text && (
-            <Text>
-                {text}
-            </Text>
-        )}
+        {text && <Text>{text}</Text>}
         <Wrapper>
             {shortcuts.map(({ onClick, text: shortcutText }, index) => (
                 <ButtonWrapper key={typeof shortcutText === 'string' ? shortcutText : index}>

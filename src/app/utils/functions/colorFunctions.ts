@@ -1,6 +1,4 @@
-const padZero = (string: string, length = 2): string => (
-    string.padStart(length, '0')
-);
+const padZero = (string: string, length = 2): string => string.padStart(length, '0');
 
 export const invertColor = (hex: string, bw = false): string => {
     let hexTmp = hex;
@@ -23,7 +21,7 @@ export const invertColor = (hex: string, bw = false): string => {
     const numberB = parseInt(hexTmp.slice(4, 6), 16);
 
     if (bw) {
-        return (numberR * 0.299 + numberG * 0.587 + numberB * 0.114) > 186 ? '#000000' : '#FFFFFF';
+        return numberR * 0.299 + numberG * 0.587 + numberB * 0.114 > 186 ? '#000000' : '#FFFFFF';
     }
 
     // invert color components

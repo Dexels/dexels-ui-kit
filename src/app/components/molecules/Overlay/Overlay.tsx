@@ -8,17 +8,8 @@ export interface OverlayProps {
     onClick?: MouseEventHandler;
 }
 
-export const Overlay: FunctionComponent<OverlayProps> = ({
-    className,
-    isVisible = true,
-    onClick,
-}) => (
-    <StyledOverlay
-        className={className}
-        isClickable={Boolean(onClick)}
-        isVisible={isVisible}
-        onClick={onClick}
-    />
+export const Overlay: FunctionComponent<OverlayProps> = ({ className, isVisible = true, onClick }) => (
+    <StyledOverlay className={className} isClickable={Boolean(onClick)} isVisible={isVisible} onClick={onClick} />
 );
 
 export default Overlay;

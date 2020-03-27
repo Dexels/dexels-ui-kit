@@ -16,17 +16,23 @@ export const StyledInputIcon = styled.div<StyledInputIconProps>`
         display: block;
     }
 
-    ${({ isFocused, theme }): SimpleInterpolation => isFocused && css`
-        color: ${theme.colorSecondary};
-    `}
+    ${({ isFocused, theme }): SimpleInterpolation =>
+        isFocused &&
+        css`
+            color: ${theme.colorSecondary};
+        `}
 
-    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
-        color: ${theme.colorDisabled};
-    `}
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+        `}
 
-    ${({ theme, variant }): SimpleInterpolation => variant === SingleDatePickerVariant.OUTLINE && css`
-        padding: ${theme.spacing(1.5)};
-    `}
+    ${({ theme, variant }): SimpleInterpolation =>
+        variant === SingleDatePickerVariant.OUTLINE &&
+        css`
+            padding: ${theme.spacing(1.5)};
+        `}
 `;
 
 StyledInputIcon.defaultProps = {

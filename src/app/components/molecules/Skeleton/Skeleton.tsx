@@ -23,13 +23,7 @@ export const Skeleton: FunctionComponent<SkeletonProps> = ({
     width,
 }) => (
     <StyledSkeleton color={color} highlightColor={highlightColor}>
-        <SkeletonLoader
-            circle={circle}
-            count={count}
-            duration={duration}
-            height={height}
-            width={width}
-        />
+        <SkeletonLoader circle={circle} count={count} duration={duration} height={height} width={width} />
     </StyledSkeleton>
 );
 

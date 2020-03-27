@@ -27,9 +27,11 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
         height: ${({ theme }): string => theme.spacing(6)};
         overflow: hidden;
 
-        ${({ isFocused, theme }): SimpleInterpolation => isFocused && css`
-            border-color: ${theme.colorSecondary};
-        `}
+        ${({ isFocused, theme }): SimpleInterpolation =>
+            isFocused &&
+            css`
+                border-color: ${theme.colorSecondary};
+            `}
 
         &:hover {
             border-color: ${({ theme }): string => theme.colorSecondary};
@@ -139,9 +141,11 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
     .DayPickerNavigation_button {
         outline: none;
 
-        ${({ hasYearSelector }): SimpleInterpolation => hasYearSelector && css`
-            display: none;
-        `}
+        ${({ hasYearSelector }): SimpleInterpolation =>
+            hasYearSelector &&
+            css`
+                display: none;
+            `}
     }
 
     .CalendarMonth,

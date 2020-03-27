@@ -1,16 +1,5 @@
-import {
-    Easing,
-    Elevation,
-    Placement,
-} from '../../../types';
-import React, {
-    FunctionComponent,
-    useCallback,
-    useContext,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+import { Easing, Elevation, Placement } from '../../../types';
+import React, { FunctionComponent, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { StyledTooltip } from './Tooltip.sc';
 import { ThemeContext } from 'styled-components';
 
@@ -138,23 +127,28 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
 
     const handleOnMouseOut = (): void => {
         if (hasTooltipDelay) {
-            setTimeoutId(window.setTimeout(() => {
-                setTooltipVisiblity(false);
-                setTooltipDelay(false);
-            }, delay));
+            setTimeoutId(
+                window.setTimeout(() => {
+                    setTooltipVisiblity(false);
+                    setTooltipDelay(false);
+                }, delay)
+            );
         } else {
             setTooltipVisiblity(false);
             setTooltipDelay(false);
         }
     };
 
-    const onMouseMove = useCallback(({ target }) => {
-        if (target.closest(`[${dataTooltipComponent}]`) && (!isTooltipVisible || timeoutId)) {
-            handleOnMouseOver(target.closest(`[${dataTooltipComponent}]`));
-        } else if (!target.closest(`[${dataTooltipComponent}]`) && isTooltipVisible && !timeoutId) {
-            handleOnMouseOut();
-        }
-    }, [hasTooltipDelay, isTooltipVisible, timeoutId]);
+    const onMouseMove = useCallback(
+        ({ target }) => {
+            if (target.closest(`[${dataTooltipComponent}]`) && (!isTooltipVisible || timeoutId)) {
+                handleOnMouseOver(target.closest(`[${dataTooltipComponent}]`));
+            } else if (!target.closest(`[${dataTooltipComponent}]`) && isTooltipVisible && !timeoutId) {
+                handleOnMouseOut();
+            }
+        },
+        [hasTooltipDelay, isTooltipVisible, timeoutId]
+    );
 
     useEffect(() => {
         window.addEventListener('mousemove', onMouseMove);
@@ -187,17 +181,17 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
 
     if (hoveredElement) {
         if (tooltipPosition === Placement.TOP) {
-            bottom = `${document.documentElement.clientHeight - hoveredElement.top + (spacingValue * 2)}px`;
-            left = `${hoveredElement.left + ((hoveredElement.width - tooltipWidth) / 2)}px`;
+            bottom = `${document.documentElement.clientHeight - hoveredElement.top + spacingValue * 2}px`;
+            left = `${hoveredElement.left + (hoveredElement.width - tooltipWidth) / 2}px`;
         } else if (tooltipPosition === Placement.RIGHT) {
-            top = `${hoveredElement.top + ((hoveredElement.height - tooltipHeight) / 2)}px`;
-            left = `${hoveredElement.right + (spacingValue * 2)}px`;
+            top = `${hoveredElement.top + (hoveredElement.height - tooltipHeight) / 2}px`;
+            left = `${hoveredElement.right + spacingValue * 2}px`;
         } else if (tooltipPosition === Placement.BOTTOM) {
-            top = `${hoveredElement.bottom + (spacingValue * 2)}px`;
-            left = `${hoveredElement.left + ((hoveredElement.width - tooltipWidth) / 2)}px`;
+            top = `${hoveredElement.bottom + spacingValue * 2}px`;
+            left = `${hoveredElement.left + (hoveredElement.width - tooltipWidth) / 2}px`;
         } else {
-            right = `${document.documentElement.clientWidth - hoveredElement.left + (spacingValue * 2)}px`;
-            top = `${hoveredElement.top + ((hoveredElement.height - tooltipHeight) / 2)}px`;
+            right = `${document.documentElement.clientWidth - hoveredElement.left + spacingValue * 2}px`;
+            top = `${hoveredElement.top + (hoveredElement.height - tooltipHeight) / 2}px`;
         }
     }
 

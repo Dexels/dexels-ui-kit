@@ -3,10 +3,9 @@ import PanelHeader, { PanelHeaderProps } from '../PanelHeader/PanelHeader';
 import React, { FunctionComponent } from 'react';
 import { Placement } from '../../../types';
 
-export interface PanelStatusProps extends
-    Omit<CardStatusProps, 'className' | 'placement'>,
-    Omit<PanelHeaderProps, 'children'> {
-}
+export interface PanelStatusProps
+    extends Omit<CardStatusProps, 'className' | 'placement'>,
+        Omit<PanelHeaderProps, 'children'> {}
 
 export const PanelStatus: FunctionComponent<PanelStatusProps> = ({
     children,

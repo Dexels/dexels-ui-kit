@@ -415,4 +415,4 @@ export interface ThemeTextStyle {
 
 export type ThemeTextStylesMap = {
     [TextStyle in keyof Theme['textStyles']]: TextStyle;
-}
+};

@@ -18,9 +18,7 @@ export const ConfigurableCompactVariant: FunctionComponent = () => {
 
     return (
         <>
-            <p>
-                {'What is the best fruit?'}
-            </p>
+            <p>{'What is the best fruit?'}</p>
             <Dropdown
                 errorMessage={text('Error message', 'Everything is broken, oops')}
                 hasError={boolean('Has error', false)}
@@ -35,9 +33,7 @@ export const ConfigurableCompactVariant: FunctionComponent = () => {
             >
                 {optionArray}
             </Dropdown>
-            <p>
-                {`You selected ${placeholder === value ? 'nothing yet' : value}.`}
-            </p>
+            <p>{`You selected ${placeholder === value ? 'nothing yet' : value}.`}</p>
         </>
     );
 };
@@ -71,9 +67,7 @@ export const ConfigurableOutlineVariant: FunctionComponent = () => {
             >
                 {optionArray}
             </Dropdown>
-            <p>
-                {`You selected ${placeholder === value ? 'nothing yet' : value}.`}
-            </p>
+            <p>{`You selected ${placeholder === value ? 'nothing yet' : value}.`}</p>
         </>
     );
 };

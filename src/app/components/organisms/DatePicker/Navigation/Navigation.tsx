@@ -24,11 +24,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({
     yearCount,
 }) => {
     if (!hasYearSelector) {
-        return (
-            <CurrentDate>
-                {`${month.format('MMMM')} ${month.year()}`}
-            </CurrentDate>
-        );
+        return <CurrentDate>{`${month.format('MMMM')} ${month.year()}`}</CurrentDate>;
     }
 
     const monthArray = moment.months().map((label, value) => (
@@ -44,7 +40,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({
         yearArray.push(
             <option key={i} value={i}>
                 {i}
-            </option>,
+            </option>
         );
     }
 

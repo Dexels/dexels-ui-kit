@@ -1,9 +1,4 @@
-import {
-    IconType,
-    InputType,
-    InputVariant,
-    Size,
-} from '../../../../types';
+import { IconType, InputType, InputVariant, Size } from '../../../../types';
 import {
     InputWrapper,
     PageSizeSelector,
@@ -40,11 +35,11 @@ export interface PaginatorProps<T extends object> {
     useResultsOfText?: boolean;
 }
 
-const pagingResultsText = <T extends object>(
-    instance: TableInstance<T>,
-    texts: PaginatorTexts,
-): string => {
-    const { state: { pageIndex, pageSize } } = instance;
+const pagingResultsText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts): string => {
+    const {
+        state: { pageIndex, pageSize },
+    } = instance;
+
     const rowCount = instance.rows.length || 0;
     let result = '';
     let start = -1;
@@ -56,7 +51,7 @@ const pagingResultsText = <T extends object>(
     }
 
     if (pageIndex !== 0) {
-        start = (pageIndex * pageSize) + 1;
+        start = pageIndex * pageSize + 1;
         end = (pageIndex + 1) * pageSize <= rowCount ? (pageIndex + 1) * pageSize : rowCount;
     }
 
@@ -66,7 +61,10 @@ const pagingResultsText = <T extends object>(
 };
 
 const pagingText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts): string => {
-    const { state: { pageIndex, pageSize } } = instance;
+    const {
+        state: { pageIndex, pageSize },
+    } = instance;
+
     const pageCount = instance.rows.length / pageSize;
 
     return `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`;
@@ -87,9 +85,7 @@ export const Paginator = <T extends object>({
         <StyledPaginator>
             {hasPageSizeSelector && (
                 <PageSizeSelector>
-                    <PageSizeSelectorText>
-                        {texts.show}
-                    </PageSizeSelectorText>
+                    <PageSizeSelectorText>{texts.show}</PageSizeSelectorText>
                     <Dropdown
                         name="DROPDOWN_PAGE_SIZES"
                         onChange={(e): void => {
@@ -103,9 +99,7 @@ export const Paginator = <T extends object>({
                             </option>
                         ))}
                     </Dropdown>
-                    <PageSizeSelectorText>
-                        {texts.rowsPerPage && texts.rowsPerPage}
-                    </PageSizeSelectorText>
+                    <PageSizeSelectorText>{texts.rowsPerPage && texts.rowsPerPage}</PageSizeSelectorText>
                 </PageSizeSelector>
             )}
             {hasGoToPage && (

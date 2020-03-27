@@ -3,6 +3,4 @@ import Colors from './Colors';
 
 export default { title: 'atoms/Colors' };
 
-export const Overview: FunctionComponent = () => (
-    <Colors />
-);
+export const Overview: FunctionComponent = () => <Colors />;

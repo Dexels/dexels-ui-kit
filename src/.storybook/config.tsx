@@ -33,16 +33,18 @@ addDecorator((storyFn) => (
 ));
 
 // Add withThemesProvider setup to make themes available in all stories
-addDecorator(withThemesProvider([
-    {
-        ...themeBasic,
-        name: 'Basic',
-    },
-    {
-        ...themeDark,
-        name: 'Dark',
-    },
-]));
+addDecorator(
+    withThemesProvider([
+        {
+            ...themeBasic,
+            name: 'Basic',
+        },
+        {
+            ...themeDark,
+            name: 'Dark',
+        },
+    ])
+);
 
 // Make it possible to switch between background-colors
 addParameters({

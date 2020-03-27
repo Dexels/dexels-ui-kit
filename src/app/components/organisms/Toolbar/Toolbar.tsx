@@ -1,11 +1,5 @@
 import { ButtonWrapper, StyledToolbar } from './Toolbar.sc';
-import React, {
-    Children,
-    cloneElement,
-    FunctionComponent,
-    isValidElement,
-    ReactNode,
-} from 'react';
+import React, { Children, cloneElement, FunctionComponent, isValidElement, ReactNode } from 'react';
 import Button from '../../molecules/Button/Button';
 
 export interface ToolbarProps {
@@ -19,11 +13,7 @@ export const Toolbar: FunctionComponent<ToolbarProps> = ({ children, className, 
         {Children.map(children, (child) => {
             if (isValidElement(child)) {
                 if (child.type === Button) {
-                    return (
-                        <ButtonWrapper>
-                            {cloneElement(child, { isInverted })}
-                        </ButtonWrapper>
-                    );
+                    return <ButtonWrapper>{cloneElement(child, { isInverted })}</ButtonWrapper>;
                 }
 
                 return cloneElement(child, { isInverted });

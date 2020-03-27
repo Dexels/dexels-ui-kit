@@ -1,10 +1,5 @@
 import { SingleDatePicker as AirbnbSingleDatePicker, SingleDatePickerShape } from 'react-dates';
-import React, {
-    FunctionComponent,
-    ReactNode,
-    useContext,
-    useState,
-} from 'react';
+import React, { FunctionComponent, ReactNode, useContext, useState } from 'react';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import InputIcon from '../InputIcon/InputIcon';
@@ -118,7 +113,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                             yearCount={yearCount}
                         />
                     )}
-                    verticalSpacing={(spacingValue * (variant === SingleDatePickerVariant.OUTLINE ? 6 : 3.25)) - 40}
+                    verticalSpacing={spacingValue * (variant === SingleDatePickerVariant.OUTLINE ? 6 : 3.25) - 40}
                 />
             </StyledSingleDatePicker>
         </Wrapper>

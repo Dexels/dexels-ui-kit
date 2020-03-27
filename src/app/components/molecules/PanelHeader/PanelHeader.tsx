@@ -1,8 +1,4 @@
-import {
-    FunctionalWrapper,
-    StyledPanelHeader,
-    Title,
-} from './PanelHeader.sc';
+import { FunctionalWrapper, StyledPanelHeader, Title } from './PanelHeader.sc';
 import { IconType, Status } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
@@ -31,9 +27,7 @@ export const PanelHeader: FunctionComponent<PanelHeaderProps> = ({
                 {title}
             </TextWithOptionalIcon>
         </Title>
-        <FunctionalWrapper>
-            {options}
-        </FunctionalWrapper>
+        <FunctionalWrapper>{options}</FunctionalWrapper>
     </StyledPanelHeader>
 );
 

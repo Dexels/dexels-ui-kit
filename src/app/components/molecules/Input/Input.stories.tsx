@@ -1,9 +1,4 @@
-import {
-    boolean,
-    number,
-    select,
-    text,
-} from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { InputType, InputVariant } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
 import Input from './Input';

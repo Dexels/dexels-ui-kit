@@ -17,12 +17,14 @@ export const Text = styled.p<TextProps>`
     margin: 0;
     word-break: break-word;
 
-    ${({ isCapitalized }): SimpleInterpolation => isCapitalized && css`
-        &::first-letter,
-        span::first-letter {
-            text-transform: uppercase;
-        }
-    `}
+    ${({ isCapitalized }): SimpleInterpolation =>
+        isCapitalized &&
+        css`
+            &::first-letter,
+            span::first-letter {
+                text-transform: uppercase;
+            }
+        `}
 `;
 
 interface IconWrapperProps {
@@ -38,17 +40,26 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     }
 
     ${({ size }): FlattenSimpleInterpolation => css`
-        ${size === IconSize.SMALL && css`
-            font-size: 18px;
-        `}
+        ${
+            size === IconSize.SMALL &&
+            css`
+                font-size: 18px;
+            `
+        }
 
-        ${size === IconSize.MEDIUM && css`
-            font-size: 20px;
-        `}
+        ${
+            size === IconSize.MEDIUM &&
+            css`
+                font-size: 20px;
+            `
+        }
 
-        ${size === IconSize.LARGE && css`
-            font-size: 24px;
-        `}
+        ${
+            size === IconSize.LARGE &&
+            css`
+                font-size: 24px;
+            `
+        }
     `}
 `;
 
@@ -66,16 +77,18 @@ export const StyledTextWithOptionalIcon = styled.div<StyledTextWithOptionalIconP
     align-items: center;
     justify-content: center;
 
-    ${({ direction, theme }): SimpleInterpolation => direction === Direction.RTL && css`
-        ${Text} {
-            order: 1;
-        }
+    ${({ direction, theme }): SimpleInterpolation =>
+        direction === Direction.RTL &&
+        css`
+            ${Text} {
+                order: 1;
+            }
 
-        ${IconWrapper} {
-            order: 2;
-            margin: ${theme.spacing(0, 0, 0, 0.75)};
-        }
-    `}
+            ${IconWrapper} {
+                order: 2;
+                margin: ${theme.spacing(0, 0, 0, 0.75)};
+            }
+        `}
 `;
 
 StyledTextWithOptionalIcon.defaultProps = {

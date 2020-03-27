@@ -33,12 +33,7 @@ export const Configurable: FunctionComponent = () => (
                     padding: '0 0 0 32px',
                 }}
             >
-                {menuItems.map(({
-                    children,
-                    exact,
-                    path,
-                    text,
-                }) => {
+                {menuItems.map(({ children, exact, path, text }) => {
                     if (children && children.length > 0) {
                         return children.map((child) => (
                             <Route exact={child.exact} key={child.path} path={child.path}>

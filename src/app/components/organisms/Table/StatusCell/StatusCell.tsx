@@ -1,9 +1,4 @@
-import {
-    IconType,
-    Placement,
-    Status,
-    StatusIndicatorSize,
-} from '../../../../types';
+import { IconType, Placement, Status, StatusIndicatorSize } from '../../../../types';
 import { IconWrapper, StyledStatusCell } from './StatusCell.sc';
 import React, { FunctionComponent } from 'react';
 import Icon from '../../../atoms/Icon/Icon';

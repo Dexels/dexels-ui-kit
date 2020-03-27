@@ -1,8 +1,4 @@
-import {
-    Body,
-    HeaderWrapper,
-    StyledModal,
-} from './Modal.sc';
+import { Body, HeaderWrapper, StyledModal } from './Modal.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { Easing } from '../../../types';
 import Header from '../Header/Header';
@@ -42,9 +38,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
                     {options}
                 </Header>
             </HeaderWrapper>
-            <Body>
-                {children}
-            </Body>
+            <Body>{children}</Body>
         </StyledModal>
     </>
 );

@@ -1,9 +1,4 @@
-import {
-    ButtonBarWrapper,
-    ButtonWrapper,
-    StyledDialogFooter,
-    Text,
-} from './DialogFooter.sc';
+import { ButtonBarWrapper, ButtonWrapper, StyledDialogFooter, Text } from './DialogFooter.sc';
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Button from '../Button/Button';
@@ -29,11 +24,7 @@ export const DialogFooter: FunctionComponent<DialogFooterProps> = ({
     text,
 }) => (
     <StyledDialogFooter className={className}>
-        {text && (
-            <Text>
-                {text}
-            </Text>
-        )}
+        {text && <Text>{text}</Text>}
         <ButtonBarWrapper>
             {buttonCancelText && onCancel && (
                 <ButtonWrapper>
