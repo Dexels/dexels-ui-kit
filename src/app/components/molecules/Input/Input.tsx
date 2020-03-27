@@ -21,7 +21,9 @@ export interface InputProps {
     isValid?: boolean;
     label: ReactNode;
     max?: number;
+    maxLength?: number;
     min?: number;
+    minLength?: number;
     name: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -40,7 +42,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     isValid = false,
     label,
     max,
+    maxLength,
     min,
+    minLength,
     name,
     onChange,
     onKeyDown,
@@ -91,6 +95,8 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     isHovered={isHovered}
                     isTextarea={isTextarea}
                     isValid={isValid}
+                    maxLength={maxLength}
+                    minLength={minLength}
                     name={name}
                     onBlur={toggleIsFocusedCallback}
                     onChange={onChange}

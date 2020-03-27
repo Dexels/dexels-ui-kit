@@ -22,6 +22,8 @@ export const Configurable: FunctionComponent = () => {
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
+            maxLength={number('Max length', 100)}
+            minLength={number('Min length', 0)}
             name="a-input-name"
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
