@@ -24,7 +24,7 @@ export const Configurable: FunctionComponent = () => {
             label={text('Label', 'This is a label')}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
-            name="a-input-name"
+            name="an-input-name"
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}
@@ -47,11 +47,35 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             label={text('Label', 'This input can only contain numbers')}
             max={number('Max', 100)}
             min={number('Min', 0)}
-            name="a-input-name"
+            name="an-input-name"
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}
             type={InputType.NUMBER}
+            value={value}
+            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
+        />
+    );
+};
+
+export const ConfigurableTextarea: FunctionComponent = () => {
+    const [value, setValue] = useState('');
+
+    return (
+        <Input
+            errorMessage={text('Error message', 'Help, something went wrong!')}
+            hasError={boolean('Has error', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isTextarea
+            isValid={boolean('Is valid', false)}
+            label={text('Label', 'This is a textarea, write some text')}
+            maxLength={number('Max length', 100)}
+            minLength={number('Min length', 0)}
+            name="a-textarea-name"
+            onChange={({ currentTarget }): void => {
+                setValue(parseInputValue(currentTarget));
+            }}
+            type={select('Type', InputType, InputType.TEXT)}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />
