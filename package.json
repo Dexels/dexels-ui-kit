@@ -37,7 +37,7 @@
         "build:types": "./node_modules/.bin/dts-bundle-generator --config=dtsconfig.json",
         "check-all": "npm run lint:css && npm run lint:js && npm run check-types",
         "check-types": "tsc",
-        "clean": "npx rimraf index.d.ts index.js index.esm.js fonts main.css stats.html",
+        "clean": "npx rimraf index.d.ts index.js index.esm.js fonts main.css",
         "dist": "npm run build:prod && npm run build:types",
         "lint:css": "stylelint \"./src/**/*.ts\"",
         "lint:js": "eslint \"src\" --ext \".ts,.tsx\"",
