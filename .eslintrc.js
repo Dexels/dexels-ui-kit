@@ -11,17 +11,19 @@ module.exports = {
         'react',
         '@typescript-eslint',
         'typescript-sort-keys',
+        'prettier',
     ],
     extends: [
         'airbnb',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:import/typescript',
+        'prettier',
+        'prettier/@typescript-eslint',
+        'prettier/babel',
+        'prettier/react',
     ],
     rules: {
-        '@typescript-eslint/indent': [2, 4, {
-            SwitchCase: 1,
-        }],
         '@typescript-eslint/no-empty-interface': 0,
         '@typescript-eslint/no-unused-vars': 2,
         'brace-style': [2, '1tbs'],
@@ -36,12 +38,6 @@ module.exports = {
         'import/no-named-as-default': 0,
         'import/order': 0,
         'import/prefer-default-export': 0,
-        indent: 0,
-        'max-len': [2, {
-            code: 120,
-            ignoreTemplateLiterals: true,
-            tabWidth: 4,
-        }],
         'no-multiple-empty-lines': [2, {
             max: 1,
             maxBOF: 0,
@@ -76,13 +72,10 @@ module.exports = {
                 ],
             },
         ],
+        'prettier/prettier': 2,
         'react/jsx-curly-brace-presence': 0,
         'react/jsx-filename-extension': [2, {
             extensions: ['.tsx'],
-        }],
-        'react/jsx-indent': [2, 4, {
-            checkAttributes: true,
-            indentLogicalExpressions: true,
         }],
         'react/jsx-indent-props': [2, 4],
         'react/jsx-key': [2, {
@@ -91,13 +84,7 @@ module.exports = {
         'react/jsx-no-literals': [2, {
             noStrings: false,
         }],
-        'react/jsx-max-props-per-line': [2, {
-            maximum: 3,
-        }],
         'react/jsx-no-useless-fragment': 2,
-        'react/jsx-one-expression-per-line': [2, {
-            allow: 'none',
-        }],
         'react/jsx-props-no-spreading': 0,
         'react/jsx-sort-default-props': [2, {
             ignoreCase: false,

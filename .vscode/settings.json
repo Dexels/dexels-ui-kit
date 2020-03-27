@@ -1,13 +1,10 @@
 {
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
     "eslint.enable": true,
-    "eslint.options": {
-        "configFile": "./.eslintrc.js",
-    },
-    "files.associations": {
-        "*.js": "javascriptreact",
-    },
+    "files.eol": "\n",
     "files.trimTrailingWhitespace": true,
     "javascript.validate.enable": false,
     "typescript.validate.enable": true,
-    "files.eol": "\n",
 }
