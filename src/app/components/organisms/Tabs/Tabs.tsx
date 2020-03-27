@@ -1,15 +1,5 @@
-import React, {
-    FunctionComponent,
-    ReactNode,
-    ReactText,
-    useState,
-} from 'react';
-import {
-    StyledTabs,
-    TabHeader,
-    TabHeaderList,
-    TabPanel,
-} from './Tabs.sc';
+import React, { FunctionComponent, ReactNode, ReactText, useState } from 'react';
+import { StyledTabs, TabHeader, TabHeaderList, TabPanel } from './Tabs.sc';
 import { Elevation } from '../../../types';
 
 export interface Tab {
@@ -27,9 +17,7 @@ export interface TabsProps {
     tabs: Tab[];
 }
 
-const setInitiallyActiveTabIndex = (tab: Tab): false | Tab => (
-    !tab.isDisabled && tab
-);
+const setInitiallyActiveTabIndex = (tab: Tab): false | Tab => !tab.isDisabled && tab;
 
 export const Tabs: FunctionComponent<TabsProps> = ({
     className,
@@ -39,31 +27,28 @@ export const Tabs: FunctionComponent<TabsProps> = ({
     tabs,
 }) => {
     const [activeTabIndex, setActiveTabIndex] = useState(
-        initiallyActiveTabIndex || tabs.findIndex(setInitiallyActiveTabIndex),
+        initiallyActiveTabIndex || tabs.findIndex(setInitiallyActiveTabIndex)
     );
 
     return (
         <StyledTabs className={className} elevation={elevation}>
             <TabHeaderList>
-                {tabs.length > 0 && tabs.map(({ isDisabled = false, title }: Tab, index: number) => (
-                    <TabHeader
-                        isActive={activeTabIndex === index}
-                        isDisabled={isDisabled}
-                        isFullWidth={hasFullWidthTabHeaders}
-                        key={title}
-                        onClick={(): void => {
-                            setActiveTabIndex(index);
-                        }}
-                    >
-                        {title}
-                    </TabHeader>
-                ))}
+                {tabs.length > 0 &&
+                    tabs.map(({ isDisabled = false, title }: Tab, index: number) => (
+                        <TabHeader
+                            isActive={activeTabIndex === index}
+                            isDisabled={isDisabled}
+                            isFullWidth={hasFullWidthTabHeaders}
+                            key={title}
+                            onClick={(): void => {
+                                setActiveTabIndex(index);
+                            }}
+                        >
+                            {title}
+                        </TabHeader>
+                    ))}
             </TabHeaderList>
-            {tabs[activeTabIndex] && (
-                <TabPanel>
-                    {tabs[activeTabIndex].content}
-                </TabPanel>
-            )}
+            {tabs[activeTabIndex] && <TabPanel>{tabs[activeTabIndex].content}</TabPanel>}
         </StyledTabs>
     );
 };

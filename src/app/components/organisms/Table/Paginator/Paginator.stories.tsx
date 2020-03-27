@@ -1,7 +1,4 @@
-import {
-    array,
-    boolean,
-} from '@storybook/addon-knobs';
+import { array, boolean } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import { tableData, TableData } from '../mockup/tableData';
 import { createLocalizedPagingTexts } from '../mockup/tableFunctions';
@@ -17,24 +14,20 @@ export const Configurable: FunctionComponent = () => {
     const localizedTexts = createLocalizedPagingTexts(isNL ? 'nl' : 'en');
     const data = tableData();
 
-    const instance = createTable<TableData>(
-        tableColumns(data),
-        data,
-        {
-            hiddenColumns: ['id'],
-            pageIndex: 0,
-            sortBy: [
-                {
-                    desc: false,
-                    id: 'lastName',
-                },
-                {
-                    desc: false,
-                    id: 'firstName',
-                },
-            ],
-        },
-    );
+    const instance = createTable<TableData>(tableColumns(data), data, {
+        hiddenColumns: ['id'],
+        pageIndex: 0,
+        sortBy: [
+            {
+                desc: false,
+                id: 'lastName',
+            },
+            {
+                desc: false,
+                id: 'firstName',
+            },
+        ],
+    });
 
     return (
         <>

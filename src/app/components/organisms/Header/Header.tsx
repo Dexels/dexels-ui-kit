@@ -1,10 +1,5 @@
 import { Elevation, IconType } from '../../../types';
-import {
-    FunctionalWrapper,
-    NavigationWrapper,
-    StyledHeader,
-    Title,
-} from './Header.sc';
+import { FunctionalWrapper, NavigationWrapper, StyledHeader, Title } from './Header.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import Toolbar from '../Toolbar/Toolbar';
@@ -34,18 +29,12 @@ export const Header: FunctionComponent<HeaderProps> = ({
                 {onToggleMenu && (
                     <ButtonIcon iconType={IconType.MENU} isInverted={!isInverted} onClick={onToggleMenu} />
                 )}
-                {onBack && (
-                    <ButtonIcon iconType={IconType.CHEVRONLEFT} isInverted={!isInverted} onClick={onBack} />
-                )}
+                {onBack && <ButtonIcon iconType={IconType.CHEVRONLEFT} isInverted={!isInverted} onClick={onBack} />}
             </NavigationWrapper>
         )}
-        <Title>
-            {title}
-        </Title>
+        <Title>{title}</Title>
         <FunctionalWrapper>
-            <Toolbar isInverted={!isInverted}>
-                {children}
-            </Toolbar>
+            <Toolbar isInverted={!isInverted}>{children}</Toolbar>
         </FunctionalWrapper>
     </StyledHeader>
 );

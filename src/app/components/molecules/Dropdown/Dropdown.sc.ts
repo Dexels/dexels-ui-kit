@@ -16,34 +16,41 @@ export const StyledDropdown = styled.div<StyledDropdownProps>`
     ${setBoxSizing()}
     position: relative;
 
-    ${({
-        hasError,
-        isDisabled,
-        isFocused,
-        isValid,
-        theme,
-        variant,
-    }): SimpleInterpolation => variant === DropdownVariant.COMPACT && css`
+    ${({ hasError, isDisabled, isFocused, isValid, theme, variant }): SimpleInterpolation =>
+        variant === DropdownVariant.COMPACT &&
+        css`
         &::after {
             display: block;
             height: 1px;
             content: '';
 
-            ${isFocused && css`
-                background-color: ${theme.colorSecondary};
-            `}
+            ${
+                isFocused &&
+                css`
+                    background-color: ${theme.colorSecondary};
+                `
+            }
 
-            ${isValid && css`
-                background-color: ${theme.colorValid};
-            `}
+            ${
+                isValid &&
+                css`
+                    background-color: ${theme.colorValid};
+                `
+            }
 
-            ${hasError && css`
-                background-color: ${theme.colorInvalid};
-            `}
+            ${
+                hasError &&
+                css`
+                    background-color: ${theme.colorInvalid};
+                `
+            }
 
-            ${isDisabled && css`
-                background-color: transparent;
-            `}
+            ${
+                isDisabled &&
+                css`
+                    background-color: transparent;
+                `
+            }
         }
     `}
 `;
@@ -69,46 +76,60 @@ export const Select = styled.select<SelectProps>`
     width: 100%;
     color: ${({ theme }): string => theme.colorTextBody.primary};
 
-    ${({ theme, variant }): SimpleInterpolation => variant === DropdownVariant.COMPACT && css`
-        border: 0;
-        border-bottom: 1px solid ${theme.colorText.primary};
-        border-radius: 0;
-        padding: ${theme.spacing(0, 3, 0, 0)};
-        height: ${theme.spacing(3.5)};
-        line-height: ${theme.spacing(3.5)};
-    `}
+    ${({ theme, variant }): SimpleInterpolation =>
+        variant === DropdownVariant.COMPACT &&
+        css`
+            border: 0;
+            border-bottom: 1px solid ${theme.colorText.primary};
+            border-radius: 0;
+            padding: ${theme.spacing(0, 3, 0, 0)};
+            height: ${theme.spacing(3.5)};
+            line-height: ${theme.spacing(3.5)};
+        `}
 
-    ${({ theme, variant }): SimpleInterpolation => variant === DropdownVariant.OUTLINE && css`
-        border: 1px solid ${theme.colorText.primary};
-        border-radius: ${theme.spacing(1)};
-        padding: ${theme.spacing(0, 4.5, 0, 1.5)};
-        height: ${theme.spacing(6)};
-        line-height: ${theme.spacing(6)};
-    `}
+    ${({ theme, variant }): SimpleInterpolation =>
+        variant === DropdownVariant.OUTLINE &&
+        css`
+            border: 1px solid ${theme.colorText.primary};
+            border-radius: ${theme.spacing(1)};
+            padding: ${theme.spacing(0, 4.5, 0, 1.5)};
+            height: ${theme.spacing(6)};
+            line-height: ${theme.spacing(6)};
+        `}
 
-    ${({ isPlaceholderSelected, theme }): SimpleInterpolation => isPlaceholderSelected && css`
-        color: ${theme.shades.four};
-    `}
+    ${({ isPlaceholderSelected, theme }): SimpleInterpolation =>
+        isPlaceholderSelected &&
+        css`
+            color: ${theme.shades.four};
+        `}
 
-    ${({ isFocused, isHovered, theme }): SimpleInterpolation => (isFocused || isHovered) && css`
-        border-color: ${theme.colorSecondary};
-    `}
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation =>
+        (isFocused || isHovered) &&
+        css`
+            border-color: ${theme.colorSecondary};
+        `}
 
-    ${({ isValid, theme }): SimpleInterpolation => isValid && css`
-        border-color: ${theme.colorValid};
-        color: ${theme.colorValid};
-    `}
+    ${({ isValid, theme }): SimpleInterpolation =>
+        isValid &&
+        css`
+            border-color: ${theme.colorValid};
+            color: ${theme.colorValid};
+        `}
 
-    ${({ hasError, theme }): SimpleInterpolation => hasError && css`
-        border-color: ${theme.colorInvalid};
-        color: ${theme.colorInvalid};
-    `}
+    ${({ hasError, theme }): SimpleInterpolation =>
+        hasError &&
+        css`
+            border-color: ${theme.colorInvalid};
+            color: ${theme.colorInvalid};
+        `}
 
-    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
-        border-color: ${theme.colorDisabled};
-        color: ${theme.colorDisabled};
-        pointer-events: none;
-    `}
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            border-color: ${theme.colorDisabled};
+            color: ${theme.colorDisabled};
+            pointer-events: none;
+        `}
 `;
 
 Select.defaultProps = {
@@ -130,35 +151,49 @@ export const IconWrapper = styled.div<IconWrapperProps>`
         display: block;
     }
 
-    ${({ theme, variant }): SimpleInterpolation => variant === DropdownVariant.COMPACT && css`
-        top: ${theme.spacing(0.25)};
-        right: 0;
-    `}
+    ${({ theme, variant }): SimpleInterpolation =>
+        variant === DropdownVariant.COMPACT &&
+        css`
+            top: ${theme.spacing(0.25)};
+            right: 0;
+        `}
 
-    ${({ theme, variant }): SimpleInterpolation => variant === DropdownVariant.OUTLINE && css`
-        top: ${theme.spacing(1.5)};
-        right: ${theme.spacing(1.5)};
-    `}
+    ${({ theme, variant }): SimpleInterpolation =>
+        variant === DropdownVariant.OUTLINE &&
+        css`
+            top: ${theme.spacing(1.5)};
+            right: ${theme.spacing(1.5)};
+        `}
 
-    ${({ isFocused, isHovered, theme }): SimpleInterpolation => (isFocused || isHovered) && css`
-        color: ${theme.colorSecondary};
-    `}
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation =>
+        (isFocused || isHovered) &&
+        css`
+            color: ${theme.colorSecondary};
+        `}
 
-    ${({ isFocused }): SimpleInterpolation => isFocused && css`
-        transform: rotate(180deg);
-    `}
+    ${({ isFocused }): SimpleInterpolation =>
+        isFocused &&
+        css`
+            transform: rotate(180deg);
+        `}
 
-    ${({ isValid, theme }): SimpleInterpolation => isValid && css`
-        color: ${theme.colorValid};
-    `}
+    ${({ isValid, theme }): SimpleInterpolation =>
+        isValid &&
+        css`
+            color: ${theme.colorValid};
+        `}
 
-    ${({ hasError, theme }): SimpleInterpolation => hasError && css`
-        color: ${theme.colorInvalid};
-    `}
+    ${({ hasError, theme }): SimpleInterpolation =>
+        hasError &&
+        css`
+            color: ${theme.colorInvalid};
+        `}
 
-    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
-        color: ${theme.colorDisabled};
-    `}
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+        `}
 `;
 
 IconWrapper.defaultProps = {

@@ -13,46 +13,51 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
         display: block;
 
         &.SingleDatePickerInput__disabled {
-            ${({ theme, variant }): SimpleInterpolation => variant === SingleDatePickerVariant.COMPACT && css`
-                border-color: ${theme.colorDisabled};
+            ${({ theme, variant }): SimpleInterpolation =>
+                variant === SingleDatePickerVariant.COMPACT &&
+                css`
+                    border-color: ${theme.colorDisabled};
 
-                &::after {
-                    background-color: transparent;
-                }
-            `}
+                    &::after {
+                        background-color: transparent;
+                    }
+                `}
         }
 
-        ${({ theme, variant }): SimpleInterpolation => variant === SingleDatePickerVariant.COMPACT && css`
-            border: 0;
-            border-bottom: 1px solid ${theme.colorPrimary};
-            border-radius: 0;
-            padding: 0;
-            height: ${`calc(${theme.spacing(3)} + 1px)`};
-        `}
+        ${({ theme, variant }): SimpleInterpolation =>
+            variant === SingleDatePickerVariant.COMPACT &&
+            css`
+                border: 0;
+                border-bottom: 1px solid ${theme.colorPrimary};
+                border-radius: 0;
+                padding: 0;
+                height: ${`calc(${theme.spacing(3)} + 1px)`};
+            `}
 
-        ${({
-            isFocused,
-            theme,
-            variant,
-        }): SimpleInterpolation => variant === SingleDatePickerVariant.COMPACT && css`
-            overflow: visible;
+        ${({ isFocused, theme, variant }): SimpleInterpolation =>
+            variant === SingleDatePickerVariant.COMPACT &&
+            css`
+                overflow: visible;
 
-            &::after {
-                display: block;
-                height: 2px;
-                content: '';
+                &::after {
+                    display: block;
+                    height: 2px;
+                    content: '';
 
-                ${isFocused && css`
-                    background-color: ${theme.colorSecondary};
-                `}
-            }
-        `}
+                    ${isFocused &&
+                    css`
+                        background-color: ${theme.colorSecondary};
+                    `}
+                }
+            `}
     }
 
     .DateInput_input {
-        ${({ theme, variant }): SimpleInterpolation => variant === SingleDatePickerVariant.COMPACT && css`
-            height: ${theme.spacing(3)};
-        `}
+        ${({ theme, variant }): SimpleInterpolation =>
+            variant === SingleDatePickerVariant.COMPACT &&
+            css`
+                height: ${theme.spacing(3)};
+            `}
     }
 `;
 /* eslint-enable @typescript-eslint/indent */

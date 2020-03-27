@@ -1,9 +1,4 @@
-import {
-    boolean,
-    number,
-    select,
-    text,
-} from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import moment, { Moment } from 'moment';
 import React, { FunctionComponent, useState } from 'react';
 import SingleDatePicker from './SingleDatePicker';
@@ -23,10 +18,7 @@ export const Default: FunctionComponent = () => {
             isDayHighlighted={(day): boolean => day.day() === 6}
             isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}
-            keepOpenOnDateSelect={boolean(
-                'Keep open on date select',
-                true,
-            )}
+            keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Speeldatum')}
             numberOfMonths={number('Number of months', 1)}
             onDateChange={(newDate): void => {

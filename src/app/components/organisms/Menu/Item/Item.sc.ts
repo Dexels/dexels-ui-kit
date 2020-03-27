@@ -21,24 +21,30 @@ export const StyledItem = styled.div<StyledItemProps>`
 
     > a,
     > div {
-        ${({ isParent, theme }): string => theme.textStyling(isParent ? theme.availableTextStyles().h3 : theme.availableTextStyles().body2)}
-        padding: ${({ hasChildren, isParent, theme }): string => theme.spacing(0, hasChildren ? 0 : 3, 0, isParent ? 1 : 3.75)};
+        ${({ isParent, theme }): string =>
+            theme.textStyling(isParent ? theme.availableTextStyles().h3 : theme.availableTextStyles().body2)}
+        padding: ${({ hasChildren, isParent, theme }): string =>
+            theme.spacing(0, hasChildren ? 0 : 3, 0, isParent ? 1 : 3.75)};
         min-height: ${({ isParent, theme }): string => theme.spacing(isParent ? 6 : 4.5)};
         color: ${({ isParent, theme }): string => (isParent ? theme.colorText.primary : theme.colorTextBody.primary)};
     }
 
-    ${({ isParent, theme }): SimpleInterpolation => isParent && css`
-        border-top: 1px solid ${theme.shades.seven};
-    `}
+    ${({ isParent, theme }): SimpleInterpolation =>
+        isParent &&
+        css`
+            border-top: 1px solid ${theme.shades.seven};
+        `}
 
-    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
-        pointer-events: none;
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            pointer-events: none;
 
-        > a,
-        > div {
-            color: ${theme.colorDisabled};
-        }
-    `}
+            > a,
+            > div {
+                color: ${theme.colorDisabled};
+            }
+        `}
 `;
 
 StyledItem.defaultProps = {

@@ -6,34 +6,34 @@ export const transitionEffect = ({
     delay = 0,
     easing = Easing.EASE,
     property = 'all',
-} = {}): FlattenSimpleInterpolation => (css`
+} = {}): FlattenSimpleInterpolation => css`
     transition: ${`${property} ${duration}ms ${easing} ${delay}ms`};
-`);
+`;
 
 export const slideUpEffect = ({
     duration = 500,
     easing = Easing.EASE,
     isVisible = false,
     property = 'all',
-} = {}): FlattenSimpleInterpolation => (css`
+} = {}): FlattenSimpleInterpolation => css`
     ${transitionEffect({
         duration,
         easing,
         property,
     })}
     transform: ${`translate3d(-50%, ${isVisible ? '0' : '100%'}, 0)`};
-`);
+`;
 
 export const fadeInEffect = ({
     duration = 500,
     easing = Easing.EASE,
     isVisible = false,
     property = 'all',
-} = {}): FlattenSimpleInterpolation => (css`
+} = {}): FlattenSimpleInterpolation => css`
     ${transitionEffect({
         duration,
         easing,
         property,
     })}
     transform: ${`translate3d(-50%, ${isVisible ? '-50%' : '-40%'}, 0)`};
-`);
+`;

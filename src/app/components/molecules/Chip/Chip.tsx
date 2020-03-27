@@ -1,9 +1,4 @@
-import {
-    Direction,
-    Easing,
-    IconSize,
-    IconType,
-} from '../../../types';
+import { Direction, Easing, IconSize, IconType } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { StyledChip } from './Chip.sc';
 import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
@@ -45,11 +40,7 @@ export const Chip: FunctionComponent<ChipProps & { [key: string]: any }> = ({
         transitionEasing={transitionEasing}
         {...rest}
     >
-        <TextWithOptionalIcon
-            direction={direction}
-            iconSize={iconSize}
-            iconType={iconType}
-        >
+        <TextWithOptionalIcon direction={direction} iconSize={iconSize} iconType={iconType}>
             {children}
         </TextWithOptionalIcon>
     </StyledChip>

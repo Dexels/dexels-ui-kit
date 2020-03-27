@@ -1,8 +1,4 @@
-import {
-    Placement,
-    Status,
-    StatusIndicatorSize,
-} from '../../../types';
+import { Placement, Status, StatusIndicatorSize } from '../../../types';
 import Card from '../../atoms/Card/Card';
 import { getStatusIndicator } from '../../../styles/mixins/getStatusIndicator';
 import styled from 'styled-components';
@@ -14,11 +10,7 @@ interface StyledCardStatusProps {
 }
 
 export const StyledCardStatus = styled(Card)<StyledCardStatusProps>`
-    ${({
-        placement,
-        status,
-        theme,
-    }): string => getStatusIndicator(status, theme, placement, StatusIndicatorSize.SMALL)}
+    ${({ placement, status, theme }): string => getStatusIndicator(status, theme, placement, StatusIndicatorSize.SMALL)}
 `;
 
 StyledCardStatus.defaultProps = {

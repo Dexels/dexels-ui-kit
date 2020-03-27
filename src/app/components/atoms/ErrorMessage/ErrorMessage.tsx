@@ -7,9 +7,7 @@ export interface ErrorMessageProps {
 }
 
 export const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({ children, className }) => (
-    <StyledErrorMessage className={className}>
-        {children}
-    </StyledErrorMessage>
+    <StyledErrorMessage className={className}>{children}</StyledErrorMessage>
 );
 
 export default ErrorMessage;

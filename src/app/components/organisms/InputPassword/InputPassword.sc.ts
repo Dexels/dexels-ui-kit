@@ -28,22 +28,28 @@ export const VisibilitySwitch = styled.button<VisibilitySwitchProps>`
         display: block;
     }
 
-    ${({ theme, variant }): SimpleInterpolation => variant === InputVariant.COMPACT && css`
-        top: 0;
-        right: 0;
-        padding: ${theme.spacing(0, 0, 0, 1)};
-    `}
+    ${({ theme, variant }): SimpleInterpolation =>
+        variant === InputVariant.COMPACT &&
+        css`
+            top: 0;
+            right: 0;
+            padding: ${theme.spacing(0, 0, 0, 1)};
+        `}
 
-    ${({ theme, variant }): SimpleInterpolation => variant === InputVariant.OUTLINE && css`
-        top: ${theme.spacing(1)};
-        right: ${theme.spacing(1)};
-        padding: ${theme.spacing(0.5, 1)};
-    `}
+    ${({ theme, variant }): SimpleInterpolation =>
+        variant === InputVariant.OUTLINE &&
+        css`
+            top: ${theme.spacing(1)};
+            right: ${theme.spacing(1)};
+            padding: ${theme.spacing(0.5, 1)};
+        `}
 
-    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
-        color: ${theme.colorDisabled};
-        pointer-events: none;
-    `}
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+            pointer-events: none;
+        `}
 `;
 
 VisibilitySwitch.defaultProps = {

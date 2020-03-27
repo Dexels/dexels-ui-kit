@@ -8,7 +8,10 @@ interface StyledSkeletonProps {
 export const StyledSkeleton = styled.span<StyledSkeletonProps>`
     .react-loading-skeleton {
         background-color: ${({ color, theme }): string => color || theme.shades.seven};
-        background-image: ${({ color, highlightColor, theme }): string => `linear-gradient(90deg, ${color || theme.shades.seven}, ${highlightColor || theme.shades.nine}, ${color || theme.shades.seven})`};
+        background-image: ${({ color, highlightColor, theme }): string =>
+            `linear-gradient(90deg, ${color || theme.shades.seven}, ${highlightColor || theme.shades.nine}, ${
+                color || theme.shades.seven
+            })`};
     }
 `;
 

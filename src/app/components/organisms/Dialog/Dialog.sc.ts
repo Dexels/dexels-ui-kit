@@ -21,11 +21,12 @@ export const StyledDialog = styled.div<StyledDialogProps>`
     ${setBoxSizing()}
     ${setCentered()}
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
-    ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation => fadeInEffect({
-        duration: transitionDuration,
-        easing: transitionEasing,
-        isVisible,
-    })}
+    ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
+        fadeInEffect({
+            duration: transitionDuration,
+            easing: transitionEasing,
+            isVisible,
+        })}
     position: fixed;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
     z-index: 3;
@@ -56,13 +57,17 @@ export const ButtonClose = styled.button<ButtonCloseProps>`
     color: ${({ theme }): string => theme.colorText.primary};
     font-size: ${({ theme }): string => theme.spacing(3)};
 
-    ${({ position }): SimpleInterpolation => position === DialogButtonClosePosition.LEFT && css`
-        left: 2px;
-    `}
+    ${({ position }): SimpleInterpolation =>
+        position === DialogButtonClosePosition.LEFT &&
+        css`
+            left: 2px;
+        `}
 
-    ${({ position }): SimpleInterpolation => position === DialogButtonClosePosition.RIGHT && css`
-        right: 2px;
-    `}
+    ${({ position }): SimpleInterpolation =>
+        position === DialogButtonClosePosition.RIGHT &&
+        css`
+            right: 2px;
+        `}
 
     &:active,
     &:hover {
@@ -115,9 +120,11 @@ export const Body = styled.div<BodyProps>`
     overflow: auto;
     color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ hasHeader, theme }): SimpleInterpolation => !hasHeader && css`
-        border-radius: ${theme.spacing(1, 1, 0, 0)};
-    `}
+    ${({ hasHeader, theme }): SimpleInterpolation =>
+        !hasHeader &&
+        css`
+            border-radius: ${theme.spacing(1, 1, 0, 0)};
+        `}
 `;
 
 Body.defaultProps = {

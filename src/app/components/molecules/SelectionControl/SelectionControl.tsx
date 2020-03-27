@@ -7,14 +7,7 @@ import {
     LabelWrapper,
     StyledSelectionControl,
 } from './SelectionControl.sc';
-import React, {
-    ChangeEvent,
-    FunctionComponent,
-    MouseEvent,
-    ReactNode,
-    useCallback,
-    useState,
-} from 'react';
+import React, { ChangeEvent, FunctionComponent, MouseEvent, ReactNode, useCallback, useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import Icon from '../../atoms/Icon/Icon';
 import Label from '../../atoms/Label/Label';
@@ -116,9 +109,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
             </StyledSelectionControl>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper>
-                    <ErrorMessage>
-                        {errorMessage}
-                    </ErrorMessage>
+                    <ErrorMessage>{errorMessage}</ErrorMessage>
                 </ErrorMessageWrapper>
             )}
         </>

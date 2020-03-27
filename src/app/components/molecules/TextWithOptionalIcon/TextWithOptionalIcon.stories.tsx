@@ -6,9 +6,7 @@ import TextWithOptionalIcon from './TextWithOptionalIcon';
 export default { title: 'molecules/TextWithOptionalIcon' };
 
 export const Configurable: FunctionComponent = () => (
-    <TextWithOptionalIcon
-        isCapitalized={boolean('Is capitalized', false)}
-    >
+    <TextWithOptionalIcon isCapitalized={boolean('Is capitalized', false)}>
         {text('Text', 'Configure me!')}
     </TextWithOptionalIcon>
 );

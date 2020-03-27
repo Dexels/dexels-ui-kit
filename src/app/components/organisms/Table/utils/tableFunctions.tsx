@@ -10,39 +10,33 @@ export const compareValues = <T extends object>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     key: any,
     desc = false,
-    caseSensitive = false,
-) => (
-    ((a: UseTableRowProps<T>, b: UseTableRowProps<T>): number => {
-        if (!Object.prototype.hasOwnProperty.call(a.values, key)) {
-            return 0;
-        }
+    caseSensitive = false
+) => (a: UseTableRowProps<T>, b: UseTableRowProps<T>): number => {
+    if (!Object.prototype.hasOwnProperty.call(a.values, key)) {
+        return 0;
+    }
 
-        const varA = (typeof a.values[key] === 'string' && caseSensitive)
-            ? a.values[key].toUpperCase()
-            : a.values[key];
+    const varA = typeof a.values[key] === 'string' && caseSensitive ? a.values[key].toUpperCase() : a.values[key];
 
-        const varB = (typeof b.values[key] === 'string' && caseSensitive)
-            ? b.values[key].toUpperCase()
-            : b.values[key];
+    const varB = typeof b.values[key] === 'string' && caseSensitive ? b.values[key].toUpperCase() : b.values[key];
 
-        let comparison = 0;
+    let comparison = 0;
 
-        if (varA >= varB) {
-            comparison = 1;
-        } else if (varA < varB) {
-            comparison = -1;
-        }
+    if (varA >= varB) {
+        comparison = 1;
+    } else if (varA < varB) {
+        comparison = -1;
+    }
 
-        return desc ? comparison * -1 : comparison;
-    })
-);
+    return desc ? comparison * -1 : comparison;
+};
 
 export const customSortByDate = <T extends object>(
     a: UseTableRowProps<T>,
     b: UseTableRowProps<T>,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     key: any,
-    emptyValuesAtEnd = true,
+    emptyValuesAtEnd = true
 ): -1 | 1 => {
     const valueA = a.values[key];
     const valueB = b.values[key];
@@ -61,11 +55,10 @@ export const customSortByDate = <T extends object>(
 export const customSortByCaseInsensitive = <T extends object>(
     rows: UseTableRowProps<T>[],
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    key: any,
-): UseTableRowProps<T>[] => (
+    key: any
+): UseTableRowProps<T>[] =>
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
-    rows.sort(compareValues<T>(key))
-);
+    rows.sort(compareValues<T>(key));
 
 export const renderCell = <T extends object>(row: CellProps<T>): ReactNode => {
     if (row.cell.value && row.cell.value === null) {
@@ -84,7 +77,8 @@ export const renderCell = <T extends object>(row: CellProps<T>): ReactNode => {
 };
 
 export const renderSortIcon = <T extends object>(
-    column: UseSortByColumnProps<T>, hasUnsortedStateIcon = false,
+    column: UseSortByColumnProps<T>,
+    hasUnsortedStateIcon = false
 ): ReactNode => {
     let sortIcon = null;
 
@@ -111,7 +105,7 @@ export const getColumnWidth = <T extends object>(
     data: T[],
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     accessor: any,
-    headerText = accessor,
+    headerText = accessor
 ): string => {
     if (typeof accessor === 'string' || accessor instanceof String) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -123,10 +117,7 @@ export const getColumnWidth = <T extends object>(
     let cellLength = headerText.length;
 
     if (data) {
-        cellLength = Math.max(
-            ...data.map((row: T) => (`${accessor(row)}` || '').length),
-            headerText.length,
-        );
+        cellLength = Math.max(...data.map((row: T) => (`${accessor(row)}` || '').length), headerText.length);
     }
 
     return `${Math.min(maxWidth, cellLength * magicSpacing)}px`;

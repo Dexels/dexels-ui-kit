@@ -1,15 +1,5 @@
-import {
-    Alignment,
-    Easing,
-    Elevation,
-    IconType,
-} from '../../../types';
-import {
-    Body,
-    ButtonClose,
-    Header,
-    StyledDialog,
-} from './Dialog.sc';
+import { Alignment, Easing, Elevation, IconType } from '../../../types';
+import { Body, ButtonClose, Header, StyledDialog } from './Dialog.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
@@ -64,9 +54,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     width = '300px',
 }) => (
     <>
-        {hasOverlay && (
-            <Overlay isVisible={isVisible} />
-        )}
+        {hasOverlay && <Overlay isVisible={isVisible} />}
         {hasButtonClose && hasOverlay && isVisible && (
             <ButtonClose onClick={onClose} position={buttonClosePosition}>
                 <Icon type={IconType.CROSS} />
@@ -81,11 +69,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
             transitionEasing={transitionEasing}
             width={width}
         >
-            {header && (
-                <Header alignment={headerAlignment}>
-                    {header}
-                </Header>
-            )}
+            {header && <Header alignment={headerAlignment}>{header}</Header>}
             <Body alignment={bodyAlignment} hasHeader={Boolean(header)}>
                 {children}
             </Body>

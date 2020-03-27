@@ -11,11 +11,7 @@ export const Configurable: FunctionComponent = () => (
     <CardStatus
         elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
         hasBorderRadius={boolean('Has border radius', false)}
-        placement={select(
-            'Status placement',
-            Placement,
-            Placement.TOP,
-        )}
+        placement={select('Status placement', Placement, Placement.TOP)}
         status={select('Status', Status, Status.DEFAULT)}
     >
         {text('Text', 'Configure me!')}
@@ -26,17 +22,9 @@ export const ConfigurableWithComponent: FunctionComponent = () => (
     <CardStatus
         elevation={select('Elevation', Elevation, Elevation.LEVEL_16)}
         hasBorderRadius={boolean('Has border radius', true)}
-        placement={select(
-            'Status placement',
-            Placement,
-            Placement.BOTTOM,
-        )}
+        placement={select('Status placement', Placement, Placement.BOTTOM)}
         status={select('Status', Status, Status.ALERT)}
     >
-        <Button
-            onClick={action('On click')}
-        >
-            {'Button for testing'}
-        </Button>
+        <Button onClick={action('On click')}>{'Button for testing'}</Button>
     </CardStatus>
 );

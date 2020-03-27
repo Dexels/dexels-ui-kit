@@ -17,10 +17,11 @@ export const StyledChip = styled.button<StyledChipProps>`
     ${setBoxSizing()}
     ${rippleEffectInit()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
-    ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation => transitionEffect({
-        duration: transitionDuration,
-        easing: transitionEasing,
-    })}
+    ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
+        transitionEffect({
+            duration: transitionDuration,
+            easing: transitionEasing,
+        })}
     appearance: none;
     outline: none;
     border: 1px solid ${({ theme }): string => theme.shades.two};
@@ -31,14 +32,18 @@ export const StyledChip = styled.button<StyledChipProps>`
     min-height: ${({ theme }): string => theme.spacing(3.75)};
     color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ isDisabled, isSelected, theme }): SimpleInterpolation => (isDisabled || !isSelected) && css`
-        border-color: ${theme.colorDisabled};
-    `}
+    ${({ isDisabled, isSelected, theme }): SimpleInterpolation =>
+        (isDisabled || !isSelected) &&
+        css`
+            border-color: ${theme.colorDisabled};
+        `}
 
-    ${({ isDisabled, theme }): SimpleInterpolation => isDisabled && css`
-        color: ${theme.colorDisabled};
-        pointer-events: none;
-    `}
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+            pointer-events: none;
+        `}
 
     &::after {
         ${({ isHoverable, theme }): SimpleInterpolation => isHoverable && rippleEffect(theme.colorTertiary)}
@@ -46,10 +51,12 @@ export const StyledChip = styled.button<StyledChipProps>`
 
     &:active,
     &:hover {
-        ${({ isHoverable, theme }): SimpleInterpolation => isHoverable && css`
-            border-color: ${theme.colorSecondary};
-            color: ${theme.colorSecondary};
-        `}
+        ${({ isHoverable, theme }): SimpleInterpolation =>
+            isHoverable &&
+            css`
+                border-color: ${theme.colorSecondary};
+                color: ${theme.colorSecondary};
+            `}
     }
 
     &:active::after {

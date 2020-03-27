@@ -1,10 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import {
-    ButtonSize,
-    ButtonVariant,
-    Elevation,
-    IconType,
-} from '../../../types';
+import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
@@ -21,33 +16,12 @@ export const Configurable: FunctionComponent = () => {
     const title = text('Header title', 'Wedstrijden');
 
     return (
-        <Header
-            elevation={elevation}
-            isInverted={isInverted}
-            onBack={onBack}
-            onToggleMenu={onToggleMenu}
-            title={title}
-        >
-            <ButtonIcon
-                iconType={IconType.PLUS}
-                onClick={action('On buttonicon PLUS')}
-            />
-            <ButtonIcon
-                iconType={IconType.SEARCH}
-                onClick={action('On buttonicon SEARCH')}
-            />
-            <ButtonIcon
-                iconType={IconType.SHARE}
-                onClick={action('On buttonicon SHARE')}
-            />
-            <ButtonIcon
-                iconType={IconType.GEAR}
-                onClick={action('On buttonicon GEAR')}
-            />
-            <ButtonIcon
-                iconType={IconType.ROUNDHELP}
-                onClick={action('On buttonicon ROUNDHELP')}
-            />
+        <Header elevation={elevation} isInverted={isInverted} onBack={onBack} onToggleMenu={onToggleMenu} title={title}>
+            <ButtonIcon iconType={IconType.PLUS} onClick={action('On buttonicon PLUS')} />
+            <ButtonIcon iconType={IconType.SEARCH} onClick={action('On buttonicon SEARCH')} />
+            <ButtonIcon iconType={IconType.SHARE} onClick={action('On buttonicon SHARE')} />
+            <ButtonIcon iconType={IconType.GEAR} onClick={action('On buttonicon GEAR')} />
+            <ButtonIcon iconType={IconType.ROUNDHELP} onClick={action('On buttonicon ROUNDHELP')} />
             <Button
                 iconType={IconType.ROUNDINFO}
                 onClick={action('On button ROUNDINFO 1')}

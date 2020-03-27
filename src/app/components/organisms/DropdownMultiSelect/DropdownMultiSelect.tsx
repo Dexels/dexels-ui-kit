@@ -1,18 +1,6 @@
 import { Dropdown, DropdownVariant } from '../../molecules/Dropdown';
-import {
-    List,
-    ListItem,
-    ListWrapper,
-    StaticItem,
-    StyledDropdownMultiSelect,
-} from './DropdownMultiSelect.sc';
-import React, {
-    FunctionComponent,
-    ReactElement,
-    ReactNode,
-    useCallback,
-    useState,
-} from 'react';
+import { List, ListItem, ListWrapper, StaticItem, StyledDropdownMultiSelect } from './DropdownMultiSelect.sc';
+import React, { FunctionComponent, ReactElement, ReactNode, useCallback, useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import { Elevation } from '../../../types';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
@@ -123,16 +111,10 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
             </Dropdown>
             {isSelectOpen && (
                 <ListWrapper elevation={elevation} ref={componentRef}>
-                    {optionAll && (
-                        <StaticItem elevation={Elevation.LEVEL_1}>
-                            {optionAll}
-                        </StaticItem>
-                    )}
+                    {optionAll && <StaticItem elevation={Elevation.LEVEL_1}>{optionAll}</StaticItem>}
                     <List maxHeight={maxHeight}>
                         {options.map((item) => (
-                            <ListItem key={item.key as string}>
-                                {item}
-                            </ListItem>
+                            <ListItem key={item.key as string}>{item}</ListItem>
                         ))}
                     </List>
                     <DialogFooter

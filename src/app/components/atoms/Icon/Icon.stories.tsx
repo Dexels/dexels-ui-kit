@@ -19,7 +19,8 @@ export const Configurable: FunctionComponent = () => {
         <div
             style={{
                 color: select('Color', colors, colors['colorHeaderText-primary']),
-                fontSize: select('Size',
+                fontSize: select(
+                    'Size',
                     {
                         XSMALL: '12px',
                         SMALL: '16px',
@@ -28,7 +29,8 @@ export const Configurable: FunctionComponent = () => {
                         XLARGE: '28px',
                         XXLARGE: '32px',
                     },
-                    '24px'),
+                    '24px'
+                ),
             }}
         >
             <Icon type={select('Type', IconType, IconType.CALENDAR)} />
