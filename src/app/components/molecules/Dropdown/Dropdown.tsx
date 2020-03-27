@@ -1,17 +1,5 @@
-import {
-    ErrorMessageWrapper,
-    IconWrapper,
-    Select,
-    StyledDropdown,
-} from './Dropdown.sc';
-import React, {
-    ChangeEvent,
-    ComponentType,
-    FunctionComponent,
-    MouseEventHandler,
-    ReactNode,
-    useState,
-} from 'react';
+import { ErrorMessageWrapper, IconWrapper, Select, StyledDropdown } from './Dropdown.sc';
+import React, { ChangeEvent, ComponentType, FunctionComponent, MouseEventHandler, ReactNode, useState } from 'react';
 import { DropdownVariant } from './types';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
@@ -131,9 +119,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
             </StyledDropdown>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper>
-                    <ErrorMessage>
-                        {errorMessage}
-                    </ErrorMessage>
+                    <ErrorMessage>{errorMessage}</ErrorMessage>
                 </ErrorMessageWrapper>
             )}
         </>

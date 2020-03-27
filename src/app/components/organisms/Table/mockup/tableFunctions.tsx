@@ -13,7 +13,9 @@ export const createLocalizedTableTexts = (language = 'nl'): { toggleSortTooltip:
     return localizedTexts;
 };
 
-export const createLocalizedPagingTexts = (language = 'nl'): {
+export const createLocalizedPagingTexts = (
+    language = 'nl'
+): {
     page: string;
     pageGoto: string;
     pageOf: string;

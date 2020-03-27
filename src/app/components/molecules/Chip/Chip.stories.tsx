@@ -1,15 +1,5 @@
-import {
-    boolean,
-    number,
-    select,
-    text,
-} from '@storybook/addon-knobs';
-import {
-    Direction,
-    Easing,
-    IconSize,
-    IconType,
-} from '../../../types';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { Direction, Easing, IconSize, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Chip from './Chip';

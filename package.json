@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "3.8.0",
+    "version": "3.8.1",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -45,7 +45,8 @@
         "storybook:build": "build-storybook -c ./src/.storybook -s ./public -o .out",
         "postinstall": "npx rimraf node_modules/@types/react-native",
         "postpublish": "npm run clean",
-        "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist"
+        "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist",
+        "prettier": "prettier --write **/*.{ts,tsx,js,css}"
     },
     "browserslist": [
         "defaults"
@@ -99,14 +100,17 @@
         "eslint": "^6.8.0",
         "eslint-config-airbnb": "^18.1.0",
         "eslint-config-airbnb-typescript": "^7.2.0",
+        "eslint-config-prettier": "^6.10.1",
         "eslint-plugin-babel": "^5.3.0",
         "eslint-plugin-import": "^2.20.1",
         "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-prettier": "^3.1.2",
         "eslint-plugin-react": "^7.19.0",
         "eslint-plugin-react-hooks": "^3.0.0",
         "eslint-plugin-typescript-sort-keys": "^0.5.0",
         "moment": "^2.24.0",
         "postcss-url": "^8.0.0",
+        "prettier": "^2.0.2",
         "react": "^16.13.1",
         "react-dates": "^21.8.0",
         "react-dom": "^16.13.1",

@@ -10,18 +10,8 @@ export interface LoaderProps {
     variant?: ButtonVariant;
 }
 
-export const Loader: FunctionComponent<LoaderProps> = ({
-    className,
-    isInverted = false,
-    size,
-    variant,
-}) => (
-    <StyledLoader
-        className={className}
-        isInverted={isInverted}
-        size={size}
-        variant={variant}
-    >
+export const Loader: FunctionComponent<LoaderProps> = ({ className, isInverted = false, size, variant }) => (
+    <StyledLoader className={className} isInverted={isInverted} size={size} variant={variant}>
         <div />
         <div />
         <div />

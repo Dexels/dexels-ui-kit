@@ -253,17 +253,19 @@ export const themeBasic: Theme = {
         const validTextStylingSelectors = Object.keys(this.textStyles);
 
         if (!validTextStylingSelectors.includes(textStyleSelector)) {
-            throw new Error(`${textStyleSelector} is not a valid text styling selector. Please use one the following: ${validTextStylingSelectors}`);
+            throw new Error(
+                `${textStyleSelector} is not a valid text styling selector. Please use one the following: ${validTextStylingSelectors}`
+            );
         }
 
         const textStyle = this.textStyles[textStyleSelector];
 
-        return (`
+        return `
             line-height: ${textStyle.lineHeight};
             font-family: ${textStyle.fontFamily};
             font-size: ${textStyle.fontSize};
             font-weight: ${textStyle.fontWeight};
-        `);
+        `;
     },
 };
 /* eslint-enable sort-keys */

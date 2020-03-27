@@ -23,7 +23,11 @@ const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 const originalOptionValues = cloneArray(data);
 
-const getSelectAllOption = (options: Options, textOptionDeselectAll: string, textOptionSelectAll: string): {
+const getSelectAllOption = (
+    options: Options,
+    textOptionDeselectAll: string,
+    textOptionSelectAll: string
+): {
     text: string;
     value: DropdownOptionAllTexts;
 } => {
@@ -55,36 +59,31 @@ const BaseComponent = (
     originalOptions: Options,
     variant: DropdownVariant = DropdownVariant.COMPACT,
     maxHeight = '',
-    label = '',
+    label = ''
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
     const [isOpen, setIsOpen] = useState(false);
 
     const value = areAllOptionsSelected(optionValues)
-        ? TEXT_OPTION_ALL_SELECTED : getSelectedText(getSelectedElements(optionValues));
+        ? TEXT_OPTION_ALL_SELECTED
+        : getSelectedText(getSelectedElements(optionValues));
 
-    const [selectAllOption, setSelectAllOption] = useState(getSelectAllOption(
-        optionValues,
-        TEXT_OPTION_DESELECT_ALL,
-        TEXT_OPTION_SELECT_ALL,
-    ));
+    const [selectAllOption, setSelectAllOption] = useState(
+        getSelectAllOption(optionValues, TEXT_OPTION_DESELECT_ALL, TEXT_OPTION_SELECT_ALL)
+    );
 
     const setStates = (values: Options): void => {
         setOptionValues(cloneArray(values));
 
-        setSelectAllOption(
-            getSelectAllOption(
-                values,
-                TEXT_OPTION_DESELECT_ALL,
-                TEXT_OPTION_SELECT_ALL,
-            ),
-        );
+        setSelectAllOption(getSelectAllOption(values, TEXT_OPTION_DESELECT_ALL, TEXT_OPTION_SELECT_ALL));
     };
 
     const onChangeAll = (): void => {
-        setStates((isAnyOptionSelected(optionValues)
-            ? setAllElementsDeselected(optionValues)
-            : setAllElementsSelected(optionValues)) as Options);
+        setStates(
+            (isAnyOptionSelected(optionValues)
+                ? setAllElementsDeselected(optionValues)
+                : setAllElementsSelected(optionValues)) as Options
+        );
     };
 
     return (
@@ -110,7 +109,7 @@ const BaseComponent = (
                 onConfirm={(): void => {
                     setIsOpen(false);
                 }}
-                optionAll={(
+                optionAll={
                     <SelectionControl
                         isChecked={selectAllOption.value === DropdownOptionAllTexts.ON}
                         isIndeterminate={selectAllOption.value === DropdownOptionAllTexts.INDETERMINATE}
@@ -119,7 +118,7 @@ const BaseComponent = (
                         onChange={onChangeAll}
                         value={selectAllOption.value}
                     />
-                )}
+                }
                 options={optionValues.map((item) => (
                     <SelectionControl
                         isChecked={item.Selected}
@@ -140,9 +139,7 @@ const BaseComponent = (
                 <div style={{ margin: '20px 0 0' }}>
                     {'Selected items:'}
                     {getSelectedElements(optionValues).map((item) => (
-                        <p key={item.Id}>
-                            {`${item.Id} - ${item.Description}`}
-                        </p>
+                        <p key={item.Id}>{`${item.Id} - ${item.Description}`}</p>
                     ))}
                     {'Selected items as string:'}
                     {value}
@@ -154,22 +151,10 @@ const BaseComponent = (
 
 export const ConfigurableCompactVariant: FunctionComponent = () => (
     <>
-        <p>
-            {'What is the best fruit?'}
-        </p>
-        {BaseComponent(
-            data,
-            originalOptionValues,
-        )}
+        <p>{'What is the best fruit?'}</p>
+        {BaseComponent(data, originalOptionValues)}
     </>
 );
 
-export const ConfigurableOutlineVariant: FunctionComponent = () => (
-    BaseComponent(
-        data,
-        originalOptionValues,
-        DropdownVariant.OUTLINE,
-        '150px',
-        'What are the best fruits?',
-    )
-);
+export const ConfigurableOutlineVariant: FunctionComponent = () =>
+    BaseComponent(data, originalOptionValues, DropdownVariant.OUTLINE, '150px', 'What are the best fruits?');

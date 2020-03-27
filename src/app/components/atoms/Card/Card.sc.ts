@@ -18,14 +18,18 @@ export const StyledCard = styled.div<StyledCardProps>`
     width: 100%;
     color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ hasBorderRadius, theme }): SimpleInterpolation => hasBorderRadius && css`
-        border-radius: ${theme.spacing(0.5)};
-    `}
+    ${({ hasBorderRadius, theme }): SimpleInterpolation =>
+        hasBorderRadius &&
+        css`
+            border-radius: ${theme.spacing(0.5)};
+        `}
 
-    ${({ hasFullheightContent }): SimpleInterpolation => hasFullheightContent && css`
-        display: flex;
-        align-items: stretch;
-    `}
+    ${({ hasFullheightContent }): SimpleInterpolation =>
+        hasFullheightContent &&
+        css`
+            display: flex;
+            align-items: stretch;
+        `}
 `;
 
 StyledCard.defaultProps = {

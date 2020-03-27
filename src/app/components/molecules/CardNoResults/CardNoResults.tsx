@@ -1,13 +1,5 @@
 import { Elevation, IconType } from '../../../types';
-import {
-    Header,
-    IconWrapper,
-    Item,
-    Left,
-    Right,
-    StyledCardNoResults,
-    Title,
-} from './CardNoResults.sc';
+import { Header, IconWrapper, Item, Left, Right, StyledCardNoResults, Title } from './CardNoResults.sc';
 import React, { FunctionComponent, ReactNode } from 'react';
 import Icon from '../../atoms/Icon/Icon';
 
@@ -38,18 +30,13 @@ export const CardNoResults: FunctionComponent<CardNoResultsProps> = ({
             </IconWrapper>
         </Left>
         <Right>
-            <Header>
-                {header}
-            </Header>
-            <Title>
-                {title}
-            </Title>
-            {items.length > 0 && items.map((item) => (
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                <Item key={item as any}>
-                    {`${itemPrefix} ${item}`}
-                </Item>
-            ))}
+            <Header>{header}</Header>
+            <Title>{title}</Title>
+            {items.length > 0 &&
+                items.map((item) => (
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    <Item key={item as any}>{`${itemPrefix} ${item}`}</Item>
+                ))}
         </Right>
     </StyledCardNoResults>
 );

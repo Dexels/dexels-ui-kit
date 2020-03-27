@@ -1,9 +1,4 @@
-import {
-    ButtonSize,
-    ButtonVariant,
-    Easing,
-    IconType,
-} from '../../../types';
+import { ButtonSize, ButtonVariant, Easing, IconType } from '../../../types';
 import { number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
@@ -14,31 +9,11 @@ import Modal from './Modal';
 export default { title: 'organisms/Modal' };
 
 const functionalItems = [
-    <ButtonIcon
-        iconType={IconType.PLUS}
-        key={1}
-        onClick={action('On buttonicon PLUS')}
-    />,
-    <ButtonIcon
-        iconType={IconType.SEARCH}
-        key={2}
-        onClick={action('On buttonicon SEARCH')}
-    />,
-    <ButtonIcon
-        iconType={IconType.SHARE}
-        key={3}
-        onClick={action('On buttonicon SHARE')}
-    />,
-    <ButtonIcon
-        iconType={IconType.GEAR}
-        key={4}
-        onClick={action('On buttonicon GEAR')}
-    />,
-    <ButtonIcon
-        iconType={IconType.ROUNDHELP}
-        key={5}
-        onClick={action('On buttonicon ROUNDHELP')}
-    />,
+    <ButtonIcon iconType={IconType.PLUS} key={1} onClick={action('On buttonicon PLUS')} />,
+    <ButtonIcon iconType={IconType.SEARCH} key={2} onClick={action('On buttonicon SEARCH')} />,
+    <ButtonIcon iconType={IconType.SHARE} key={3} onClick={action('On buttonicon SHARE')} />,
+    <ButtonIcon iconType={IconType.GEAR} key={4} onClick={action('On buttonicon GEAR')} />,
+    <ButtonIcon iconType={IconType.ROUNDHELP} key={5} onClick={action('On buttonicon ROUNDHELP')} />,
     <Button
         iconType={IconType.ROUNDINFO}
         key={6}
@@ -60,12 +35,7 @@ const functionalItems = [
 ];
 
 export const Configurable: FunctionComponent = () => (
-    <Modal
-        isVisible
-        onBack={action('On back')}
-        options={functionalItems}
-        title={text('Header title', 'Heading')}
-    >
+    <Modal isVisible onBack={action('On back')} options={functionalItems} title={text('Header title', 'Heading')}>
         {text('Body', 'Some body text')}
     </Modal>
 );

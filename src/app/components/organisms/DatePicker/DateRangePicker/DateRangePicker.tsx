@@ -1,16 +1,6 @@
 /* eslint react/jsx-props-no-spreading: 0 */
-import {
-    DateRangePicker as AirbnbDateRangePicker,
-    DateRangePickerShape,
-    FocusedInputShape,
-} from 'react-dates';
-import React, {
-    FunctionComponent,
-    MouseEventHandler,
-    ReactNode,
-    useContext,
-    useState,
-} from 'react';
+import { DateRangePicker as AirbnbDateRangePicker, DateRangePickerShape, FocusedInputShape } from 'react-dates';
+import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, useState } from 'react';
 import { Shortcut, Shortcuts } from './Shortcuts/Shortcuts';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import DialogFooter from '../../../molecules/DialogFooter/DialogFooter';
@@ -107,18 +97,11 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
             }}
         >
             <StyledDateRangePicker>
-                <FormElementLabel
-                    isActive
-                    isDisabled={isDisabled}
-                    isFocused={isFocused}
-                    isHovered={isHovered}
-                >
+                <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused} isHovered={isHovered}>
                     {label}
                 </FormElementLabel>
                 <AirbnbDateRangePicker
-                    customInputIcon={(
-                        <InputIcon isDisabled={isDisabled} isFocused={isFocused} />
-                    )}
+                    customInputIcon={<InputIcon isDisabled={isDisabled} isFocused={isFocused} />}
                     daySize={daySize}
                     disabled={isDisabled}
                     displayFormat={displayFormat}
@@ -138,9 +121,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
                     onFocusChange={onFocusChange}
                     renderCalendarInfo={(): JSX.Element => (
                         <>
-                            {shortcuts.length > 0 && (
-                                <Shortcuts shortcuts={shortcuts} text={shortcutsText} />
-                            )}
+                            {shortcuts.length > 0 && <Shortcuts shortcuts={shortcuts} text={shortcutsText} />}
                             {(onCancel || onConfirm) && (
                                 <DialogFooter
                                     buttonCancelText={buttonCancelText}
@@ -164,7 +145,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
                     startDate={startDate}
                     startDateId={startDateId}
                     startDatePlaceholderText={startDatePlaceholderText}
-                    verticalSpacing={(spacingValue * 6) - 40}
+                    verticalSpacing={spacingValue * 6 - 40}
                 />
             </StyledDateRangePicker>
         </Wrapper>

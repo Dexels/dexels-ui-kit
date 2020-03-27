@@ -6,8 +6,5 @@ import { Size } from '../../../types';
 export default { title: 'molecules/Loader' };
 
 export const Configurable: FunctionComponent = () => (
-    <Loader
-        isInverted={boolean('Is inverted', false)}
-        size={select('Size', Size, Size.LARGE)}
-    />
+    <Loader isInverted={boolean('Is inverted', false)} size={select('Size', Size, Size.LARGE)} />
 );

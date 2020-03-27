@@ -1,9 +1,4 @@
-import {
-    ButtonSize,
-    Easing,
-    Elevation,
-    Placement,
-} from '../../../types';
+import { ButtonSize, Easing, Elevation, Placement } from '../../../types';
 import { number, select } from '@storybook/addon-knobs';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';

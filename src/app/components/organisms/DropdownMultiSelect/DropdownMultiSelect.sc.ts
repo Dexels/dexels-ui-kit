@@ -68,9 +68,11 @@ export const List = styled.ul<ListProps>`
     overflow: auto;
     list-style-type: none;
 
-    ${({ maxHeight }): SimpleInterpolation => maxHeight && css`
-        max-height: ${maxHeight};
-    `}
+    ${({ maxHeight }): SimpleInterpolation =>
+        maxHeight &&
+        css`
+            max-height: ${maxHeight};
+        `}
 `;
 
 List.defaultProps = {

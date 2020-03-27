@@ -6,9 +6,7 @@ export default { title: 'molecules/Overlay' };
 
 export const Configurable: FunctionComponent = () => (
     <>
-        <Overlay
-            isVisible={boolean('Is visible', true)}
-        />
+        <Overlay isVisible={boolean('Is visible', true)} />
         <p
             style={{
                 color: 'black',

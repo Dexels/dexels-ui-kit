@@ -25,9 +25,11 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     margin: 0 0 -1px; /* The -1px is a correction for the input components border */
     padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
 
-    ${({ hasPageSizeSelector, theme }): SimpleInterpolation => hasPageSizeSelector && css`
-        padding: ${theme.spacing(0, 0, 0, 3)};
-    `}
+    ${({ hasPageSizeSelector, theme }): SimpleInterpolation =>
+        hasPageSizeSelector &&
+        css`
+            padding: ${theme.spacing(0, 0, 0, 3)};
+        `}
 `;
 
 InputWrapper.defaultProps = {

@@ -1,9 +1,4 @@
-import {
-    boolean,
-    number,
-    select,
-    text,
-} from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { Direction, Easing } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
 import SelectionControl from './SelectionControl';
@@ -22,9 +17,7 @@ export const ConfigurableRadioButton: FunctionComponent = () => {
 
     return (
         <>
-            <p>
-                {'Select your gender'}
-            </p>
+            <p>{'Select your gender'}</p>
             <br />
             <SelectionControl
                 direction={direction}

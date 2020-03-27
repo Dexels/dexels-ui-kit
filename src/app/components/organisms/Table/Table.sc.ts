@@ -29,9 +29,11 @@ export const StyledTable = styled.table<StyledTableProps>`
     background-color: transparent;
     border-spacing: 0;
 
-    ${({ isFullWidth }): SimpleInterpolation => isFullWidth && css`
-        width: 100%;
-    `}
+    ${({ isFullWidth }): SimpleInterpolation =>
+        isFullWidth &&
+        css`
+            width: 100%;
+        `}
 `;
 
 StyledTable.defaultProps = {
@@ -53,17 +55,22 @@ interface TableHeaderCellProps extends ColumnProps {
 export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     border-bottom: 4px solid;
-    border-color: ${({ isDisabled, theme }): SimpleInterpolation => (isDisabled ? theme.colorDisabled : theme.colorPrimary)};
+    border-color: ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled ? theme.colorDisabled : theme.colorPrimary};
     background-color: transparent;
-    padding: ${({ hasCellPadding, theme }): string => (hasCellPadding ? theme.spacing(0.5, 0.5, 1, 0.5) : theme.spacing(0))};
+    padding: ${({ hasCellPadding, theme }): string =>
+        hasCellPadding ? theme.spacing(0.5, 0.5, 1, 0.5) : theme.spacing(0)};
     height: ${({ theme }): string => theme.spacing(5)};
     text-align: left;
-    color: ${({ isDisabled, theme }): SimpleInterpolation => (isDisabled ? theme.colorDisabled : theme.colorText.primary)};
+    color: ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled ? theme.colorDisabled : theme.colorText.primary};
     font-weight: 600;
 
-    ${({ width }): SimpleInterpolation => width && css`
-        width: ${typeof width === 'number' ? `${width}px` : width};
-    `}
+    ${({ width }): SimpleInterpolation =>
+        width &&
+        css`
+            width: ${typeof width === 'number' ? `${width}px` : width};
+        `}
 `;
 
 TableHeaderCell.defaultProps = {
@@ -89,9 +96,11 @@ interface TableRowProps extends ClickableProps {}
 export const TableRow = styled.tr<TableRowProps>`
     position: relative;
 
-    ${({ isClickable }): SimpleInterpolation => isClickable && css`
-        cursor: pointer;
-    `}
+    ${({ isClickable }): SimpleInterpolation =>
+        isClickable &&
+        css`
+            cursor: pointer;
+        `}
 
     &:nth-child(odd) {
         background-color: ${({ theme }): string => theme.table.row.backgroundColorOdd};
@@ -142,9 +151,11 @@ export const TableCell = styled.td<TableCellProps>`
         overflow: hidden;
     }
 
-    ${({ isClickable }): SimpleInterpolation => isClickable && css`
-        cursor: pointer;
-    `}
+    ${({ isClickable }): SimpleInterpolation =>
+        isClickable &&
+        css`
+            cursor: pointer;
+        `}
 `;
 
 TableCell.defaultProps = {

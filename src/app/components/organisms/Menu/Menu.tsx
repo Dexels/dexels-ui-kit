@@ -19,14 +19,7 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
 
     return (
         <StyledMenu className={className}>
-            {items.map(({
-                children,
-                exact,
-                iconType,
-                isDisabled,
-                path,
-                text,
-            }) => {
+            {items.map(({ children, exact, iconType, isDisabled, path, text }) => {
                 if (children && children.length > 0) {
                     const isOpen = openItemPath === path;
 
@@ -44,29 +37,23 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
                             >
                                 {text}
                             </Item>
-                            {isOpen && children.map((child) => (
-                                <Item
-                                    exact={child.exact}
-                                    isDisabled={child.isDisabled}
-                                    key={child.path}
-                                    path={child.path}
-                                >
-                                    {child.text}
-                                </Item>
-                            ))}
+                            {isOpen &&
+                                children.map((child) => (
+                                    <Item
+                                        exact={child.exact}
+                                        isDisabled={child.isDisabled}
+                                        key={child.path}
+                                        path={child.path}
+                                    >
+                                        {child.text}
+                                    </Item>
+                                ))}
                         </Fragment>
                     );
                 }
 
                 return (
-                    <Item
-                        exact={exact}
-                        iconType={iconType}
-                        isDisabled={isDisabled}
-                        isParent
-                        key={path}
-                        path={path}
-                    >
+                    <Item exact={exact} iconType={iconType} isDisabled={isDisabled} isParent key={path} path={path}>
                         {text}
                     </Item>
                 );

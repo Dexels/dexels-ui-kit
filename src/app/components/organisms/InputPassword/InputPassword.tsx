@@ -1,11 +1,5 @@
 import { IconType, InputType, InputVariant } from '../../../types';
-import React, {
-    ChangeEvent,
-    FunctionComponent,
-    KeyboardEvent,
-    ReactNode,
-    useState,
-} from 'react';
+import React, { ChangeEvent, FunctionComponent, KeyboardEvent, ReactNode, useState } from 'react';
 import { StyledInputPassword, VisibilitySwitch } from './InputPassword.sc';
 import Icon from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';

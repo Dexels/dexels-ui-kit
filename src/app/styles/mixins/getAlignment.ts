@@ -33,10 +33,10 @@ const getAlignContent = (alignment: Alignment): string => {
     }
 };
 
-export const getAlignment = (alignment: Alignment, alignText = true): FlattenSimpleInterpolation => (css`
+export const getAlignment = (alignment: Alignment, alignText = true): FlattenSimpleInterpolation => css`
     align-content: ${getAlignContent(alignment)};
     justify-content: ${getAlignContent(alignment)};
     text-align: ${alignText && getTextAlign(alignment)};
-`);
+`;
 
 export default getAlignment;

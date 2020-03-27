@@ -6,8 +6,5 @@ import TextIcon from './TextIcon';
 export default { title: 'molecules/TextIcon' };
 
 export const Configurable: FunctionComponent = () => (
-    <TextIcon
-        size={select('Size', Size, Size.LARGE)}
-        text={text('Text', 'A')}
-    />
+    <TextIcon size={select('Size', Size, Size.LARGE)} text={text('Text', 'A')} />
 );

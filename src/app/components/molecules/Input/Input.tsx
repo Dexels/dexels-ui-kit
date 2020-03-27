@@ -1,13 +1,6 @@
 import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import { InputType, InputVariant } from '../../../types';
-import React, {
-    ChangeEvent,
-    FunctionComponent,
-    KeyboardEvent,
-    ReactNode,
-    useCallback,
-    useState,
-} from 'react';
+import React, { ChangeEvent, FunctionComponent, KeyboardEvent, ReactNode, useCallback, useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 
@@ -123,9 +116,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             </StyledInput>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>
-                    <ErrorMessage>
-                        {errorMessage}
-                    </ErrorMessage>
+                    <ErrorMessage>{errorMessage}</ErrorMessage>
                 </ErrorMessageWrapper>
             )}
         </>

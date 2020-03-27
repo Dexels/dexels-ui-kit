@@ -1,16 +1,5 @@
-import {
-    boolean,
-    number,
-    select,
-    text,
-} from '@storybook/addon-knobs';
-import {
-    ButtonSize,
-    ButtonVariant,
-    Direction,
-    Easing,
-    IconType,
-} from '../../../types';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { ButtonSize, ButtonVariant, Direction, Easing, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from './Button';
@@ -26,9 +15,7 @@ export const Configurable: FunctionComponent = () => (
         onClick={action('On click')}
         size={select('Size', ButtonSize, ButtonSize.MEDIUM)}
         transitionDuration={number('Transition duration', 300)}
-        transitionEasing={select(
-            'Transition type', Easing, Easing.EASE,
-        )}
+        transitionEasing={select('Transition type', Easing, Easing.EASE)}
         variant={select('Variant', ButtonVariant, ButtonVariant.OUTLINE)}
     >
         {text('Text', 'Configure me!')}
@@ -46,9 +33,7 @@ export const ConfigurableWithIcon: FunctionComponent = () => (
         onClick={action('On click')}
         size={select('Size', ButtonSize, ButtonSize.LARGE)}
         transitionDuration={number('Transition duration', 300)}
-        transitionEasing={select(
-            'Transition type', Easing, Easing.EASE,
-        )}
+        transitionEasing={select('Transition type', Easing, Easing.EASE)}
         variant={select('Variant', ButtonVariant, ButtonVariant.OUTLINE)}
     >
         {text('Text', 'Configure me!')}

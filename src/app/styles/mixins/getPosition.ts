@@ -51,9 +51,9 @@ const getVerticalPosition = (position: Position): string => {
     }
 };
 
-export const getPosition = (position: Position): FlattenSimpleInterpolation => (css`
+export const getPosition = (position: Position): FlattenSimpleInterpolation => css`
     align-items: ${getVerticalPosition(position)};
     justify-content: ${getHorizontalPosition(position)};
-`);
+`;
 
 export default getPosition;

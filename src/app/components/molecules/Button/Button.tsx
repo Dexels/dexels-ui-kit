@@ -1,12 +1,4 @@
-import {
-    ButtonSize,
-    ButtonVariant,
-    Direction,
-    Easing,
-    IconSize,
-    IconType,
-    Size,
-} from '../../../types';
+import { ButtonSize, ButtonVariant, Direction, Easing, IconSize, IconType, Size } from '../../../types';
 import { LoaderWrapper, StyledButton, TextWrapper } from './Button.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Loader from '../Loader/Loader';

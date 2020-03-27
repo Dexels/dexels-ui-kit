@@ -1,8 +1,4 @@
-import {
-    boolean,
-    select,
-    text,
-} from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } from './mockup/tableFunctions';
 import React, { FunctionComponent, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
@@ -28,23 +24,19 @@ export const Configurable: FunctionComponent = () => {
     const [isFooterVisible, setIsFooterVisible] = useState(false);
     const data = tableData();
 
-    const instance = createTable<TableData>(
-        hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(data),
-        data,
-        {
-            hiddenColumns: ['id'],
-            sortBy: [
-                {
-                    desc: false,
-                    id: 'lastName',
-                },
-                {
-                    desc: false,
-                    id: 'firstName',
-                },
-            ],
-        },
-    );
+    const instance = createTable<TableData>(hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(data), data, {
+        hiddenColumns: ['id'],
+        sortBy: [
+            {
+                desc: false,
+                id: 'lastName',
+            },
+            {
+                desc: false,
+                id: 'firstName',
+            },
+        ],
+    });
 
     return (
         <>
@@ -77,39 +69,35 @@ export const Configurable: FunctionComponent = () => {
                     value="isFooterVisible"
                 />
             </div>
-            {!instance && (
-                <div>
-                    {'Loading...'}
-                </div>
-            )}
+            {!instance && <div>{'Loading...'}</div>}
             {instance && (
                 <Table<TableData>
                     caption={text('Table caption', 'Table caption')}
                     elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
-                    footerComponent={isFooterVisible && (
-                        <tr
-                            style={{
-                                backgroundColor: 'yellow',
-                                height: '50px',
-                            }}
-                        >
-                            {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT.
+                    footerComponent={
+                        isFooterVisible && (
+                            <tr
+                                style={{
+                                    backgroundColor: 'yellow',
+                                    height: '50px',
+                                }}
+                            >
+                                {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT.
                             OK WITH THAT FOR NOW IN HERE */}
-                            <td colSpan={instance.columns.length}>
-                                {'Some text'}
-                            </td>
-                        </tr>
-                    )}
+                                <td colSpan={instance.columns.length}>{'Some text'}</td>
+                            </tr>
+                        )
+                    }
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
                     instance={instance}
                     isFullWidth={boolean('Is full width', true)}
                     onClickRow={getTableRow}
-                    pagingComponent={(
+                    pagingComponent={
                         <Paginator<TableData>
                             instance={instance}
                             texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
                         />
-                    )}
+                    }
                     texts={createLocalizedTableTexts(isNL ? 'nl' : 'en')}
                 />
             )}

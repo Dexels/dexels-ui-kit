@@ -6,18 +6,16 @@ const DEFAULT_PROPERTYNAME_SELECTED = 'Selected';
 type Option = { [key: string]: any };
 type Options = Option[];
 
-export const areAllOptionsSelected = (data: Options, propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean => (
-    data.every((element) => element[propertyName])
-);
+export const areAllOptionsSelected = (data: Options, propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean =>
+    data.every((element) => element[propertyName]);
 
-export const getSelectedElements = (data: Options, propertyName = DEFAULT_PROPERTYNAME_SELECTED): Options => (
-    data.filter((element) => element[propertyName])
-);
+export const getSelectedElements = (data: Options, propertyName = DEFAULT_PROPERTYNAME_SELECTED): Options =>
+    data.filter((element) => element[propertyName]);
 
 export const getSelectedText = (
     selectedOptions: Options,
     propertyNameDescription = DEFAULT_PROPERTYNAME_DESCRIPTION,
-    delimiter = ',',
+    delimiter = ','
 ): string => {
     let text = '';
 
@@ -28,9 +26,8 @@ export const getSelectedText = (
     return text;
 };
 
-export const isAnyOptionSelected = (data: Options, propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean => (
-    data.some((element) => element[propertyName])
-);
+export const isAnyOptionSelected = (data: Options, propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean =>
+    data.some((element) => element[propertyName]);
 
 // Assuming every element has Id and Selected properties (or overwrite them ofcourse)
 // The unsetOtherValues param is meant to possibly set all other entries to false
@@ -39,7 +36,7 @@ export const setElementSelected = (
     selectedProperty: Option,
     propertyIdName = DEFAULT_PROPERTYNAME_ID,
     propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED,
-    unsetOtherValues = false,
+    unsetOtherValues = false
 ): Options => {
     const output: Options = [];
 
@@ -77,14 +74,10 @@ const setAllElements = (data: Options, selected: boolean, propertySelectedName: 
 
 export const setAllElementsSelected = (
     data: Options,
-    propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED,
-): ReturnType<typeof setAllElements> => (
-    setAllElements(data, true, propertySelectedName)
-);
+    propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED
+): ReturnType<typeof setAllElements> => setAllElements(data, true, propertySelectedName);
 
 export const setAllElementsDeselected = (
     data: Options,
-    propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED,
-): ReturnType<typeof setAllElements> => (
-    setAllElements(data, false, propertySelectedName)
-);
+    propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED
+): ReturnType<typeof setAllElements> => setAllElements(data, false, propertySelectedName);
