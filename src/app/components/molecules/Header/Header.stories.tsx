@@ -2,8 +2,8 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
-import Button from '../../molecules/Button/Button';
-import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
+import Button from '../Button/Button';
+import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import Header from './Header';
 
 export default { title: 'organisms/Header' };
