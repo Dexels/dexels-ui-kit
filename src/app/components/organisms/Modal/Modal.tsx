@@ -1,7 +1,7 @@
 import { Body, HeaderWrapper, StyledModal } from './Modal.sc';
+import { Easing, IconType } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
-import { Easing } from '../../../types';
-import Header from '../Header/Header';
+import Header from '../../molecules/Header/Header';
 import Overlay from '../../molecules/Overlay/Overlay';
 
 export interface ModalProps {
@@ -34,7 +34,16 @@ export const Modal: FunctionComponent<ModalProps> = ({
             transitionEasing={transitionEasing}
         >
             <HeaderWrapper>
-                <Header isInverted onBack={onBack} title={title}>
+                <Header
+                    buttons={[
+                        {
+                            iconType: IconType.CHEVRONLEFT,
+                            onClick: onBack,
+                        },
+                    ]}
+                    isInverted
+                    title={title}
+                >
                     {options}
                 </Header>
             </HeaderWrapper>

@@ -29,6 +29,7 @@ export {
     FullscreenLoaderProps,
     FullscreenLoaderType,
 } from '../app/components/molecules/FullscreenLoader';
+export { Header, HeaderProps } from '../app/components/molecules/Header/Header';
 export { Input, InputProps } from '../app/components/molecules/Input/Input';
 export { Loader, LoaderProps } from '../app/components/molecules/Loader/Loader';
 export { Overlay, OverlayProps } from '../app/components/molecules/Overlay/Overlay';
@@ -62,7 +63,6 @@ export {
     DropdownMultiSelectProps,
     DropdownOptionAllTexts,
 } from '../app/components/organisms/DropdownMultiSelect';
-export { Header, HeaderProps } from '../app/components/organisms/Header/Header';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';

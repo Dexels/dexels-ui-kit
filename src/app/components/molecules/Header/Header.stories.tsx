@@ -2,8 +2,8 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
-import Button from '../../molecules/Button/Button';
-import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
+import Button from '../Button/Button';
+import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import Header from './Header';
 
 export default { title: 'organisms/Header' };
@@ -16,7 +16,21 @@ export const Configurable: FunctionComponent = () => {
     const title = text('Header title', 'Wedstrijden');
 
     return (
-        <Header elevation={elevation} isInverted={isInverted} onBack={onBack} onToggleMenu={onToggleMenu} title={title}>
+        <Header
+            buttons={[
+                {
+                    iconType: IconType.MENU,
+                    onClick: onToggleMenu,
+                },
+                {
+                    iconType: IconType.CHEVRONLEFT,
+                    onClick: onBack,
+                },
+            ]}
+            elevation={elevation}
+            isInverted={isInverted}
+            title={title}
+        >
             <ButtonIcon iconType={IconType.PLUS} onClick={action('On buttonicon PLUS')} />
             <ButtonIcon iconType={IconType.SEARCH} onClick={action('On buttonicon SEARCH')} />
             <ButtonIcon iconType={IconType.SHARE} onClick={action('On buttonicon SHARE')} />
