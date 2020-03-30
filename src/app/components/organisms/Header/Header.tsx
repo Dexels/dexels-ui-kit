@@ -1,41 +1,38 @@
-import { Elevation, IconType } from '../../../types';
-import { FunctionalWrapper, NavigationWrapper, StyledHeader, Title } from './Header.sc';
-import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
-import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
+import ButtonIcon, { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
+import { Buttons, StyledHeader, Title, ToolbarWrapper } from './Header.sc';
+import React, { FunctionComponent, ReactNode } from 'react';
+import { Elevation } from '../../../types';
 import Toolbar from '../Toolbar/Toolbar';
 
 export interface HeaderProps {
+    buttons?: ButtonIconProps[];
     children?: ReactNode;
     className?: string;
     elevation?: Elevation;
     isInverted?: boolean;
-    onBack?: MouseEventHandler;
-    onToggleMenu?: MouseEventHandler;
     title: ReactNode;
 }
 
 export const Header: FunctionComponent<HeaderProps> = ({
+    buttons = [],
     children,
     className,
     elevation = Elevation.LEVEL_1,
     isInverted = false,
-    onBack,
-    onToggleMenu,
     title,
 }) => (
     <StyledHeader className={className} elevation={elevation} isInverted={isInverted}>
-        {(onBack || onToggleMenu) && (
-            <NavigationWrapper>
-                {onToggleMenu && (
-                    <ButtonIcon iconType={IconType.MENU} isInverted={!isInverted} onClick={onToggleMenu} />
-                )}
-                {onBack && <ButtonIcon iconType={IconType.CHEVRONLEFT} isInverted={!isInverted} onClick={onBack} />}
-            </NavigationWrapper>
+        {buttons.length > 0 && (
+            <Buttons>
+                {buttons.map((button) => (
+                    <ButtonIcon isInverted={!isInverted} key={button.iconType} {...button} />
+                ))}
+            </Buttons>
         )}
         <Title>{title}</Title>
-        <FunctionalWrapper>
+        <ToolbarWrapper>
             <Toolbar isInverted={!isInverted}>{children}</Toolbar>
-        </FunctionalWrapper>
+        </ToolbarWrapper>
     </StyledHeader>
 );
 

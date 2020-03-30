@@ -23,14 +23,14 @@ StyledHeader.defaultProps = {
     theme: themeBasic,
 };
 
-export const NavigationWrapper = styled.div`
+export const Buttons = styled.div`
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     padding: ${({ theme }): string => theme.spacing(0, 0, 0, 2)};
 `;
 
-NavigationWrapper.defaultProps = {
+Buttons.defaultProps = {
     theme: themeBasic,
 };
 
@@ -46,12 +46,12 @@ Title.defaultProps = {
     theme: themeBasic,
 };
 
-export const FunctionalWrapper = styled.div`
+export const ToolbarWrapper = styled.div`
     align-self: center;
     margin: 0 0 0 auto;
     padding: ${({ theme }): string => theme.spacing(0, 1, 0, 1)};
 `;
 
-FunctionalWrapper.defaultProps = {
+ToolbarWrapper.defaultProps = {
     theme: themeBasic,
 };

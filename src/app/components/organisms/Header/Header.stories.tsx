@@ -16,7 +16,21 @@ export const Configurable: FunctionComponent = () => {
     const title = text('Header title', 'Wedstrijden');
 
     return (
-        <Header elevation={elevation} isInverted={isInverted} onBack={onBack} onToggleMenu={onToggleMenu} title={title}>
+        <Header
+            buttons={[
+                {
+                    iconType: IconType.MENU,
+                    onClick: onToggleMenu,
+                },
+                {
+                    iconType: IconType.CHEVRONLEFT,
+                    onClick: onBack,
+                },
+            ]}
+            elevation={elevation}
+            isInverted={isInverted}
+            title={title}
+        >
             <ButtonIcon iconType={IconType.PLUS} onClick={action('On buttonicon PLUS')} />
             <ButtonIcon iconType={IconType.SEARCH} onClick={action('On buttonicon SEARCH')} />
             <ButtonIcon iconType={IconType.SHARE} onClick={action('On buttonicon SHARE')} />
