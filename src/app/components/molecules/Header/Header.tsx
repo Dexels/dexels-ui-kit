@@ -5,12 +5,12 @@ import { Elevation } from '../../../types';
 import Toolbar from '../../organisms/Toolbar/Toolbar';
 
 export interface HeaderProps {
-    buttons?: ButtonIconProps[];
+    buttons?: Omit<ButtonIconProps, 'isInverted'>[];
     children?: ReactNode;
     className?: string;
     elevation?: Elevation;
     isInverted?: boolean;
-    title: ReactNode;
+    title?: ReactNode;
 }
 
 export const Header: FunctionComponent<HeaderProps> = ({
