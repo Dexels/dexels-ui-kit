@@ -1,8 +1,8 @@
-import ButtonIcon, { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
+import ButtonIcon, { ButtonIconProps } from '../ButtonIcon/ButtonIcon';
 import { Buttons, StyledHeader, Title, ToolbarWrapper } from './Header.sc';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { Elevation } from '../../../types';
-import Toolbar from '../Toolbar/Toolbar';
+import Toolbar from '../../organisms/Toolbar/Toolbar';
 
 export interface HeaderProps {
     buttons?: ButtonIconProps[];

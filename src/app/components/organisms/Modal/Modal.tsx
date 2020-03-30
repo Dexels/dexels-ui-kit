@@ -1,7 +1,7 @@
 import { Body, HeaderWrapper, StyledModal } from './Modal.sc';
 import { Easing, IconType } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
-import Header from '../Header/Header';
+import Header from '../../molecules/Header/Header';
 import Overlay from '../../molecules/Overlay/Overlay';
 
 export interface ModalProps {
