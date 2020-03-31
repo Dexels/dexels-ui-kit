@@ -26,6 +26,10 @@ module.exports = {
             file: 'index.js',
             format: 'cjs',
         },
+        {
+            file: 'index.esm.js',
+            format: 'es',
+        }
     ],
     plugins: [
         resolve(),
