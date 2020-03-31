@@ -1,16 +1,15 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
-import { Elevation } from '../../../types';
-import { getElevation } from '../../../styles/mixins/getElevation';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
-interface StyledTabsProps {
-    elevation: Elevation;
-}
-
-export const StyledTabs = styled.div<StyledTabsProps>`
-    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+export const TabHeaders = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
 `;
+
+TabHeaders.defaultProps = {
+    theme: themeBasic,
+};
 
 interface TabHeaderProps {
     isActive: boolean;
@@ -20,15 +19,14 @@ interface TabHeaderProps {
 
 export const TabHeader = styled.button<TabHeaderProps>`
     ${rippleEffectInit()}
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h3)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonSmall)}
     appearance: none;
     outline: none;
     border: 0;
-    border-bottom: 2px solid ${({ theme }): string => theme.shades.nine};
-    background-color: ${({ theme }): string => theme.shades.nine};
+    border-bottom: 2px solid ${({ theme }): string => theme.colorDisabled};
+    background-color: ${({ theme }): string => theme.background.secondary};
     cursor: pointer;
-    padding: ${({ theme }): string => theme.spacing(0, 3)};
-    height: ${({ theme }): string => theme.spacing(6)};
+    padding: ${({ theme }): string => theme.spacing(1.25, 3)};
     text-align: center;
     color: ${({ theme }): string => theme.colorText.primary};
 
@@ -67,17 +65,6 @@ export const TabHeader = styled.button<TabHeaderProps>`
 `;
 
 TabHeader.defaultProps = {
-    theme: themeBasic,
-};
-
-export const TabHeaderList = styled.div`
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
-    display: flex;
-    flex-wrap: nowrap;
-    border-bottom: 1px solid ${({ theme }): string => theme.shades.five};
-`;
-
-TabHeaderList.defaultProps = {
     theme: themeBasic,
 };
 
