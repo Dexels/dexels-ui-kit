@@ -53,7 +53,7 @@ interface TableHeaderCellProps extends ColumnProps {
 }
 
 export const TableHeaderCell = styled.th<TableHeaderCellProps>`
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonSmall)}
     border-bottom: 4px solid;
     border-color: ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled ? theme.colorDisabled : theme.colorPrimary};
@@ -64,7 +64,6 @@ export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     text-align: left;
     color: ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled ? theme.colorDisabled : theme.colorText.primary};
-    font-weight: 600;
 
     ${({ width }): SimpleInterpolation =>
         width &&
