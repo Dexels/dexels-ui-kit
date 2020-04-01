@@ -2,9 +2,11 @@ import { CellProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import { formatDate, isValidDate } from '../../../../utils/validators/dateFunctions';
 import { IconType, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
+import ContentCell from '../mockup/ContentCell/ContentCell';
 import Icon from '../../../atoms/Icon/Icon';
-import { MatchTaskStatuses } from '../StatusCell/types';
-import StatusCell from '../StatusCell/StatusCell';
+import { MatchTaskStatuses } from '../mockup/StatusCell/types';
+import { Moment } from 'moment';
+import StatusCell from '../mockup/StatusCell/StatusCell';
 
 export const compareValues = <T extends object>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,19 +63,17 @@ export const customSortByCaseInsensitive = <T extends object>(
     rows.sort(compareValues<T>(key));
 
 export const renderCell = <T extends object>(row: CellProps<T>): ReactNode => {
-    if (row.cell.value && row.cell.value === null) {
-        return undefined;
-    }
+    let value: Moment | string = '';
 
-    if (row.cell.value && row.cell.value !== undefined) {
+    if (row.cell.value) {
         if (typeof row.cell.value === 'object' && isValidDate(row.cell.value)) {
-            return formatDate(row.cell.value);
+            value = formatDate(row.cell.value);
+        } else {
+            value = row.cell.value;
         }
-
-        return row.cell.value;
     }
 
-    return '';
+    return <ContentCell>{value}</ContentCell>;
 };
 
 export const renderSortIcon = <T extends object>(

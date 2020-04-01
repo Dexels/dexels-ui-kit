@@ -53,7 +53,7 @@ interface TableHeaderCellProps extends ColumnProps {
 }
 
 export const TableHeaderCell = styled.th<TableHeaderCellProps>`
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonSmall)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     border-bottom: 4px solid;
     border-color: ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled ? theme.colorDisabled : theme.colorPrimary};
@@ -63,7 +63,8 @@ export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     height: ${({ theme }): string => theme.spacing(5)};
     text-align: left;
     color: ${({ isDisabled, theme }): SimpleInterpolation =>
-        isDisabled ? theme.colorDisabled : theme.colorText.primary};
+        isDisabled ? theme.colorDisabled : theme.colorTextBody.primary};
+    font-weight: 600;
 
     ${({ width }): SimpleInterpolation =>
         width &&
@@ -74,6 +75,20 @@ export const TableHeaderCell = styled.th<TableHeaderCellProps>`
 
 TableHeaderCell.defaultProps = {
     hasCellPadding: true,
+    theme: themeBasic,
+};
+
+interface IconWrapperProps {
+    isSorted: boolean;
+}
+
+export const IconWrapper = styled.span<IconWrapperProps>`
+    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
+    color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
+    font-size: 18px;
+`;
+
+IconWrapper.defaultProps = {
     theme: themeBasic,
 };
 
@@ -129,12 +144,10 @@ TableRow.defaultProps = {
 interface TableCellProps extends ColumnProps, ClickableProps {}
 
 export const TableCell = styled.td<TableCellProps>`
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     position: relative;
     padding: ${({ hasCellPadding, theme }): string => theme.spacing(hasCellPadding ? 0.5 : 0)};
     height: ${({ theme }): string => theme.spacing(6)};
     vertical-align: middle;
-    color: ${({ theme }): string => theme.colorText.primary};
 
     &::after {
         position: absolute;
@@ -169,19 +182,6 @@ export const TableCellContent = styled.div`
     z-index: 2;
     height: 100%;
 `;
-
-interface IconWrapperProps {
-    isSorted: boolean;
-}
-
-export const IconWrapper = styled.span<IconWrapperProps>`
-    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
-    color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
-`;
-
-IconWrapper.defaultProps = {
-    theme: themeBasic,
-};
 
 interface TableFooterProps {
     elevation: Elevation;

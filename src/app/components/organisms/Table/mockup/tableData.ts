@@ -1,5 +1,5 @@
 import moment, { Moment } from 'moment';
-import { MatchTaskStatuses } from '../StatusCell/types';
+import { MatchTaskStatuses } from './StatusCell/types';
 import { Status } from '../../../../types';
 import { useMemo } from 'react';
 
