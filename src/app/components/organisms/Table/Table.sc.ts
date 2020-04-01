@@ -58,7 +58,7 @@ export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     border-color: ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled ? theme.colorDisabled : theme.colorPrimary};
     background-color: transparent;
-    padding: ${({ hasCellPadding, theme }): string =>
+    padding: ${({ hasCellPadding = true, theme }): string =>
         hasCellPadding ? theme.spacing(0.5, 0.5, 1, 0.5) : theme.spacing(0)};
     height: ${({ theme }): string => theme.spacing(5)};
     text-align: left;
@@ -74,7 +74,6 @@ export const TableHeaderCell = styled.th<TableHeaderCellProps>`
 `;
 
 TableHeaderCell.defaultProps = {
-    hasCellPadding: true,
     theme: themeBasic,
 };
 
@@ -145,7 +144,7 @@ interface TableCellProps extends ColumnProps, ClickableProps {}
 
 export const TableCell = styled.td<TableCellProps>`
     position: relative;
-    padding: ${({ hasCellPadding, theme }): string => theme.spacing(hasCellPadding ? 0.5 : 0)};
+    padding: ${({ hasCellPadding = true, theme }): string => theme.spacing(hasCellPadding ? 0.5 : 0)};
     height: ${({ theme }): string => theme.spacing(6)};
     vertical-align: middle;
 
@@ -171,7 +170,6 @@ export const TableCell = styled.td<TableCellProps>`
 `;
 
 TableCell.defaultProps = {
-    hasCellPadding: true,
     theme: themeBasic,
 };
 
