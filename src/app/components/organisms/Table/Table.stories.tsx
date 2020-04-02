@@ -1,6 +1,6 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } from './mockup/tableFunctions';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useMemo, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
 import { createTable } from '../../../utils/functions/createTable';
@@ -22,9 +22,11 @@ export const Configurable: FunctionComponent = () => {
     const [isNL, setIsNL] = useState(true);
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
-    const data = tableData();
+    const data = useMemo(() => tableData(), []);
+    const columns = useMemo(() => tableColumns(data), [data]);
+    const columnsWithGroupHeader = useMemo(() => tableColumnsWithGroupHeader(), []);
 
-    const instance = createTable<TableData>(hasGroupHeader ? tableColumnsWithGroupHeader() : tableColumns(data), data, {
+    const instance = createTable<TableData>(hasGroupHeader ? columnsWithGroupHeader : columns, data, {
         hiddenColumns: ['id'],
         sortBy: [
             {
