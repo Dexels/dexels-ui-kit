@@ -131,7 +131,6 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
                                 iconType: IconType.CHECK,
                                 onClick: onConfirmCallback,
                                 size: ButtonSize.SMALL,
-                                variant: ButtonVariant.OUTLINE,
                             },
                         ]}
                     />

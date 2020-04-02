@@ -21,7 +21,6 @@ export const Configurable: FunctionComponent = () => (
                 iconType: IconType.CHECK,
                 onClick: action('On confirm click'),
                 size: ButtonSize.SMALL,
-                variant: ButtonVariant.OUTLINE,
             },
         ]}
         text={text('Text', '')}

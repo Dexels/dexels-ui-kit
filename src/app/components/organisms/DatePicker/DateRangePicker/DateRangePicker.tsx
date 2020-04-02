@@ -101,7 +101,6 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
             iconType: IconType.CHECK,
             onClick: onConfirm,
             size: ButtonSize.SMALL,
-            variant: ButtonVariant.OUTLINE,
         });
     }
 

@@ -72,7 +72,6 @@ export const Configurable: FunctionComponent = () => {
                             setIsVisible(false);
                         },
                         size: ButtonSize.SMALL,
-                        variant: ButtonVariant.OUTLINE,
                     },
                 ]}
                 isVisible={isVisible}
@@ -111,7 +110,6 @@ export const ConfigurableAlert: FunctionComponent = () => {
                             setIsVisible(false);
                         },
                         size: ButtonSize.SMALL,
-                        variant: ButtonVariant.OUTLINE,
                     },
                 ]}
                 footerText={text('Footer text', 'We need you..')}
@@ -152,7 +150,6 @@ export const ConfigurableAlertWithContent: FunctionComponent = () => {
                             setIsVisible(false);
                         },
                         size: ButtonSize.SMALL,
-                        variant: ButtonVariant.OUTLINE,
                     },
                 ]}
                 footerText={text('Footer text', 'Hint: its not 3 or 5')}

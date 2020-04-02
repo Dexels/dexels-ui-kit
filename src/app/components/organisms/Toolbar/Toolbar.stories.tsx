@@ -23,7 +23,6 @@ export const Configurable: FunctionComponent = () => {
                 key={6}
                 onClick={action('On buttonicon ROUNDINFO')}
                 size={ButtonSize.SMALL}
-                variant={ButtonVariant.OUTLINE}
             >
                 {'label'}
             </Button>
@@ -32,7 +31,6 @@ export const Configurable: FunctionComponent = () => {
                 key={7}
                 onClick={action('On buttonicon ROUNDINFO')}
                 size={ButtonSize.SMALL}
-                variant={ButtonVariant.OUTLINE}
             >
                 {'label'}
             </Button>

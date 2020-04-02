@@ -36,20 +36,10 @@ export const Configurable: FunctionComponent = () => {
             <ButtonIcon iconType={IconType.SHARE} onClick={action('On buttonicon SHARE')} />
             <ButtonIcon iconType={IconType.GEAR} onClick={action('On buttonicon GEAR')} />
             <ButtonIcon iconType={IconType.ROUNDHELP} onClick={action('On buttonicon ROUNDHELP')} />
-            <Button
-                iconType={IconType.ROUNDINFO}
-                onClick={action('On button ROUNDINFO 1')}
-                size={ButtonSize.SMALL}
-                variant={ButtonVariant.OUTLINE}
-            >
+            <Button iconType={IconType.ROUNDINFO} onClick={action('On button ROUNDINFO 1')} size={ButtonSize.SMALL}>
                 {'label'}
             </Button>
-            <Button
-                iconType={IconType.ROUNDINFO}
-                onClick={action('On button ROUNDINFO 2')}
-                size={ButtonSize.SMALL}
-                variant={ButtonVariant.OUTLINE}
-            >
+            <Button iconType={IconType.ROUNDINFO} onClick={action('On button ROUNDINFO 2')} size={ButtonSize.SMALL}>
                 {'label'}
             </Button>
         </Header>
