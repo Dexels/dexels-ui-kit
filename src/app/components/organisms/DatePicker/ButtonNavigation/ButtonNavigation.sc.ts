@@ -25,8 +25,6 @@ export const StyledButtonNavigation = styled.div<StyledButtonNavigationProps>`
 `;
 
 StyledButtonNavigation.defaultProps = {
-    isNext: false,
-    isPrev: false,
     theme: themeBasic,
 };
 

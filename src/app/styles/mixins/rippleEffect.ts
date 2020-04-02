@@ -1,6 +1,6 @@
 import { css, FlattenSimpleInterpolation } from 'styled-components';
 
-/* @TODO: use default theme color instead of hardcoded variant */
+// @TODO: use default theme color instead of hardcoded variant
 export const rippleEffect = (backgroundColor = '#FFFFFF'): FlattenSimpleInterpolation => css`
     display: block;
     position: absolute;

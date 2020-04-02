@@ -7,7 +7,6 @@ interface StyledSingleDatePickerProps {
     variant: SingleDatePickerVariant;
 }
 
-/* eslint-disable @typescript-eslint/indent */
 export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
     .SingleDatePickerInput {
         display: block;
@@ -60,7 +59,6 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
             `}
     }
 `;
-/* eslint-enable @typescript-eslint/indent */
 
 StyledSingleDatePicker.defaultProps = {
     theme: themeBasic,

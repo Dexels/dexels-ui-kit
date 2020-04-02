@@ -27,7 +27,7 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
         variant === InputVariant.OUTLINE &&
         css`
             top: ${isActive ? '-8px' : '50%'};
-            left: ${theme.spacing(isActive ? 2.5 : 1.5)};
+            left: ${theme.spacing(1.5)};
             transform: ${isActive ? 'none' : 'translate3d(0, -50%, 0)'};
 
             ${isActive &&
@@ -50,7 +50,6 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
 `;
 
 StyledFormElementLabel.defaultProps = {
-    backgroundColor: '',
     theme: themeBasic,
 };
 

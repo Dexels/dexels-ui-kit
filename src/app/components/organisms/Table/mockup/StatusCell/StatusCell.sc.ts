@@ -1,8 +1,8 @@
-import { getStatusColor } from '../../../../styles/mixins/getStatusColor';
-import { setBoxSizing } from '../../../../styles/mixins/setBoxSizing';
-import { Status } from '../../../../types';
+import { getStatusColor } from '../../../../../styles/mixins/getStatusColor';
+import { setBoxSizing } from '../../../../../styles/mixins/setBoxSizing';
+import { Status } from '../../../../../types';
 import styled from 'styled-components';
-import { themeBasic } from '../../../../styles/theming/themes/basic';
+import { themeBasic } from '../../../../../styles/theming/themes/basic';
 
 export const StyledStatusCell = styled.div`
     ${setBoxSizing()}
@@ -25,5 +25,3 @@ export const IconWrapper = styled.div<IconWrapperProps>`
 IconWrapper.defaultProps = {
     theme: themeBasic,
 };
-
-export default StyledStatusCell;
