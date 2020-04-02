@@ -1,9 +1,9 @@
-/* eslint react/jsx-props-no-spreading: 0 */
 import { DateRangePicker as AirbnbDateRangePicker, DateRangePickerShape, FocusedInputShape } from 'react-dates';
+import { ButtonSize, ButtonVariant, IconType } from '../../../../types';
+import DialogFooter, { DialogFooterProps } from '../../../molecules/DialogFooter/DialogFooter';
 import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, useState } from 'react';
 import { Shortcut, Shortcuts } from './Shortcuts/Shortcuts';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
-import DialogFooter from '../../../molecules/DialogFooter/DialogFooter';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import InputIcon from '../InputIcon/InputIcon';
 import { Moment } from 'moment';
@@ -23,7 +23,7 @@ export interface DateRangePickerProps {
     endDateId: string;
     endDatePlaceholderText?: string;
     focusedInput: FocusedInputShape | null;
-    footerText?: ReactNode;
+    footerText?: DialogFooterProps['text'];
     hasYearSelector?: boolean;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     isDayHighlighted?: (day: any) => boolean;
@@ -80,9 +80,30 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     startDatePlaceholderText,
     yearCount = 100,
 }) => {
+    const footerButtons: DialogFooterProps['buttons'] = [];
     const [isHovered, setIsHovered] = useState(false);
     const isFocused = Boolean(focusedInput);
     const { spacingValue } = useContext(ThemeContext);
+
+    if (onCancel) {
+        footerButtons.push({
+            children: buttonCancelText,
+            iconType: IconType.CROSS,
+            onClick: onCancel,
+            size: ButtonSize.SMALL,
+            variant: ButtonVariant.TEXT_ONLY,
+        });
+    }
+
+    if (onConfirm) {
+        footerButtons.push({
+            children: buttonConfirmText,
+            iconType: IconType.CHECK,
+            onClick: onConfirm,
+            size: ButtonSize.SMALL,
+            variant: ButtonVariant.OUTLINE,
+        });
+    }
 
     return (
         <Wrapper
@@ -122,15 +143,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
                     renderCalendarInfo={(): JSX.Element => (
                         <>
                             {shortcuts.length > 0 && <Shortcuts shortcuts={shortcuts} text={shortcutsText} />}
-                            {(onCancel || onConfirm) && (
-                                <DialogFooter
-                                    buttonCancelText={buttonCancelText}
-                                    buttonConfirmText={buttonConfirmText}
-                                    onCancel={onCancel}
-                                    onConfirm={onConfirm}
-                                    text={footerText}
-                                />
-                            )}
+                            {footerButtons.length > 0 && <DialogFooter buttons={footerButtons} text={footerText} />}
                         </>
                     )}
                     renderMonthElement={(props): JSX.Element => (

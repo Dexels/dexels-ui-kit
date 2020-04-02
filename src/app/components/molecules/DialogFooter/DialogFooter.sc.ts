@@ -17,7 +17,7 @@ StyledDialogFooter.defaultProps = {
 };
 
 export const Text = styled.p`
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
     margin: 0;
     padding: ${({ theme }): string => theme.spacing(0, 2, 0, 0)};
     word-break: break-word;

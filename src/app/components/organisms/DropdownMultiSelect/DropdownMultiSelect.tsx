@@ -1,8 +1,8 @@
+import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
 import { Dropdown, DropdownVariant } from '../../molecules/Dropdown';
 import { List, ListItem, ListWrapper, StaticItem, StyledDropdownMultiSelect } from './DropdownMultiSelect.sc';
 import React, { FunctionComponent, ReactElement, ReactNode, useCallback, useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
-import { Elevation } from '../../../types';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 export interface DropdownMultiSelectProps {
@@ -118,10 +118,22 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
                         ))}
                     </List>
                     <DialogFooter
-                        buttonCancelText={buttonCancelText}
-                        buttonConfirmText={buttonConfirmText}
-                        onCancel={onCancelCallback}
-                        onConfirm={onConfirmCallback}
+                        buttons={[
+                            {
+                                children: buttonCancelText,
+                                iconType: IconType.CROSS,
+                                onClick: onCancelCallback,
+                                size: ButtonSize.SMALL,
+                                variant: ButtonVariant.TEXT_ONLY,
+                            },
+                            {
+                                children: buttonConfirmText,
+                                iconType: IconType.CHECK,
+                                onClick: onConfirmCallback,
+                                size: ButtonSize.SMALL,
+                                variant: ButtonVariant.OUTLINE,
+                            },
+                        ]}
                     />
                 </ListWrapper>
             )}
