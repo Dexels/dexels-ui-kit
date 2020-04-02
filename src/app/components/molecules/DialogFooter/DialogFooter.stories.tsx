@@ -1,18 +1,29 @@
+import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import DialogFooter from './DialogFooter';
-import { IconType } from '../../../types';
+import { text } from '@storybook/addon-knobs';
 
 export default { title: 'molecules/DialogFooter' };
 
 export const Configurable: FunctionComponent = () => (
     <DialogFooter
-        buttonCancelText={text('Button cancel text', 'Cancel')}
-        buttonConfirmIconType={select('Icon type confirm button', IconType, IconType.CHECK)}
-        buttonConfirmText={text('Button confirm text', 'Ok')}
-        onCancel={action('On cancel click')}
-        onConfirm={action('On confirm click')}
+        buttons={[
+            {
+                children: 'Cancel',
+                iconType: IconType.CROSS,
+                onClick: action('On cancel click'),
+                size: ButtonSize.SMALL,
+                variant: ButtonVariant.TEXT_ONLY,
+            },
+            {
+                children: 'Ok',
+                iconType: IconType.CHECK,
+                onClick: action('On confirm click'),
+                size: ButtonSize.SMALL,
+                variant: ButtonVariant.OUTLINE,
+            },
+        ]}
         text={text('Text', '')}
     />
 );
