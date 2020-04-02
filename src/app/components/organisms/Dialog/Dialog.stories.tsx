@@ -1,59 +1,92 @@
-import { Alignment, ButtonVariant, Easing, Elevation, IconType } from '../../../types';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import React, { FunctionComponent, MouseEventHandler, useState } from 'react';
-import { action } from '@storybook/addon-actions';
+import { ButtonSize, ButtonVariant, Direction, Easing, Elevation, IconType, InputType, Status } from '../../../types';
+import Dialog, { DialogProps } from './Dialog';
+import React, { FunctionComponent, useState } from 'react';
 import Button from '../../molecules/Button/Button';
-import Dialog from './Dialog';
 import { DialogButtonClosePosition } from './types';
+import Input from '../../molecules/Input/Input';
+import { parseInputValue } from '../../../utils/functions/parseInputValue';
 
 export default { title: 'organisms/Dialog' };
 
-interface ConfigurableDialogProps {
-    isVisible: boolean;
-    onCancel: MouseEventHandler;
-    onClose: MouseEventHandler;
-    onConfirm: MouseEventHandler;
-}
-
-const ConfigurableDialog: FunctionComponent<ConfigurableDialogProps> = ({
+const ConfigurableDialog: FunctionComponent<DialogProps> = ({
+    children,
+    footerButtons,
+    footerText,
+    iconType,
     isVisible,
-    onCancel,
     onClose,
-    onConfirm,
+    status,
+    text: textProp,
 }) => (
     <Dialog
-        bodyAlignment={select('Body alignment', Alignment, Alignment.CENTER)}
-        buttonCancelText={text('ButtonCancel text', 'Cancel')}
         buttonClosePosition={select('ButtonClose position', DialogButtonClosePosition, DialogButtonClosePosition.LEFT)}
-        buttonConfirmIconType={select('Icon type confirm button', IconType, IconType.CHECK)}
-        buttonConfirmText={text('Button confirm text', 'Ok')}
         elevation={select('Elevation', Elevation, Elevation.LEVEL_12)}
-        footerText={text('Text in footer', '')}
+        footerButtons={footerButtons}
+        footerText={footerText}
+        hasBodyPadding={boolean('Has body padding', true)}
         hasButtonClose={boolean('Show close button', true)}
+        hasHeaderPadding={boolean('Has header padding', true)}
         hasOverlay={boolean('Has overlay', true)}
         header={text('Header', '')}
-        headerAlignment={select('Align header', Alignment, Alignment.CENTER)}
-        height={text('Set height in px or %', 'Inherit')}
+        iconType={iconType}
         isVisible={isVisible}
-        onCancel={onCancel}
         onClose={onClose}
-        onConfirm={onConfirm}
-        transitionDuration={number('Transition duration', 500)}
+        status={status}
+        text={textProp}
+        transitionDuration={number('Transition duration', 300)}
         transitionEasing={select('Transition type', Easing, Easing.EASE)}
-        width={text('Set width in px or %', '300px')}
     >
-        {text('Body', 'Some body text')}
+        {children}
     </Dialog>
 );
 
-export const Configurable: FunctionComponent = () => (
-    <ConfigurableDialog
-        isVisible
-        onCancel={action('OnCancel click')}
-        onClose={action('OnClose click')}
-        onConfirm={action('OnConfirm click')}
-    />
-);
+export const Configurable: FunctionComponent = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    return (
+        <>
+            <Button
+                onClick={(): void => {
+                    setIsVisible(true);
+                }}
+                variant={ButtonVariant.FILLED}
+            >
+                {isVisible ? 'Dialog is showing' : 'Show dialog'}
+            </Button>
+            <ConfigurableDialog
+                footerButtons={[
+                    {
+                        children: 'Cancel',
+                        iconType: IconType.CROSS,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                        variant: ButtonVariant.TEXT_ONLY,
+                    },
+                    {
+                        children: 'Confirm',
+                        iconType: IconType.CHECK,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                        variant: ButtonVariant.OUTLINE,
+                    },
+                ]}
+                isVisible={isVisible}
+                onClose={(): void => {
+                    setIsVisible(false);
+                }}
+                text={text(
+                    'Text',
+                    'You can put all kinds of text in here. From short ones to long ones, from boring ones to fun ones.'
+                )}
+            />
+        </>
+    );
+};
 
 export const ConfigurableAlert: FunctionComponent = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -66,23 +99,84 @@ export const ConfigurableAlert: FunctionComponent = () => {
                 }}
                 variant={ButtonVariant.FILLED}
             >
-                {isVisible ? 'DIALOG IS SHOWING' : 'SHOW DIALOG'}
+                {isVisible ? 'Dialog is showing' : 'Show dialog'}
             </Button>
             <ConfigurableDialog
+                footerButtons={[
+                    {
+                        children: 'Save the world',
+                        direction: Direction.RTL,
+                        iconType: IconType.ARROWRIGHT,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                        variant: ButtonVariant.OUTLINE,
+                    },
+                ]}
+                footerText={text('Footer text', 'We need you..')}
+                iconType={select('Icon type', IconType, IconType.STATUSALERT)}
                 isVisible={isVisible}
-                onCancel={(): void => {
-                    action('OnCancel');
-                    setIsVisible(false);
-                }}
                 onClose={(): void => {
-                    action('onClose');
                     setIsVisible(false);
                 }}
-                onConfirm={(): void => {
-                    action('onConfirm');
-                    setIsVisible(false);
-                }}
+                status={select('Status', Status, Status.ALERT)}
+                text={text('Text', 'Help, the world is going to end!')}
             />
+        </>
+    );
+};
+
+export const ConfigurableAlertWithContent: FunctionComponent = () => {
+    const [answer, setAnswer] = useState<number | undefined>(undefined);
+    const [isVisible, setIsVisible] = useState(false);
+
+    return (
+        <>
+            <Button
+                onClick={(): void => {
+                    setIsVisible(true);
+                }}
+                variant={ButtonVariant.FILLED}
+            >
+                {isVisible ? 'Dialog is showing' : 'Show dialog'}
+            </Button>
+            <ConfigurableDialog
+                footerButtons={[
+                    {
+                        children: 'Back to safety',
+                        direction: Direction.RTL,
+                        iconType: IconType.ARROWRIGHT,
+                        isDisabled: answer !== 4,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                        variant: ButtonVariant.OUTLINE,
+                    },
+                ]}
+                footerText={text('Footer text', 'Hint: its not 3 or 5')}
+                iconType={select('Icon type', IconType, IconType.STATUSALERT)}
+                isVisible={isVisible}
+                onClose={(): void => {
+                    setIsVisible(false);
+                }}
+                status={select('Status', Status, Status.ALERT)}
+                text="What is 2 + 2?"
+            >
+                <Input
+                    isValid={answer === 4}
+                    label="Your answer"
+                    max={number('Max', 100)}
+                    min={number('Min', 0)}
+                    name="an-input-name"
+                    onChange={({ currentTarget }): void => {
+                        setAnswer(parseInt(parseInputValue(currentTarget), 10));
+                    }}
+                    type={InputType.NUMBER}
+                    value={answer ? answer.toString() : ''}
+                />
+            </ConfigurableDialog>
         </>
     );
 };
