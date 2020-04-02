@@ -97,7 +97,6 @@ interface TableBodyProps {
 
 export const TableBody = styled.tbody<TableBodyProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
-    color: ${({ theme }): string => theme.shades.nine};
 `;
 
 TableBody.defaultProps = {
