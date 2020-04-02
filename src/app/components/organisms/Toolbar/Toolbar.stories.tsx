@@ -1,4 +1,4 @@
-import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { ButtonSize, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';

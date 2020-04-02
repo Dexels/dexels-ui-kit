@@ -1,5 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
+import { ButtonSize, Elevation, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button/Button';
