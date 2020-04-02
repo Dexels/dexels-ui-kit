@@ -10,11 +10,9 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledDialogProps {
     elevation: Elevation;
-    height: string;
     isVisible: boolean;
     transitionDuration: number;
     transitionEasing: Easing;
-    width: string;
 }
 
 export const StyledDialog = styled.div<StyledDialogProps>`
@@ -29,10 +27,10 @@ export const StyledDialog = styled.div<StyledDialogProps>`
         })}
     position: fixed;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
-    z-index: 3;
+    z-index: 9999;
     border-radius: ${({ theme }): string => theme.spacing(1)};
-    width: ${({ width }): string => width};
-    height: ${({ height }): string => height};
+    width: 100%;
+    max-width: 464px;
     pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};
 `;
 

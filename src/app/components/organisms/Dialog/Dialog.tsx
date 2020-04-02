@@ -20,14 +20,12 @@ export interface DialogProps {
     hasOverlay?: boolean;
     header?: ReactNode;
     headerAlignment?: Alignment;
-    height?: string;
     isVisible: boolean;
     onCancel?: MouseEventHandler;
     onClose?: MouseEventHandler;
     onConfirm: MouseEventHandler;
     transitionDuration?: number;
     transitionEasing?: Easing;
-    width?: string;
 }
 
 export const Dialog: FunctionComponent<DialogProps> = ({
@@ -44,14 +42,12 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     hasOverlay = true,
     header,
     headerAlignment = Alignment.CENTER,
-    height = 'inherit',
     isVisible,
     onCancel,
     onClose,
     onConfirm,
     transitionDuration = 500,
     transitionEasing = Easing.EASE,
-    width = '300px',
 }) => (
     <>
         {hasOverlay && <Overlay isVisible={isVisible} />}
@@ -63,11 +59,9 @@ export const Dialog: FunctionComponent<DialogProps> = ({
         <StyledDialog
             className={className}
             elevation={elevation}
-            height={height}
             isVisible={isVisible}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
-            width={width}
         >
             {header && <Header alignment={headerAlignment}>{header}</Header>}
             <Body alignment={bodyAlignment} hasHeader={Boolean(header)}>
