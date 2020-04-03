@@ -5,14 +5,6 @@ import { CellProps } from 'react-table';
 import React from 'react';
 import { TableData } from './tableData';
 
-export const createLocalizedTableTexts = (language = 'nl'): { toggleSortTooltip: string } => {
-    const localizedTexts = {
-        toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer op',
-    };
-
-    return localizedTexts;
-};
-
 export const createLocalizedPagingTexts = (
     language = 'nl'
 ): {

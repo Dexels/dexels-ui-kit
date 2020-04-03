@@ -29,9 +29,6 @@ export interface TableProps<T extends object> {
     isFullWidth?: boolean;
     onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
     pagingComponent?: ReactNode;
-    texts?: {
-        toggleSortTooltip?: ReactNode;
-    };
 }
 
 const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean): Row<T>[] =>
@@ -48,7 +45,6 @@ export const Table = <T extends object>({
     isFullWidth = true,
     onClickRow,
     pagingComponent,
-    texts,
 }: TableProps<T>): JSX.Element => {
     const { getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
 
@@ -67,14 +63,7 @@ export const Table = <T extends object>({
                                         isDisabled={isDisabled}
                                         key={column}
                                         width={column.width}
-                                        {...column.getHeaderProps(
-                                            column.getSortByToggleProps({
-                                                title:
-                                                    column.canSort && texts
-                                                        ? `${texts.toggleSortTooltip} ${column.render('Header')}`
-                                                        : '',
-                                            })
-                                        )}
+                                        {...column.getHeaderProps()}
                                     >
                                         {column.render('Header')}
                                         <IconWrapper isSorted={column.isSorted}>

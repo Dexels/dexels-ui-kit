@@ -1,5 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } from './mockup/tableFunctions';
+import { createLocalizedPagingTexts, getTableRow } from './mockup/tableFunctions';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
@@ -100,7 +100,6 @@ export const Configurable: FunctionComponent = () => {
                             texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
                         />
                     }
-                    texts={createLocalizedTableTexts(isNL ? 'nl' : 'en')}
                 />
             )}
         </>
