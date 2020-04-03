@@ -94,7 +94,7 @@ export const renderSortIcon = <T extends object>(
         iconType = IconType.DROPDOWN;
     }
 
-    return iconType ? <Icon type={iconType} /> : null;
+    return iconType ? <Icon className="icon" type={iconType} /> : null;
 };
 
 export const getColumnWidth = <T extends object>(

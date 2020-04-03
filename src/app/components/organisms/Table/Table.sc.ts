@@ -77,19 +77,30 @@ TableHeaderCell.defaultProps = {
     theme: themeBasic,
 };
 
-interface IconWrapperProps {
+interface TableHeaderCellInnerProps {
     isSorted: boolean;
 }
 
-export const IconWrapper = styled.span<IconWrapperProps>`
-    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
-    color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
-    font-size: 18px;
+export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .icon {
+        flex: 0 0 auto;
+        padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
+        color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
+        font-size: 18px;
+    }
 `;
 
-IconWrapper.defaultProps = {
+TableHeaderCellInner.defaultProps = {
     theme: themeBasic,
 };
+
+export const TableHeaderCellContent = styled.div`
+    flex: 0 1 auto;
+`;
 
 interface TableBodyProps {
     elevation: Elevation;

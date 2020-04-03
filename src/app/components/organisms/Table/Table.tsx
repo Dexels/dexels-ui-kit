@@ -1,5 +1,4 @@
 import {
-    IconWrapper,
     Paging,
     StyledTable,
     TableBody,
@@ -9,6 +8,8 @@ import {
     TableFooter,
     TableHead,
     TableHeaderCell,
+    TableHeaderCellContent,
+    TableHeaderCellInner,
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
@@ -63,12 +64,12 @@ export const Table = <T extends object>({
                                         isDisabled={isDisabled}
                                         key={column}
                                         width={column.width}
-                                        {...column.getHeaderProps()}
+                                        {...column.getHeaderProps(column.getSortByToggleProps())}
                                     >
-                                        {column.render('Header')}
-                                        <IconWrapper isSorted={column.isSorted}>
-                                            {renderSortIcon(column, hasUnsortedStateIcon)}
-                                        </IconWrapper>
+                                        <TableHeaderCellInner isSorted={column.isSorted}>
+                                            <TableHeaderCellContent>{column.render('Header')}</TableHeaderCellContent>
+                                            {column.canSort && renderSortIcon(column, hasUnsortedStateIcon)}
+                                        </TableHeaderCellInner>
                                     </TableHeaderCell>
                                 ))}
                         </TableHeaderRow>
