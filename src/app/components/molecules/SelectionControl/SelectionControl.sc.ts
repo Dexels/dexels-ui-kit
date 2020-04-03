@@ -55,8 +55,6 @@ interface InputWrapperProps {
     transitionEasing: Easing;
 }
 
-/* eslint-disable indent, @typescript-eslint/indent */
-// The indent rule is disabled because ESLint has a bug when using functions inside of hover/focus etc
 export const InputWrapper = styled.div<InputWrapperProps>`
     display: flex;
     position: relative;
@@ -126,7 +124,6 @@ export const InputWrapper = styled.div<InputWrapperProps>`
         pointer-events: auto;
     }
 `;
-/* eslint-enable */
 
 InputWrapper.defaultProps = {
     theme: themeBasic,
