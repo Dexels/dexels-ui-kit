@@ -1,57 +1,61 @@
-import { Alignment, Easing, Elevation, IconType } from '../../../types';
-import { Body, ButtonClose, Header, StyledDialog } from './Dialog.sc';
+import {
+    Body,
+    ButtonClose,
+    ChildrenWrapper,
+    Content,
+    Header,
+    IconWrapper,
+    StyledDialog,
+    Text,
+    Wrapper,
+} from './Dialog.sc';
+import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
+import { Easing, Elevation, IconType, Status } from '../../../types';
+import Icon, { IconProps } from '../../atoms/Icon/Icon';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
-import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
-import Icon from '../../atoms/Icon/Icon';
 import Overlay from '../../molecules/Overlay/Overlay';
 
 export interface DialogProps {
-    bodyAlignment?: Alignment;
-    buttonCancelText?: ReactNode;
     buttonClosePosition?: DialogButtonClosePosition;
-    buttonConfirmIconType?: IconType;
-    buttonConfirmText: ReactNode;
     children?: ReactNode;
     className?: string;
     elevation?: Elevation;
-    footerText?: ReactNode;
+    footerButtons: DialogFooterProps['buttons'];
+    footerText?: DialogFooterProps['text'];
+    hasBodyPadding?: boolean;
     hasButtonClose?: boolean;
+    hasHeaderPadding?: boolean;
     hasOverlay?: boolean;
     header?: ReactNode;
-    headerAlignment?: Alignment;
-    height?: string;
+    iconType?: IconProps['type'];
     isVisible: boolean;
-    onCancel?: MouseEventHandler;
     onClose?: MouseEventHandler;
-    onConfirm: MouseEventHandler;
+    status?: Status;
+    text?: ReactNode;
     transitionDuration?: number;
     transitionEasing?: Easing;
-    width?: string;
 }
 
 export const Dialog: FunctionComponent<DialogProps> = ({
-    bodyAlignment = Alignment.CENTER,
-    buttonCancelText,
     buttonClosePosition = DialogButtonClosePosition.LEFT,
-    buttonConfirmIconType,
-    buttonConfirmText,
     children,
     className,
     elevation = Elevation.LEVEL_12,
+    footerButtons,
     footerText,
+    hasBodyPadding = true,
     hasButtonClose = true,
+    hasHeaderPadding = true,
     hasOverlay = true,
     header,
-    headerAlignment = Alignment.CENTER,
-    height = 'inherit',
+    iconType,
     isVisible,
-    onCancel,
     onClose,
-    onConfirm,
-    transitionDuration = 500,
+    status = Status.DEFAULT,
+    text,
+    transitionDuration = 300,
     transitionEasing = Easing.EASE,
-    width = '300px',
 }) => (
     <>
         {hasOverlay && <Overlay isVisible={isVisible} />}
@@ -60,28 +64,35 @@ export const Dialog: FunctionComponent<DialogProps> = ({
                 <Icon type={IconType.CROSS} />
             </ButtonClose>
         )}
-        <StyledDialog
+        <Wrapper
             className={className}
-            elevation={elevation}
-            height={height}
             isVisible={isVisible}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
-            width={width}
         >
-            {header && <Header alignment={headerAlignment}>{header}</Header>}
-            <Body alignment={bodyAlignment} hasHeader={Boolean(header)}>
-                {children}
-            </Body>
-            <DialogFooter
-                buttonCancelText={buttonCancelText}
-                buttonConfirmIconType={buttonConfirmIconType}
-                buttonConfirmText={buttonConfirmText}
-                onCancel={onCancel}
-                onConfirm={onConfirm}
-                text={footerText}
-            />
-        </StyledDialog>
+            <StyledDialog elevation={elevation}>
+                {header && <Header hasHeaderPadding={hasHeaderPadding}>{header}</Header>}
+                <Body hasBodyPadding={hasBodyPadding}>
+                    <Content>
+                        {iconType && (
+                            <IconWrapper status={status}>
+                                <Icon type={iconType} />
+                            </IconWrapper>
+                        )}
+                        {text && <Text>{text}</Text>}
+                    </Content>
+                    {children && (
+                        <ChildrenWrapper
+                            hasPaddingLeft={Boolean(iconType) && Boolean(text)}
+                            hasPaddingTop={Boolean(iconType) || Boolean(text)}
+                        >
+                            {children}
+                        </ChildrenWrapper>
+                    )}
+                </Body>
+                <DialogFooter buttons={footerButtons} text={footerText} />
+            </StyledDialog>
+        </Wrapper>
     </>
 );
 

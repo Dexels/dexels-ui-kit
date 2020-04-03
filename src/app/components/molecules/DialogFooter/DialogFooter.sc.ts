@@ -17,7 +17,8 @@ StyledDialogFooter.defaultProps = {
 };
 
 export const Text = styled.p`
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
+    margin: 0;
     padding: ${({ theme }): string => theme.spacing(0, 2, 0, 0)};
     word-break: break-word;
     color: ${({ theme }): string => theme.colorText.primary};
@@ -36,7 +37,12 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
+    flex: 0 1 auto;
     margin: ${({ theme }): string => theme.spacing(0, 1, 0, 1)};
+
+    &:last-of-type {
+        margin-right: 0;
+    }
 `;
 
 ButtonWrapper.defaultProps = {

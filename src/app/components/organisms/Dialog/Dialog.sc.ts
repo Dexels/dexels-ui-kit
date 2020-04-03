@@ -1,26 +1,22 @@
-import { Alignment, Easing, Elevation } from '../../../types';
+import { Easing, Elevation, Status } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { DialogButtonClosePosition } from './types';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
-import { getAlignment } from '../../../styles/mixins/getAlignment';
 import { getElevation } from '../../../styles/mixins/getElevation';
+import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { setCentered } from '../../../styles/mixins/setCentered';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
-interface StyledDialogProps {
-    elevation: Elevation;
-    height: string;
+interface WrapperProps {
     isVisible: boolean;
     transitionDuration: number;
     transitionEasing: Easing;
-    width: string;
 }
 
-export const StyledDialog = styled.div<StyledDialogProps>`
+export const Wrapper = styled.div<WrapperProps>`
     ${setBoxSizing()}
     ${setCentered()}
-    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
         fadeInEffect({
             duration: transitionDuration,
@@ -29,11 +25,23 @@ export const StyledDialog = styled.div<StyledDialogProps>`
         })}
     position: fixed;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
-    z-index: 3;
-    border-radius: ${({ theme }): string => theme.spacing(1)};
-    width: ${({ width }): string => width};
-    height: ${({ height }): string => height};
+    z-index: 9999;
+    padding: 40px;
+    width: 100%;
+    max-width: 544px;
+    max-height: 100%;
+    overflow: auto;
     pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};
+`;
+
+interface StyledDialogProps {
+    elevation: Elevation;
+}
+
+export const StyledDialog = styled.div<StyledDialogProps>`
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    border-radius: ${({ theme }): string => theme.spacing(1)};
+    overflow: hidden;
 `;
 
 StyledDialog.defaultProps = {
@@ -47,13 +55,12 @@ interface ButtonCloseProps {
 export const ButtonClose = styled.button<ButtonCloseProps>`
     position: fixed;
     top: 2px;
-    z-index: 3;
+    z-index: 10000;
     outline: none;
     border: 0;
     background-color: transparent;
     cursor: pointer;
     padding: ${({ theme }): string => theme.spacing(1)};
-    text-align: ${({ position }): string => (position === DialogButtonClosePosition.LEFT ? 'left' : 'right')};
     color: ${({ theme }): string => theme.colorText.primary};
     font-size: ${({ theme }): string => theme.spacing(3)};
 
@@ -85,20 +92,20 @@ ButtonClose.defaultProps = {
 };
 
 interface HeaderProps {
-    alignment: Alignment;
+    hasHeaderPadding: boolean;
 }
 
 export const Header = styled.header<HeaderProps>`
-    ${({ alignment }): FlattenSimpleInterpolation => getAlignment(alignment)}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
-    display: flex;
-    align-items: center;
-    border-top-left-radius: ${({ theme }): string => theme.spacing(1)};
-    border-top-right-radius: ${({ theme }): string => theme.spacing(1)};
     background-color: ${({ theme }): string => theme.colorPrimary};
-    padding: ${({ theme }): string => theme.spacing(2)};
     min-height: ${({ theme }): string => theme.spacing(7)};
     color: ${({ theme }): string => theme.colorTextContrast.primary};
+
+    ${({ hasHeaderPadding, theme }): SimpleInterpolation =>
+        hasHeaderPadding &&
+        css`
+            padding: ${theme.spacing(2, 3)};
+        `}
 `;
 
 Header.defaultProps = {
@@ -106,27 +113,76 @@ Header.defaultProps = {
 };
 
 interface BodyProps {
-    alignment: Alignment;
-    hasHeader: boolean;
+    hasBodyPadding: boolean;
 }
 
 export const Body = styled.div<BodyProps>`
-    ${({ alignment }): FlattenSimpleInterpolation => getAlignment(alignment, false)}
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
-    display: grid;
     background-color: ${({ theme }): string => theme.card.backgroundColor};
-    padding: ${({ theme }): string => theme.spacing(2)};
-    height: 100%;
-    overflow: auto;
-    color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ hasHeader, theme }): SimpleInterpolation =>
-        !hasHeader &&
+    ${({ hasBodyPadding, theme }): SimpleInterpolation =>
+        hasBodyPadding &&
         css`
-            border-radius: ${theme.spacing(1, 1, 0, 0)};
+            padding: ${theme.spacing(2, 3)};
         `}
 `;
 
 Body.defaultProps = {
+    theme: themeBasic,
+};
+
+export const Content = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+`;
+
+interface IconWrapperProps {
+    status: Status;
+}
+
+export const IconWrapper = styled.div<IconWrapperProps>`
+    flex: 0 0 auto;
+    margin: 0 16px 0 0;
+    color: ${({ status, theme }): string => getStatusColor(status, theme)};
+    font-size: 32px;
+
+    span {
+        display: block;
+    }
+`;
+
+IconWrapper.defaultProps = {
+    theme: themeBasic,
+};
+
+export const Text = styled.div`
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
+    color: ${({ theme }): string => theme.colorTextBody.primary};
+`;
+
+Text.defaultProps = {
+    theme: themeBasic,
+};
+
+interface ChildrenWrapperProps {
+    hasPaddingLeft: boolean;
+    hasPaddingTop: boolean;
+}
+
+export const ChildrenWrapper = styled.div<ChildrenWrapperProps>`
+    ${({ hasPaddingLeft, theme }): SimpleInterpolation =>
+        hasPaddingLeft &&
+        css`
+            padding-left: ${theme.spacing(6)};
+        `}
+
+    ${({ hasPaddingTop, theme }): SimpleInterpolation =>
+        hasPaddingTop &&
+        css`
+            padding-top: ${theme.spacing(2)};
+        `}
+`;
+
+ChildrenWrapper.defaultProps = {
     theme: themeBasic,
 };

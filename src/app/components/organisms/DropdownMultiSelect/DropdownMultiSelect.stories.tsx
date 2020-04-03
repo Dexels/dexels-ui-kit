@@ -74,7 +74,6 @@ const BaseComponent = (
 
     const setStates = (values: Options): void => {
         setOptionValues(cloneArray(values));
-
         setSelectAllOption(getSelectAllOption(values, TEXT_OPTION_DESELECT_ALL, TEXT_OPTION_SELECT_ALL));
     };
 

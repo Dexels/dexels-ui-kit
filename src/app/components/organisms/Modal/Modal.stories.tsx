@@ -14,22 +14,10 @@ const functionalItems = [
     <ButtonIcon iconType={IconType.SHARE} key={3} onClick={action('On buttonicon SHARE')} />,
     <ButtonIcon iconType={IconType.GEAR} key={4} onClick={action('On buttonicon GEAR')} />,
     <ButtonIcon iconType={IconType.ROUNDHELP} key={5} onClick={action('On buttonicon ROUNDHELP')} />,
-    <Button
-        iconType={IconType.ROUNDINFO}
-        key={6}
-        onClick={action('On button ROUNDINFO 1')}
-        size={ButtonSize.SMALL}
-        variant={ButtonVariant.OUTLINE}
-    >
+    <Button iconType={IconType.ROUNDINFO} key={6} onClick={action('On button ROUNDINFO 1')} size={ButtonSize.SMALL}>
         {'label'}
     </Button>,
-    <Button
-        iconType={IconType.ROUNDINFO}
-        key={7}
-        onClick={action('On button ROUNDINFO 2')}
-        size={ButtonSize.SMALL}
-        variant={ButtonVariant.OUTLINE}
-    >
+    <Button iconType={IconType.ROUNDINFO} key={7} onClick={action('On button ROUNDINFO 2')} size={ButtonSize.SMALL}>
         {'label'}
     </Button>,
 ];

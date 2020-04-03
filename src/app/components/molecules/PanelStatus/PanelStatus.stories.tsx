@@ -37,12 +37,7 @@ export const ConfigurableWithMultipleButtons: FunctionComponent = () => (
                 <Button iconType={IconType.CHECK} onClick={action('On click')} variant={ButtonVariant.TEXT_ONLY}>
                     {'Apply'}
                 </Button>
-                <Button
-                    iconType={IconType.SELECT}
-                    onClick={action('On click')}
-                    size={ButtonSize.SMALL}
-                    variant={ButtonVariant.OUTLINE}
-                >
+                <Button iconType={IconType.SELECT} onClick={action('On click')} size={ButtonSize.SMALL}>
                     {'Select'}
                 </Button>
             </Toolbar>

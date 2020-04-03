@@ -1,4 +1,4 @@
-import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { ButtonSize, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
@@ -23,7 +23,6 @@ export const Configurable: FunctionComponent = () => {
                 key={6}
                 onClick={action('On buttonicon ROUNDINFO')}
                 size={ButtonSize.SMALL}
-                variant={ButtonVariant.OUTLINE}
             >
                 {'label'}
             </Button>
@@ -32,7 +31,6 @@ export const Configurable: FunctionComponent = () => {
                 key={7}
                 onClick={action('On buttonicon ROUNDINFO')}
                 size={ButtonSize.SMALL}
-                variant={ButtonVariant.OUTLINE}
             >
                 {'label'}
             </Button>
