@@ -80,25 +80,21 @@ export const renderSortIcon = <T extends object>(
     column: UseSortByColumnProps<T>,
     hasUnsortedStateIcon = false
 ): ReactNode => {
-    let sortIcon = null;
-
-    if (!column.canSort) {
-        return sortIcon;
-    }
+    let iconType = null;
 
     if (column.isSorted) {
         if (column.isSortedDesc) {
-            sortIcon = <Icon type={IconType.DROPDOWN} />;
+            iconType = IconType.DROPDOWN;
         } else {
-            sortIcon = <Icon type={IconType.DROPUP} />;
+            iconType = IconType.DROPUP;
         }
     }
 
     if (hasUnsortedStateIcon && !column.isSorted) {
-        sortIcon = <Icon type={IconType.DROPDOWN} />;
+        iconType = IconType.DROPDOWN;
     }
 
-    return sortIcon;
+    return iconType ? <Icon type={iconType} /> : null;
 };
 
 export const getColumnWidth = <T extends object>(
