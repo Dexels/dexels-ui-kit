@@ -54,7 +54,7 @@ export const Configurable: FunctionComponent = () => {
                 />
                 <SelectionControl
                     isChecked={hasGroupHeader}
-                    label={hasGroupHeader ? 'WITH GROUP HEADER' : 'WITHOUT GROUP HEADER'}
+                    label={hasGroupHeader ? 'With group header' : 'Without group header'}
                     name="GROUPHEADER"
                     onChange={(): void => {
                         setHasGroupHeader(!hasGroupHeader);
@@ -63,7 +63,7 @@ export const Configurable: FunctionComponent = () => {
                 />
                 <SelectionControl
                     isChecked={isFooterVisible}
-                    label={isFooterVisible ? 'WITHOUT TABLE FOOTER' : 'WITH TABLE FOOTER'}
+                    label={isFooterVisible ? 'With table footer' : 'Without table footer'}
                     name="FOOTER"
                     onChange={(): void => {
                         setIsFooterVisible(!isFooterVisible);
