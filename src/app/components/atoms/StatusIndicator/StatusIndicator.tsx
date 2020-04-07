@@ -18,8 +18,8 @@ export const StatusIndicator: FunctionComponent<StatusIndicatorProps> = ({
     background,
     children,
     className,
-    placement = Placement.TOP,
-    size = StatusIndicatorSize.LARGE,
+    placement,
+    size,
     status = Status.DEFAULT,
 }) => (
     <StyledStatusIndicator
