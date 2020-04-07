@@ -5,7 +5,7 @@ import { themeBasic } from '../../../../../styles/theming/themes/basic';
 export const StyledContentCell = styled.div`
     ${setBoxSizing()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
-    color: ${({ theme }): string => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorTextBody.primary};
 `;
 
 StyledContentCell.defaultProps = {
