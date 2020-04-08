@@ -1,5 +1,6 @@
+import React, { ReactNode, SyntheticEvent } from 'react';
+import { Row, TableInstance } from 'react-table';
 import {
-    Paging,
     StyledTable,
     TableBody,
     TableCaption,
@@ -13,8 +14,6 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
-import React, { ReactNode, SyntheticEvent } from 'react';
-import { Row, TableInstance } from 'react-table';
 import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
@@ -23,13 +22,13 @@ export interface TableProps<T extends object> {
     children?: never;
     className?: string;
     elevation?: Elevation;
-    footerComponent?: ReactNode;
+    footer?: ReactNode;
     hasUnsortedStateIcon?: boolean;
     instance: TableInstance<T>;
     isDisabled?: boolean;
     isFullWidth?: boolean;
     onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
-    pagingComponent?: ReactNode;
+    paginator?: ReactNode;
 }
 
 const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean): Row<T>[] =>
@@ -39,13 +38,13 @@ export const Table = <T extends object>({
     caption,
     className,
     elevation = Elevation.LEVEL_1,
-    footerComponent,
+    footer,
     hasUnsortedStateIcon = true,
     instance,
     isDisabled = false,
     isFullWidth = true,
     onClickRow,
-    pagingComponent,
+    paginator,
 }: TableProps<T>): JSX.Element => {
     const { getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
 
@@ -77,7 +76,7 @@ export const Table = <T extends object>({
                 </TableHead>
                 <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                    {dataSource(instance, Boolean(pagingComponent)).map((row) => {
+                    {dataSource(instance, Boolean(paginator)).map((row) => {
                         prepareRow(row);
 
                         return (
@@ -116,9 +115,9 @@ export const Table = <T extends object>({
                         );
                     })}
                 </TableBody>
-                {footerComponent && <TableFooter elevation={elevation}>{footerComponent}</TableFooter>}
+                {footer && <TableFooter elevation={elevation}>{footer}</TableFooter>}
             </StyledTable>
-            {pagingComponent && <Paging>{pagingComponent}</Paging>}
+            {paginator && paginator}
         </>
     );
 };

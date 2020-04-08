@@ -198,9 +198,4 @@ interface TableFooterProps {
 
 export const TableFooter = styled.tfoot<TableFooterProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
-    background-color: transparent;
-`;
-
-export const Paging = styled.div`
-    background-color: transparent;
 `;

@@ -76,7 +76,7 @@ export const Configurable: FunctionComponent = () => {
                 <Table<TableData>
                     caption={text('Table caption', 'Table caption')}
                     elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
-                    footerComponent={
+                    footer={
                         isFooterVisible && (
                             <tr
                                 style={{
@@ -94,7 +94,7 @@ export const Configurable: FunctionComponent = () => {
                     instance={instance}
                     isFullWidth={boolean('Is full width', true)}
                     onClickRow={getTableRow}
-                    pagingComponent={
+                    paginator={
                         <Paginator<TableData>
                             instance={instance}
                             texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
