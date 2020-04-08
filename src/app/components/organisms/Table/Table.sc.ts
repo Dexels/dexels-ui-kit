@@ -199,3 +199,7 @@ interface TableFooterProps {
 export const TableFooter = styled.tfoot<TableFooterProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
 `;
+
+export const PaginatorWrapper = styled.div`
+    padding: ${({ theme }): string => theme.spacing(1.5, 0, 0)};
+`;

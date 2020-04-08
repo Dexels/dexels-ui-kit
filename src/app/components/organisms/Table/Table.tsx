@@ -1,6 +1,5 @@
-import React, { ReactNode, SyntheticEvent } from 'react';
-import { Row, TableInstance } from 'react-table';
 import {
+    PaginatorWrapper,
     StyledTable,
     TableBody,
     TableCaption,
@@ -14,6 +13,8 @@ import {
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
+import React, { ReactNode, SyntheticEvent } from 'react';
+import { Row, TableInstance } from 'react-table';
 import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
@@ -117,7 +118,7 @@ export const Table = <T extends object>({
                 </TableBody>
                 {footer && <TableFooter elevation={elevation}>{footer}</TableFooter>}
             </StyledTable>
-            {paginator && paginator}
+            {paginator && <PaginatorWrapper>{paginator}</PaginatorWrapper>}
         </>
     );
 };

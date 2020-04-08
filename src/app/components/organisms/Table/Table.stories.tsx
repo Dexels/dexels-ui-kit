@@ -71,8 +71,7 @@ export const Configurable: FunctionComponent = () => {
                     value="isFooterVisible"
                 />
             </div>
-            {!instance && <div>{'Loading...'}</div>}
-            {instance && (
+            {instance ? (
                 <Table<TableData>
                     caption={text('Table caption', 'Table caption')}
                     elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
@@ -101,6 +100,8 @@ export const Configurable: FunctionComponent = () => {
                         />
                     }
                 />
+            ) : (
+                <div>{'Loading...'}</div>
             )}
         </>
     );
