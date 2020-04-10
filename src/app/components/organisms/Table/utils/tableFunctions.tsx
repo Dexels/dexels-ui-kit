@@ -1,11 +1,10 @@
-import { CellProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
+import { CellValue, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import { formatDate, isValidDate } from '../../../../utils/validators/dateFunctions';
 import { IconType, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
 import ContentCell from '../mockup/ContentCell/ContentCell';
 import Icon from '../../../atoms/Icon/Icon';
 import { MatchTaskStatuses } from '../mockup/StatusCell/types';
-import { Moment } from 'moment';
 import StatusCell from '../mockup/StatusCell/StatusCell';
 
 export const compareValues = <T extends object>(
@@ -62,19 +61,9 @@ export const customSortByCaseInsensitive = <T extends object>(
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));
 
-export const renderCell = <T extends object>(row: CellProps<T>): ReactNode => {
-    let value: Moment | string = '';
-
-    if (row.cell.value) {
-        if (typeof row.cell.value === 'object' && isValidDate(row.cell.value)) {
-            value = formatDate(row.cell.value);
-        } else {
-            value = row.cell.value;
-        }
-    }
-
-    return <ContentCell>{value}</ContentCell>;
-};
+export const renderCell = (value: CellValue): ReactNode => (
+    <ContentCell>{typeof value === 'object' && isValidDate(value) ? formatDate(value) : value}</ContentCell>
+);
 
 export const renderSortIcon = <T extends object>(
     column: UseSortByColumnProps<T>,
@@ -83,14 +72,8 @@ export const renderSortIcon = <T extends object>(
     let iconType = null;
 
     if (column.isSorted) {
-        if (column.isSortedDesc) {
-            iconType = IconType.DROPDOWN;
-        } else {
-            iconType = IconType.DROPUP;
-        }
-    }
-
-    if (hasUnsortedStateIcon && !column.isSorted) {
+        iconType = column.isSortedDesc ? IconType.DROPDOWN : IconType.DROPUP;
+    } else if (hasUnsortedStateIcon) {
         iconType = IconType.DROPDOWN;
     }
 

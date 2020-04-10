@@ -13,7 +13,7 @@ export const tableColumns = () => (
             accessor: 'id',
         },
         {
-            Cell: (row) => renderCell(row),
+            Cell: ({ cell }) => renderCell(cell.value),
             Header: 'First Name',
             accessor: 'firstName',
             hasCellPadding: false,
@@ -21,24 +21,24 @@ export const tableColumns = () => (
             onClick: (cell, row, event) => getTableCell(cell, row, event),
         },
         {
-            Cell: (row) => renderCell(row),
+            Cell: ({ cell }) => renderCell(cell.value),
             Header: 'Last Name',
             accessor: 'lastName',
         },
         {
-            Cell: (row) => renderCell(row),
+            Cell: ({ cell }) => renderCell(cell.value),
             Header: 'Startdate',
             accessor: 'relationStart',
             sortType: (a, b, propName) => customSortByDate(a, b, propName),
         },
         {
-            Cell: (row) => renderCell(row),
+            Cell: ({ cell }) => renderCell(cell.value),
             Header: 'Info',
             accessor: 'info',
             sortType: 'basic',
         },
         {
-            Cell: (row) => renderButton(row),
+            Cell: ({ cell }): ReactNode => renderButton(cell.row.index),
             Header: 'Action',
             accessor: 'action',
             disableSorting: true,
