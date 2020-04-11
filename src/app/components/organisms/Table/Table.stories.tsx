@@ -23,11 +23,10 @@ export const Configurable: FunctionComponent = () => {
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
     const data = useMemo(() => tableData(), []);
-    const columns = useMemo(() => tableColumns(data), [data]);
+    const columns = useMemo(() => tableColumns(), []);
     const columnsWithGroupHeader = useMemo(() => tableColumnsWithGroupHeader(), []);
 
     const instance = createTable<TableData>(hasGroupHeader ? columnsWithGroupHeader : columns, data, {
-        hiddenColumns: ['id'],
         sortBy: [
             {
                 desc: false,

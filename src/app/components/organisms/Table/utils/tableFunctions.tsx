@@ -80,28 +80,6 @@ export const renderSortIcon = <T extends object>(
     return iconType ? <Icon className="icon" type={iconType} /> : null;
 };
 
-export const getColumnWidth = <T extends object>(
-    data: T[],
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    accessor: any,
-    headerText = accessor
-): string => {
-    if (typeof accessor === 'string' || accessor instanceof String) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        accessor = (d: any): void => d[accessor]; // eslint-disable-line no-param-reassign
-    }
-
-    const maxWidth = 600;
-    const magicSpacing = 10;
-    let cellLength = headerText.length;
-
-    if (data) {
-        cellLength = Math.max(...data.map((row: T) => (`${accessor(row)}` || '').length), headerText.length);
-    }
-
-    return `${Math.min(maxWidth, cellLength * magicSpacing)}px`;
-};
-
 export const renderStatusCell = (matchTaskStatus: MatchTaskStatuses, status: Status): JSX.Element => (
     <StatusCell matchTaskStatus={matchTaskStatus} status={status} />
 );

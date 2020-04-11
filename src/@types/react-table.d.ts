@@ -1,6 +1,6 @@
 import {
     Cell,
-    Column,
+    ColumnInterface,
     Row,
     UseExpandedInstanceProps,
     UseExpandedOptions,
@@ -57,7 +57,7 @@ declare module 'react-table' {
             UseRowSelectState<D>,
             UseSortByState<D> {}
 
-    export interface Column<D extends object = {}>
+    export interface ColumnInterface<D extends object = {}>
         extends UseFiltersColumnOptions<D>,
             UseGroupByColumnOptions<D>,
             UseSortByColumnOptions<D> {
