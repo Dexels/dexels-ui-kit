@@ -10,29 +10,26 @@ The latter can be established by using the Cell prop in the column definition.
 export const tableColumns = () => (
     useMemo(() => [
         {
-            accessor: 'id',
-        },
-        {
-            Cell: ({ cell }) => renderCell(cell.value),
-            Header: 'First Name',
+            Cell: ({ value }) => renderCell(value),
+            Header: 'First name',
             accessor: 'firstName',
             hasCellPadding: false,
             // TIP: event can be left out. Default = null
             onClick: (cell, row, event) => getTableCell(cell, row, event),
         },
         {
-            Cell: ({ cell }) => renderCell(cell.value),
-            Header: 'Last Name',
+            Cell: ({ value }) => renderCell(value),
+            Header: 'Last name',
             accessor: 'lastName',
         },
         {
-            Cell: ({ cell }) => renderCell(cell.value),
+            Cell: ({ value }) => renderCell(value),
             Header: 'Startdate',
             accessor: 'relationStart',
             sortType: (a, b, propName) => customSortByDate(a, b, propName),
         },
         {
-            Cell: ({ cell }) => renderCell(cell.value),
+            Cell: ({ value }) => renderCell(value),
             Header: 'Info',
             accessor: 'info',
             sortType: 'basic',
@@ -40,13 +37,12 @@ export const tableColumns = () => (
         {
             Cell: ({ cell }): ReactNode => renderButton(cell.row.index),
             Header: 'Action',
-            accessor: 'action',
+            accessor: 'id',
             disableSorting: true,
         },
     ], [])
 );
 ```
-
 
 **Creating a table instance example**:
 
