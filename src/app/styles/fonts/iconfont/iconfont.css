@@ -22,6 +22,18 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ICON-PACKAGE:before {
+    content: "\e98d";
+}
+
+.ICON-USERADD:before {
+    content: "\e98e";
+}
+
+.ICON-USERREMOVE:before {
+    content: "\e98f";
+}
+
 .ICON-CLUBPLACEHOLDER09:before {
     content: "\e985";
 }
