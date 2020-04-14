@@ -8,6 +8,20 @@ import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { setCentered } from '../../../styles/mixins/setCentered';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
+interface OverlayWrapperProps {
+    isVisible: boolean;
+}
+
+export const OverlayWrapper = styled.div<OverlayWrapperProps>`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+    width: 100%;
+    height: 100%;
+    pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};
+`;
+
 interface WrapperProps {
     isVisible: boolean;
     transitionDuration: number;
