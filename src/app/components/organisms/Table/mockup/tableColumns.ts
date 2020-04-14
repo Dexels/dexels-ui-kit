@@ -6,7 +6,7 @@ import { TableData } from './tableData';
 
 export const tableColumns = (): Column<TableData>[] => [
     {
-        Cell: ({ cell, value }): ReactNode => renderStatusCell(cell.row.original.matchTaskStatus, value),
+        Cell: ({ row, value }): ReactNode => renderStatusCell(row.original.matchTaskStatus, value),
         accessor: 'status',
         disableSortBy: true,
         hasCellPadding: false,
@@ -47,7 +47,7 @@ export const tableColumns = (): Column<TableData>[] => [
         sortType: 'basic',
     },
     {
-        Cell: ({ cell }): ReactNode => renderButton(cell.row.index),
+        Cell: ({ row }): ReactNode => renderButton(row.index),
         Header: 'Action',
         accessor: 'id',
         disableSortBy: true,
@@ -59,7 +59,7 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
         Header: 'Name',
         columns: [
             {
-                Cell: ({ cell }): ReactNode => renderStatusCell(cell.row.original.matchTaskStatus, cell.value),
+                Cell: ({ row, value }): ReactNode => renderStatusCell(row.original.matchTaskStatus, value),
                 accessor: 'status',
                 disableSortBy: true,
             },
@@ -104,7 +104,7 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
                 sortType: 'basic',
             },
             {
-                Cell: ({ cell }): ReactNode => renderButton(cell.row.index),
+                Cell: ({ row }): ReactNode => renderButton(row.index),
                 Header: 'Action',
                 accessor: 'id',
                 disableSortBy: true,
