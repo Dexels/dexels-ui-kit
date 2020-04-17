@@ -6,10 +6,10 @@ import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 interface StyledLabelProps {
     hasError: boolean;
     isActive: boolean;
-    isCheckboxLabel: boolean;
     isDisabled: boolean;
     isFocused: boolean;
     isHovered: boolean;
+    isSelectionControlLabel: boolean;
     isSmall: boolean;
     isTruncatable: boolean;
     isValid: boolean;
@@ -27,10 +27,10 @@ export const StyledLabel = styled.label<StyledLabelProps>`
     cursor: inherit;
     color: ${({ theme }): string => theme.shades.three};
 
-    ${({ isCheckboxLabel, theme }): SimpleInterpolation =>
-        isCheckboxLabel &&
+    ${({ isSelectionControlLabel, theme }): SimpleInterpolation =>
+        isSelectionControlLabel &&
         css`
-            color: ${theme.colorText.primary};
+            color: ${theme.colorTextBody.primary};
         `}
 
     ${({ isActive, theme }): SimpleInterpolation =>

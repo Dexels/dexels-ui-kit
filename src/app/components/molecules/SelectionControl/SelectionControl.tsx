@@ -102,7 +102,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                     />
                 </InputWrapper>
                 <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
-                    <Label hasError={hasError} isCheckboxLabel isValid={isValid}>
+                    <Label hasError={hasError} isSelectionControlLabel isValid={isValid}>
                         {label}
                     </Label>
                 </LabelWrapper>

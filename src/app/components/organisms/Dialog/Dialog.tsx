@@ -5,6 +5,7 @@ import {
     Content,
     Header,
     IconWrapper,
+    OverlayWrapper,
     StyledDialog,
     Text,
     Wrapper,
@@ -58,7 +59,11 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     transitionEasing = Easing.EASE,
 }) => (
     <>
-        {hasOverlay && <Overlay isVisible={isVisible} />}
+        {hasOverlay && (
+            <OverlayWrapper isVisible={isVisible}>
+                <Overlay isVisible={isVisible} />
+            </OverlayWrapper>
+        )}
         {hasButtonClose && hasOverlay && isVisible && (
             <ButtonClose onClick={onClose} position={buttonClosePosition}>
                 <Icon type={IconType.CROSS} />

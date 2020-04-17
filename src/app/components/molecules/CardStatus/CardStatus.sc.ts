@@ -6,11 +6,17 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledCardStatusProps {
     placement: Placement;
-    status: Status;
+    status?: Status;
 }
 
 export const StyledCardStatus = styled(Card)<StyledCardStatusProps>`
-    ${({ placement, status, theme }): string => getStatusIndicator(status, theme, placement, StatusIndicatorSize.SMALL)}
+    ${({ placement, status, theme }): string =>
+        getStatusIndicator({
+            placement,
+            size: StatusIndicatorSize.SMALL,
+            status,
+            theme,
+        })}
 `;
 
 StyledCardStatus.defaultProps = {

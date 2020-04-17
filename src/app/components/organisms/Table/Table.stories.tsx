@@ -1,5 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { createLocalizedPagingTexts, createLocalizedTableTexts, getTableRow } from './mockup/tableFunctions';
+import { createLocalizedPagingTexts, getTableRow } from './mockup/tableFunctions';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
@@ -23,11 +23,10 @@ export const Configurable: FunctionComponent = () => {
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
     const data = useMemo(() => tableData(), []);
-    const columns = useMemo(() => tableColumns(data), [data]);
+    const columns = useMemo(() => tableColumns(), []);
     const columnsWithGroupHeader = useMemo(() => tableColumnsWithGroupHeader(), []);
 
     const instance = createTable<TableData>(hasGroupHeader ? columnsWithGroupHeader : columns, data, {
-        hiddenColumns: ['id'],
         sortBy: [
             {
                 desc: false,
@@ -54,7 +53,7 @@ export const Configurable: FunctionComponent = () => {
                 />
                 <SelectionControl
                     isChecked={hasGroupHeader}
-                    label={hasGroupHeader ? 'WITH GROUP HEADER' : 'WITHOUT GROUP HEADER'}
+                    label={hasGroupHeader ? 'With group header' : 'Without group header'}
                     name="GROUPHEADER"
                     onChange={(): void => {
                         setHasGroupHeader(!hasGroupHeader);
@@ -63,7 +62,7 @@ export const Configurable: FunctionComponent = () => {
                 />
                 <SelectionControl
                     isChecked={isFooterVisible}
-                    label={isFooterVisible ? 'WITHOUT TABLE FOOTER' : 'WITH TABLE FOOTER'}
+                    label={isFooterVisible ? 'With table footer' : 'Without table footer'}
                     name="FOOTER"
                     onChange={(): void => {
                         setIsFooterVisible(!isFooterVisible);
@@ -71,12 +70,11 @@ export const Configurable: FunctionComponent = () => {
                     value="isFooterVisible"
                 />
             </div>
-            {!instance && <div>{'Loading...'}</div>}
-            {instance && (
+            {instance ? (
                 <Table<TableData>
                     caption={text('Table caption', 'Table caption')}
                     elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
-                    footerComponent={
+                    footer={
                         isFooterVisible && (
                             <tr
                                 style={{
@@ -94,14 +92,15 @@ export const Configurable: FunctionComponent = () => {
                     instance={instance}
                     isFullWidth={boolean('Is full width', true)}
                     onClickRow={getTableRow}
-                    pagingComponent={
+                    paginator={
                         <Paginator<TableData>
                             instance={instance}
                             texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
                         />
                     }
-                    texts={createLocalizedTableTexts(isNL ? 'nl' : 'en')}
                 />
+            ) : (
+                <div>{'Loading...'}</div>
             )}
         </>
     );

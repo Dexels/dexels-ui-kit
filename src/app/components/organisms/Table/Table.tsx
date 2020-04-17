@@ -1,6 +1,5 @@
 import {
-    IconWrapper,
-    Paging,
+    PaginatorWrapper,
     StyledTable,
     TableBody,
     TableCaption,
@@ -9,6 +8,8 @@ import {
     TableFooter,
     TableHead,
     TableHeaderCell,
+    TableHeaderCellContent,
+    TableHeaderCellInner,
     TableHeaderRow,
     TableRow,
 } from './Table.sc';
@@ -22,16 +23,13 @@ export interface TableProps<T extends object> {
     children?: never;
     className?: string;
     elevation?: Elevation;
-    footerComponent?: ReactNode;
+    footer?: ReactNode;
     hasUnsortedStateIcon?: boolean;
     instance: TableInstance<T>;
     isDisabled?: boolean;
     isFullWidth?: boolean;
     onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
-    pagingComponent?: ReactNode;
-    texts?: {
-        toggleSortTooltip?: ReactNode;
-    };
+    paginator?: ReactNode;
 }
 
 const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean): Row<T>[] =>
@@ -41,14 +39,13 @@ export const Table = <T extends object>({
     caption,
     className,
     elevation = Elevation.LEVEL_1,
-    footerComponent,
+    footer,
     hasUnsortedStateIcon = true,
     instance,
     isDisabled = false,
     isFullWidth = true,
     onClickRow,
-    pagingComponent,
-    texts,
+    paginator,
 }: TableProps<T>): JSX.Element => {
     const { getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
 
@@ -67,19 +64,12 @@ export const Table = <T extends object>({
                                         isDisabled={isDisabled}
                                         key={column}
                                         width={column.width}
-                                        {...column.getHeaderProps(
-                                            column.getSortByToggleProps({
-                                                title:
-                                                    column.canSort && texts
-                                                        ? `${texts.toggleSortTooltip} ${column.render('Header')}`
-                                                        : '',
-                                            })
-                                        )}
+                                        {...column.getHeaderProps(column.getSortByToggleProps())}
                                     >
-                                        {column.render('Header')}
-                                        <IconWrapper isSorted={column.isSorted}>
-                                            {renderSortIcon(column, hasUnsortedStateIcon)}
-                                        </IconWrapper>
+                                        <TableHeaderCellInner isSorted={column.isSorted}>
+                                            <TableHeaderCellContent>{column.render('Header')}</TableHeaderCellContent>
+                                            {column.canSort && renderSortIcon(column, hasUnsortedStateIcon)}
+                                        </TableHeaderCellInner>
                                     </TableHeaderCell>
                                 ))}
                         </TableHeaderRow>
@@ -87,7 +77,7 @@ export const Table = <T extends object>({
                 </TableHead>
                 <TableBody elevation={elevation} {...getTableBodyProps()}>
                     {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                    {dataSource(instance, Boolean(pagingComponent)).map((row) => {
+                    {dataSource(instance, Boolean(paginator)).map((row) => {
                         prepareRow(row);
 
                         return (
@@ -126,9 +116,9 @@ export const Table = <T extends object>({
                         );
                     })}
                 </TableBody>
-                {footerComponent && <TableFooter elevation={elevation}>{footerComponent}</TableFooter>}
+                {footer && <TableFooter elevation={elevation}>{footer}</TableFooter>}
             </StyledTable>
-            {pagingComponent && <Paging>{pagingComponent}</Paging>}
+            {paginator && <PaginatorWrapper>{paginator}</PaginatorWrapper>}
         </>
     );
 };

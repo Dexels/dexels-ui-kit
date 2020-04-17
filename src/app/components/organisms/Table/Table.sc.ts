@@ -61,6 +61,7 @@ export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     padding: ${({ hasCellPadding = true, theme }): string =>
         hasCellPadding ? theme.spacing(0.5, 0.5, 1, 0.5) : theme.spacing(0)};
     height: ${({ theme }): string => theme.spacing(5)};
+    vertical-align: middle;
     text-align: left;
     color: ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled ? theme.colorDisabled : theme.colorTextBody.primary};
@@ -77,19 +78,30 @@ TableHeaderCell.defaultProps = {
     theme: themeBasic,
 };
 
-interface IconWrapperProps {
+interface TableHeaderCellInnerProps {
     isSorted: boolean;
 }
 
-export const IconWrapper = styled.span<IconWrapperProps>`
-    padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
-    color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
-    font-size: 18px;
+export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .icon {
+        flex: 0 0 auto;
+        padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
+        color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
+        font-size: 18px;
+    }
 `;
 
-IconWrapper.defaultProps = {
+TableHeaderCellInner.defaultProps = {
     theme: themeBasic,
 };
+
+export const TableHeaderCellContent = styled.div`
+    flex: 0 1 auto;
+`;
 
 interface TableBodyProps {
     elevation: Elevation;
@@ -186,9 +198,8 @@ interface TableFooterProps {
 
 export const TableFooter = styled.tfoot<TableFooterProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
-    background-color: transparent;
 `;
 
-export const Paging = styled.div`
-    background-color: transparent;
+export const PaginatorWrapper = styled.div`
+    padding: ${({ theme }): string => theme.spacing(1.5, 0, 0)};
 `;
