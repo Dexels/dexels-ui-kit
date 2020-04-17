@@ -15,7 +15,7 @@ export const CardStatus: FunctionComponent<CardStatusProps> = ({
     hasBorderRadius,
     hasFullheightContent,
     placement = Placement.TOP,
-    status = Status.DEFAULT,
+    status,
 }) => (
     <StyledCardStatus
         className={className}

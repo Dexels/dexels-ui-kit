@@ -1,17 +1,7 @@
 import { ButtonSize, ButtonVariant, IconType } from '../../../../types';
 import { action } from '@storybook/addon-actions';
 import Button from '../../../molecules/Button/Button';
-import { CellProps } from 'react-table';
 import React from 'react';
-import { TableData } from './tableData';
-
-export const createLocalizedTableTexts = (language = 'nl'): { toggleSortTooltip: string } => {
-    const localizedTexts = {
-        toggleSortTooltip: language === 'en' ? 'Sort by' : 'Sorteer op',
-    };
-
-    return localizedTexts;
-};
 
 export const createLocalizedPagingTexts = (
     language = 'nl'
@@ -53,17 +43,17 @@ export const getTableRow = (event: any, row: any): any => {
     return row;
 };
 
-export const renderButton = (row: CellProps<TableData>, isInverted = false): JSX.Element => (
+export const renderButton = (index: number, isInverted = false): JSX.Element => (
     <Button
         iconType={IconType.SELECT}
         isInverted={isInverted}
         onClick={(event): void => {
             event.stopPropagation();
-            action(`On click => ${row.cell.row.index}`);
+            action(`On click => ${index}`);
         }}
         size={ButtonSize.SMALL}
         variant={ButtonVariant.TEXT_ONLY}
     >
-        {`BUTTON ${row.cell.row.index}`}
+        {`Button ${index}`}
     </Button>
 );

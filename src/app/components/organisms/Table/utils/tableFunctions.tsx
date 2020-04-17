@@ -1,11 +1,10 @@
-import { CellProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
+import { CellValue, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import { formatDate, isValidDate } from '../../../../utils/validators/dateFunctions';
 import { IconType, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
 import ContentCell from '../mockup/ContentCell/ContentCell';
 import Icon from '../../../atoms/Icon/Icon';
 import { MatchTaskStatuses } from '../mockup/StatusCell/types';
-import { Moment } from 'moment';
 import StatusCell from '../mockup/StatusCell/StatusCell';
 
 export const compareValues = <T extends object>(
@@ -62,65 +61,23 @@ export const customSortByCaseInsensitive = <T extends object>(
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));
 
-export const renderCell = <T extends object>(row: CellProps<T>): ReactNode => {
-    let value: Moment | string = '';
-
-    if (row.cell.value) {
-        if (typeof row.cell.value === 'object' && isValidDate(row.cell.value)) {
-            value = formatDate(row.cell.value);
-        } else {
-            value = row.cell.value;
-        }
-    }
-
-    return <ContentCell>{value}</ContentCell>;
-};
+export const renderCell = (value: CellValue): ReactNode => (
+    <ContentCell>{typeof value === 'object' && isValidDate(value) ? formatDate(value) : value}</ContentCell>
+);
 
 export const renderSortIcon = <T extends object>(
     column: UseSortByColumnProps<T>,
     hasUnsortedStateIcon = false
 ): ReactNode => {
-    let sortIcon = null;
-
-    if (!column.canSort) {
-        return sortIcon;
-    }
+    let iconType = null;
 
     if (column.isSorted) {
-        if (column.isSortedDesc) {
-            sortIcon = <Icon type={IconType.DROPDOWN} />;
-        } else {
-            sortIcon = <Icon type={IconType.DROPUP} />;
-        }
+        iconType = column.isSortedDesc ? IconType.DROPDOWN : IconType.DROPUP;
+    } else if (hasUnsortedStateIcon) {
+        iconType = IconType.DROPDOWN;
     }
 
-    if (hasUnsortedStateIcon && !column.isSorted) {
-        sortIcon = <Icon type={IconType.DROPDOWN} />;
-    }
-
-    return sortIcon;
-};
-
-export const getColumnWidth = <T extends object>(
-    data: T[],
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    accessor: any,
-    headerText = accessor
-): string => {
-    if (typeof accessor === 'string' || accessor instanceof String) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        accessor = (d: any): void => d[accessor]; // eslint-disable-line no-param-reassign
-    }
-
-    const maxWidth = 600;
-    const magicSpacing = 10;
-    let cellLength = headerText.length;
-
-    if (data) {
-        cellLength = Math.max(...data.map((row: T) => (`${accessor(row)}` || '').length), headerText.length);
-    }
-
-    return `${Math.min(maxWidth, cellLength * magicSpacing)}px`;
+    return iconType ? <Icon className="icon" type={iconType} /> : null;
 };
 
 export const renderStatusCell = (matchTaskStatus: MatchTaskStatuses, status: Status): JSX.Element => (

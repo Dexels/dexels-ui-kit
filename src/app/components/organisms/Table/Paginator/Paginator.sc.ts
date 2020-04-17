@@ -9,7 +9,6 @@ export const StyledPaginator = styled.div`
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: flex-end;
-    padding: ${({ theme }): string => theme.spacing(3, 0, 0, 0)};
     color: ${({ theme }): string => theme.colorText.primary};
 `;
 

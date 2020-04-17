@@ -37,6 +37,7 @@ module.exports = {
         }],
         'length-zero-no-unit': true,
         'max-empty-lines': 1,
+        'no-duplicate-selectors': null,
         'rule-empty-line-before': ['always', {
             except: ['after-single-line-comment', 'first-nested']
         }],

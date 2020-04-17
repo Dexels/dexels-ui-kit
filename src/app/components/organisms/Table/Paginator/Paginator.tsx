@@ -35,7 +35,7 @@ export interface PaginatorProps<T extends object> {
     useResultsOfText?: boolean;
 }
 
-const pagingResultsText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts): string => {
+const pagingResultsText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts): JSX.Element => {
     const {
         state: { pageIndex, pageSize },
     } = instance;
@@ -57,17 +57,30 @@ const pagingResultsText = <T extends object>(instance: TableInstance<T>, texts: 
 
     result = `${start} - ${end}`;
 
-    return `${result} ${texts.resultsOf} ${rowCount}`;
+    return (
+        <>
+            {`${result} `}
+            {texts.resultsOf}
+            {` ${rowCount}`}
+        </>
+    );
 };
 
-const pagingText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts): string => {
+const pagingText = <T extends object>(instance: TableInstance<T>, texts: PaginatorTexts): JSX.Element => {
     const {
         state: { pageIndex, pageSize },
     } = instance;
 
     const pageCount = instance.rows.length / pageSize;
 
-    return `${texts.page} ${pageIndex + 1} ${texts.pageOf} ${pageCount}`;
+    return (
+        <>
+            {texts.page}
+            {` ${pageIndex + 1} `}
+            {texts.pageOf}
+            {` ${pageCount}`}
+        </>
+    );
 };
 
 export const Paginator = <T extends object>({
@@ -99,7 +112,7 @@ export const Paginator = <T extends object>({
                             </option>
                         ))}
                     </Dropdown>
-                    <PageSizeSelectorText>{texts.rowsPerPage && texts.rowsPerPage}</PageSizeSelectorText>
+                    <PageSizeSelectorText>{texts.rowsPerPage}</PageSizeSelectorText>
                 </PageSizeSelector>
             )}
             {hasGoToPage && (

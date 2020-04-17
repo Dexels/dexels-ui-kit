@@ -6,13 +6,19 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledStatusIndicatorProps {
     background?: string;
-    placement: Placement;
-    size: StatusIndicatorSize;
+    placement?: Placement;
+    size?: StatusIndicatorSize;
     status: Status;
 }
 
 export const StyledStatusIndicator = styled.div<StyledStatusIndicatorProps>`
-    ${({ placement, size, status, theme }): string => getStatusIndicator(status, theme, placement, size)}
+    ${({ placement, size, status, theme }): string =>
+        getStatusIndicator({
+            placement,
+            size,
+            status,
+            theme,
+        })}
     display: flex;
     align-items: stretch;
     border-radius: inherit;
