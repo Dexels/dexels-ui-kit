@@ -6,6 +6,7 @@ import TextWithOptionalIcon from '../TextWithOptionalIcon/TextWithOptionalIcon';
 export interface PanelHeaderProps {
     children?: never;
     hasCapitalizedTitle?: boolean;
+    hasMarginBottom?: boolean;
     hasTitleStatusAppearance?: boolean;
     iconType?: IconType;
     options?: ReactNode;
@@ -15,13 +16,14 @@ export interface PanelHeaderProps {
 
 export const PanelHeader: FunctionComponent<PanelHeaderProps> = ({
     hasCapitalizedTitle,
+    hasMarginBottom = true,
     hasTitleStatusAppearance,
     iconType,
     options,
     status,
     title,
 }) => (
-    <StyledPanelHeader>
+    <StyledPanelHeader hasMarginBottom={hasMarginBottom}>
         <Title status={hasTitleStatusAppearance && status ? status : Status.DEFAULT}>
             <TextWithOptionalIcon iconType={iconType} isCapitalized={hasCapitalizedTitle}>
                 {title}
