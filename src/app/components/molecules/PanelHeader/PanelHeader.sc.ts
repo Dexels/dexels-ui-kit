@@ -1,12 +1,21 @@
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import { Status } from '../../../types';
-import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
-export const StyledPanelHeader = styled.div`
+interface StyledPanelHeaderProps {
+    hasMarginBottom: boolean;
+}
+
+export const StyledPanelHeader = styled.div<StyledPanelHeaderProps>`
     display: flex;
     align-items: center;
-    padding: ${({ theme }): string => theme.spacing(0, 0, 1, 0)};
+
+    ${({ hasMarginBottom, theme }): SimpleInterpolation =>
+        hasMarginBottom &&
+        css`
+            margin: ${theme.spacing(0, 0, 1, 0)};
+        `}
 `;
 
 StyledPanelHeader.defaultProps = {
