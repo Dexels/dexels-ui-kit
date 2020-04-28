@@ -12,6 +12,7 @@ interface NavigationProps {
     onMonthSelect: (moment: Moment, value: string) => void;
     onYearSelect: (moment: Moment, value: string) => void;
     yearCount: number;
+    yearCountFuture: number;
 }
 
 const Navigation: FunctionComponent<NavigationProps> = ({
@@ -22,6 +23,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({
     onMonthSelect,
     onYearSelect,
     yearCount,
+    yearCountFuture,
 }) => {
     if (!hasYearSelector) {
         return <CurrentDate>{`${month.format('MMMM')} ${month.year()}`}</CurrentDate>;
@@ -37,6 +39,14 @@ const Navigation: FunctionComponent<NavigationProps> = ({
     const yearArray = [];
 
     for (let i = currentYear - yearCount; i <= currentYear; i += 1) {
+        yearArray.push(
+            <option key={i} value={i}>
+                {i}
+            </option>
+        );
+    }
+
+    for (let i = currentYear + 1; i <= currentYear + yearCountFuture; i += 1) {
         yearArray.push(
             <option key={i} value={i}>
                 {i}
