@@ -61,6 +61,7 @@ export const WithYearSelector: FunctionComponent = () => {
             placeholder={text('Placeholder', 'Selecteer je datum')}
             variant={select('Variant', SingleDatePickerVariant, SingleDatePickerVariant.OUTLINE)}
             yearCount={number('Year count', 100)}
+            yearCountFuture={number('Year count future', 0)}
         />
     );
 };
@@ -103,6 +104,7 @@ export const WithFooter: FunctionComponent = () => {
             placeholder={text('Placeholder', 'Selecteer je datum')}
             variant={select('Variant', SingleDatePickerVariant, SingleDatePickerVariant.OUTLINE)}
             yearCount={number('Year count', 100)}
+            yearCountFuture={number('Year count future', 0)}
         />
     );
 };

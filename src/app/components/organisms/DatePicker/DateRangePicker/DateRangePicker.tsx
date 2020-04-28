@@ -46,6 +46,7 @@ export interface DateRangePickerProps {
     startDateId: string;
     startDatePlaceholderText?: string;
     yearCount?: number;
+    yearCountFuture?: number;
 }
 
 export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
@@ -79,6 +80,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     startDateId,
     startDatePlaceholderText,
     yearCount = 100,
+    yearCountFuture = 0,
 }) => {
     const footerButtons: DialogFooterProps['buttons'] = [];
     const [isHovered, setIsHovered] = useState(false);
@@ -152,6 +154,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
                             labelMonth={labelMonth}
                             labelYear={labelYear}
                             yearCount={yearCount}
+                            yearCountFuture={yearCountFuture}
                         />
                     )}
                     startDate={startDate}

@@ -221,6 +221,8 @@ export const WithYearSelector: FunctionComponent = () => {
             startDate={startDate}
             startDateId="daterangepicker_withyearselector_start"
             startDatePlaceholderText={text('Start date placeholder text', 'Start datum')}
+            yearCount={number('Year count', 100)}
+            yearCountFuture={number('Year count future', 0)}
         />
     );
 };

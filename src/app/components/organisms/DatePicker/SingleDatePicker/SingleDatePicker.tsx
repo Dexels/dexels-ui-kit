@@ -41,6 +41,7 @@ export interface SingleDatePickerProps {
     placeholder?: string;
     variant?: SingleDatePickerVariant;
     yearCount?: number;
+    yearCountFuture?: number;
 }
 
 export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
@@ -70,6 +71,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     placeholder,
     variant = SingleDatePickerVariant.OUTLINE,
     yearCount = 100,
+    yearCountFuture = 0,
 }) => {
     const footerButtons: DialogFooterProps['buttons'] = [];
     const [isHovered, setIsHovered] = useState(false);
@@ -147,6 +149,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                             labelMonth={labelMonth}
                             labelYear={labelYear}
                             yearCount={yearCount}
+                            yearCountFuture={yearCountFuture}
                         />
                     )}
                     verticalSpacing={spacingValue * (variant === SingleDatePickerVariant.OUTLINE ? 6 : 3.25) - 40}
