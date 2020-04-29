@@ -47,7 +47,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         css`
         ${theme.textStyling(theme.availableTextStyles().buttonSmall)}
         border-radius: ${theme.spacing(2)};
-        padding: ${theme.spacing(0.5, 2)};
+        padding: ${theme.spacing(0.25, 2)};
         min-width: ${theme.spacing(10)};
         min-height: ${theme.spacing(4)};
     `}
