@@ -108,7 +108,7 @@
         "eslint-plugin-react": "^7.19.0",
         "eslint-plugin-react-hooks": "^3.0.0",
         "eslint-plugin-typescript-sort-keys": "^0.8.0",
-        "moment": "^2.25.0",
+        "moment": "^2.24.0",
         "postcss-url": "^8.0.0",
         "prettier": "^2.0.5",
         "react": "^16.13.1",
