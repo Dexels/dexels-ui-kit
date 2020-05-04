@@ -2,10 +2,10 @@ import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
-import SidePannel from './SidePannel';
+import SidePannel from './SidePanel';
 import { text } from '@storybook/addon-knobs';
 
-export default { title: 'organisms/SidePannel' };
+export default { title: 'organisms/SidePanel' };
 
 const functionalItems = [
     <Button iconType={IconType.CHECK} key={1} onClick={action('On button CHECK 1')} size={ButtonSize.SMALL}>

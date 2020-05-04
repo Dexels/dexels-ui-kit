@@ -1,4 +1,4 @@
-import { Body, HeaderWrapper, StyledSidePannel } from './SidePannel.sc';
+import { Body, HeaderWrapper, StyledSidePannel } from './SidePanel.sc';
 import { Easing, IconType } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Header from '../../molecules/Header/Header';
@@ -15,7 +15,7 @@ export interface SidePanelProps {
     transitionEasing?: Easing;
 }
 
-const SidePanel: FunctionComponent<SidePanelProps> = ({
+export const SidePanel: FunctionComponent<SidePanelProps> = ({
     children,
     className,
     isVisible = false,
