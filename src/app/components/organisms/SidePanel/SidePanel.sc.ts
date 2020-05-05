@@ -12,9 +12,12 @@ interface StyledSidePannelProps {
 
 export const StyledSidePannel = styled.div<StyledSidePannelProps>`
     ${setBoxSizing()}
+    display: flex;
     position: fixed;
     top: 0;
     right: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
     transform: ${({ isVisible }): string => `translate3d(${isVisible ? 0 : '100%'}, 0, 0)`};
     ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
         transitionEffect({
@@ -23,14 +26,11 @@ export const StyledSidePannel = styled.div<StyledSidePannelProps>`
         })}
     z-index: 6;
     background-color: ${({ theme }): string => theme.background.secondary};
+    padding: ${({ theme }): string => theme.spacing(3.5)} 0 0 0;
     width: 100%;
     max-width: ${({ theme }): string => theme.spacing(72)};
     height: 100%;
     overflow: auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    padding: ${({ theme }): string => theme.spacing(3.5)} 0 0 0;
 `;
 
 StyledSidePannel.defaultProps = {
