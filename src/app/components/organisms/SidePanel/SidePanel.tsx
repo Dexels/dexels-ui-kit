@@ -1,10 +1,12 @@
-import { Body, HeaderWrapper, StyledSidePannel } from './SidePanel.sc';
-import { Easing, IconType } from '../../../types';
+import { Body, HeaderWrapper, StyledSidePanel } from './SidePanel.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
+import { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
+import { Easing } from '../../../types';
 import Header from '../../molecules/Header/Header';
 import Overlay from '../../molecules/Overlay/Overlay';
 
 export interface SidePanelProps {
+    buttons?: Omit<ButtonIconProps, 'isInverted'>[];
     children?: ReactNode;
     className?: string;
     isVisible: boolean;
@@ -16,10 +18,10 @@ export interface SidePanelProps {
 }
 
 export const SidePanel: FunctionComponent<SidePanelProps> = ({
+    buttons,
     children,
     className,
     isVisible = false,
-    onBack,
     options,
     title,
     transitionDuration = 300,
@@ -27,28 +29,19 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
 }) => (
     <>
         <Overlay isVisible={isVisible} />
-        <StyledSidePannel
+        <StyledSidePanel
             className={className}
             isVisible={isVisible}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
         >
             <HeaderWrapper>
-                <Header
-                    buttons={[
-                        {
-                            iconType: IconType.CROSS,
-                            onClick: onBack,
-                        },
-                    ]}
-                    isInverted
-                    title={title}
-                >
+                <Header buttons={buttons} isInverted title={title}>
                     {options}
                 </Header>
             </HeaderWrapper>
             <Body>{children}</Body>
-        </StyledSidePannel>
+        </StyledSidePanel>
     </>
 );
 
