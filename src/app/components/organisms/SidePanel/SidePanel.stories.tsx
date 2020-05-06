@@ -2,7 +2,7 @@ import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
-import SidePannel from './SidePanel';
+import SidePanel from './SidePanel';
 import { text } from '@storybook/addon-knobs';
 
 export default { title: 'organisms/SidePanel' };
@@ -17,13 +17,28 @@ const functionalItems = [
 ];
 
 export const Configurable: FunctionComponent = () => (
-    <SidePannel isVisible options={functionalItems} title={text('Header title', 'Heading')}>
+    <SidePanel
+        buttons={[
+            {
+                iconType: IconType.CROSS,
+                onClick: action('On back'),
+            },
+        ]}
+        isVisible
+        options={functionalItems}
+        title={text('Header title', 'Heading')}
+    >
         {text('Body', 'Some body text')}
-    </SidePannel>
+    </SidePanel>
 );
 
-export const ConfigurableSidePannel: FunctionComponent = () => {
+export const ConfigurableSidePanel: FunctionComponent = () => {
     const [isVisible, setIsVisible] = useState(false);
+
+    const onBack = (): void => {
+        action('On back');
+        setIsVisible(false);
+    };
 
     return (
         <>
@@ -36,17 +51,19 @@ export const ConfigurableSidePannel: FunctionComponent = () => {
             >
                 {isVisible ? 'SIDE PANNEL IS SHOWING' : 'SHOW SIDE PANNEL'}
             </Button>
-            <SidePannel
+            <SidePanel
+                buttons={[
+                    {
+                        iconType: IconType.CROSS,
+                        onClick: onBack,
+                    },
+                ]}
                 isVisible={isVisible}
-                onBack={(): void => {
-                    action('On back');
-                    setIsVisible(false);
-                }}
                 options={functionalItems}
                 title={text('Header title', 'Heading')}
             >
                 {text('Body', 'Some body text')}
-            </SidePannel>
+            </SidePanel>
         </>
     );
 };
