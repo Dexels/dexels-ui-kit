@@ -25,7 +25,7 @@ export const StyledLabel = styled.label<StyledLabelProps>`
     ${({ isTruncatable }): SimpleInterpolation => isTruncatable && setTruncate()}
     display: block;
     cursor: inherit;
-    color: ${({ theme }): string => theme.shades.three};
+    color: ${({ theme }): string => theme.shades.four};
 
     ${({ isSelectionControlLabel, theme }): SimpleInterpolation =>
         isSelectionControlLabel &&
