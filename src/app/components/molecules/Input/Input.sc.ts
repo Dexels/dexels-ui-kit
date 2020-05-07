@@ -60,6 +60,10 @@ export const StyledInput = styled.div<StyledInputProps>`
             }
         }
     `}
+
+    label {
+        color: ${({ theme }): string => theme.shades.four};
+    }
 `;
 
 StyledInput.defaultProps = {
