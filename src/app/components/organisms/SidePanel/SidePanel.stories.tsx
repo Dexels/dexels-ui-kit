@@ -1,9 +1,9 @@
-import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { ButtonSize, ButtonVariant, IconType, Size } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
+import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import SidePanel from './SidePanel';
-import { text } from '@storybook/addon-knobs';
 
 export default { title: 'organisms/SidePanel' };
 
@@ -26,6 +26,7 @@ export const Configurable: FunctionComponent = () => (
         ]}
         isVisible
         options={functionalItems}
+        size={select('Size', Size, Size.MEDIUM)}
         title={text('Header title', 'Heading')}
     >
         {text('Body', 'Some body text')}
@@ -60,6 +61,7 @@ export const ConfigurableSidePanel: FunctionComponent = () => {
                 ]}
                 isVisible={isVisible}
                 options={functionalItems}
+                size={select('Size', Size, Size.MEDIUM)}
                 title={text('Header title', 'Heading')}
             >
                 {text('Body', 'Some body text')}
