@@ -1,4 +1,4 @@
-import { Easing, Size } from '../../../types';
+import { Easing, SidePanelSize } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -6,7 +6,7 @@ import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 interface StyledSidePanelProps {
     isVisible: boolean;
-    size: Size;
+    size: SidePanelSize;
     transitionDuration: number;
     transitionEasing: Easing;
 }
@@ -20,30 +20,23 @@ export const StyledSidePanel = styled.div<StyledSidePanelProps>`
         })}
     ${({ size, theme }): SimpleInterpolation => css`
         ${
-            size === Size.SMALL &&
+            size === SidePanelSize.SMALL &&
             css`
-                max-width: ${theme.spacing(36)};
+                max-width: ${theme.spacing(60)};
             `
         }
 
         ${
-            size === Size.MEDIUM &&
+            size === SidePanelSize.MEDIUM &&
             css`
                 max-width: ${theme.spacing(72)};
             `
         }
 
         ${
-            size === Size.LARGE &&
+            size === SidePanelSize.LARGE &&
             css`
-                max-width: ${theme.spacing(108)};
-            `
-        }
-
-        ${
-            size === Size.XLARGE &&
-            css`
-                max-width: ${theme.spacing(128)};
+                max-width: ${theme.spacing(84)};
             `
         }
     `}
