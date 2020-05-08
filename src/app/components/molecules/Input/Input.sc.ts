@@ -61,9 +61,13 @@ export const StyledInput = styled.div<StyledInputProps>`
         }
     `}
 
-    label {
-        color: ${({ theme }): string => theme.shades.four};
-    }
+    ${({ isFocused, theme }): SimpleInterpolation =>
+        !isFocused &&
+        css`
+            label {
+                color: ${theme.shades.five};
+            }
+        `}
 `;
 
 StyledInput.defaultProps = {
