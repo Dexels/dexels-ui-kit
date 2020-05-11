@@ -47,6 +47,7 @@ Title.defaultProps = {
 };
 
 export const ToolbarWrapper = styled.div`
+    flex-shrink: 0;
     align-self: center;
     margin: 0 0 0 auto;
     padding: ${({ theme }): string => theme.spacing(0, 1, 0, 1)};

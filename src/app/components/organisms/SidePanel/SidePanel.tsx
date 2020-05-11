@@ -1,5 +1,5 @@
 import { Body, HeaderWrapper, StyledSidePanel } from './SidePanel.sc';
-import { Easing, Size } from '../../../types';
+import { Easing, SidePanelSize } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
 import Header from '../../molecules/Header/Header';
@@ -12,7 +12,7 @@ export interface SidePanelProps {
     isVisible: boolean;
     onBack?: MouseEventHandler;
     options?: ReactNode;
-    size?: Size;
+    size?: SidePanelSize;
     title: ReactNode;
     transitionDuration?: number;
     transitionEasing?: Easing;
@@ -24,7 +24,7 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
     className,
     isVisible = false,
     options,
-    size = Size.MEDIUM,
+    size = SidePanelSize.MEDIUM,
     title,
     transitionDuration = 300,
     transitionEasing = Easing.EASE,

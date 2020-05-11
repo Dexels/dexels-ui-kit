@@ -236,6 +236,12 @@ export enum Position {
     TOP_RIGHT = 'TOP_RIGHT',
 }
 
+export enum SidePanelSize {
+    LARGE = 'LARGE',
+    MEDIUM = 'MEDIUM',
+    SMALL = 'SMALL',
+}
+
 export enum Size {
     LARGE = 'LARGE',
     MEDIUM = 'MEDIUM',
