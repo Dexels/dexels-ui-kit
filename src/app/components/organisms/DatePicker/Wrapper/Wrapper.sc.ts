@@ -75,7 +75,8 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
         color: ${({ theme }): string => theme.colorText.primary};
 
         &::placeholder {
-            color: ${({ theme }): string => theme.shades.four};
+            opacity: 1;
+            color: ${({ theme }): string => theme.shades.five};
         }
     }
 

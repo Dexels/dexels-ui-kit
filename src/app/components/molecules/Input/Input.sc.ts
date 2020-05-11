@@ -60,6 +60,14 @@ export const StyledInput = styled.div<StyledInputProps>`
             }
         }
     `}
+
+    ${({ isFocused, theme }): SimpleInterpolation =>
+        !isFocused &&
+        css`
+            label {
+                color: ${theme.shades.five};
+            }
+        `}
 `;
 
 StyledInput.defaultProps = {
