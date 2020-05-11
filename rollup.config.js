@@ -29,7 +29,7 @@ module.exports = {
         {
             file: 'index.esm.js',
             format: 'es',
-        }
+        },
     ],
     plugins: [
         resolve(),
@@ -49,18 +49,17 @@ module.exports = {
         typescript(),
         babel({
             exclude: 'node_modules/**',
-            extensions: [
-                'ts',
-                'tsx'
-            ],
+            extensions: ['ts', 'tsx'],
         }),
         terser(),
         copy({
             // src must be relative to project root for copy to work both on Win & Unix hosts
-            targets: [{
-                dest: 'fonts',
-                src: 'public/fonts/**/*.*',
-            }],
+            targets: [
+                {
+                    dest: 'fonts',
+                    src: 'public/fonts/**/*.*',
+                },
+            ],
             verbose: true,
         }),
     ],

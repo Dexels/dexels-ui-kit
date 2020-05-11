@@ -7,9 +7,11 @@ module.exports = ({ config }) => {
     // TypeScript loader
     customConfig.module.rules.push({
         test: /\.(ts|tsx)$/,
-        use: [{
-            loader: require.resolve('awesome-typescript-loader'),
-        }],
+        use: [
+            {
+                loader: require.resolve('awesome-typescript-loader'),
+            },
+        ],
     });
 
     // extensions

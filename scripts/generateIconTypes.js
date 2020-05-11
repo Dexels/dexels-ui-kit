@@ -3,6 +3,5 @@ const icons = selection.icons.map(({ properties: { name } }) => name.toUpperCase
 
 console.log(`
 export enum IconType {
-${icons.map(name =>
-`    ${name} = '${name}',`).join('\n')}
+${icons.map((name) => `    ${name} = '${name}',`).join('\n')}
 }`);
