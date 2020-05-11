@@ -23,24 +23,28 @@ module.exports = {
         'function-comma-newline-after': 'always-multi-line',
         'function-comma-space-after': 'always-single-line',
         'function-comma-space-before': 'never',
-        'function-name-case': ['lower', {
-            ignoreFunctions: [
-                /^get.*$/,
-                /^\${get.*$/,
-                'hexToRgb',
-                'invertColor',
-            ],
-        }],
+        'function-name-case': [
+            'lower',
+            {
+                ignoreFunctions: [/^get.*$/, /^\${get.*$/, 'hexToRgb', 'invertColor'],
+            },
+        ],
         'function-parentheses-space-inside': 'never',
-        indentation: [4, {
-            indentInsideParens: 'once-at-root-twice-in-block',
-        }],
+        indentation: [
+            4,
+            {
+                indentInsideParens: 'once-at-root-twice-in-block',
+            },
+        ],
         'length-zero-no-unit': true,
         'max-empty-lines': 1,
         'no-duplicate-selectors': null,
-        'rule-empty-line-before': ['always', {
-            except: ['after-single-line-comment', 'first-nested']
-        }],
+        'rule-empty-line-before': [
+            'always',
+            {
+                except: ['after-single-line-comment', 'first-nested'],
+            },
+        ],
         'selector-list-comma-newline-after': 'always',
         'selector-pseudo-class-parentheses-space-inside': 'never',
         'selector-pseudo-element-case': 'lower',
