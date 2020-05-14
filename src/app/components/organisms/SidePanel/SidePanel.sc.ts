@@ -61,6 +61,5 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const Body = styled.div`
-    padding: ${({ theme }): string => theme.spacing(2)};
     overflow: auto;
 `;
