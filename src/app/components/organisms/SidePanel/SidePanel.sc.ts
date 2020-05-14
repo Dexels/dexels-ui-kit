@@ -47,7 +47,6 @@ export const StyledSidePanel = styled.div<StyledSidePanelProps>`
     transform: ${({ isVisible }): string => `translate3d(${isVisible ? 0 : '100%'}, 0, 0)`};
     z-index: 6;
     background-color: ${({ theme }): string => theme.background.secondary};
-    padding: ${({ theme }): string => theme.spacing(3.5)} 0 0 0;
     width: 100%;
     height: 100%;
     overflow: auto;
