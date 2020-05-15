@@ -1,3 +1,5 @@
+// The rule below is disabled because react-table already adds it's own keys
+/* eslint-disable react/jsx-key */
 import {
     PaginatorWrapper,
     StyledTable,
@@ -55,14 +57,13 @@ export const Table = <T extends object>({
             <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
                 <TableHead>
                     {headerGroups.map((headerGroup) => (
-                        <TableHeaderRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
+                        <TableHeaderRow {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers
                                 .filter(({ isVisible }) => isVisible)
                                 .map((column) => (
                                     <TableHeaderCell
                                         hasCellPadding={column.hasCellPadding}
                                         isDisabled={isDisabled}
-                                        key={column}
                                         width={column.width}
                                         {...column.getHeaderProps(column.getSortByToggleProps())}
                                     >
@@ -83,7 +84,6 @@ export const Table = <T extends object>({
                         return (
                             <TableRow
                                 isClickable={Boolean(onClickRow)}
-                                key={row}
                                 onClick={
                                     onClickRow
                                         ? (event: SyntheticEvent): void => {
@@ -99,7 +99,6 @@ export const Table = <T extends object>({
                                         <TableCell
                                             hasCellPadding={cell.column.hasCellPadding}
                                             isClickable={Boolean(cell.column.onClick)}
-                                            key={cell}
                                             onClick={(event: SyntheticEvent): void => {
                                                 if (cell.column.onClick) {
                                                     event.stopPropagation();
