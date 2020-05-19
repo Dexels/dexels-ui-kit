@@ -83,16 +83,19 @@ export const StyledButton = styled.button<StyledButtonProps>`
                 : button.filled.backgroundColor.primary};
             color: ${isInverted ? button.filled.color.inverted : button.filled.color.primary};
 
-            &:focus,
-            &:hover {
-                border-color: ${isInverted
-                    ? button.filled.backgroundColor.hoverInverted
-                    : button.filled.backgroundColor.hover};
-                background-color: ${isInverted
-                    ? button.filled.backgroundColor.hoverInverted
-                    : button.filled.backgroundColor.hover};
-                color: ${isInverted ? button.filled.color.hoverInverted : button.filled.color.hover};
-            }
+            ${!isDisabled &&
+            css`
+                &:focus,
+                &:hover {
+                    border-color: ${isInverted
+                        ? button.filled.backgroundColor.hoverInverted
+                        : button.filled.backgroundColor.hover};
+                    background-color: ${isInverted
+                        ? button.filled.backgroundColor.hoverInverted
+                        : button.filled.backgroundColor.hover};
+                    color: ${isInverted ? button.filled.color.hoverInverted : button.filled.color.hover};
+                }
+            `}
 
             ${isDisabled &&
             css`
@@ -111,13 +114,16 @@ export const StyledButton = styled.button<StyledButtonProps>`
             background-color: transparent !important;
             color: ${isInverted ? button.outline.color.inverted : button.outline.color.primary};
 
-            &:focus,
-            &:hover {
-                border-color: ${isInverted
-                    ? button.outline.backgroundColor.hoverInverted
-                    : button.outline.backgroundColor.hover};
-                color: ${isInverted ? button.outline.color.hoverInverted : button.outline.color.hover};
-            }
+            ${!isDisabled &&
+            css`
+                &:focus,
+                &:hover {
+                    border-color: ${isInverted
+                        ? button.outline.backgroundColor.hoverInverted
+                        : button.outline.backgroundColor.hover};
+                    color: ${isInverted ? button.outline.color.hoverInverted : button.outline.color.hover};
+                }
+            `}
 
             ${isDisabled &&
             css`
@@ -137,10 +143,13 @@ export const StyledButton = styled.button<StyledButtonProps>`
             min-height: 0;
             color: ${isInverted ? button.textOnly.inverted : button.textOnly.primary};
 
-            &:focus,
-            &:hover {
-                color: ${isInverted ? button.textOnly.hoverInverted : button.textOnly.hover};
-            }
+            ${!isDisabled &&
+            css`
+                &:focus,
+                &:hover {
+                    color: ${isInverted ? button.textOnly.hoverInverted : button.textOnly.hover};
+                }
+            `}
 
             ${isDisabled &&
             css`
