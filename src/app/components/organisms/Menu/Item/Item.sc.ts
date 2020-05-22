@@ -55,7 +55,7 @@ export const Inner = styled.div`
     display: flex;
     align-items: center;
     border-left: ${({ theme }): string => theme.spacing(0.5)} solid transparent;
-    background-color: ${({ theme }): string => theme.background.secondary};
+    background-color: ${({ theme }): string => theme.card.backgroundColor};
     cursor: pointer;
     text-decoration: none;
 

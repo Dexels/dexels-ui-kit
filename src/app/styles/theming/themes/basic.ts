@@ -230,7 +230,7 @@ export const themeBasic: Theme = {
         }
 
         if (factor1 === undefined) {
-            throw Error('You should atleast pass one factor.');
+            throw Error('You should at least pass one factor.');
         } else {
             css += `${this.spacingValue * factor1}px`;
         }
