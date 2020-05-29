@@ -30,6 +30,7 @@ export interface TableProps<T extends object> {
     instance: TableInstance<T>;
     isDisabled?: boolean;
     isFullWidth?: boolean;
+    onClickFooter?: (event: SyntheticEvent) => void;
     onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
     paginator?: ReactNode;
 }
@@ -46,6 +47,7 @@ export const Table = <T extends object>({
     instance,
     isDisabled = false,
     isFullWidth = true,
+    onClickFooter,
     onClickRow,
     paginator,
 }: TableProps<T>): JSX.Element => {
@@ -115,7 +117,21 @@ export const Table = <T extends object>({
                         );
                     })}
                 </TableBody>
-                {footer && <TableFooter elevation={elevation}>{footer}</TableFooter>}
+                {footer && (
+                    <TableFooter
+                        elevation={elevation}
+                        isClickable={Boolean(onClickFooter)}
+                        onClick={
+                            onClickFooter
+                                ? (event: SyntheticEvent): void => {
+                                      onClickFooter(event);
+                                  }
+                                : undefined
+                        }
+                    >
+                        {footer}
+                    </TableFooter>
+                )}
             </StyledTable>
             {paginator && <PaginatorWrapper>{paginator}</PaginatorWrapper>}
         </>

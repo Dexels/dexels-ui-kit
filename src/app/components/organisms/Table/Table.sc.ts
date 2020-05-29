@@ -189,12 +189,22 @@ export const TableCellContent = styled.div`
     height: 100%;
 `;
 
-interface TableFooterProps {
+interface TableFooterProps extends ClickableProps {
     elevation: Elevation;
 }
 
 export const TableFooter = styled.tfoot<TableFooterProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+
+    ${({ isClickable }): SimpleInterpolation =>
+        isClickable &&
+        css`
+            cursor: pointer;
+
+            &:hover tr {
+                ${getElevation(Elevation.LEVEL_3)}
+            }
+        `}
 `;
 
 export const PaginatorWrapper = styled.div`
