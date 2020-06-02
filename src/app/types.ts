@@ -201,6 +201,7 @@ export enum IconType {
 export enum IconSize {
     LARGE = 'LARGE',
     MEDIUM = 'MEDIUM',
+    MINI = 'MINI',
     SMALL = 'SMALL',
 }
 
