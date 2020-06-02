@@ -43,6 +43,12 @@ export const getTableRow = (event: any, row: any): any => {
     return row;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getTableFooter = (event: any): void => {
+    // eslint-disable-next-line no-console
+    console.log('Footer:', event);
+};
+
 export const renderButton = (index: number, isInverted = false): JSX.Element => (
     <Button
         iconType={IconType.SELECT}
