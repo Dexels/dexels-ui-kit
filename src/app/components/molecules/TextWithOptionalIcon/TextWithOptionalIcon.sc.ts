@@ -41,7 +41,7 @@ export const IconWrapper = styled.div<IconWrapperProps>`
 
     ${({ size }): FlattenSimpleInterpolation => css`
         ${
-            size === IconSize.MINI &&
+            size === IconSize.XSMALL &&
             css`
                 font-size: 14px;
             `
