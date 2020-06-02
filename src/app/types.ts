@@ -202,6 +202,7 @@ export enum IconSize {
     LARGE = 'LARGE',
     MEDIUM = 'MEDIUM',
     SMALL = 'SMALL',
+    XSMALL = 'XSMALL',
 }
 
 export enum InputType {
