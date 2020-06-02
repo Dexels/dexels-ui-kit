@@ -39,10 +39,11 @@ export const IconWrapper = styled.div<IconWrapperProps>`
         display: block;
     }
 
-    ${({ size }): FlattenSimpleInterpolation => css`
+    ${({ size, theme }): FlattenSimpleInterpolation => css`
         ${
             size === IconSize.XSMALL &&
             css`
+                margin: ${theme.spacing(0, 0.25, 0, 0)};
                 font-size: 14px;
             `
         }
