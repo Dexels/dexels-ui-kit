@@ -1,5 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { createLocalizedPagingTexts, getTableRow } from './mockup/tableFunctions';
+import { createLocalizedPagingTexts, getTableFooter, getTableRow } from './mockup/tableFunctions';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
@@ -84,13 +84,18 @@ export const Configurable: FunctionComponent = () => {
                             >
                                 {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT.
                             OK WITH THAT FOR NOW IN HERE */}
-                                <td colSpan={instance.columns.length}>{'Some text'}</td>
+                                <td>{'First cell'}</td>
+                                <td colSpan={instance.columns.length - 2}>
+                                    {`Column count - 2: ${instance.columns.length - 2}`}
+                                </td>
+                                <td>{'Last cell'}</td>
                             </tr>
                         )
                     }
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
                     instance={instance}
                     isFullWidth={boolean('Is full width', true)}
+                    onClickFooter={isFooterVisible ? getTableFooter : undefined}
                     onClickRow={getTableRow}
                     paginator={
                         <Paginator<TableData>
