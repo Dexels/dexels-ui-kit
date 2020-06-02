@@ -33,7 +33,7 @@ import {
 } from 'react-table';
 
 declare module 'react-table' {
-    export interface TableOptions<D extends Record<string, unknown>>
+    export interface TableOptions<D extends object>
         extends UseExpandedOptions<D>,
             UseFiltersOptions<D>,
             UseGroupByOptions<D>,
@@ -41,7 +41,7 @@ declare module 'react-table' {
             UseRowSelectOptions<D>,
             UseSortByOptions<D> {}
 
-    export interface TableInstance<D extends Record<string, unknown> = {}>
+    export interface TableInstance<D extends object = {}>
         extends UseExpandedInstanceProps<D>,
             UseFiltersInstanceProps<D>,
             UseGroupByInstanceProps<D>,
@@ -49,7 +49,7 @@ declare module 'react-table' {
             UseRowSelectInstanceProps<D>,
             UseSortByInstanceProps<D> {}
 
-    export interface TableState<D extends Record<string, unknown> = {}>
+    export interface TableState<D extends object = {}>
         extends UseExpandedState<D>,
             UseFiltersState<D>,
             UseGroupByState<D>,
@@ -57,7 +57,7 @@ declare module 'react-table' {
             UseRowSelectState<D>,
             UseSortByState<D> {}
 
-    export interface ColumnInterface<D extends Record<string, unknown> = {}>
+    export interface ColumnInterface<D extends object = {}>
         extends UseFiltersColumnOptions<D>,
             UseGroupByColumnOptions<D>,
             UseSortByColumnOptions<D> {
@@ -66,14 +66,14 @@ declare module 'react-table' {
         onClick?: (...args: any[]) => void;
     }
 
-    export interface ColumnInstance<D extends Record<string, unknown> = {}>
+    export interface ColumnInstance<D extends object = {}>
         extends UseFiltersColumnProps<D>,
             UseGroupByColumnProps<D>,
             UseSortByColumnProps<D> {}
 
     export interface Cell<D extends object = {}> extends UseGroupByCellProps<D> {}
 
-    export interface Row<D extends Record<string, unknown> = {}>
+    export interface Row<D extends object = {}>
         extends UseExpandedRowProps<D>,
             UseGroupByRowProps<D>,
             UseRowSelectRowProps<D> {}
