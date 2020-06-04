@@ -30,6 +30,11 @@ export const menuItems: MenuItems = [
                 text: 'Kleedkamers die zo lang zijn dat je er niet eens op kan drukken',
             },
             {
+                isVisible: false,
+                path: '/wedstrijden/baden',
+                text: 'Baden die zo lang zijn dat je er niet eens op kan drukken',
+            },
+            {
                 path: '/wedstrijden/velden',
                 text: 'Velden',
             },

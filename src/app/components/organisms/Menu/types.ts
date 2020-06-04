@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 export interface MenuItemChild {
     exact?: boolean;
     isDisabled?: boolean;
+    isVisible?: boolean;
     path: string;
     text: ReactNode;
 }
