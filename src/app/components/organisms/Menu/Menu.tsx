@@ -19,7 +19,7 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
 
     return (
         <StyledMenu className={className}>
-            {items.map(({ children, exact, iconType, isDisabled, path, text }) => {
+            {items.map(({ children, exact, iconType, isDisabled, isVisible, path, text }) => {
                 if (children && children.length > 0) {
                     const isOpen = openItemPath === path;
 
@@ -31,6 +31,7 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
                                 isDisabled={isDisabled}
                                 isOpen={isOpen}
                                 isParent
+                                isVisible={isVisible}
                                 onClick={(): void => {
                                     handleSetOpenItem(path);
                                 }}
@@ -42,6 +43,7 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
                                     <Item
                                         exact={child.exact}
                                         isDisabled={child.isDisabled}
+                                        isVisible={child.isVisible}
                                         key={child.path}
                                         path={child.path}
                                     >
