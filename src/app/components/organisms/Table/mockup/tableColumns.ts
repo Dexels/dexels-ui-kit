@@ -34,6 +34,12 @@ export const tableColumns = (): Column<TableData>[] => [
         accessor: 'companyName',
     },
     {
+        Cell: ({ value }): ReactNode => renderCell(value, true),
+        Header: 'Amount',
+        accessor: 'amount',
+        align: 'right',
+    },
+    {
         Cell: ({ value }): ReactNode => renderCell(value),
         Header: 'Startdate',
         accessor: 'relationStart',
@@ -50,6 +56,7 @@ export const tableColumns = (): Column<TableData>[] => [
         Cell: ({ row }): ReactNode => renderButton(row.index),
         Header: 'Action',
         accessor: 'id',
+        align: 'center',
         disableSortBy: true,
     },
 ];
@@ -96,6 +103,11 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
                 Cell: ({ value }): ReactNode => renderCell(value),
                 Header: 'Company',
                 accessor: 'companyName',
+            },
+            {
+                Cell: ({ value }): ReactNode => renderCell(value),
+                Header: 'Amount',
+                accessor: 'amount',
             },
             {
                 Cell: ({ value }): ReactNode => renderCell(value),

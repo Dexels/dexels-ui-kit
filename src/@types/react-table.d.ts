@@ -61,6 +61,7 @@ declare module 'react-table' {
         extends UseFiltersColumnOptions<D>,
             UseGroupByColumnOptions<D>,
             UseSortByColumnOptions<D> {
+        align?: HTMLAttributes<'align'>;
         hasCellPadding?: boolean;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick?: (...args: any[]) => void;

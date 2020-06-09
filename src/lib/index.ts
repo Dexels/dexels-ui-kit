@@ -92,5 +92,14 @@ export { setTruncate } from '../app/styles/mixins/setTruncate';
 export { areAllOptionsSelected } from '../app/utils/functions/arrayObjectFunctions';
 export { cloneArray } from '../app/utils/functions/arrayFunctions';
 export { createTable } from '../app/utils/functions/createTable';
+export {
+    isValidStringDate,
+    isValidDate,
+    isValidClockTime,
+    formatAsSystemDate,
+    formatDate,
+    formatTime,
+} from '../app/utils/functions/dateFunctions';
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 export { parseInputValue } from '../app/utils/functions/parseInputValue';
+export { toMoney } from '../app/utils/functions/financialFunctions';

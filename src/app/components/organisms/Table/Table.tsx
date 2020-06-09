@@ -69,7 +69,7 @@ export const Table = <T extends object>({
                                         width={column.width}
                                         {...column.getHeaderProps(column.getSortByToggleProps())}
                                     >
-                                        <TableHeaderCellInner isSorted={column.isSorted}>
+                                        <TableHeaderCellInner align={column.align || 'left'} isSorted={column.isSorted}>
                                             <TableHeaderCellContent>{column.render('Header')}</TableHeaderCellContent>
                                             {column.canSort && renderSortIcon(column, hasUnsortedStateIcon)}
                                         </TableHeaderCellInner>
@@ -110,7 +110,9 @@ export const Table = <T extends object>({
                                             {...cell.getCellProps()}
                                             width={cell.column.width}
                                         >
-                                            <TableCellContent>{cell.render('Cell')}</TableCellContent>
+                                            <TableCellContent align={cell.column.align || 'left'}>
+                                                {cell.render('Cell')}
+                                            </TableCellContent>
                                         </TableCell>
                                     ))}
                             </TableRow>

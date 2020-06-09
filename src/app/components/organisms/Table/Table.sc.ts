@@ -1,5 +1,6 @@
+import { Alignment, Elevation } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
-import { Elevation } from '../../../types';
+import { getAlignment } from '../../../../lib';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -75,11 +76,12 @@ TableHeaderCell.defaultProps = {
     theme: themeBasic,
 };
 
-interface TableHeaderCellInnerProps {
+interface TableHeaderCellInnerProps extends Pick<HTMLDivElement, 'align'> {
     isSorted: boolean;
 }
 
 export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
+    ${({ align = 'left' }): FlattenSimpleInterpolation => getAlignment(align.toUpperCase() as Alignment)}
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -90,6 +92,12 @@ export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
         color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
         font-size: 18px;
     }
+
+    ${({ align, theme }): SimpleInterpolation =>
+        align.toUpperCase() === Alignment.RIGHT &&
+        css`
+            padding: ${theme.spacing(0, 2, 0, 0)};
+        `}
 `;
 
 TableHeaderCellInner.defaultProps = {
@@ -181,12 +189,21 @@ TableCell.defaultProps = {
     theme: themeBasic,
 };
 
-export const TableCellContent = styled.div`
+export interface TableCellContentProps extends Pick<HTMLDivElement, 'align'> {}
+
+export const TableCellContent = styled.div<TableCellContentProps>`
+    ${({ align = 'left' }): FlattenSimpleInterpolation => getAlignment(align.toUpperCase() as Alignment)}
     display: flex;
     position: relative;
     align-items: center;
     z-index: 2;
     height: 100%;
+
+    ${({ align, theme }): SimpleInterpolation =>
+        align.toUpperCase() === Alignment.RIGHT &&
+        css`
+            padding: ${theme.spacing(0, 2, 0, 0)};
+        `}
 `;
 
 interface TableFooterProps extends ClickableProps {
