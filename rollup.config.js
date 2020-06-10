@@ -1,9 +1,9 @@
-const babel = require('rollup-plugin-babel');
+const { babel } = require('@rollup/plugin-babel');
 const commonjs = require('@rollup/plugin-commonjs');
 const copy = require('rollup-plugin-copy');
 const postcss = require('rollup-plugin-postcss');
 const postcssUrl = require('postcss-url');
-const resolve = require('@rollup/plugin-node-resolve');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const typescript = require('@rollup/plugin-typescript');
 
@@ -32,7 +32,7 @@ module.exports = {
         },
     ],
     plugins: [
-        resolve(),
+        nodeResolve(),
         commonjs(),
         postcss({
             extract: 'main.css',
@@ -48,6 +48,7 @@ module.exports = {
         }),
         typescript(),
         babel({
+            babelHelpers: 'bundled',
             exclude: 'node_modules/**',
             extensions: ['ts', 'tsx'],
         }),
