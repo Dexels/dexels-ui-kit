@@ -1,5 +1,6 @@
 import { customSortByDate, renderCell, renderStatusCell } from '../utils/tableFunctions';
 import { getTableCell, renderButton } from './tableFunctions';
+import { Alignment } from '../../../../types';
 import { Column } from 'react-table';
 import { ReactNode } from 'react';
 import { TableData } from './tableData';
@@ -37,7 +38,7 @@ export const tableColumns = (): Column<TableData>[] => [
         Cell: ({ value }): ReactNode => renderCell(value, true),
         Header: 'Amount',
         accessor: 'amount',
-        align: 'right',
+        align: Alignment.RIGHT,
     },
     {
         Cell: ({ value }): ReactNode => renderCell(value),
@@ -56,7 +57,7 @@ export const tableColumns = (): Column<TableData>[] => [
         Cell: ({ row }): ReactNode => renderButton(row.index),
         Header: 'Action',
         accessor: 'id',
-        align: 'center',
+        align: Alignment.CENTER,
         disableSortBy: true,
     },
 ];

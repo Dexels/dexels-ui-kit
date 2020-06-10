@@ -1,7 +1,7 @@
 import { ButtonSize, ButtonVariant, IconType } from '../../../../types';
+import React, { SyntheticEvent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../../molecules/Button/Button';
-import React from 'react';
 
 export const createLocalizedPagingTexts = (
     language = 'nl'
@@ -26,7 +26,7 @@ export const createLocalizedPagingTexts = (
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getTableCell = (cell: any, row: any, event: any = null): any => {
+export const getTableCell = (cell: any, row: any, event: SyntheticEvent): any => {
     // eslint-disable-next-line no-console
     console.log('Clicked:', cell, row, event);
 
@@ -34,7 +34,7 @@ export const getTableCell = (cell: any, row: any, event: any = null): any => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getTableRow = (event: any, row: any): any => {
+export const getTableRow = (event: SyntheticEvent, row: any): any => {
     // eslint-disable-next-line no-console
     console.log('Clicked row:', row);
     // eslint-disable-next-line no-console
@@ -44,7 +44,7 @@ export const getTableRow = (event: any, row: any): any => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getTableFooter = (event: any): void => {
+export const getTableFooter = (event: SyntheticEvent): void => {
     // eslint-disable-next-line no-console
     console.log('Footer:', event);
 };

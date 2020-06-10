@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, useState } from 'react';
+import React, { FunctionComponent, ReactNode, SyntheticEvent, useState } from 'react';
 import { TabHeader, TabHeaders, TabPanel } from './Tabs.sc';
 
 export interface Tab {
@@ -11,6 +11,7 @@ export interface TabsProps {
     children?: never;
     hasFullWidthTabHeaders?: boolean;
     initiallyActiveTabIndex?: number;
+    onClickTab?: (event: SyntheticEvent, tabIndex: number) => void;
     tabs: Tab[];
 }
 
@@ -25,6 +26,7 @@ const getInitiallyActiveTabIndex = (tabs: Tab[], initiallyActiveTabIndex?: numbe
 export const Tabs: FunctionComponent<TabsProps> = ({
     hasFullWidthTabHeaders = true,
     initiallyActiveTabIndex,
+    onClickTab,
     tabs,
 }) => {
     const [activeTabIndex, setActiveTabIndex] = useState(getInitiallyActiveTabIndex(tabs, initiallyActiveTabIndex));
@@ -40,8 +42,12 @@ export const Tabs: FunctionComponent<TabsProps> = ({
                             isFullWidth={hasFullWidthTabHeaders}
                             // eslint-disable-next-line react/no-array-index-key
                             key={index}
-                            onClick={(): void => {
+                            onClick={(event: SyntheticEvent): void => {
                                 setActiveTabIndex(index);
+
+                                if (onClickTab) {
+                                    onClickTab(event, index);
+                                }
                             }}
                         >
                             {title}

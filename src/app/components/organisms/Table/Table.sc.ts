@@ -78,12 +78,13 @@ TableHeaderCell.defaultProps = {
     theme: themeBasic,
 };
 
-interface TableHeaderCellInnerProps extends Pick<HTMLDivElement, 'align'> {
+interface TableHeaderCellInnerProps {
+    align?: Alignment;
     isSorted: boolean;
 }
 
 export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
-    ${({ align = 'left' }): FlattenSimpleInterpolation => getAlignment(align.toUpperCase() as Alignment)}
+    ${({ align = Alignment.LEFT }): FlattenSimpleInterpolation => getAlignment(align)}
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -96,7 +97,7 @@ export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
     }
 
     ${({ align, theme }): SimpleInterpolation =>
-        align.toUpperCase() === Alignment.RIGHT &&
+        align === Alignment.RIGHT &&
         css`
             padding: ${theme.spacing(0, alignRightSpacing, 0, 0)};
         `}
@@ -191,14 +192,14 @@ TableCell.defaultProps = {
     theme: themeBasic,
 };
 
-export interface TableCellContentProps extends Pick<HTMLDivElement, 'align'> {
+export interface TableCellContentProps {
+    align?: Alignment;
     isTruncatable: boolean;
 }
 
 export const TableCellContent = styled.div<TableCellContentProps>`
     ${({ isTruncatable }): SimpleInterpolation => isTruncatable && setTruncate()}
-    ${({ align = 'left' }): FlattenSimpleInterpolation =>
-        getAlignment(align.toUpperCase() as Alignment)}
+    ${({ align = Alignment.LEFT }): FlattenSimpleInterpolation => getAlignment(align)}
     display: flex;
     position: relative;
     align-items: center;
@@ -206,7 +207,7 @@ export const TableCellContent = styled.div<TableCellContentProps>`
     height: 100%;
 
     ${({ align, theme }): SimpleInterpolation =>
-        align.toUpperCase() === Alignment.RIGHT &&
+        align === Alignment.RIGHT &&
         css`
             padding: ${theme.spacing(0, alignRightSpacing, 0, 0)};
         `}

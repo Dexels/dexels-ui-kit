@@ -1,5 +1,6 @@
 // The rule below is disabled because react-table already adds it's own keys
 /* eslint-disable react/jsx-key */
+import { Alignment, Elevation } from '../../../types';
 import {
     PaginatorWrapper,
     StyledTable,
@@ -17,7 +18,6 @@ import {
 } from './Table.sc';
 import React, { ReactNode, SyntheticEvent } from 'react';
 import { Row, TableInstance } from 'react-table';
-import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
 export interface TableProps<T extends object> {
@@ -71,7 +71,10 @@ export const Table = <T extends object>({
                                         width={column.width}
                                         {...column.getHeaderProps(column.getSortByToggleProps())}
                                     >
-                                        <TableHeaderCellInner align={column.align || 'left'} isSorted={column.isSorted}>
+                                        <TableHeaderCellInner
+                                            align={column.align || Alignment.LEFT}
+                                            isSorted={column.isSorted}
+                                        >
                                             <TableHeaderCellContent>{column.render('Header')}</TableHeaderCellContent>
                                             {column.canSort && renderSortIcon(column, hasUnsortedStateIcon)}
                                         </TableHeaderCellInner>
@@ -113,7 +116,7 @@ export const Table = <T extends object>({
                                             width={cell.column.width}
                                         >
                                             <TableCellContent
-                                                align={cell.column.align || 'left'}
+                                                align={cell.column.align || Alignment.LEFT}
                                                 isTruncatable={isTruncatable}
                                             >
                                                 {cell.render('Cell')}
