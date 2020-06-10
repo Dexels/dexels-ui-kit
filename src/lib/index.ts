@@ -68,6 +68,8 @@ export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
 export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/organisms/Table/Paginator/Paginator';
 export { SidePanel, SidePanelProps } from '../app/components/organisms/SidePanel/SidePanel';
+// @TODO: fix depency cycle issue
+// eslint-disable-next-line import/no-cycle
 export { Table, TableProps } from '../app/components/organisms/Table/Table';
 export { Tab, Tabs, TabsProps } from '../app/components/organisms/Tabs/Tabs';
 export { Toolbar, ToolbarProps } from '../app/components/organisms/Toolbar/Toolbar';

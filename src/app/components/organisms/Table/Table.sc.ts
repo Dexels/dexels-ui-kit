@@ -1,9 +1,11 @@
 import { Alignment, Elevation } from '../../../types';
+import { getAlignment, setTruncate } from '../../../../lib';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
-import { getAlignment } from '../../../../lib';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
+
+const alignRightSpacing = 2; // value is the spacing value from the theme
 
 interface ColumnProps {
     hasCellPadding?: boolean;
@@ -96,7 +98,7 @@ export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
     ${({ align, theme }): SimpleInterpolation =>
         align.toUpperCase() === Alignment.RIGHT &&
         css`
-            padding: ${theme.spacing(0, 2, 0, 0)};
+            padding: ${theme.spacing(0, alignRightSpacing, 0, 0)};
         `}
 `;
 
@@ -189,10 +191,14 @@ TableCell.defaultProps = {
     theme: themeBasic,
 };
 
-export interface TableCellContentProps extends Pick<HTMLDivElement, 'align'> {}
+export interface TableCellContentProps extends Pick<HTMLDivElement, 'align'> {
+    isTruncatable: boolean;
+}
 
 export const TableCellContent = styled.div<TableCellContentProps>`
-    ${({ align = 'left' }): FlattenSimpleInterpolation => getAlignment(align.toUpperCase() as Alignment)}
+    ${({ isTruncatable }): SimpleInterpolation => isTruncatable && setTruncate()}
+    ${({ align = 'left' }): FlattenSimpleInterpolation =>
+        getAlignment(align.toUpperCase() as Alignment)}
     display: flex;
     position: relative;
     align-items: center;
@@ -202,7 +208,7 @@ export const TableCellContent = styled.div<TableCellContentProps>`
     ${({ align, theme }): SimpleInterpolation =>
         align.toUpperCase() === Alignment.RIGHT &&
         css`
-            padding: ${theme.spacing(0, 2, 0, 0)};
+            padding: ${theme.spacing(0, alignRightSpacing, 0, 0)};
         `}
 `;
 

@@ -30,6 +30,7 @@ export interface TableProps<T extends object> {
     instance: TableInstance<T>;
     isDisabled?: boolean;
     isFullWidth?: boolean;
+    isTruncatable?: boolean;
     onClickFooter?: (event: SyntheticEvent) => void;
     onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
     paginator?: ReactNode;
@@ -47,6 +48,7 @@ export const Table = <T extends object>({
     instance,
     isDisabled = false,
     isFullWidth = true,
+    isTruncatable = true,
     onClickFooter,
     onClickRow,
     paginator,
@@ -110,7 +112,10 @@ export const Table = <T extends object>({
                                             {...cell.getCellProps()}
                                             width={cell.column.width}
                                         >
-                                            <TableCellContent align={cell.column.align || 'left'}>
+                                            <TableCellContent
+                                                align={cell.column.align || 'left'}
+                                                isTruncatable={isTruncatable}
+                                            >
                                                 {cell.render('Cell')}
                                             </TableCellContent>
                                         </TableCell>
