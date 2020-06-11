@@ -61,8 +61,8 @@ export const customSortByCaseInsensitive = <T extends object>(
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));
 
-export const renderCell = (value: CellValue, isAmount?: boolean): ReactNode => (
-    <ContentCell isAmount={isAmount}>
+export const renderCell = (value: CellValue, isCurrency?: boolean): ReactNode => (
+    <ContentCell isCurrency={isCurrency}>
         {typeof value === 'object' && isValidDate(value) ? formatDate(value) : value}
     </ContentCell>
 );
