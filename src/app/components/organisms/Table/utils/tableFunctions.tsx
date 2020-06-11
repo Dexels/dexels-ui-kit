@@ -1,5 +1,5 @@
 import { CellValue, UseSortByColumnProps, UseTableRowProps } from 'react-table';
-import { formatDate, isValidDate } from '../../../../utils/validators/dateFunctions';
+import { formatDate, isValidDate } from '../../../../utils/functions/dateFunctions';
 import { IconType, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
 import ContentCell from '../mockup/ContentCell/ContentCell';
@@ -61,8 +61,10 @@ export const customSortByCaseInsensitive = <T extends object>(
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));
 
-export const renderCell = (value: CellValue): ReactNode => (
-    <ContentCell>{typeof value === 'object' && isValidDate(value) ? formatDate(value) : value}</ContentCell>
+export const renderCell = (value: CellValue, isAmount?: boolean): ReactNode => (
+    <ContentCell isAmount={isAmount}>
+        {typeof value === 'object' && isValidDate(value) ? formatDate(value) : value}
+    </ContentCell>
 );
 
 export const renderSortIcon = <T extends object>(

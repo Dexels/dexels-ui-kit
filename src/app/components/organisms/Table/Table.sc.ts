@@ -1,8 +1,11 @@
+import { Alignment, Elevation } from '../../../types';
+import { getAlignment, setTruncate } from '../../../../lib';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
-import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
+
+const alignRightSpacing = 2; // value is the spacing value from the theme
 
 interface ColumnProps {
     hasCellPadding?: boolean;
@@ -76,10 +79,12 @@ TableHeaderCell.defaultProps = {
 };
 
 interface TableHeaderCellInnerProps {
+    align?: Alignment;
     isSorted: boolean;
 }
 
 export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
+    ${({ align = Alignment.LEFT }): FlattenSimpleInterpolation => getAlignment(align)}
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -90,6 +95,12 @@ export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
         color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
         font-size: 18px;
     }
+
+    ${({ align, theme }): SimpleInterpolation =>
+        align === Alignment.RIGHT &&
+        css`
+            padding: ${theme.spacing(0, alignRightSpacing, 0, 0)};
+        `}
 `;
 
 TableHeaderCellInner.defaultProps = {
@@ -181,12 +192,25 @@ TableCell.defaultProps = {
     theme: themeBasic,
 };
 
-export const TableCellContent = styled.div`
+export interface TableCellContentProps {
+    align?: Alignment;
+    isTruncatable: boolean;
+}
+
+export const TableCellContent = styled.div<TableCellContentProps>`
+    ${({ isTruncatable }): SimpleInterpolation => isTruncatable && setTruncate()}
+    ${({ align = Alignment.LEFT }): FlattenSimpleInterpolation => getAlignment(align)}
     display: flex;
     position: relative;
     align-items: center;
     z-index: 2;
     height: 100%;
+
+    ${({ align, theme }): SimpleInterpolation =>
+        align === Alignment.RIGHT &&
+        css`
+            padding: ${theme.spacing(0, alignRightSpacing, 0, 0)};
+        `}
 `;
 
 interface TableFooterProps extends ClickableProps {

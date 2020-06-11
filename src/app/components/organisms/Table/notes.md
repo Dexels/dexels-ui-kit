@@ -26,6 +26,7 @@ export const tableColumns = () => (
             Cell: ({ value }) => renderCell(value),
             Header: 'Startdate',
             accessor: 'relationStart',
+            align: Alignment.RIGHT,
             sortType: (a, b, propName) => customSortByDate(a, b, propName),
         },
         {

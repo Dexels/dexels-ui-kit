@@ -1,5 +1,6 @@
 // The rule below is disabled because react-table already adds it's own keys
 /* eslint-disable react/jsx-key */
+import { Alignment, Elevation } from '../../../types';
 import {
     PaginatorWrapper,
     StyledTable,
@@ -17,7 +18,6 @@ import {
 } from './Table.sc';
 import React, { ReactNode, SyntheticEvent } from 'react';
 import { Row, TableInstance } from 'react-table';
-import { Elevation } from '../../../types';
 import { renderSortIcon } from './utils/tableFunctions';
 
 export interface TableProps<T extends object> {
@@ -30,6 +30,7 @@ export interface TableProps<T extends object> {
     instance: TableInstance<T>;
     isDisabled?: boolean;
     isFullWidth?: boolean;
+    isTruncatable?: boolean;
     onClickFooter?: (event: SyntheticEvent) => void;
     onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
     paginator?: ReactNode;
@@ -47,6 +48,7 @@ export const Table = <T extends object>({
     instance,
     isDisabled = false,
     isFullWidth = true,
+    isTruncatable = true,
     onClickFooter,
     onClickRow,
     paginator,
@@ -69,7 +71,10 @@ export const Table = <T extends object>({
                                         width={column.width}
                                         {...column.getHeaderProps(column.getSortByToggleProps())}
                                     >
-                                        <TableHeaderCellInner isSorted={column.isSorted}>
+                                        <TableHeaderCellInner
+                                            align={column.align || Alignment.LEFT}
+                                            isSorted={column.isSorted}
+                                        >
                                             <TableHeaderCellContent>{column.render('Header')}</TableHeaderCellContent>
                                             {column.canSort && renderSortIcon(column, hasUnsortedStateIcon)}
                                         </TableHeaderCellInner>
@@ -110,7 +115,12 @@ export const Table = <T extends object>({
                                             {...cell.getCellProps()}
                                             width={cell.column.width}
                                         >
-                                            <TableCellContent>{cell.render('Cell')}</TableCellContent>
+                                            <TableCellContent
+                                                align={cell.column.align || Alignment.LEFT}
+                                                isTruncatable={isTruncatable}
+                                            >
+                                                {cell.render('Cell')}
+                                            </TableCellContent>
                                         </TableCell>
                                     ))}
                             </TableRow>

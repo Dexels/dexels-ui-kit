@@ -31,6 +31,7 @@ import {
     UseSortByOptions,
     UseSortByState,
 } from 'react-table';
+import { Alignment } from '../lib';
 
 declare module 'react-table' {
     export interface TableOptions<D extends object>
@@ -61,6 +62,7 @@ declare module 'react-table' {
         extends UseFiltersColumnOptions<D>,
             UseGroupByColumnOptions<D>,
             UseSortByColumnOptions<D> {
+        align?: Alignment;
         hasCellPadding?: boolean;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick?: (...args: any[]) => void;

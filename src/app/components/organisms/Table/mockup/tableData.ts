@@ -1,8 +1,10 @@
 import moment, { Moment } from 'moment';
 import { MatchTaskStatuses } from './StatusCell/types';
 import { Status } from '../../../../types';
+import toMoney from '../../../../utils/functions/financialFunctions';
 
 export interface TableData {
+    amount: string;
     companyName: string;
     firstName: string;
     id: number;
@@ -19,6 +21,7 @@ const makeTableData = (amount = 15): TableData[] => {
 
     for (let i = 1; i <= amount; i += 1) {
         result.push({
+            amount: toMoney(123),
             companyName: `Dexels ${i}`,
             firstName: `Firstname ${i}`,
             id: i,
@@ -38,6 +41,7 @@ export const tableData = (): TableData[] => {
     const result = makeTableData(100);
 
     result.push({
+        amount: toMoney(10985),
         companyName: 'Dexels',
         firstName: 'Erik',
         id: 187,
@@ -50,6 +54,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: toMoney(0),
         companyName: 'Dexels',
         firstName: 'Lange voornaam',
         id: 188,
@@ -62,6 +67,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: toMoney(-1),
         companyName: 'Dexels',
         firstName: 'erik',
         id: 189,
@@ -74,6 +80,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: toMoney(-10985),
         companyName: 'Dexels',
         firstName: 'Maria',
         id: 190,
@@ -86,6 +93,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: toMoney(25.87),
         companyName: 'Cygni',
         firstName: 'David',
         id: 200,
@@ -98,6 +106,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: toMoney(123.5432),
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: 300,
@@ -110,6 +119,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: toMoney(652464),
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: 400,
@@ -122,6 +132,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: toMoney(1212),
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: 500,
@@ -134,6 +145,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: '',
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: 600,
@@ -146,6 +158,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: '-',
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: 700,
