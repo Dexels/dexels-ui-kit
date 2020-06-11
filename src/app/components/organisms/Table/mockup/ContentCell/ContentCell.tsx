@@ -3,11 +3,11 @@ import { StyledContentCell } from './ContentCell.sc';
 
 interface ContentCellProps {
     children?: ReactNode;
-    isAmount?: boolean;
+    isCurrency?: boolean;
 }
 
-const ContentCell: FunctionComponent<ContentCellProps> = ({ children, isAmount = false }) => (
-    <StyledContentCell isAmount={isAmount}>{children}</StyledContentCell>
+const ContentCell: FunctionComponent<ContentCellProps> = ({ children, isCurrency = false }) => (
+    <StyledContentCell isCurrency={isCurrency}>{children}</StyledContentCell>
 );
 
 export default ContentCell;

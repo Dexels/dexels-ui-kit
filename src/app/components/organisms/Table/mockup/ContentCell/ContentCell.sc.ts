@@ -3,7 +3,7 @@ import { setBoxSizing } from '../../../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../../../styles/theming/themes/basic';
 
 interface StyledContentCellProps {
-    isAmount: boolean;
+    isCurrency: boolean;
 }
 
 export const StyledContentCell = styled.div<StyledContentCellProps>`
@@ -11,8 +11,8 @@ export const StyledContentCell = styled.div<StyledContentCellProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     color: ${({ theme }): string => theme.colorTextBody.primary};
 
-    ${({ isAmount }): SimpleInterpolation =>
-        isAmount &&
+    ${({ isCurrency }): SimpleInterpolation =>
+        isCurrency &&
         css`
             color: red;
         `}
