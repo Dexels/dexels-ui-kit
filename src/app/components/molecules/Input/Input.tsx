@@ -1,6 +1,14 @@
 import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import { InputType, InputVariant } from '../../../types';
-import React, { ChangeEvent, FunctionComponent, KeyboardEvent, ReactNode, useCallback, useState } from 'react';
+import React, {
+    ChangeEvent,
+    FunctionComponent,
+    KeyboardEvent,
+    MouseEventHandler,
+    ReactNode,
+    useCallback,
+    useState,
+} from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 
@@ -19,6 +27,7 @@ export interface InputProps {
     minLength?: number;
     name: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onClick?: MouseEventHandler;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     type?: InputType;
     value?: string;
@@ -40,6 +49,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     minLength,
     name,
     onChange,
+    onClick,
     onKeyDown,
     type = InputType.TEXT,
     value = '',
@@ -74,9 +84,11 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             <StyledInput
                 className={className}
                 hasError={hasError}
+                isClickable={!isDisabled && Boolean(onClick)}
                 isDisabled={isDisabled}
                 isFocused={isFocused}
                 isValid={isValid}
+                onClick={isDisabled || !onClick ? undefined : onClick}
                 variant={variant}
                 {...rest}
             >
