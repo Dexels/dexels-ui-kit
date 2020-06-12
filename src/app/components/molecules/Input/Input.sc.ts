@@ -3,7 +3,7 @@ import styled, { css, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
-interface StyledInputProps {
+interface StyledInputBaseProps {
     hasError: boolean;
     isDisabled: boolean;
     isFocused: boolean;
@@ -11,9 +11,24 @@ interface StyledInputProps {
     variant: InputVariant;
 }
 
+interface StyledInputProps extends StyledInputBaseProps {
+    isClickable: boolean;
+}
+
 export const StyledInput = styled.div<StyledInputProps>`
     ${setBoxSizing()}
     position: relative;
+
+    ${({ isClickable }): SimpleInterpolation =>
+        isClickable &&
+        css`
+            cursor: pointer;
+
+            input,
+            textarea {
+                pointer-events: none;
+            }
+        `}
 
     ${({ isDisabled }): SimpleInterpolation =>
         isDisabled &&
@@ -66,7 +81,7 @@ StyledInput.defaultProps = {
     theme: themeBasic,
 };
 
-interface TextFieldProps extends StyledInputProps {
+interface TextFieldProps extends StyledInputBaseProps {
     isHovered: boolean;
     isTextarea: boolean;
     type: InputType;
