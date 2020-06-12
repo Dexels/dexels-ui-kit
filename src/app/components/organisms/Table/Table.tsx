@@ -9,6 +9,11 @@ import {
     TableCell,
     TableCellContent,
     TableFooter,
+    TableFooterCell,
+    TableFooterCellContent,
+    TableFooterCellInner,
+    TableFooterComponent,
+    TableFooterRow,
     TableHead,
     TableHeaderCell,
     TableHeaderCellContent,
@@ -53,7 +58,8 @@ export const Table = <T extends object>({
     onClickRow,
     paginator,
 }: TableProps<T>): JSX.Element => {
-    const { getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
+    const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
+    let hasFooterColumns = false;
 
     return (
         <>
@@ -102,33 +108,75 @@ export const Table = <T extends object>({
                             >
                                 {row.cells
                                     .filter(({ column }) => column.isVisible)
-                                    .map((cell) => (
-                                        <TableCell
-                                            hasCellPadding={cell.column.hasCellPadding}
-                                            isClickable={Boolean(cell.column.onClick)}
-                                            onClick={(event: SyntheticEvent): void => {
-                                                if (cell.column.onClick) {
-                                                    event.stopPropagation();
-                                                    cell.column.onClick(cell, row, event);
-                                                }
-                                            }}
-                                            {...cell.getCellProps()}
-                                            width={cell.column.width}
-                                        >
-                                            <TableCellContent
-                                                align={cell.column.align || Alignment.LEFT}
-                                                isTruncatable={isTruncatable}
+                                    .map((cell) => {
+                                        // Check if we need to do some looping for the footer
+                                        hasFooterColumns = hasFooterColumns || Boolean(cell.column.aggregate);
+
+                                        console.log(
+                                            hasFooterColumns,
+                                            Boolean(cell.column.aggregate),
+                                            cell.column.aggregate
+                                        );
+
+                                        return (
+                                            <TableCell
+                                                hasCellPadding={cell.column.hasCellPadding}
+                                                isClickable={Boolean(cell.column.onClick)}
+                                                onClick={(event: SyntheticEvent): void => {
+                                                    if (cell.column.onClick) {
+                                                        event.stopPropagation();
+                                                        cell.column.onClick(cell, row, event);
+                                                    }
+                                                }}
+                                                {...cell.getCellProps()}
+                                                width={cell.column.width}
                                             >
-                                                {cell.render('Cell')}
-                                            </TableCellContent>
-                                        </TableCell>
-                                    ))}
+                                                <TableCellContent
+                                                    align={cell.column.align || Alignment.LEFT}
+                                                    isTruncatable={isTruncatable}
+                                                >
+                                                    {cell.render('Cell')}
+                                                </TableCellContent>
+                                            </TableCell>
+                                        );
+                                    })}
                             </TableRow>
                         );
                     })}
                 </TableBody>
+                {hasFooterColumns && (
+                    <TableFooter>
+                        {footerGroups.map((footerGroup) => {
+                            return (
+                                <TableFooterRow {...footerGroup.getFooterGroupProps()}>
+                                    {footerGroup.headers
+                                        .filter(({ isVisible }) => isVisible)
+                                        .map((column) => (
+                                            <TableFooterCell
+                                                hasCellPadding={column.hasCellPadding}
+                                                isDisabled={isDisabled}
+                                                width={column.width}
+                                                {...column.getFooterProps()}
+                                            >
+                                                {console.log('column', column, column.getFooterProps())}
+                                                <TableFooterCellInner
+                                                    align={column.align || Alignment.LEFT}
+                                                    isSorted={column.isSorted}
+                                                >
+                                                    <TableFooterCellContent>
+                                                        {column.render('Footer')}
+                                                    </TableFooterCellContent>
+                                                </TableFooterCellInner>
+                                            </TableFooterCell>
+                                        ))}
+                                </TableFooterRow>
+                            );
+                        })}
+                    </TableFooter>
+                )}
+
                 {footer && (
-                    <TableFooter
+                    <TableFooterComponent
                         elevation={elevation}
                         isClickable={Boolean(onClickFooter)}
                         onClick={
@@ -140,7 +188,7 @@ export const Table = <T extends object>({
                         }
                     >
                         {footer}
-                    </TableFooter>
+                    </TableFooterComponent>
                 )}
             </StyledTable>
             {paginator && <PaginatorWrapper>{paginator}</PaginatorWrapper>}

@@ -154,6 +154,9 @@ export const themeBasic: Theme = {
     shades,
     spacingValue: 8,
     table: {
+        footer: {
+            backgroundColor: shades.seven,
+        },
         row: {
             backgroundColorEven: hover.backgroundColor,
             backgroundColorOdd: shades.nine,

@@ -79,7 +79,6 @@ export const Configurable: FunctionComponent = () => {
                             <tr
                                 style={{
                                     backgroundColor: 'yellow',
-                                    height: '50px',
                                 }}
                             >
                                 {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT.

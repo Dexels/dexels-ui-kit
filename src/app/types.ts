@@ -392,6 +392,9 @@ export interface Theme {
         secondary: string;
     };
     table: {
+        footer: {
+            backgroundColor: string;
+        };
         row: {
             backgroundColorEven: string;
             backgroundColorOdd: string;

@@ -213,12 +213,39 @@ export const TableCellContent = styled.div<TableCellContentProps>`
         `}
 `;
 
-interface TableFooterProps extends ClickableProps {
+export const TableFooter = styled.tfoot`
+    background-color: ${({ theme }): string => theme.table.footer.backgroundColor};
+`;
+
+export const TableFooterRow = styled.tr`
+    background-color: transparent;
+`;
+
+export const TableFooterCell = styled(TableHeaderCell)`
+    border-top: 4px solid ${({ theme }): string => theme.shades.six};
+    border-bottom: none;
+    height: ${({ theme }): string => theme.spacing(6)}; /* Maintain same height as tablecell */
+
+    &:first-of-type {
+        border-left: 8px solid ${({ theme }): string => theme.shades.six};
+    }
+`;
+
+export const TableFooterCellInner = styled(TableHeaderCellInner)``;
+
+export const TableFooterCellContent = styled(TableHeaderCellContent)``;
+
+interface TableFooterComponentProps extends ClickableProps {
     elevation: Elevation;
 }
 
-export const TableFooter = styled.tfoot<TableFooterProps>`
+export const TableFooterComponent = styled.tfoot<TableFooterComponentProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+
+    /* Set footer height similar to TableCell height */
+    tr {
+        height: ${({ theme }): string => theme.spacing(6)};
+    }
 
     ${({ isClickable }): SimpleInterpolation =>
         isClickable &&

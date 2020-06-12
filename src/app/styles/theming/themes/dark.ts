@@ -145,6 +145,9 @@ themeDark.loader = {
 };
 
 themeDark.table = {
+    footer: {
+        backgroundColor: themeDark.shades.seven,
+    },
     row: {
         backgroundColorOdd: colorShadeEleven,
         backgroundColorEven: themeDark.hover.backgroundColor,
