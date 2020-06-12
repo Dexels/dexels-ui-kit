@@ -3,7 +3,9 @@ import { getTableCell, renderButton } from './tableFunctions';
 import { Alignment } from '../../../../types';
 import { Column } from 'react-table';
 import { ReactNode } from 'react';
+import { sum } from '../utils/aggregateFunctions';
 import { TableData } from './tableData';
+import { toMoneyString } from '../../../../utils/functions/financialFunctions';
 
 export const tableColumns = (): Column<TableData>[] => [
     {
@@ -35,7 +37,7 @@ export const tableColumns = (): Column<TableData>[] => [
         accessor: 'companyName',
     },
     {
-        Aggregated: ({ value }) => `${value} (total)`,
+        Aggregated: ({ rows }) => toMoneyString(sum(rows, 'amount')),
         Cell: ({ value }): ReactNode => renderCell(value, true),
         Header: 'Amount',
         accessor: 'amount',
@@ -50,9 +52,11 @@ export const tableColumns = (): Column<TableData>[] => [
         sortType: (a: any, b: any, propName: any): any => customSortByDate(a, b, propName),
     },
     {
+        Aggregated: ({ rows }) => sum(rows, 'info'),
         Cell: ({ value }): ReactNode => renderCell(value),
         Header: 'Info',
         accessor: 'info',
+        aggregate: 'sum',
         sortType: 'basic',
     },
     {

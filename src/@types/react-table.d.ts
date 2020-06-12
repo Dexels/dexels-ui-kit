@@ -64,7 +64,6 @@ declare module 'react-table' {
             UseSortByColumnOptions<D> {
         align?: Alignment;
         hasCellPadding?: boolean;
-        isAggregated?: boolean /* This means show as aggregated value in a footer component */;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick?: (...args: any[]) => void;
     }

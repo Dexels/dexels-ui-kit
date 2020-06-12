@@ -104,4 +104,5 @@ export {
 } from '../app/utils/functions/dateFunctions';
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 export { parseInputValue } from '../app/utils/functions/parseInputValue';
-export { toMoney } from '../app/utils/functions/financialFunctions';
+export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
+export { parseMoney, parseMoneyValue, toMoney, toMoneyString } from '../app/utils/functions/financialFunctions';

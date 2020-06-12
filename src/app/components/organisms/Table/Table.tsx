@@ -1,6 +1,7 @@
+/* eslint-disable no-nested-ternary */
 // The rule below is disabled because react-table already adds it's own keys
 /* eslint-disable react/jsx-key */
-import { Alignment, Elevation } from '../../../types';
+import { Alignment, Elevation, IconType } from '../../../types';
 import {
     PaginatorWrapper,
     StyledTable,
@@ -109,14 +110,8 @@ export const Table = <T extends object>({
                                 {row.cells
                                     .filter(({ column }) => column.isVisible)
                                     .map((cell) => {
-                                        // Check if we need to do some looping for the footer
+                                        // Check if we need to do some looping for the footer based on aggregate setting
                                         hasFooterColumns = hasFooterColumns || Boolean(cell.column.aggregate);
-
-                                        console.log(
-                                            hasFooterColumns,
-                                            Boolean(cell.column.aggregate),
-                                            cell.column.aggregate
-                                        );
 
                                         return (
                                             <TableCell
@@ -135,7 +130,24 @@ export const Table = <T extends object>({
                                                     align={cell.column.align || Alignment.LEFT}
                                                     isTruncatable={isTruncatable}
                                                 >
-                                                    {cell.render('Cell')}
+                                                    {cell.isGrouped ? (
+                                                        // If it's a grouped cell, add an expander and row count
+                                                        <>
+                                                            <span {...row.getToggleRowExpandedProps()}>
+                                                                {row.isExpanded
+                                                                    ? IconType.ARROWDOWN
+                                                                    : IconType.ARROWRIGHT}
+                                                            </span>{' '}
+                                                            {cell.render('Cell', { editable: false })}
+                                                        </>
+                                                    ) : cell.isAggregated ? (
+                                                        // If the cell is aggregated, use the Aggregated
+                                                        // renderer for cell
+                                                        cell.render('Aggregated')
+                                                    ) : cell.isPlaceholder ? null : ( // For cells with repeated values, render null
+                                                        // Otherwise, just render the regular cell
+                                                        cell.render('Cell', { editable: true })
+                                                    )}
                                                 </TableCellContent>
                                             </TableCell>
                                         );
@@ -158,13 +170,21 @@ export const Table = <T extends object>({
                                                 width={column.width}
                                                 {...column.getFooterProps()}
                                             >
-                                                {console.log('column', column, column.getFooterProps())}
+                                                {console.log(
+                                                    'column',
+                                                    column,
+                                                    column.getFooterProps(),
+                                                    column.aggregate,
+                                                    column.id
+                                                )}
                                                 <TableFooterCellInner
                                                     align={column.align || Alignment.LEFT}
                                                     isSorted={column.isSorted}
                                                 >
                                                     <TableFooterCellContent>
-                                                        {column.render('Footer')}
+                                                        {column.aggregate
+                                                            ? column.render('Aggregated')
+                                                            : column.render('Footer')}
                                                     </TableFooterCellContent>
                                                 </TableFooterCellInner>
                                             </TableFooterCell>

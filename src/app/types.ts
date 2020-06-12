@@ -19,6 +19,11 @@ export enum ButtonVariant {
     TEXT_ONLY = 'TEXT_ONLY',
 }
 
+export enum CurrencyLocale {
+    EUR = 'EUR',
+    USD = 'USD',
+}
+
 export enum Direction {
     LTR = 'LTR',
     RTL = 'RTL',
