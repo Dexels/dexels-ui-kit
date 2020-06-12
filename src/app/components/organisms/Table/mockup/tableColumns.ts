@@ -35,14 +35,11 @@ export const tableColumns = (): Column<TableData>[] => [
         accessor: 'companyName',
     },
     {
+        Aggregated: ({ value }) => `${value} (total)`,
         Cell: ({ value }): ReactNode => renderCell(value, true),
         Header: 'Amount',
         accessor: 'amount',
-        aggregate: (values) => {
-            const reducer = (accumulator: number, currentValue: number) => accumulator + currentValue;
-            console.log('values', values);
-            values.reduce(reducer, 0);
-        },
+        aggregate: 'sum',
         align: Alignment.RIGHT,
     },
     {
