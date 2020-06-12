@@ -26,7 +26,7 @@ export interface InputProps {
     min?: number;
     minLength?: number;
     name: string;
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onClick?: MouseEventHandler;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     type?: InputType;
@@ -104,9 +104,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     minLength={minLength}
                     name={name}
                     onBlur={toggleIsFocusedCallback}
-                    onChange={onChange}
+                    onChange={isDisabled || !onChange ? undefined : onChange}
                     onFocus={toggleIsFocusedCallback}
-                    onKeyDown={onKeyDown}
+                    onKeyDown={isDisabled || !onKeyDown ? undefined : onKeyDown}
                     onMouseEnter={toggleIsHoveredCallback}
                     onMouseLeave={toggleIsHoveredCallback}
                     type={type}
