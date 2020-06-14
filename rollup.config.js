@@ -10,6 +10,7 @@ const typescript = require('@rollup/plugin-typescript');
 module.exports = {
     external: [
         '@babel/runtime',
+        'current',
         'moment',
         'react',
         'react-dates',

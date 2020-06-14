@@ -1,7 +1,7 @@
+import { CurrencyLocale, Locale, Status } from '../../../../types';
 import moment, { Moment } from 'moment';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { MatchTaskStatuses } from './StatusCell/types';
-import { CurrencyLocale, Locale, Status } from '../../../../types';
 
 export interface TableData {
     amount: number | string;
