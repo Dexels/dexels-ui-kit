@@ -1,6 +1,8 @@
 import currency, { Options } from 'currency.js';
 import { CurrencyLocale, Locale } from '../../types';
 
+export interface Currency extends currency {}
+
 export const defaultCurrencySettings = (hasRounding = false): Options => {
     return {
         decimal: ',',
@@ -51,7 +53,7 @@ export const toMoney = (
     value: number | string,
     currencyLocale: CurrencyLocale = CurrencyLocale.EUR,
     locale?: Locale
-): currency => {
+): Currency => {
     switch (currencyLocale) {
         case CurrencyLocale.GBP:
             return GBP(value);
