@@ -19,6 +19,7 @@ export enum ButtonVariant {
     TEXT_ONLY = 'TEXT_ONLY',
 }
 
+// Supported CurrencyLocales in combination with Locale
 export enum CurrencyLocale {
     EUR = 'EUR',
     GBP = 'GBP',
@@ -224,6 +225,19 @@ export enum InputType {
 export enum InputVariant {
     COMPACT = 'COMPACT',
     OUTLINE = 'OUTLINE',
+}
+
+// Supported Locales in combination with CurrencyLocale
+export enum Locale {
+    BE = 'BE',
+    DE = 'DE',
+    EN = 'EN',
+    GB = 'GB',
+    KZ = 'KZ',
+    NL = 'NL',
+    RU = 'RU',
+    UK = 'UK',
+    US = 'US',
 }
 
 export enum Placement {
