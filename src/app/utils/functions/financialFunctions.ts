@@ -1,7 +1,7 @@
+import currency, { Options } from 'currency.js';
 import { CurrencyLocale, Locale } from '../../types';
-import currency from 'currency.js';
 
-export const defaultCurrencySettings = (hasRounding = false): currency.Options => {
+export const defaultCurrencySettings = (hasRounding = false): Options => {
     return {
         decimal: ',',
         formatWithSymbol: true,
