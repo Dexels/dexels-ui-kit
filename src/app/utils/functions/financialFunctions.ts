@@ -71,8 +71,14 @@ export const toMoney = (
     }
 };
 
-export const toMoneyValue = (value: number | string, currencyLocale: CurrencyLocale = CurrencyLocale.EUR): number =>
-    toMoney(value, currencyLocale).value;
+export const toMoneyValue = (
+    value: number | string,
+    currencyLocale: CurrencyLocale = CurrencyLocale.EUR,
+    locale?: Locale
+): number => toMoney(value, currencyLocale, locale).value;
 
-export const formatMoney = (value: number | string, currencyLocale: CurrencyLocale = CurrencyLocale.EUR): string =>
-    toMoney(value, currencyLocale).format(true);
+export const formatMoney = (
+    value: number | string,
+    currencyLocale: CurrencyLocale = CurrencyLocale.EUR,
+    locale?: Locale
+): string => toMoney(value, currencyLocale, locale).format(true);

@@ -157,7 +157,7 @@ export const Table = <T extends object>({
                     })}
                 </TableBody>
                 {hasFooterColumns && (
-                    <TableFooter>
+                    <TableFooter elevation={elevation}>
                         {footerGroups.map((footerGroup) => {
                             return (
                                 <TableFooterRow {...footerGroup.getFooterGroupProps()}>
@@ -165,18 +165,11 @@ export const Table = <T extends object>({
                                         .filter(({ isVisible }) => isVisible)
                                         .map((column) => (
                                             <TableFooterCell
-                                                hasCellPadding={column.hasCellPadding}
+                                                hasCellPadding
                                                 isDisabled={isDisabled}
                                                 width={column.width}
                                                 {...column.getFooterProps()}
                                             >
-                                                {console.log(
-                                                    'column',
-                                                    column,
-                                                    column.getFooterProps(),
-                                                    column.aggregate,
-                                                    column.id
-                                                )}
                                                 <TableFooterCellInner
                                                     align={column.align || Alignment.LEFT}
                                                     isSorted={column.isSorted}

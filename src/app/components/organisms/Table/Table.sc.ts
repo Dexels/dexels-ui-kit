@@ -213,7 +213,12 @@ export const TableCellContent = styled.div<TableCellContentProps>`
         `}
 `;
 
-export const TableFooter = styled.tfoot`
+interface TableFooterProps {
+    elevation: Elevation;
+}
+
+export const TableFooter = styled.tfoot<TableFooterProps>`
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     background-color: ${({ theme }): string => theme.table.footer.backgroundColor};
 `;
 

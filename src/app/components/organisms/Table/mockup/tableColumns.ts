@@ -9,8 +9,10 @@ import { TableData } from './tableData';
 
 export const tableColumns = (): Column<TableData>[] => [
     {
+        Aggregated: () => 'Totalen',
         Cell: ({ row, value }): ReactNode => renderStatusCell(row.original.matchTaskStatus, value),
         accessor: 'status',
+        aggregate: 'text',
         disableSortBy: true,
         hasCellPadding: false,
     },

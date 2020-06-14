@@ -1,7 +1,7 @@
 import moment, { Moment } from 'moment';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { MatchTaskStatuses } from './StatusCell/types';
-import { Status } from '../../../../types';
+import { CurrencyLocale, Locale, Status } from '../../../../types';
 
 export interface TableData {
     amount: number | string;
@@ -119,6 +119,45 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        amount: formatMoney(123.48),
+        companyName: 'Dexels',
+        firstName: 'Firstname',
+        id: 300,
+        infix: undefined,
+        info: 1,
+        lastName: 'Lastname 1 rounded +',
+        matchTaskStatus: MatchTaskStatuses.NO_OFFICIALS,
+        relationStart: moment('2018-10-01'),
+        status: Status.INVALID,
+    });
+
+    result.push({
+        amount: formatMoney(123.42),
+        companyName: 'Dexels',
+        firstName: 'Firstname',
+        id: 300,
+        infix: undefined,
+        info: 1,
+        lastName: 'Lastname 1 rounded -',
+        matchTaskStatus: MatchTaskStatuses.NO_OFFICIALS,
+        relationStart: moment('2018-10-01'),
+        status: Status.INVALID,
+    });
+
+    result.push({
+        amount: formatMoney(123.42, CurrencyLocale.EUR, Locale.BE),
+        companyName: 'Dexels',
+        firstName: 'Firstname',
+        id: 300,
+        infix: undefined,
+        info: 1,
+        lastName: 'Lastname 1 not rounded BE',
+        matchTaskStatus: MatchTaskStatuses.NO_OFFICIALS,
+        relationStart: moment('2018-10-01'),
+        status: Status.INVALID,
+    });
+
+    result.push({
         amount: formatMoney(652464),
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -126,6 +165,19 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: undefined,
         lastName: 'Lastname 2',
+        matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
+        relationStart: moment(),
+        status: Status.DEFAULT,
+    });
+
+    result.push({
+        amount: formatMoney(652464, CurrencyLocale.GBP, Locale.UK),
+        companyName: 'Dexels',
+        firstName: 'Firstname',
+        id: 4001,
+        infix: undefined,
+        info: undefined,
+        lastName: 'Lastname 2 UK',
         matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
         relationStart: moment(),
         status: Status.DEFAULT,
