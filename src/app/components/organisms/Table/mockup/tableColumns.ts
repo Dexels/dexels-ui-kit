@@ -2,10 +2,10 @@ import { customSortByDate, renderCell, renderStatusCell } from '../utils/tableFu
 import { getTableCell, renderButton } from './tableFunctions';
 import { Alignment } from '../../../../types';
 import { Column } from 'react-table';
+import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { ReactNode } from 'react';
 import { sum } from '../utils/aggregateFunctions';
 import { TableData } from './tableData';
-import { toMoneyString } from '../../../../utils/functions/financialFunctions';
 
 export const tableColumns = (): Column<TableData>[] => [
     {
@@ -37,7 +37,7 @@ export const tableColumns = (): Column<TableData>[] => [
         accessor: 'companyName',
     },
     {
-        Aggregated: ({ rows }) => toMoneyString(sum(rows, 'amount')),
+        Aggregated: ({ rows }) => formatMoney(sum(rows, 'amount')),
         Cell: ({ value }): ReactNode => renderCell(value, true),
         Header: 'Amount',
         accessor: 'amount',

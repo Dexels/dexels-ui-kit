@@ -1,6 +1,6 @@
-import { parseMoneyValue } from '../../../../utils/functions/financialFunctions';
 import { Row } from 'react-table';
 import { TableData } from '../mockup/tableData';
+import { toMoney } from '../../../../utils/functions/financialFunctions';
 
 export const sum = (data: Row<TableData>[], accessor: string): number => {
     const values = data.map((row: Row<TableData>) => (row.values[accessor] !== undefined ? row.values[accessor] : 0));
@@ -9,10 +9,8 @@ export const sum = (data: Row<TableData>[], accessor: string): number => {
         let value = currentValue;
 
         if (typeof currentValue === 'string') {
-            value = parseMoneyValue(currentValue);
+            value = toMoney(currentValue).value;
         }
-
-        // console.log('value 2:', value);
 
         return accumulator + value;
     }, 0);

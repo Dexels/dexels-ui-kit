@@ -57,6 +57,7 @@
         "@types/react-dates": "^17.1.10",
         "@types/react-table": "^7.0.19",
         "@types/styled-components": "^5.1.0",
+        "currency.js": "^1.2.2",
         "moment": "^2.25.3",
         "react": "^16.13.1",
         "react-dates": "^21.8.0",
@@ -97,6 +98,7 @@
         "babel-plugin-styled-components": "^1.10.7",
         "core-js": "^3.6.5",
         "cross-env": "^7.0.2",
+        "currency.js": "^1.2.2",
         "dts-bundle-generator": "^4.3.0",
         "eslint": "^7.2.0",
         "eslint-config-airbnb": "^18.1.0",
@@ -132,8 +134,5 @@
         "stylelint-junit-formatter": "^0.2.2",
         "tslib": "^2.0.0",
         "typescript": "^3.9.5"
-    },
-    "dependencies": {
-        "currency.js": "^1.2.2"
     }
 }
