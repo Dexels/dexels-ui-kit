@@ -21,6 +21,9 @@ export enum ButtonVariant {
 
 export enum CurrencyLocale {
     EUR = 'EUR',
+    GBP = 'GBP',
+    KZT = 'KZT',
+    RUB = 'RUB',
     USD = 'USD',
 }
 

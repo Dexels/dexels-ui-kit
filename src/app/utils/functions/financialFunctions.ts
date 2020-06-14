@@ -1,44 +1,71 @@
 import currency from 'currency.js';
 import { CurrencyLocale } from '../../types';
 
-export const USD = (value: number | string) =>
-    currency(value, {
-        decimal: '.',
-        formatWithSymbol: true,
-        negativePattern: '-!#',
-        precision: 2,
-        separator: ',',
-        symbol: '$ ',
-    });
-
-export const EUR = (value: number | string) =>
-    currency(value, {
+export const defaultCurrencySettings = (): currency.Options => {
+    return {
         decimal: ',',
         formatWithSymbol: true,
         negativePattern: '-!#',
         precision: 2,
         separator: '.',
         symbol: '€ ',
+    };
+};
+
+export const EUR = (value: number | string) =>
+    currency(value, {
+        ...defaultCurrencySettings(),
     });
 
-export const parseMoney = (value: number | string, locale: CurrencyLocale = CurrencyLocale.EUR): currency => {
-    if (locale === CurrencyLocale.USD) {
-        return USD(value);
-    }
+export const GBP = (value: number | string) =>
+    currency(value, {
+        ...defaultCurrencySettings(),
+        decimal: '.',
+        separator: ',',
+        symbol: '£ ',
+    });
 
-    return EUR(value);
-};
+export const KZT = (value: number | string) =>
+    currency(value, {
+        ...defaultCurrencySettings(),
+        symbol: '₸ ',
+    });
 
-export const parseMoneyValue = (value: number | string, locale: CurrencyLocale = CurrencyLocale.EUR): number =>
-    parseMoney(value, locale).value;
+export const RUB = (value: number | string) =>
+    currency(value, {
+        ...defaultCurrencySettings(),
+        symbol: '₽ ',
+    });
+
+export const USD = (value: number | string) =>
+    currency(value, {
+        ...defaultCurrencySettings(),
+        decimal: '.',
+        separator: ',',
+        symbol: '$ ',
+    });
 
 export const toMoney = (value: number | string, locale: CurrencyLocale = CurrencyLocale.EUR): currency => {
-    if (locale === CurrencyLocale.USD) {
-        return USD(value);
-    }
+    switch (locale) {
+        case CurrencyLocale.GBP:
+            return GBP(value);
 
-    return EUR(value);
+        case CurrencyLocale.KZT:
+            return KZT(value);
+
+        case CurrencyLocale.RUB:
+            return RUB(value);
+
+        case CurrencyLocale.USD:
+            return USD(value);
+
+        default:
+            return EUR(value);
+    }
 };
 
-export const toMoneyString = (value: number | string, locale: CurrencyLocale = CurrencyLocale.EUR): string =>
+export const toMoneyValue = (value: number | string, locale: CurrencyLocale = CurrencyLocale.EUR): number =>
+    toMoney(value, locale).value;
+
+export const formatMoney = (value: number | string, locale: CurrencyLocale = CurrencyLocale.EUR): string =>
     toMoney(value, locale).format(true);
