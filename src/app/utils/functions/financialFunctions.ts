@@ -1,7 +1,5 @@
 import currency, { Options } from 'currency.js';
-import { CurrencyLocale, Locale } from '../../types';
-
-export interface Currency extends currency {}
+import { Currencies, Locale } from '../../types';
 
 export const defaultCurrencySettings = (hasRounding = false): Options => {
     return {
@@ -14,12 +12,12 @@ export const defaultCurrencySettings = (hasRounding = false): Options => {
         separator: '.',
         symbol: '€ ',
     };
-};
+}
 
-export const EUR = (value: number | string, hasRounding = true) =>
+export const EUR = (value: number | string, hasRounding = false) =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
-    });
+});
 
 export const GBP = (value: number | string, hasRounding = false) =>
     currency(value, {
@@ -51,20 +49,20 @@ export const USD = (value: number | string, hasRounding = false) =>
 
 export const toMoney = (
     value: number | string,
-    currencyLocale: CurrencyLocale = CurrencyLocale.EUR,
+    currency: Currencies = Currencies.EUR,
     locale?: Locale
-): Currency => {
-    switch (currencyLocale) {
-        case CurrencyLocale.GBP:
+): currency => {
+    switch (currency) {
+        case Currencies.GBP:
             return GBP(value);
 
-        case CurrencyLocale.KZT:
+        case Currencies.KZT:
             return KZT(value);
 
-        case CurrencyLocale.RUB:
+        case Currencies.RUB:
             return RUB(value);
 
-        case CurrencyLocale.USD:
+        case Currencies.USD:
             return USD(value);
 
         default:
@@ -75,12 +73,12 @@ export const toMoney = (
 
 export const toMoneyValue = (
     value: number | string,
-    currencyLocale: CurrencyLocale = CurrencyLocale.EUR,
+    currency: Currencies = Currencies.EUR,
     locale?: Locale
-): number => toMoney(value, currencyLocale, locale).value;
+): number => toMoney(value, currency, locale).value;
 
 export const formatMoney = (
     value: number | string,
-    currencyLocale: CurrencyLocale = CurrencyLocale.EUR,
+    currency: Currencies = Currencies.EUR,
     locale?: Locale
-): string => toMoney(value, currencyLocale, locale).format(true);
+): string => toMoney(value, currency, locale).format(true);

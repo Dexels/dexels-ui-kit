@@ -1,4 +1,4 @@
-import { CurrencyLocale, Locale, Status } from '../../../../types';
+import { Currencies, Locale, Status } from '../../../../types';
 import moment, { Moment } from 'moment';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { MatchTaskStatuses } from './StatusCell/types';
@@ -145,7 +145,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(123.42, CurrencyLocale.EUR, Locale.BE),
+        amount: formatMoney(123.42, Currencies.EUR, Locale.BE),
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: 300,
@@ -171,7 +171,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(652464, CurrencyLocale.GBP, Locale.UK),
+        amount: formatMoney(652464, Currencies.GBP, Locale.UK),
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: 4001,
