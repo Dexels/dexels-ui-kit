@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'SL-Small-Icons';
-    src: url('fonts/SL-Small-Icons.eot?axbumg');
-    src: url('fonts/SL-Small-Icons.eot?axbumg#iefix') format('embedded-opentype'),
-        url('fonts/SL-Small-Icons.ttf?axbumg') format('truetype'),
-        url('fonts/SL-Small-Icons.woff?axbumg') format('woff'),
-        url('fonts/SL-Small-Icons.svg?axbumg#SL-Small-Icons') format('svg');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?axbumg');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?axbumg#iefix') format('embedded-opentype'),
+        url('~fonts/iconfont/SL-Small-Icons.ttf?axbumg') format('truetype'),
+        url('~fonts/iconfont/SL-Small-Icons.woff?axbumg') format('woff'),
+        url('~fonts/iconfont/SL-Small-Icons.svg?axbumg#SL-Small-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
