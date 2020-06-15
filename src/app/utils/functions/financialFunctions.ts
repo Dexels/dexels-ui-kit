@@ -47,7 +47,11 @@ export const USD = (value: number | string, hasRounding = false) =>
         symbol: '$ ',
     });
 
-export const toMoney = (value: number | string, currencyType: Currencies = Currencies.EUR, locale?: Locale) => {
+export const toMoney = (
+    value: number | string,
+    currencyType: Currencies = Currencies.EUR,
+    locale?: Locale
+): currency => {
     switch (currencyType) {
         case Currencies.GBP:
             return GBP(value);
