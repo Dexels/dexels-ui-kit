@@ -5,6 +5,7 @@
             "libraries": {
                 "allowedTypesLibraries": [],
                 "importedLibraries": [
+                    "currency.js",
                     "moment",
                     "react",
                     "react-dates",
