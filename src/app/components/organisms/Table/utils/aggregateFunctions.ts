@@ -6,13 +6,7 @@ export const sum = (data: Row<TableData>[], accessor: string): number => {
     const values = data.map((row: Row<TableData>) => (row.values[accessor] !== undefined ? row.values[accessor] : 0));
 
     const total = values.reduce((accumulator: number, currentValue: number) => {
-        let value = currentValue;
-
-        if (typeof currentValue === 'string') {
-            value = toMoney(currentValue).value;
-        }
-
-        return accumulator + value;
+        return accumulator + toMoney(currentValue).value;
     }, 0);
 
     return total;

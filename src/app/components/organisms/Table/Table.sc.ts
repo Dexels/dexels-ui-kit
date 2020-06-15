@@ -226,15 +226,35 @@ export const TableFooterRow = styled.tr`
     background-color: transparent;
 `;
 
-export const TableFooterCell = styled(TableHeaderCell)`
+interface TableFooterCellProps extends ColumnProps {
+    isDisabled: boolean;
+}
+
+export const TableFooterCell = styled.td<TableFooterCellProps>`
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     border-top: 4px solid ${({ theme }): string => theme.shades.six};
-    border-bottom: none;
+    background-color: transparent;
+    padding: ${({ hasCellPadding = true, theme }): string => theme.spacing(0.5, hasCellPadding ? 0.5 : 0, 1)};
     height: ${({ theme }): string => theme.spacing(6)}; /* Maintain same height as tablecell */
+    vertical-align: middle;
+    text-align: left;
+    color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorTextBody.primary)};
+    font-weight: 600;
+
+    ${({ width }): SimpleInterpolation =>
+        width &&
+        css`
+            width: ${typeof width === 'number' ? `${width}px` : width};
+        `}
 
     &:first-of-type {
         border-left: 8px solid ${({ theme }): string => theme.shades.six};
     }
 `;
+
+TableFooterCell.defaultProps = {
+    theme: themeBasic,
+};
 
 export const TableFooterCellInner = styled(TableHeaderCellInner)``;
 
