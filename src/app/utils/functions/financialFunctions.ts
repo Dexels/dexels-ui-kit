@@ -1,5 +1,5 @@
-import currency, { Options } from 'currency.js';
 import { Currencies, Locale } from '../../types';
+import currency, { Options } from 'currency.js';
 
 export const defaultCurrencySettings = (hasRounding = false): Options => {
     return {
@@ -12,12 +12,12 @@ export const defaultCurrencySettings = (hasRounding = false): Options => {
         separator: '.',
         symbol: '€ ',
     };
-}
+};
 
 export const EUR = (value: number | string, hasRounding = false) =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
-});
+    });
 
 export const GBP = (value: number | string, hasRounding = false) =>
     currency(value, {
@@ -49,10 +49,10 @@ export const USD = (value: number | string, hasRounding = false) =>
 
 export const toMoney = (
     value: number | string,
-    currency: Currencies = Currencies.EUR,
+    currencyValue: Currencies = Currencies.EUR,
     locale?: Locale
 ): currency => {
-    switch (currency) {
+    switch (currencyValue) {
         case Currencies.GBP:
             return GBP(value);
 
@@ -73,12 +73,12 @@ export const toMoney = (
 
 export const toMoneyValue = (
     value: number | string,
-    currency: Currencies = Currencies.EUR,
+    currencyValue: Currencies = Currencies.EUR,
     locale?: Locale
-): number => toMoney(value, currency, locale).value;
+): number => toMoney(value, currencyValue, locale).value;
 
 export const formatMoney = (
     value: number | string,
-    currency: Currencies = Currencies.EUR,
+    currencyValue: Currencies = Currencies.EUR,
     locale?: Locale
-): string => toMoney(value, currency, locale).format(true);
+): string => toMoney(value, currencyValue, locale).format(true);
