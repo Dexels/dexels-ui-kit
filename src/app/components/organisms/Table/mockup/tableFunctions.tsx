@@ -25,16 +25,14 @@ export const createLocalizedPagingTexts = (
     return localizedTexts;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getTableCell = (cell: any, row: any, event: SyntheticEvent): any => {
+export const getTableCell = (cell: unknown, row: unknown, event: SyntheticEvent): unknown => {
     // eslint-disable-next-line no-console
     console.log('Clicked:', cell, row, event);
 
     return cell;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getTableRow = (event: SyntheticEvent, row: any): any => {
+export const getTableRow = (event: SyntheticEvent, row: unknown): unknown => {
     // eslint-disable-next-line no-console
     console.log('Clicked row:', row);
     // eslint-disable-next-line no-console
