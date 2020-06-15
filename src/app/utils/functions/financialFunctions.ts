@@ -47,12 +47,8 @@ export const USD = (value: number | string, hasRounding = false) =>
         symbol: '$ ',
     });
 
-export const toMoney = (
-    value: number | string,
-    currencyValue: Currencies = Currencies.EUR,
-    locale?: Locale
-): currency => {
-    switch (currencyValue) {
+export const toMoney = (value: number | string, currencyType: Currencies = Currencies.EUR, locale?: Locale) => {
+    switch (currencyType) {
         case Currencies.GBP:
             return GBP(value);
 
@@ -73,12 +69,12 @@ export const toMoney = (
 
 export const toMoneyValue = (
     value: number | string,
-    currencyValue: Currencies = Currencies.EUR,
+    currencyType: Currencies = Currencies.EUR,
     locale?: Locale
-): number => toMoney(value, currencyValue, locale).value;
+): number => toMoney(value, currencyType, locale).value;
 
 export const formatMoney = (
     value: number | string,
-    currencyValue: Currencies = Currencies.EUR,
+    currencyType: Currencies = Currencies.EUR,
     locale?: Locale
-): string => toMoney(value, currencyValue, locale).format(true);
+): string => toMoney(value, currencyType, locale).format(true);
