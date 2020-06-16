@@ -15,6 +15,7 @@ export const tableColumns = (): Column<TableData>[] => [
         aggregate: 'text',
         disableSortBy: true,
         hasCellPadding: false,
+        width: 30,
     },
     {
         Cell: ({ value }): ReactNode => renderCell(value),
@@ -39,7 +40,7 @@ export const tableColumns = (): Column<TableData>[] => [
         accessor: 'companyName',
     },
     {
-        Aggregated: ({ rows }) => formatMoney(sum(rows, 'amount')),
+        Aggregated: ({ rows }) => formatMoney(sum(rows, 'amount', true)),
         Cell: ({ value }): ReactNode => renderCell(value, true),
         Header: 'Amount',
         accessor: 'amount',

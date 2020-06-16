@@ -41,6 +41,14 @@ export const tableColumns = () => (
             accessor: 'id',
             disableSorting: true,
         },
+        {
+            Aggregated: ({ rows }) => formatMoney(sum(rows, 'amount')),
+            Cell: ({ value }): ReactNode => renderCell(value, true),
+            Header: 'Amount',
+            accessor: 'amount',
+            aggregate: 'sum',
+            align: Alignment.RIGHT,
+        },
     ], [])
 );
 ```
