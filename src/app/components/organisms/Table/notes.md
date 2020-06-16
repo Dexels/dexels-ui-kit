@@ -42,7 +42,13 @@ export const tableColumns = () => (
             disableSorting: true,
         },
         {
-            Aggregated: ({ rows }) => formatMoney(sum(rows, 'amount')),
+            Aggregated: ({ rows }) =>
+                formatMoney(
+                    sum(
+                        rows.map((row) => (row.values.amount !== undefined ? (row.values.amount as number | string) : 0)),
+                        true
+                    )
+                ),
             Cell: ({ value }): ReactNode => renderCell(value, true),
             Header: 'Amount',
             accessor: 'amount',

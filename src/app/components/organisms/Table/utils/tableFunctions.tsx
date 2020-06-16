@@ -62,7 +62,7 @@ export const customSortByCaseInsensitive = <T extends Record<string, unknown>>(
 
 export const renderCell = (value: CellValue, isCurrency?: boolean): ReactNode => (
     <ContentCell isCurrency={isCurrency}>
-        {value instanceof Date && isValidDate(value) ? formatDate(value) : (value as ReactNode)}
+        {value instanceof Date || isValidDate(value) ? formatDate(value) : (value as ReactNode)}
     </ContentCell>
 );
 

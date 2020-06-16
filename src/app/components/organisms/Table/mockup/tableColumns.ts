@@ -40,7 +40,13 @@ export const tableColumns = (): Column<TableData>[] => [
         accessor: 'companyName',
     },
     {
-        Aggregated: ({ rows }) => formatMoney(sum(rows, 'amount', true)),
+        Aggregated: ({ rows }) =>
+            formatMoney(
+                sum(
+                    rows.map((row) => (row.values.amount !== undefined ? (row.values.amount as number | string) : 0)),
+                    true
+                )
+            ),
         Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value, true),
         Header: 'Amount',
         accessor: 'amount',
@@ -55,7 +61,8 @@ export const tableColumns = (): Column<TableData>[] => [
         sortType: (a: any, b: any, propName: any): any => customSortByDate(a, b, propName),
     },
     {
-        Aggregated: ({ rows }) => sum(rows, 'info'),
+        Aggregated: ({ rows }) =>
+            sum(rows.map((row) => (row.values.info !== undefined ? (row.values.info as number | string) : 0))),
         Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
         Header: 'Info',
         accessor: 'info',
