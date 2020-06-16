@@ -5,6 +5,7 @@ import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, use
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import InputIcon from '../InputIcon/InputIcon';
+import { Moment } from 'moment';
 import Navigation from '../Navigation/Navigation';
 import { SingleDatePickerVariant } from '../types';
 import { StyledSingleDatePicker } from './SingleDatePicker.sc';
@@ -22,12 +23,10 @@ export interface SingleDatePickerProps {
     footerText?: DialogFooterProps['text'];
     hasYearSelector?: boolean;
     id: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    isDayHighlighted?: (day: any) => boolean;
+    isDayHighlighted?: (day: Moment) => boolean;
     isDisabled?: boolean;
     isFocused: boolean;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    isOutsideRange?: (day: any) => boolean;
+    isOutsideRange?: (day: Moment) => boolean;
     keepOpenOnDateSelect?: boolean;
     label: ReactNode;
     labelMonth?: ReactNode;
