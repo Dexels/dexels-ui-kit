@@ -6,9 +6,7 @@ export interface Option extends OptionBase {
     Selected: boolean;
 }
 
-export type Options = Option[];
-
-export const data: Options = [
+export const data: Option[] = [
     {
         Description: 'Banana',
         Id: 'BANANA',
