@@ -1,4 +1,4 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { createLocalizedPagingTexts, getTableFooter, getTableRow } from './mockup/tableFunctions';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
@@ -91,6 +91,7 @@ export const Configurable: FunctionComponent = () => {
                             </tr>
                         )
                     }
+                    footerTitleColumnSpan={number('Number of columns for first footer text', 2)}
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
                     instance={instance}
                     isFullWidth={boolean('Is full width', true)}
