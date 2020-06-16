@@ -32,6 +32,7 @@ export interface TableProps<T extends object> {
     className?: string;
     elevation?: Elevation;
     footer?: ReactNode;
+    footerTitleColumnSpan?: number;
     hasUnsortedStateIcon?: boolean;
     instance: TableInstance<T>;
     isDisabled?: boolean;
@@ -50,6 +51,7 @@ export const Table = <T extends object>({
     className,
     elevation = Elevation.LEVEL_1,
     footer,
+    footerTitleColumnSpan = 2,
     hasUnsortedStateIcon = true,
     instance,
     isDisabled = false,
@@ -73,10 +75,10 @@ export const Table = <T extends object>({
                                 .filter(({ isVisible }) => isVisible)
                                 .map((column) => (
                                     <TableHeaderCell
+                                        {...column.getHeaderProps(column.getSortByToggleProps())}
                                         hasCellPadding={column.hasCellPadding}
                                         isDisabled={isDisabled}
                                         width={column.width}
-                                        {...column.getHeaderProps(column.getSortByToggleProps())}
                                     >
                                         <TableHeaderCellInner
                                             align={column.align || Alignment.LEFT}
@@ -115,6 +117,7 @@ export const Table = <T extends object>({
 
                                         return (
                                             <TableCell
+                                                {...cell.getCellProps()}
                                                 hasCellPadding={cell.column.hasCellPadding}
                                                 isClickable={Boolean(cell.column.onClick)}
                                                 onClick={(event: SyntheticEvent): void => {
@@ -123,7 +126,6 @@ export const Table = <T extends object>({
                                                         cell.column.onClick(cell, row, event);
                                                     }
                                                 }}
-                                                {...cell.getCellProps()}
                                                 width={cell.column.width}
                                             >
                                                 <TableCellContent
@@ -163,24 +165,28 @@ export const Table = <T extends object>({
                                 <TableFooterRow {...footerGroup.getFooterGroupProps()}>
                                     {footerGroup.headers
                                         .filter(({ isVisible }) => isVisible)
-                                        .map((column) => (
-                                            <TableFooterCell
-                                                hasCellPadding={column.hasCellPadding}
-                                                isDisabled={isDisabled}
-                                                {...column.getFooterProps()}
-                                            >
-                                                <TableFooterCellInner
-                                                    align={column.align || Alignment.LEFT}
-                                                    isSorted={column.isSorted}
-                                                >
-                                                    <TableFooterCellContent>
-                                                        {column.aggregate
-                                                            ? column.render('Aggregated')
-                                                            : column.render('Footer')}
-                                                    </TableFooterCellContent>
-                                                </TableFooterCellInner>
-                                            </TableFooterCell>
-                                        ))}
+                                        .map(
+                                            (column, index) =>
+                                                (index === 0 || index >= footerTitleColumnSpan) && (
+                                                    <TableFooterCell
+                                                        {...column.getFooterProps()}
+                                                        colSpan={index === 0 ? footerTitleColumnSpan : 1}
+                                                        hasCellPadding={column.hasCellPadding}
+                                                        isDisabled={isDisabled}
+                                                    >
+                                                        <TableFooterCellInner
+                                                            align={column.align || Alignment.LEFT}
+                                                            isSorted={column.isSorted}
+                                                        >
+                                                            <TableFooterCellContent>
+                                                                {column.aggregate
+                                                                    ? column.render('Aggregated')
+                                                                    : column.render('Footer')}
+                                                            </TableFooterCellContent>
+                                                        </TableFooterCellInner>
+                                                    </TableFooterCell>
+                                                )
+                                        )}
                                 </TableFooterRow>
                             );
                         })}
