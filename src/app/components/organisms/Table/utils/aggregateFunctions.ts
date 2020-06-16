@@ -1,8 +1,9 @@
 import { Row } from 'react-table';
+import { TableData } from '../mockup/tableData';
 import { toMoney } from '../../../../utils/functions/financialFunctions';
 
-export const sum = (data: Row<Record<string, unknown>>[], accessor: string, isCurrency = false): number => {
-    const values = data.map((row: Row<Record<string, unknown>>) =>
+export const sum = (data: Row<TableData>[], accessor: string, isCurrency = false): number => {
+    const values = data.map((row: Row<TableData>) =>
         row.values[accessor] !== undefined ? (row.values[accessor] as number | string) : 0
     );
 
