@@ -18,45 +18,52 @@ export const tableColumns = (): Column<TableData>[] => [
         width: 30,
     },
     {
-        Cell: ({ value }): ReactNode => renderCell(value),
+        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
         Header: 'First Name',
         accessor: 'firstName',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick: (cell: any, row: any, event: any): any => getTableCell(cell, row, event),
     },
     {
-        Cell: ({ value }): ReactNode => renderCell(value),
+        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
         Header: 'Last Name',
         accessor: 'lastName',
     },
     {
-        Cell: ({ value }): ReactNode => renderCell(value),
+        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
         Header: 'Infix',
         accessor: 'infix',
     },
     {
-        Cell: ({ value }): ReactNode => renderCell(value),
+        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
         Header: 'Company',
         accessor: 'companyName',
     },
     {
-        Aggregated: ({ rows }) => formatMoney(sum(rows, 'amount', true)),
-        Cell: ({ value }): ReactNode => renderCell(value, true),
+        Aggregated: ({ rows }) =>
+            formatMoney(
+                sum(
+                    rows.map((row) => (row.values.amount !== undefined ? (row.values.amount as number | string) : 0)),
+                    true
+                )
+            ),
+        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value, true),
         Header: 'Amount',
         accessor: 'amount',
         aggregate: 'sum',
         align: Alignment.RIGHT,
     },
     {
-        Cell: ({ value }): ReactNode => renderCell(value),
+        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
         Header: 'Startdate',
         accessor: 'relationStart',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         sortType: (a: any, b: any, propName: any): any => customSortByDate(a, b, propName),
     },
     {
-        Aggregated: ({ rows }) => sum(rows, 'info'),
-        Cell: ({ value }): ReactNode => renderCell(value),
+        Aggregated: ({ rows }) =>
+            sum(rows.map((row) => (row.values.info !== undefined ? (row.values.info as number | string) : 0))),
+        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
         Header: 'Info',
         accessor: 'info',
         aggregate: 'sum',
@@ -81,24 +88,24 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
                 disableSortBy: true,
             },
             {
-                Cell: ({ value }): ReactNode => renderCell(value),
+                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
                 Header: 'First Name',
                 accessor: 'firstName',
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onClick: (cell: any, row: any, event: any): unknown => getTableCell(cell, row, event),
             },
             {
-                Cell: ({ value }): ReactNode => renderCell(value),
+                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
                 Header: 'Last Name',
                 accessor: 'lastName',
             },
             {
-                Cell: ({ value }): ReactNode => renderCell(value),
+                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
                 Header: 'Infix',
                 accessor: 'infix',
             },
             {
-                Cell: ({ value }): ReactNode => renderCell(value),
+                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
                 Header: 'Startdate',
                 accessor: 'relationStart',
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -110,17 +117,17 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
         Header: 'InfoGroup',
         columns: [
             {
-                Cell: ({ value }): ReactNode => renderCell(value),
+                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
                 Header: 'Company',
                 accessor: 'companyName',
             },
             {
-                Cell: ({ value }): ReactNode => renderCell(value),
+                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
                 Header: 'Amount',
                 accessor: 'amount',
             },
             {
-                Cell: ({ value }): ReactNode => renderCell(value),
+                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
                 Header: 'Info',
                 accessor: 'info',
                 sortType: 'basic',
