@@ -1,4 +1,4 @@
-import { CellValue, UseSortByColumnProps, UseTableRowProps } from 'react-table';
+import { CellValue, UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import { formatDate, isValidDate } from '../../../../utils/functions/dateFunctions';
 import { IconType, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
@@ -8,7 +8,7 @@ import { MatchTaskStatuses } from '../mockup/StatusCell/types';
 import StatusCell from '../mockup/StatusCell/StatusCell';
 
 export const compareValues = <T extends Record<string, unknown>>(
-    key: keyof UseTableRowProps<T>['values'],
+    key: keyof UseTableRowProps<T>['values'] | keyof UseGroupByRowProps<T>['values'],
     desc = false,
     caseSensitive = false
 ) => (a: UseTableRowProps<T>, b: UseTableRowProps<T>): number => {
@@ -36,7 +36,7 @@ export const compareValues = <T extends Record<string, unknown>>(
 export const customSortByDate = <T extends object>(
     a: UseTableRowProps<T>,
     b: UseTableRowProps<T>,
-    key: keyof UseTableRowProps<T>['values'],
+    key: keyof UseTableRowProps<T>['values'] | keyof UseGroupByRowProps<T>['values'],
     emptyValuesAtEnd = true
 ): -1 | 1 => {
     const valueA = a.values[key];
@@ -55,7 +55,7 @@ export const customSortByDate = <T extends object>(
 
 export const customSortByCaseInsensitive = <T extends Record<string, unknown>>(
     rows: UseTableRowProps<T>[],
-    key: keyof UseTableRowProps<T>['values']
+    key: keyof UseTableRowProps<T>['values'] | keyof UseGroupByRowProps<T>['values']
 ): UseTableRowProps<T>[] =>
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));
