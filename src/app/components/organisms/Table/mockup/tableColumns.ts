@@ -15,6 +15,7 @@ export const tableColumns = (): Column<TableData>[] => [
         aggregate: 'text',
         disableSortBy: true,
         hasCellPadding: false,
+        width: 30,
     },
     {
         Cell: ({ value }): ReactNode => renderCell(value),

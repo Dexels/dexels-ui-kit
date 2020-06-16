@@ -165,9 +165,8 @@ export const Table = <T extends object>({
                                         .filter(({ isVisible }) => isVisible)
                                         .map((column) => (
                                             <TableFooterCell
-                                                hasCellPadding
+                                                hasCellPadding={column.hasCellPadding}
                                                 isDisabled={isDisabled}
-                                                width={column.width}
                                                 {...column.getFooterProps()}
                                             >
                                                 <TableFooterCellInner

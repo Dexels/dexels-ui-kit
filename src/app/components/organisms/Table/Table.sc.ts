@@ -249,6 +249,7 @@ export const TableFooterCell = styled.td<TableFooterCellProps>`
 
     &:first-of-type {
         border-left: 8px solid ${({ theme }): string => theme.shades.six};
+        padding: ${({ theme }): string => theme.spacing(0.5, 0.5, 1, 1.5)};
     }
 `;
 
