@@ -8,7 +8,7 @@ import {
     setElementSelected,
 } from '../../../utils/functions/arrayObjectFunctions';
 import { boolean, text } from '@storybook/addon-knobs';
-import { data, Options } from './mockup/data';
+import { data, Option } from './mockup/data';
 import React, { FunctionComponent, useState } from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
 import DropdownMultiSelect from './DropdownMultiSelect';
@@ -24,7 +24,7 @@ const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 const originalOptionValues = cloneArray(data);
 
 const getSelectAllOption = (
-    options: Options,
+    options: Option[],
     textOptionDeselectAll: string,
     textOptionSelectAll: string
 ): {
@@ -55,8 +55,8 @@ const getSelectAllOption = (
 };
 
 const BaseComponent = (
-    options: Options,
-    originalOptions: Options,
+    options: Option[],
+    originalOptions: Option[],
     variant: DropdownVariant = DropdownVariant.COMPACT,
     maxHeight = '',
     label = ''
@@ -72,7 +72,7 @@ const BaseComponent = (
         getSelectAllOption(optionValues, TEXT_OPTION_DESELECT_ALL, TEXT_OPTION_SELECT_ALL)
     );
 
-    const setStates = (values: Options): void => {
+    const setStates = (values: Option[]): void => {
         setOptionValues(cloneArray(values));
         setSelectAllOption(getSelectAllOption(values, TEXT_OPTION_DESELECT_ALL, TEXT_OPTION_SELECT_ALL));
     };
@@ -81,7 +81,7 @@ const BaseComponent = (
         setStates(
             (isAnyOptionSelected(optionValues)
                 ? setAllElementsDeselected(optionValues)
-                : setAllElementsSelected(optionValues)) as Options
+                : setAllElementsSelected(optionValues)) as Option[]
         );
     };
 
@@ -125,7 +125,7 @@ const BaseComponent = (
                         label={item.Description}
                         name={`DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
                         onChange={(): void => {
-                            setStates(setElementSelected(optionValues, item) as Options);
+                            setStates(setElementSelected(optionValues, item) as Option[]);
                         }}
                         value={item.Id}
                     />
@@ -137,9 +137,9 @@ const BaseComponent = (
             {!isOpen && (
                 <div style={{ margin: '20px 0 0' }}>
                     {'Selected items:'}
-                    {getSelectedElements(optionValues).map((item) => (
-                        <p key={item.Id}>{`${item.Id} - ${item.Description}`}</p>
-                    ))}
+                    {getSelectedElements(optionValues).map((item) => {
+                        return <p key={item.Id as string}>{`${item.Id} - ${item.Description}`}</p>;
+                    })}
                     {'Selected items as string:'}
                     {value}
                 </div>

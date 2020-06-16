@@ -1,12 +1,12 @@
-export interface Option {
+type OptionBase = { [key: string]: unknown };
+
+export interface Option extends OptionBase {
     Description: string;
     Id: string;
     Selected: boolean;
 }
 
-export type Options = Option[];
-
-export const data: Options = [
+export const data: Option[] = [
     {
         Description: 'Banana',
         Id: 'BANANA',
