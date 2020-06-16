@@ -16,9 +16,11 @@ export const compareValues = <T extends Record<string, unknown>>(
         return 0;
     }
 
-    const varA = typeof a.values[key] === 'string' && caseSensitive ? a.values[key].toUpperCase() : a.values[key];
+    const varA =
+        typeof a.values[key] === 'string' && caseSensitive ? (a.values[key] as string).toUpperCase() : a.values[key];
 
-    const varB = typeof b.values[key] === 'string' && caseSensitive ? b.values[key].toUpperCase() : b.values[key];
+    const varB =
+        typeof b.values[key] === 'string' && caseSensitive ? (b.values[key] as string).toUpperCase() : b.values[key];
 
     let comparison = 0;
 
@@ -31,10 +33,9 @@ export const compareValues = <T extends Record<string, unknown>>(
     return desc ? comparison * -1 : comparison;
 };
 
-export const customSortByDate = <T extends Record<string, unknown>>(
+export const customSortByDate = <T extends object>(
     a: UseTableRowProps<T>,
     b: UseTableRowProps<T>,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     key: keyof UseTableRowProps<T>['values'],
     emptyValuesAtEnd = true
 ): -1 | 1 => {
@@ -54,7 +55,6 @@ export const customSortByDate = <T extends Record<string, unknown>>(
 
 export const customSortByCaseInsensitive = <T extends Record<string, unknown>>(
     rows: UseTableRowProps<T>[],
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     key: keyof UseTableRowProps<T>['values']
 ): UseTableRowProps<T>[] =>
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
@@ -62,7 +62,7 @@ export const customSortByCaseInsensitive = <T extends Record<string, unknown>>(
 
 export const renderCell = (value: CellValue, isCurrency?: boolean): ReactNode => (
     <ContentCell isCurrency={isCurrency}>
-        {typeof value === 'object' && isValidDate(value) ? formatDate(value) : value}
+        {value instanceof Date && isValidDate(value) ? formatDate(value) : (value as ReactNode)}
     </ContentCell>
 );
 

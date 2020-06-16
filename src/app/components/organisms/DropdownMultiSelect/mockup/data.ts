@@ -1,4 +1,6 @@
-export interface Option {
+type OptionBase = { [key: string]: unknown };
+
+export interface Option extends OptionBase {
     Description: string;
     Id: string;
     Selected: boolean;
