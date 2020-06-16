@@ -7,9 +7,8 @@ import Icon from '../../../atoms/Icon/Icon';
 import { MatchTaskStatuses } from '../mockup/StatusCell/types';
 import StatusCell from '../mockup/StatusCell/StatusCell';
 
-export const compareValues = <T extends object>(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    key: any,
+export const compareValues = <T extends Record<string, unknown>>(
+    key: keyof UseTableRowProps<T>['values'],
     desc = false,
     caseSensitive = false
 ) => (a: UseTableRowProps<T>, b: UseTableRowProps<T>): number => {
@@ -32,11 +31,11 @@ export const compareValues = <T extends object>(
     return desc ? comparison * -1 : comparison;
 };
 
-export const customSortByDate = <T extends object>(
+export const customSortByDate = <T extends Record<string, unknown>>(
     a: UseTableRowProps<T>,
     b: UseTableRowProps<T>,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    key: any,
+    key: keyof UseTableRowProps<T>['values'],
     emptyValuesAtEnd = true
 ): -1 | 1 => {
     const valueA = a.values[key];
@@ -53,10 +52,10 @@ export const customSortByDate = <T extends object>(
     return valueA < valueB ? -1 : 1;
 };
 
-export const customSortByCaseInsensitive = <T extends object>(
+export const customSortByCaseInsensitive = <T extends Record<string, unknown>>(
     rows: UseTableRowProps<T>[],
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    key: any
+    key: keyof UseTableRowProps<T>['values']
 ): UseTableRowProps<T>[] =>
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));

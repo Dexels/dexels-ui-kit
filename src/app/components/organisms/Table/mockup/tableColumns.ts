@@ -85,7 +85,7 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
                 Header: 'First Name',
                 accessor: 'firstName',
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                onClick: (cell: any, row: any, event: any): void => getTableCell(cell, row, event),
+                onClick: (cell: any, row: any, event: any): unknown => getTableCell(cell, row, event),
             },
             {
                 Cell: ({ value }): ReactNode => renderCell(value),

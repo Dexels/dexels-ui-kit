@@ -14,12 +14,12 @@ export const defaultCurrencySettings = (hasRounding = false): currencyOptions =>
     };
 };
 
-export const EUR = (value: number | string, hasRounding = false) =>
+export const EUR = (value: number | string, hasRounding = false): currency =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
     });
 
-export const GBP = (value: number | string, hasRounding = false) =>
+export const GBP = (value: number | string, hasRounding = false): currency =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
         decimal: '.',
@@ -27,19 +27,19 @@ export const GBP = (value: number | string, hasRounding = false) =>
         symbol: '£ ',
     });
 
-export const KZT = (value: number | string, hasRounding = false) =>
+export const KZT = (value: number | string, hasRounding = false): currency =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
         symbol: '₸ ',
     });
 
-export const RUB = (value: number | string, hasRounding = false) =>
+export const RUB = (value: number | string, hasRounding = false): currency =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
         symbol: '₽ ',
     });
 
-export const USD = (value: number | string, hasRounding = false) =>
+export const USD = (value: number | string, hasRounding = false): currency =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
         decimal: '.',
