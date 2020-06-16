@@ -3,7 +3,7 @@ const DEFAULT_PROPERTYNAME_DESCRIPTION = 'Description';
 const DEFAULT_PROPERTYNAME_SELECTED = 'Selected';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Option = { [key: string]: any };
+type Option = { [key: string]: unknown };
 type Options = Option[];
 
 export const areAllOptionsSelected = (data: Options, propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean =>
