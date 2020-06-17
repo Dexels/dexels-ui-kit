@@ -12,6 +12,7 @@ import Table from './Table';
 
 export default {
     parameters: {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         notes,
     },
     title: 'organisms/Table',

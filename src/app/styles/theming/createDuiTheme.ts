@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Theme } from '../../types';
 
 const checkIfPropertyExists = (

@@ -142,7 +142,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
     const onMouseMove = useCallback(
         ({ target }) => {
             if (target.closest(`[${dataTooltipComponent}]`) && (!isTooltipVisible || timeoutId)) {
-                handleOnMouseOver(target.closest(`[${dataTooltipComponent}]`));
+                handleOnMouseOver(target && (target.closest(`[${dataTooltipComponent}]`) as HTMLElement));
             } else if (!target.closest(`[${dataTooltipComponent}]`) && isTooltipVisible && !timeoutId) {
                 handleOnMouseOut();
             }

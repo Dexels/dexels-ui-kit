@@ -6,6 +6,7 @@ import notes from './notes.md';
 
 export default {
     parameters: {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         notes,
     },
     title: 'organisms/Menu',
