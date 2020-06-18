@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-nested-ternary */
 // The rule below is disabled because react-table already adds it's own keys
 /* eslint-disable react/jsx-key */
