@@ -30,6 +30,7 @@ interface StyledTableProps {
 export const StyledTable = styled.table<StyledTableProps>`
     ${setBoxSizing()}
     background-color: transparent;
+    border-collapse: separate;
     border-spacing: 0;
 
     ${({ isFullWidth }): SimpleInterpolation =>
