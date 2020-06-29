@@ -138,7 +138,7 @@ const BaseComponent = (
                 <div style={{ margin: '20px 0 0' }}>
                     {'Selected items:'}
                     {getSelectedElements(optionValues).map((item) => {
-                        return <p key={item.Id as string}>{`${item.Id} - ${item.Description}`}</p>;
+                        return <p key={item.Id as string}>{`${item.Id as string} - ${item.Description as string}`}</p>;
                     })}
                     {'Selected items as string:'}
                     {value}
