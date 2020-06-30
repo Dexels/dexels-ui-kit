@@ -18,8 +18,7 @@ module.exports = {
         'prettier/react',
     ],
     rules: {
-        '@typescript-eslint/no-unsafe-call': 0, // @TODO: remove this line and fix the issues
-       '@typescript-eslint/no-empty-interface': 0,
+        '@typescript-eslint/no-empty-interface': 0,
         '@typescript-eslint/no-unused-vars': 2,
         'brace-style': [2, '1tbs'],
         curly: [2, 'all'],

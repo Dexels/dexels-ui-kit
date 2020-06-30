@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MutableRefObject, useEffect, useRef } from 'react';
 
@@ -13,7 +15,6 @@ export const useClickOutsideComponent = (
     const componentRef = useRef<any>();
 
     const onClick = (event: MouseEvent): void => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (componentRef.current && !componentRef.current.contains(event.target)) {
             handleOutsideClick(event);
         }
