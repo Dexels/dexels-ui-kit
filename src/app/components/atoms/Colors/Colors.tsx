@@ -13,12 +13,14 @@ const Colors: FunctionComponent = () => {
                     <ColorGroupName>{colorKey}</ColorGroupName>
                     {typeof theme[colorKey] === 'object' ? (
                         Object.keys(theme[colorKey]).map((colorName) => (
+                            /* eslint-disable @typescript-eslint/no-unsafe-member-access */
                             <Color color={theme[colorKey][colorName] as string} key={colorName}>
                                 <ColorText color={theme[colorKey][colorName] as string}>{colorName}</ColorText>
                                 <ColorText color={theme[colorKey][colorName] as string}>
                                     {theme[colorKey][colorName] as string}
                                 </ColorText>
                             </Color>
+                            /* eslint-enable @typescript-eslint/no-unsafe-member-access */
                         ))
                     ) : (
                         <Color color={theme[colorKey] as string} key={theme[colorKey] as string}>

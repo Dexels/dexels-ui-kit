@@ -19,7 +19,6 @@ module.exports = {
     ],
     rules: {
         '@typescript-eslint/no-unsafe-call': 0, // @TODO: remove this line and fix the issues
-        '@typescript-eslint/no-unsafe-member-access': 0, // @TODO: remove this line and fix the issues
        '@typescript-eslint/no-empty-interface': 0,
         '@typescript-eslint/no-unused-vars': 2,
         'brace-style': [2, '1tbs'],

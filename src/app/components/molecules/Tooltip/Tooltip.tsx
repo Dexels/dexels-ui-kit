@@ -139,6 +139,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
         }
     };
 
+    /* eslint-disable @typescript-eslint/no-unsafe-member-access */
     const onMouseMove = useCallback(
         ({ target }) => {
             if (target.closest(`[${dataTooltipComponent}]`) && (!isTooltipVisible || timeoutId)) {
@@ -149,6 +150,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
         },
         [hasTooltipDelay, isTooltipVisible, timeoutId]
     );
+    /* eslint-enable @typescript-eslint/no-unsafe-member-access */
 
     useEffect(() => {
         window.addEventListener('mousemove', onMouseMove);

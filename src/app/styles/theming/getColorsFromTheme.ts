@@ -6,6 +6,7 @@ export const getColorsFromTheme = (theme: Theme, colorKeys: string[]): { [key: s
     colorKeys.forEach((colorKey) => {
         if (typeof theme[colorKey] === 'object') {
             Object.keys(theme[colorKey]).forEach((colorName) => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                 colors[`${colorKey}-${colorName}`] = theme[colorKey][colorName] as string;
             });
         } else {
