@@ -59,11 +59,13 @@ export enum Elevation {
 // Since we don't want to include selection.json in our distribution bundle we came up with the following solution:
 // If the contents of selection.json ever change just run `npm run build:iconTypes` and replace the enum with
 // the output from the console.
+
 export enum IconType {
     ARROWDOWN = 'ARROWDOWN',
     ARROWLEFT = 'ARROWLEFT',
     ARROWRIGHT = 'ARROWRIGHT',
     ARROWUP = 'ARROWUP',
+    BEACH = 'BEACH',
     BOXINGGLOVE = 'BOXINGGLOVE',
     CABLE = 'CABLE',
     CALENDAR = 'CALENDAR',
@@ -111,7 +113,17 @@ export enum IconType {
     EVENTREDCARD = 'EVENTREDCARD',
     EVENTYELLOWCARD = 'EVENTYELLOWCARD',
     FIELDSOCCER = 'FIELDSOCCER',
+    FILEADD = 'FILEADD',
+    FILEDELETE = 'FILEDELETE',
+    FILEGENERIC = 'FILEGENERIC',
+    FILEREMOVE = 'FILEREMOVE',
     FLAG = 'FLAG',
+    FOLDERADD = 'FOLDERADD',
+    FOLDERDELETE = 'FOLDERDELETE',
+    FOLDERGENERIC = 'FOLDERGENERIC',
+    FOLDEROPEN = 'FOLDEROPEN',
+    FOLDERREMOVE = 'FOLDERREMOVE',
+    FOLDERSEARCH = 'FOLDERSEARCH',
     GEAR = 'GEAR',
     GENDERFEMALE = 'GENDERFEMALE',
     GENDERMALE = 'GENDERMALE',
@@ -199,6 +211,7 @@ export enum IconType {
     STATUSERROR = 'STATUSERROR',
     STATUSSUSPENDED = 'STATUSSUSPENDED',
     SUBSTITUTE = 'SUBSTITUTE',
+    SUN = 'SUN',
     SUPPORT = 'SUPPORT',
     TRANSPORT = 'TRANSPORT',
     TRASHCAN = 'TRASHCAN',
@@ -212,6 +225,7 @@ export enum IconType {
     VIDEOCAMERA = 'VIDEOCAMERA',
     VISIBILITYOFF = 'VISIBILITYOFF',
     VISIBILITYON = 'VISIBILITYON',
+    WATER = 'WATER',
     WORLD = 'WORLD',
 }
 
