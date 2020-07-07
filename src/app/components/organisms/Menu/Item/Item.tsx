@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { IconSize, IconType } from '../../../../types';
 import { IconWrapper, Inner, StyledItem, TextWrapper } from './Item.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
@@ -32,13 +33,8 @@ const Item: FunctionComponent<ItemsProps> = ({
 }) =>
     isVisible ? (
         <StyledItem hasChildren={hasChildren} isDisabled={isDisabled} isParent={isParent}>
-            <Inner
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                as={path ? NavLink : ('div' as any)}
-                exact={exact}
-                onClick={isDisabled ? null : onClick}
-                to={path}
-            >
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <Inner as={path ? NavLink : ('div' as any)} exact={exact} onClick={isDisabled ? null : onClick} to={path}>
                 <TextWrapper>
                     <TextWithOptionalIcon iconSize={IconSize.MEDIUM} iconType={iconType} isTruncatable>
                         {children}

@@ -139,16 +139,21 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
         }
     };
 
+    /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+    /* eslint-disable @typescript-eslint/no-unsafe-call */
     const onMouseMove = useCallback(
         ({ target }) => {
             if (target.closest(`[${dataTooltipComponent}]`) && (!isTooltipVisible || timeoutId)) {
-                handleOnMouseOver(target.closest(`[${dataTooltipComponent}]`));
+                handleOnMouseOver(target && (target.closest(`[${dataTooltipComponent}]`) as HTMLElement));
             } else if (!target.closest(`[${dataTooltipComponent}]`) && isTooltipVisible && !timeoutId) {
                 handleOnMouseOut();
             }
         },
         [hasTooltipDelay, isTooltipVisible, timeoutId]
     );
+
+    /* eslint-enable @typescript-eslint/no-unsafe-call */
+    /* eslint-enable @typescript-eslint/no-unsafe-member-access */
 
     useEffect(() => {
         window.addEventListener('mousemove', onMouseMove);

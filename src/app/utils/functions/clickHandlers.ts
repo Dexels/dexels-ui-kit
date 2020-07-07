@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MutableRefObject, useEffect, useRef } from 'react';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useMountEffect = (fn: (...args: any[]) => any): void => useEffect(fn, []);
 
 // This function handles the clicking outside the boundaries of the component
@@ -8,10 +10,8 @@ const useMountEffect = (fn: (...args: any[]) => any): void => useEffect(fn, []);
 export const useClickOutsideComponent = (
     handleOutsideClick: (event: MouseEvent) => void
 ): {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     componentRef: MutableRefObject<any>;
 } => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const componentRef = useRef<any>();
 
     const onClick = (event: MouseEvent): void => {

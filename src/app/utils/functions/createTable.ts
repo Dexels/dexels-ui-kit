@@ -1,6 +1,7 @@
 import {
     Column,
     TableInstance,
+    TableState,
     useColumnOrder,
     useExpanded,
     useFilters,
@@ -14,10 +15,11 @@ import {
 } from 'react-table';
 
 // Mind the order of the hooks, this is not random, but required by the package
+/* eslint-disable @typescript-eslint/ban-types */
 export const createTable = <T extends object>(
     columns: Column<T>[],
     data: T[],
-    initialState?: object
+    initialState?: Partial<TableState<T>>
 ): TableInstance<T> =>
     useTable<T>(
         {

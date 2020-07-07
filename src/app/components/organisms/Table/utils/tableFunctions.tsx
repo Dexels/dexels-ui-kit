@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { CellValue, UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import { formatDate, isValidDate } from '../../../../utils/functions/dateFunctions';
 import { IconType, Status } from '../../../../types';
