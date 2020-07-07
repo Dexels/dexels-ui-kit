@@ -257,6 +257,7 @@ export const themeBasic: Theme = {
 
         if (!validTextStylingSelectors.includes(textStyleSelector)) {
             throw new Error(
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                 `${textStyleSelector} is not a valid text styling selector. Please use one the following: ${validTextStylingSelectors}`
             );
         }

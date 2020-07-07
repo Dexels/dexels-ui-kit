@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { BrowserRouter, Route } from 'react-router-dom';
 import React, { FunctionComponent } from 'react';
 import Menu from './Menu';
@@ -6,6 +7,7 @@ import notes from './notes.md';
 
 export default {
     parameters: {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         notes,
     },
     title: 'organisms/Menu',
