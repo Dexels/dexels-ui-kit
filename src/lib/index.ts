@@ -106,5 +106,5 @@ export {
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 export { parseInputValue } from '../app/utils/functions/parseInputValue';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
-export { isValidEmail, isValidPhoneNumber } from '../app/utils/functions/validateFunctions';
+export { isEmpty, isValidEmail, isValidPhoneNumber } from '../app/utils/functions/validateFunctions';
 export { defaultCurrencySettings, formatMoney, toMoney, toMoneyValue } from '../app/utils/functions/financialFunctions';
