@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { CellValue, UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
-import { formatDate, isValidDate } from '../../../../utils/functions/dateFunctions';
 import { IconType, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
-import ContentCell from '../mockup/ContentCell/ContentCell';
+import { UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import Icon from '../../../atoms/Icon/Icon';
 import { MatchTaskStatuses } from '../mockup/StatusCell/types';
 import StatusCell from '../mockup/StatusCell/StatusCell';
@@ -60,12 +58,6 @@ export const customSortByCaseInsensitive = <T extends Record<string, unknown>>(
 ): UseTableRowProps<T>[] =>
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));
-
-export const renderCell = (value: CellValue, isCurrency?: boolean): ReactNode => (
-    <ContentCell isCurrency={isCurrency}>
-        {value instanceof Date || isValidDate(value) ? formatDate(value) : (value as ReactNode)}
-    </ContentCell>
-);
 
 export const renderSortIcon = <T extends object>(
     column: UseSortByColumnProps<T>,

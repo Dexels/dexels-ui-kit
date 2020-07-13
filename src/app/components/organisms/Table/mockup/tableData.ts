@@ -1,8 +1,6 @@
-import { Currencies, Locale, Status } from '../../../../types';
 import moment, { Moment } from 'moment';
-// import { UseGroupByRowProps, UseTableRowProps } from 'react-table';
-import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { MatchTaskStatuses } from './StatusCell/types';
+import { Status } from '../../../../types';
 
 export interface TableData {
     amount: number | string;
@@ -22,7 +20,7 @@ const makeTableData = (amount = 15): TableData[] => {
 
     for (let i = 1; i <= amount; i += 1) {
         result.push({
-            amount: formatMoney(123),
+            amount: 123,
             companyName: `Dexels ${i}`,
             firstName: `Firstname ${i}`,
             id: `${i}`,
@@ -42,7 +40,7 @@ export const tableData = (): TableData[] => {
     const result = makeTableData(100);
 
     result.push({
-        amount: formatMoney(10985),
+        amount: 10985,
         companyName: 'Dexels',
         firstName: 'Erik',
         id: '187',
@@ -55,7 +53,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(0),
+        amount: 0,
         companyName: 'Dexels',
         firstName: 'Lange voornaam',
         id: '188',
@@ -68,7 +66,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(-1),
+        amount: -1,
         companyName: 'Dexels',
         firstName: 'erik',
         id: '189',
@@ -81,7 +79,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(-10985),
+        amount: -10985,
         companyName: 'Dexels',
         firstName: 'Maria',
         id: '190',
@@ -94,7 +92,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(25.87),
+        amount: 25.87,
         companyName: 'Cygni',
         firstName: 'David',
         id: '200',
@@ -107,7 +105,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(123.5432),
+        amount: 123.5432,
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: '300',
@@ -120,7 +118,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(123.48),
+        amount: 123.48,
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: '300',
@@ -133,7 +131,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(123.42),
+        amount: 123.42,
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: '300',
@@ -146,7 +144,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(123.42, Currencies.EUR, Locale.BE),
+        amount: 123.42,
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: '300',
@@ -159,7 +157,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(652464),
+        amount: 652464,
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: '400',
@@ -172,7 +170,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney(652464, Currencies.GBP, Locale.UK),
+        amount: 652464,
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: '4001',
@@ -185,7 +183,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: formatMoney('1212'),
+        amount: 1212,
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: '500',

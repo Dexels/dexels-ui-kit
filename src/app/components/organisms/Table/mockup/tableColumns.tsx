@@ -1,9 +1,11 @@
-import { customSortByDate, renderCell, renderStatusCell } from '../utils/tableFunctions';
-import { getTableCell, renderButton } from './tableFunctions';
-import { Alignment } from '../../../../types';
+import { Alignment, ButtonSize, ButtonVariant, IconType } from '../../../../types';
+import { customSortByDate, renderStatusCell } from '../utils/tableFunctions';
+import React, { ReactNode } from 'react';
+import { Button } from '../../../molecules/Button/Button';
 import { Column } from 'react-table';
+import { ContentCell } from '../ContentCell/ContentCell';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
-import { ReactNode } from 'react';
+import { getTableCell } from './tableFunctions';
 import { sum } from '../utils/aggregateFunctions';
 import { TableData } from './tableData';
 
@@ -18,24 +20,24 @@ export const tableColumns = (): Column<TableData>[] => [
         width: 30,
     },
     {
-        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
         Header: 'First Name',
         accessor: 'firstName',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick: (cell: any, row: any, event: any): any => getTableCell(cell, row, event),
     },
     {
-        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+        Cell: ({ value }): ReactNode => <ContentCell isBold value={value} />,
         Header: 'Last Name',
         accessor: 'lastName',
     },
     {
-        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
         Header: 'Infix',
         accessor: 'infix',
     },
     {
-        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+        Cell: ({ value }): ReactNode => <ContentCell hasLineThrough value={value} />,
         Header: 'Company',
         accessor: 'companyName',
     },
@@ -47,14 +49,14 @@ export const tableColumns = (): Column<TableData>[] => [
                     true
                 )
             ),
-        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value, true),
+        Cell: ({ value }): ReactNode => <ContentCell colorNegativeAmount="red" isCurrency value={value} />,
         Header: 'Amount',
         accessor: 'amount',
         aggregate: 'sum',
         align: Alignment.RIGHT,
     },
     {
-        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
         Header: 'Startdate',
         accessor: 'relationStart',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -63,17 +65,34 @@ export const tableColumns = (): Column<TableData>[] => [
     {
         Aggregated: ({ rows }) =>
             sum(rows.map((row) => (row.values.info !== undefined ? (row.values.info as number | string) : 0))),
-        Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+        Cell: ({ value }): ReactNode => <ContentCell colorNegativeAmount="red" value={value} />,
         Header: 'Info',
         accessor: 'info',
         aggregate: 'sum',
         sortType: 'basic',
     },
     {
-        Cell: ({ row }): ReactNode => renderButton(row.index),
+        Cell: ({ value }): ReactNode => (
+            <ContentCell
+                value={
+                    <Button
+                        iconType={IconType.SELECT}
+                        onClick={(event): void => {
+                            event.stopPropagation();
+                            // eslint-disable-next-line no-alert
+                            alert(`On click => ${value}`);
+                        }}
+                        size={ButtonSize.SMALL}
+                        variant={ButtonVariant.TEXT_ONLY}
+                    >
+                        {`Button ${value}`}
+                    </Button>
+                }
+            />
+        ),
         Header: 'Action',
         accessor: 'id',
-        align: Alignment.CENTER,
+        align: Alignment.RIGHT,
         disableSortBy: true,
     },
 ];
@@ -88,24 +107,24 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
                 disableSortBy: true,
             },
             {
-                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+                Cell: ({ value }): ReactNode => <ContentCell value={value} />,
                 Header: 'First Name',
                 accessor: 'firstName',
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onClick: (cell: any, row: any, event: any): unknown => getTableCell(cell, row, event),
             },
             {
-                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+                Cell: ({ value }): ReactNode => <ContentCell isBold value={value} />,
                 Header: 'Last Name',
                 accessor: 'lastName',
             },
             {
-                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+                Cell: ({ value }): ReactNode => <ContentCell value={value} />,
                 Header: 'Infix',
                 accessor: 'infix',
             },
             {
-                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+                Cell: ({ value }): ReactNode => <ContentCell value={value} />,
                 Header: 'Startdate',
                 accessor: 'relationStart',
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -117,25 +136,43 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
         Header: 'InfoGroup',
         columns: [
             {
-                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+                Cell: ({ value }): ReactNode => <ContentCell hasLineThrough value={value} />,
                 Header: 'Company',
                 accessor: 'companyName',
             },
             {
-                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+                Cell: ({ value }): ReactNode => <ContentCell colorNegativeAmount="red" isCurrency value={value} />,
                 Header: 'Amount',
                 accessor: 'amount',
             },
             {
-                Cell: ({ value }: { value: unknown }): ReactNode => renderCell(value),
+                Cell: ({ value }): ReactNode => <ContentCell value={value} />,
                 Header: 'Info',
                 accessor: 'info',
                 sortType: 'basic',
             },
             {
-                Cell: ({ row }): ReactNode => renderButton(row.index),
+                Cell: ({ value }): ReactNode => (
+                    <ContentCell
+                        value={
+                            <Button
+                                iconType={IconType.SELECT}
+                                onClick={(event): void => {
+                                    event.stopPropagation();
+                                    // eslint-disable-next-line no-alert
+                                    alert(`On click => ${value}`);
+                                }}
+                                size={ButtonSize.SMALL}
+                                variant={ButtonVariant.TEXT_ONLY}
+                            >
+                                {`Button ${value}`}
+                            </Button>
+                        }
+                    />
+                ),
                 Header: 'Action',
                 accessor: 'id',
+                align: Alignment.RIGHT,
                 disableSortBy: true,
             },
         ],

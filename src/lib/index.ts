@@ -50,6 +50,7 @@ export { Tooltip, TooltipProps } from '../app/components/molecules/Tooltip/Toolt
 
 // Export organisms
 export { ChipStatus, ChipStatusProps, ChipStatusVariant } from '../app/components/organisms/ChipStatus';
+export { ContentCell, ContentCellProps } from '../app/components/organisms/Table/ContentCell/ContentCell';
 export {
     DateRangePicker,
     DateRangePickerProps,

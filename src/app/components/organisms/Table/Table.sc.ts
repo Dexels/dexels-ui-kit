@@ -266,20 +266,16 @@ interface TableFooterComponentProps extends ClickableProps {
     elevation: Elevation;
 }
 
-export const TableFooterComponent = styled.tfoot<TableFooterComponentProps>`
+export const TableFooterComponent = styled.caption<TableFooterComponentProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
-
-    /* Set footer height similar to TableCell height */
-    tr {
-        height: ${({ theme }): string => theme.spacing(6)};
-    }
+    caption-side: bottom;
 
     ${({ isClickable }): SimpleInterpolation =>
         isClickable &&
         css`
             cursor: pointer;
 
-            &:hover tr {
+            &:hover div {
                 ${getElevation(Elevation.LEVEL_3)}
             }
         `}
