@@ -1,18 +1,44 @@
-import { Alignment, ButtonSize, ButtonVariant, IconType } from '../../../../types';
-import { customSortByDate, renderStatusCell } from '../utils/tableFunctions';
+import { Alignment, ButtonSize, ButtonVariant, IconType, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
 import { Button } from '../../../molecules/Button/Button';
 import { Column } from 'react-table';
 import { ContentCell } from '../ContentCell/ContentCell';
+import { customSortByDate } from '../utils/tableFunctions';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { getTableCell } from './tableFunctions';
+import { StatusCell } from '../StatusCell/StatusCell';
 import { sum } from '../utils/aggregateFunctions';
 import { TableData } from './tableData';
+
+const getStatusIcon = (status: Status): IconType => {
+    switch (status) {
+        case Status.ALERT:
+            return IconType.ROUNDINFO;
+
+        case Status.DEFAULT:
+            return IconType.CHECK;
+
+        case Status.DISABLED:
+            return IconType.ROUNDHELP;
+
+        case Status.INVALID:
+            return IconType.ROUNDCROSS;
+
+        case Status.NONE:
+            return IconType.ROUNDMINUS;
+
+        case Status.VALID:
+            return IconType.CHECK;
+
+        default:
+            return IconType.CHECK;
+    }
+};
 
 export const tableColumns = (): Column<TableData>[] => [
     {
         Aggregated: () => 'Totalen',
-        Cell: ({ row, value }): ReactNode => renderStatusCell(row.original.matchTaskStatus, value),
+        Cell: ({ value }): ReactNode => <StatusCell icon={getStatusIcon(value)} status={value} />,
         accessor: 'status',
         aggregate: 'text',
         disableSortBy: true,
@@ -102,7 +128,7 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
         Header: 'Name',
         columns: [
             {
-                Cell: ({ row, value }): ReactNode => renderStatusCell(row.original.matchTaskStatus, value),
+                Cell: ({ value }): ReactNode => <StatusCell icon={getStatusIcon(value)} status={value} />,
                 accessor: 'status',
                 disableSortBy: true,
             },

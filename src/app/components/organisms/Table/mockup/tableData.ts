@@ -1,5 +1,4 @@
 import moment, { Moment } from 'moment';
-import { MatchTaskStatuses } from './StatusCell/types';
 import { Status } from '../../../../types';
 
 export interface TableData {
@@ -10,7 +9,6 @@ export interface TableData {
     infix?: string;
     info?: number;
     lastName: string;
-    matchTaskStatus: MatchTaskStatuses;
     relationStart?: Moment;
     status: Status;
 }
@@ -27,7 +25,6 @@ const makeTableData = (amount = 15): TableData[] => {
             infix: undefined,
             info: undefined,
             lastName: `Lastname ${i}`,
-            matchTaskStatus: MatchTaskStatuses.NO_FIELD,
             relationStart: moment(),
             status: Status.VALID,
         });
@@ -47,7 +44,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 66,
         lastName: 'Versteeg',
-        matchTaskStatus: MatchTaskStatuses.NO_FIELD,
         relationStart: moment(),
         status: Status.INVALID,
     });
@@ -60,7 +56,6 @@ export const tableData = (): TableData[] => {
         infix: 'een net iets te lange infix',
         info: 66,
         lastName: 'Achternaam met best veel tekens in de naam',
-        matchTaskStatus: MatchTaskStatuses.NO_FIELD,
         relationStart: moment(),
         status: Status.INVALID,
     });
@@ -73,7 +68,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 66,
         lastName: 'Versteeg',
-        matchTaskStatus: MatchTaskStatuses.NO_FIELD,
         relationStart: moment(),
         status: Status.INVALID,
     });
@@ -86,7 +80,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 45,
         lastName: 'Papadaki',
-        matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
         relationStart: undefined,
         status: Status.ALERT,
     });
@@ -99,7 +92,6 @@ export const tableData = (): TableData[] => {
         infix: 'de',
         info: 30,
         lastName: 'Lusenet',
-        matchTaskStatus: MatchTaskStatuses.NONE,
         relationStart: moment('2019-10-01'),
         status: Status.VALID,
     });
@@ -112,7 +104,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 1,
         lastName: 'Lastname 1',
-        matchTaskStatus: MatchTaskStatuses.NO_OFFICIALS,
         relationStart: moment('2018-10-01'),
         status: Status.INVALID,
     });
@@ -125,7 +116,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 1,
         lastName: 'Lastname 1 rounded +',
-        matchTaskStatus: MatchTaskStatuses.NO_OFFICIALS,
         relationStart: moment('2018-10-01'),
         status: Status.INVALID,
     });
@@ -138,7 +128,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 1,
         lastName: 'Lastname 1 rounded -',
-        matchTaskStatus: MatchTaskStatuses.NO_OFFICIALS,
         relationStart: moment('2018-10-01'),
         status: Status.INVALID,
     });
@@ -151,7 +140,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 1,
         lastName: 'Lastname 1 not rounded BE',
-        matchTaskStatus: MatchTaskStatuses.NO_OFFICIALS,
         relationStart: moment('2018-10-01'),
         status: Status.INVALID,
     });
@@ -164,7 +152,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: undefined,
         lastName: 'Lastname 2',
-        matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
         relationStart: moment(),
         status: Status.DEFAULT,
     });
@@ -177,7 +164,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: undefined,
         lastName: 'Lastname 2 UK',
-        matchTaskStatus: MatchTaskStatuses.NO_DRESSINGROOMS,
         relationStart: moment(),
         status: Status.DEFAULT,
     });
@@ -190,7 +176,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 90,
         lastName: 'Lastname 3',
-        matchTaskStatus: MatchTaskStatuses.NONE,
         relationStart: moment('2019-10-02'),
         status: Status.DISABLED,
     });
@@ -203,7 +188,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: 120,
         lastName: 'Lastname 4',
-        matchTaskStatus: MatchTaskStatuses.NONE,
         relationStart: moment('2012-10-01'),
         status: Status.NONE,
     });
@@ -216,7 +200,6 @@ export const tableData = (): TableData[] => {
         infix: undefined,
         info: undefined,
         lastName: 'Lastname 5',
-        matchTaskStatus: MatchTaskStatuses.NO_FIELD,
         relationStart: moment('2020-01-01'),
         status: Status.VALID,
     });

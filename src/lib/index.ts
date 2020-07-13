@@ -69,6 +69,7 @@ export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
 export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/organisms/Table/Paginator/Paginator';
 export { SidePanel, SidePanelProps } from '../app/components/organisms/SidePanel/SidePanel';
+export { StatusCell, StatusCellProps } from '../app/components/organisms/Table/StatusCell/StatusCell';
 // @TODO: fix depency cycle issue
 // eslint-disable-next-line import/no-cycle
 export { Table, TableProps } from '../app/components/organisms/Table/Table';

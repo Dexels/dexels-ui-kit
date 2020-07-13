@@ -1,6 +1,7 @@
 import { AmountWrapper, ImageWrapper, StyledContentCell } from './ContentCell.sc';
 import { formatDate, formatTime, isValidClockTime, isValidDate } from '../../../../utils/functions/dateFunctions';
-import React, { FunctionComponent } from 'react';
+import moment, { Moment } from 'moment';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { Locale } from '../../../../types';
 
@@ -16,12 +17,8 @@ export interface ContentCellProps {
     locale?: Locale;
     renderDateAsTime?: boolean;
     timeFormat?: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    value: any; // This really can be anything....
+    value: string | number | Date | Moment | ReactNode | undefined;
 }
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getTooltip = (value: any): string | null => (typeof value === 'string' ? value : null);
 
 export const ContentCell: FunctionComponent<ContentCellProps> = ({
     colorNegativeAmount = 'red',
@@ -37,40 +34,45 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
     timeFormat = 'HH:mm',
     value,
 }) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     let content = value;
 
+    if (typeof value !== 'number' && moment.isMoment(value)) {
+        content = formatDate(value, locale);
+    }
+
     if (isCurrency) {
-        content = value && (
-            <AmountWrapper colorNegativeAmount={colorNegativeAmount} isNegativeCurrency={value && value < 0}>
+        content = value && typeof value === 'number' && (
+            <AmountWrapper colorNegativeAmount={colorNegativeAmount} isNegativeCurrency={value < 0}>
                 {formatMoney(value)}
             </AmountWrapper>
         );
     }
 
-    if (isImage) {
+    if (isImage && typeof value === 'string') {
         content = (
             <ImageWrapper>
-                <img alt="" src={value as string} />
+                <img alt="" src={value} />
             </ImageWrapper>
         );
     }
 
-    if (renderDateAsTime) {
-        if (isValidClockTime(value)) {
-            content = formatTime(value);
-        }
+    if (typeof value === 'string') {
+        if (renderDateAsTime) {
+            if (isValidClockTime(value)) {
+                content = formatTime(value);
+            }
 
-        if (isValidDate(value)) {
-            content = formatDate(value, locale, timeFormat);
+            if (isValidDate(value)) {
+                content = formatDate(value, locale, timeFormat);
+            }
+        } else if (isValidDate(value)) {
+            content = formatDate(value, locale);
         }
-    } else if (isValidDate(value)) {
-        content = formatDate(value, locale);
     }
 
     return (
         <StyledContentCell
-            data-tooltip-component={hasTooltip ? getTooltip(content) : null}
+            data-tooltip-component={hasTooltip && typeof content === 'string' ? content : null}
             hasContentLimit={hasContentLimit}
             hasLineThrough={hasLineThrough}
             isBold={isBold}
