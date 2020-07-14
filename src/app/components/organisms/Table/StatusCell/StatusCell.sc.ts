@@ -1,6 +1,7 @@
+import StatusIndicator from '../../../atoms/StatusIndicator/StatusIndicator';
 import styled from 'styled-components';
 
-export const StyledStatusCell = styled.div`
+export const StyledStatusIndicator = styled(StatusIndicator)`
     display: flex;
     height: 100%;
 `;
