@@ -1,22 +1,26 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 
 interface StyledContentCellProps {
-    hasContentLimit: boolean;
     hasLineThrough: boolean;
     isBold: boolean;
     isCurrency: boolean;
     isDisabled: boolean;
     isImage: boolean;
+    textLinesLimit: number;
 }
 
 export const StyledContentCell = styled.div<StyledContentCellProps>`
     ${({ theme }): string => theme.textStyling('body2')}
 
-    ${({ hasContentLimit }): SimpleInterpolation =>
-        hasContentLimit &&
+    ${({ textLinesLimit }): SimpleInterpolation =>
+        textLinesLimit &&
         css`
+            white-space: normal;
             word-break: break-word;
             hyphens: auto;
+            display: -webkit-box;
+            -webkit-line-clamp: ${textLinesLimit};
+            -webkit-box-orient: vertical;
         `}
 
     ${({ hasLineThrough }): SimpleInterpolation =>

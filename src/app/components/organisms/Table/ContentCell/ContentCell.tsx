@@ -7,7 +7,6 @@ import { Locale } from '../../../../types';
 
 export interface ContentCellProps {
     colorNegativeAmount?: string;
-    hasContentLimit?: boolean;
     hasLineThrough?: boolean;
     hasTooltip?: boolean;
     isBold?: boolean;
@@ -16,13 +15,14 @@ export interface ContentCellProps {
     isImage?: boolean;
     locale?: Locale;
     renderDateAsTime?: boolean;
+    textLinesLimit?: number;
     timeFormat?: string;
     value: string | number | Date | Moment | ReactNode | undefined;
 }
 
 export const ContentCell: FunctionComponent<ContentCellProps> = ({
     colorNegativeAmount = 'red',
-    hasContentLimit = true,
+    textLinesLimit = 2,
     hasLineThrough = false,
     hasTooltip = false,
     isCurrency = false,
@@ -73,12 +73,12 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
     return (
         <StyledContentCell
             data-tooltip-component={hasTooltip && typeof content === 'string' ? content : null}
-            hasContentLimit={hasContentLimit}
             hasLineThrough={hasLineThrough}
             isBold={isBold}
             isCurrency={isCurrency}
             isDisabled={isDisabled}
             isImage={isImage}
+            textLinesLimit={textLinesLimit}
         >
             {content}
         </StyledContentCell>
