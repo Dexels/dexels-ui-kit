@@ -1,4 +1,4 @@
-export const isEmpty = (value: unknown): boolean => {
+export const isEmpty = (value: string | unknown | undefined): boolean => {
     if (typeof value === 'string') {
         return value === null || value === '';
     }
