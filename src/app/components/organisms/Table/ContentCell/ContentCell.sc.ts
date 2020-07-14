@@ -15,11 +15,13 @@ export const StyledContentCell = styled.div<StyledContentCellProps>`
     ${({ textLinesLimit }): SimpleInterpolation =>
         textLinesLimit &&
         css`
+            /* stylelint-disable-next-line value-no-vendor-prefix */
+            display: -webkit-box;
             white-space: normal;
             word-break: break-word;
             hyphens: auto;
-            display: -webkit-box;
             -webkit-line-clamp: ${textLinesLimit};
+            /* stylelint-disable-next-line property-no-vendor-prefix */
             -webkit-box-orient: vertical;
         `}
 
