@@ -1,12 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { CellValue, UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
-import { formatDate, isValidDate } from '../../../../utils/functions/dateFunctions';
-import { IconType, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
-import ContentCell from '../mockup/ContentCell/ContentCell';
+import { UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import Icon from '../../../atoms/Icon/Icon';
-import { MatchTaskStatuses } from '../mockup/StatusCell/types';
-import StatusCell from '../mockup/StatusCell/StatusCell';
+import { IconType } from '../../../../types';
 
 export const compareValues = <T extends Record<string, unknown>>(
     key: keyof UseTableRowProps<T>['values'] | keyof UseGroupByRowProps<T>['values'],
@@ -61,12 +57,6 @@ export const customSortByCaseInsensitive = <T extends Record<string, unknown>>(
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));
 
-export const renderCell = (value: CellValue, isCurrency?: boolean): ReactNode => (
-    <ContentCell isCurrency={isCurrency}>
-        {value instanceof Date || isValidDate(value) ? formatDate(value) : (value as ReactNode)}
-    </ContentCell>
-);
-
 export const renderSortIcon = <T extends object>(
     column: UseSortByColumnProps<T>,
     hasUnsortedStateIcon = false
@@ -81,7 +71,3 @@ export const renderSortIcon = <T extends object>(
 
     return iconType ? <Icon className="icon" type={iconType} /> : null;
 };
-
-export const renderStatusCell = (matchTaskStatus: MatchTaskStatuses, status: Status): JSX.Element => (
-    <StatusCell matchTaskStatus={matchTaskStatus} status={status} />
-);
