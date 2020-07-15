@@ -63,6 +63,10 @@ export {
     DropdownMultiSelectProps,
     DropdownOptionAllTexts,
 } from '../app/components/organisms/DropdownMultiSelect';
+export { FileUploader, FileUploaderProps } from '../app/components/organisms/FileUploader/FileUploader';
+// @TODO: fix depency cycle issue
+// eslint-disable-next-line import/no-cycle
+export { FileUploadDialog, FileUploadDialogProps } from '../app/components/organisms/FileUploadDialog/FileUploadDialog';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
