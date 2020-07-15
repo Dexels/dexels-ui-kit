@@ -1,5 +1,11 @@
 import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from './types';
 import { FileUploader, FileUploaderData } from './FileUploader';
+import {
+    getDroppedFileTypes,
+    getFileNames,
+    getFileSizes,
+    getTotalSizeFiles,
+} from '../../../utils/functions/fileFunctions';
 import React, { FunctionComponent } from 'react';
 import { number } from '@storybook/addon-knobs';
 
@@ -8,10 +14,10 @@ export default { title: 'organisms/FileUploader' };
 export const Configurable: FunctionComponent = () => {
     const maxFiles = number('Max files', 3);
     const maxFileSize = number('Max file size', 5);
-    const fileTypes = FileTypes.DOCUMENT;
+    const fileTypes = FileTypes.IMAGE;
 
     const [data, setData] = React.useState<FileUploaderData>({
-        bottomText: `PDF - Maximaal ${maxFileSize}MB`,
+        bottomText: `${fileTypes} - Maximaal ${maxFileSize}MB`,
         buttonText: 'Kies een bestand',
         message: 'Sleep hier een bestand om te uploaden of',
         progress: 0,
@@ -62,22 +68,16 @@ export const Configurable: FunctionComponent = () => {
     };
 
     const onDrop = async (files: FileList) => {
-        const droppedFileNames = Array.from(files).map((file) => file.name);
-        const droppedFileSizes = Array.from(files).map((file) => file.size);
-
-        const droppedFileTypes = Array.from(files).map((file) => {
-            const [type] = file.type.replace(/\/$/, '').split('/').splice(-1, 1);
-
-            return type.toUpperCase();
-        });
-
-        const filesTotalSize = droppedFileSizes.reduce((a, b) => a + b, 0) / 1000000;
+        const droppedFileNames = getFileNames(files);
+        const droppedFileSizes = getFileSizes(files);
+        const droppedFileTypes = getDroppedFileTypes(files);
+        const filesTotalSize = getTotalSizeFiles(droppedFileSizes);
 
         const changeData = (progress: LoadingProgress) => {
             setData({
                 ...data,
-                bottomText: `${parseFloat(((filesTotalSize / 100) * progress).toFixed(3))} MB / ${parseFloat(
-                    filesTotalSize.toFixed(3)
+                bottomText: `${parseFloat(((filesTotalSize / 100) * progress).toFixed(2))} MB / ${parseFloat(
+                    filesTotalSize.toFixed(2)
                 )} MB geüpload`,
                 message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'worden' : 'wordt'} geüpload`,
                 progress,
@@ -105,7 +105,7 @@ export const Configurable: FunctionComponent = () => {
             ...data,
             bottomText: `${droppedFileTypes.join(', ')} ${
                 droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
-            } - ${parseFloat(filesTotalSize.toFixed(3))} MB`,
+            } - ${parseFloat(filesTotalSize.toFixed(2))} MB`,
             message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geüpload`,
             status: FileUploaderStatus.SUCCESS,
         });

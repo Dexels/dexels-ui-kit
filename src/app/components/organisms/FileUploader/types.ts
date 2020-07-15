@@ -14,6 +14,10 @@ export enum AlertType {
 export type LoadingProgress = 0 | 25 | 50 | 75 | 100;
 
 export enum FileTypes {
-    DOCUMENT = 'PDF',
-    IMAGE = 'JPEG, PNG',
+    CSV = 'CSV',
+    EXCEL = 'XLS, XLSX',
+    IMAGE = 'BMP, GIF, JPEG, JPG, PNG',
+    PDF = 'PDF',
+    TEXT = 'TXT',
+    WORD = 'DOC, DOCX',
 }

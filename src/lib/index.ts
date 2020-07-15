@@ -112,3 +112,12 @@ export { parseInputValue } from '../app/utils/functions/parseInputValue';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
 export { isValidEmail, isValidPhoneNumber } from '../app/utils/functions/validateFunctions';
 export { defaultCurrencySettings, formatMoney, toMoney, toMoneyValue } from '../app/utils/functions/financialFunctions';
+export {
+    exceedsMaxFiles,
+    exceedsMaxFileSizes,
+    getDroppedFileTypes,
+    getFileNames,
+    getFileSizes,
+    getFileTypes,
+    getTotalSizeFiles,
+} from '../app/utils/functions/fileFunctions';

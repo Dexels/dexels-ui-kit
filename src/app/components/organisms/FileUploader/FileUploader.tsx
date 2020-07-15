@@ -14,6 +14,7 @@ import {
 } from './FileUploader.sc';
 import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from './types';
 import { ButtonVariant, IconType } from '../../../types';
+import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
 import React, { ChangeEvent, FunctionComponent } from 'react';
 import { defineFileFormats } from './utils/defineFileFormats';
 
@@ -98,9 +99,9 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         const files = getFiles();
 
         if (files) {
-            const filesNames = Array.from(files).map((file) => file.name);
-            const filesTypes = Array.from(files).map((file) => file.type);
-            const filesSizes = Array.from(files).map((file) => file.size);
+            const filesNames = getFileNames(files);
+            const filesTypes = getFileTypes(files);
+            const filesSizes = getFileSizes(files);
 
             if (files && files.length > 0) {
                 if (files.length > maxFiles) {

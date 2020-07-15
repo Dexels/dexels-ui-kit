@@ -11,7 +11,7 @@ export default { title: 'organisms/FileUploadDialog' };
 export const Configurable: FunctionComponent = () => {
     const maxFiles = number('Max files', 3);
     const maxFileSize = number('Max file size', 5);
-    const fileTypes = FileTypes.DOCUMENT;
+    const fileTypes = FileTypes.IMAGE;
     const [isVisible, setIsVisible] = React.useState(true);
     const [droppedFileNames, setDroppedFileNames] = React.useState<string[]>();
     const [droppedFileTypes, setDroppedFileTypes] = React.useState<string[]>();
