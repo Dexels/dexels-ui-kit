@@ -1,9 +1,15 @@
 import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from '../FileUploader/types';
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import {
+    getFileFormats,
+    getFileNames,
+    getFileSizes,
+    getFileTypes,
+    getTotalSizeFiles,
+} from '../../../utils/functions/fileFunctions';
 import React, { FunctionComponent } from 'react';
 import FileUploadDialog from './FileUploadDialog';
 import { FileUploaderData } from '../FileUploader/FileUploader';
-import { getTypeNames } from '../FileUploader/utils/getTypeNames';
 import { number } from '@storybook/addon-knobs';
 
 export default { title: 'organisms/FileUploadDialog' };
@@ -14,7 +20,7 @@ export const Configurable: FunctionComponent = () => {
     const fileTypes = FileTypes.IMAGE;
     const [isVisible, setIsVisible] = React.useState(true);
     const [droppedFileNames, setDroppedFileNames] = React.useState<string[]>();
-    const [droppedFileTypes, setDroppedFileTypes] = React.useState<string[]>();
+    const [droppedFileFormats, setDroppedFileFormats] = React.useState<string[]>();
     const [droppedTotalSize, setDroppedTotalSize] = React.useState<number>();
     const [description, setDescription] = React.useState<string>();
 
@@ -47,20 +53,20 @@ export const Configurable: FunctionComponent = () => {
                 break;
 
             case AlertType.SIZE:
-                changeData(
-                    `${fileNames && fileNames.join(', ')} ${
-                        fileNames && fileNames.length > 1 ? 'zijn' : 'is'
-                    } te groot om te uploaden`
-                );
+                if (fileNames) {
+                    changeData(
+                        `${fileNames.join(', ')} ${fileNames.length > 1 ? 'zijn' : 'is'} te groot om te uploaden`
+                    );
+                }
 
                 break;
 
             case AlertType.TYPE:
-                changeData(
-                    `${fileNames && fileNames.join(', ')} ${
-                        fileNames && fileNames.length > 1 ? 'hebben' : 'heeft'
-                    } de verkeerde extensie`
-                );
+                if (fileNames) {
+                    changeData(
+                        `${fileNames.join(', ')} ${fileNames.length > 1 ? 'hebben' : 'heeft'} de verkeerde extensie`
+                    );
+                }
 
                 break;
 
@@ -70,18 +76,20 @@ export const Configurable: FunctionComponent = () => {
     };
 
     const onDrop = (files: FileList) => {
-        setDroppedFileNames(Array.from(files).map((file) => file.name));
-        setDroppedFileTypes(Array.from(files).map((file) => getTypeNames(file.type)));
-
-        const fileSizes = Array.from(files).map((file) => file.size);
-        setDroppedTotalSize(fileSizes.reduce((a, b) => a + b, 0) / 1000000);
+        setDroppedFileNames(getFileNames(files));
+        const droppedFileTypes = getFileTypes(files);
+        setDroppedFileFormats(getFileFormats(droppedFileTypes));
+        const droppedFileSizes = getFileSizes(files);
+        setDroppedTotalSize(getTotalSizeFiles(droppedFileSizes));
     };
 
     const onUpload = async () => {
-        // eslint-disable-next-line no-alert
-        alert(`Start uploading with description: ${description}`);
+        if (description) {
+            // eslint-disable-next-line no-alert
+            alert(`Start uploading with description: ${description}`);
+        }
 
-        if (droppedFileTypes && droppedTotalSize && droppedFileNames) {
+        if (droppedFileFormats && droppedTotalSize && droppedFileNames) {
             const changeData = (progress: LoadingProgress) => {
                 setData({
                     ...data,
@@ -114,7 +122,7 @@ export const Configurable: FunctionComponent = () => {
 
             setData({
                 ...data,
-                bottomText: `${droppedFileTypes.join(', ')} ${
+                bottomText: `${droppedFileFormats.join(', ')} ${
                     droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
                 } - ${parseFloat(droppedTotalSize.toFixed(3))} MB`,
                 message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geüpload`,
@@ -128,10 +136,10 @@ export const Configurable: FunctionComponent = () => {
     };
 
     React.useEffect(() => {
-        if (droppedFileTypes && droppedTotalSize && droppedFileNames) {
+        if (droppedFileFormats && droppedTotalSize && droppedFileNames) {
             setData({
                 ...data,
-                bottomText: `${droppedFileTypes.join(', ')} ${
+                bottomText: `${droppedFileFormats.join(', ')} ${
                     droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
                 } - ${parseFloat(droppedTotalSize.toFixed(3))} MB`,
                 message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geselecteerd`,

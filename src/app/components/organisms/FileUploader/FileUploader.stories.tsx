@@ -1,9 +1,10 @@
 import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from './types';
 import { FileUploader, FileUploaderData } from './FileUploader';
 import {
-    getDroppedFileTypes,
+    getFileFormats,
     getFileNames,
     getFileSizes,
+    getFileTypes,
     getTotalSizeFiles,
 } from '../../../utils/functions/fileFunctions';
 import React, { FunctionComponent } from 'react';
@@ -45,20 +46,20 @@ export const Configurable: FunctionComponent = () => {
                 break;
 
             case AlertType.SIZE:
-                changeData(
-                    `${fileNames && fileNames.join(', ')} ${
-                        fileNames && fileNames.length > 1 ? 'zijn' : 'is'
-                    } te groot om te uploaden`
-                );
+                if (fileNames) {
+                    changeData(
+                        `${fileNames.join(', ')} ${fileNames.length > 1 ? 'zijn' : 'is'} te groot om te uploaden`
+                    );
+                }
 
                 break;
 
             case AlertType.TYPE:
-                changeData(
-                    `${fileNames && fileNames.join(', ')} ${
-                        fileNames && fileNames.length > 1 ? 'hebben' : 'heeft'
-                    } de verkeerde extensie`
-                );
+                if (fileNames) {
+                    changeData(
+                        `${fileNames.join(', ')} ${fileNames.length > 1 ? 'hebben' : 'heeft'} de verkeerde extensie`
+                    );
+                }
 
                 break;
 
@@ -69,8 +70,9 @@ export const Configurable: FunctionComponent = () => {
 
     const onDrop = async (files: FileList) => {
         const droppedFileNames = getFileNames(files);
+        const droppedFileTypes = getFileTypes(files);
+        const droppedFileFormats = getFileFormats(droppedFileTypes);
         const droppedFileSizes = getFileSizes(files);
-        const droppedFileTypes = getDroppedFileTypes(files);
         const filesTotalSize = getTotalSizeFiles(droppedFileSizes);
 
         const changeData = (progress: LoadingProgress) => {
@@ -103,7 +105,7 @@ export const Configurable: FunctionComponent = () => {
 
         setData({
             ...data,
-            bottomText: `${droppedFileTypes.join(', ')} ${
+            bottomText: `${droppedFileFormats.join(', ')} ${
                 droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
             } - ${parseFloat(filesTotalSize.toFixed(2))} MB`,
             message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geüpload`,

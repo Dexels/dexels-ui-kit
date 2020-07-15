@@ -1,18 +1,13 @@
-export const exceedsMaxFiles = (fileCount: number, maxFileCount: number) => fileCount > maxFileCount;
-export const exceedsMaxFileSizes = (fileSize: number, maxFileSize: number) => fileSize > maxFileSize;
+export function getTypeName(type: string): string {
+    const [typeName] = type.replace(/\/$/, '').split('/').splice(-1, 1);
 
-export const getDroppedFileTypes = (files: FileList): string[] => {
-    Array.from(files).map((file) => {
-        const [type] = file.type.replace(/\/$/, '').split('/').splice(-1, 1);
+    return typeName.toUpperCase();
+}
 
-        return type.toUpperCase();
-    });
+export const getFileFormats = (types: string[]): string[] => Array.from(types).map((type) => getTypeName(type));
 
-    return [''];
-};
-
-export const getFileNames = (files: FileList) => Array.from(files).map((file) => file.name);
-export const getFileSizes = (files: FileList) => Array.from(files).map((file) => file.size);
+export const getFileNames = (files: FileList): string[] => Array.from(files).map((file) => file.name);
+export const getFileSizes = (files: FileList): number[] => Array.from(files).map((file) => file.size);
 export const getFileTypes = (files: FileList): string[] => Array.from(files).map((file) => file.type);
 
-export const getTotalSizeFiles = (fileSizes: number[]) => fileSizes.reduce((a, b) => a + b, 0) / 1000000;
+export const getTotalSizeFiles = (fileSizes: number[]): number => fileSizes.reduce((a, b) => a + b, 0) / 1000000;

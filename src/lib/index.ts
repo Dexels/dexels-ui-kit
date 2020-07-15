@@ -115,9 +115,7 @@ export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions'
 export { isEmpty, isValidEmail, isValidPhoneNumber } from '../app/utils/functions/validateFunctions';
 export { defaultCurrencySettings, formatMoney, toMoney, toMoneyValue } from '../app/utils/functions/financialFunctions';
 export {
-    exceedsMaxFiles,
-    exceedsMaxFileSizes,
-    getDroppedFileTypes,
+    getFileFormats,
     getFileNames,
     getFileSizes,
     getFileTypes,

@@ -1,6 +1,6 @@
 import { FileTypes } from '../types';
 
-export function defineFileFormats(fileFormats: FileTypes) {
+export function defineFileFormats(fileFormats: FileTypes): string[] {
     switch (fileFormats) {
         case FileTypes.CSV:
             return ['application/text', 'text/csv', 'text/plain'];
@@ -29,10 +29,4 @@ export function defineFileFormats(fileFormats: FileTypes) {
         default:
             return [''];
     }
-}
-
-export function getTypeNames(type: string) {
-    const [typeName] = type.replace(/\/$/, '').split('/').splice(-1, 1);
-
-    return typeName.toUpperCase();
 }
