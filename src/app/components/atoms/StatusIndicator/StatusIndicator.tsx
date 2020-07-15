@@ -10,7 +10,7 @@ export interface StatusIndicatorProps {
     className?: string;
     placement?: Placement;
     size?: StatusIndicatorSize;
-    status?: Status;
+    status: Status;
 }
 
 export const StatusIndicator: FunctionComponent<StatusIndicatorProps> = ({
@@ -20,7 +20,7 @@ export const StatusIndicator: FunctionComponent<StatusIndicatorProps> = ({
     className,
     placement,
     size,
-    status = Status.DEFAULT,
+    status,
 }) => (
     <StyledStatusIndicator
         as={as}

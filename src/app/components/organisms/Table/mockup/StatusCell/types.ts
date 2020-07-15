@@ -1,7 +1,0 @@
-export enum MatchTaskStatuses {
-    NONE = 'NONE',
-    NO_DRESSINGROOMS = 'NO_DRESSINGROOMS',
-    NO_FIELD = 'NO_FIELD',
-    NO_OFFICIALS = 'NO_OFFICIALS',
-    SCHEDULED = 'SCHEDULED',
-}

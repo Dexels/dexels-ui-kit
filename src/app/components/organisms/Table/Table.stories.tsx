@@ -12,6 +12,7 @@ import Table from './Table';
 
 export default {
     parameters: {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         notes,
     },
     title: 'organisms/Table',
@@ -76,19 +77,14 @@ export const Configurable: FunctionComponent = () => {
                     elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
                     footer={
                         isFooterVisible && (
-                            <tr
+                            <div
                                 style={{
                                     backgroundColor: 'yellow',
+                                    height: '100px',
                                 }}
                             >
-                                {/* JUST COUNT COLUMNS, BUT THIS DOESN'T TAKE HIDDEN COLUMNS INTO ACCOUNT.
-                            OK WITH THAT FOR NOW IN HERE */}
-                                <td>{'First cell'}</td>
-                                <td colSpan={instance.columns.length - 2}>
-                                    {`Column count - 2: ${instance.columns.length - 2}`}
-                                </td>
-                                <td>{'Last cell'}</td>
-                            </tr>
+                                {`Column count - 2: ${instance.columns.length - 2}`}
+                            </div>
                         )
                     }
                     footerTitleColumnSpan={number('Number of columns for first footer text', 2)}

@@ -25,11 +25,9 @@ export interface DateRangePickerProps {
     focusedInput: FocusedInputShape | null;
     footerText?: DialogFooterProps['text'];
     hasYearSelector?: boolean;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    isDayHighlighted?: (day: any) => boolean;
+    isDayHighlighted?: (day: Moment) => boolean;
     isDisabled?: boolean;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    isOutsideRange?: (day: any) => boolean;
+    isOutsideRange?: (day: Moment) => boolean;
     keepOpenOnDateSelect?: boolean;
     label: ReactNode;
     labelMonth?: ReactNode;

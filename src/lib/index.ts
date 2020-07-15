@@ -50,6 +50,7 @@ export { Tooltip, TooltipProps } from '../app/components/molecules/Tooltip/Toolt
 
 // Export organisms
 export { ChipStatus, ChipStatusProps, ChipStatusVariant } from '../app/components/organisms/ChipStatus';
+export { ContentCell, ContentCellProps } from '../app/components/organisms/Table/ContentCell/ContentCell';
 export {
     DateRangePicker,
     DateRangePickerProps,
@@ -72,6 +73,7 @@ export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
 export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/organisms/Table/Paginator/Paginator';
 export { SidePanel, SidePanelProps } from '../app/components/organisms/SidePanel/SidePanel';
+export { StatusCell, StatusCellProps } from '../app/components/organisms/Table/StatusCell/StatusCell';
 // @TODO: fix depency cycle issue
 // eslint-disable-next-line import/no-cycle
 export { Table, TableProps } from '../app/components/organisms/Table/Table';
@@ -110,7 +112,7 @@ export {
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 export { parseInputValue } from '../app/utils/functions/parseInputValue';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
-export { isValidEmail, isValidPhoneNumber } from '../app/utils/functions/validateFunctions';
+export { isEmpty, isValidEmail, isValidPhoneNumber } from '../app/utils/functions/validateFunctions';
 export { defaultCurrencySettings, formatMoney, toMoney, toMoneyValue } from '../app/utils/functions/financialFunctions';
 export {
     exceedsMaxFiles,

@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 const DEFAULT_PROPERTYNAME_ID = 'Id';
 const DEFAULT_PROPERTYNAME_DESCRIPTION = 'Description';
 const DEFAULT_PROPERTYNAME_SELECTED = 'Selected';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Option = { [key: string]: unknown };
 
 export const areAllOptionsSelected = (data: Option[], propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean =>
