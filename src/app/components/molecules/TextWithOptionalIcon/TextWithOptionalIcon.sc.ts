@@ -68,6 +68,13 @@ export const IconWrapper = styled.div<IconWrapperProps>`
                 font-size: 24px;
             `
         }
+
+        ${
+            size === IconSize.XLARGE &&
+            css`
+                font-size: 28px;
+            `
+        }
     `}
 `;
 
