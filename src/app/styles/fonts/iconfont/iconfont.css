@@ -26,6 +26,45 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ICON-BEACH:before {
+    content: '\e9a3';
+}
+.ICON-SUN:before {
+    content: '\e9a4';
+}
+.ICON-WATER:before {
+    content: '\e9a5';
+}
+.ICON-FILEDELETE:before {
+    content: '\e999';
+}
+.ICON-FILEREMOVE:before {
+    content: '\e99a';
+}
+.ICON-FILEADD:before {
+    content: '\e99b';
+}
+.ICON-FOLDERSEARCH:before {
+    content: '\e99c';
+}
+.ICON-FOLDERDELETE:before {
+    content: '\e99d';
+}
+.ICON-FOLDERREMOVE:before {
+    content: '\e99e';
+}
+.ICON-FOLDERADD:before {
+    content: '\e99f';
+}
+.ICON-FOLDEROPEN:before {
+    content: '\e9a0';
+}
+.ICON-FOLDERGENERIC:before {
+    content: '\e9a1';
+}
+.ICON-FILEGENERIC:before {
+    content: '\e9a2';
+}
 .ICON-BOXINGGLOVE:before {
     content: '\e97c';
 }
