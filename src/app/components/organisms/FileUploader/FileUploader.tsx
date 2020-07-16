@@ -49,6 +49,11 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     const dropRef = React.useRef<HTMLDivElement | null>(null);
     const { status, message, buttonText, bottomText, progress } = data;
     const fileFormats = defineFileFormats(fileTypes);
+    const maxFilesRef = React.useRef<number>();
+    maxFilesRef.current = maxFiles;
+    const maxFileSizeRef = React.useRef<number>();
+    maxFileSizeRef.current = maxFileSize;
+
     enum listenerAction {
         add = 'add',
         remove = 'remove',
@@ -104,11 +109,15 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
             const filesSizes = getFileSizes(files);
 
             if (files && files.length > 0) {
-                if (files.length > maxFiles) {
+                if (!maxFilesRef.current || maxFilesRef.current <= 0 || files.length > maxFiles) {
                     onAlert(AlertType.NUMBER);
                 } else if (filesTypes.filter((type) => fileFormats.includes(type)).length === 0) {
                     onAlert(AlertType.TYPE, filesNames);
-                } else if (filesSizes.filter((size) => size / 1000000 > maxFileSize).length > 0) {
+                } else if (
+                    !maxFileSizeRef.current ||
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    filesSizes.filter((size) => size / 1000000 > maxFileSizeRef.current!).length > 0
+                ) {
                     onAlert(AlertType.SIZE, filesNames);
                 } else {
                     // eslint-disable-next-line no-use-before-define

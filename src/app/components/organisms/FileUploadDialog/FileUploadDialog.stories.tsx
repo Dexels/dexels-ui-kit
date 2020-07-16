@@ -15,9 +15,11 @@ import { number } from '@storybook/addon-knobs';
 export default { title: 'organisms/FileUploadDialog' };
 
 export const Configurable: FunctionComponent = () => {
-    const maxFiles = number('Max files', 3);
-    const maxFileSize = number('Max file size', 5);
+    const maxFileSizeRef = React.useRef<number>();
+    maxFileSizeRef.current = number('Max file size', 5);
     const fileTypes = FileTypes.IMAGE;
+    const maxFilesRef = React.useRef<number>();
+    maxFilesRef.current = number('Max files', 3);
     const [isVisible, setIsVisible] = React.useState(true);
     const [droppedFileNames, setDroppedFileNames] = React.useState<string[]>();
     const [droppedFileFormats, setDroppedFileFormats] = React.useState<string[]>();
@@ -25,7 +27,7 @@ export const Configurable: FunctionComponent = () => {
     const [description, setDescription] = React.useState<string>();
 
     const [data, setData] = React.useState<FileUploaderData>({
-        bottomText: `${fileTypes} - Maximaal ${maxFileSize}MB`,
+        bottomText: `${fileTypes} - Maximaal ${maxFileSizeRef.current}MB`,
         buttonText: 'Kies een bestand',
         message: 'Sleep hier een bestand om te uploaden of',
         progress: 0,
@@ -45,9 +47,11 @@ export const Configurable: FunctionComponent = () => {
         switch (type) {
             case AlertType.NUMBER:
                 changeData(
-                    `Er ${maxFiles > 1 ? 'kunnen' : 'kan'} maximaal ${maxFiles} ${
-                        maxFiles > 1 ? 'bestanden' : 'bestand'
-                    } per keer ${maxFiles > 1 ? 'worden' : 'wordt'} geüpload`
+                    maxFilesRef.current && maxFilesRef.current > 0
+                        ? `Er ${maxFilesRef.current > 1 ? 'kunnen' : 'kan'} maximaal ${maxFilesRef.current} ${
+                              maxFilesRef.current > 1 ? 'bestanden' : 'bestand'
+                          } per keer ${maxFilesRef.current > 1 ? 'worden' : 'wordt'} geüpload`
+                        : 'Kies het maximale aantal bestanden (meer dan null)'
                 );
 
                 break;
@@ -172,8 +176,8 @@ export const Configurable: FunctionComponent = () => {
             ]}
             inputText="Voeg een omschrijving toe (optioneel)"
             isVisible={isVisible}
-            maxFileSize={maxFileSize}
-            maxFiles={maxFiles}
+            maxFileSize={maxFileSizeRef.current}
+            maxFiles={maxFilesRef.current}
             onAlert={onAlert}
             onChangeDescription={onChangeDescription}
             onDrop={onDrop}
