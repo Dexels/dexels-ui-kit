@@ -36,7 +36,7 @@ export const FileUploaderWrapper = styled.div<StyledFileUploaderProps>`
         `;
 
         if (isDragging) {
-            uploaderCss += `
+            uploaderCss = `${uploaderCss}
                 background-color: ${theme.shades.eight};
                 ${FileUploaderContent} {
                     border: 2px dashed ${theme.shades.four};
@@ -47,7 +47,7 @@ export const FileUploaderWrapper = styled.div<StyledFileUploaderProps>`
                 }
             `;
         } else {
-            uploaderCss += `
+            uploaderCss = `${uploaderCss}
                 background-color: ${theme.shades.seven};
 
                 ${FileUploaderContent} {
@@ -60,42 +60,41 @@ export const FileUploaderWrapper = styled.div<StyledFileUploaderProps>`
     }}
 `;
 
-export const TopText = styled.div`
+const BaseText = styled.div`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
-    margin-bottom: ${({ theme }): string => theme.spacing(1.5)};
+    margin: ${({ theme }): string => theme.spacing(0, 0, 1.5)};
+`;
+
+export const TopText = styled(BaseText)`
     color: ${({ theme }): string => theme.shades.three};
 `;
 
 export const BottomText = styled.div`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
-    margin-top: ${({ theme }): string => theme.spacing(1)};
+    margin: ${({ theme }): string => theme.spacing(1, 0, 0)};
     color: ${({ theme }): string => theme.shades.three};
 `;
 
-export const StatusText = styled.div`
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
-    margin-bottom: ${({ theme }): string => theme.spacing(1.5)};
+export const StatusText = styled(BaseText)`
     color: ${({ theme }): string => theme.shades.one};
 `;
 
-export const AlertText = styled.div`
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
-    margin-bottom: ${({ theme }): string => theme.spacing(1.5)};
+export const AlertText = styled(BaseText)`
     color: ${({ theme }): string => theme.colorInvalid};
 `;
 
-export const SuccessIcon = styled(Icon)`
+const BaseIcon = styled(Icon)`
     display: block;
-    margin-bottom: ${({ theme }): string => theme.spacing(1.5)};
+    margin: ${({ theme }): string => theme.spacing(0, 0, 1.5)};
+    font-size: ${({ theme }): string => theme.spacing(4.5)};
+`;
+
+export const SuccessIcon = styled(BaseIcon)`
     color: ${({ theme }): string => theme.colorText.secondary};
-    font-size: ${({ theme }): string => theme.spacing(4.5)};
 `;
 
-export const AlertIcon = styled(Icon)`
-    display: block;
-    margin-bottom: ${({ theme }): string => theme.spacing(1.5)};
+export const AlertIcon = styled(BaseIcon)`
     color: ${({ theme }): string => theme.colorInvalid};
-    font-size: ${({ theme }): string => theme.spacing(4.5)};
 `;
 
 interface LoadingStatusProps {
