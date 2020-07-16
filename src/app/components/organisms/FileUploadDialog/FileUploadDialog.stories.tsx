@@ -18,6 +18,7 @@ import { number, select } from '@storybook/addon-knobs';
 import React, { FunctionComponent } from 'react';
 import FileUploadDialog from './FileUploadDialog';
 import { FileUploaderData } from '../FileUploader/FileUploader';
+import { simulateUploading } from '../FileUploader/utils/simulateUploading';
 
 export default { title: 'organisms/FileUploadDialog' };
 
@@ -66,21 +67,7 @@ export const Configurable: FunctionComponent = () => {
                 setData(getLoadingTranslation(droppedFileNames, droppedTotalSize, progress));
             };
 
-            await new Promise((resolve) => {
-                let progress: LoadingProgress = 0;
-                changeData(progress);
-
-                const timer = setInterval(() => {
-                    progress += 25;
-
-                    if (progress > 100) {
-                        clearInterval(timer);
-                        resolve();
-                    }
-
-                    changeData(progress as LoadingProgress);
-                }, 1000);
-            });
+            await simulateUploading(changeData);
 
             setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
         }

@@ -15,6 +15,7 @@ import {
 } from '../../../utils/functions/fileFunctions';
 import { number, select } from '@storybook/addon-knobs';
 import React, { FunctionComponent } from 'react';
+import { simulateUploading } from './utils/simulateUploading';
 
 export default { title: 'organisms/FileUploader' };
 
@@ -49,21 +50,7 @@ export const Configurable: FunctionComponent = () => {
             setData(getLoadingTranslation(droppedFileNames, filesTotalSize, progress));
         };
 
-        await new Promise((resolve) => {
-            let progress: LoadingProgress = 0;
-            changeData(progress);
-
-            const timer = setInterval(() => {
-                progress += 25;
-
-                if (progress > 100) {
-                    clearInterval(timer);
-                    resolve();
-                }
-
-                changeData(progress as LoadingProgress);
-            }, 1000);
-        });
+        await simulateUploading(changeData);
 
         setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, filesTotalSize));
     };
