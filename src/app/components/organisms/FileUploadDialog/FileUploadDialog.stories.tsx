@@ -1,7 +1,13 @@
-import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from '../FileUploader/types';
+import { AlertType, FileTypes, LoadingProgress } from '../FileUploader/types';
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import {
-    fileSizeToFixed,
+    getAlertTranslation,
+    getDefaultTranslation,
+    getLoadingTranslation,
+    getSelectedTranslation,
+    getUploadedTranslation,
+} from '../FileUploader/utils/getTranslations';
+import {
     getFileFormats,
     getFileNames,
     getFileSizes,
@@ -29,56 +35,15 @@ export const Configurable: FunctionComponent = () => {
     const [droppedTotalSize, setDroppedTotalSize] = React.useState<number>();
     const [description, setDescription] = React.useState<string>();
 
-    const [data, setData] = React.useState<FileUploaderData>({
-        bottomText: `${fileTypesRef.current} - Maximaal ${maxFileSizeRef.current}MB`,
-        buttonText: 'Kies een bestand',
-        message: 'Sleep hier een bestand om te uploaden of',
-        progress: 0,
-        status: FileUploaderStatus.DEFAULT,
-    });
+    const [data, setData] = React.useState<FileUploaderData>(
+        getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current)
+    );
 
     const onAlert = (type: AlertType, fileNames?: string[]) => {
-        const changeData = (message: string) => {
-            setData({
-                ...data,
-                buttonText: 'Kies een ander bestand',
-                message,
-                status: FileUploaderStatus.ALERT,
-            });
-        };
-
-        switch (type) {
-            case AlertType.NUMBER:
-                changeData(
-                    maxFilesRef.current && maxFilesRef.current > 0
-                        ? `Er ${maxFilesRef.current > 1 ? 'kunnen' : 'kan'} maximaal ${maxFilesRef.current} ${
-                              maxFilesRef.current > 1 ? 'bestanden' : 'bestand'
-                          } per keer ${maxFilesRef.current > 1 ? 'worden' : 'wordt'} geüpload`
-                        : 'Kies het maximale aantal bestanden (meer dan null)'
-                );
-
-                break;
-
-            case AlertType.SIZE:
-                if (fileNames) {
-                    changeData(
-                        `${fileNames.join(', ')} ${fileNames.length > 1 ? 'zijn' : 'is'} te groot om te uploaden`
-                    );
-                }
-
-                break;
-
-            case AlertType.TYPE:
-                if (fileNames) {
-                    changeData(
-                        `${fileNames.join(', ')} ${fileNames.length > 1 ? 'hebben' : 'heeft'} de verkeerde extensie`
-                    );
-                }
-
-                break;
-
-            default:
-                break;
+        if (fileTypesRef.current && fileNames && maxFilesRef.current && maxFileSizeRef.current) {
+            setData(
+                getAlertTranslation(type, fileTypesRef.current, fileNames, maxFilesRef.current, maxFileSizeRef.current)
+            );
         }
     };
 
@@ -98,17 +63,7 @@ export const Configurable: FunctionComponent = () => {
 
         if (droppedFileFormats && droppedTotalSize && droppedFileNames) {
             const changeData = (progress: LoadingProgress) => {
-                setData({
-                    ...data,
-                    bottomText: `${fileSizeToFixed((droppedTotalSize / 100) * progress)} MB / ${fileSizeToFixed(
-                        droppedTotalSize
-                    )} MB geüpload`,
-                    message: `${droppedFileNames.join(', ')} ${
-                        droppedFileNames.length > 1 ? 'worden' : 'wordt'
-                    } geüpload`,
-                    progress,
-                    status: FileUploaderStatus.LOADING,
-                });
+                setData(getLoadingTranslation(droppedFileNames, droppedTotalSize, progress));
             };
 
             await new Promise((resolve) => {
@@ -127,14 +82,7 @@ export const Configurable: FunctionComponent = () => {
                 }, 1000);
             });
 
-            setData({
-                ...data,
-                bottomText: `${droppedFileFormats.join(', ')} ${
-                    droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
-                } - ${fileSizeToFixed(droppedTotalSize)} MB`,
-                message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geüpload`,
-                status: FileUploaderStatus.SUCCESS,
-            });
+            setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
         }
     };
 
@@ -144,26 +92,13 @@ export const Configurable: FunctionComponent = () => {
 
     React.useEffect(() => {
         if (fileTypesRef.current && maxFileSizeRef.current) {
-            setData({
-                bottomText: `${fileTypesRef.current} - Maximaal ${maxFileSizeRef.current}MB`,
-                buttonText: 'Kies een bestand',
-                message: 'Sleep hier een bestand om te uploaden of',
-                progress: 0,
-                status: FileUploaderStatus.DEFAULT,
-            });
+            setData(getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current));
         }
     }, [maxFileSizeRef.current, fileTypesRef.current]);
 
     React.useEffect(() => {
         if (droppedFileFormats && droppedTotalSize && droppedFileNames) {
-            setData({
-                ...data,
-                bottomText: `${droppedFileFormats.join(', ')} ${
-                    droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
-                } - ${fileSizeToFixed(droppedTotalSize)} MB`,
-                message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geselecteerd`,
-                status: FileUploaderStatus.SUCCESS,
-            });
+            setData(getSelectedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
         }
     }, [droppedTotalSize]);
 
