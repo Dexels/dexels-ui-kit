@@ -8,20 +8,21 @@ import {
     getTotalSizeFiles,
 } from '../../../utils/functions/fileFunctions';
 import { FileUploader, FileUploaderData } from './FileUploader';
+import { number, select } from '@storybook/addon-knobs';
 import React, { FunctionComponent } from 'react';
-import { number } from '@storybook/addon-knobs';
 
 export default { title: 'organisms/FileUploader' };
 
 export const Configurable: FunctionComponent = () => {
     const maxFileSizeRef = React.useRef<number>();
     maxFileSizeRef.current = number('Max file size', 5);
-    const fileTypes = FileTypes.IMAGE;
+    const fileTypesRef = React.useRef<FileTypes>();
+    fileTypesRef.current = select('Transition type', FileTypes, FileTypes.IMAGE);
     const maxFilesRef = React.useRef<number>();
     maxFilesRef.current = number('Max files', 3);
 
     const [data, setData] = React.useState<FileUploaderData>({
-        bottomText: `${fileTypes} - Maximaal ${maxFileSizeRef.current}MB`,
+        bottomText: `${fileTypesRef.current} - Maximaal ${maxFileSizeRef.current}MB`,
         buttonText: 'Kies een bestand',
         message: 'Sleep hier een bestand om te uploaden of',
         progress: 0,
@@ -118,10 +119,22 @@ export const Configurable: FunctionComponent = () => {
         });
     };
 
+    React.useEffect(() => {
+        if (fileTypesRef.current && maxFileSizeRef.current) {
+            setData({
+                bottomText: `${fileTypesRef.current} - Maximaal ${maxFileSizeRef.current}MB`,
+                buttonText: 'Kies een bestand',
+                message: 'Sleep hier een bestand om te uploaden of',
+                progress: 0,
+                status: FileUploaderStatus.DEFAULT,
+            });
+        }
+    }, [maxFileSizeRef.current, fileTypesRef.current]);
+
     return (
         <FileUploader
             data={data}
-            fileTypes={fileTypes}
+            fileTypes={fileTypesRef.current}
             maxFileSize={maxFileSizeRef.current}
             maxFiles={maxFilesRef.current}
             onAlert={onAlert}

@@ -48,7 +48,8 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     const [dragCounter, setDragCounter] = React.useState(0);
     const dropRef = React.useRef<HTMLDivElement | null>(null);
     const { status, message, buttonText, bottomText, progress } = data;
-    const fileFormats = defineFileFormats(fileTypes);
+    const fileFormatsRef = React.useRef<string[]>();
+    fileFormatsRef.current = defineFileFormats(fileTypes);
     const maxFilesRef = React.useRef<number>();
     maxFilesRef.current = maxFiles;
     const maxFileSizeRef = React.useRef<number>();
@@ -105,13 +106,16 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
 
         if (files) {
             const filesNames = getFileNames(files);
-            const filesTypes = getFileTypes(files);
+            const droppedFilesTypes = getFileTypes(files);
             const filesSizes = getFileSizes(files);
 
             if (files && files.length > 0) {
                 if (!maxFilesRef.current || maxFilesRef.current <= 0 || files.length > maxFiles) {
                     onAlert(AlertType.NUMBER);
-                } else if (filesTypes.filter((type) => fileFormats.includes(type)).length === 0) {
+                } else if (
+                    droppedFilesTypes.filter((type) => fileFormatsRef.current && fileFormatsRef.current.includes(type))
+                        .length === 0
+                ) {
                     onAlert(AlertType.TYPE, filesNames);
                 } else if (
                     !maxFileSizeRef.current ||
