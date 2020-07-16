@@ -1,12 +1,13 @@
 import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from './types';
-import { FileUploader, FileUploaderData } from './FileUploader';
 import {
+    fileSizeToFixed,
     getFileFormats,
     getFileNames,
     getFileSizes,
     getFileTypes,
     getTotalSizeFiles,
 } from '../../../utils/functions/fileFunctions';
+import { FileUploader, FileUploaderData } from './FileUploader';
 import React, { FunctionComponent } from 'react';
 import { number } from '@storybook/addon-knobs';
 
@@ -82,8 +83,8 @@ export const Configurable: FunctionComponent = () => {
         const changeData = (progress: LoadingProgress) => {
             setData({
                 ...data,
-                bottomText: `${parseFloat(((filesTotalSize / 100) * progress).toFixed(2))} MB / ${parseFloat(
-                    filesTotalSize.toFixed(2)
+                bottomText: `${fileSizeToFixed((filesTotalSize / 100) * progress)} MB / ${fileSizeToFixed(
+                    filesTotalSize
                 )} MB geüpload`,
                 message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'worden' : 'wordt'} geüpload`,
                 progress,
@@ -111,7 +112,7 @@ export const Configurable: FunctionComponent = () => {
             ...data,
             bottomText: `${droppedFileFormats.join(', ')} ${
                 droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
-            } - ${parseFloat(filesTotalSize.toFixed(2))} MB`,
+            } - ${fileSizeToFixed(filesTotalSize)} MB`,
             message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geüpload`,
             status: FileUploaderStatus.SUCCESS,
         });

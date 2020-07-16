@@ -1,6 +1,7 @@
 import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from '../FileUploader/types';
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import {
+    fileSizeToFixed,
     getFileFormats,
     getFileNames,
     getFileSizes,
@@ -97,8 +98,8 @@ export const Configurable: FunctionComponent = () => {
             const changeData = (progress: LoadingProgress) => {
                 setData({
                     ...data,
-                    bottomText: `${parseFloat(((droppedTotalSize / 100) * progress).toFixed(3))} MB / ${parseFloat(
-                        droppedTotalSize.toFixed(3)
+                    bottomText: `${fileSizeToFixed((droppedTotalSize / 100) * progress)} MB / ${fileSizeToFixed(
+                        droppedTotalSize
                     )} MB geüpload`,
                     message: `${droppedFileNames.join(', ')} ${
                         droppedFileNames.length > 1 ? 'worden' : 'wordt'
@@ -128,7 +129,7 @@ export const Configurable: FunctionComponent = () => {
                 ...data,
                 bottomText: `${droppedFileFormats.join(', ')} ${
                     droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
-                } - ${parseFloat(droppedTotalSize.toFixed(3))} MB`,
+                } - ${fileSizeToFixed(droppedTotalSize)} MB`,
                 message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geüpload`,
                 status: FileUploaderStatus.SUCCESS,
             });
@@ -145,7 +146,7 @@ export const Configurable: FunctionComponent = () => {
                 ...data,
                 bottomText: `${droppedFileFormats.join(', ')} ${
                     droppedFileNames.length > 1 ? 'bestanden' : 'bestand'
-                } - ${parseFloat(droppedTotalSize.toFixed(3))} MB`,
+                } - ${fileSizeToFixed(droppedTotalSize)} MB`,
                 message: `${droppedFileNames.join(', ')} ${droppedFileNames.length > 1 ? 'zijn' : 'is'} geselecteerd`,
                 status: FileUploaderStatus.SUCCESS,
             });

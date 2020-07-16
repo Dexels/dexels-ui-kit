@@ -11,3 +11,11 @@ export const getFileSizes = (files: FileList): number[] => Array.from(files).map
 export const getFileTypes = (files: FileList): string[] => Array.from(files).map((file) => file.type);
 
 export const getTotalSizeFiles = (fileSizes: number[]): number => fileSizes.reduce((a, b) => a + b, 0) / 1000000;
+
+export const fileSizeToFixed = (size: number): number => {
+    if (size < 1) {
+        return parseFloat(size.toFixed(3));
+    }
+
+    return parseFloat(size.toFixed(2));
+};
