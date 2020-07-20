@@ -91,10 +91,7 @@ export const Configurable: FunctionComponent = () => {
 
     return (
         <FileUploadDialog
-            data={data}
-            description={description}
-            fileTypes={fileTypesRef.current}
-            footerButtons={[
+            buttons={[
                 {
                     children: 'Sluit',
                     iconType: IconType.CROSS,
@@ -111,6 +108,9 @@ export const Configurable: FunctionComponent = () => {
                     size: ButtonSize.SMALL,
                 },
             ]}
+            data={data}
+            description={description}
+            fileTypes={fileTypesRef.current}
             inputText="Voeg een omschrijving toe (optioneel)"
             isVisible={isVisible}
             maxFileSize={maxFileSizeRef.current}

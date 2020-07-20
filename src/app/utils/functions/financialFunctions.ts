@@ -82,3 +82,29 @@ export const formatMoney = (
     currencyType: Currencies = Currencies.EUR,
     locale?: Locale
 ): string => toMoney(value, currencyType, locale).format(true);
+
+export const formatMoneyWithoutSymbol = (
+    value: number | string,
+    currencyType: Currencies = Currencies.EUR,
+    locale?: Locale
+): string => toMoney(value, currencyType, locale).format(false);
+
+export const getCurrencySymbol = (locale: Locale): string => {
+    switch (locale) {
+        case Locale.KZ:
+            return '₸';
+
+        case Locale.RU:
+            return '₽';
+
+        case Locale.US:
+            return '$';
+
+        case Locale.UK || Locale.GB:
+            return '£';
+
+        default:
+            // Default is Euro
+            return '€';
+    }
+};

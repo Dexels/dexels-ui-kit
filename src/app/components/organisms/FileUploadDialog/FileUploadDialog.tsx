@@ -6,11 +6,11 @@ import { Dialog } from '../Dialog';
 import { FileUploaderData } from '../FileUploader/FileUploader';
 
 export interface FileUploadDialogProps {
+    buttons: DialogFooterProps['buttons'];
     className?: string;
     data: FileUploaderData;
     description?: string;
     fileTypes: FileTypes;
-    footerButtons: DialogFooterProps['buttons'];
     inputText: string;
     isVisible: boolean;
     maxFileSize?: number;
@@ -22,21 +22,21 @@ export interface FileUploadDialogProps {
 }
 
 export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
+    buttons,
     className,
     data,
     onAlert,
     onDrop,
     onChangeDescription,
-    maxFileSize = 1,
-    maxFiles,
+    maxFileSize = 5,
+    maxFiles = 1,
     fileTypes,
     isVisible,
-    footerButtons,
     title,
     inputText,
     description,
 }) => (
-    <Dialog className={className} footerButtons={footerButtons} isVisible={isVisible}>
+    <Dialog className={className} footerButtons={buttons} isVisible={isVisible}>
         <StyledTextWithOptionalIcon iconSize={IconSize.XLARGE} iconType={IconType.FILEADD}>
             {title}
         </StyledTextWithOptionalIcon>
