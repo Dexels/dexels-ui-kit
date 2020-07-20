@@ -23,3 +23,9 @@ export const isValidPhoneNumber = (value: string): boolean => {
 
     return phoneRegExp.test(value);
 };
+
+export const isValidMoneyAmount = (value: string): boolean => {
+    const moneyRegExp = /^[0-9]{0,3}(\.[0-9]{3})*(,[0-9]{1,2})?$/;
+
+    return moneyRegExp.test(value);
+};
