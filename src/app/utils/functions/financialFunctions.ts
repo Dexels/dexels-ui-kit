@@ -1,16 +1,36 @@
 import { Currencies, Locale } from '../../types';
 import currency, { Options as currencyOptions } from 'currency.js';
 
+export const getCurrencySymbol = (locale: Locale): string => {
+    switch (locale) {
+        case Locale.KZ:
+            return '₸';
+
+        case Locale.RU:
+            return '₽';
+
+        case Locale.US:
+            return '$';
+
+        case Locale.UK || Locale.GB:
+            return '£';
+
+        default:
+            // Default is Euro
+            return '€';
+    }
+};
+
 export const defaultCurrencySettings = (hasRounding = false): currencyOptions => {
     return {
         decimal: ',',
-        formatWithSymbol: true,
+        fromCents: false,
         increment: hasRounding ? 0.05 : 0,
         negativePattern: '-!#',
         pattern: '!#',
         precision: 2,
         separator: '.',
-        symbol: '€ ',
+        symbol: `${getCurrencySymbol(Locale.NL)} `,
     };
 };
 
@@ -24,19 +44,19 @@ export const GBP = (value: number | string, hasRounding = false): currency =>
         ...defaultCurrencySettings(hasRounding),
         decimal: '.',
         separator: ',',
-        symbol: '£ ',
+        symbol: `${getCurrencySymbol(Locale.GB)} `,
     });
 
 export const KZT = (value: number | string, hasRounding = false): currency =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
-        symbol: '₸ ',
+        symbol: `${getCurrencySymbol(Locale.KZ)} `,
     });
 
 export const RUB = (value: number | string, hasRounding = false): currency =>
     currency(value, {
         ...defaultCurrencySettings(hasRounding),
-        symbol: '₽ ',
+        symbol: `${getCurrencySymbol(Locale.RU)} `,
     });
 
 export const USD = (value: number | string, hasRounding = false): currency =>
@@ -44,7 +64,7 @@ export const USD = (value: number | string, hasRounding = false): currency =>
         ...defaultCurrencySettings(hasRounding),
         decimal: '.',
         separator: ',',
-        symbol: '$ ',
+        symbol: `${getCurrencySymbol(Locale.US)} `,
     });
 
 export const toMoney = (
@@ -81,30 +101,21 @@ export const formatMoney = (
     value: number | string,
     currencyType: Currencies = Currencies.EUR,
     locale?: Locale
-): string => toMoney(value, currencyType, locale).format(true);
+): string => {
+    const options = { ...defaultCurrencySettings(locale && locale === Locale.NL) };
+
+    return toMoney(value, currencyType, locale).format(options);
+};
 
 export const formatMoneyWithoutSymbol = (
     value: number | string,
     currencyType: Currencies = Currencies.EUR,
     locale?: Locale
-): string => toMoney(value, currencyType, locale).format(false);
+): string => {
+    const options = {
+        ...defaultCurrencySettings(locale && locale === Locale.NL),
+        symbol: '',
+    };
 
-export const getCurrencySymbol = (locale: Locale): string => {
-    switch (locale) {
-        case Locale.KZ:
-            return '₸';
-
-        case Locale.RU:
-            return '₽';
-
-        case Locale.US:
-            return '$';
-
-        case Locale.UK || Locale.GB:
-            return '£';
-
-        default:
-            // Default is Euro
-            return '€';
-    }
+    return toMoney(value, currencyType, locale).format(options);
 };
