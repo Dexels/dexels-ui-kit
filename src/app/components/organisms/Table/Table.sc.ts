@@ -1,8 +1,9 @@
 import { Alignment, Elevation } from '../../../types';
-import { getAlignment, setTruncate } from '../../../../lib';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import getAlignment from '../../../styles/mixins/getAlignment';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
+import setTruncate from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 const alignRightSpacing = 2; // value is the spacing value from the theme

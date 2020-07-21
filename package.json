@@ -1,6 +1,6 @@
 {
     "name": "dexels-ui-kit",
-    "version": "5.11.3",
+    "version": "5.12.2",
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
@@ -57,7 +57,7 @@
         "@types/react-dates": "^17.1.13",
         "@types/react-table": "^7.0.19",
         "@types/styled-components": "^5.1.0",
-        "currency.js": "^2.0.0",
+        "currency.js": "^2.0.2",
         "moment": "^2.27.0",
         "react": "^16.13.1",
         "react-dates": "^21.8.0",
