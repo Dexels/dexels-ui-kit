@@ -1,7 +1,7 @@
 import { Currencies, Locale } from '../../types';
 import currency, { Options as currencyOptions } from 'currency.js';
 
-export const getCurrencySymbol = (locale: Locale): string => {
+export const getCurrencySymbol = (locale?: Locale): string => {
     switch (locale) {
         case Locale.KZ:
             return '₸';
