@@ -1,9 +1,12 @@
 import { AlertType, FileTypes } from '../FileUploader/types';
-import { DialogFooterProps, IconSize, IconType, Input, InputType, parseInputValue } from '../../../../lib';
+import { IconSize, IconType, InputType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { StyledFileUploader, StyledTextWithOptionalIcon } from './FileUploadDialog.sc';
 import { Dialog } from '../Dialog';
+import { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import { FileUploaderData } from '../FileUploader/FileUploader';
+import Input from '../../molecules/Input/Input';
+import parseInputValue from '../../../utils/functions/parseInputValue';
 
 export interface FileUploadDialogProps {
     buttons: DialogFooterProps['buttons'];

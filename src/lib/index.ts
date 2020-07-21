@@ -8,6 +8,55 @@ import '../app/styles/fonts/opensans/opensans.css';
 // Export common types
 export * from '../app/types';
 
+// Export theming
+export { themeBasic } from '../app/styles/theming/themes/basic';
+export { themeDark } from '../app/styles/theming/themes/dark';
+export { createDuiTheme } from '../app/styles/theming/createDuiTheme';
+
+// Export mixins
+export { getAlignment } from '../app/styles/mixins/getAlignment';
+export { getElevation } from '../app/styles/mixins/getElevation';
+export { getPosition } from '../app/styles/mixins/getPosition';
+export { getStatusColor } from '../app/styles/mixins/getStatusColor';
+export { getStatusIndicator } from '../app/styles/mixins/getStatusIndicator';
+export { rippleEffect, rippleEffectInit, rippleEffectReset } from '../app/styles/mixins/rippleEffect';
+export { setBoxSizing } from '../app/styles/mixins/setBoxSizing';
+export { setCentered } from '../app/styles/mixins/setCentered';
+export { setTruncate } from '../app/styles/mixins/setTruncate';
+
+// Export functions
+export { areAllOptionsSelected } from '../app/utils/functions/arrayObjectFunctions';
+export { cloneArray } from '../app/utils/functions/arrayFunctions';
+export { convertLocale } from '../app/utils/functions/localeFunctions';
+export { createTable } from '../app/utils/functions/createTable';
+export {
+    isValidStringDate,
+    isValidDate,
+    isValidClockTime,
+    formatAsSystemDate,
+    formatDate,
+    formatTime,
+} from '../app/utils/functions/dateFunctions';
+export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
+export { parseInputValue } from '../app/utils/functions/parseInputValue';
+export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
+export { isEmpty, isValidEmail, isValidPhoneNumber } from '../app/utils/functions/validateFunctions';
+export {
+    defaultCurrencySettings,
+    formatMoney,
+    formatMoneyWithoutSymbol,
+    getCurrencySymbol,
+    toMoney,
+    toMoneyValue,
+} from '../app/utils/functions/financialFunctions';
+export {
+    getFileFormats,
+    getFileNames,
+    getFileSizes,
+    getFileTypes,
+    getTotalSizeFiles,
+} from '../app/utils/functions/fileFunctions';
+
 // Export atoms
 export { Card, CardProps } from '../app/components/atoms/Card/Card';
 export { ErrorMessage, ErrorMessageProps } from '../app/components/atoms/ErrorMessage/ErrorMessage';
@@ -65,8 +114,6 @@ export {
     DropdownOptionAllTexts,
 } from '../app/components/organisms/DropdownMultiSelect';
 export { FileUploader, FileUploaderProps } from '../app/components/organisms/FileUploader/FileUploader';
-// @TODO: fix depency cycle issue
-// eslint-disable-next-line import/no-cycle
 export { FileUploadDialog, FileUploadDialogProps } from '../app/components/organisms/FileUploadDialog/FileUploadDialog';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
@@ -74,57 +121,6 @@ export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
 export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/organisms/Table/Paginator/Paginator';
 export { SidePanel, SidePanelProps } from '../app/components/organisms/SidePanel/SidePanel';
 export { StatusCell, StatusCellProps } from '../app/components/organisms/Table/StatusCell/StatusCell';
-// @TODO: fix depency cycle issue
-// eslint-disable-next-line import/no-cycle
 export { Table, TableProps } from '../app/components/organisms/Table/Table';
 export { Tab, Tabs, TabsProps } from '../app/components/organisms/Tabs/Tabs';
 export { Toolbar, ToolbarProps } from '../app/components/organisms/Toolbar/Toolbar';
-
-// Export theming
-export { themeBasic } from '../app/styles/theming/themes/basic';
-export { themeDark } from '../app/styles/theming/themes/dark';
-export { createDuiTheme } from '../app/styles/theming/createDuiTheme';
-
-// Export mixins
-export { getAlignment } from '../app/styles/mixins/getAlignment';
-export { getElevation } from '../app/styles/mixins/getElevation';
-export { getPosition } from '../app/styles/mixins/getPosition';
-export { getStatusColor } from '../app/styles/mixins/getStatusColor';
-export { getStatusIndicator } from '../app/styles/mixins/getStatusIndicator';
-export { rippleEffect, rippleEffectInit, rippleEffectReset } from '../app/styles/mixins/rippleEffect';
-export { setBoxSizing } from '../app/styles/mixins/setBoxSizing';
-export { setCentered } from '../app/styles/mixins/setCentered';
-export { setTruncate } from '../app/styles/mixins/setTruncate';
-
-// Export functions
-export { areAllOptionsSelected } from '../app/utils/functions/arrayObjectFunctions';
-export { cloneArray } from '../app/utils/functions/arrayFunctions';
-export { convertLocale } from '../app/utils/functions/localeFunctions';
-export { createTable } from '../app/utils/functions/createTable';
-export {
-    isValidStringDate,
-    isValidDate,
-    isValidClockTime,
-    formatAsSystemDate,
-    formatDate,
-    formatTime,
-} from '../app/utils/functions/dateFunctions';
-export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
-export { parseInputValue } from '../app/utils/functions/parseInputValue';
-export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
-export { isEmpty, isValidEmail, isValidPhoneNumber } from '../app/utils/functions/validateFunctions';
-export {
-    defaultCurrencySettings,
-    formatMoney,
-    formatMoneyWithoutSymbol,
-    getCurrencySymbol,
-    toMoney,
-    toMoneyValue,
-} from '../app/utils/functions/financialFunctions';
-export {
-    getFileFormats,
-    getFileNames,
-    getFileSizes,
-    getFileTypes,
-    getTotalSizeFiles,
-} from '../app/utils/functions/fileFunctions';
