@@ -8,6 +8,7 @@ export const StyledInputCurrency = styled.div`
 `;
 
 interface CurrencySymbolProps {
+    hasValue: boolean;
     isDisabled: boolean;
     variant: InputVariant;
 }
@@ -19,6 +20,12 @@ export const CurrencySymbol = styled.div<CurrencySymbolProps>`
     outline: none;
     border: 0;
     background-color: transparent;
+
+    ${({ hasValue, theme }): SimpleInterpolation =>
+        !hasValue &&
+        css`
+            color: ${theme.shades.three};
+        `}
 
     ${({ variant }): SimpleInterpolation =>
         variant === InputVariant.COMPACT &&

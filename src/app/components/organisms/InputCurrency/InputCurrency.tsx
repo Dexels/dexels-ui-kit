@@ -15,6 +15,7 @@ export interface InputCurrencyProps {
     isDisabled?: boolean;
     label: ReactNode;
     name: string;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     value?: string;
     variant?: InputVariant;
 }
@@ -23,20 +24,26 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     allowEmpty = true,
     className,
     errorMessage,
+    hasCurrencySymbol = true,
+    hasValidColor = false,
     isDisabled = false,
     label,
     name,
-    hasCurrencySymbol = true,
-    hasValidColor = false,
+    onChange,
     value,
     variant = InputVariant.OUTLINE,
 }) => {
     const [inputValue, setInputValue] = useState(value);
     const [isValid, setIsValid] = useState(value ? isValidMoney(value) : allowEmpty);
+    const hasValue = inputValue ? inputValue.length > 0 : false;
 
-    const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
         setInputValue(event.currentTarget.value);
         setIsValid(event.currentTarget.value ? isValidMoney(event.currentTarget.value) : allowEmpty);
+
+        if (onChange) {
+            onChange(event);
+        }
     };
 
     return (
@@ -50,14 +57,14 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 isValid={hasValidColor && isValid}
                 label={label}
                 name={name}
-                onChange={onChange}
+                onChange={onChangeInput}
                 type={InputType.TEXT}
                 value={inputValue}
                 variant={variant}
             />
 
             {hasCurrencySymbol && (
-                <CurrencySymbol isDisabled={isDisabled} variant={variant}>
+                <CurrencySymbol hasValue={hasValue} isDisabled={isDisabled} variant={variant}>
                     {getCurrencySymbol()}
                 </CurrencySymbol>
             )}
