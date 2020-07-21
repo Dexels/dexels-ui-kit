@@ -116,6 +116,7 @@ export {
 export { FileUploader, FileUploaderProps } from '../app/components/organisms/FileUploader/FileUploader';
 export { FileUploadDialog, FileUploadDialogProps } from '../app/components/organisms/FileUploadDialog/FileUploadDialog';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';
+export { InputCurrency, InputCurrencyProps } from '../app/components/organisms/InputCurrency/InputCurrency';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
 export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/organisms/Table/Paginator/Paginator';

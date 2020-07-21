@@ -1,7 +1,7 @@
 import { CurrencySymbol, StyledInputCurrency } from './InputCurrency.sc';
 import { InputType, InputVariant } from '../../../types';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useState } from 'react';
-import { getCurrencySymbol } from '../../../../lib';
+import { getCurrencySymbol } from '../../../utils/functions/financialFunctions';
 import Input from '../../molecules/Input/Input';
 import { isValidMoney } from '../../../utils/functions/validateFunctions';
 
