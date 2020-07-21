@@ -82,6 +82,7 @@ StyledInput.defaultProps = {
 };
 
 interface TextFieldProps extends StyledInputBaseProps {
+    hasTextIdentation: boolean;
     isHovered: boolean;
     isTextarea: boolean;
     type: InputType;
@@ -94,6 +95,12 @@ export const TextField = styled.input<TextFieldProps>`
     background-color: transparent;
     width: 100%;
     color: ${({ theme }): string => theme.colorTextBody.primary};
+
+    ${({ hasTextIdentation }): SimpleInterpolation =>
+        hasTextIdentation &&
+        css`
+            text-indent: 10px;
+        `}
 
     ${({ theme, variant }): SimpleInterpolation =>
         variant === InputVariant.COMPACT &&

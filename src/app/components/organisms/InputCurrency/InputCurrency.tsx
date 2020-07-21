@@ -1,14 +1,18 @@
+import { CurrencySymbol, StyledInputCurrency } from './InputCurrency.sc';
 import { InputType, InputVariant } from '../../../types';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useState } from 'react';
-import { Input } from '../../../../lib';
+import { getCurrencySymbol } from '../../../../lib';
+import Input from '../../molecules/Input/Input';
+import { isValidMoney } from '../../../utils/functions/validateFunctions';
 
 export interface InputCurrencyProps {
+    allowEmpty?: boolean;
     children?: never;
     className?: string;
     errorMessage?: ReactNode;
-    hasError?: boolean;
+    hasCurrencySymbol?: boolean;
+    hasValidColor?: boolean;
     isDisabled?: boolean;
-    isValid?: boolean;
     label: ReactNode;
     name: string;
     value?: string;
@@ -16,40 +20,48 @@ export interface InputCurrencyProps {
 }
 
 export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
+    allowEmpty = true,
     className,
     errorMessage,
-    hasError = false,
     isDisabled = false,
-    isValid = false,
     label,
     name,
+    hasCurrencySymbol = true,
+    hasValidColor = false,
     value,
     variant = InputVariant.OUTLINE,
 }) => {
     const [inputValue, setInputValue] = useState(value);
+    const [isValid, setIsValid] = useState(value ? isValidMoney(value) : allowEmpty);
 
-    // TODO: add validation to the onChange function
     const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setInputValue(event.currentTarget.value);
+        setIsValid(event.currentTarget.value ? isValidMoney(event.currentTarget.value) : allowEmpty);
     };
 
     return (
-        <Input
-            className={className}
-            errorMessage={errorMessage}
-            hasError={hasError}
-            isDisabled={isDisabled}
-            isValid={isValid}
-            label={label}
-            name={name}
-            onChange={onChange}
-            type={InputType.TEXT}
-            value={inputValue}
-            variant={variant}
-        />
+        <StyledInputCurrency className={className}>
+            <Input
+                className={className}
+                errorMessage={errorMessage}
+                hasError={!isValid}
+                hasTextIdentation={hasCurrencySymbol}
+                isDisabled={isDisabled}
+                isValid={hasValidColor && isValid}
+                label={label}
+                name={name}
+                onChange={onChange}
+                type={InputType.TEXT}
+                value={inputValue}
+                variant={variant}
+            />
 
-        // TODO: add currency symbol
-        // TODO: add error message
+            {hasCurrencySymbol && (
+                <CurrencySymbol isDisabled={isDisabled} variant={variant}>
+                    {getCurrencySymbol()}
+                </CurrencySymbol>
+            )}
+        </StyledInputCurrency>
     );
 };
 

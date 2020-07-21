@@ -17,6 +17,7 @@ export interface InputProps {
     className?: string;
     errorMessage?: ReactNode;
     hasError?: boolean;
+    hasTextIdentation?: boolean;
     isDisabled?: boolean;
     isTextarea?: boolean;
     isValid?: boolean;
@@ -39,6 +40,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     className,
     errorMessage,
     hasError = false,
+    hasTextIdentation = false,
     isDisabled = false,
     isTextarea = false,
     isValid = false,
@@ -95,6 +97,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 <TextField
                     as={isTextarea ? 'textarea' : 'input'}
                     hasError={hasError}
+                    hasTextIdentation={hasTextIdentation}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
@@ -116,6 +119,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 />
                 <FormElementLabel
                     hasError={hasError}
+                    hasTextIdentation={hasTextIdentation}
                     isActive={hasValue}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
