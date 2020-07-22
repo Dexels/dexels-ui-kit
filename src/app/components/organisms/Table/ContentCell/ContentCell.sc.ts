@@ -1,4 +1,5 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
+import { isEmpty } from '../../../../utils/functions/validateFunctions';
 
 interface StyledContentCellProps {
     hasLineThrough: boolean;
@@ -6,17 +7,26 @@ interface StyledContentCellProps {
     isCurrency: boolean;
     isDisabled: boolean;
     isImage: boolean;
+    textColor: string;
     textLinesLimit: number;
 }
 
 export const StyledContentCell = styled.div<StyledContentCellProps>`
     ${({ theme }): string => theme.textStyling('body2')}
+    color: ${({ theme }) => theme.colorTextBody.primary};
+
+    ${({ textColor }): SimpleInterpolation =>
+        !isEmpty(textColor) &&
+        css`
+            color: ${textColor};
+        `}
 
     ${({ textLinesLimit }): SimpleInterpolation =>
         textLinesLimit &&
         css`
             /* stylelint-disable-next-line value-no-vendor-prefix */
             display: -webkit-box;
+            overflow: hidden;
             white-space: normal;
             word-break: break-word;
             hyphens: auto;

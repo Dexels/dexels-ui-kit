@@ -3,7 +3,6 @@ import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'st
 import getAlignment from '../../../styles/mixins/getAlignment';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
-import setTruncate from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 const alignRightSpacing = 2; // value is the spacing value from the theme
@@ -196,11 +195,9 @@ TableCell.defaultProps = {
 
 export interface TableCellContentProps {
     align?: Alignment;
-    isTruncatable: boolean;
 }
 
 export const TableCellContent = styled.div<TableCellContentProps>`
-    ${({ isTruncatable }): SimpleInterpolation => isTruncatable && setTruncate()}
     ${({ align = Alignment.LEFT }): FlattenSimpleInterpolation => getAlignment(align)}
     display: flex;
     position: relative;
