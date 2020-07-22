@@ -6,9 +6,10 @@ module.exports = {
     env: {
         browser: true,
     },
-    plugins: ['babel', 'react', '@typescript-eslint', 'typescript-sort-keys', 'prettier'],
+    plugins: ['babel', 'react', '@typescript-eslint', 'typescript-sort-keys', 'prettier', 'eslint-plugin-no-inline-styles'],
     extends: [
         'airbnb',
+        'no-inline-styles/no-inline-styles': 2,
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:import/typescript',
