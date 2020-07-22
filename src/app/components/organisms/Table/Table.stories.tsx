@@ -91,7 +91,6 @@ export const Configurable: FunctionComponent = () => {
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
                     instance={instance}
                     isFullWidth={boolean('Is full width', true)}
-                    isTruncatable={boolean('Is truncatable', true)}
                     onClickFooter={isFooterVisible ? getTableFooter : undefined}
                     onClickRow={getTableRow}
                     paginator={
