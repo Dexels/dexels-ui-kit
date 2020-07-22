@@ -17,6 +17,7 @@ export const StyledContentCell = styled.div<StyledContentCellProps>`
         css`
             /* stylelint-disable-next-line value-no-vendor-prefix */
             display: -webkit-box;
+            overflow: hidden;
             white-space: normal;
             word-break: break-word;
             hyphens: auto;
