@@ -1,14 +1,14 @@
+import { AdornmentPosition, InputVariant } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
-import { InputVariant } from '../../../types';
 import Label from '../../atoms/Label/Label';
 import { StyledFormElementLabel } from './FormElementLabel.sc';
 
 export interface FormElementLabelProps {
+    adornmentPosition?: AdornmentPosition;
     backgroundColor?: string;
     children?: ReactNode;
     className?: string;
     hasError?: boolean;
-    hasTextIndentation?: boolean;
     isActive?: boolean;
     isDisabled?: boolean;
     isFocused?: boolean;
@@ -18,11 +18,11 @@ export interface FormElementLabelProps {
 }
 
 export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
+    adornmentPosition = AdornmentPosition.LEFT,
     backgroundColor,
     children,
     className,
     hasError = false,
-    hasTextIndentation = false,
     isActive = true,
     isDisabled = false,
     isFocused = false,
@@ -34,9 +34,9 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
 
     return (
         <StyledFormElementLabel
+            adornmentPosition={adornmentPosition}
             backgroundColor={backgroundColor}
             className={className}
-            hasTextIndentation={hasTextIndentation}
             isActive={isActive || isFocused}
             variant={variant}
         >

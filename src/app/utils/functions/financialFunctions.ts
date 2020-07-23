@@ -1,4 +1,4 @@
-import { Currencies, Locale } from '../../types';
+import { Currencies, IconType, Locale } from '../../types';
 import currency, { Options as currencyOptions } from 'currency.js';
 
 export const getCurrencySymbol = (locale?: Locale): string => {
@@ -19,6 +19,11 @@ export const getCurrencySymbol = (locale?: Locale): string => {
             // Default is Euro
             return '€';
     }
+};
+
+export const getCurrencyIcon = (): IconType => {
+    // @TODO: return currency inco depending on locale when the icons are made
+    return IconType.MONEY;
 };
 
 export const defaultCurrencySettings = (hasRounding = false): currencyOptions => {

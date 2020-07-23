@@ -1,4 +1,4 @@
-import { InputType, InputVariant } from '../../../types';
+import { AdornmentPosition, InputType, InputVariant } from '../../../types';
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -82,7 +82,7 @@ StyledInput.defaultProps = {
 };
 
 interface TextFieldProps extends StyledInputBaseProps {
-    hasTextIdentation: boolean;
+    adornmentPosition: AdornmentPosition;
     isHovered: boolean;
     isTextarea: boolean;
     type: InputType;
@@ -96,10 +96,10 @@ export const TextField = styled.input<TextFieldProps>`
     width: 100%;
     color: ${({ theme }): string => theme.colorTextBody.primary};
 
-    ${({ hasTextIdentation }): SimpleInterpolation =>
-        hasTextIdentation &&
+    ${({ adornmentPosition, theme }): SimpleInterpolation =>
+        adornmentPosition === AdornmentPosition.LEFT &&
         css`
-            text-indent: 10px;
+            text-indent: ${theme.spacing(2)};
         `}
 
     ${({ theme, variant }): SimpleInterpolation =>
@@ -173,3 +173,84 @@ export const ErrorMessageWrapper = styled.div<ErrorMessageWrapperProps>`
 ErrorMessageWrapper.defaultProps = {
     theme: themeBasic,
 };
+
+interface AdornmentWrapperProps {
+    adornmentPosition: AdornmentPosition;
+    hasError: boolean;
+    hasValue: boolean;
+    isDisabled: boolean;
+    isFocused: boolean;
+    isHovered: boolean;
+    isValid: boolean;
+    variant: InputVariant;
+}
+
+export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
+    position: absolute;
+    margin: 0;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+
+    ${({ hasValue, theme }): SimpleInterpolation =>
+        !hasValue &&
+        css`
+            color: ${theme.shades.three};
+        `}
+
+    ${({ adornmentPosition, variant }): SimpleInterpolation =>
+        variant === InputVariant.COMPACT &&
+        css`
+            top: 0;
+            ${adornmentPosition === AdornmentPosition.LEFT &&
+            css`
+                left: 0;
+            `}
+
+            ${adornmentPosition === AdornmentPosition.RIGHT &&
+            css`
+                right: 0;
+            `}
+        `}
+
+    ${({ adornmentPosition, theme, variant }): SimpleInterpolation =>
+        variant === InputVariant.OUTLINE &&
+        css`
+            top: 14px;
+
+            ${adornmentPosition === AdornmentPosition.LEFT &&
+            css`
+                left: ${theme.spacing(1)};
+            `}
+
+            ${adornmentPosition === AdornmentPosition.RIGHT &&
+            css`
+                right: ${theme.spacing(1)};
+            `}
+        `}
+
+    ${({ hasError, theme }): SimpleInterpolation =>
+        hasError &&
+        css`
+            color: ${theme.colorInvalid};
+        `}
+
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+        `}
+
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation =>
+        (isFocused || isHovered) &&
+        css`
+            color: ${theme.colorSecondary};
+        `}
+
+    ${({ isValid, theme }): SimpleInterpolation =>
+        isValid &&
+        css`
+            color: ${theme.colorValid};
+        `}
+`;
