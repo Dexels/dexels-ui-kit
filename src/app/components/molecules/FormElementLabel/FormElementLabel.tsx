@@ -8,7 +8,7 @@ export interface FormElementLabelProps {
     children?: ReactNode;
     className?: string;
     hasError?: boolean;
-    hasTextIdentation?: boolean;
+    hasTextIndentation?: boolean;
     isActive?: boolean;
     isDisabled?: boolean;
     isFocused?: boolean;
@@ -22,7 +22,7 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
     children,
     className,
     hasError = false,
-    hasTextIdentation = false,
+    hasTextIndentation = false,
     isActive = true,
     isDisabled = false,
     isFocused = false,
@@ -36,7 +36,7 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
         <StyledFormElementLabel
             backgroundColor={backgroundColor}
             className={className}
-            hasTextIdentation={hasTextIdentation}
+            hasTextIndentation={hasTextIndentation}
             isActive={isActive || isFocused}
             variant={variant}
         >
