@@ -15,6 +15,7 @@ export interface ContentCellProps {
     isImage?: boolean;
     locale?: Locale;
     renderDateAsTime?: boolean;
+    textColor?: string;
     textLinesLimit?: number;
     timeFormat?: string;
     value: string | number | Date | Moment | ReactNode | undefined;
@@ -31,6 +32,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
     isImage = false,
     locale = Locale.NL,
     renderDateAsTime = false,
+    textColor = '',
     timeFormat = 'HH:mm',
     value,
 }) => {
@@ -78,6 +80,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
             isCurrency={isCurrency}
             isDisabled={isDisabled}
             isImage={isImage}
+            textColor={textColor}
             textLinesLimit={textLinesLimit}
         >
             {content}
