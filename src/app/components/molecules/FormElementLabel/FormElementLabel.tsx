@@ -1,9 +1,10 @@
+import { AdornmentPosition, InputVariant } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
-import { InputVariant } from '../../../types';
 import Label from '../../atoms/Label/Label';
 import { StyledFormElementLabel } from './FormElementLabel.sc';
 
 export interface FormElementLabelProps {
+    adornmentPosition?: AdornmentPosition;
     backgroundColor?: string;
     children?: ReactNode;
     className?: string;
@@ -17,6 +18,7 @@ export interface FormElementLabelProps {
 }
 
 export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
+    adornmentPosition = AdornmentPosition.LEFT,
     backgroundColor,
     children,
     className,
@@ -32,6 +34,7 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
 
     return (
         <StyledFormElementLabel
+            adornmentPosition={adornmentPosition}
             backgroundColor={backgroundColor}
             className={className}
             isActive={isActive || isFocused}

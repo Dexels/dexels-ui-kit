@@ -1,5 +1,5 @@
-import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
-import { InputType, InputVariant } from '../../../types';
+import { AdornmentPosition, InputType, InputVariant } from '../../../types';
+import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import React, {
     ChangeEvent,
     FunctionComponent,
@@ -13,6 +13,8 @@ import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 
 export interface InputProps {
+    adornment?: ReactNode;
+    adornmentPosition?: AdornmentPosition;
     children?: never;
     className?: string;
     errorMessage?: ReactNode;
@@ -36,6 +38,8 @@ export interface InputProps {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
+    adornment,
+    adornmentPosition = AdornmentPosition.LEFT,
     className,
     errorMessage,
     hasError = false,
@@ -93,6 +97,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 {...rest}
             >
                 <TextField
+                    adornmentPosition={adornmentPosition}
                     as={isTextarea ? 'textarea' : 'input'}
                     hasError={hasError}
                     isDisabled={isDisabled}
@@ -115,6 +120,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     {...textFieldProps}
                 />
                 <FormElementLabel
+                    adornmentPosition={adornmentPosition}
                     hasError={hasError}
                     isActive={hasValue}
                     isDisabled={isDisabled}
@@ -125,6 +131,21 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 >
                     {label}
                 </FormElementLabel>
+
+                {adornment && (
+                    <AdornmentWrapper
+                        adornmentPosition={adornmentPosition}
+                        hasError={hasError}
+                        hasValue={hasValue}
+                        isDisabled={isDisabled}
+                        isFocused={isFocused}
+                        isHovered={isHovered}
+                        isValid={isValid}
+                        variant={variant}
+                    >
+                        {adornment}
+                    </AdornmentWrapper>
+                )}
             </StyledInput>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>

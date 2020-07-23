@@ -1,3 +1,5 @@
+import { Locale } from '../../types';
+
 export const isEmpty = (value: string | unknown | undefined): boolean => {
     if (typeof value === 'string') {
         return value === null || value === '';
@@ -22,4 +24,24 @@ export const isValidPhoneNumber = (value: string): boolean => {
     const phoneRegExp = /^(\+(([0-9]){1,2})[-.])?((((([0-9]){2,3})[-.]){1,2}([0-9]{4,10}))|([0-9]{10}))$/;
 
     return phoneRegExp.test(value);
+};
+
+export const isValidNumber = (value: string, allowDecimals = false, locale?: Locale): boolean => {
+    let numberRegExp;
+
+    switch (locale) {
+        case Locale.US:
+            numberRegExp = allowDecimals ? /^-?[0-9]+(,[0-9]{3})*(\.[0-9]{1,2})?$/ : /^-?[0-9]+(,[0-9]{3})*$/;
+            break;
+
+        default:
+            numberRegExp = allowDecimals ? /^-?[0-9]+(\.[0-9]{3})*(,[0-9]{1,2})?$/ : /^-?[0-9]+(\.[0-9]{3})*$/;
+            break;
+    }
+
+    return numberRegExp.test(value);
+};
+
+export const isValidMoney = (value: string, locale?: Locale): boolean => {
+    return isValidNumber(value, true, locale);
 };
