@@ -1,4 +1,4 @@
-import { AdormentPosition, IconType, InputType, InputVariant } from '../../../types';
+import { AdornmentPosition, IconType, InputType, InputVariant } from '../../../types';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
@@ -32,15 +32,15 @@ export const Configurable: FunctionComponent = () => {
     );
 };
 
-export const ConfigurableWithIcon: FunctionComponent = () => {
+export const ConfigurableWithAdornment: FunctionComponent = () => {
     const [value, setValue] = useState('');
 
     return (
         <Input
+            adornment={<Icon type={IconType.MONEY} />}
+            adornmentPosition={select('Adornment Position', AdornmentPosition, AdornmentPosition.LEFT)}
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
-            inputAdorment={<Icon type={IconType.MONEY} />}
-            inputAdormentPosition={select('Adornment Position', AdormentPosition, AdormentPosition.LEFT)}
             isDisabled={boolean('Is disabled', false)}
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}

@@ -1,4 +1,4 @@
-import { AdormentPosition, InputType, InputVariant } from '../../../types';
+import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
 import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
 import { Icon } from '../../atoms/Icon/Icon';
@@ -7,14 +7,15 @@ import { isValidMoney } from '../../../utils/functions/validateFunctions';
 import { StyledInputCurrency } from './InputCurrency.sc';
 
 export interface InputCurrencyProps {
+    adornmentPosition?: AdornmentPosition;
     allowEmpty?: boolean;
     children?: never;
     className?: string;
     errorMessage?: ReactNode;
-    hasCurrencySymbol?: boolean;
     hasValidColor?: boolean;
     isDisabled?: boolean;
     label: ReactNode;
+    locale: Locale;
     name: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     value?: string;
@@ -22,28 +23,29 @@ export interface InputCurrencyProps {
 }
 
 export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
+    adornmentPosition = AdornmentPosition.LEFT,
     allowEmpty = true,
     className,
     errorMessage,
-    hasCurrencySymbol = true,
     hasValidColor = false,
     isDisabled = false,
     label,
+    locale,
     name,
     onChange,
     value,
     variant = InputVariant.OUTLINE,
 }) => {
-    const isValid = value ? isValidMoney(value) : allowEmpty;
+    const isValid = value ? isValidMoney(value, locale) : allowEmpty;
 
     return (
         <StyledInputCurrency className={className}>
             <Input
+                adornment={<Icon type={getCurrencyIcon()} />}
+                adornmentPosition={adornmentPosition}
                 className={className}
                 errorMessage={errorMessage}
                 hasError={!isValid}
-                inputAdorment={hasCurrencySymbol && <Icon type={getCurrencyIcon()} />}
-                inputAdormentPosition={AdormentPosition.LEFT}
                 isDisabled={isDisabled}
                 isValid={hasValidColor && isValid}
                 label={label}

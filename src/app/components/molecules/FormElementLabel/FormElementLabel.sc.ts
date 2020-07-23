@@ -1,11 +1,11 @@
-import { AdormentPosition, InputVariant } from '../../../types';
+import { AdornmentPosition, InputVariant } from '../../../types';
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledFormElementLabelProps {
+    adornmentPosition: AdornmentPosition;
     backgroundColor?: string;
     isActive: boolean;
-    textIndentation: AdormentPosition;
     variant: InputVariant;
 }
 
@@ -17,19 +17,19 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
     text-align: left;
     pointer-events: none;
 
-    ${({ textIndentation, isActive, theme, variant }): SimpleInterpolation =>
+    ${({ adornmentPosition, isActive, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.COMPACT &&
         css`
             top: ${isActive ? '-16px' : 0};
             left: 0;
             ${!isActive &&
-            textIndentation === AdormentPosition.LEFT &&
+            adornmentPosition === AdornmentPosition.LEFT &&
             css`
                 left: ${theme.spacing(2.5)};
             `}
         `}
 
-    ${({ backgroundColor, textIndentation, isActive, theme, variant }): SimpleInterpolation =>
+    ${({ adornmentPosition, backgroundColor, isActive, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.OUTLINE &&
         css`
             top: ${isActive ? '-8px' : '50%'};
@@ -37,7 +37,7 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
 
             ${
                 !isActive &&
-                textIndentation === AdormentPosition.LEFT &&
+                adornmentPosition === AdornmentPosition.LEFT &&
                 css`
                     left: ${theme.spacing(3.5)};
                 `

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/triple-slash-reference, max-len, spaced-comment, typescript-sort-keys/interface */
 /// <reference path="../@types/react-table.d.ts" />
-export enum AdormentPosition {
+export enum AdornmentPosition {
     LEFT = 'LEFT',
     RIGHT = 'RIGHT',
 }

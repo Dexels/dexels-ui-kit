@@ -22,7 +22,7 @@ export const getCurrencySymbol = (locale?: Locale): string => {
 };
 
 export const getCurrencyIcon = (): IconType => {
-    // TODO return currency inco depending on locale when the icons are made
+    // @TODO: return currency inco depending on locale when the icons are made
     return IconType.MONEY;
 };
 

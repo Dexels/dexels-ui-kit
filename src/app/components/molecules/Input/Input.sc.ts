@@ -1,4 +1,4 @@
-import { AdormentPosition, InputType, InputVariant } from '../../../types';
+import { AdornmentPosition, InputType, InputVariant } from '../../../types';
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -82,9 +82,9 @@ StyledInput.defaultProps = {
 };
 
 interface TextFieldProps extends StyledInputBaseProps {
+    adornmentPosition: AdornmentPosition;
     isHovered: boolean;
     isTextarea: boolean;
-    textIndentation: AdormentPosition;
     type: InputType;
 }
 
@@ -96,8 +96,8 @@ export const TextField = styled.input<TextFieldProps>`
     width: 100%;
     color: ${({ theme }): string => theme.colorTextBody.primary};
 
-    ${({ theme, textIndentation }): SimpleInterpolation =>
-        textIndentation === AdormentPosition.LEFT &&
+    ${({ adornmentPosition, theme }): SimpleInterpolation =>
+        adornmentPosition === AdornmentPosition.LEFT &&
         css`
             text-indent: ${theme.spacing(2)};
         `}
@@ -175,9 +175,13 @@ ErrorMessageWrapper.defaultProps = {
 };
 
 interface AdornmentWrapperProps {
+    adornmentPosition: AdornmentPosition;
+    hasError: boolean;
     hasValue: boolean;
     isDisabled: boolean;
-    textIndentation: AdormentPosition;
+    isFocused: boolean;
+    isHovered: boolean;
+    isValid: boolean;
     variant: InputVariant;
 }
 
@@ -195,40 +199,58 @@ export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
             color: ${theme.shades.three};
         `}
 
-    ${({ textIndentation, variant }): SimpleInterpolation =>
+    ${({ adornmentPosition, variant }): SimpleInterpolation =>
         variant === InputVariant.COMPACT &&
         css`
             top: 0;
-            ${textIndentation === AdormentPosition.LEFT &&
+            ${adornmentPosition === AdornmentPosition.LEFT &&
             css`
                 left: 0;
             `}
 
-            ${textIndentation === AdormentPosition.RIGHT &&
+            ${adornmentPosition === AdornmentPosition.RIGHT &&
             css`
                 right: 0;
             `}
         `}
 
-    ${({ textIndentation, theme, variant }): SimpleInterpolation =>
+    ${({ adornmentPosition, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.OUTLINE &&
         css`
-            top: 13px;
+            top: 14px;
 
-            ${textIndentation === AdormentPosition.LEFT &&
+            ${adornmentPosition === AdornmentPosition.LEFT &&
             css`
                 left: ${theme.spacing(1)};
             `}
 
-            ${textIndentation === AdormentPosition.RIGHT &&
+            ${adornmentPosition === AdornmentPosition.RIGHT &&
             css`
                 right: ${theme.spacing(1)};
             `}
+        `}
+
+    ${({ hasError, theme }): SimpleInterpolation =>
+        hasError &&
+        css`
+            color: ${theme.colorInvalid};
         `}
 
     ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled &&
         css`
             color: ${theme.colorDisabled};
+        `}
+
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation =>
+        (isFocused || isHovered) &&
+        css`
+            color: ${theme.colorSecondary};
+        `}
+
+    ${({ isValid, theme }): SimpleInterpolation =>
+        isValid &&
+        css`
+            color: ${theme.colorValid};
         `}
 `;
