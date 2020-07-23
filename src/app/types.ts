@@ -257,6 +257,7 @@ export enum Locale {
     BE = 'BE',
     DE = 'DE',
     EN = 'EN',
+    FR = 'FR',
     GB = 'GB',
     KZ = 'KZ',
     NL = 'NL',

@@ -11,6 +11,9 @@ export const convertLocale = (locale: Locale): string => {
         case Locale.EN:
             return 'en-EN';
 
+        case Locale.FR:
+            return 'fr-FR';
+
         case Locale.GB:
             return 'en-GB';
 
