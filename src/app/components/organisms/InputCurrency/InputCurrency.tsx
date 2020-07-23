@@ -36,17 +36,8 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     value,
     variant = InputVariant.OUTLINE,
 }) => {
-    const [inputValue, setInputValue] = useState(value);
-    const [isValid, setIsValid] = useState(value ? isValidMoney(value, locale) : allowEmpty);
+    const isValid = value ? isValidMoney(value) : allowEmpty;
 
-    const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
-        setInputValue(event.currentTarget.value);
-        setIsValid(event.currentTarget.value ? isValidMoney(event.currentTarget.value, locale) : allowEmpty);
-
-        if (onChange) {
-            onChange(event);
-        }
-    };
 
     return (
         <StyledInputCurrency className={className}>
@@ -60,9 +51,9 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 isValid={hasValidColor && isValid}
                 label={label}
                 name={name}
-                onChange={onChangeInput}
-                type={InputType.NUMBER}
-                value={inputValue}
+                onChange={onChange}
+                type={InputType.TEXT}
+                value={value}
                 variant={variant}
             />
         </StyledInputCurrency>
