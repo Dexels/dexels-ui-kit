@@ -1,5 +1,5 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import React, { ChangeEvent, FunctionComponent, ReactNode, useState } from 'react';
+import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
@@ -37,7 +37,6 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     variant = InputVariant.OUTLINE,
 }) => {
     const isValid = value ? isValidMoney(value) : allowEmpty;
-
 
     return (
         <StyledInputCurrency className={className}>
