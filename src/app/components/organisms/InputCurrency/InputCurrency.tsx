@@ -1,5 +1,5 @@
 import { AdormentPosition, InputType, InputVariant } from '../../../types';
-import React, { ChangeEvent, FunctionComponent, ReactNode, useState } from 'react';
+import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
@@ -34,17 +34,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     value,
     variant = InputVariant.OUTLINE,
 }) => {
-    const [inputValue, setInputValue] = useState(value);
-    const [isValid, setIsValid] = useState(value ? isValidMoney(value) : allowEmpty);
-
-    const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
-        setInputValue(event.currentTarget.value);
-        setIsValid(event.currentTarget.value ? isValidMoney(event.currentTarget.value) : allowEmpty);
-
-        if (onChange) {
-            onChange(event);
-        }
-    };
+    const isValid = value ? isValidMoney(value) : allowEmpty;
 
     return (
         <StyledInputCurrency className={className}>
@@ -58,9 +48,9 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 isValid={hasValidColor && isValid}
                 label={label}
                 name={name}
-                onChange={onChangeInput}
+                onChange={onChange}
                 type={InputType.TEXT}
-                value={inputValue}
+                value={value}
                 variant={variant}
             />
         </StyledInputCurrency>
