@@ -8,6 +8,7 @@ export interface FormElementLabelProps {
     backgroundColor?: string;
     children?: ReactNode;
     className?: string;
+    hasAdornment?: boolean;
     hasError?: boolean;
     isActive?: boolean;
     isDisabled?: boolean;
@@ -22,6 +23,7 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
     backgroundColor,
     children,
     className,
+    hasAdornment = false,
     hasError = false,
     isActive = true,
     isDisabled = false,
@@ -37,6 +39,7 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
             adornmentPosition={adornmentPosition}
             backgroundColor={backgroundColor}
             className={className}
+            hasAdornment={hasAdornment}
             isActive={isActive || isFocused}
             variant={variant}
         >

@@ -83,6 +83,7 @@ StyledInput.defaultProps = {
 
 interface TextFieldProps extends StyledInputBaseProps {
     adornmentPosition: AdornmentPosition;
+    hasAdornment: boolean;
     isHovered: boolean;
     isTextarea: boolean;
     type: InputType;
@@ -96,7 +97,8 @@ export const TextField = styled.input<TextFieldProps>`
     width: 100%;
     color: ${({ theme }): string => theme.colorTextBody.primary};
 
-    ${({ adornmentPosition, theme }): SimpleInterpolation =>
+    ${({ adornmentPosition, hasAdornment, theme }): SimpleInterpolation =>
+        hasAdornment &&
         adornmentPosition === AdornmentPosition.LEFT &&
         css`
             text-indent: ${theme.spacing(2)};
