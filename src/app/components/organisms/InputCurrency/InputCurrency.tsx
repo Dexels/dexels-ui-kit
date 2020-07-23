@@ -36,7 +36,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     value,
     variant = InputVariant.OUTLINE,
 }) => {
-    const isValid = value ? isValidMoney(value) : allowEmpty;
+    const isValid = value ? isValidMoney(value, locale) : allowEmpty;
 
     return (
         <StyledInputCurrency className={className}>
