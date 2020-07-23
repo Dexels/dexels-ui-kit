@@ -1,9 +1,10 @@
-import { CurrencySymbol, StyledInputCurrency } from './InputCurrency.sc';
-import { InputType, InputVariant } from '../../../types';
+import { AdormentPosition, InputType, InputVariant } from '../../../types';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useState } from 'react';
-import { getCurrencySymbol } from '../../../utils/functions/financialFunctions';
+import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
+import { Icon } from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
 import { isValidMoney } from '../../../utils/functions/validateFunctions';
+import { StyledInputCurrency } from './InputCurrency.sc';
 
 export interface InputCurrencyProps {
     allowEmpty?: boolean;
@@ -35,7 +36,6 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
 }) => {
     const [inputValue, setInputValue] = useState(value);
     const [isValid, setIsValid] = useState(value ? isValidMoney(value) : allowEmpty);
-    const hasValue = inputValue ? inputValue.length > 0 : false;
 
     const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
         setInputValue(event.currentTarget.value);
@@ -52,7 +52,8 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 className={className}
                 errorMessage={errorMessage}
                 hasError={!isValid}
-                hasTextIdentation={hasCurrencySymbol}
+                inputAdorment={hasCurrencySymbol && <Icon type={getCurrencyIcon()} />}
+                inputAdormentPosition={AdormentPosition.LEFT}
                 isDisabled={isDisabled}
                 isValid={hasValidColor && isValid}
                 label={label}
@@ -62,12 +63,6 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 value={inputValue}
                 variant={variant}
             />
-
-            {hasCurrencySymbol && (
-                <CurrencySymbol hasValue={hasValue} isDisabled={isDisabled} variant={variant}>
-                    {getCurrencySymbol()}
-                </CurrencySymbol>
-            )}
         </StyledInputCurrency>
     );
 };

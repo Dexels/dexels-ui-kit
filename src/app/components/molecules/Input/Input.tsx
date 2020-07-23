@@ -1,5 +1,5 @@
-import { ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
-import { InputType, InputVariant } from '../../../types';
+import { AdormentPosition, InputType, InputVariant } from '../../../types';
+import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import React, {
     ChangeEvent,
     FunctionComponent,
@@ -17,7 +17,8 @@ export interface InputProps {
     className?: string;
     errorMessage?: ReactNode;
     hasError?: boolean;
-    hasTextIdentation?: boolean;
+    inputAdorment?: ReactNode;
+    inputAdormentPosition?: AdormentPosition;
     isDisabled?: boolean;
     isTextarea?: boolean;
     isValid?: boolean;
@@ -40,7 +41,8 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     className,
     errorMessage,
     hasError = false,
-    hasTextIdentation = false,
+    inputAdorment,
+    inputAdormentPosition = AdormentPosition.LEFT,
     isDisabled = false,
     isTextarea = false,
     isValid = false,
@@ -97,7 +99,6 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 <TextField
                     as={isTextarea ? 'textarea' : 'input'}
                     hasError={hasError}
-                    hasTextIdentation={hasTextIdentation}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
@@ -112,6 +113,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     onKeyDown={isDisabled || !onKeyDown ? undefined : onKeyDown}
                     onMouseEnter={toggleIsHoveredCallback}
                     onMouseLeave={toggleIsHoveredCallback}
+                    textIndentation={inputAdormentPosition}
                     type={type}
                     value={value}
                     variant={variant}
@@ -119,16 +121,27 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 />
                 <FormElementLabel
                     hasError={hasError}
-                    hasTextIdentation={hasTextIdentation}
                     isActive={hasValue}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
                     isValid={isValid}
+                    textIndentation={inputAdormentPosition}
                     variant={variant}
                 >
                     {label}
                 </FormElementLabel>
+
+                {inputAdorment && (
+                    <AdornmentWrapper
+                        hasValue={hasValue}
+                        isDisabled={isDisabled}
+                        textIndentation={inputAdormentPosition}
+                        variant={variant}
+                    >
+                        {inputAdorment}
+                    </AdornmentWrapper>
+                )}
             </StyledInput>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>

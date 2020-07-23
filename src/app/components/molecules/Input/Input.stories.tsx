@@ -1,7 +1,8 @@
+import { AdormentPosition, IconType, InputType, InputVariant } from '../../../types';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import { InputType, InputVariant } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import { Icon } from '../../atoms/Icon/Icon';
 import Input from './Input';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
 
@@ -14,6 +15,32 @@ export const Configurable: FunctionComponent = () => {
         <Input
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isTextarea={boolean('Is textarea', false)}
+            isValid={boolean('Is valid', false)}
+            label={text('Label', 'This is a label')}
+            maxLength={number('Max length', 100)}
+            minLength={number('Min length', 0)}
+            name="an-input-name"
+            onChange={({ currentTarget }): void => {
+                setValue(parseInputValue(currentTarget));
+            }}
+            type={select('Type', InputType, InputType.TEXT)}
+            value={value}
+            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
+        />
+    );
+};
+
+export const ConfigurableWithIcon: FunctionComponent = () => {
+    const [value, setValue] = useState('');
+
+    return (
+        <Input
+            errorMessage={text('Error message', 'Help, something went wrong!')}
+            hasError={boolean('Has error', false)}
+            inputAdorment={<Icon type={IconType.MONEY} />}
+            inputAdormentPosition={select('Adornment Position', AdormentPosition, AdormentPosition.LEFT)}
             isDisabled={boolean('Is disabled', false)}
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
