@@ -15,13 +15,13 @@ import {
 import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from './types';
 import { ButtonVariant, IconType } from '../../../types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
-import React, { ChangeEvent, FunctionComponent } from 'react';
+import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 import { defineFileFormats } from './utils/defineFileFormats';
 
 export interface FileUploaderData {
-    bottomText: string;
-    buttonText: string;
-    message: string;
+    bottomText: ReactNode;
+    buttonText: ReactNode;
+    message: ReactNode;
     progress: LoadingProgress;
     status: FileUploaderStatus;
 }

@@ -1,6 +1,6 @@
 import { AlertType, FileTypes } from '../FileUploader/types';
 import { IconSize, IconType, InputType } from '../../../types';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { StyledFileUploader, StyledTextWithOptionalIcon } from './FileUploadDialog.sc';
 import { Dialog } from '../Dialog';
 import { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
@@ -14,14 +14,14 @@ export interface FileUploadDialogProps {
     data: FileUploaderData;
     description?: string;
     fileTypes: FileTypes;
-    inputText: string;
+    inputText: ReactNode;
     isVisible: boolean;
     maxFileSize?: number;
     maxFiles: number;
     onAlert(type: AlertType, fileNames?: string[]): void;
     onChangeDescription(value: string): void;
     onDrop(files: FileList): void;
-    title: string;
+    title: ReactNode;
 }
 
 export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
