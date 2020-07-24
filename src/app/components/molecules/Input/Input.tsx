@@ -99,6 +99,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 <TextField
                     adornmentPosition={adornmentPosition}
                     as={isTextarea ? 'textarea' : 'input'}
+                    hasAdornment={adornment !== undefined}
                     hasError={hasError}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
@@ -121,6 +122,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 />
                 <FormElementLabel
                     adornmentPosition={adornmentPosition}
+                    hasAdornment={adornment !== undefined}
                     hasError={hasError}
                     isActive={hasValue}
                     isDisabled={isDisabled}

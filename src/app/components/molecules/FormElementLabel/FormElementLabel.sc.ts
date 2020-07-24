@@ -5,6 +5,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 interface StyledFormElementLabelProps {
     adornmentPosition: AdornmentPosition;
     backgroundColor?: string;
+    hasAdornment: boolean;
     isActive: boolean;
     variant: InputVariant;
 }
@@ -17,19 +18,20 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
     text-align: left;
     pointer-events: none;
 
-    ${({ adornmentPosition, isActive, theme, variant }): SimpleInterpolation =>
+    ${({ adornmentPosition, hasAdornment, isActive, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.COMPACT &&
         css`
             top: ${isActive ? '-16px' : 0};
             left: 0;
             ${!isActive &&
+            hasAdornment &&
             adornmentPosition === AdornmentPosition.LEFT &&
             css`
                 left: ${theme.spacing(2.5)};
             `}
         `}
 
-    ${({ adornmentPosition, backgroundColor, isActive, theme, variant }): SimpleInterpolation =>
+    ${({ adornmentPosition, backgroundColor, hasAdornment, isActive, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.OUTLINE &&
         css`
             top: ${isActive ? '-8px' : '50%'};
@@ -37,6 +39,7 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
 
             ${
                 !isActive &&
+                hasAdornment &&
                 adornmentPosition === AdornmentPosition.LEFT &&
                 css`
                     left: ${theme.spacing(3.5)};
