@@ -39,6 +39,20 @@ export const StyledSidePanel = styled.div<StyledSidePanelProps>`
                 max-width: ${theme.spacing(84)};
             `
         }
+
+        ${
+            size === SidePanelSize.XLARGE &&
+            css`
+                max-width: ${theme.spacing(128)};
+            `
+        }
+
+        ${
+            size === SidePanelSize.FULL &&
+            css`
+                max-width: 100%;
+            `
+        }
     `}
 
     position: fixed;

@@ -286,9 +286,11 @@ export enum Position {
 }
 
 export enum SidePanelSize {
+    FULL = 'FULL',
     LARGE = 'LARGE',
     MEDIUM = 'MEDIUM',
     SMALL = 'SMALL',
+    XLARGE = 'XLARGE',
 }
 
 export enum Size {
