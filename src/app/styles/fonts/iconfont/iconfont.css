@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'SL-Small-Icons';
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?axbumg');
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?axbumg#iefix') format('embedded-opentype'),
-        url('~fonts/iconfont/SL-Small-Icons.ttf?axbumg') format('truetype'),
-        url('~fonts/iconfont/SL-Small-Icons.woff?axbumg') format('woff'),
-        url('~fonts/iconfont/SL-Small-Icons.svg?axbumg#SL-Small-Icons') format('svg');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?ek2yb9');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?ek2yb9#iefix') format('embedded-opentype'),
+        url('~fonts/iconfont/SL-Small-Icons.ttf?ek2yb9') format('truetype'),
+        url('~fonts/iconfont/SL-Small-Icons.woff?ek2yb9') format('woff'),
+        url('~fonts/iconfont/SL-Small-Icons.svg?ek2yb9#SL-Small-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -26,6 +26,39 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ICON-CURRENCY_CN:before {
+    content: '\e9a6';
+}
+.ICON-CURRENCY_EU:before {
+    content: '\e9a7';
+}
+.ICON-CURRENCY_IN:before {
+    content: '\e9a8';
+}
+.ICON-CURRENCY_JP:before {
+    content: '\e9a9';
+}
+.ICON-CURRENCY_KR:before {
+    content: '\e9aa';
+}
+.ICON-CURRENCY_KZ:before {
+    content: '\e9ab';
+}
+.ICON-CURRENCY_NL:before {
+    content: '\e9ac';
+}
+.ICON-CURRENCY_RU:before {
+    content: '\e9ad';
+}
+.ICON-CURRENCY_SA:before {
+    content: '\e9ae';
+}
+.ICON-CURRENCY_UK:before {
+    content: '\e9af';
+}
+.ICON-CURRENCY_US:before {
+    content: '\e9b0';
+}
 .ICON-BEACH:before {
     content: '\e9a3';
 }
