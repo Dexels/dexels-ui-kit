@@ -80,3 +80,13 @@ export const setAllElementsDeselected = (
     data: Option[],
     propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED
 ): ReturnType<typeof setAllElements> => setAllElements(data, false, propertySelectedName);
+
+export const selectOptionsFacade = (
+    data: Option[],
+    valuePropertyName = DEFAULT_PROPERTYNAME_ID,
+    textPropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION
+): Array<{ label: string; value: unknown }> =>
+    data.map((option) => ({
+        label: option[textPropertyName] as string,
+        value: option[valuePropertyName] as string | number,
+    }));

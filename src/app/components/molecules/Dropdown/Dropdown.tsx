@@ -6,6 +6,11 @@ import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import Icon from '../../atoms/Icon/Icon';
 import { IconType } from '../../../types';
 
+interface Option {
+    label: string;
+    value: string | number;
+}
+
 export interface DropdownProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     as?: keyof JSX.IntrinsicElements | ComponentType<any>;
@@ -21,6 +26,7 @@ export interface DropdownProps {
     name: string;
     onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
     onClick?: MouseEventHandler;
+    options?: Option[];
     placeholder?: string;
     value: number | string;
     variant?: DropdownVariant;
@@ -41,6 +47,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
     name,
     onChange,
     onClick,
+    options,
     placeholder,
     value,
     variant = DropdownVariant.COMPACT,
@@ -104,6 +111,13 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                             {placeholder}
                         </option>
                     )}
+
+                    {options &&
+                        options.map((option) => (
+                            <option key={`option-${option.value}`} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
                     {children}
                 </Select>
                 <IconWrapper
