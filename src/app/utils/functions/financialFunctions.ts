@@ -21,9 +21,24 @@ export const getCurrencySymbol = (locale?: Locale): string => {
     }
 };
 
-export const getCurrencyIcon = (): IconType => {
-    // @TODO: return currency inco depending on locale when the icons are made
-    return IconType.MONEY;
+export const getCurrencyIcon = (locale?: Locale): IconType => {
+    switch (locale) {
+        case Locale.KZ:
+            return IconType.CURRENCY_KZ;
+
+        case Locale.RU:
+            return IconType.CURRENCY_RU;
+
+        case Locale.US:
+            return IconType.CURRENCY_US;
+
+        case Locale.UK || Locale.GB:
+            return IconType.CURRENCY_UK;
+
+        default:
+            // Default is Euro
+            return IconType.CURRENCY_EU;
+    }
 };
 
 export const defaultCurrencySettings = (hasRounding = false): currencyOptions => {
