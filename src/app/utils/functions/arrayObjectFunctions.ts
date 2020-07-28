@@ -91,12 +91,12 @@ export const setAllElementsDeselected = (
 export const selectOptionsFacade = (
     // eslint-disable-next-line @typescript-eslint/ban-types
     data: Array<Object>,
-    valuePropertyName = DEFAULT_PROPERTYNAME_ID,
-    textPropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION
+    labelPropertyName = DEFAULT_PROPERTYNAME_ID,
+    valuePropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION
 ): DropdownOption[] => {
     return data.map((option) => {
-        const label = (option as Option)[valuePropertyName] as string;
-        const value = (option as Option)[textPropertyName] as string | number;
+        const label = (option as Option)[labelPropertyName] as string;
+        const value = (option as Option)[valuePropertyName] as string | number;
 
         return {
             label,
