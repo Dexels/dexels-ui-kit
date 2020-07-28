@@ -37,7 +37,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
 
     return (
         <Input
-            adornment={<Icon type={IconType.MONEY} />}
+            adornment={<Icon type={IconType.CURRENCY_EU} />}
             adornmentPosition={select('Adornment Position', AdornmentPosition, AdornmentPosition.LEFT)}
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
