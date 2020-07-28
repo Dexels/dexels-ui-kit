@@ -1,15 +1,11 @@
 import { ErrorMessageWrapper, IconWrapper, Select, StyledDropdown } from './Dropdown.sc';
 import React, { ChangeEvent, ComponentType, FunctionComponent, MouseEventHandler, ReactNode, useState } from 'react';
+import { DropdownOption } from '../../../utils/functions/arrayObjectFunctions';
 import { DropdownVariant } from './types';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import Icon from '../../atoms/Icon/Icon';
 import { IconType } from '../../../types';
-
-export interface DropdownOption {
-    label: string;
-    value: string | number;
-}
 
 export interface DropdownProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

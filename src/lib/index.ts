@@ -25,7 +25,7 @@ export { setCentered } from '../app/styles/mixins/setCentered';
 export { setTruncate } from '../app/styles/mixins/setTruncate';
 
 // Export functions
-export { areAllOptionsSelected } from '../app/utils/functions/arrayObjectFunctions';
+export { areAllOptionsSelected, selectOptionsFacade } from '../app/utils/functions/arrayObjectFunctions';
 export { cloneArray } from '../app/utils/functions/arrayFunctions';
 export { convertLocale } from '../app/utils/functions/localeFunctions';
 export { createTable } from '../app/utils/functions/createTable';

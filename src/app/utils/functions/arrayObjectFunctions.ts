@@ -1,12 +1,14 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { DropdownOption } from '../../components/molecules/Dropdown';
-
 const DEFAULT_PROPERTYNAME_ID = 'Id';
 const DEFAULT_PROPERTYNAME_DESCRIPTION = 'Description';
 const DEFAULT_PROPERTYNAME_SELECTED = 'Selected';
 
 export interface Option {
     [key: string]: unknown;
+}
+
+export interface DropdownOption {
+    label: string;
+    value: string | number;
 }
 
 export const areAllOptionsSelected = (data: Option[], propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean =>
@@ -23,6 +25,7 @@ export const getSelectedText = (
     let text = '';
 
     selectedOptions.forEach((selectedOption) => {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         text += `${text ? `${delimiter} ` : ''}${selectedOption[propertyNameDescription]}`;
     });
 
@@ -85,18 +88,19 @@ export const setAllElementsDeselected = (
     propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED
 ): ReturnType<typeof setAllElements> => setAllElements(data, false, propertySelectedName);
 
-export const readObjectProp = (object: Option, prop: string): string => {
-    return object[prop] as string;
-};
-
 export const selectOptionsFacade = (
     // eslint-disable-next-line @typescript-eslint/ban-types
-    data: Object[],
+    data: Array<Object>,
     valuePropertyName = DEFAULT_PROPERTYNAME_ID,
     textPropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION
 ): DropdownOption[] => {
-    return data.map((option) => ({
-        label: readObjectProp(option as Option, textPropertyName),
-        value: readObjectProp(option as Option, valuePropertyName),
-    }));
+    return data.map((option) => {
+        const label = (option as Option)[valuePropertyName] as string;
+        const value = (option as Option)[textPropertyName] as string | number;
+
+        return {
+            label,
+            value,
+        };
+    });
 };

@@ -7,9 +7,9 @@ import { selectOptionsFacade } from '../../../utils/functions/arrayObjectFunctio
 export default { title: 'molecules/Dropdown' };
 
 interface Fruit {
-    id: number;
-    isSelected?: boolean;
-    name: string;
+    Id: number;
+    IsSelected: boolean;
+    Name: string;
 }
 
 export const ConfigurableCompactVariant: FunctionComponent = () => {
@@ -18,27 +18,28 @@ export const ConfigurableCompactVariant: FunctionComponent = () => {
 
     const fruits: Fruit[] = [
         {
-            id: 1,
-            isSelected: true,
-            name: 'Banana',
+            Id: 1,
+            IsSelected: true,
+            Name: 'Banana',
         },
         {
-            id: 2,
-            isSelected: false,
-            name: 'Apple',
+            Id: 2,
+            IsSelected: false,
+            Name: 'Apple',
         },
         {
-            id: 3,
-            name: 'Pear',
+            Id: 3,
+            IsSelected: false,
+            Name: 'Pear',
         },
         {
-            id: 4,
-            isSelected: false,
-            name: 'Mango',
+            Id: 4,
+            IsSelected: false,
+            Name: 'Mango',
         },
     ];
 
-    const options = selectOptionsFacade(fruits, 'id', 'name');
+    const options = selectOptionsFacade(fruits, 'Name', 'Id');
 
     return (
         <>
