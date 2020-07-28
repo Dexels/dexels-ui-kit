@@ -1,10 +1,7 @@
-import styled, { FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import styled, { keyframes, SimpleInterpolation } from 'styled-components';
 import { Button } from '../../molecules/Button/Button';
-import { Easing } from '../../../types';
 import { Icon } from '../../atoms/Icon/Icon';
-import { LoadingProgress } from './types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const FileUploaderInfo = styled.div`
     opacity: 1;
@@ -97,12 +94,18 @@ export const AlertIcon = styled(BaseIcon)`
     color: ${({ theme }): string => theme.colorInvalid};
 `;
 
-interface LoadingStatusProps {
-    progress: LoadingProgress;
-}
+const loadingAnimation = keyframes`
+    0% {
+        width: 0%;
+    }
 
-export const LoadingBar = styled.div<LoadingStatusProps>`
-    ${({ theme, progress }): SimpleInterpolation => `
+    100% {
+        width: 100%;
+    }
+`;
+
+export const LoadingBar = styled.div`
+    ${({ theme }): SimpleInterpolation => `
         position: relative;
         margin: 0 ${theme.spacing(5.5)} ${theme.spacing(2)};
         border-radius: ${theme.spacing(1)};
@@ -113,7 +116,7 @@ export const LoadingBar = styled.div<LoadingStatusProps>`
         &:before {
             position: absolute;
             content: '';
-            width: ${progress}%;
+            width: 0%;
             top: 0;
             bottom: 0;
             left: 0;
@@ -122,11 +125,7 @@ export const LoadingBar = styled.div<LoadingStatusProps>`
     `}
 
     &::before {
-        ${(): FlattenSimpleInterpolation =>
-            transitionEffect({
-                duration: 500,
-                easing: Easing.EASE,
-            })}
+        animation: ${loadingAnimation} 1s infinite ease-in-out;
     }
 `;
 
