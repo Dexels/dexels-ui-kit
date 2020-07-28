@@ -6,33 +6,39 @@ import { selectOptionsFacade } from '../../../utils/functions/arrayObjectFunctio
 
 export default { title: 'molecules/Dropdown' };
 
+interface Fruit {
+    id: number;
+    isSelected?: boolean;
+    name: string;
+}
+
 export const ConfigurableCompactVariant: FunctionComponent = () => {
     const placeholder = 'Select the best fruit';
     const [value, setValue] = useState(placeholder);
 
-    const fruits = [
+    const fruits: Fruit[] = [
         {
-            Id: 1,
-            Name: 'Banana',
+            id: 1,
             isSelected: true,
+            name: 'Banana',
         },
         {
-            Id: 2,
-            Name: 'Apple',
+            id: 2,
+            isSelected: false,
+            name: 'Apple',
         },
         {
-            Id: 3,
-            Name: 'Orange',
+            id: 3,
+            name: 'Pear',
         },
         {
-            Id: 4,
-            Name: 'Pear',
-        },
-        {
-            Id: 5,
-            Name: 'Strawberry',
+            id: 4,
+            isSelected: false,
+            name: 'Mango',
         },
     ];
+
+    const options = selectOptionsFacade(fruits, 'id', 'name');
 
     return (
         <>
@@ -46,7 +52,7 @@ export const ConfigurableCompactVariant: FunctionComponent = () => {
                 onChange={(event): void => {
                     setValue(event.currentTarget.value);
                 }}
-                options={selectOptionsFacade(fruits, 'Name', 'Name')}
+                options={options}
                 placeholder={placeholder}
                 value={value}
             />
