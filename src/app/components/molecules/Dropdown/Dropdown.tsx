@@ -6,7 +6,7 @@ import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import Icon from '../../atoms/Icon/Icon';
 import { IconType } from '../../../types';
 
-interface Option {
+export interface DropdownOption {
     label: string;
     value: string | number;
 }
@@ -26,7 +26,7 @@ export interface DropdownProps {
     name: string;
     onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
     onClick?: MouseEventHandler;
-    options?: Option[];
+    options?: DropdownOption[];
     placeholder?: string;
     value: number | string;
     variant?: DropdownVariant;
