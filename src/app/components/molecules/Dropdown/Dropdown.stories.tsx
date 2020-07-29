@@ -2,19 +2,44 @@ import { boolean, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import Dropdown from './Dropdown';
 import { DropdownVariant } from './types';
+import { selectOptionsFacade } from '../../../utils/functions/arrayObjectFunctions';
 
 export default { title: 'molecules/Dropdown' };
 
+interface Fruit {
+    Id: number;
+    IsSelected: boolean;
+    Name: string;
+}
+
 export const ConfigurableCompactVariant: FunctionComponent = () => {
     const placeholder = 'Select the best fruit';
-    const fruits = ['Banana', 'Apple', 'Orange', 'Pear', 'Strawberry'];
     const [value, setValue] = useState(placeholder);
 
-    const optionArray = fruits.map((fruit, index) => (
-        <option disabled={index === 2} key={fruit} value={fruit}>
-            {fruit}
-        </option>
-    ));
+    const fruits: Fruit[] = [
+        {
+            Id: 1,
+            IsSelected: true,
+            Name: 'Banana',
+        },
+        {
+            Id: 2,
+            IsSelected: false,
+            Name: 'Apple',
+        },
+        {
+            Id: 3,
+            IsSelected: false,
+            Name: 'Pear',
+        },
+        {
+            Id: 4,
+            IsSelected: false,
+            Name: 'Mango',
+        },
+    ];
+
+    const options = selectOptionsFacade(fruits, 'Name', 'Id');
 
     return (
         <>
@@ -28,11 +53,10 @@ export const ConfigurableCompactVariant: FunctionComponent = () => {
                 onChange={(event): void => {
                     setValue(event.currentTarget.value);
                 }}
+                options={options}
                 placeholder={placeholder}
                 value={value}
-            >
-                {optionArray}
-            </Dropdown>
+            />
             <p>{`You selected ${placeholder === value ? 'nothing yet' : value}.`}</p>
         </>
     );
