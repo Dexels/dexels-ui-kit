@@ -95,12 +95,9 @@ export const selectOptionsFacade = (
     valuePropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION
 ): DropdownOption[] => {
     return data.map((option) => {
-        const label = (option as Option)[labelPropertyName] as string;
-        const value = (option as Option)[valuePropertyName] as string | number;
-
         return {
-            label,
-            value,
+            label: (option as Option)[labelPropertyName] as string,
+            value: (option as Option)[valuePropertyName] as string | number,
         };
     });
 };
