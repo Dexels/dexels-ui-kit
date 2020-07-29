@@ -1,4 +1,4 @@
-import styled, { keyframes, SimpleInterpolation } from 'styled-components';
+import styled, { SimpleInterpolation } from 'styled-components';
 import { Button } from '../../molecules/Button/Button';
 import { Icon } from '../../atoms/Icon/Icon';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -92,41 +92,6 @@ export const SuccessIcon = styled(BaseIcon)`
 
 export const AlertIcon = styled(BaseIcon)`
     color: ${({ theme }): string => theme.colorInvalid};
-`;
-
-const loadingAnimation = keyframes`
-    0% {
-        width: 0%;
-    }
-
-    100% {
-        width: 100%;
-    }
-`;
-
-export const LoadingBar = styled.div`
-    ${({ theme }): SimpleInterpolation => `
-        position: relative;
-        margin: 0 ${theme.spacing(5.5)} ${theme.spacing(2)};
-        border-radius: ${theme.spacing(1)};
-        height: ${theme.spacing(2)};
-        background-color: ${theme.shades.six};
-        overflow: hidden;
-
-        &:before {
-            position: absolute;
-            content: '';
-            width: 0%;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            background-color: ${theme.colorText.secondary};
-        }
-    `}
-
-    &::before {
-        animation: ${loadingAnimation} 1s infinite ease-in-out;
-    }
 `;
 
 export const HiddenInput = styled.input`

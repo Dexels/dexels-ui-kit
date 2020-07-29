@@ -6,7 +6,6 @@ import {
     FileUploaderInfo,
     FileUploaderWrapper,
     HiddenInput,
-    LoadingBar,
     StatusText,
     StyledButton,
     SuccessIcon,
@@ -17,6 +16,7 @@ import { ButtonVariant, IconType } from '../../../types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
 import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 import { defineFileFormats } from './utils/defineFileFormats';
+import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
 
 export interface FileUploaderData {
     bottomText: ReactNode;
@@ -198,7 +198,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 )}
                 {status === FileUploaderStatus.LOADING && (
                     <FileUploaderInfo>
-                        <LoadingBar />
+                        <ProgressBar isIndeterminate />
                         <StatusText>{message}</StatusText>
                         <BottomText>{bottomText}</BottomText>
                     </FileUploaderInfo>

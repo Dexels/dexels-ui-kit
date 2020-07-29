@@ -84,6 +84,7 @@ export { Loader, LoaderProps } from '../app/components/molecules/Loader/Loader';
 export { Overlay, OverlayProps } from '../app/components/molecules/Overlay/Overlay';
 export { PanelHeader, PanelHeaderProps } from '../app/components/molecules/PanelHeader/PanelHeader';
 export { PanelStatus, PanelStatusProps } from '../app/components/molecules/PanelStatus/PanelStatus';
+export { ProgressBar } from '../app/components/molecules/ProgressBar/ProgressBar';
 export {
     SelectionControl,
     SelectionControlProps,
