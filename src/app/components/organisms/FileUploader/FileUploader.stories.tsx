@@ -1,4 +1,4 @@
-import { AlertType, FileTypes, LoadingProgress } from './types';
+import { AlertType, FileTypes } from './types';
 import { FileUploader, FileUploaderData } from './FileUploader';
 import {
     getAlertTranslation,
@@ -15,7 +15,6 @@ import {
 } from '../../../utils/functions/fileFunctions';
 import { number, select } from '@storybook/addon-knobs';
 import React, { FunctionComponent } from 'react';
-import { simulateUploading } from './utils/simulateUploading';
 
 export default { title: 'organisms/FileUploader' };
 
@@ -39,20 +38,18 @@ export const Configurable: FunctionComponent = () => {
         }
     };
 
-    const onDrop = async (files: FileList) => {
+    const onDrop = (files: FileList) => {
         const droppedFileNames = getFileNames(files);
         const droppedFileTypes = getFileTypes(files);
         const droppedFileFormats = getFileFormats(droppedFileTypes);
         const droppedFileSizes = getFileSizes(files);
         const filesTotalSize = getTotalSizeFiles(droppedFileSizes);
 
-        const changeData = (progress: LoadingProgress) => {
-            setData(getLoadingTranslation(droppedFileNames, filesTotalSize, progress));
-        };
+        setData(getLoadingTranslation(droppedFileNames));
 
-        await simulateUploading(changeData);
-
-        setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, filesTotalSize));
+        setTimeout(() => {
+            setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, filesTotalSize));
+        }, 5000);
     };
 
     React.useEffect(() => {

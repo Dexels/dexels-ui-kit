@@ -1,14 +1,11 @@
+import { DropdownOption } from '../../components/molecules/Dropdown/Dropdown';
+
 const DEFAULT_PROPERTYNAME_ID = 'Id';
 const DEFAULT_PROPERTYNAME_DESCRIPTION = 'Description';
 const DEFAULT_PROPERTYNAME_SELECTED = 'Selected';
 
 export interface Option {
     [key: string]: unknown;
-}
-
-export interface DropdownOption {
-    label: string;
-    value: string | number;
 }
 
 export const areAllOptionsSelected = (data: Option[], propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean =>

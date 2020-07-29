@@ -1,10 +1,7 @@
-import styled, { FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import styled, { SimpleInterpolation } from 'styled-components';
 import { Button } from '../../molecules/Button/Button';
-import { Easing } from '../../../types';
 import { Icon } from '../../atoms/Icon/Icon';
-import { LoadingProgress } from './types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 export const FileUploaderInfo = styled.div`
     opacity: 1;
@@ -95,39 +92,6 @@ export const SuccessIcon = styled(BaseIcon)`
 
 export const AlertIcon = styled(BaseIcon)`
     color: ${({ theme }): string => theme.colorInvalid};
-`;
-
-interface LoadingStatusProps {
-    progress: LoadingProgress;
-}
-
-export const LoadingBar = styled.div<LoadingStatusProps>`
-    ${({ theme, progress }): SimpleInterpolation => `
-        position: relative;
-        margin: 0 ${theme.spacing(5.5)} ${theme.spacing(2)};
-        border-radius: ${theme.spacing(1)};
-        height: ${theme.spacing(2)};
-        background-color: ${theme.shades.six};
-        overflow: hidden;
-
-        &:before {
-            position: absolute;
-            content: '';
-            width: ${progress}%;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            background-color: ${theme.colorText.secondary};
-        }
-    `}
-
-    &::before {
-        ${(): FlattenSimpleInterpolation =>
-            transitionEffect({
-                duration: 500,
-                easing: Easing.EASE,
-            })}
-    }
 `;
 
 export const HiddenInput = styled.input`

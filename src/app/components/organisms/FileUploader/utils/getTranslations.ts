@@ -1,4 +1,4 @@
-import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from '../types';
+import { AlertType, FileTypes, FileUploaderStatus } from '../types';
 import { fileSizeToFixed } from '../../../../utils/functions/fileFunctions';
 import { FileUploaderData } from '../FileUploader';
 
@@ -6,7 +6,6 @@ export const getDefaultTranslation = (fileTypes: FileTypes, maxFileSize: number)
     bottomText: `${fileTypes} - Maximaal ${maxFileSize}MB`,
     buttonText: 'Kies een bestand',
     message: 'Sleep hier een bestand om te uploaden of',
-    progress: 0,
     status: FileUploaderStatus.DEFAULT,
 });
 
@@ -22,7 +21,6 @@ export const getSelectedTranslation = (
     message: `${fileNames ? fileNames.join(', ') : ''} ${
         fileNames && fileNames.length > 1 ? 'zijn' : 'is'
     } geselecteerd`,
-    progress: 0,
     status: FileUploaderStatus.SUCCESS,
 });
 
@@ -72,7 +70,6 @@ export const getAlertTranslation = (
         bottomText: `${fileTypes} - Maximaal ${maxFileSize}MB`,
         buttonText: 'Kies een ander bestand',
         message: alertMessage,
-        progress: 0,
         status: FileUploaderStatus.ALERT,
     };
 };
@@ -87,20 +84,12 @@ export const getUploadedTranslation = (
     } - ${fileSizeToFixed(filesTotalSize)} MB`,
     buttonText: 'Kies een bestand',
     message: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'zijn' : 'is'} geüpload`,
-    progress: 0,
     status: FileUploaderStatus.SUCCESS,
 });
 
-export const getLoadingTranslation = (
-    fileNames: string[],
-    filesTotalSize: number,
-    progress: LoadingProgress
-): FileUploaderData => ({
-    bottomText: `${fileSizeToFixed((filesTotalSize / 100) * progress)} MB / ${fileSizeToFixed(
-        filesTotalSize
-    )} MB geüpload`,
+export const getLoadingTranslation = (fileNames: string[]): FileUploaderData => ({
+    bottomText: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'worden' : 'wordt'} geüpload`,
     buttonText: 'Kies een bestand',
     message: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'worden' : 'wordt'} geüpload`,
-    progress,
     status: FileUploaderStatus.LOADING,
 });

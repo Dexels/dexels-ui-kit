@@ -6,23 +6,22 @@ import {
     FileUploaderInfo,
     FileUploaderWrapper,
     HiddenInput,
-    LoadingBar,
     StatusText,
     StyledButton,
     SuccessIcon,
     TopText,
 } from './FileUploader.sc';
-import { AlertType, FileTypes, FileUploaderStatus, LoadingProgress } from './types';
+import { AlertType, FileTypes, FileUploaderStatus } from './types';
 import { ButtonVariant, IconType } from '../../../types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
 import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 import { defineFileFormats } from './utils/defineFileFormats';
+import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
 
 export interface FileUploaderData {
     bottomText: ReactNode;
     buttonText: ReactNode;
     message: ReactNode;
-    progress: LoadingProgress;
     status: FileUploaderStatus;
 }
 export interface FileUploaderProps {
@@ -47,7 +46,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     const [isDragging, setIsDragging] = React.useState(false);
     const [dragCounter, setDragCounter] = React.useState(0);
     const dropRef = React.useRef<HTMLDivElement | null>(null);
-    const { status, message, buttonText, bottomText, progress } = data;
+    const { status, message, buttonText, bottomText } = data;
     const fileFormatsRef = React.useRef<string[]>();
     fileFormatsRef.current = defineFileFormats(fileTypes);
     const maxFilesRef = React.useRef<number>();
@@ -199,7 +198,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 )}
                 {status === FileUploaderStatus.LOADING && (
                     <FileUploaderInfo>
-                        <LoadingBar progress={progress} />
+                        <ProgressBar isIndeterminate />
                         <StatusText>{message}</StatusText>
                         <BottomText>{bottomText}</BottomText>
                     </FileUploaderInfo>

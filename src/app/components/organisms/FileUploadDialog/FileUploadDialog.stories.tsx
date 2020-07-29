@@ -1,4 +1,4 @@
-import { AlertType, FileTypes, LoadingProgress } from '../FileUploader/types';
+import { AlertType, FileTypes } from '../FileUploader/types';
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import {
     getAlertTranslation,
@@ -18,7 +18,6 @@ import { number, select } from '@storybook/addon-knobs';
 import React, { FunctionComponent } from 'react';
 import FileUploadDialog from './FileUploadDialog';
 import { FileUploaderData } from '../FileUploader/FileUploader';
-import { simulateUploading } from '../FileUploader/utils/simulateUploading';
 
 export default { title: 'organisms/FileUploadDialog' };
 
@@ -56,20 +55,18 @@ export const Configurable: FunctionComponent = () => {
         setDroppedTotalSize(getTotalSizeFiles(droppedFileSizes));
     };
 
-    const onUpload = async () => {
+    const onUpload = () => {
         if (description) {
             // eslint-disable-next-line no-alert
             alert(`Start uploading with description: ${description}`);
         }
 
         if (droppedFileFormats && droppedTotalSize && droppedFileNames) {
-            const changeData = (progress: LoadingProgress) => {
-                setData(getLoadingTranslation(droppedFileNames, droppedTotalSize, progress));
-            };
+            setData(getLoadingTranslation(droppedFileNames));
 
-            await simulateUploading(changeData);
-
-            setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
+            setTimeout(() => {
+                setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
+            }, 5000);
         }
     };
 

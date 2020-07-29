@@ -71,7 +71,7 @@ export { CardNoResults, CardNoResultsProps } from '../app/components/molecules/C
 export { CardStatus, CardStatusProps } from '../app/components/molecules/CardStatus/CardStatus';
 export { Chip, ChipProps } from '../app/components/molecules/Chip/Chip';
 export { DialogFooter, DialogFooterProps } from '../app/components/molecules/DialogFooter/DialogFooter';
-export { Dropdown, DropdownProps, DropdownVariant } from '../app/components/molecules/Dropdown';
+export { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../app/components/molecules/Dropdown';
 export { FormElementLabel, FormElementLabelProps } from '../app/components/molecules/FormElementLabel/FormElementLabel';
 export {
     FullscreenLoader,
@@ -84,6 +84,7 @@ export { Loader, LoaderProps } from '../app/components/molecules/Loader/Loader';
 export { Overlay, OverlayProps } from '../app/components/molecules/Overlay/Overlay';
 export { PanelHeader, PanelHeaderProps } from '../app/components/molecules/PanelHeader/PanelHeader';
 export { PanelStatus, PanelStatusProps } from '../app/components/molecules/PanelStatus/PanelStatus';
+export { ProgressBar } from '../app/components/molecules/ProgressBar/ProgressBar';
 export {
     SelectionControl,
     SelectionControlProps,
