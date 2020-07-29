@@ -71,7 +71,7 @@ export { CardNoResults, CardNoResultsProps } from '../app/components/molecules/C
 export { CardStatus, CardStatusProps } from '../app/components/molecules/CardStatus/CardStatus';
 export { Chip, ChipProps } from '../app/components/molecules/Chip/Chip';
 export { DialogFooter, DialogFooterProps } from '../app/components/molecules/DialogFooter/DialogFooter';
-export { Dropdown, DropdownProps, DropdownVariant } from '../app/components/molecules/Dropdown';
+export { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../app/components/molecules/Dropdown';
 export { FormElementLabel, FormElementLabelProps } from '../app/components/molecules/FormElementLabel/FormElementLabel';
 export {
     FullscreenLoader,
