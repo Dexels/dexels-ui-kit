@@ -1,9 +1,15 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 const DEFAULT_PROPERTYNAME_ID = 'Id';
 const DEFAULT_PROPERTYNAME_DESCRIPTION = 'Description';
 const DEFAULT_PROPERTYNAME_SELECTED = 'Selected';
 
-type Option = { [key: string]: unknown };
+export interface Option {
+    [key: string]: unknown;
+}
+
+export interface DropdownOption {
+    label: string;
+    value: string | number;
+}
 
 export const areAllOptionsSelected = (data: Option[], propertyName = DEFAULT_PROPERTYNAME_SELECTED): boolean =>
     data.every((element) => element[propertyName]);
@@ -19,6 +25,7 @@ export const getSelectedText = (
     let text = '';
 
     selectedOptions.forEach((selectedOption) => {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         text += `${text ? `${delimiter} ` : ''}${selectedOption[propertyNameDescription]}`;
     });
 
@@ -80,3 +87,17 @@ export const setAllElementsDeselected = (
     data: Option[],
     propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED
 ): ReturnType<typeof setAllElements> => setAllElements(data, false, propertySelectedName);
+
+export const selectOptionsFacade = (
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    data: Array<Object>,
+    labelPropertyName = DEFAULT_PROPERTYNAME_ID,
+    valuePropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION
+): DropdownOption[] => {
+    return data.map((option) => {
+        return {
+            label: (option as Option)[labelPropertyName] as string,
+            value: (option as Option)[valuePropertyName] as string | number,
+        };
+    });
+};
