@@ -54,6 +54,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
             onDrop={onDrop}
         />
         <Input
+            isDisabled={data.status === 'loading'}
             label={inputText}
             name="description"
             onChange={({ currentTarget }): void => {
