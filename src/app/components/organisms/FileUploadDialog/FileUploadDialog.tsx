@@ -13,7 +13,7 @@ export interface FileUploadDialogProps {
     className?: string;
     data: FileUploaderData;
     description?: string;
-    fileTypes: FileTypes;
+    fileTypes: FileTypes[];
     inputText: ReactNode;
     isVisible: boolean;
     maxFileSize?: number;

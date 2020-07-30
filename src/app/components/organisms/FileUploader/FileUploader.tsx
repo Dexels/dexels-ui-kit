@@ -27,7 +27,7 @@ export interface FileUploaderData {
 export interface FileUploaderProps {
     className?: string;
     data: FileUploaderData;
-    fileTypes: FileTypes;
+    fileTypes: FileTypes[];
     maxFileSize: number;
     maxFiles: number;
     onAlert(type: AlertType, fileNames?: string[]): void;

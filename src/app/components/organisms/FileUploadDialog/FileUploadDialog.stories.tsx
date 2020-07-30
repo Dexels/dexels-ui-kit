@@ -107,7 +107,7 @@ export const Configurable: FunctionComponent = () => {
             ]}
             data={data}
             description={description}
-            fileTypes={fileTypesRef.current}
+            fileTypes={[fileTypesRef.current]}
             inputText="Voeg een omschrijving toe (optioneel)"
             isVisible={isVisible}
             maxFileSize={maxFileSizeRef.current}

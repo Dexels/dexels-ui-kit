@@ -61,7 +61,7 @@ export const Configurable: FunctionComponent = () => {
     return (
         <FileUploader
             data={data}
-            fileTypes={fileTypesRef.current}
+            fileTypes={[fileTypesRef.current]}
             maxFileSize={maxFileSizeRef.current}
             maxFiles={maxFilesRef.current}
             onAlert={onAlert}
