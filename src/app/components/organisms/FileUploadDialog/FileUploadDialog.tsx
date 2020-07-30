@@ -20,6 +20,7 @@ export interface FileUploadDialogProps {
     maxFiles: number;
     onAlert(type: AlertType, fileNames?: string[]): void;
     onChangeDescription(value: string): void;
+    onClose(): void;
     onDrop(files: FileList): void;
     title: ReactNode;
 }
@@ -38,8 +39,9 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     title,
     inputText,
     description,
+    onClose,
 }) => (
-    <Dialog className={className} footerButtons={buttons} isVisible={isVisible}>
+    <Dialog className={className} footerButtons={buttons} isVisible={isVisible} onClose={onClose}>
         <StyledTextWithOptionalIcon iconSize={IconSize.XLARGE} iconType={IconType.FILEADD}>
             {title}
         </StyledTextWithOptionalIcon>

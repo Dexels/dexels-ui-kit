@@ -114,6 +114,7 @@ export const Configurable: FunctionComponent = () => {
             maxFiles={maxFilesRef.current}
             onAlert={onAlert}
             onChangeDescription={onChangeDescription}
+            onClose={() => setIsVisible(false)}
             onDrop={onDrop}
             title="Bestand Uploaden"
         />
