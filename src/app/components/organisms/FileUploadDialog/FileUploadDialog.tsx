@@ -1,4 +1,4 @@
-import { AlertType, FileTypes } from '../FileUploader/types';
+import { AlertType, FileTypes, FileUploaderStatus } from '../FileUploader/types';
 import { IconSize, IconType, InputType } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { StyledFileUploader, StyledTextWithOptionalIcon } from './FileUploadDialog.sc';
@@ -13,13 +13,14 @@ export interface FileUploadDialogProps {
     className?: string;
     data: FileUploaderData;
     description?: string;
-    fileTypes: FileTypes;
+    fileTypes: FileTypes[];
     inputText: ReactNode;
     isVisible: boolean;
     maxFileSize?: number;
     maxFiles: number;
     onAlert(type: AlertType, fileNames?: string[]): void;
     onChangeDescription(value: string): void;
+    onClose(): void;
     onDrop(files: FileList): void;
     title: ReactNode;
 }
@@ -38,8 +39,9 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     title,
     inputText,
     description,
+    onClose,
 }) => (
-    <Dialog className={className} footerButtons={buttons} isVisible={isVisible}>
+    <Dialog className={className} footerButtons={buttons} isVisible={isVisible} onClose={onClose}>
         <StyledTextWithOptionalIcon iconSize={IconSize.XLARGE} iconType={IconType.FILEADD}>
             {title}
         </StyledTextWithOptionalIcon>
@@ -52,6 +54,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
             onDrop={onDrop}
         />
         <Input
+            isDisabled={data.status === FileUploaderStatus.LOADING}
             label={inputText}
             name="description"
             onChange={({ currentTarget }): void => {
