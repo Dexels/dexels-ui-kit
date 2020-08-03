@@ -2,6 +2,7 @@ import { Alignment, Elevation } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import getAlignment from '../../../styles/mixins/getAlignment';
 import { getElevation } from '../../../styles/mixins/getElevation';
+import { IconCustomizableSize } from '../../molecules/IconCustomizable/types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -94,7 +95,7 @@ export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
         flex: 0 0 auto;
         padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
         color: ${({ isSorted, theme }): string => (isSorted ? theme.colorText.primary : theme.colorDisabled)};
-        font-size: 18px;
+        font-size: ${IconCustomizableSize.SIZE18}px;
     }
 
     ${({ align, theme }): SimpleInterpolation =>
