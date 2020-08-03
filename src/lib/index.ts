@@ -79,6 +79,7 @@ export {
     FullscreenLoaderType,
 } from '../app/components/molecules/FullscreenLoader';
 export { Header, HeaderProps } from '../app/components/molecules/Header/Header';
+export { IconCustomizable } from '../app/components/molecules/IconCustomizable/IconCustomizable';
 export { Input, InputProps } from '../app/components/molecules/Input/Input';
 export { Loader, LoaderProps } from '../app/components/molecules/Loader/Loader';
 export { Overlay, OverlayProps } from '../app/components/molecules/Overlay/Overlay';

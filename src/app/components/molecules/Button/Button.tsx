@@ -15,6 +15,7 @@ export interface ButtonProps {
     isFullWidth?: boolean;
     isInverted?: boolean;
     isLoading?: boolean;
+    isTruncatable?: boolean;
     onClick?: MouseEventHandler;
     size?: ButtonSize;
     transitionDuration?: number;
@@ -34,6 +35,7 @@ export const Button: FunctionComponent<ButtonProps & { [key: string]: any }> = (
     isFullWidth = false,
     isInverted = false,
     isLoading = false,
+    isTruncatable = false,
     onClick,
     size = ButtonSize.LARGE,
     transitionDuration = 300,
@@ -66,6 +68,7 @@ export const Button: FunctionComponent<ButtonProps & { [key: string]: any }> = (
                 iconSize={IconSize[size]}
                 iconType={iconType}
                 isCapitalized={isCapitalized}
+                isTruncatable={isTruncatable}
             >
                 {children}
             </TextWithOptionalIcon>
