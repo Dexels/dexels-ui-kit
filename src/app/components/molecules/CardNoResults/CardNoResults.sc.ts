@@ -61,19 +61,6 @@ Left.defaultProps = {
     theme: themeBasic,
 };
 
-export const IconWrapper = styled.div`
-    color: ${({ theme }): string => theme.colorText.primary};
-    font-size: 30px;
-
-    span {
-        display: block;
-    }
-`;
-
-IconWrapper.defaultProps = {
-    theme: themeBasic,
-};
-
 export const Right = styled.div`
     flex: 1 1 auto;
 `;
