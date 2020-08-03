@@ -10,6 +10,7 @@ export interface DropdownOption {
     label: string;
     value: string | number;
 }
+
 export interface DropdownProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     as?: keyof JSX.IntrinsicElements | ComponentType<any>;
