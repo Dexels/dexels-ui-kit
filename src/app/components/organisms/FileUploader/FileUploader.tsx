@@ -1,6 +1,6 @@
 import {
+    AlertIcon,
     AlertText,
-    BaseIcon,
     BottomText,
     FileUploaderContent,
     FileUploaderInfo,
@@ -8,18 +8,16 @@ import {
     HiddenInput,
     StatusText,
     StyledButton,
+    SuccessIcon,
     TopText,
 } from './FileUploader.sc';
 import { AlertType, FileTypes, FileUploaderStatus } from './types';
 import { ButtonVariant, IconType } from '../../../types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
 import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
-import { colorKeys } from '../../../styles/theming/colorKeys';
 import { defineFileFormats } from './utils/defineFileFormats';
-import { getColorsFromTheme } from '../../../styles/theming/getColorsFromTheme';
 import { IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
-import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export interface FileUploaderData {
     bottomText: ReactNode;
@@ -56,7 +54,6 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     maxFilesRef.current = maxFiles;
     const maxFileSizeRef = React.useRef<number>();
     maxFileSizeRef.current = maxFileSize;
-    const colors = getColorsFromTheme(themeBasic, colorKeys);
 
     enum listenerAction {
         add = 'add',
@@ -187,22 +184,14 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 )}
                 {status === FileUploaderStatus.SUCCESS && (
                     <FileUploaderInfo>
-                        <BaseIcon
-                            iconColor={colors['colorText-secondary']}
-                            iconSize={IconCustomizableSize.SIZE36}
-                            iconType={IconType.FILEGENERIC}
-                        />
+                        <SuccessIcon iconSize={IconCustomizableSize.SIZE36} iconType={IconType.FILEGENERIC} />
                         <StatusText>{message}</StatusText>
                         <BottomText>{bottomText}</BottomText>
                     </FileUploaderInfo>
                 )}
                 {status === FileUploaderStatus.ALERT && (
                     <FileUploaderInfo>
-                        <BaseIcon
-                            iconColor={colors.colorInvalid}
-                            iconSize={IconCustomizableSize.SIZE36}
-                            iconType={IconType.STATUSERROR}
-                        />
+                        <AlertIcon iconSize={IconCustomizableSize.SIZE36} iconType={IconType.STATUSERROR} />
                         <AlertText>{message}</AlertText>
                         {button}
                         <BottomText>{bottomText}</BottomText>

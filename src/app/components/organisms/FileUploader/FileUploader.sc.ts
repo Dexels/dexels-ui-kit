@@ -84,6 +84,14 @@ export const BaseIcon = styled(IconCustomizable)`
     margin: ${({ theme }): string => theme.spacing(0, 0, 1.25)};
 `;
 
+export const SuccessIcon = styled(BaseIcon)`
+    color: ${({ theme }): string => theme.colorText.secondary};
+`;
+
+export const AlertIcon = styled(BaseIcon)`
+    color: ${({ theme }): string => theme.colorInvalid};
+`;
+
 export const HiddenInput = styled.input`
     position: absolute;
     top: 0;
