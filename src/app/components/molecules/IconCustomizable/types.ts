@@ -26,6 +26,7 @@ export enum IconCustomizableSize {
 }
 
 export interface IconCustomizableProps {
+    className?: string;
     iconColor?: string;
     iconSize: IconCustomizableSize;
     iconType: IconType;
