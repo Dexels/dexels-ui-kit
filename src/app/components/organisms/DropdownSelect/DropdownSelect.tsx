@@ -34,6 +34,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     errorMessage,
     hasError = false,
     isDisabled = false,
+    isSearchFromStart = true,
     isValid = false,
     label,
     maxHeight,
@@ -59,9 +60,11 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         setIsSelectionOpen(inputValue.length > 0);
 
         setSuggestedOptions(
-            options.filter((option) =>
-                option.searchValue ? option.searchValue.includes(inputValue) : option.label.includes(inputValue)
-            )
+            options.filter((option) => {
+                const searchValue = option.searchValue ? option.searchValue.toLowerCase() : option.label.toLowerCase();
+
+                return isSearchFromStart ? searchValue.indexOf(inputValue) === 0 : searchValue.includes(inputValue);
+            })
         );
     }, [inputValue]);
 
