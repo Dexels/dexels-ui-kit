@@ -9,7 +9,8 @@ import {
 } from './SelectionControl.sc';
 import React, { ChangeEvent, FunctionComponent, MouseEvent, ReactNode, useCallback, useState } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
-import Icon from '../../atoms/Icon/Icon';
+import { IconCustomizable } from '../IconCustomizable/IconCustomizable';
+import { IconCustomizableSize } from '../IconCustomizable/types';
 import Label from '../../atoms/Label/Label';
 import { SelectionControlType } from './types';
 
@@ -89,7 +90,10 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                     />
                     {(isChecked || isIndeterminate) && type === SelectionControlType.CHECKBOX && (
                         <IconWrapper hasError={hasError} isDisabled={isDisabled} isValid={isValid}>
-                            <Icon type={isChecked ? IconType.CHECKBOXCHECK : IconType.CHECKBOXMINUS1} />
+                            <IconCustomizable
+                                iconSize={IconCustomizableSize.SIZE20}
+                                iconType={isChecked ? IconType.CHECKBOXCHECK : IconType.CHECKBOXMINUS1}
+                            />
                         </IconWrapper>
                     )}
                     <input
