@@ -4,6 +4,8 @@ import { IconType } from '../../../types';
 export enum IconCustomizableSize {
     SIZE120 = '120',
     SIZE128 = '128',
+    SIZE14 = '14',
+    SIZE18 = '18',
     SIZE20 = '20',
     SIZE22 = '22',
     SIZE24 = '24',
