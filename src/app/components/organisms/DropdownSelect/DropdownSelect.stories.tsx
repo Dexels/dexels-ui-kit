@@ -9,13 +9,19 @@ export default { title: 'organisms/DropdownSelect' };
 const options: DropdownOptionProps[] = [
     {
         adornment: <Icon type={IconType.CLUBPLACEHOLDER1} />,
-        label: 'Banana',
+        label: 'Bánana',
         value: 'BANANA',
     },
     {
         adornment: <Icon type={IconType.CLUBPLACEHOLDER2} />,
         label: 'Apple',
         value: 'APPLE',
+    },
+    {
+        adornment: <Icon type={IconType.CLUBPLACEHOLDER4} />,
+        label: 'Pëach',
+        searchValue: 'Pëac',
+        value: 'PEACH',
     },
     {
         adornment: <Icon type={IconType.CLUBPLACEHOLDER3} />,
@@ -45,11 +51,14 @@ export const Configurable: FunctionComponent = () => {
     return (
         <DropdownSelect
             errorMessage={text('Error message', 'Help, something went wrong!')}
+            instructionMessage={text('Instructions', 'Choose a fruit or type yourself a fruit!')}
             isDisabled={boolean('Is disabled', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
             name="an-input-name"
             options={options}
+            staticOptionPrefix={text('Static option prefix', 'Use')}
+            staticOptionSuffix={text('Static option suffix', 'as choozen fruit')}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />

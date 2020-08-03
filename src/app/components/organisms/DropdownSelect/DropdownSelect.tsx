@@ -1,10 +1,13 @@
-import { Elevation, InputType, InputVariant } from '../../../types';
+import { Elevation, IconType, InputType, InputVariant } from '../../../types';
 import { List, StyledDropdownSelect, SuggestionList } from './DropdownSelect.sc';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useEffect, useState } from 'react';
+import { DialogFooter } from '../../molecules/DialogFooter/DialogFooter';
 import { DropdownOption } from '../../molecules/Dropdown/Dropdown';
+import { Icon } from '../../atoms/Icon/Icon';
 import { Input } from '../../molecules/Input/Input';
 import { ListItem } from '../../atoms/ListItem/ListItem';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
+import { toBasicLowercase } from '../../../utils/functions/stringFunctions';
 
 export interface DropdownOptionProps extends DropdownOption {
     adornment?: ReactNode;
@@ -17,6 +20,7 @@ export interface DropdownSelectProps {
     elevation?: Elevation;
     errorMessage?: ReactNode;
     hasError?: boolean;
+    instructionMessage: ReactNode;
     isDisabled?: boolean;
     isSearchFromStart?: boolean;
     isValid?: boolean;
@@ -24,6 +28,8 @@ export interface DropdownSelectProps {
     maxHeight?: string;
     name: string;
     options: DropdownOptionProps[];
+    staticOptionPrefix?: ReactNode;
+    staticOptionSuffix?: ReactNode;
     value: string;
     variant?: InputVariant;
 }
@@ -33,6 +39,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     elevation = Elevation.LEVEL_6,
     errorMessage,
     hasError = false,
+    instructionMessage,
     isDisabled = false,
     isSearchFromStart = true,
     isValid = false,
@@ -40,12 +47,21 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     maxHeight,
     name,
     options,
+    staticOptionPrefix,
+    staticOptionSuffix,
     value,
     variant,
 }) => {
     const [isSelectOpen, setIsSelectionOpen] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownOptionProps[]);
+
+    const updatedOptions = options.map((option) => {
+        return {
+            ...option,
+            searchValue: option.searchValue ? toBasicLowercase(option.searchValue) : toBasicLowercase(option.label),
+        };
+    });
 
     const onChangeInputCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -58,13 +74,15 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
     useEffect(() => {
         setIsSelectionOpen(inputValue.length > 0);
+    }, [inputValue]);
 
+    useEffect(() => {
         setSuggestedOptions(
-            options.filter((option) => {
-                const searchValue = option.searchValue ? option.searchValue.toLowerCase() : option.label.toLowerCase();
-
-                return isSearchFromStart ? searchValue.indexOf(inputValue) === 0 : searchValue.includes(inputValue);
-            })
+            updatedOptions.filter((option) =>
+                isSearchFromStart
+                    ? option.searchValue.indexOf(toBasicLowercase(inputValue)) === 0
+                    : option.searchValue.includes(toBasicLowercase(inputValue))
+            )
         );
     }, [inputValue]);
 
@@ -91,7 +109,13 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                                 {item.label}
                             </ListItem>
                         ))}
+                        <ListItem adornment={<Icon type={IconType.ROUNDPLUS} />}>
+                            {staticOptionPrefix}
+                            {` '${inputValue}' `}
+                            {staticOptionSuffix}
+                        </ListItem>
                     </List>
+                    <DialogFooter text={instructionMessage} />
                 </SuggestionList>
             )}
         </StyledDropdownSelect>
