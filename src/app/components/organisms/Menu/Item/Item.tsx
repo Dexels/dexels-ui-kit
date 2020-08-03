@@ -2,7 +2,7 @@
 import { IconSize, IconType } from '../../../../types';
 import { IconWrapper, Inner, StyledItem, TextWrapper } from './Item.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
-import { IconCustomizable } from '../../../../../lib';
+import { IconCustomizable } from '../../../molecules/IconCustomizable/IconCustomizable';
 import { IconCustomizableSize } from '../../../molecules/IconCustomizable/types';
 import { NavLink } from 'react-router-dom';
 import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
