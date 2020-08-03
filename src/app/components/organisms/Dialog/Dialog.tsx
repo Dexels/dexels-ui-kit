@@ -12,9 +12,11 @@ import {
 } from './Dialog.sc';
 import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import { Easing, Elevation, IconType, Status } from '../../../types';
-import Icon, { IconProps } from '../../atoms/Icon/Icon';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
+import { IconCustomizable } from '../../../../lib';
+import { IconCustomizableSize } from '../../molecules/IconCustomizable';
+import { IconProps } from '../../atoms/Icon/Icon';
 import Overlay from '../../molecules/Overlay/Overlay';
 
 export interface DialogProps {
@@ -66,7 +68,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
         )}
         {hasButtonClose && hasOverlay && isVisible && (
             <ButtonClose onClick={onClose} position={buttonClosePosition}>
-                <Icon type={IconType.CROSS} />
+                <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CROSS} />
             </ButtonClose>
         )}
         <Wrapper
@@ -81,7 +83,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
                     <Content>
                         {iconType && (
                             <IconWrapper status={status}>
-                                <Icon type={iconType} />
+                                <IconCustomizable iconSize={IconCustomizableSize.SIZE32} iconType={iconType} />
                             </IconWrapper>
                         )}
                         {text && <Text>{text}</Text>}
