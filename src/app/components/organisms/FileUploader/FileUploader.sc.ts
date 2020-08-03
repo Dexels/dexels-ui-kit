@@ -1,6 +1,6 @@
 import styled, { SimpleInterpolation } from 'styled-components';
 import { Button } from '../../molecules/Button/Button';
-import { Icon } from '../../atoms/Icon/Icon';
+import { IconCustomizable } from '../../molecules/IconCustomizable/IconCustomizable';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export const FileUploaderInfo = styled.div`
@@ -80,18 +80,8 @@ export const AlertText = styled(BaseText)`
     color: ${({ theme }): string => theme.colorInvalid};
 `;
 
-const BaseIcon = styled(Icon)`
-    display: block;
-    margin: ${({ theme }): string => theme.spacing(0, 0, 1.5)};
-    font-size: ${({ theme }): string => theme.spacing(4.5)};
-`;
-
-export const SuccessIcon = styled(BaseIcon)`
-    color: ${({ theme }): string => theme.colorText.secondary};
-`;
-
-export const AlertIcon = styled(BaseIcon)`
-    color: ${({ theme }): string => theme.colorInvalid};
+export const BaseIcon = styled(IconCustomizable)`
+    margin: ${({ theme }): string => theme.spacing(0, 0, 1.25)};
 `;
 
 export const HiddenInput = styled.input`
