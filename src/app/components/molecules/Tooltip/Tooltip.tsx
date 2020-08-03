@@ -1,5 +1,6 @@
 import { Easing, Elevation, Placement } from '../../../types';
 import React, { FunctionComponent, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import { StyledTooltip } from './Tooltip.sc';
 import { ThemeContext } from 'styled-components';
 
@@ -95,7 +96,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
 }) => {
     const [hasTooltipDelay, setTooltipDelay] = useState(false);
     const [hoveredElement, setHoveredElement] = useState<DOMRect | null>(null);
-    const [isTooltipVisible, setTooltipVisiblity] = useState(false);
+    const [isTooltipVisible, setIsTooltipVisible] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
     const [tooltipPosition, setTooltipPosition] = useState(position);
     const [tooltipTitle, setTooltipTitle] = useState('');
@@ -104,7 +105,7 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
 
     const showTooltip = (hoveredItem: DOMRect): void => {
         setTooltipPosition(getTooltipPosition(hoveredItem, tooltipPosition));
-        setTooltipVisiblity(true);
+        setIsTooltipVisible(!isEmpty(tooltipTitle));
     };
 
     const handleOnMouseOver = (element: HTMLElement): void => {
@@ -129,12 +130,12 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
         if (hasTooltipDelay) {
             setTimeoutId(
                 window.setTimeout(() => {
-                    setTooltipVisiblity(false);
+                    setIsTooltipVisible(false);
                     setTooltipDelay(false);
                 }, delay)
             );
         } else {
-            setTooltipVisiblity(false);
+            setIsTooltipVisible(false);
             setTooltipDelay(false);
         }
     };
