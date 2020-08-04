@@ -1,5 +1,6 @@
 import { Elevation, IconType, InputType, InputVariant } from '../../../types';
-import { List, StyledDropdownSelect, SuggestionList } from './DropdownSelect.sc';
+import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
+import { LabelWrapper, StyledDropdownSelect, SuggestionList } from './DropdownSelect.sc';
 import React, {
     ChangeEvent,
     FunctionComponent,
@@ -11,8 +12,9 @@ import React, {
 } from 'react';
 import { DialogFooter } from '../../molecules/DialogFooter/DialogFooter';
 import { DropdownOption } from '../../molecules/Dropdown/Dropdown';
-import { Icon } from '../../atoms/Icon/Icon';
+
 import { Input } from '../../molecules/Input/Input';
+import { List } from '../../molecules/List/List';
 import { ListItem } from '../../atoms/ListItem/ListItem';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -151,8 +153,16 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 <SuggestionList elevation={elevation}>
                     <List maxHeight={maxHeight}>
                         {suggestedOptions.length < 1 && (
-                            <ListItem adornment={<Icon type={IconType.SEARCH} />} color={themeBasic.shades.three}>
-                                {noResultsMessage}
+                            <ListItem
+                                adornment={
+                                    <IconCustomizable
+                                        iconSize={IconCustomizableSize.SIZE24}
+                                        iconType={IconType.SEARCH}
+                                    />
+                                }
+                                color={themeBasic.shades.three}
+                            >
+                                <LabelWrapper>{noResultsMessage}</LabelWrapper>
                             </ListItem>
                         )}
                         {suggestedOptions.map((item) => (
@@ -165,19 +175,26 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                                     setIsSelectOpen(false);
                                 }}
                             >
-                                {item.label}
+                                <LabelWrapper>{item.label}</LabelWrapper>
                             </ListItem>
                         ))}
                         <ListItem
-                            adornment={<Icon type={IconType.ROUNDPLUS} />}
+                            adornment={
+                                <IconCustomizable
+                                    iconSize={IconCustomizableSize.SIZE24}
+                                    iconType={IconType.CLUBPLACEHOLDER1}
+                                />
+                            }
                             onClick={(event: React.MouseEvent<Element, MouseEvent>): void => {
                                 onSelectNewOption(event);
                                 setIsSelectOpen(false);
                             }}
                         >
-                            {staticOptionPrefix}
-                            {` '${inputValue}' `}
-                            {staticOptionSuffix}
+                            <LabelWrapper>
+                                {staticOptionPrefix}
+                                {` '${inputValue}' `}
+                                {staticOptionSuffix}
+                            </LabelWrapper>
                         </ListItem>
                     </List>
                     <DialogFooter text={instructionMessage} />

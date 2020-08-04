@@ -12,6 +12,9 @@ interface StyledListItemProps {
 export const StyledListItem = styled.li<StyledListItemProps>`
     ${rippleEffectInit()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: ${({ theme }): string => theme.spacing(1, 0, 1, 2.5)};
 
     ${({ color }): SimpleInterpolation =>
@@ -58,7 +61,6 @@ interface AdornmentWrapperProps {
 }
 export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
-    float: left;
     background-color: transparent;
     padding: ${({ theme }): string => theme.spacing(0, 1.5, 0, 0)};
 

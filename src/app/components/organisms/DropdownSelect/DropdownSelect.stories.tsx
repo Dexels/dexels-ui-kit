@@ -1,46 +1,46 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import DropdownSelect, { DropdownOptionProps } from './DropdownSelect';
+import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { IconType, InputVariant } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { Icon } from '../../atoms/Icon/Icon';
 
 export default { title: 'organisms/DropdownSelect' };
 
 const options: DropdownOptionProps[] = [
     {
-        adornment: <Icon type={IconType.CLUBPLACEHOLDER1} />,
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
         label: 'Bánana',
         value: 'BANANA',
     },
     {
-        adornment: <Icon type={IconType.CLUBPLACEHOLDER2} />,
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER09} />,
         label: 'Apple',
         value: 'APPLE',
     },
     {
-        adornment: <Icon type={IconType.CLUBPLACEHOLDER4} />,
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
         label: 'Pëach',
         searchValue: 'Pëac',
         value: 'PEACH',
     },
     {
-        adornment: <Icon type={IconType.CLUBPLACEHOLDER3} />,
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER11} />,
         label: 'Orange',
         value: 'ORANGE',
     },
     {
-        adornment: <Icon type={IconType.CLUBPLACEHOLDER4} />,
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER12} />,
         label: 'Pear',
         value: 'PEAR',
     },
     {
-        adornment: <Icon type={IconType.CLUBPLACEHOLDER5} />,
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER15} />,
         label: 'Strawberry',
         value: 'STRAWBERRY',
     },
     {
-        adornment: <Icon type={IconType.CLUBPLACEHOLDER5} />,
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER16} />,
         label: 'Pineapple',
         value: 'PINEAPPLE',
     },

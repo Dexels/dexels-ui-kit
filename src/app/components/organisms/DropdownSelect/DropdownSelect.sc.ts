@@ -1,4 +1,4 @@
-import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 
@@ -18,20 +18,4 @@ export const SuggestionList = styled.div<SuggestionListProps>`
     width: 100%;
 `;
 
-interface ListProps {
-    maxHeight?: string;
-}
-
-export const List = styled.ul<ListProps>`
-    margin: ${({ theme }): string => theme.spacing(1, 0)};
-    background-color: ${({ theme }): string => theme.card.backgroundColor};
-    padding: ${({ theme }): string => theme.spacing(0)};
-    overflow: auto;
-    list-style-type: none;
-
-    ${({ maxHeight }): SimpleInterpolation =>
-        maxHeight &&
-        css`
-            max-height: ${maxHeight};
-        `}
-`;
+export const LabelWrapper = styled.div``;
