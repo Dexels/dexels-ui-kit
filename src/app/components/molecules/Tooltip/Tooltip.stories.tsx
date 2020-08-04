@@ -40,6 +40,19 @@ export const Configurable: FunctionComponent = () => (
             {'This tooltip should render on the bottom'}
         </div>
         <div
+            data-tooltip-component=""
+            style={{
+                background: 'yellow',
+                height: '50px',
+                left: '550px',
+                position: 'absolute',
+                top: '0',
+                width: '100px',
+            }}
+        >
+            {'This tooltip should NOT render at all'}
+        </div>
+        <div
             style={{
                 left: '-60px',
                 position: 'absolute',

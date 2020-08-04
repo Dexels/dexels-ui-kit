@@ -12,6 +12,7 @@ export const Configurable: FunctionComponent = () => (
         isFullWidth={boolean('Is full width', false)}
         isInverted={boolean('Is inverted', false)}
         isLoading={boolean('Is loading', false)}
+        isTruncatable={boolean('Is Truncatable', false)}
         onClick={action('On click')}
         size={select('Size', ButtonSize, ButtonSize.MEDIUM)}
         transitionDuration={number('Transition duration', 300)}
@@ -30,6 +31,7 @@ export const ConfigurableWithIcon: FunctionComponent = () => (
         isFullWidth={boolean('Use full width', false)}
         isInverted={boolean('Is inverted', false)}
         isLoading={boolean('Is loading', false)}
+        isTruncatable={boolean('Is Truncatable', false)}
         onClick={action('On click')}
         size={select('Size', ButtonSize, ButtonSize.LARGE)}
         transitionDuration={number('Transition duration', 300)}

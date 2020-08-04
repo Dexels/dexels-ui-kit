@@ -1,7 +1,7 @@
 import { FileTypes } from '../types';
 
-export function defineFileFormats(fileFormats: FileTypes): string[] {
-    switch (fileFormats) {
+export function defineFileFormat(fileFormat: FileTypes): string[] {
+    switch (fileFormat) {
         case FileTypes.CSV:
             return ['application/text', 'text/csv', 'text/plain'];
             break;
@@ -29,4 +29,18 @@ export function defineFileFormats(fileFormats: FileTypes): string[] {
         default:
             return [''];
     }
+}
+
+export function defineFileFormats(fileTypes: FileTypes[]): string[] {
+    const fileFormats: string[] = [];
+
+    fileTypes.forEach((type) => {
+        const format = defineFileFormat(type);
+
+        format.forEach((p) => {
+            fileFormats.push(p);
+        });
+    });
+
+    return fileFormats;
 }
