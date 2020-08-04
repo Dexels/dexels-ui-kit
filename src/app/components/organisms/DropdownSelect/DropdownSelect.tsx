@@ -38,8 +38,6 @@ export interface DropdownSelectProps {
     footerText: ReactNode;
     hasError?: boolean;
     iconType: IconType;
-    inputTextPrefix?: ReactNode;
-    inputTextSuffix?: ReactNode;
     isDisabled?: boolean;
     isSearchFromStart?: boolean;
     isValid?: boolean;
@@ -47,8 +45,10 @@ export interface DropdownSelectProps {
     maxHeight?: string;
     name: string;
     noResultsMessage: string;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onConfirm: (event: SyntheticEvent, option: DropdownOption) => void;
     options: DropdownSelectOptionProps[];
+    useTypedText: ReactNode;
     value: string;
     variant?: InputVariant;
 }
@@ -67,10 +67,10 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     maxHeight,
     name,
     noResultsMessage,
+    onChange,
     onConfirm,
     options,
-    inputTextPrefix,
-    inputTextSuffix,
+    useTypedText,
     value,
     variant,
 }) => {
@@ -96,9 +96,13 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         (event: ChangeEvent<HTMLInputElement>) => {
             if (event.currentTarget) {
                 setInputValue(parseInputValue(event.currentTarget));
+
+                if (onChange) {
+                    onChange(event);
+                }
             }
         },
-        [inputValue, options]
+        [inputValue, onChange, options]
     );
 
     const onSelectNewOption = useCallback(
@@ -198,11 +202,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                                 setIsSelectOpen(false);
                             }}
                         >
-                            <LabelWrapper>
-                                {inputTextPrefix}
-                                {` '${inputValue}' `}
-                                {inputTextSuffix}
-                            </LabelWrapper>
+                            <LabelWrapper>{useTypedText}</LabelWrapper>
                         </ListItem>
                     </List>
                     <DialogFooter text={footerText} />
