@@ -2,6 +2,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import DropdownSelect, { DropdownOptionProps } from './DropdownSelect';
 import { IconType, InputVariant } from '../../../types';
 import React, { FunctionComponent, SyntheticEvent, useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import { Icon } from '../../atoms/Icon/Icon';
 
 export default { title: 'organisms/DropdownSelect' };
@@ -48,13 +49,11 @@ const options: DropdownOptionProps[] = [
 export const Configurable: FunctionComponent = () => {
     const [value] = useState('');
 
-    const onClickOptionCallback = (event: SyntheticEvent, option: DropdownOptionProps): DropdownOptionProps => {
+    const onClickOptionCallback = (_: SyntheticEvent, option: DropdownOptionProps): void => {
         // eslint-disable-next-line no-console
         console.log('Clicked row:', option);
-        // eslint-disable-next-line no-console
-        console.log('Event:', event);
 
-        return option;
+        action(`On click => ${option.label}`);
     };
 
     return (
@@ -65,6 +64,7 @@ export const Configurable: FunctionComponent = () => {
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
             name="an-input-name"
+            noResultsMessage={text('No results message', 'No fruit is found!')}
             onClickOption={onClickOptionCallback}
             options={options}
             staticOptionPrefix={text('Static option prefix', 'Use')}

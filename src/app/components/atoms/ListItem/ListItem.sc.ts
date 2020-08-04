@@ -2,7 +2,11 @@ import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styl
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 
 interface StyledListItemProps {
+    color?: string;
     hasOnClickAction: boolean;
+    isDisabled?: boolean;
+    isFocused?: boolean;
+    isHovered?: boolean;
 }
 
 export const StyledListItem = styled.li<StyledListItemProps>`
@@ -10,10 +14,28 @@ export const StyledListItem = styled.li<StyledListItemProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     padding: ${({ theme }): string => theme.spacing(1, 0, 1, 2.5)};
 
+    ${({ color }): SimpleInterpolation =>
+        color &&
+        css`
+            color: ${color};
+        `}
+
     ${({ hasOnClickAction }): SimpleInterpolation =>
         hasOnClickAction &&
         css`
             cursor: pointer;
+        `}
+
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+        `}
+
+    ${({ isFocused, isHovered, theme }): SimpleInterpolation =>
+        (isFocused || isHovered) &&
+        css`
+            color: ${theme.colorSecondary};
         `}
 
     &::after {

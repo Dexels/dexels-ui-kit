@@ -15,6 +15,7 @@ import { Icon } from '../../atoms/Icon/Icon';
 import { Input } from '../../molecules/Input/Input';
 import { ListItem } from '../../atoms/ListItem/ListItem';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
+import { themeBasic } from '../../../../lib';
 import { toBasicLowercase } from '../../../utils/functions/stringFunctions';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
@@ -36,6 +37,7 @@ export interface DropdownSelectProps {
     label?: ReactNode;
     maxHeight?: string;
     name: string;
+    noResultsMessage: string;
     onClickOption: (event: SyntheticEvent, option: DropdownOption) => void;
     options: DropdownOptionProps[];
     staticOptionPrefix?: ReactNode;
@@ -56,6 +58,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     label,
     maxHeight,
     name,
+    noResultsMessage,
     onClickOption,
     options,
     staticOptionPrefix,
@@ -107,16 +110,25 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         );
     }, [inputValue]);
 
-    const handleClickOutsideComponent = (): void => {
+    const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsSelectOpen(false);
-        // onSelectNewOption(event);
+        onSelectNewOption(event);
     };
 
-    const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
+    const { componentRef } = useClickOutsideComponent((event: MouseEvent) =>
+        handleClickOutsideComponent((event as unknown) as SyntheticEvent)
+    );
 
     const onFocusCallback = useCallback((): void => {
         setIsSelectOpen(inputValue.length > 0);
     }, [inputValue]);
+
+    const onKeydownCallback = useCallback((event: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (event.key === 'Enter') {
+            setIsSelectOpen(false);
+            onSelectNewOption(event);
+        }
+    }, []);
 
     return (
         <StyledDropdownSelect className={className} ref={componentRef}>
@@ -129,6 +141,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 name={name}
                 onChange={onChangeInputCallback}
                 onFocus={onFocusCallback}
+                onKeyDown={onKeydownCallback}
                 type={InputType.TEXT}
                 value={inputValue}
                 variant={variant}
@@ -137,12 +150,17 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
             {isSelectOpen && (
                 <SuggestionList elevation={elevation}>
                     <List maxHeight={maxHeight}>
+                        {suggestedOptions.length < 1 && (
+                            <ListItem adornment={<Icon type={IconType.SEARCH} />} color={themeBasic.shades.three}>
+                                {noResultsMessage}
+                            </ListItem>
+                        )}
                         {suggestedOptions.map((item) => (
                             <ListItem
                                 adornment={item.adornment}
                                 isDisabled={isDisabled}
                                 key={item.value}
-                                onClick={(event: SyntheticEvent): void => {
+                                onClick={(event: React.MouseEvent<Element, MouseEvent>): void => {
                                     onClickOption(event, item);
                                     setIsSelectOpen(false);
                                 }}
@@ -152,7 +170,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                         ))}
                         <ListItem
                             adornment={<Icon type={IconType.ROUNDPLUS} />}
-                            onClick={(event: SyntheticEvent): void => {
+                            onClick={(event: React.MouseEvent<Element, MouseEvent>): void => {
                                 onSelectNewOption(event);
                                 setIsSelectOpen(false);
                             }}
