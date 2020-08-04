@@ -1,7 +1,7 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import DropdownSelect, { DropdownOptionProps } from './DropdownSelect';
 import { IconType, InputVariant } from '../../../types';
-import React, { FunctionComponent, SyntheticEvent, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Icon } from '../../atoms/Icon/Icon';
 
@@ -49,13 +49,6 @@ const options: DropdownOptionProps[] = [
 export const Configurable: FunctionComponent = () => {
     const [value] = useState('');
 
-    const onClickOptionCallback = (_: SyntheticEvent, option: DropdownOptionProps): void => {
-        // eslint-disable-next-line no-console
-        console.log('Clicked row:', option);
-
-        action(`On click => ${option.label}`);
-    };
-
     return (
         <DropdownSelect
             errorMessage={text('Error message', 'Help, something went wrong!')}
@@ -65,7 +58,7 @@ export const Configurable: FunctionComponent = () => {
             label={text('Label', 'This is a label')}
             name="an-input-name"
             noResultsMessage={text('No results message', 'No fruit is found!')}
-            onClickOption={onClickOptionCallback}
+            onClickOption={action('On click')}
             options={options}
             staticOptionPrefix={text('Static option prefix', 'Use')}
             staticOptionSuffix={text('Static option suffix', 'as choozen fruit')}
