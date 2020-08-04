@@ -1,6 +1,14 @@
 import { Elevation, IconType, InputType, InputVariant } from '../../../types';
 import { List, StyledDropdownSelect, SuggestionList } from './DropdownSelect.sc';
-import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useEffect, useState } from 'react';
+import React, {
+    ChangeEvent,
+    FunctionComponent,
+    ReactNode,
+    SyntheticEvent,
+    useCallback,
+    useEffect,
+    useState,
+} from 'react';
 import { DialogFooter } from '../../molecules/DialogFooter/DialogFooter';
 import { DropdownOption } from '../../molecules/Dropdown/Dropdown';
 import { Icon } from '../../atoms/Icon/Icon';
@@ -8,6 +16,7 @@ import { Input } from '../../molecules/Input/Input';
 import { ListItem } from '../../atoms/ListItem/ListItem';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
 import { toBasicLowercase } from '../../../utils/functions/stringFunctions';
+import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 export interface DropdownOptionProps extends DropdownOption {
     adornment?: ReactNode;
@@ -27,6 +36,7 @@ export interface DropdownSelectProps {
     label?: ReactNode;
     maxHeight?: string;
     name: string;
+    onClickOption: (event: SyntheticEvent, option: DropdownOption) => void;
     options: DropdownOptionProps[];
     staticOptionPrefix?: ReactNode;
     staticOptionSuffix?: ReactNode;
@@ -46,13 +56,14 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     label,
     maxHeight,
     name,
+    onClickOption,
     options,
     staticOptionPrefix,
     staticOptionSuffix,
     value,
     variant,
 }) => {
-    const [isSelectOpen, setIsSelectionOpen] = useState(false);
+    const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownOptionProps[]);
 
@@ -72,8 +83,18 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         [inputValue, options]
     );
 
+    const onSelectNewOption = useCallback(
+        (event: SyntheticEvent): void => {
+            onClickOption(event, {
+                label: inputValue,
+                value: inputValue,
+            });
+        },
+        [onClickOption, inputValue]
+    );
+
     useEffect(() => {
-        setIsSelectionOpen(inputValue.length > 0);
+        setIsSelectOpen(inputValue.length > 0);
     }, [inputValue]);
 
     useEffect(() => {
@@ -86,8 +107,19 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         );
     }, [inputValue]);
 
+    const handleClickOutsideComponent = (): void => {
+        setIsSelectOpen(false);
+        // onSelectNewOption(event);
+    };
+
+    const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
+
+    const onFocusCallback = useCallback((): void => {
+        setIsSelectOpen(inputValue.length > 0);
+    }, [inputValue]);
+
     return (
-        <StyledDropdownSelect className={className}>
+        <StyledDropdownSelect className={className} ref={componentRef}>
             <Input
                 errorMessage={errorMessage}
                 hasError={hasError}
@@ -96,6 +128,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 label={label}
                 name={name}
                 onChange={onChangeInputCallback}
+                onFocus={onFocusCallback}
                 type={InputType.TEXT}
                 value={inputValue}
                 variant={variant}
@@ -105,11 +138,25 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 <SuggestionList elevation={elevation}>
                     <List maxHeight={maxHeight}>
                         {suggestedOptions.map((item) => (
-                            <ListItem adornment={item.adornment} isDisabled={isDisabled} key={item.value}>
+                            <ListItem
+                                adornment={item.adornment}
+                                isDisabled={isDisabled}
+                                key={item.value}
+                                onClick={(event: SyntheticEvent): void => {
+                                    onClickOption(event, item);
+                                    setIsSelectOpen(false);
+                                }}
+                            >
                                 {item.label}
                             </ListItem>
                         ))}
-                        <ListItem adornment={<Icon type={IconType.ROUNDPLUS} />}>
+                        <ListItem
+                            adornment={<Icon type={IconType.ROUNDPLUS} />}
+                            onClick={(event: SyntheticEvent): void => {
+                                onSelectNewOption(event);
+                                setIsSelectOpen(false);
+                            }}
+                        >
                             {staticOptionPrefix}
                             {` '${inputValue}' `}
                             {staticOptionSuffix}

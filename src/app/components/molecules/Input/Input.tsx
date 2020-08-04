@@ -30,6 +30,7 @@ export interface InputProps {
     name: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onClick?: MouseEventHandler;
+    onFocus?: () => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     type?: InputType;
     value?: string;
@@ -55,6 +56,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     onChange,
     onClick,
     onKeyDown,
+    onFocus,
     type = InputType.TEXT,
     value = '',
     variant = InputVariant.OUTLINE,
@@ -67,7 +69,11 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
     const toggleIsFocusedCallback = useCallback(() => {
         setIsFocused(!isFocused);
-    }, [isFocused]);
+
+        if (onFocus) {
+            onFocus();
+        }
+    }, [isFocused, onFocus]);
 
     const toggleIsHoveredCallback = useCallback(() => {
         setIsHovered(!isHovered);

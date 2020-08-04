@@ -1,5 +1,5 @@
 import { AdornmentWrapper, StyledListItem } from './ListItem.sc';
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 
 export interface ListItemProps {
     adornment?: ReactNode;
@@ -7,6 +7,7 @@ export interface ListItemProps {
     isDisabled?: boolean;
     isFocused?: boolean;
     isHovered?: boolean;
+    onClick?: MouseEventHandler;
 }
 
 export const ListItem: FunctionComponent<ListItemProps> = ({
@@ -15,8 +16,9 @@ export const ListItem: FunctionComponent<ListItemProps> = ({
     isDisabled = false,
     isFocused = false,
     isHovered = false,
+    onClick,
 }) => (
-    <StyledListItem>
+    <StyledListItem hasOnClickAction={onClick !== undefined} onClick={onClick}>
         {adornment && (
             <AdornmentWrapper isDisabled={isDisabled} isFocused={isFocused} isHovered={isHovered}>
                 {adornment}

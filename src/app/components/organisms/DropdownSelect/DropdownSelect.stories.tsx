@@ -1,7 +1,7 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import DropdownSelect, { DropdownOptionProps } from './DropdownSelect';
 import { IconType, InputVariant } from '../../../types';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, SyntheticEvent, useState } from 'react';
 import { Icon } from '../../atoms/Icon/Icon';
 
 export default { title: 'organisms/DropdownSelect' };
@@ -48,6 +48,15 @@ const options: DropdownOptionProps[] = [
 export const Configurable: FunctionComponent = () => {
     const [value] = useState('');
 
+    const onClickOptionCallback = (event: SyntheticEvent, option: DropdownOptionProps): DropdownOptionProps => {
+        // eslint-disable-next-line no-console
+        console.log('Clicked row:', option);
+        // eslint-disable-next-line no-console
+        console.log('Event:', event);
+
+        return option;
+    };
+
     return (
         <DropdownSelect
             errorMessage={text('Error message', 'Help, something went wrong!')}
@@ -56,6 +65,7 @@ export const Configurable: FunctionComponent = () => {
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
             name="an-input-name"
+            onClickOption={onClickOptionCallback}
             options={options}
             staticOptionPrefix={text('Static option prefix', 'Use')}
             staticOptionSuffix={text('Static option suffix', 'as choozen fruit')}

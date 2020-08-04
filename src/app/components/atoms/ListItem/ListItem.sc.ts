@@ -1,10 +1,20 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 
-export const StyledListItem = styled.li`
+interface StyledListItemProps {
+    hasOnClickAction: boolean;
+}
+
+export const StyledListItem = styled.li<StyledListItemProps>`
     ${rippleEffectInit()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     padding: ${({ theme }): string => theme.spacing(1, 0, 1, 2.5)};
+
+    ${({ hasOnClickAction }): SimpleInterpolation =>
+        hasOnClickAction &&
+        css`
+            cursor: pointer;
+        `}
 
     &::after {
         ${({ theme }): FlattenSimpleInterpolation => rippleEffect(theme.colorSecondary)}
