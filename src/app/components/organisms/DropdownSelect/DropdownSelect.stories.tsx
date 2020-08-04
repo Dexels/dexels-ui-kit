@@ -61,7 +61,7 @@ export const Configurable: FunctionComponent = () => {
             onClickOption={action('On click')}
             options={options}
             staticOptionPrefix={text('Static option prefix', 'Use')}
-            staticOptionSuffix={text('Static option suffix', 'as choozen fruit')}
+            staticOptionSuffix={text('Static option suffix', 'as chosen fruit')}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />
