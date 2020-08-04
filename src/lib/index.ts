@@ -123,7 +123,7 @@ export {
 export {
     DropdownSelect,
     DropdownSelectProps,
-    DropdownOptionProps,
+    DropdownSelectOptionProps,
 } from '../app/components/organisms/DropdownSelect/DropdownSelect';
 export { FileUploader, FileUploaderProps } from '../app/components/organisms/FileUploader/FileUploader';
 export { FileUploadDialog, FileUploadDialogProps } from '../app/components/organisms/FileUploadDialog/FileUploadDialog';

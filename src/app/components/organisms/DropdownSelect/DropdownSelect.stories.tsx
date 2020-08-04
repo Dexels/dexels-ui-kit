@@ -1,5 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import DropdownSelect, { DropdownOptionProps } from './DropdownSelect';
+import DropdownSelect, { DropdownSelectOptionProps } from './DropdownSelect';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { IconType, InputVariant } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 
 export default { title: 'organisms/DropdownSelect' };
 
-const options: DropdownOptionProps[] = [
+const options: DropdownSelectOptionProps[] = [
     {
         adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
         label: 'Bánana',
@@ -52,16 +52,17 @@ export const Configurable: FunctionComponent = () => {
     return (
         <DropdownSelect
             errorMessage={text('Error message', 'Help, something went wrong!')}
-            instructionMessage={text('Instructions', 'Choose a fruit or type yourself a fruit!')}
+            footerText={text('Instructions', 'Choose a fruit or type yourself a fruit!')}
+            iconType={select('Type', IconType, IconType.CLUBPLACEHOLDER1)}
+            inputTextPrefix={text('Input text prefix', 'Use')}
+            inputTextSuffix={text('Input text suffix', 'as choozen fruit')}
             isDisabled={boolean('Is disabled', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
             name="an-input-name"
             noResultsMessage={text('No results message', 'No fruit is found!')}
-            onClickOption={action('On click')}
+            onConfirm={action('On click')}
             options={options}
-            staticOptionPrefix={text('Static option prefix', 'Use')}
-            staticOptionSuffix={text('Static option suffix', 'as choozen fruit')}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />

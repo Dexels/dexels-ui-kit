@@ -5,7 +5,7 @@ interface StyledListProps {
 }
 
 export const StyledList = styled.ul<StyledListProps>`
-    margin: ${({ theme }): string => theme.spacing(1, 0)};
+    margin: ${({ theme }): string => theme.spacing(0)};
     background-color: ${({ theme }): string => theme.card.backgroundColor};
     padding: ${({ theme }): string => theme.spacing(0)};
     overflow: auto;

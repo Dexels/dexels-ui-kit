@@ -2,6 +2,7 @@ import { AdornmentPosition, InputType, InputVariant } from '../../../types';
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import React, {
     ChangeEvent,
+    FocusEvent,
     FunctionComponent,
     KeyboardEvent,
     MouseEventHandler,
@@ -30,7 +31,7 @@ export interface InputProps {
     name: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onClick?: MouseEventHandler;
-    onFocus?: () => void;
+    onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     type?: InputType;
     value?: string;
@@ -67,13 +68,16 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const hasValue = value.length > 0;
     const textFieldProps: { [key: string]: number } = {};
 
-    const toggleIsFocusedCallback = useCallback(() => {
-        setIsFocused(!isFocused);
+    const toggleIsFocusedCallback = useCallback(
+        (event: FocusEvent<HTMLInputElement>) => {
+            setIsFocused(!isFocused);
 
-        if (onFocus) {
-            onFocus();
-        }
-    }, [isFocused, onFocus]);
+            if (onFocus) {
+                onFocus(event);
+            }
+        },
+        [isFocused, onFocus]
+    );
 
     const toggleIsHoveredCallback = useCallback(() => {
         setIsHovered(!isHovered);

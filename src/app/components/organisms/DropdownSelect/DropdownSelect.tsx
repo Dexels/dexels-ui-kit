@@ -17,13 +17,17 @@ import { Input } from '../../molecules/Input/Input';
 import { List } from '../../molecules/List/List';
 import { ListItem } from '../../atoms/ListItem/ListItem';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
-import { themeBasic } from '../../../styles/theming/themes/basic';
 import { toBasicLowercase } from '../../../utils/functions/stringFunctions';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
-export interface DropdownOptionProps extends DropdownOption {
+export interface DropdownSelectOptionProps extends DropdownOption {
     adornment?: ReactNode;
     searchValue?: string;
+}
+
+interface UpdatedDropdownSelectProps extends DropdownOption {
+    adornment?: ReactNode;
+    searchValue: string;
 }
 
 export interface DropdownSelectProps {
@@ -31,8 +35,11 @@ export interface DropdownSelectProps {
     className?: string;
     elevation?: Elevation;
     errorMessage?: ReactNode;
+    footerText: ReactNode;
     hasError?: boolean;
-    instructionMessage: ReactNode;
+    iconType: IconType;
+    inputTextPrefix?: ReactNode;
+    inputTextSuffix?: ReactNode;
     isDisabled?: boolean;
     isSearchFromStart?: boolean;
     isValid?: boolean;
@@ -40,10 +47,8 @@ export interface DropdownSelectProps {
     maxHeight?: string;
     name: string;
     noResultsMessage: string;
-    onClickOption: (event: SyntheticEvent, option: DropdownOption) => void;
-    options: DropdownOptionProps[];
-    staticOptionPrefix?: ReactNode;
-    staticOptionSuffix?: ReactNode;
+    onConfirm: (event: SyntheticEvent, option: DropdownOption) => void;
+    options: DropdownSelectOptionProps[];
     value: string;
     variant?: InputVariant;
 }
@@ -53,7 +58,8 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     elevation = Elevation.LEVEL_6,
     errorMessage,
     hasError = false,
-    instructionMessage,
+    iconType,
+    footerText,
     isDisabled = false,
     isSearchFromStart = true,
     isValid = false,
@@ -61,23 +67,30 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     maxHeight,
     name,
     noResultsMessage,
-    onClickOption,
+    onConfirm,
     options,
-    staticOptionPrefix,
-    staticOptionSuffix,
+    inputTextPrefix,
+    inputTextSuffix,
     value,
     variant,
 }) => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [inputValue, setInputValue] = useState(value);
-    const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownOptionProps[]);
+    const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownSelectOptionProps[]);
+    const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelectProps[]);
 
-    const updatedOptions = options.map((option) => {
-        return {
-            ...option,
-            searchValue: option.searchValue ? toBasicLowercase(option.searchValue) : toBasicLowercase(option.label),
-        };
-    });
+    useEffect(() => {
+        setUpdatedOptions(
+            options.map((option) => {
+                return {
+                    ...option,
+                    searchValue: option.searchValue
+                        ? toBasicLowercase(option.searchValue)
+                        : toBasicLowercase(option.label),
+                };
+            })
+        );
+    }, [options]);
 
     const onChangeInputCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -90,12 +103,12 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
     const onSelectNewOption = useCallback(
         (event: SyntheticEvent): void => {
-            onClickOption(event, {
+            onConfirm(event, {
                 label: inputValue,
                 value: inputValue,
             });
         },
-        [onClickOption, inputValue]
+        [onConfirm, inputValue]
     );
 
     useEffect(() => {
@@ -160,7 +173,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                                         iconType={IconType.SEARCH}
                                     />
                                 }
-                                color={themeBasic.shades.three}
+                                isLighter
                             >
                                 <LabelWrapper>{noResultsMessage}</LabelWrapper>
                             </ListItem>
@@ -171,7 +184,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                                 isDisabled={isDisabled}
                                 key={item.value}
                                 onClick={(event: React.MouseEvent<Element, MouseEvent>): void => {
-                                    onClickOption(event, item);
+                                    onConfirm(event, item);
                                     setIsSelectOpen(false);
                                 }}
                             >
@@ -179,25 +192,20 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                             </ListItem>
                         ))}
                         <ListItem
-                            adornment={
-                                <IconCustomizable
-                                    iconSize={IconCustomizableSize.SIZE24}
-                                    iconType={IconType.CLUBPLACEHOLDER1}
-                                />
-                            }
+                            adornment={<IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={iconType} />}
                             onClick={(event: React.MouseEvent<Element, MouseEvent>): void => {
                                 onSelectNewOption(event);
                                 setIsSelectOpen(false);
                             }}
                         >
                             <LabelWrapper>
-                                {staticOptionPrefix}
+                                {inputTextPrefix}
                                 {` '${inputValue}' `}
-                                {staticOptionSuffix}
+                                {inputTextSuffix}
                             </LabelWrapper>
                         </ListItem>
                     </List>
-                    <DialogFooter text={instructionMessage} />
+                    <DialogFooter text={footerText} />
                 </SuggestionList>
             )}
         </StyledDropdownSelect>

@@ -2,11 +2,11 @@ import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styl
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 
 interface StyledListItemProps {
-    color?: string;
-    hasOnClickAction: boolean;
+    hasOnClick: boolean;
     isDisabled?: boolean;
     isFocused?: boolean;
     isHovered?: boolean;
+    isLighter?: boolean;
 }
 
 export const StyledListItem = styled.li<StyledListItemProps>`
@@ -15,16 +15,17 @@ export const StyledListItem = styled.li<StyledListItemProps>`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: ${({ theme }): string => theme.spacing(1, 0, 1, 2.5)};
+    padding: ${({ theme }): string => theme.spacing(1, 0, 1, 2)};
+    color: ${({ theme }): string => theme.colorPrimary};
 
-    ${({ color }): SimpleInterpolation =>
-        color &&
+    ${({ isLighter, theme }): SimpleInterpolation =>
+        isLighter &&
         css`
-            color: ${color};
+            color: ${theme.shades.three};
         `}
 
-    ${({ hasOnClickAction }): SimpleInterpolation =>
-        hasOnClickAction &&
+    ${({ hasOnClick }): SimpleInterpolation =>
+        hasOnClick &&
         css`
             cursor: pointer;
         `}
