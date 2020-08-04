@@ -115,6 +115,11 @@ export {
     DropdownMultiSelectProps,
     DropdownOptionAllTexts,
 } from '../app/components/organisms/DropdownMultiSelect';
+export {
+    DropdownSelect,
+    DropdownSelectProps,
+    DropdownOptionProps,
+} from '../app/components/organisms/DropdownSelect/DropdownSelect';
 export { FileUploader, FileUploaderProps } from '../app/components/organisms/FileUploader/FileUploader';
 export { FileUploadDialog, FileUploadDialogProps } from '../app/components/organisms/FileUploadDialog/FileUploadDialog';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';

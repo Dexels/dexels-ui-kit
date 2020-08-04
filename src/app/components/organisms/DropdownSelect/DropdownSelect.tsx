@@ -15,7 +15,7 @@ import { Icon } from '../../atoms/Icon/Icon';
 import { Input } from '../../molecules/Input/Input';
 import { ListItem } from '../../atoms/ListItem/ListItem';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
-import { themeBasic } from '../../../../lib';
+import { themeBasic } from '../../../styles/theming/themes/basic';
 import { toBasicLowercase } from '../../../utils/functions/stringFunctions';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
