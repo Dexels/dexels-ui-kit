@@ -144,7 +144,6 @@ interface IconWrapperProps extends StyledDropdownProps {
 export const IconWrapper = styled.div<IconWrapperProps>`
     position: absolute;
     color: ${({ theme }): string => theme.colorText.primary};
-    font-size: ${({ theme }): string => theme.spacing(3)};
     pointer-events: none;
 
     span {

@@ -1,11 +1,15 @@
+import { IconWrapper, StyledIcon } from './IconCustomizable.sc';
 import React, { FunctionComponent } from 'react';
-import Icon from '../../atoms/Icon/Icon';
 import { IconCustomizableProps } from './types';
-import { IconWrapper } from './IconCustomizable.sc';
 
-export const IconCustomizable: FunctionComponent<IconCustomizableProps> = ({ iconColor, iconSize, iconType }) => (
-    <IconWrapper iconColor={iconColor} iconSize={iconSize}>
-        <Icon type={iconType} />
+export const IconCustomizable: FunctionComponent<IconCustomizableProps> = ({
+    iconColor,
+    iconSize,
+    iconType,
+    className,
+}) => (
+    <IconWrapper className={className} iconColor={iconColor} iconSize={iconSize}>
+        <StyledIcon type={iconType} />
     </IconWrapper>
 );
 

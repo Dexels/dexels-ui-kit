@@ -2,7 +2,8 @@
 import { IconSize, IconType } from '../../../../types';
 import { IconWrapper, Inner, StyledItem, TextWrapper } from './Item.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
-import Icon from '../../../atoms/Icon/Icon';
+import { IconCustomizable } from '../../../molecules/IconCustomizable/IconCustomizable';
+import { IconCustomizableSize } from '../../../molecules/IconCustomizable/types';
 import { NavLink } from 'react-router-dom';
 import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
 
@@ -42,7 +43,10 @@ const Item: FunctionComponent<ItemsProps> = ({
                 </TextWrapper>
                 {hasChildren && (
                     <IconWrapper>
-                        <Icon type={isOpen ? IconType.CHEVRONUP : IconType.CHEVRONDOWN} />
+                        <IconCustomizable
+                            iconSize={IconCustomizableSize.SIZE20}
+                            iconType={isOpen ? IconType.CHEVRONUP : IconType.CHEVRONDOWN}
+                        />
                     </IconWrapper>
                 )}
             </Inner>

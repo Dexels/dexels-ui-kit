@@ -76,7 +76,6 @@ export const ButtonClose = styled.button<ButtonCloseProps>`
     cursor: pointer;
     padding: ${({ theme }): string => theme.spacing(1)};
     color: ${({ theme }): string => theme.colorText.primary};
-    font-size: ${({ theme }): string => theme.spacing(3)};
 
     ${({ position }): SimpleInterpolation =>
         position === DialogButtonClosePosition.LEFT &&
@@ -158,7 +157,6 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     flex: 0 0 auto;
     margin: 0 16px 0 0;
     color: ${({ status, theme }): string => getStatusColor(status, theme)};
-    font-size: 32px;
 
     span {
         display: block;

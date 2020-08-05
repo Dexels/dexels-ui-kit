@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import Icon from '../../../atoms/Icon/Icon';
+import IconCustomizable from '../../../molecules/IconCustomizable/IconCustomizable';
+import { IconCustomizableSize } from '../../../molecules/IconCustomizable/types';
 import { IconType } from '../../../../types';
 import { SingleDatePickerVariant } from '../types';
 import { StyledInputIcon } from './InputIcon.sc';
@@ -17,7 +18,7 @@ const InputIcon: FunctionComponent<InputIconProps> = ({
     variant = SingleDatePickerVariant.OUTLINE,
 }) => (
     <StyledInputIcon isDisabled={isDisabled} isFocused={isFocused} variant={variant}>
-        <Icon type={IconType.CALENDAR} />
+        <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CALENDAR} />
     </StyledInputIcon>
 );
 

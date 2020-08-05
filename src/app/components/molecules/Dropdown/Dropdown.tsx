@@ -3,7 +3,8 @@ import React, { ChangeEvent, ComponentType, FunctionComponent, MouseEventHandler
 import { DropdownVariant } from './types';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
-import Icon from '../../atoms/Icon/Icon';
+import { IconCustomizable } from '../IconCustomizable/IconCustomizable';
+import { IconCustomizableSize } from '../IconCustomizable/types';
 import { IconType } from '../../../types';
 
 export interface DropdownOption {
@@ -128,7 +129,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     isValid={isValid}
                     variant={variant}
                 >
-                    <Icon type={IconType.DROPDOWN} />
+                    <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.DROPDOWN} />
                 </IconWrapper>
             </StyledDropdown>
             {errorMessage && hasError && !isDisabled && (

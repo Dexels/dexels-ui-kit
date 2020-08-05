@@ -243,7 +243,6 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     z-index: 4;
     padding: 0 0 1px;
     color: ${({ theme }): string => theme.colorSecondary};
-    font-size: ${({ theme }): string => theme.spacing(2.5)};
 
     span {
         display: block;
