@@ -1,7 +1,8 @@
 import { Elevation, IconType } from '../../../types';
 import { Header, IconWrapper, Item, Left, Right, StyledCardNoResults, Title } from './CardNoResults.sc';
 import React, { FunctionComponent, ReactNode } from 'react';
-import Icon from '../../atoms/Icon/Icon';
+import IconCustomizable from '../IconCustomizable/IconCustomizable';
+import { IconCustomizableSize } from '../IconCustomizable/types';
 
 export interface CardNoResultsProps {
     children?: never;
@@ -26,7 +27,7 @@ export const CardNoResults: FunctionComponent<CardNoResultsProps> = ({
     <StyledCardNoResults className={className} elevation={elevation}>
         <Left>
             <IconWrapper>
-                <Icon type={iconType} />
+                <IconCustomizable iconSize={IconCustomizableSize.SIZE30} iconType={iconType} />
             </IconWrapper>
         </Left>
         <Right>

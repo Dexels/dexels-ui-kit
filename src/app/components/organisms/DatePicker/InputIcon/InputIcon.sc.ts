@@ -10,7 +10,6 @@ interface StyledInputIconProps {
 
 export const StyledInputIcon = styled.div<StyledInputIconProps>`
     color: ${({ theme }): string => theme.colorPrimary};
-    font-size: ${({ theme }): string => theme.spacing(3)};
 
     span {
         display: block;

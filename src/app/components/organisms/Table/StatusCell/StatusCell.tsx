@@ -2,7 +2,8 @@ import { IconType, Placement, Status, StatusIndicatorSize } from '../../../../ty
 import { IconWrapper, ImageWrapper, StyledStatusIndicator } from './StatusCell.sc';
 import React, { FunctionComponent, ReactNode, useContext } from 'react';
 import getStatusColor from '../../../../styles/mixins/getStatusColor';
-import Icon from '../../../atoms/Icon/Icon';
+import { IconCustomizable } from '../../../molecules/IconCustomizable/IconCustomizable';
+import { IconCustomizableSize } from '../../../molecules/IconCustomizable/types';
 import { ThemeContext } from 'styled-components';
 
 export interface StatusCellProps {
@@ -30,7 +31,7 @@ export const StatusCell: FunctionComponent<StatusCellProps> = ({ icon, iconColor
                 ) : (
                     icon && (
                         <IconWrapper iconColor={iconColor || getStatusColor(status, theme)}>
-                            <Icon type={icon} />
+                            <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={icon} />
                         </IconWrapper>
                     )
                 ))}

@@ -16,6 +16,7 @@ import { ButtonVariant, IconType } from '../../../types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
 import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 import { defineFileFormats } from './utils/defineFileFormats';
+import { IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
 
 export interface FileUploaderData {
@@ -183,14 +184,14 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 )}
                 {status === FileUploaderStatus.SUCCESS && (
                     <FileUploaderInfo>
-                        <SuccessIcon type={IconType.FILEGENERIC} />
+                        <SuccessIcon iconSize={IconCustomizableSize.SIZE36} iconType={IconType.FILEGENERIC} />
                         <StatusText>{message}</StatusText>
                         <BottomText>{bottomText}</BottomText>
                     </FileUploaderInfo>
                 )}
                 {status === FileUploaderStatus.ALERT && (
                     <FileUploaderInfo>
-                        <AlertIcon type={IconType.STATUSERROR} />
+                        <AlertIcon iconSize={IconCustomizableSize.SIZE36} iconType={IconType.STATUSERROR} />
                         <AlertText>{message}</AlertText>
                         {button}
                         <BottomText>{bottomText}</BottomText>
