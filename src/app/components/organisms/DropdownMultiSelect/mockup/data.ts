@@ -1,36 +1,30 @@
-type OptionBase = { [key: string]: unknown };
+import { DropdownMultiSelectOption } from '../types';
 
-export interface Option extends OptionBase {
-    Description: string;
-    Id: string;
-    Selected: boolean;
-}
-
-export const data: Option[] = [
+export const data: DropdownMultiSelectOption[] = [
     {
-        Description: 'Banana',
-        Id: 'BANANA',
-        Selected: true,
+        isSelected: true,
+        label: 'Banana',
+        value: 'BANANA',
     },
     {
-        Description: 'Apple',
-        Id: 'APPLE',
-        Selected: false,
+        isSelected: false,
+        label: 'Apple',
+        value: 'APPLE',
     },
     {
-        Description: 'Orange',
-        Id: 'ORANGE',
-        Selected: true,
+        isSelected: true,
+        label: 'Orange',
+        value: 'ORANGE',
     },
     {
-        Description: 'Pear',
-        Id: 'PEAR',
-        Selected: true,
+        isSelected: true,
+        label: 'Pear',
+        value: 'PEAR',
     },
     {
-        Description: 'Strawberry',
-        Id: 'STRAWBERRY',
-        Selected: true,
+        isSelected: true,
+        label: 'Strawberry',
+        value: 'STRAWBERRY',
     },
 ];
 

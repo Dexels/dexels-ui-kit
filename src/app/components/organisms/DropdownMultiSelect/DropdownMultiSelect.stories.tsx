@@ -1,145 +1,72 @@
-import {
-    areAllOptionsSelected,
-    getSelectedElements,
-    getSelectedText,
-    isAnyOptionSelected,
-    setAllElementsDeselected,
-    setAllElementsSelected,
-    setElementSelected,
-} from '../../../utils/functions/arrayObjectFunctions';
 import { boolean, text } from '@storybook/addon-knobs';
-import { data, Option } from './mockup/data';
-import React, { FunctionComponent, useState } from 'react';
-import { cloneArray } from '../../../utils/functions/arrayFunctions';
+import { getSelectedElements, getSelectedText } from '../../../utils/functions/arrayObjectFunctions';
+import React, { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
+import { action } from '@storybook/addon-actions';
+import { data } from './mockup/data';
 import DropdownMultiSelect from './DropdownMultiSelect';
-import { DropdownOptionAllTexts } from './types';
+import { DropdownMultiSelectOption } from './types';
 import { DropdownVariant } from '../../molecules/Dropdown';
-import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 
 export default { title: 'organisms/DropdownMultiSelect' };
 
 const TEXT_OPTION_ALL_SELECTED = 'All fruits selected';
 const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
-const originalOptionValues = cloneArray(data);
-
-const getSelectAllOption = (
-    options: Option[],
-    textOptionDeselectAll: string,
-    textOptionSelectAll: string
-): {
-    text: string;
-    value: DropdownOptionAllTexts;
-} => {
-    const hasSelected = isAnyOptionSelected(options);
-    const allSelected = areAllOptionsSelected(options);
-
-    if (allSelected) {
-        return {
-            text: textOptionDeselectAll,
-            value: DropdownOptionAllTexts.ON,
-        };
-    }
-
-    if (hasSelected) {
-        return {
-            text: textOptionDeselectAll,
-            value: DropdownOptionAllTexts.INDETERMINATE,
-        };
-    }
-
-    return {
-        text: textOptionSelectAll,
-        value: DropdownOptionAllTexts.OFF,
-    };
-};
 
 const BaseComponent = (
-    options: Option[],
-    originalOptions: Option[],
+    options: DropdownMultiSelectOption[],
     variant: DropdownVariant = DropdownVariant.COMPACT,
     maxHeight = '',
     label = ''
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
     const [isOpen, setIsOpen] = useState(false);
+    const [value, setValue] = useState('');
 
-    const value = areAllOptionsSelected(optionValues)
-        ? TEXT_OPTION_ALL_SELECTED
-        : getSelectedText(getSelectedElements(optionValues));
-
-    const [selectAllOption, setSelectAllOption] = useState(
-        getSelectAllOption(optionValues, TEXT_OPTION_DESELECT_ALL, TEXT_OPTION_SELECT_ALL)
-    );
-
-    const setStates = (values: Option[]): void => {
-        setOptionValues(cloneArray(values));
-        setSelectAllOption(getSelectAllOption(values, TEXT_OPTION_DESELECT_ALL, TEXT_OPTION_SELECT_ALL));
+    const onClickCallback = () => {
+        setIsOpen(!isOpen);
     };
 
-    const onChangeAll = (): void => {
-        setStates(
-            (isAnyOptionSelected(optionValues)
-                ? setAllElementsDeselected(optionValues)
-                : setAllElementsSelected(optionValues)) as Option[]
-        );
+    const onChangeCallback = (_: SyntheticEvent, updatedOptions: DropdownMultiSelectOption[]) => {
+        setOptionValues(updatedOptions);
     };
+
+    useEffect(() => {
+        const selectedOptions = getSelectedElements(optionValues, 'isSelected');
+        setValue(getSelectedText(selectedOptions, 'label'));
+    }, [optionValues]);
 
     return (
         <>
             <DropdownMultiSelect
+                allSelectedLabel={text('all selected label', TEXT_OPTION_ALL_SELECTED)}
                 buttonCancelText={text('ButtonCancel text', 'Cancel')}
                 buttonConfirmText={text('Button confirm text', 'Ok')}
+                deselectAllLabel={text('de-select all label', TEXT_OPTION_DESELECT_ALL)}
                 errorMessage={text('Error message', 'Everything is broken, oops')}
                 hasError={boolean('Has error', false)}
                 isDisabled={boolean('Is disabled', false)}
-                isOpen={isOpen}
                 isValid={boolean('Is valid', false)}
                 label={label}
                 maxHeight={maxHeight}
                 name="the-best-fruit"
-                onCancel={(): void => {
-                    setStates(originalOptions);
-                    setIsOpen(false);
-                }}
-                onClick={(): void => {
-                    setIsOpen(!isOpen);
-                }}
-                onConfirm={(): void => {
-                    setIsOpen(false);
-                }}
-                optionAll={
-                    <SelectionControl
-                        isChecked={selectAllOption.value === DropdownOptionAllTexts.ON}
-                        isIndeterminate={selectAllOption.value === DropdownOptionAllTexts.INDETERMINATE}
-                        label={selectAllOption.text}
-                        name="DROPDOWN_MULTISELECT_OPTION_ALL"
-                        onChange={onChangeAll}
-                        value={selectAllOption.value}
-                    />
-                }
-                options={optionValues.map((item) => (
-                    <SelectionControl
-                        isChecked={item.Selected}
-                        key={item.Id}
-                        label={item.Description}
-                        name={`DROPDOWN_MULTISELECT_OPTION_${item.Id}`}
-                        onChange={(): void => {
-                            setStates(setElementSelected(optionValues, item) as Option[]);
-                        }}
-                        value={item.Id}
-                    />
-                ))}
+                onCancel={action('On cancel')}
+                onChange={onChangeCallback}
+                onClick={onClickCallback}
+                onConfirm={action('On confirm')}
+                options={optionValues}
                 placeholder="Select the best fruits"
-                value={value}
+                selectAllLabel={text('select all label', TEXT_OPTION_SELECT_ALL)}
                 variant={variant}
             />
             {!isOpen && (
                 <div style={{ margin: '20px 0 0' }}>
                     {'Selected items:'}
-                    {getSelectedElements(optionValues).map((item) => {
-                        return <p key={item.Id as string}>{`${item.Id as string} - ${item.Description as string}`}</p>;
-                    })}
+                    {optionValues
+                        .filter((item) => item.isSelected)
+                        .map((item) => {
+                            return <p key={item.value}>{`${item.value as string} - ${item.label}`}</p>;
+                        })}
                     {'Selected items as string:'}
                     {value}
                 </div>
@@ -151,9 +78,9 @@ const BaseComponent = (
 export const ConfigurableCompactVariant: FunctionComponent = () => (
     <>
         <p>{'What is the best fruit?'}</p>
-        {BaseComponent(data, originalOptionValues)}
+        {BaseComponent(data)}
     </>
 );
 
 export const ConfigurableOutlineVariant: FunctionComponent = () =>
-    BaseComponent(data, originalOptionValues, DropdownVariant.OUTLINE, '150px', 'What are the best fruits?');
+    BaseComponent(data, DropdownVariant.OUTLINE, '150px', 'What are the best fruits?');
