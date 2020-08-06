@@ -25,36 +25,6 @@ export const StyledButtonIcon = styled.button<StyledButtonIconProps>`
     color: ${({ isInverted, theme }): string =>
         isInverted ? theme.colorTextContrast.primary : theme.colorText.primary};
 
-    ${({ size }): FlattenSimpleInterpolation => css`
-        ${
-            size === Size.SMALL &&
-            css`
-                font-size: 14px;
-            `
-        }
-
-        ${
-            size === Size.MEDIUM &&
-            css`
-                font-size: 18px;
-            `
-        }
-
-        ${
-            size === Size.LARGE &&
-            css`
-                font-size: 20px;
-            `
-        }
-
-        ${
-            size === Size.XLARGE &&
-            css`
-                font-size: 24px;
-            `
-        }
-    `}
-
     ${({ isDisabled, isInverted, theme }): SimpleInterpolation =>
         isDisabled &&
         css`

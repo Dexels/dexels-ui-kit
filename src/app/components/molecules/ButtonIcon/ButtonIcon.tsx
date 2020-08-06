@@ -1,6 +1,7 @@
 import { IconType, Size } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler } from 'react';
-import Icon from '../../atoms/Icon/Icon';
+import { IconCustomizable } from '../IconCustomizable/IconCustomizable';
+import { IconCustomizableSize } from '../IconCustomizable';
 import { StyledButtonIcon } from './ButtonIcon.sc';
 
 export interface ButtonIconProps {
@@ -22,17 +23,43 @@ export const ButtonIcon: FunctionComponent<ButtonIconProps & { [key: string]: an
     onClick,
     size = Size.LARGE,
     ...rest
-}) => (
-    <StyledButtonIcon
-        className={className}
-        isDisabled={isDisabled}
-        isInverted={isInverted}
-        onClick={onClick}
-        size={size}
-        {...rest}
-    >
-        <Icon type={iconType} />
-    </StyledButtonIcon>
-);
+}) => {
+    let iconSize;
+
+    switch (size) {
+        case Size.SMALL:
+            iconSize = IconCustomizableSize.SIZE14;
+            break;
+
+        case Size.MEDIUM:
+            iconSize = IconCustomizableSize.SIZE18;
+            break;
+
+        case Size.LARGE:
+            iconSize = IconCustomizableSize.SIZE20;
+            break;
+
+        case Size.XLARGE:
+            iconSize = IconCustomizableSize.SIZE24;
+            break;
+
+        default:
+            iconSize = IconCustomizableSize.SIZE20;
+            break;
+    }
+
+    return (
+        <StyledButtonIcon
+            className={className}
+            isDisabled={isDisabled}
+            isInverted={isInverted}
+            onClick={onClick}
+            size={size}
+            {...rest}
+        >
+            <IconCustomizable iconSize={iconSize} iconType={iconType} />
+        </StyledButtonIcon>
+    );
+};
 
 export default ButtonIcon;

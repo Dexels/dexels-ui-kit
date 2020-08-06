@@ -88,7 +88,6 @@ export const TextWrapper = styled.div`
 export const IconWrapper = styled.div`
     flex: 0 0 auto;
     margin: 0 ${({ theme }): string => theme.spacing(1.5)} 0 auto;
-    font-size: 20px;
 `;
 
 IconWrapper.defaultProps = {

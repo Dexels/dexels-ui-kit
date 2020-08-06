@@ -1,7 +1,8 @@
 import { Direction, IconSize, IconType } from '../../../types';
 import { IconWrapper, StyledTextWithOptionalIcon, Text } from './TextWithOptionalIcon.sc';
 import React, { FunctionComponent, ReactNode } from 'react';
-import Icon from '../../atoms/Icon/Icon';
+import { IconCustomizable } from '../IconCustomizable/IconCustomizable';
+import { IconCustomizableSize } from '../IconCustomizable/types';
 
 export interface TextWithOptionalIconProps {
     children?: ReactNode;
@@ -23,17 +24,47 @@ export const TextWithOptionalIcon: FunctionComponent<TextWithOptionalIconProps &
     isCapitalized = false,
     isTruncatable = false,
     ...rest
-}) => (
-    <StyledTextWithOptionalIcon className={className} direction={direction} {...rest}>
-        <Text isCapitalized={isCapitalized} isTruncatable={isTruncatable}>
-            {children}
-        </Text>
-        {iconType && (
-            <IconWrapper size={iconSize}>
-                <Icon type={iconType} />
-            </IconWrapper>
-        )}
-    </StyledTextWithOptionalIcon>
-);
+}) => {
+    let size;
+
+    switch (iconSize) {
+        case IconSize.XSMALL:
+            size = IconCustomizableSize.SIZE14;
+            break;
+
+        case IconSize.SMALL:
+            size = IconCustomizableSize.SIZE18;
+            break;
+
+        case IconSize.MEDIUM:
+            size = IconCustomizableSize.SIZE20;
+            break;
+
+        case IconSize.LARGE:
+            size = IconCustomizableSize.SIZE24;
+            break;
+
+        case IconSize.XLARGE:
+            size = IconCustomizableSize.SIZE28;
+            break;
+
+        default:
+            size = IconCustomizableSize.SIZE24;
+            break;
+    }
+
+    return (
+        <StyledTextWithOptionalIcon className={className} direction={direction} {...rest}>
+            <Text isCapitalized={isCapitalized} isTruncatable={isTruncatable}>
+                {children}
+            </Text>
+            {iconType && (
+                <IconWrapper size={iconSize}>
+                    <IconCustomizable iconSize={size} iconType={iconType} />
+                </IconWrapper>
+            )}
+        </StyledTextWithOptionalIcon>
+    );
+};
 
 export default TextWithOptionalIcon;

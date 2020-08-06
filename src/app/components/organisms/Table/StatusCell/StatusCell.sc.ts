@@ -34,5 +34,4 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     align-items: center;
     padding: 12px;
     color: ${({ iconColor }): string => iconColor};
-    font-size: 24px; /* This sets the icon size, because it's a svg file */
 `;

@@ -40,41 +40,10 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     }
 
     ${({ size, theme }): FlattenSimpleInterpolation => css`
-        ${
-            size === IconSize.XSMALL &&
-            css`
-                margin: ${theme.spacing(0, 0.25, 0, 0)};
-                font-size: 14px;
-            `
-        }
-
-        ${
-            size === IconSize.SMALL &&
-            css`
-                font-size: 18px;
-            `
-        }
-
-        ${
-            size === IconSize.MEDIUM &&
-            css`
-                font-size: 20px;
-            `
-        }
-
-        ${
-            size === IconSize.LARGE &&
-            css`
-                font-size: 24px;
-            `
-        }
-
-        ${
-            size === IconSize.XLARGE &&
-            css`
-                font-size: 28px;
-            `
-        }
+        ${size === IconSize.XSMALL &&
+        css`
+            margin: ${theme.spacing(0, 0.25, 0, 0)};
+        `}
     `}
 `;
 
