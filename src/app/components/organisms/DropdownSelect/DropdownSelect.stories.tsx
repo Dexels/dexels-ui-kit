@@ -48,7 +48,7 @@ const options: DropdownSelectOptionProps[] = [
 ];
 
 // eslint-disable-next-line no-template-curly-in-string
-const TYPEDTEXTTEMPLATE = "gebruik '{{${variableKey}}}' as choozen fruit";
+const TYPEDTEXTTEMPLATE = "gebruik '{{${variableKey}}}' as choosen fruit";
 
 export const Configurable: FunctionComponent = () => {
     const [value] = useState('');

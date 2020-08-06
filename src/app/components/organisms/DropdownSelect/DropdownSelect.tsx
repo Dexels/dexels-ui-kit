@@ -75,6 +75,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     variant,
 }) => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
+    const [isOptionSelected, setIsOptionSelected] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownSelectOptionProps[]);
     const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelectProps[]);
@@ -95,6 +96,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             if (event.currentTarget) {
+                setIsOptionSelected(false);
                 setInputValue(parseInputValue(event.currentTarget));
 
                 if (onChange) {
@@ -105,19 +107,29 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         [inputValue, onChange, options]
     );
 
-    const onSelectNewOption = useCallback(
-        (event: SyntheticEvent): void => {
-            onConfirm(event, {
+    const onSelectOptionCallback = useCallback(
+        (event: SyntheticEvent, option?: DropdownOption) => {
+            const selectedOption = option || {
                 label: inputValue,
                 value: inputValue,
-            });
+            };
+
+            setIsOptionSelected(true);
+            setInputValue(selectedOption.label);
+
+            if (onChange) {
+                onChange(event as ChangeEvent<HTMLInputElement>);
+            }
+
+            onConfirm(event, selectedOption);
+            setIsSelectOpen(false);
         },
-        [onConfirm, inputValue]
+        [inputValue, onConfirm, onChangeCallback]
     );
 
     useEffect(() => {
-        setIsSelectOpen(inputValue.length > 0);
-    }, [inputValue]);
+        setIsSelectOpen(!isOptionSelected && inputValue.length > 0);
+    }, [inputValue, isOptionSelected]);
 
     useEffect(() => {
         setSuggestedOptions(
@@ -130,8 +142,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     }, [inputValue]);
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
-        setIsSelectOpen(false);
-        onSelectNewOption(event);
+        onSelectOptionCallback(event);
     };
 
     const { componentRef } = useClickOutsideComponent((event: MouseEvent) =>
@@ -144,8 +155,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
     const onKeyDownCallback = useCallback((event: React.KeyboardEvent<HTMLInputElement>): void => {
         if (event.key === 'Enter') {
-            setIsSelectOpen(false);
-            onSelectNewOption(event);
+            onSelectOptionCallback(event);
         }
     }, []);
 
@@ -188,8 +198,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                                 isDisabled={isDisabled}
                                 key={item.value}
                                 onClick={(event: React.MouseEvent<Element, MouseEvent>): void => {
-                                    onConfirm(event, item);
-                                    setIsSelectOpen(false);
+                                    onSelectOptionCallback(event, item);
                                 }}
                             >
                                 <LabelWrapper>{item.label}</LabelWrapper>
@@ -198,8 +207,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                         <ListItem
                             adornment={<IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={iconType} />}
                             onClick={(event: React.MouseEvent<Element, MouseEvent>): void => {
-                                onSelectNewOption(event);
-                                setIsSelectOpen(false);
+                                onSelectOptionCallback(event);
                             }}
                         >
                             <LabelWrapper>{optionLabel}</LabelWrapper>
