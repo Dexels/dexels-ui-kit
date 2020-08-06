@@ -52,12 +52,12 @@ const TYPEDTEXTTEMPLATE = "gebruik '{{${variableKey}}}' as choozen fruit";
 
 export const Configurable: FunctionComponent = () => {
     const [value] = useState('');
-    const [useTypedText, setUsedTypedText] = useState('');
+    const [optionLabel, setOptionLabel] = useState('');
 
     const onChangeCallback = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.currentTarget) {
             // eslint-disable-next-line no-template-curly-in-string
-            setUsedTypedText(TYPEDTEXTTEMPLATE.replace('{{${variableKey}}}', parseInputValue(event.currentTarget)));
+            setOptionLabel(TYPEDTEXTTEMPLATE.replace('{{${variableKey}}}', parseInputValue(event.currentTarget)));
         }
     };
 
@@ -73,7 +73,7 @@ export const Configurable: FunctionComponent = () => {
             noResultsMessage={text('No results message', 'No fruit is found!')}
             onChange={onChangeCallback}
             onConfirm={action('On click')}
-            optionLabel={useTypedText}
+            optionLabel={optionLabel}
             options={options}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
