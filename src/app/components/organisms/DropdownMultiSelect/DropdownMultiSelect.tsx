@@ -1,8 +1,10 @@
 import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
 import { Dropdown, DropdownVariant } from '../../molecules/Dropdown';
-import { List, ListItem, ListWrapper, StaticItem, StyledDropdownMultiSelect } from './DropdownMultiSelect.sc';
+import { ListWrapper, StaticItem, StyledDropdownMultiSelect } from './DropdownMultiSelect.sc';
 import React, { FunctionComponent, ReactElement, ReactNode, useCallback, useState } from 'react';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
+import List from '../../molecules/List/List';
+import ListItem from '../../atoms/ListItem/ListItem';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 export interface DropdownMultiSelectProps {
