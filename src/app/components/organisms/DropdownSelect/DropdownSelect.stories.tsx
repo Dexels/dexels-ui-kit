@@ -73,8 +73,8 @@ export const Configurable: FunctionComponent = () => {
             noResultsMessage={text('No results message', 'No fruit is found!')}
             onChange={onChangeCallback}
             onConfirm={action('On click')}
+            optionLabel={useTypedText}
             options={options}
-            useTypedText={useTypedText}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />

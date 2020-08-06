@@ -35,11 +35,11 @@ export interface DropdownSelectProps {
     className?: string;
     elevation?: Elevation;
     errorMessage?: ReactNode;
-    footerText: ReactNode;
+    footerText?: ReactNode;
     hasError?: boolean;
     iconType: IconType;
     isDisabled?: boolean;
-    isSearchFromStart?: boolean;
+    isSearchAny?: boolean;
     isValid?: boolean;
     label?: ReactNode;
     maxHeight?: string;
@@ -47,8 +47,8 @@ export interface DropdownSelectProps {
     noResultsMessage: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onConfirm: (event: SyntheticEvent, option: DropdownOption) => void;
+    optionLabel: ReactNode;
     options: DropdownSelectOptionProps[];
-    useTypedText: ReactNode;
     value: string;
     variant?: InputVariant;
 }
@@ -61,7 +61,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     iconType,
     footerText,
     isDisabled = false,
-    isSearchFromStart = true,
+    isSearchAny = false,
     isValid = false,
     label,
     maxHeight,
@@ -70,7 +70,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     onChange,
     onConfirm,
     options,
-    useTypedText,
+    optionLabel,
     value,
     variant,
 }) => {
@@ -92,7 +92,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         );
     }, [options]);
 
-    const onChangeInputCallback = useCallback(
+    const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             if (event.currentTarget) {
                 setInputValue(parseInputValue(event.currentTarget));
@@ -122,9 +122,9 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     useEffect(() => {
         setSuggestedOptions(
             updatedOptions.filter((option) =>
-                isSearchFromStart
-                    ? option.searchValue.indexOf(toBasicLowercase(inputValue)) === 0
-                    : option.searchValue.includes(toBasicLowercase(inputValue))
+                isSearchAny
+                    ? option.searchValue.includes(toBasicLowercase(inputValue))
+                    : option.searchValue.indexOf(toBasicLowercase(inputValue)) === 0
             )
         );
     }, [inputValue]);
@@ -158,7 +158,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 isValid={isValid}
                 label={label}
                 name={name}
-                onChange={onChangeInputCallback}
+                onChange={onChangeCallback}
                 onFocus={onFocusCallback}
                 onKeyDown={onKeydownCallback}
                 type={InputType.TEXT}
@@ -202,7 +202,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                                 setIsSelectOpen(false);
                             }}
                         >
-                            <LabelWrapper>{useTypedText}</LabelWrapper>
+                            <LabelWrapper>{optionLabel}</LabelWrapper>
                         </ListItem>
                     </List>
                     <DialogFooter text={footerText} />
