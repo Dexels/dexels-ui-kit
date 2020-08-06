@@ -48,7 +48,7 @@ const options: DropdownSelectOptionProps[] = [
 ];
 
 // eslint-disable-next-line no-template-curly-in-string
-const TYPEDTEXTTEMPLATE = "gebruik '{{${variableKey}}}' as choosen fruit";
+const OPTION_LABEL = "gebruik '{{${variableKey}}}' as chosen fruit";
 
 export const Configurable: FunctionComponent = () => {
     const [value] = useState('');
@@ -57,7 +57,7 @@ export const Configurable: FunctionComponent = () => {
     const onChangeCallback = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.currentTarget) {
             // eslint-disable-next-line no-template-curly-in-string
-            setOptionLabel(TYPEDTEXTTEMPLATE.replace('{{${variableKey}}}', parseInputValue(event.currentTarget)));
+            setOptionLabel(OPTION_LABEL.replace('{{${variableKey}}}', parseInputValue(event.currentTarget)));
         }
     };
 
@@ -67,6 +67,7 @@ export const Configurable: FunctionComponent = () => {
             footerText={text('Instructions', 'Choose a fruit or type yourself a fruit!')}
             iconType={select('Type', IconType, IconType.CLUBPLACEHOLDER1)}
             isDisabled={boolean('Is disabled', false)}
+            isSearchAny={boolean('Is search any', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
             name="an-input-name"
