@@ -142,7 +142,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         setIsSelectOpen(inputValue.length > 0);
     }, [inputValue]);
 
-    const onKeydownCallback = useCallback((event: React.KeyboardEvent<HTMLInputElement>): void => {
+    const onKeyDownCallback = useCallback((event: React.KeyboardEvent<HTMLInputElement>): void => {
         if (event.key === 'Enter') {
             setIsSelectOpen(false);
             onSelectNewOption(event);
@@ -160,7 +160,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 name={name}
                 onChange={onChangeCallback}
                 onFocus={onFocusCallback}
-                onKeyDown={onKeydownCallback}
+                onKeyDown={onKeyDownCallback}
                 type={InputType.TEXT}
                 value={inputValue}
                 variant={variant}
