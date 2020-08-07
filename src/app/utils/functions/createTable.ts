@@ -34,8 +34,8 @@ export const createTable = <T extends object>(
         useRowState,
         useSortBy,
         useExpanded,
-        useRowSelect,
-        usePagination
+        usePagination,
+        useRowSelect
     );
 
 export default createTable;

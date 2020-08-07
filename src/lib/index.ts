@@ -26,6 +26,7 @@ export { setTruncate } from '../app/styles/mixins/setTruncate';
 
 // Export functions
 export { areAllOptionsSelected, selectOptionsFacade } from '../app/utils/functions/arrayObjectFunctions';
+export { toBasicLowercase } from '../app/utils/functions/stringFunctions';
 export { cloneArray } from '../app/utils/functions/arrayFunctions';
 export { convertLocale } from '../app/utils/functions/localeFunctions';
 export { createTable } from '../app/utils/functions/createTable';
@@ -119,6 +120,11 @@ export {
     DropdownMultiSelectProps,
     DropdownOptionAllTexts,
 } from '../app/components/organisms/DropdownMultiSelect';
+export {
+    DropdownSelect,
+    DropdownSelectProps,
+    DropdownSelectOptionProps,
+} from '../app/components/organisms/DropdownSelect/DropdownSelect';
 export { FileUploader, FileUploaderProps } from '../app/components/organisms/FileUploader/FileUploader';
 export { FileUploadDialog, FileUploadDialogProps } from '../app/components/organisms/FileUploadDialog/FileUploadDialog';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';

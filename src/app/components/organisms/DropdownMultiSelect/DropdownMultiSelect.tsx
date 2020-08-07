@@ -10,7 +10,7 @@ import {
 import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
 import { Dropdown, DropdownVariant } from '../../molecules/Dropdown';
 import { DropdownMultiSelectOption, DropdownOptionAllTexts } from './types';
-import { List, ListItem, ListWrapper, StaticItem, StyledDropdownMultiSelect } from './DropdownMultiSelect.sc';
+import { ListWrapper, StaticItem, StyledDropdownMultiSelect } from './DropdownMultiSelect.sc';
 import React, {
     FunctionComponent,
     MouseEventHandler,
@@ -24,6 +24,9 @@ import React, {
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
+import List from '../../molecules/List/List';
+import ListItem from '../../atoms/ListItem/ListItem';
+
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 export interface DropdownMultiSelectProps {
