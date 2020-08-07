@@ -57,9 +57,11 @@ export interface DropdownMultiSelectProps {
 }
 
 export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = ({
+    allSelectedLabel,
     buttonCancelText,
     buttonConfirmText,
     className,
+    deselectAllLabel,
     elevation = Elevation.LEVEL_6,
     errorMessage,
     hasError = false,
@@ -74,10 +76,8 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
     onChange,
     options,
     placeholder,
-    variant = DropdownVariant.COMPACT,
     selectAllLabel,
-    deselectAllLabel,
-    allSelectedLabel,
+    variant = DropdownVariant.COMPACT,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
