@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
     areAllOptionsSelected,
     getSelectedElements,
@@ -11,16 +10,7 @@ import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
 import { Dropdown, DropdownVariant } from '../../molecules/Dropdown';
 import { DropdownMultiSelectOption, DropdownOptionAllTexts } from './types';
 import { ListWrapper, StaticItem, StyledDropdownMultiSelect } from './DropdownMultiSelect.sc';
-import React, {
-    FunctionComponent,
-    MouseEventHandler,
-    ReactNode,
-    SyntheticEvent,
-    useCallback,
-    useEffect,
-    useMemo,
-    useState,
-} from 'react';
+import React, { MouseEventHandler, ReactNode, SyntheticEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import List from '../../molecules/List/List';
@@ -29,7 +19,7 @@ import SelectionControl from '../../molecules/SelectionControl/SelectionControl'
 
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
-export interface DropdownMultiSelectProps {
+export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     allSelectedLabel: ReactNode;
     buttonCancelText?: ReactNode;
     buttonConfirmText: ReactNode;
@@ -45,10 +35,10 @@ export interface DropdownMultiSelectProps {
     maxHeight?: string;
     name: string;
     onCancel?: MouseEventHandler;
-    onChange?: (event: SyntheticEvent, options: DropdownMultiSelectOption[]) => void;
+    onChange?: (event: SyntheticEvent, options: T[]) => void;
     onClick?: MouseEventHandler;
-    onConfirm: (event: SyntheticEvent, options: DropdownMultiSelectOption[]) => void;
-    options: DropdownMultiSelectOption[];
+    onConfirm: (event: SyntheticEvent, options: T[]) => void;
+    options: T[];
     placeholder?: string;
     resetOnOutsideClick?: boolean;
     selectAllLabel: ReactNode;
@@ -56,7 +46,7 @@ export interface DropdownMultiSelectProps {
     variant?: DropdownVariant;
 }
 
-export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = ({
+export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     buttonCancelText,
     buttonConfirmText,
     className,
@@ -78,7 +68,7 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
     selectAllLabel,
     deselectAllLabel,
     allSelectedLabel,
-}) => {
+}: DropdownMultiSelectProps<T>): JSX.Element => {
     const [isHovered, setIsHovered] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
@@ -168,11 +158,11 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
             ? setAllElementsDeselected(updatedOptions, 'isSelected')
             : setAllElementsSelected(updatedOptions, 'isSelected');
 
-        setUpdatedOptions((newUpdatedOptions as unknown) as DropdownMultiSelectOption[]);
+        setUpdatedOptions((newUpdatedOptions as unknown) as T[]);
     }, [isSomeSelected]);
 
     const onChangeOptionCallback = useCallback(
-        (event: SyntheticEvent, selectedOption: DropdownMultiSelectOption) => {
+        (event: SyntheticEvent, selectedOption: T) => {
             const newUpdatedOptions = updatedOptions.map((option) => {
                 if (option.value === selectedOption.value) {
                     return {

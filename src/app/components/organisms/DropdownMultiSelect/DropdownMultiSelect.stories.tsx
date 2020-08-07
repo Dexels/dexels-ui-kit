@@ -1,5 +1,10 @@
+/* eslint-disable no-console */
 import { boolean, text } from '@storybook/addon-knobs';
-import { getSelectedElements, getSelectedText } from '../../../utils/functions/arrayObjectFunctions';
+import {
+    getSelectedElements,
+    getSelectedText,
+    selectOptionsExtend,
+} from '../../../utils/functions/arrayObjectFunctions';
 import React, { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { data } from './mockup/data';
@@ -13,27 +18,36 @@ const TEXT_OPTION_ALL_SELECTED = 'All fruits selected';
 const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 
-const generateValue = (options: DropdownMultiSelectOption[]): string => {
-    const selectedOptions = getSelectedElements(options, 'isSelected');
-
-    return getSelectedText(selectedOptions, 'label');
-};
-
-const BaseComponent = (
-    options: DropdownMultiSelectOption[],
+const BaseComponent = <T extends DropdownMultiSelectOption>(
+    options: Array<T>,
     variant: DropdownVariant = DropdownVariant.COMPACT,
     maxHeight = '',
     label = ''
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
+
+    const generateValue = (Options: T[]): string => {
+        const selectedOptions = getSelectedElements(Options, 'isSelected');
+
+        return getSelectedText(selectedOptions, 'label');
+    };
+
     const [value, setValue] = useState(generateValue(options));
 
     useEffect(() => {
         setValue(generateValue(optionValues));
     }, [optionValues]);
 
-    const onConfirmCallback = (_: SyntheticEvent, updatedOptions: DropdownMultiSelectOption[]): void => {
+    const onConfirmCallback = (_: SyntheticEvent, updatedOptions: Array<T>): void => {
         setOptionValues(updatedOptions);
+
+        const convertedOptions = optionValues.map((option) => ({
+            ...option,
+            IsSelected: option.isSelected,
+        }));
+
+        // eslint-disable-next-line no-console
+        console.log(convertedOptions);
     };
 
     return (
@@ -64,7 +78,7 @@ const BaseComponent = (
                     {optionValues
                         .filter((item) => item.isSelected)
                         .map((item) => {
-                            return <p key={item.value}>{`${item.value as string} - ${item.label}`}</p>;
+                            return <p key={item.value}>{`${item.value} - ${item.label}`}</p>;
                         })}
                     {'Selected items as string:'}
                     {value}
@@ -77,9 +91,14 @@ const BaseComponent = (
 export const ConfigurableCompactVariant: FunctionComponent = () => (
     <>
         <p>{'What is the best fruit?'}</p>
-        {BaseComponent(data)}
+        {BaseComponent(selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'))}
     </>
 );
 
 export const ConfigurableOutlineVariant: FunctionComponent = () =>
-    BaseComponent(data, DropdownVariant.OUTLINE, '150px', 'What are the best fruits?');
+    BaseComponent(
+        selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
+        DropdownVariant.OUTLINE,
+        '150px',
+        'What are the best fruits?'
+    );

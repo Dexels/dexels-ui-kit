@@ -1,5 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import DropdownSelect, { DropdownSelectOptionProps } from './DropdownSelect';
+import DropdownSelect, { DropdownSelectOption } from './DropdownSelect';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { IconType, InputVariant } from '../../../types';
 import React, { ChangeEvent, FunctionComponent, useState } from 'react';
@@ -8,7 +8,7 @@ import { parseInputValue } from '../../../utils/functions/parseInputValue';
 
 export default { title: 'organisms/DropdownSelect' };
 
-const options: DropdownSelectOptionProps[] = [
+const options: DropdownSelectOption[] = [
     {
         adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
         label: 'Bánana',

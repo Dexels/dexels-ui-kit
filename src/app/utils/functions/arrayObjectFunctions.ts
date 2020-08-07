@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { DropdownMultiSelectOption } from '../../components/organisms/DropdownMultiSelect/types';
 import { DropdownOption } from '../../components/molecules/Dropdown/Dropdown';
 
 const DEFAULT_PROPERTYNAME_ID = 'Id';
@@ -98,3 +99,19 @@ export const selectOptionsFacade = (
         };
     });
 };
+
+export function selectOptionsExtend(
+    data: Array<Object>,
+    labelPropertyName = DEFAULT_PROPERTYNAME_ID,
+    valuePropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION,
+    selectedPropertyName = DEFAULT_PROPERTYNAME_SELECTED
+): DropdownMultiSelectOption[] {
+    return data.map((option) => {
+        return {
+            ...option,
+            isSelected: (option as Option)[selectedPropertyName] as boolean,
+            label: (option as Option)[labelPropertyName] as string,
+            value: (option as Option)[valuePropertyName] as string | number,
+        };
+    });
+}

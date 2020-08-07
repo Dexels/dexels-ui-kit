@@ -1,30 +1,33 @@
-import { DropdownMultiSelectOption } from '../types';
-
-export const data: DropdownMultiSelectOption[] = [
+interface fruit {
+    Description: string;
+    Id: string;
+    IsSelected: boolean;
+}
+export const data: fruit[] = [
     {
-        isSelected: true,
-        label: 'Banana',
-        value: 'BANANA',
+        Description: 'Banana',
+        Id: 'BANANA',
+        IsSelected: true,
     },
     {
-        isSelected: false,
-        label: 'Apple',
-        value: 'APPLE',
+        Description: 'Apple',
+        Id: 'APPLE',
+        IsSelected: false,
     },
     {
-        isSelected: true,
-        label: 'Orange',
-        value: 'ORANGE',
+        Description: 'Orange',
+        Id: 'ORANGE',
+        IsSelected: true,
     },
     {
-        isSelected: true,
-        label: 'Pear',
-        value: 'PEAR',
+        Description: 'Pear',
+        Id: 'PEAR',
+        IsSelected: true,
     },
     {
-        isSelected: true,
-        label: 'Strawberry',
-        value: 'STRAWBERRY',
+        Description: 'Strawberry',
+        Id: 'STRAWBERRY',
+        IsSelected: true,
     },
 ];
 
