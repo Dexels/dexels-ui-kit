@@ -87,31 +87,31 @@ export const setAllElementsDeselected = (
     propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED
 ): ReturnType<typeof setAllElements> => setAllElements(data, false, propertySelectedName);
 
-export const selectOptionsFacade = (
-    data: Array<Object>,
-    labelPropertyName = DEFAULT_PROPERTYNAME_ID,
-    valuePropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION
+export const selectOptionsFacade = <T extends object>(
+    data: Array<T>,
+    labelPropertyName: keyof T,
+    valuePropertyName: keyof T
 ): DropdownOption[] => {
     return data.map((option) => {
         return {
-            label: (option as Option)[labelPropertyName] as string,
-            value: (option as Option)[valuePropertyName] as string | number,
+            label: (option[labelPropertyName] as unknown) as string,
+            value: (option[valuePropertyName] as unknown) as string | number,
         };
     });
 };
 
-export function selectOptionsExtend(
-    data: Array<Object>,
-    labelPropertyName = DEFAULT_PROPERTYNAME_ID,
-    valuePropertyName = DEFAULT_PROPERTYNAME_DESCRIPTION,
-    selectedPropertyName = DEFAULT_PROPERTYNAME_SELECTED
-): DropdownMultiSelectOption[] {
+export const selectOptionsExtend = <T, U extends T & DropdownMultiSelectOption>(
+    data: Array<T>,
+    labelPropertyName: keyof T,
+    valuePropertyName: keyof T,
+    selectedPropertyName: keyof T
+): Array<U> => {
     return data.map((option) => {
         return {
             ...option,
-            isSelected: (option as Option)[selectedPropertyName] as boolean,
-            label: (option as Option)[labelPropertyName] as string,
-            value: (option as Option)[valuePropertyName] as string | number,
-        };
+            isSelected: (option[selectedPropertyName] as unknown) as boolean,
+            label: (option[labelPropertyName] as unknown) as string,
+            value: (option[valuePropertyName] as unknown) as string | number,
+        } as U;
     });
-}
+};
