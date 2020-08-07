@@ -13,6 +13,12 @@ const TEXT_OPTION_ALL_SELECTED = 'All fruits selected';
 const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 
+const generateValue = (options: DropdownMultiSelectOption[]): string => {
+    const selectedOptions = getSelectedElements(options, 'isSelected');
+
+    return getSelectedText(selectedOptions, 'label');
+};
+
 const BaseComponent = (
     options: DropdownMultiSelectOption[],
     variant: DropdownVariant = DropdownVariant.COMPACT,
@@ -20,21 +26,15 @@ const BaseComponent = (
     label = ''
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
-    const [isOpen, setIsOpen] = useState(false);
-    const [value, setValue] = useState('');
-
-    const onClickCallback = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const onChangeCallback = (_: SyntheticEvent, updatedOptions: DropdownMultiSelectOption[]) => {
-        setOptionValues(updatedOptions);
-    };
+    const [value, setValue] = useState(generateValue(options));
 
     useEffect(() => {
-        const selectedOptions = getSelectedElements(optionValues, 'isSelected');
-        setValue(getSelectedText(selectedOptions, 'label'));
+        setValue(generateValue(optionValues));
     }, [optionValues]);
+
+    const onConfirmCallback = (_: SyntheticEvent, updatedOptions: DropdownMultiSelectOption[]): void => {
+        setOptionValues(updatedOptions);
+    };
 
     return (
         <>
@@ -51,15 +51,14 @@ const BaseComponent = (
                 maxHeight={maxHeight}
                 name="the-best-fruit"
                 onCancel={action('On cancel')}
-                onChange={onChangeCallback}
-                onClick={onClickCallback}
-                onConfirm={action('On confirm')}
+                onChange={action('On change')}
+                onConfirm={onConfirmCallback}
                 options={optionValues}
                 placeholder="Select the best fruits"
                 selectAllLabel={text('select all label', TEXT_OPTION_SELECT_ALL)}
                 variant={variant}
             />
-            {!isOpen && (
+            {value && (
                 <div style={{ margin: '20px 0 0' }}>
                     {'Selected items:'}
                     {optionValues

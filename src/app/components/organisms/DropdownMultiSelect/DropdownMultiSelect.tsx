@@ -18,6 +18,7 @@ import React, {
     SyntheticEvent,
     useCallback,
     useEffect,
+    useMemo,
     useState,
 } from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
@@ -75,14 +76,15 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
     deselectAllLabel,
     allSelectedLabel,
 }) => {
-    const originalOptions: DropdownMultiSelectOption[] = cloneArray(options);
     const [isHovered, setIsHovered] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [updatedOptions, setUpdatedOptions] = useState(options);
+    const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
     const [selectedOptionsText, setSelectedOptionsText] = useState('');
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [isSomeSelected, setIsSomeSelected] = useState(false);
     const [selectionControlValue, setSelectionControlvalue] = useState(DropdownOptionAllTexts.OFF);
+
+    const originalOptions = useMemo(() => cloneArray(options), []);
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
@@ -106,7 +108,7 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
             const selectedOptions = getSelectedElements(updatedOptions, 'isSelected');
             setSelectedOptionsText(getSelectedText(selectedOptions, 'label'));
         }
-    }, [isAllSelected]);
+    }, [updatedOptions]);
 
     useEffect(() => {
         if (isAllSelected) {
@@ -133,7 +135,7 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
 
     const onClickCallback = useCallback(
         (event: React.MouseEvent<Element, MouseEvent>) => {
-            setIsOpen(true);
+            setIsOpen(!isOpen);
 
             if (onClick) {
                 onClick(event);
@@ -159,11 +161,11 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
     }, [isHovered]);
 
     const onChangeAllCallback = useCallback(() => {
-        if (isSomeSelected) {
-            setAllElementsDeselected(updatedOptions, 'isSelected');
-        } else {
-            setAllElementsSelected(updatedOptions, 'isSelected');
-        }
+        const newUpdatedOptions = isSomeSelected
+            ? setAllElementsDeselected(updatedOptions, 'isSelected')
+            : setAllElementsSelected(updatedOptions, 'isSelected');
+
+        setUpdatedOptions((newUpdatedOptions as unknown) as DropdownMultiSelectOption[]);
     }, [isSomeSelected]);
 
     const onChangeOptionCallback = useCallback(
@@ -185,7 +187,7 @@ export const DropdownMultiSelect: FunctionComponent<DropdownMultiSelectProps> = 
                 onChange(event, newUpdatedOptions);
             }
         },
-        [onConfirm, onChange]
+        [onConfirm, onChange, updatedOptions]
     );
 
     return (
