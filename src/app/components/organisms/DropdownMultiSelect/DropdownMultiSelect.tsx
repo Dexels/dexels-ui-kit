@@ -23,9 +23,9 @@ import React, {
 } from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
-import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 import List from '../../molecules/List/List';
 import ListItem from '../../atoms/ListItem/ListItem';
+import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
 
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
