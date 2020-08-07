@@ -1,2 +1,2 @@
 export { DropdownMultiSelect, DropdownMultiSelectProps } from './DropdownMultiSelect';
-export { DropdownOptionAllTexts } from './types';
+export { DropdownOptionAllTexts, DropdownMultiSelectOption } from './types';
