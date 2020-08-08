@@ -99,7 +99,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     useEffect(() => {
         if (!isAllSelected) {
             const selectedOptions = getSelectedElements(updatedOptions, 'isSelected');
-            setSelectedOptionsText(getSelectedText(selectedOptions, 'label'));
+            setSelectedOptionsText(selectedOptions ? getSelectedText(selectedOptions, 'label') : '');
         }
     }, [updatedOptions]);
 
