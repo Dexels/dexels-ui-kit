@@ -27,8 +27,13 @@ export { setTruncate } from '../app/styles/mixins/setTruncate';
 // Export functions
 export {
     areAllOptionsSelected,
+    getSelectedElements,
+    isAnyOptionSelected,
     selectOptionsExtend,
     selectOptionsFacade,
+    setAllElementsSelected,
+    setAllElementsDeselected,
+    setElementSelected,
 } from '../app/utils/functions/arrayObjectFunctions';
 export { toBasicLowercase } from '../app/utils/functions/stringFunctions';
 export { cloneArray } from '../app/utils/functions/arrayFunctions';

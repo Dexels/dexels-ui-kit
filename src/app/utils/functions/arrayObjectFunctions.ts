@@ -1,68 +1,50 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { DropdownMultiSelectOption } from '../../components/organisms/DropdownMultiSelect/types';
 import { DropdownOption } from '../../components/molecules/Dropdown/Dropdown';
-
-const DEFAULT_PROPERTYNAME_ID = 'Id';
-const DEFAULT_PROPERTYNAME_DESCRIPTION = 'Description';
-const DEFAULT_PROPERTYNAME_SELECTED = 'IsSelected';
 
 export interface Option {
     [key: string]: unknown;
 }
 
-export const areAllOptionsSelected = <T extends object>(
-    data: Array<T>,
-    propertyName = DEFAULT_PROPERTYNAME_SELECTED as keyof T
-): boolean => data.every((option) => option[propertyName]);
+export const areAllOptionsSelected = <U, T extends U[]>(data: T, propertyName: keyof U): boolean =>
+    data.every((option) => option[propertyName]);
 
-export const getSelectedElements = <T extends object>(
-    data: Array<T>,
-    propertyName = DEFAULT_PROPERTYNAME_SELECTED as keyof T
-): Array<T> => data.filter((option) => option[propertyName]);
+export const getSelectedElements = <U, T extends U>(data: Array<T>, propertyName: keyof U): Array<T> =>
+    data.filter((option) => option[propertyName]);
 
-export const getSelectedText = <T extends object>(
+export const getSelectedText = <U, T extends U>(
     selectedOptions: Array<T>,
-    propertyNameDescription = DEFAULT_PROPERTYNAME_DESCRIPTION,
+    propertyNameDescription: keyof U,
     delimiter = ','
 ): string => {
     let text = '';
 
     selectedOptions.forEach((selectedOption) => {
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        text += `${text ? `${delimiter} ` : ''}${selectedOption[propertyNameDescription as keyof T]}`;
+        text += `${text ? `${delimiter} ` : ''}${selectedOption[propertyNameDescription]}`;
     });
 
     return text;
 };
 
-export const isAnyOptionSelected = <T extends object>(
-    data: Array<T>,
-    propertyName = DEFAULT_PROPERTYNAME_SELECTED as keyof T
-): boolean => data.some((option) => option[propertyName]);
+export const isAnyOptionSelected = <U, T extends U>(data: Array<T>, propertyName: keyof U): boolean =>
+    data.some((option) => option[propertyName]);
 
-// Assuming every element has Id and Selected properties (or overwrite them ofcourse)
 // The unsetOtherValues param is meant to possibly set all other entries to false
-export const setElementSelected = <T extends { [key: string]: unknown }>({
-    data,
-    selectedProperty,
-    propertyIdName = DEFAULT_PROPERTYNAME_ID,
-    propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED,
-    unsetOtherValues = false,
-}: {
-    data: T[];
-    propertyIdName: keyof T;
-    propertySelectedName: keyof T;
-    selectedProperty: T;
-    unsetOtherValues: boolean;
-}): Array<T> => {
+export const setElementSelected = <U, T extends U>(
+    data: T[],
+    selectedElement: T,
+    propertyIdName: keyof U,
+    propertySelectedName: keyof U,
+    unsetOtherValues?: boolean
+): Array<T> => {
     const output: Array<T> = [];
 
     data.forEach((element) => {
         let isSelected = false;
 
         if (unsetOtherValues) {
-            isSelected = element[propertyIdName] === (selectedProperty[propertyIdName] as boolean);
-        } else if (element[propertyIdName] === selectedProperty[propertyIdName]) {
+            isSelected = element[propertyIdName] === selectedElement[propertyIdName];
+        } else if (element[propertyIdName] === selectedElement[propertyIdName]) {
             isSelected = !element[propertySelectedName];
         }
 
@@ -77,13 +59,13 @@ export const setElementSelected = <T extends { [key: string]: unknown }>({
     return output;
 };
 
-const setAllElements = <T extends object>(data: Array<T>, selected: boolean, propertySelectedName: string): T[] => {
+const setAllElements = <U, T extends U>(data: Array<T>, isSelected: boolean, propertySelectedName: keyof U): T[] => {
     const output: T[] = [];
 
     data.forEach((element) => {
         const newElement = {
             ...element,
-            [propertySelectedName]: selected,
+            [propertySelectedName]: isSelected,
         };
 
         output.push(newElement);
@@ -92,20 +74,16 @@ const setAllElements = <T extends object>(data: Array<T>, selected: boolean, pro
     return output;
 };
 
-export const setAllElementsSelected = <T extends object>(
-    data: Array<T>,
-    propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED
-): ReturnType<typeof setAllElements> => setAllElements(data, true, propertySelectedName);
+export const setAllElementsSelected = <U, T extends U>(data: Array<T>, propertySelectedName: keyof U): Array<T> =>
+    setAllElements(data, true, propertySelectedName);
 
-export const setAllElementsDeselected = <T extends object>(
-    data: Array<T>,
-    propertySelectedName = DEFAULT_PROPERTYNAME_SELECTED
-): ReturnType<typeof setAllElements> => setAllElements(data, false, propertySelectedName);
+export const setAllElementsDeselected = <U, T extends U>(data: Array<T>, propertySelectedName: keyof U): Array<T> =>
+    setAllElements(data, false, propertySelectedName);
 
-export const selectOptionsFacade = <T extends object>(
+export const selectOptionsFacade = <U, T extends U>(
     data: Array<T>,
-    labelPropertyName: keyof T,
-    valuePropertyName: keyof T
+    labelPropertyName: keyof U,
+    valuePropertyName: keyof U
 ): DropdownOption[] => {
     return data.map((option) => {
         return {
