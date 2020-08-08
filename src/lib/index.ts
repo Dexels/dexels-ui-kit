@@ -31,8 +31,6 @@ export {
     isAnyOptionSelected,
     selectOptionsExtend,
     selectOptionsFacade,
-    setAllElementsSelected,
-    setAllElementsDeselected,
     setElementSelected,
 } from '../app/utils/functions/arrayObjectFunctions';
 export { toBasicLowercase } from '../app/utils/functions/stringFunctions';
