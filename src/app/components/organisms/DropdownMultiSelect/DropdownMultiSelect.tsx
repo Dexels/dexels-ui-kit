@@ -90,9 +90,6 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
 
     useEffect(() => {
         setIsAllSelected(areAllOptionsSelected(updatedOptions, 'isSelected'));
-    }, [updatedOptions]);
-
-    useEffect(() => {
         setIsSomeSelected(isAnyOptionSelected(updatedOptions, 'isSelected'));
     }, [updatedOptions]);
 
@@ -101,7 +98,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
             const selectedOptions = getSelectedElements(updatedOptions, 'isSelected');
             setSelectedOptionsText(selectedOptions ? getSelectedText(selectedOptions, 'label') : '');
         }
-    }, [updatedOptions]);
+    }, [isAllSelected, updatedOptions]);
 
     useEffect(() => {
         if (isAllSelected) {
