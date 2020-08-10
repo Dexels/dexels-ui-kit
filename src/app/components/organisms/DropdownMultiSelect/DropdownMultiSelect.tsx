@@ -61,10 +61,12 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     variant?: DropdownVariant;
 }
 
+
 export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     buttonCancelText,
     buttonConfirmText,
     className,
+    deselectAllLabel,
     elevation = Elevation.LEVEL_6,
     errorMessage,
     hasError = false,
@@ -79,8 +81,8 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     onChange,
     options,
     placeholder,
-    variant = DropdownVariant.COMPACT,
     selectAllLabel,
+
     deselectAllLabel,
     allSelectedLabel,
 }: DropdownMultiSelectProps<T>): JSX.Element => {

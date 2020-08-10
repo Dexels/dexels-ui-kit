@@ -124,6 +124,7 @@ export {
 export { Dialog, DialogButtonClosePosition, DialogProps } from '../app/components/organisms/Dialog';
 export {
     DropdownMultiSelect,
+    DropdownMultiSelectOption,
     DropdownMultiSelectProps,
     DropdownOptionAllTexts,
 } from '../app/components/organisms/DropdownMultiSelect';
