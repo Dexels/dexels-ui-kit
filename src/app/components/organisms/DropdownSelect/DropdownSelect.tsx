@@ -45,7 +45,7 @@ export interface DropdownSelectProps {
     maxHeight?: string;
     name: string;
     noResultsMessage: string;
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (option: DropdownOption) => void;
     onConfirm: (event: SyntheticEvent, option: DropdownOption) => void;
     optionLabel: ReactNode;
     options: DropdownSelectOptionProps[];
@@ -97,10 +97,14 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         (event: ChangeEvent<HTMLInputElement>) => {
             if (event.currentTarget) {
                 setIsOptionSelected(false);
-                setInputValue(parseInputValue(event.currentTarget));
+                const newOptionValue = parseInputValue(event.currentTarget);
+                setInputValue(newOptionValue);
 
                 if (onChange) {
-                    onChange(event);
+                    onChange({
+                        label: newOptionValue,
+                        value: newOptionValue,
+                    });
                 }
             }
         },
@@ -118,13 +122,13 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
             setInputValue(selectedOption.label);
 
             if (onChange) {
-                onChange(event as ChangeEvent<HTMLInputElement>);
+                onChange(selectedOption);
             }
 
             onConfirm(event, selectedOption);
             setIsSelectOpen(false);
         },
-        [inputValue, onConfirm, onChangeCallback]
+        [inputValue, onConfirm, onChange]
     );
 
     useEffect(() => {
@@ -141,13 +145,18 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         );
     }, [inputValue]);
 
-    const handleClickOutsideComponent = (event: SyntheticEvent): void => {
-        onSelectOptionCallback(event);
+    const handleClickOutsideComponent = (): void => {
+        setIsSelectOpen(false);
+
+        if (onChange) {
+            onChange({
+                label: inputValue,
+                value: inputValue,
+            });
+        }
     };
 
-    const { componentRef } = useClickOutsideComponent((event: MouseEvent) =>
-        handleClickOutsideComponent((event as unknown) as SyntheticEvent)
-    );
+    const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
     const onFocusCallback = useCallback((): void => {
         setIsSelectOpen(inputValue.length > 0);
