@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 import {
     getSelectedElements,
     getSelectedText,
@@ -21,7 +21,6 @@ const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 const BaseComponent = <T extends DropdownMultiSelectOption>(
     options: Array<T>,
     variant: DropdownVariant = DropdownVariant.COMPACT,
-    maxHeight = '',
     label = ''
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
@@ -62,7 +61,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 isDisabled={boolean('Is disabled', false)}
                 isValid={boolean('Is valid', false)}
                 label={label}
-                maxHeight={maxHeight}
+                maxHeight={number('Max height', 400)}
                 name="the-best-fruit"
                 onCancel={action('On cancel')}
                 onChange={action('On change')}
@@ -99,6 +98,5 @@ export const ConfigurableOutlineVariant: FunctionComponent = () =>
     BaseComponent(
         selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
         DropdownVariant.OUTLINE,
-        '150px',
         'What are the best fruits?'
     );

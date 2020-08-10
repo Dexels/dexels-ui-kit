@@ -15,5 +15,6 @@ export const StyledList = styled.ul<StyledListProps>`
         maxHeight &&
         css`
             max-height: ${maxHeight};
+            overflow: auto;
         `}
 `;

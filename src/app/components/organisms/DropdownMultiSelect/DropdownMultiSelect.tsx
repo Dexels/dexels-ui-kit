@@ -7,10 +7,25 @@ import {
     setAllElementsSelected,
 } from '../../../utils/functions/arrayObjectFunctions';
 import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
+import {
+    DialogFooterWrapper,
+    DropdownWrapper,
+    ListWrapper,
+    StaticItem,
+    StyledDropdownMultiSelect,
+} from './DropdownMultiSelect.sc';
 import { Dropdown, DropdownVariant } from '../../molecules/Dropdown';
 import { DropdownMultiSelectOption, DropdownOptionAllTexts } from './types';
-import { ListWrapper, StaticItem, StyledDropdownMultiSelect } from './DropdownMultiSelect.sc';
-import React, { MouseEventHandler, ReactNode, SyntheticEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+    MouseEventHandler,
+    ReactNode,
+    SyntheticEvent,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
 import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import List from '../../molecules/List/List';
@@ -32,7 +47,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     isDisabled?: boolean;
     isValid?: boolean;
     label?: ReactNode;
-    maxHeight?: string;
+    maxHeight?: number;
     name: string;
     onCancel?: MouseEventHandler;
     onChange?: (event: SyntheticEvent, options: T[]) => void;
@@ -76,8 +91,18 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [isSomeSelected, setIsSomeSelected] = useState(false);
     const [selectionControlValue, setSelectionControlvalue] = useState(DropdownOptionAllTexts.OFF);
+    const [listMaxHeight, setListMaxHeight] = useState<string>();
+    const [isAvailableList, setIsAvailableList] = useState(false);
+    const [staticItemHeight, setStaticItemHeight] = useState(0);
+    const [dialogFooterHeight, setDialogFooterHeight] = useState(0);
+    const [inputHeight, setInputHeight] = useState(0);
 
     const originalOptions = useMemo(() => cloneArray(options), []);
+
+    const dropdownMultiSelectRef = useRef<HTMLDivElement>(null);
+    const staticItemRef = useRef<HTMLDivElement>(null);
+    const dialogFooterRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLDivElement>(null);
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
@@ -87,6 +112,34 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const { componentRef } = useClickOutsideComponent((event: MouseEvent) =>
         handleClickOutsideComponent((event as unknown) as SyntheticEvent)
     );
+
+    useEffect(() => {
+        setInputHeight(inputRef.current ? Math.round(inputRef.current.offsetHeight) : 0);
+    }, [inputRef.current]);
+
+    useEffect(() => {
+        if (isOpen) {
+            setDialogFooterHeight(dialogFooterRef.current ? Math.round(dialogFooterRef.current.offsetHeight) : 0);
+            setStaticItemHeight(staticItemRef.current ? Math.round(staticItemRef.current.offsetHeight) : 0);
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        setIsAvailableList(dialogFooterHeight + staticItemHeight > 0);
+    }, [dialogFooterHeight, staticItemHeight]);
+
+    useEffect(() => {
+        if (dropdownMultiSelectRef.current && dialogFooterHeight + staticItemHeight > 0) {
+            const { top } = dropdownMultiSelectRef.current.getBoundingClientRect();
+            const maxBottom = Math.round(window.innerHeight - top);
+            const dropdownOffsetBottom = maxHeight ? maxHeight + top : maxBottom;
+
+            if (dropdownOffsetBottom >= maxBottom) {
+                const newListMaxHeight = maxBottom - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+                setListMaxHeight(`${newListMaxHeight}px`);
+            }
+        }
+    }, [dialogFooterHeight, dropdownMultiSelectRef, inputHeight, staticItemHeight]);
 
     useEffect(() => {
         setIsAllSelected(areAllOptionsSelected(updatedOptions, 'isSelected'));
@@ -131,24 +184,21 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                 onClick(event);
             }
         },
-        [onClick]
+        [isOpen, onClick]
     );
 
-    const onConfirmCallback = useCallback(
-        (event: SyntheticEvent) => {
-            setIsOpen(false);
-            onConfirm(event, updatedOptions);
-        },
-        [onConfirm, updatedOptions]
-    );
+    const onConfirmCallback = (event: SyntheticEvent) => {
+        setIsOpen(false);
+        onConfirm(event, updatedOptions);
+    };
 
     const onMouseEnterCallback = useCallback(() => {
         setIsHovered(true);
-    }, [isHovered]);
+    }, []);
 
     const onMouseLeaveCallback = useCallback(() => {
         setIsHovered(false);
-    }, [isHovered]);
+    }, []);
 
     const onChangeAllCallback = useCallback(() => {
         const newUpdatedOptions = isSomeSelected
@@ -181,30 +231,32 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     );
 
     return (
-        <StyledDropdownMultiSelect className={className}>
-            <Dropdown
-                as="div"
-                errorMessage={errorMessage}
-                hasError={hasError}
-                isDisabled={isDisabled}
-                isHovered={isHovered}
-                isOpen={isOpen}
-                isValid={isValid}
-                label={label}
-                name={name}
-                onClick={onClickCallback}
-                onMouseEnter={onMouseEnterCallback}
-                onMouseLeave={onMouseLeaveCallback}
-                placeholder={placeholder}
-                value={selectedOptionsText}
-                variant={variant}
-            >
-                {isAllSelected ? allSelectedLabel : selectedOptionsText || placeholder}
-            </Dropdown>
+        <StyledDropdownMultiSelect className={className} ref={dropdownMultiSelectRef}>
+            <DropdownWrapper ref={inputRef}>
+                <Dropdown
+                    as="div"
+                    errorMessage={errorMessage}
+                    hasError={hasError}
+                    isDisabled={isDisabled}
+                    isHovered={isHovered}
+                    isOpen={isOpen}
+                    isValid={isValid}
+                    label={label}
+                    name={name}
+                    onClick={onClickCallback}
+                    onMouseEnter={onMouseEnterCallback}
+                    onMouseLeave={onMouseLeaveCallback}
+                    placeholder={placeholder}
+                    value={selectedOptionsText}
+                    variant={variant}
+                >
+                    {isAllSelected ? allSelectedLabel : selectedOptionsText || placeholder}
+                </Dropdown>
+            </DropdownWrapper>
 
             {isOpen && (
                 <ListWrapper elevation={elevation} ref={componentRef}>
-                    <StaticItem elevation={Elevation.LEVEL_1}>
+                    <StaticItem elevation={Elevation.LEVEL_1} ref={staticItemRef}>
                         <SelectionControl
                             isChecked={isAllSelected}
                             isIndeterminate={isSomeSelected}
@@ -214,37 +266,41 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                             value={selectionControlValue}
                         />
                     </StaticItem>
-                    <List maxHeight={maxHeight}>
-                        {updatedOptions.map((item) => (
-                            <ListItem key={item.value}>
-                                <SelectionControl
-                                    isChecked={item.isSelected}
-                                    key={item.value}
-                                    label={item.label}
-                                    name={`DROPDOWN_MULTISELECT_OPTION_${item.value}`}
-                                    onChange={(event): void => onChangeOptionCallback(event, item)}
-                                    value={item.label}
-                                />
-                            </ListItem>
-                        ))}
-                    </List>
-                    <DialogFooter
-                        buttons={[
-                            {
-                                children: buttonCancelText,
-                                iconType: IconType.CROSS,
-                                onClick: onCancelCallback,
-                                size: ButtonSize.SMALL,
-                                variant: ButtonVariant.TEXT_ONLY,
-                            },
-                            {
-                                children: buttonConfirmText,
-                                iconType: IconType.CHECK,
-                                onClick: onConfirmCallback,
-                                size: ButtonSize.SMALL,
-                            },
-                        ]}
-                    />
+                    {isAvailableList && (
+                        <List maxHeight={listMaxHeight}>
+                            {updatedOptions.map((item) => (
+                                <ListItem key={item.value}>
+                                    <SelectionControl
+                                        isChecked={item.isSelected}
+                                        key={item.value}
+                                        label={item.label}
+                                        name={`DROPDOWN_MULTISELECT_OPTION_${item.value}`}
+                                        onChange={(event): void => onChangeOptionCallback(event, item)}
+                                        value={item.label}
+                                    />
+                                </ListItem>
+                            ))}
+                        </List>
+                    )}
+                    <DialogFooterWrapper ref={dialogFooterRef}>
+                        <DialogFooter
+                            buttons={[
+                                {
+                                    children: buttonCancelText,
+                                    iconType: IconType.CROSS,
+                                    onClick: onCancelCallback,
+                                    size: ButtonSize.SMALL,
+                                    variant: ButtonVariant.TEXT_ONLY,
+                                },
+                                {
+                                    children: buttonConfirmText,
+                                    iconType: IconType.CHECK,
+                                    onClick: onConfirmCallback,
+                                    size: ButtonSize.SMALL,
+                                },
+                            ]}
+                        />
+                    </DialogFooterWrapper>
                 </ListWrapper>
             )}
         </StyledDropdownMultiSelect>
