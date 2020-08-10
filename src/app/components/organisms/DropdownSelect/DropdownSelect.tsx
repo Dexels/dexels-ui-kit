@@ -25,7 +25,7 @@ export interface DropdownSelectOption extends DropdownOption {
     searchValue?: string;
 }
 
-interface UpdatedDropdownSelect extends DropdownOption {
+interface UpdatedDropdownSelectOption extends DropdownOption {
     adornment?: ReactNode;
     searchValue: string;
 }
@@ -78,7 +78,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     const [isOptionSelected, setIsOptionSelected] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownSelectOption[]);
-    const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelect[]);
+    const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelectOption[]);
 
     useEffect(() => {
         setUpdatedOptions(
