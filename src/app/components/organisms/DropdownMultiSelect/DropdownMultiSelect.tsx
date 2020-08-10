@@ -61,8 +61,8 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     variant?: DropdownVariant;
 }
 
-
 export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
+    allSelectedLabel,
     buttonCancelText,
     buttonConfirmText,
     className,
@@ -82,9 +82,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     options,
     placeholder,
     selectAllLabel,
-
-    deselectAllLabel,
-    allSelectedLabel,
+    variant,
 }: DropdownMultiSelectProps<T>): JSX.Element => {
     const [isHovered, setIsHovered] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
