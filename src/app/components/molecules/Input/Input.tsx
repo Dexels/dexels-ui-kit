@@ -23,7 +23,7 @@ export interface InputProps {
     isDisabled?: boolean;
     isTextarea?: boolean;
     isValid?: boolean;
-    label: ReactNode;
+    label?: ReactNode;
     max?: number;
     maxLength?: number;
     min?: number;
@@ -130,19 +130,21 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     variant={variant}
                     {...textFieldProps}
                 />
-                <FormElementLabel
-                    adornmentPosition={adornmentPosition}
-                    hasAdornment={adornment !== undefined}
-                    hasError={hasError}
-                    isActive={hasValue}
-                    isDisabled={isDisabled}
-                    isFocused={isFocused}
-                    isHovered={isHovered}
-                    isValid={isValid}
-                    variant={variant}
-                >
-                    {label}
-                </FormElementLabel>
+                {label && (
+                    <FormElementLabel
+                        adornmentPosition={adornmentPosition}
+                        hasAdornment={adornment !== undefined}
+                        hasError={hasError}
+                        isActive={hasValue}
+                        isDisabled={isDisabled}
+                        isFocused={isFocused}
+                        isHovered={isHovered}
+                        isValid={isValid}
+                        variant={variant}
+                    >
+                        {label}
+                    </FormElementLabel>
+                )}
 
                 {adornment && (
                     <AdornmentWrapper
