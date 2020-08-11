@@ -133,11 +133,12 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     useEffect(() => {
         if (dropdownMultiSelectRef.current && dialogFooterHeight + staticItemHeight > 0) {
             const { top } = dropdownMultiSelectRef.current.getBoundingClientRect();
-            const maxBottom = Math.round(window.innerHeight - top);
-            const dropdownOffsetBottom = maxHeight ? maxHeight + top : maxBottom;
+            const availableSpaceForDropdown = Math.round(window.innerHeight - top);
+            const dropdownMaxHeight = maxHeight ? maxHeight + top : availableSpaceForDropdown;
 
-            if (dropdownOffsetBottom >= maxBottom) {
-                const newListMaxHeight = maxBottom - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+            if (dropdownMaxHeight >= availableSpaceForDropdown) {
+                const newListMaxHeight =
+                    availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 15;
 
                 if (minHeight && newListMaxHeight < minHeight) {
                     // @todo check if there is room to show the list above the dropdown
