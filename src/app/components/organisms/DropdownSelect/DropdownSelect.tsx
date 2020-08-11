@@ -131,7 +131,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
             setIsSelectOpen(false);
         },
-        [inputValue, onConfirm, onChange]
+        [inputValue, onConfirm]
     );
 
     useEffect(() => {
