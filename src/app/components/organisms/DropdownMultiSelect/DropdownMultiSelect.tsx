@@ -48,6 +48,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     isValid?: boolean;
     label?: ReactNode;
     maxHeight?: number;
+    minHeight?: number;
     name: string;
     onCancel?: MouseEventHandler;
     onChange?: (event: SyntheticEvent, options: T[]) => void;
@@ -74,6 +75,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     isValid = false,
     label,
     maxHeight,
+    minHeight,
     name,
     onCancel,
     onClick,
@@ -136,6 +138,11 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
 
             if (dropdownOffsetBottom >= maxBottom) {
                 const newListMaxHeight = maxBottom - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+
+                if (minHeight && newListMaxHeight < minHeight) {
+                    // @todo check if there is room to show the list above the dropdown
+                }
+
                 setListMaxHeight(`${newListMaxHeight}px`);
             }
         }
