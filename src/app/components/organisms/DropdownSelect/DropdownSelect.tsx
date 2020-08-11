@@ -160,14 +160,17 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         handleOnChange();
     }, [inputValue]);
 
-    const onKeyDownCallback = useCallback((event: React.KeyboardEvent<HTMLInputElement>): void => {
-        if (event.key === 'Enter') {
-            onSelectOptionCallback(event, {
-                label: inputValue,
-                value: inputValue,
-            });
-        }
-    }, []);
+    const onKeyDownCallback = useCallback(
+        (event: React.KeyboardEvent<HTMLInputElement>): void => {
+            if (event.key === 'Enter') {
+                onSelectOptionCallback(event, {
+                    label: inputValue,
+                    value: inputValue,
+                });
+            }
+        },
+        [inputValue]
+    );
 
     return (
         <StyledDropdownSelect className={className} ref={componentRef}>
