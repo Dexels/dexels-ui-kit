@@ -56,7 +56,7 @@ export const Configurable: FunctionComponent = () => {
 
     const onChangeCallback = (option: DropdownOption) => {
         // eslint-disable-next-line no-console
-        console.log(option);
+        console.log('onChange', option);
 
         if (option) {
             // eslint-disable-next-line no-template-curly-in-string
@@ -76,7 +76,7 @@ export const Configurable: FunctionComponent = () => {
             name="an-input-name"
             noResultsMessage={text('No results message', 'No fruit is found!')}
             onChange={onChangeCallback}
-            onConfirm={action('On click')}
+            onConfirm={action('On confirm')}
             optionLabel={optionLabel}
             options={options}
             value={value}

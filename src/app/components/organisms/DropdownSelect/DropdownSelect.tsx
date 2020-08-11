@@ -46,7 +46,7 @@ export interface DropdownSelectProps {
     name: string;
     noResultsMessage: string;
     onChange?: (option: DropdownOption) => void;
-    onConfirm: (event: SyntheticEvent, option: DropdownOption) => void;
+    onConfirm?: (event: SyntheticEvent, option: DropdownOption) => void;
     optionLabel: ReactNode;
     options: DropdownSelectOptionProps[];
     value: string;
@@ -80,6 +80,15 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownSelectOptionProps[]);
     const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelectProps[]);
 
+    const handleOnChange = (newLabel?: string, newValue?: string | number) => {
+        if (onChange) {
+            onChange({
+                label: newLabel || inputValue,
+                value: newValue || inputValue,
+            });
+        }
+    };
+
     useEffect(() => {
         setUpdatedOptions(
             options.map((option) => {
@@ -99,13 +108,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 setIsOptionSelected(false);
                 const newOptionValue = parseInputValue(event.currentTarget);
                 setInputValue(newOptionValue);
-
-                if (onChange) {
-                    onChange({
-                        label: newOptionValue,
-                        value: newOptionValue,
-                    });
-                }
+                handleOnChange(newOptionValue, newOptionValue);
             }
         },
         [inputValue, onChange, options]
@@ -120,12 +123,12 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
             setIsOptionSelected(true);
             setInputValue(selectedOption.label);
+            handleOnChange(selectedOption.label, selectedOption.value);
 
-            if (onChange) {
-                onChange(selectedOption);
+            if (onConfirm) {
+                onConfirm(event, selectedOption);
             }
 
-            onConfirm(event, selectedOption);
             setIsSelectOpen(false);
         },
         [inputValue, onConfirm, onChange]
@@ -147,24 +150,22 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
     const handleClickOutsideComponent = (): void => {
         setIsSelectOpen(false);
-
-        if (onChange) {
-            onChange({
-                label: inputValue,
-                value: inputValue,
-            });
-        }
+        handleOnChange();
     };
 
     const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
     const onFocusCallback = useCallback((): void => {
         setIsSelectOpen(inputValue.length > 0);
+        handleOnChange();
     }, [inputValue]);
 
     const onKeyDownCallback = useCallback((event: React.KeyboardEvent<HTMLInputElement>): void => {
         if (event.key === 'Enter') {
-            onSelectOptionCallback(event);
+            onSelectOptionCallback(event, {
+                label: inputValue,
+                value: inputValue,
+            });
         }
     }, []);
 
