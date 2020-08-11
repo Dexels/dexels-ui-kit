@@ -18,6 +18,7 @@ export interface FileUploadDialogProps {
     isVisible: boolean;
     maxFileSize?: number;
     maxFiles: number;
+    maxLengthDescription?: number;
     onAlert(type: AlertType, fileNames?: string[]): void;
     onChangeDescription(value: string): void;
     onClose(): void;
@@ -29,17 +30,18 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     buttons,
     className,
     data,
-    onAlert,
-    onDrop,
-    onChangeDescription,
+    description,
+    fileTypes,
+    inputText,
+    isVisible,
     maxFileSize = 5,
     maxFiles = 1,
-    fileTypes,
-    isVisible,
-    title,
-    inputText,
-    description,
+    maxLengthDescription = 255,
+    onAlert,
+    onChangeDescription,
     onClose,
+    onDrop,
+    title,
 }) => (
     <Dialog className={className} footerButtons={buttons} isVisible={isVisible} onClose={onClose}>
         <StyledTextWithOptionalIcon iconSize={IconSize.XLARGE} iconType={IconType.FILEADD}>
@@ -56,6 +58,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
         <Input
             isDisabled={data.status === FileUploaderStatus.LOADING}
             label={inputText}
+            maxLength={maxLengthDescription}
             name="description"
             onChange={({ currentTarget }): void => {
                 onChangeDescription(parseInputValue(currentTarget));
