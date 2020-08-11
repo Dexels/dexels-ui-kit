@@ -51,7 +51,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     minHeight?: number;
     name: string;
     onCancel?: MouseEventHandler;
-    onChange?: (event: SyntheticEvent, options: T[]) => void;
+    onChange?: (options: T[]) => void;
     onClick?: MouseEventHandler;
     onConfirm: (event: SyntheticEvent, options: T[]) => void;
     options: T[];
@@ -141,7 +141,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                     availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 15;
 
                 if (minHeight && newListMaxHeight < minHeight) {
-                    // @todo check if there is room to show the list above the dropdown
+                    // @TODO check if there is room to show the list above the dropdown
                 }
 
                 setListMaxHeight(`${newListMaxHeight}px`);
@@ -217,7 +217,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     }, [isSomeSelected]);
 
     const onChangeOptionCallback = useCallback(
-        (event: SyntheticEvent, selectedOption: T) => {
+        (selectedOption: T) => {
             const newUpdatedOptions = updatedOptions.map((option) => {
                 if (option.value === selectedOption.value) {
                     return {
@@ -232,7 +232,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
             setUpdatedOptions(newUpdatedOptions);
 
             if (onChange) {
-                onChange(event, newUpdatedOptions);
+                onChange(newUpdatedOptions);
             }
         },
         [onConfirm, onChange, updatedOptions]
@@ -283,7 +283,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                                         key={item.value}
                                         label={item.label}
                                         name={`DROPDOWN_MULTISELECT_OPTION_${item.value}`}
-                                        onChange={(event): void => onChangeOptionCallback(event, item)}
+                                        onChange={(): void => onChangeOptionCallback(item)}
                                         value={item.label}
                                     />
                                 </ListItem>
