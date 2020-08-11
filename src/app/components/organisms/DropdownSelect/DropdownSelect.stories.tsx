@@ -2,9 +2,9 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import DropdownSelect, { DropdownSelectOptionProps } from './DropdownSelect';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { IconType, InputVariant } from '../../../types';
-import React, { ChangeEvent, FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { parseInputValue } from '../../../utils/functions/parseInputValue';
+import { DropdownOption } from '../../molecules/Dropdown';
 
 export default { title: 'organisms/DropdownSelect' };
 
@@ -54,10 +54,13 @@ export const Configurable: FunctionComponent = () => {
     const [value] = useState('');
     const [optionLabel, setOptionLabel] = useState('');
 
-    const onChangeCallback = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.currentTarget) {
+    const onChangeCallback = (option: DropdownOption) => {
+        // eslint-disable-next-line no-console
+        console.log('onChange', option);
+
+        if (option) {
             // eslint-disable-next-line no-template-curly-in-string
-            setOptionLabel(OPTION_LABEL.replace('{{${variableKey}}}', parseInputValue(event.currentTarget)));
+            setOptionLabel(OPTION_LABEL.replace('{{${variableKey}}}', option.label));
         }
     };
 
@@ -73,7 +76,7 @@ export const Configurable: FunctionComponent = () => {
             name="an-input-name"
             noResultsMessage={text('No results message', 'No fruit is found!')}
             onChange={onChangeCallback}
-            onConfirm={action('On click')}
+            onConfirm={action('On confirm')}
             optionLabel={optionLabel}
             options={options}
             value={value}
