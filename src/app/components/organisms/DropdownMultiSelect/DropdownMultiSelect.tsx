@@ -7,6 +7,7 @@ import {
     setAllElementsSelected,
 } from '../../../utils/functions/arrayObjectFunctions';
 import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
+import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import {
     DialogFooterWrapper,
     DropdownWrapper,
@@ -16,22 +17,11 @@ import {
 } from './DropdownMultiSelect.sc';
 import { Dropdown, DropdownVariant } from '../../molecules/Dropdown';
 import { DropdownMultiSelectOption, DropdownOptionAllTexts } from './types';
-import React, {
-    MouseEventHandler,
-    ReactNode,
-    SyntheticEvent,
-    useCallback,
-    useEffect,
-    useMemo,
-    useRef,
-    useState,
-} from 'react';
+import React, { MouseEventHandler, ReactNode, SyntheticEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { cloneArray } from '../../../utils/functions/arrayFunctions';
-import DialogFooter from '../../molecules/DialogFooter/DialogFooter';
 import List from '../../molecules/List/List';
 import ListItem from '../../atoms/ListItem/ListItem';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
-
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
 export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
@@ -83,12 +73,14 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     onChange,
     options,
     placeholder,
+    resetOnOutsideClick = true,
     selectAllLabel,
     variant,
 }: DropdownMultiSelectProps<T>): JSX.Element => {
     const [dialogFooterHeight, setDialogFooterHeight] = useState(0);
     const dialogFooterRef = useRef<HTMLDivElement>(null);
     const dropdownMultiSelectRef = useRef<HTMLDivElement>(null);
+    const footerButtons: DialogFooterProps['buttons'] = [];
     const [inputHeight, setInputHeight] = useState(0);
     const inputRef = useRef<HTMLDivElement>(null);
     const [isAllSelected, setIsAllSelected] = useState(false);
@@ -97,7 +89,8 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const [isOpen, setIsOpen] = useState(false);
     const [isSomeSelected, setIsSomeSelected] = useState(false);
     const [listMaxHeight, setListMaxHeight] = useState<string>();
-    const originalOptions = useMemo(() => cloneArray(options), []);
+    const [originalOptions, setOriginalOptions] = useState(cloneArray(options));
+    const resetValuesOnOutsideClick = !onCancel && !buttonCancelText ? false : resetOnOutsideClick;
     const [selectionControlValue, setSelectionControlvalue] = useState(DropdownOptionAllTexts.OFF);
     const [selectedOptionsText, setSelectedOptionsText] = useState('');
     const [staticItemHeight, setStaticItemHeight] = useState(0);
@@ -106,7 +99,12 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
-        onConfirm(event, updatedOptions);
+
+        if (resetValuesOnOutsideClick) {
+            setUpdatedOptions(originalOptions);
+        } else {
+            onConfirm(event, updatedOptions);
+        }
     };
 
     const { componentRef } = useClickOutsideComponent((event: MouseEvent) =>
@@ -196,6 +194,8 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const onConfirmCallback = (event: SyntheticEvent) => {
         setIsOpen(false);
         onConfirm(event, updatedOptions);
+        // Make sure to update the original values for onCancel
+        setOriginalOptions(updatedOptions);
     };
 
     const onMouseEnterCallback = useCallback(() => {
@@ -235,6 +235,24 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
         },
         [onConfirm, onChange, updatedOptions]
     );
+
+    // Set the dialog footer buttons
+    if (onCancel && buttonCancelText) {
+        footerButtons.push({
+            children: buttonCancelText,
+            iconType: IconType.CROSS,
+            onClick: onCancelCallback,
+            size: ButtonSize.SMALL,
+            variant: ButtonVariant.TEXT_ONLY,
+        });
+    }
+
+    footerButtons.push({
+        children: buttonConfirmText,
+        iconType: IconType.CHECK,
+        onClick: onConfirmCallback,
+        size: ButtonSize.SMALL,
+    });
 
     return (
         <StyledDropdownMultiSelect className={className} ref={dropdownMultiSelectRef}>
@@ -289,23 +307,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                         </List>
                     )}
                     <DialogFooterWrapper ref={dialogFooterRef}>
-                        <DialogFooter
-                            buttons={[
-                                {
-                                    children: buttonCancelText,
-                                    iconType: IconType.CROSS,
-                                    onClick: onCancelCallback,
-                                    size: ButtonSize.SMALL,
-                                    variant: ButtonVariant.TEXT_ONLY,
-                                },
-                                {
-                                    children: buttonConfirmText,
-                                    iconType: IconType.CHECK,
-                                    onClick: onConfirmCallback,
-                                    size: ButtonSize.SMALL,
-                                },
-                            ]}
-                        />
+                        <DialogFooter buttons={footerButtons} />
                     </DialogFooterWrapper>
                 </ListWrapper>
             )}
