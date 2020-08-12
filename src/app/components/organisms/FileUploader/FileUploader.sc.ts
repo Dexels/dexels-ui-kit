@@ -60,6 +60,8 @@ export const FileUploaderWrapper = styled.div<StyledFileUploaderProps>`
 const BaseText = styled.div`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     margin: ${({ theme }): string => theme.spacing(0, 0, 1.5)};
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
 export const TopText = styled(BaseText)`
