@@ -106,7 +106,11 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
-        onConfirm(event, updatedOptions);
+
+        // When there's a onCancel given, then clicking outside shouldn't result in onConfirm
+        if (!onCancel) {
+            onConfirm(event, updatedOptions);
+        }
     };
 
     const { componentRef } = useClickOutsideComponent((event: MouseEvent) =>
