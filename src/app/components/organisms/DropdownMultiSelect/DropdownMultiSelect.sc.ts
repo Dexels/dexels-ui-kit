@@ -10,6 +10,9 @@ export const StyledDropdownMultiSelect = styled.div`
     position: relative;
 `;
 
+export const DialogFooterWrapper = styled.div``;
+export const DropdownWrapper = styled.div``;
+
 interface ListWrapperProps {
     elevation: Elevation;
 }

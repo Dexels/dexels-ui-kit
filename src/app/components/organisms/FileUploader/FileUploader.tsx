@@ -14,7 +14,7 @@ import {
 import { ButtonVariant, IconType } from '../../../types';
 import { FileAlertType, FileTypes, FileUploaderStatus } from './types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
-import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
+import React, { ChangeEvent, FunctionComponent, ReactNode, useEffect, useRef, useState } from 'react';
 import { defineFileFormats } from './utils/defineFileFormats';
 import { IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
@@ -46,15 +46,15 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     fileTypes,
     fileNameLength = 100,
 }) => {
-    const [isDragging, setIsDragging] = React.useState(false);
-    const [dragCounter, setDragCounter] = React.useState(0);
-    const dropRef = React.useRef<HTMLDivElement | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragCounter, setDragCounter] = useState(0);
+    const dropRef = useRef<HTMLDivElement | null>(null);
     const { status, message, buttonText, bottomText } = data;
-    const fileFormatsRef = React.useRef<string[]>();
+    const fileFormatsRef = useRef<string[]>();
     fileFormatsRef.current = defineFileFormats(fileTypes);
-    const maxFilesRef = React.useRef<number>();
+    const maxFilesRef = useRef<number>();
     maxFilesRef.current = maxFiles;
-    const maxFileSizeRef = React.useRef<number>();
+    const maxFileSizeRef = useRef<number>();
     maxFileSizeRef.current = maxFileSize;
 
     enum listenerAction {
@@ -160,7 +160,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         setDragCounter(0);
         manageListeners(listenerAction.add);
 
