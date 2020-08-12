@@ -73,6 +73,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     onChange,
     options,
     placeholder,
+    resetOnOutsideClick = true,
     selectAllLabel,
     variant,
 }: DropdownMultiSelectProps<T>): JSX.Element => {
@@ -89,6 +90,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const [isSomeSelected, setIsSomeSelected] = useState(false);
     const [listMaxHeight, setListMaxHeight] = useState<string>();
     const [originalOptions, setOriginalOptions] = useState(cloneArray(options));
+    const resetValuesOnOutsideClick = !onCancel && !buttonCancelText ? false : resetOnOutsideClick;
     const [selectionControlValue, setSelectionControlvalue] = useState(DropdownOptionAllTexts.OFF);
     const [selectedOptionsText, setSelectedOptionsText] = useState('');
     const [staticItemHeight, setStaticItemHeight] = useState(0);
@@ -98,11 +100,10 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
 
-        // When there's an onCancel given, then clicking outside the list shouldn't result in onConfirm
-        if (onCancel && buttonCancelText) {
-            onConfirm(event, updatedOptions);
-        } else {
+        if (resetValuesOnOutsideClick) {
             setUpdatedOptions(originalOptions);
+        } else {
+            onConfirm(event, updatedOptions);
         }
     };
 
