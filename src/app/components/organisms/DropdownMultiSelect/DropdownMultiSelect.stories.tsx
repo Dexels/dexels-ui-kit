@@ -68,6 +68,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 onConfirm={onConfirmCallback}
                 options={optionValues}
                 placeholder={text('Placeholder', 'Select the best fruits')}
+                resetOnOutsideClick={boolean('resetOnOutsideClick', true)}
                 selectAllLabel={text('select all label', TEXT_OPTION_SELECT_ALL)}
                 variant={variant}
             />
