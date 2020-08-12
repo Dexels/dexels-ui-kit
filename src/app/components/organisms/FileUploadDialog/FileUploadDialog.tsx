@@ -1,4 +1,4 @@
-import { AlertType, FileTypes, FileUploaderStatus } from '../FileUploader/types';
+import { FileAlertType, FileTypes, FileUploaderStatus } from '../FileUploader/types';
 import { IconSize, IconType, InputType } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { StyledFileUploader, StyledTextWithOptionalIcon } from './FileUploadDialog.sc';
@@ -13,12 +13,14 @@ export interface FileUploadDialogProps {
     className?: string;
     data: FileUploaderData;
     description?: string;
+    fileNameLength?: number;
     fileTypes: FileTypes[];
     inputText: ReactNode;
     isVisible: boolean;
     maxFileSize?: number;
     maxFiles: number;
-    onAlert(type: AlertType, fileNames?: string[]): void;
+    maxLengthDescription?: number;
+    onAlert(type: FileAlertType, fileNames?: string[]): void;
     onChangeDescription(value: string): void;
     onClose(): void;
     onDrop(files: FileList): void;
@@ -29,17 +31,19 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     buttons,
     className,
     data,
-    onAlert,
-    onDrop,
-    onChangeDescription,
+    description,
+    fileNameLength = 100,
+    fileTypes,
+    inputText,
+    isVisible,
     maxFileSize = 5,
     maxFiles = 1,
-    fileTypes,
-    isVisible,
-    title,
-    inputText,
-    description,
+    maxLengthDescription = 255,
+    onAlert,
+    onChangeDescription,
     onClose,
+    onDrop,
+    title,
 }) => (
     <Dialog className={className} footerButtons={buttons} isVisible={isVisible} onClose={onClose}>
         <StyledTextWithOptionalIcon iconSize={IconSize.XLARGE} iconType={IconType.FILEADD}>
@@ -47,6 +51,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
         </StyledTextWithOptionalIcon>
         <StyledFileUploader
             data={data}
+            fileNameLength={fileNameLength}
             fileTypes={fileTypes}
             maxFileSize={maxFileSize}
             maxFiles={maxFiles}
@@ -56,6 +61,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
         <Input
             isDisabled={data.status === FileUploaderStatus.LOADING}
             label={inputText}
+            maxLength={maxLengthDescription}
             name="description"
             onChange={({ currentTarget }): void => {
                 onChangeDescription(parseInputValue(currentTarget));

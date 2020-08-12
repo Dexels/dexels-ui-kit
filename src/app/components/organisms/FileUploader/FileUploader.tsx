@@ -11,10 +11,10 @@ import {
     SuccessIcon,
     TopText,
 } from './FileUploader.sc';
-import { AlertType, FileTypes, FileUploaderStatus } from './types';
 import { ButtonVariant, IconType } from '../../../types';
+import { FileAlertType, FileTypes, FileUploaderStatus } from './types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
-import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
+import React, { ChangeEvent, FunctionComponent, ReactNode, useEffect, useRef, useState } from 'react';
 import { defineFileFormats } from './utils/defineFileFormats';
 import { IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
@@ -28,10 +28,11 @@ export interface FileUploaderData {
 export interface FileUploaderProps {
     className?: string;
     data: FileUploaderData;
+    fileNameLength?: number;
     fileTypes: FileTypes[];
     maxFileSize: number;
     maxFiles: number;
-    onAlert(type: AlertType, fileNames?: string[]): void;
+    onAlert(type: FileAlertType, fileNames?: string[]): void;
     onDrop(files: FileList): void;
 }
 
@@ -43,16 +44,17 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     maxFileSize,
     maxFiles,
     fileTypes,
+    fileNameLength = 100,
 }) => {
-    const [isDragging, setIsDragging] = React.useState(false);
-    const [dragCounter, setDragCounter] = React.useState(0);
-    const dropRef = React.useRef<HTMLDivElement | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragCounter, setDragCounter] = useState(0);
+    const dropRef = useRef<HTMLDivElement | null>(null);
     const { status, message, buttonText, bottomText } = data;
-    const fileFormatsRef = React.useRef<string[]>();
+    const fileFormatsRef = useRef<string[]>();
     fileFormatsRef.current = defineFileFormats(fileTypes);
-    const maxFilesRef = React.useRef<number>();
+    const maxFilesRef = useRef<number>();
     maxFilesRef.current = maxFiles;
-    const maxFileSizeRef = React.useRef<number>();
+    const maxFileSizeRef = useRef<number>();
     maxFileSizeRef.current = maxFileSize;
 
     enum listenerAction {
@@ -111,18 +113,20 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
 
             if (files && files.length > 0) {
                 if (!maxFilesRef.current || maxFilesRef.current <= 0 || files.length > maxFiles) {
-                    onAlert(AlertType.NUMBER);
+                    onAlert(FileAlertType.NUMBER);
                 } else if (
                     droppedFilesTypes.filter((type) => fileFormatsRef.current && fileFormatsRef.current.includes(type))
                         .length === 0
                 ) {
-                    onAlert(AlertType.TYPE, filesNames);
+                    onAlert(FileAlertType.TYPE, filesNames);
                 } else if (
                     !maxFileSizeRef.current ||
                     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                     filesSizes.filter((size) => size / 1000000 > maxFileSizeRef.current!).length > 0
                 ) {
-                    onAlert(AlertType.SIZE, filesNames);
+                    onAlert(FileAlertType.SIZE, filesNames);
+                } else if (filesNames.filter((name) => name.length > fileNameLength).length > 0) {
+                    onAlert(FileAlertType.NAME, filesNames);
                 } else {
                     // eslint-disable-next-line no-use-before-define
                     manageListeners(listenerAction.remove);
@@ -156,7 +160,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         setDragCounter(0);
         manageListeners(listenerAction.add);
 
