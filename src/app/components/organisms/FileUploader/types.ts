@@ -5,7 +5,8 @@ export enum FileUploaderStatus {
     SUCCESS = 'success',
 }
 
-export enum AlertType {
+export enum FileAlertType {
+    NAME = 'nameError',
     NUMBER = 'numberError',
     SIZE = 'sizeError',
     TYPE = 'typeError',

@@ -1,5 +1,5 @@
-import { AlertType, FileTypes } from '../FileUploader/types';
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { FileAlertType, FileTypes } from '../FileUploader/types';
 import {
     getAlertTranslation,
     getDefaultTranslation,
@@ -39,7 +39,7 @@ export const Configurable: FunctionComponent = () => {
         getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current)
     );
 
-    const onAlert = (type: AlertType, fileNames?: string[]) => {
+    const onAlert = (type: FileAlertType, fileNames?: string[]) => {
         if (fileTypesRef.current && fileNames && maxFilesRef.current && maxFileSizeRef.current) {
             setData(
                 getAlertTranslation(type, fileTypesRef.current, fileNames, maxFilesRef.current, maxFileSizeRef.current)

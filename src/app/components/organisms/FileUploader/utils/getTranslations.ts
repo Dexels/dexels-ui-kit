@@ -1,4 +1,4 @@
-import { AlertType, FileTypes, FileUploaderStatus } from '../types';
+import { FileAlertType, FileTypes, FileUploaderStatus } from '../types';
 import { fileSizeToFixed } from '../../../../utils/functions/fileFunctions';
 import { FileUploaderData } from '../FileUploader';
 
@@ -25,7 +25,7 @@ export const getSelectedTranslation = (
 });
 
 export const getAlertTranslation = (
-    alert: AlertType,
+    alert: FileAlertType,
     fileTypes: FileTypes,
     fileNames: string[],
     maxFiles: number,
@@ -34,7 +34,7 @@ export const getAlertTranslation = (
     let alertMessage = '';
 
     switch (alert) {
-        case AlertType.NUMBER:
+        case FileAlertType.NUMBER:
             alertMessage =
                 maxFiles > 0
                     ? `Er ${maxFiles > 1 ? 'kunnen' : 'kan'} maximaal ${maxFiles} ${
@@ -44,7 +44,7 @@ export const getAlertTranslation = (
 
             break;
 
-        case AlertType.SIZE:
+        case FileAlertType.SIZE:
             if (fileNames) {
                 alertMessage = `${fileNames.join(', ')} ${
                     fileNames.length > 1 ? 'zijn' : 'is'
@@ -53,11 +53,18 @@ export const getAlertTranslation = (
 
             break;
 
-        case AlertType.TYPE:
+        case FileAlertType.TYPE:
             if (fileNames) {
                 alertMessage = `${fileNames.join(', ')} ${
                     fileNames.length > 1 ? 'hebben' : 'heeft'
                 } de verkeerde extensie`;
+            }
+
+            break;
+
+        case FileAlertType.NAME:
+            if (fileNames) {
+                alertMessage = `${fileNames.join(', ')} ${fileNames.length > 1 ? 'hebben' : 'heeft'} te lang naam`;
             }
 
             break;
