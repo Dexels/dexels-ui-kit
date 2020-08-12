@@ -20,12 +20,12 @@ import { parseInputValue } from '../../../utils/functions/parseInputValue';
 import { toBasicLowercase } from '../../../utils/functions/stringFunctions';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
-export interface DropdownSelectOptionProps extends DropdownOption {
+export interface DropdownSelectOption extends DropdownOption {
     adornment?: ReactNode;
     searchValue?: string;
 }
 
-interface UpdatedDropdownSelectProps extends DropdownOption {
+interface UpdatedDropdownSelectOption extends DropdownOption {
     adornment?: ReactNode;
     searchValue: string;
 }
@@ -48,7 +48,7 @@ export interface DropdownSelectProps {
     onChange?: (option: DropdownOption) => void;
     onConfirm?: (event: SyntheticEvent, option: DropdownOption) => void;
     optionLabel: ReactNode;
-    options: DropdownSelectOptionProps[];
+    options: DropdownSelectOption[];
     value: string;
     variant?: InputVariant;
 }
@@ -77,8 +77,8 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [isOptionSelected, setIsOptionSelected] = useState(false);
     const [inputValue, setInputValue] = useState(value);
-    const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownSelectOptionProps[]);
-    const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelectProps[]);
+    const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownSelectOption[]);
+    const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelectOption[]);
 
     const handleOnChange = (newLabel?: string, newValue?: string | number) => {
         if (onChange) {

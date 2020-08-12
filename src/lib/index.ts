@@ -25,7 +25,14 @@ export { setCentered } from '../app/styles/mixins/setCentered';
 export { setTruncate } from '../app/styles/mixins/setTruncate';
 
 // Export functions
-export { areAllOptionsSelected, selectOptionsFacade } from '../app/utils/functions/arrayObjectFunctions';
+export {
+    areAllOptionsSelected,
+    getSelectedElements,
+    isAnyOptionSelected,
+    selectOptionsExtend,
+    selectOptionsFacade,
+    setElementSelected,
+} from '../app/utils/functions/arrayObjectFunctions';
 export { toBasicLowercase } from '../app/utils/functions/stringFunctions';
 export { cloneArray } from '../app/utils/functions/arrayFunctions';
 export { convertLocale } from '../app/utils/functions/localeFunctions';
@@ -124,7 +131,7 @@ export {
 export {
     DropdownSelect,
     DropdownSelectProps,
-    DropdownSelectOptionProps,
+    DropdownSelectOption,
 } from '../app/components/organisms/DropdownSelect/DropdownSelect';
 export {
     FileUploader,
