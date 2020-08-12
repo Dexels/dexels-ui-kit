@@ -86,25 +86,23 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     selectAllLabel,
     variant,
 }: DropdownMultiSelectProps<T>): JSX.Element => {
+    const [dialogFooterHeight, setDialogFooterHeight] = useState(0);
+    const dialogFooterRef = useRef<HTMLDivElement>(null);
+    const dropdownMultiSelectRef = useRef<HTMLDivElement>(null);
+    const [inputHeight, setInputHeight] = useState(0);
+    const inputRef = useRef<HTMLDivElement>(null);
+    const [isAllSelected, setIsAllSelected] = useState(false);
+    const [isAvailableList, setIsAvailableList] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
-    const [selectedOptionsText, setSelectedOptionsText] = useState('');
-    const [isAllSelected, setIsAllSelected] = useState(false);
     const [isSomeSelected, setIsSomeSelected] = useState(false);
-    const [selectionControlValue, setSelectionControlvalue] = useState(DropdownOptionAllTexts.OFF);
     const [listMaxHeight, setListMaxHeight] = useState<string>();
-    const [isAvailableList, setIsAvailableList] = useState(false);
-    const [staticItemHeight, setStaticItemHeight] = useState(0);
-    const [dialogFooterHeight, setDialogFooterHeight] = useState(0);
-    const [inputHeight, setInputHeight] = useState(0);
-
     const originalOptions = useMemo(() => cloneArray(options), []);
-
-    const dropdownMultiSelectRef = useRef<HTMLDivElement>(null);
+    const [selectionControlValue, setSelectionControlvalue] = useState(DropdownOptionAllTexts.OFF);
+    const [selectedOptionsText, setSelectedOptionsText] = useState('');
+    const [staticItemHeight, setStaticItemHeight] = useState(0);
     const staticItemRef = useRef<HTMLDivElement>(null);
-    const dialogFooterRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLDivElement>(null);
+    const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
@@ -147,7 +145,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                 setListMaxHeight(`${newListMaxHeight}px`);
             }
         }
-    }, [dialogFooterHeight, dropdownMultiSelectRef, inputHeight, staticItemHeight]);
+    }, [dialogFooterHeight, dropdownMultiSelectRef, inputHeight, staticItemHeight, window.innerHeight]);
 
     useEffect(() => {
         setIsAllSelected(areAllOptionsSelected(updatedOptions, 'isSelected'));
