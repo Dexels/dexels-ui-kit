@@ -40,7 +40,7 @@ export const setElementSelected = <U, T extends U>(
     const output: Array<T> = [];
 
     data.forEach((element) => {
-        let isSelected = false;
+        let isSelected = (element[propertySelectedName] as unknown) as boolean;
 
         if (unsetOtherValues) {
             isSelected = element[propertyIdName] === selectedElement[propertyIdName];
