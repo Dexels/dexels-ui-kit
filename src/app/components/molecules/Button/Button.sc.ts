@@ -5,6 +5,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 interface StyledButtonProps {
+    hasNoPadding: boolean;
     isDisabled: boolean;
     isFullWidth: boolean;
     isInverted: boolean;
@@ -132,13 +133,13 @@ export const StyledButton = styled.button<StyledButtonProps>`
             `}
         `}
 
-    ${({ isDisabled, isInverted, theme: { button }, variant }): SimpleInterpolation =>
+    ${({ hasNoPadding, isDisabled, isInverted, theme: { button }, variant }): SimpleInterpolation =>
         variant === ButtonVariant.TEXT_ONLY &&
         css`
             border: 0;
             border-radius: 0;
             background-color: transparent !important;
-            padding: 0;
+            padding: ${hasNoPadding ? 0 : '4px'};
             min-width: 0;
             min-height: 0;
             color: ${isInverted ? button.textOnly.inverted : button.textOnly.primary};
