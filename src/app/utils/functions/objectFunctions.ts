@@ -38,30 +38,23 @@ export const isObjectPropertyChanged = <T extends Record<string, unknown>>(
 };
 
 // Returns added keys or removed keys or keys of changed values when prevObject and nextObject are object of the same interface
-export const getObjectDifference = <T extends Record<string, unknown>>(
-    prevObject: T,
-    nextObject: T
-): Array<keyof T> => {
+export const getObjectDifference = <T extends Record<string, unknown>>(prevObject: T, nextObject: T): Array<string> => {
     const prevKeys = Object.keys(prevObject);
     const nextKeys = Object.keys(nextObject);
 
-    let differKeys = prevKeys.filter((key) => !nextKeys.includes(key));
+    const differKeys = prevKeys
+        .filter((key) => !nextKeys.includes(key))
+        .concat(nextKeys.filter((key) => !prevKeys.includes(key)));
 
-    if (differKeys.length > 0) {
-        return differKeys;
-    }
-
-    differKeys = nextKeys.filter((key) => !prevKeys.includes(key));
-
-    if (differKeys.length > 0) {
-        return differKeys;
-    }
-
-    return Object.keys(prevObject).filter((key) => {
+    const differValues = Object.keys(prevObject).filter((key) => {
         if (typeof prevObject[key] === 'object') {
             return JSON.stringify(prevObject[key]) !== JSON.stringify(nextObject[key]);
         }
 
         return prevObject[key] !== nextObject[key];
     });
+
+    return Array.from(
+        new Set<string>([...differKeys, ...differValues])
+    );
 };
