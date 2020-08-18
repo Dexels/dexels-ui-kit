@@ -1,11 +1,13 @@
 import { Locale } from '../../types';
 
-export const areEqualObjects = (prevObject: Record<string, unknown>, object: Record<string, unknown>): boolean => {
+export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject: Record<string, unknown>): boolean => {
     const prevKeys = Object.keys(prevObject);
-    const keys = Object.keys(object);
-    const differKeys = prevKeys.filter((key) => !keys.includes(key));
+    const nextKeys = Object.keys(nextObject);
 
-    if (differKeys.length > 0) {
+    if (
+        prevKeys.filter((key) => !nextKeys.includes(key)).length > 0 ||
+        nextKeys.filter((key) => !prevKeys.includes(key)).length > 0
+    ) {
         return false;
     }
 
@@ -14,7 +16,7 @@ export const areEqualObjects = (prevObject: Record<string, unknown>, object: Rec
             return false;
         }
 
-        return prevObject[key] !== object[key];
+        return prevObject[key] !== nextObject[key];
     });
 
     if (differValues.length > 0) {
@@ -24,30 +26,15 @@ export const areEqualObjects = (prevObject: Record<string, unknown>, object: Rec
     return true;
 };
 
-// Returns possible differences between 2 objects
-export const compareObjects = (prevObject: Record<string, unknown>, object: Record<string, unknown>): string[] => {
-    const prevKeys = Object.keys(prevObject);
-    const keys = Object.keys(object);
-    const differKeys = prevKeys.filter((key) => !keys.includes(key));
-
-    if (differKeys.length > 0) {
-        return differKeys;
-    }
-
-    const differValues = prevKeys.filter((key) => {
+// Returns keys of changed values when prevObject and nextObject are object of the same interface
+export const compareObjects = <T extends Record<string, unknown>>(prevObject: T, nextObject: T): Array<keyof T> =>
+    Object.keys(prevObject).filter((key) => {
         if (typeof prevObject[key] === 'object') {
-            return JSON.stringify(prevObject[key]) !== JSON.stringify(object[key]);
+            return JSON.stringify(prevObject[key]) !== JSON.stringify(nextObject[key]);
         }
 
-        return prevObject[key] !== object[key];
+        return prevObject[key] !== nextObject[key];
     });
-
-    if (differValues.length > 0) {
-        return differValues;
-    }
-
-    return [];
-};
 
 export const isEmpty = (value: string | unknown | undefined): boolean => {
     if (typeof value === 'string') {
@@ -55,8 +42,7 @@ export const isEmpty = (value: string | unknown | undefined): boolean => {
     }
 
     if (typeof value === 'object') {
-        // eslint-disable-next-line @typescript-eslint/ban-types
-        return !Object.keys(value as object).length;
+        return !Object.keys(value as Record<string, unknown>).length;
     }
 
     return false;
