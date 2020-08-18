@@ -49,7 +49,7 @@ export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 export { parseInputValue } from '../app/utils/functions/parseInputValue';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
 export { isEmpty, isValidEmail, isValidPhoneNumber, isValidMoney } from '../app/utils/functions/validateFunctions';
-export { areEqualObjects, getObjectdifference, isObjectPropertyChanged } from '../app/utils/functions/objectFunctions';
+export { areEqualObjects, getObjectDifference, isObjectPropertyChanged } from '../app/utils/functions/objectFunctions';
 export {
     defaultCurrencySettings,
     formatMoney,

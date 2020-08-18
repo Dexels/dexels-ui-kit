@@ -38,7 +38,7 @@ export const isObjectPropertyChanged = <T extends Record<string, unknown>>(
 };
 
 // Returns added keys or removed keys or keys of changed values when prevObject and nextObject are object of the same interface
-export const getObjectdifference = <T extends Record<string, unknown>>(
+export const getObjectDifference = <T extends Record<string, unknown>>(
     prevObject: T,
     nextObject: T
 ): Array<keyof T> => {
