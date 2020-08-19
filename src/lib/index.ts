@@ -48,14 +48,8 @@ export {
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 export { parseInputValue } from '../app/utils/functions/parseInputValue';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
-export {
-    areEqualObjects,
-    compareObjects,
-    isEmpty,
-    isValidEmail,
-    isValidPhoneNumber,
-    isValidMoney,
-} from '../app/utils/functions/validateFunctions';
+export { isEmpty, isValidEmail, isValidPhoneNumber, isValidMoney } from '../app/utils/functions/validateFunctions';
+export { areEqualObjects, getObjectDifference, isObjectPropertyChanged } from '../app/utils/functions/objectFunctions';
 export {
     defaultCurrencySettings,
     formatMoney,
@@ -156,5 +150,6 @@ export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/org
 export { SidePanel, SidePanelProps } from '../app/components/organisms/SidePanel/SidePanel';
 export { StatusCell, StatusCellProps } from '../app/components/organisms/Table/StatusCell/StatusCell';
 export { Table, TableProps } from '../app/components/organisms/Table/Table';
+export { ToggleCheckbox, ToggleCheckboxProps } from '../app/components/organisms/ToggleCheckbox/ToggleCheckbox';
 export { Tab, Tabs, TabsProps } from '../app/components/organisms/Tabs/Tabs';
 export { Toolbar, ToolbarProps } from '../app/components/organisms/Toolbar/Toolbar';
