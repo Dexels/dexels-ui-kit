@@ -8,15 +8,21 @@ export default { title: 'organisms/ToggleCheckbox' };
 export const Configurable: FunctionComponent = () => {
     const [isChecked, setIsChecked] = useState(false);
 
+    const onChange = (value: boolean): void => {
+        setIsChecked(value);
+        // eslint-disable-next-line no-console
+        console.log('isChecked', value);
+    };
+
     return (
         <ToggleCheckbox
             iconOff={select('Icon Off', IconType, IconType.CROSS)}
             iconOn={select('Icon On', IconType, IconType.CHECKBOXCHECK)}
             isInitialChecked={isChecked}
-            onChange={(value) => setIsChecked(value)}
+            onChange={(value) => onChange(value)}
             size={select('Size', ButtonSize, ButtonSize.LARGE)}
-            titleOff={text('Text off', 'Off')}
-            titleOn={text('Text on', 'On')}
+            textOff={text('Text off', 'Off')}
+            textOn={text('Text on', 'On')}
         />
     );
 };
