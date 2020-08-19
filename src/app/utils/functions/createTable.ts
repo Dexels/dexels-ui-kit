@@ -5,9 +5,11 @@ import {
     useColumnOrder,
     useExpanded,
     useFilters,
+    useFlexLayout,
     useGlobalFilter,
     useGroupBy,
     usePagination,
+    useResizeColumns,
     useRowSelect,
     useRowState,
     useSortBy,
@@ -19,14 +21,18 @@ import {
 export const createTable = <T extends object>(
     columns: Column<T>[],
     data: T[],
-    initialState?: Partial<TableState<T>>
+    initialState?: Partial<TableState<T>>,
+    defaultColumn?: Partial<Column<T>>
 ): TableInstance<T> =>
     useTable<T>(
         {
             columns,
             data,
+            defaultColumn,
             initialState,
         },
+        useResizeColumns,
+        useFlexLayout,
         useColumnOrder,
         useGlobalFilter,
         useFilters,
