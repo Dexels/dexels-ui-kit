@@ -41,9 +41,11 @@ export const tableColumns = (): Column<TableData>[] => [
         Cell: ({ value }): ReactNode => <StatusCell icon={getStatusIcon(value)} status={value} />,
         accessor: 'status',
         aggregate: 'text',
+        disableResizing: true,
         disableSortBy: true,
         hasCellPadding: false,
-        width: 30,
+        minWidth: 56,
+        width: 56,
     },
     {
         Cell: ({ value }): ReactNode => <ContentCell value={value} />,
@@ -95,7 +97,9 @@ export const tableColumns = (): Column<TableData>[] => [
         Header: 'Info',
         accessor: 'info',
         aggregate: 'sum',
+        disableResizing: true,
         sortType: 'basic',
+        width: 60,
     },
     {
         Cell: ({ value }): ReactNode => (
@@ -119,7 +123,9 @@ export const tableColumns = (): Column<TableData>[] => [
         Header: 'Action',
         accessor: 'id',
         align: Alignment.RIGHT,
+        disableResizing: true,
         disableSortBy: true,
+        width: 150,
     },
 ];
 
@@ -130,6 +136,7 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
             {
                 Cell: ({ value }): ReactNode => <StatusCell icon={getStatusIcon(value)} status={value} />,
                 accessor: 'status',
+                disableResizing: true,
                 disableSortBy: true,
             },
             {
@@ -175,6 +182,7 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
                 Cell: ({ value }): ReactNode => <ContentCell value={value} />,
                 Header: 'Info',
                 accessor: 'info',
+                disableResizing: true,
                 sortType: 'basic',
             },
             {
