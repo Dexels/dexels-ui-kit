@@ -27,18 +27,25 @@ export const Configurable: FunctionComponent = () => {
     const columns = useMemo(() => tableColumns(), []);
     const columnsWithGroupHeader = useMemo(() => tableColumnsWithGroupHeader(), []);
 
-    const instance = createTable<TableData>(hasGroupHeader ? columnsWithGroupHeader : columns, data, {
-        sortBy: [
-            {
-                desc: false,
-                id: 'lastName',
-            },
-            {
-                desc: false,
-                id: 'firstName',
-            },
-        ],
-    });
+    const instance = createTable<TableData>(
+        hasGroupHeader ? columnsWithGroupHeader : columns,
+        data,
+        {
+            sortBy: [
+                {
+                    desc: false,
+                    id: 'lastName',
+                },
+                {
+                    desc: false,
+                    id: 'firstName',
+                },
+            ],
+        },
+        {
+            width: 100,
+        }
+    );
 
     return (
         <>
