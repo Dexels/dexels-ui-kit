@@ -10,6 +10,7 @@ interface StyledButtonProps {
     isFullWidth: boolean;
     isInverted: boolean;
     isLoading: boolean;
+    isTruncatable: boolean;
     size: ButtonSize;
     transitionDuration: number;
     transitionEasing: Easing;
@@ -27,7 +28,12 @@ export const StyledButton = styled.button<StyledButtonProps>`
     outline: none;
     border: 2px solid;
     cursor: pointer;
-    white-space: nowrap;
+
+    ${({ isTruncatable }): SimpleInterpolation =>
+        !isTruncatable &&
+        css`
+            white-space: nowrap;
+        `}
 
     ${({ isFullWidth }): SimpleInterpolation =>
         isFullWidth &&
