@@ -52,6 +52,7 @@ export const Button: FunctionComponent<ButtonProps & { [key: string]: unknown }>
         isFullWidth={isFullWidth}
         isInverted={isInverted}
         isLoading={isLoading}
+        isTruncatable={isTruncatable}
         onClick={isDisabled ? undefined : onClick}
         size={size}
         transitionDuration={transitionDuration}
@@ -70,7 +71,7 @@ export const Button: FunctionComponent<ButtonProps & { [key: string]: unknown }>
                 iconSize={IconSize[size]}
                 iconType={iconType}
                 isCapitalized={isCapitalized}
-                isTruncatable={isTruncatable}
+                isTruncatable={false}
             >
                 {children}
             </TextWithOptionalIcon>
