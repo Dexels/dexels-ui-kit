@@ -187,17 +187,25 @@ export const Tooltip: FunctionComponent<TooltipProps> = ({
 
     if (hoveredElement) {
         if (tooltipPosition === Placement.TOP) {
-            bottom = `${document.documentElement.clientHeight - hoveredElement.top + spacingValue * 2}px`;
-            left = `${hoveredElement.left + (hoveredElement.width - tooltipWidth) / 2}px`;
+            const bottomOffset = document.documentElement.clientHeight - hoveredElement.top + spacingValue * 2;
+            const leftOffset = hoveredElement.left + (hoveredElement.width - tooltipWidth) / 2;
+            left = leftOffset < 0 ? '0' : `${leftOffset}px`;
+            bottom = bottomOffset < 0 ? '0' : `${bottomOffset}px`;
         } else if (tooltipPosition === Placement.RIGHT) {
-            top = `${hoveredElement.top + (hoveredElement.height - tooltipHeight) / 2}px`;
-            left = `${hoveredElement.right + spacingValue * 2}px`;
+            const topOffset = hoveredElement.top + (hoveredElement.height - tooltipHeight) / 2;
+            const leftOffset = hoveredElement.right + spacingValue * 2;
+            left = leftOffset < 0 ? '0' : `${leftOffset}px`;
+            top = topOffset < 0 ? '0' : `${topOffset}px`;
         } else if (tooltipPosition === Placement.BOTTOM) {
-            top = `${hoveredElement.bottom + spacingValue * 2}px`;
-            left = `${hoveredElement.left + (hoveredElement.width - tooltipWidth) / 2}px`;
+            const topOffset = hoveredElement.bottom + spacingValue * 2;
+            const leftOffset = hoveredElement.left + (hoveredElement.width - tooltipWidth) / 2;
+            left = leftOffset < 0 ? '0' : `${leftOffset}px`;
+            top = topOffset < 0 ? '0' : `${topOffset}px`;
         } else {
-            right = `${document.documentElement.clientWidth - hoveredElement.left + spacingValue * 2}px`;
-            top = `${hoveredElement.top + (hoveredElement.height - tooltipHeight) / 2}px`;
+            const rightOffset = document.documentElement.clientWidth - hoveredElement.left + spacingValue * 2;
+            const topOffset = hoveredElement.top + (hoveredElement.height - tooltipHeight) / 2;
+            right = rightOffset < 0 ? '0' : `${rightOffset}px`;
+            top = topOffset < 0 ? '0' : `${topOffset}px`;
         }
     }
 
