@@ -27,6 +27,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
     outline: none;
     border: 2px solid;
     cursor: pointer;
+    white-space: nowrap;
 
     ${({ isFullWidth }): SimpleInterpolation =>
         isFullWidth &&
