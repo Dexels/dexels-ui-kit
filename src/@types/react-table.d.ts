@@ -24,7 +24,6 @@ import {
     UsePaginationState,
     UseResizeColumnsColumnProps,
     UseResizeColumnsOptions,
-    UseResizeColumnsProps,
     UseRowSelectInstanceProps,
     UseRowSelectOptions,
     UseRowSelectRowProps,
@@ -81,7 +80,6 @@ declare module 'react-table' {
         extends UseFiltersColumnProps<D>,
             UseGroupByColumnProps<D>,
             UseResizeColumnsColumnProps<D>,
-            UseResizeColumnsProps<D>,
             UseSortByColumnProps<D> {}
 
     export interface Cell<D extends object = {}> extends UseGroupByCellProps<D> {}
