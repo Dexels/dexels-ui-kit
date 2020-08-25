@@ -3,6 +3,7 @@ import Button from '../../molecules/Button/Button';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export const ToggleButton = styled(Button)`
+    margin: 0;
     ${({ isInverted, theme }): SimpleInterpolation => {
         if (isInverted) {
             return css`
