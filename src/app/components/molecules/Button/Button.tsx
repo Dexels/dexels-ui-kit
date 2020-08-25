@@ -9,6 +9,7 @@ export interface ButtonProps {
     children?: ReactNode;
     className?: string;
     direction?: Direction;
+    hasNoPadding?: boolean;
     iconType?: IconType;
     isCapitalized?: boolean;
     isDisabled?: boolean;
@@ -23,12 +24,12 @@ export interface ButtonProps {
     variant?: ButtonVariant;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Button: FunctionComponent<ButtonProps & { [key: string]: any }> = ({
+export const Button: FunctionComponent<ButtonProps & { [key: string]: unknown }> = ({
     autoFocus = false,
     children,
     className,
     direction = Direction.LTR,
+    hasNoPadding = false,
     iconType,
     isCapitalized = true,
     isDisabled = false,
@@ -46,10 +47,12 @@ export const Button: FunctionComponent<ButtonProps & { [key: string]: any }> = (
     <StyledButton
         autoFocus={autoFocus}
         className={className}
+        hasNoPadding={hasNoPadding}
         isDisabled={isDisabled}
         isFullWidth={isFullWidth}
         isInverted={isInverted}
         isLoading={isLoading}
+        isTruncatable={isTruncatable}
         onClick={isDisabled ? undefined : onClick}
         size={size}
         transitionDuration={transitionDuration}
@@ -68,7 +71,7 @@ export const Button: FunctionComponent<ButtonProps & { [key: string]: any }> = (
                 iconSize={IconSize[size]}
                 iconType={iconType}
                 isCapitalized={isCapitalized}
-                isTruncatable={isTruncatable}
+                isTruncatable={false}
             >
                 {children}
             </TextWithOptionalIcon>

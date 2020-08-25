@@ -9,16 +9,16 @@ export interface ToggleCheckboxProps {
     isInitialChecked?: boolean;
     onChange(value: boolean): void;
     size?: ButtonSize;
-    titleOff: ReactNode;
-    titleOn: ReactNode;
+    textOff: ReactNode;
+    textOn: ReactNode;
 }
 
 export const ToggleCheckbox: FunctionComponent<ToggleCheckboxProps> = ({
     className,
     iconOff,
     iconOn,
-    titleOff,
-    titleOn,
+    textOff,
+    textOn,
     size,
     isInitialChecked = false,
     onChange,
@@ -39,7 +39,7 @@ export const ToggleCheckbox: FunctionComponent<ToggleCheckboxProps> = ({
                 size={size}
                 variant={ButtonVariant.FILLED}
             >
-                {titleOn}
+                {textOn}
             </ToggleOn>
             <ToggleOff
                 iconType={iconOff}
@@ -48,7 +48,7 @@ export const ToggleCheckbox: FunctionComponent<ToggleCheckboxProps> = ({
                 size={size}
                 variant={ButtonVariant.FILLED}
             >
-                {titleOff}
+                {textOff}
             </ToggleOff>
         </div>
     );

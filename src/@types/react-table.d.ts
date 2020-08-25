@@ -22,6 +22,8 @@ import {
     UsePaginationInstanceProps,
     UsePaginationOptions,
     UsePaginationState,
+    UseResizeColumnsColumnProps,
+    UseResizeColumnsOptions,
     UseRowSelectInstanceProps,
     UseRowSelectOptions,
     UseRowSelectRowProps,
@@ -31,6 +33,7 @@ import {
     UseSortByInstanceProps,
     UseSortByOptions,
     UseSortByState,
+    UseTableColumnOptions,
 } from 'react-table';
 import { Alignment } from '../lib';
 
@@ -41,12 +44,14 @@ declare module 'react-table' {
             UseGroupByOptions<D>,
             UsePaginationOptions<D>,
             UseRowSelectOptions<D>,
+            UseResizeColumnsOptions<D>,
             UseSortByOptions<D> {}
 
     export interface TableInstance<D extends object = {}>
         extends UseExpandedInstanceProps<D>,
             UseFiltersInstanceProps<D>,
             UseGroupByInstanceProps<D>,
+            UseTableColumnOptions<D>,
             UsePaginationInstanceProps<D>,
             UseRowSelectInstanceProps<D>,
             UseSortByInstanceProps<D> {}
@@ -56,12 +61,14 @@ declare module 'react-table' {
             UseFiltersState<D>,
             UseGroupByState<D>,
             UsePaginationState<D>,
+            UseTableColumnOptions<D>,
             UseRowSelectState<D>,
             UseSortByState<D> {}
 
     export interface ColumnInterface<D extends object = {}>
         extends UseFiltersColumnOptions<D>,
             UseGroupByColumnOptions<D>,
+            UseResizeColumnsColumnOptions<D>,
             UseSortByColumnOptions<D> {
         align?: Alignment;
         hasCellPadding?: boolean;
@@ -72,6 +79,7 @@ declare module 'react-table' {
     export interface ColumnInstance<D extends object = {}>
         extends UseFiltersColumnProps<D>,
             UseGroupByColumnProps<D>,
+            UseResizeColumnsColumnProps<D>,
             UseSortByColumnProps<D> {}
 
     export interface Cell<D extends object = {}> extends UseGroupByCellProps<D> {}
