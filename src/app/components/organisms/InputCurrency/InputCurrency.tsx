@@ -41,7 +41,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     return (
         <StyledInputCurrency className={className}>
             <Input
-                adornment={<Icon type={getCurrencyIcon()} />}
+                adornment={<Icon type={getCurrencyIcon(locale)} />}
                 adornmentPosition={adornmentPosition}
                 className={className}
                 errorMessage={errorMessage}
