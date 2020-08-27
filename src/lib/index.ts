@@ -79,8 +79,10 @@ export { ButtonIcon, ButtonIconProps } from '../app/components/molecules/ButtonI
 export { CardNoResults, CardNoResultsProps } from '../app/components/molecules/CardNoResults/CardNoResults';
 export { CardStatus, CardStatusProps } from '../app/components/molecules/CardStatus/CardStatus';
 export { Chip, ChipProps } from '../app/components/molecules/Chip/Chip';
+export { CloseablePanel, CloseablePanelProps } from '../app/components/molecules/CloseablePanel/CloseablePanel';
 export { DialogFooter, DialogFooterProps } from '../app/components/molecules/DialogFooter/DialogFooter';
 export { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../app/components/molecules/Dropdown';
+export { EditablePanel, EditablePanelProps } from '../app/components/molecules/EditablePanel/EditablePanel';
 export { FormElementLabel, FormElementLabelProps } from '../app/components/molecules/FormElementLabel/FormElementLabel';
 export {
     FullscreenLoader,
