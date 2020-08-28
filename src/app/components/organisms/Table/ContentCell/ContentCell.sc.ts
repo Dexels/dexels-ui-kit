@@ -76,6 +76,8 @@ export const AmountWrapper = styled.div<AmountWrapperProps>`
         css`
             color: ${colorNegativeAmount};
         `}
+
+    white-space: nowrap;
 `;
 
 export const ImageWrapper = styled.div`
