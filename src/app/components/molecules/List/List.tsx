@@ -3,11 +3,14 @@ import { StyledList } from './List.sc';
 
 export interface ListProps {
     children?: ReactNode;
-    maxHeight?: string;
+    maxHeight?: number;
+    minHeight?: number;
 }
 
-export const List: FunctionComponent<ListProps> = ({ children, maxHeight }) => (
-    <StyledList maxHeight={maxHeight}>{children}</StyledList>
+export const List: FunctionComponent<ListProps> = ({ children, maxHeight, minHeight }) => (
+    <StyledList maxHeight={maxHeight} minHeight={minHeight}>
+        {children}
+    </StyledList>
 );
 
 export default List;

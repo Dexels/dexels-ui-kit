@@ -88,7 +88,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const [isHovered, setIsHovered] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [isSomeSelected, setIsSomeSelected] = useState(false);
-    const [listMaxHeight, setListMaxHeight] = useState<string>();
+    const [listMaxHeight, setListMaxHeight] = useState<number>();
     const [originalOptions, setOriginalOptions] = useState(cloneArray(options));
     const resetValuesOnOutsideClick = !onCancel && !buttonCancelText ? false : resetOnOutsideClick;
     const [selectionControlValue, setSelectionControlvalue] = useState(DropdownOptionAllTexts.OFF);
@@ -140,7 +140,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                     // @TODO check if there is room to show the list above the dropdown
                 }
 
-                setListMaxHeight(`${newListMaxHeight}px`);
+                setListMaxHeight(newListMaxHeight);
             }
         }
     }, [dialogFooterHeight, dropdownMultiSelectRef, inputHeight, staticItemHeight, window.innerHeight]);
@@ -291,7 +291,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                         />
                     </StaticItem>
                     {isAvailableList && (
-                        <List maxHeight={listMaxHeight}>
+                        <List maxHeight={listMaxHeight} minHeight={minHeight}>
                             {updatedOptions.map((item) => (
                                 <ListItem key={item.value}>
                                     <SelectionControl

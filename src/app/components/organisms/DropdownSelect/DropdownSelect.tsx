@@ -42,7 +42,7 @@ export interface DropdownSelectProps {
     isSearchAny?: boolean;
     isValid?: boolean;
     label?: ReactNode;
-    maxHeight?: string;
+    maxHeight?: number;
     name: string;
     noResultsMessage: string;
     onChange?: (option: DropdownOption) => void;
