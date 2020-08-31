@@ -1,7 +1,8 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 
 interface StyledListProps {
-    maxHeight?: string;
+    maxHeight?: number;
+    minHeight?: number;
 }
 
 export const StyledList = styled.ul<StyledListProps>`
@@ -14,7 +15,12 @@ export const StyledList = styled.ul<StyledListProps>`
     ${({ maxHeight }): SimpleInterpolation =>
         maxHeight &&
         css`
-            max-height: ${maxHeight};
-            overflow: auto;
+            max-height: ${maxHeight}px;
+        `}
+
+    ${({ minHeight }): SimpleInterpolation =>
+        minHeight &&
+        css`
+            min-height: ${minHeight}px;
         `}
 `;
