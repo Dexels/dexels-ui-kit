@@ -53,32 +53,32 @@ export const StyledButton = styled.button<StyledButtonProps>`
     ${({ size, theme }): SimpleInterpolation =>
         size === ButtonSize.SMALL &&
         css`
-        ${theme.textStyling(theme.availableTextStyles().buttonSmall)}
-        border-radius: ${theme.spacing(2)};
-        padding: ${theme.spacing(0.25, 2)};
-        min-width: ${theme.spacing(10)};
-        min-height: ${theme.spacing(4)};
-    `}
+            ${theme.textStyling(theme.availableTextStyles().buttonSmall)}
+            border-radius: ${theme.spacing(2)};
+            padding: ${theme.spacing(0.25, 2)};
+            min-width: ${theme.spacing(10)};
+            min-height: ${theme.spacing(4)};
+        `}
 
     ${({ size, theme }): SimpleInterpolation =>
         size === ButtonSize.MEDIUM &&
         css`
-        ${theme.textStyling(theme.availableTextStyles().buttonMedium)}
-        border-radius: ${theme.spacing(2.5)};
-        padding: ${theme.spacing(1, 2)};
-        min-width: ${theme.spacing(12)};
-        min-height: ${theme.spacing(5)};
-    `}
+            ${theme.textStyling(theme.availableTextStyles().buttonMedium)}
+            border-radius: ${theme.spacing(2.5)};
+            padding: ${theme.spacing(1, 2)};
+            min-width: ${theme.spacing(12)};
+            min-height: ${theme.spacing(5)};
+        `}
 
     ${({ size, theme }): SimpleInterpolation =>
         size === ButtonSize.LARGE &&
         css`
-        ${theme.textStyling(theme.availableTextStyles().buttonLarge)}
-        border-radius: ${theme.spacing(3)};
-        padding: ${theme.spacing(1, 2)};
-        min-width: ${theme.spacing(14)};
-        min-height: ${theme.spacing(6)};
-    `}
+            ${theme.textStyling(theme.availableTextStyles().buttonLarge)}
+            border-radius: ${theme.spacing(3)};
+            padding: ${theme.spacing(1, 2)};
+            min-width: ${theme.spacing(14)};
+            min-height: ${theme.spacing(6)};
+        `}
 
     ${({ isDisabled, isInverted, theme: { button }, variant }): SimpleInterpolation =>
         variant === ButtonVariant.FILLED &&

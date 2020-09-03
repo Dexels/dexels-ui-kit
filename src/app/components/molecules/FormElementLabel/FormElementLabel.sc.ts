@@ -37,35 +37,31 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
             top: ${isActive ? '-8px' : '50%'};
             left: ${theme.spacing(1.5)};
 
-            ${
-                !isActive &&
-                hasAdornment &&
-                adornmentPosition === AdornmentPosition.LEFT &&
-                css`
-                    left: ${theme.spacing(3.5)};
-                `
-            }
+            ${!isActive &&
+            hasAdornment &&
+            adornmentPosition === AdornmentPosition.LEFT &&
+            css`
+                left: ${theme.spacing(3.5)};
+            `}
 
             transform: ${isActive ? 'none' : 'translate3d(0, -50%, 0)'};
 
-            ${
-                isActive &&
-                css`
-                    padding: ${theme.spacing(0, 0.5)};
+            ${isActive &&
+            css`
+                padding: ${theme.spacing(0, 0.5)};
 
-                    &::after {
-                        display: block;
-                        position: absolute;
-                        top: 8px;
-                        left: 0;
-                        z-index: -1;
-                        background-color: ${backgroundColor || theme.shades.nine};
-                        width: 100%;
-                        height: 1px;
-                        content: '';
-                    }
-                `
-            }
+                &::after {
+                    display: block;
+                    position: absolute;
+                    top: 8px;
+                    left: 0;
+                    z-index: -1;
+                    background-color: ${backgroundColor || theme.shades.nine};
+                    width: 100%;
+                    height: 1px;
+                    content: '';
+                }
+            `}
         `}
 `;
 
