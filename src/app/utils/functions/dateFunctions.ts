@@ -63,3 +63,6 @@ export const formatTime = (value: string | Date | Moment): string => {
 
     return value.toString();
 };
+
+export const toMoment = (value: string | Date | Moment, lang: string = defaultLocale): Moment | null =>
+    isValidDate(value) ? moment(value).locale(lang) : null;
