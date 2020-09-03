@@ -42,7 +42,11 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
 
         /* This is a special part for loader inside a button */
         /* Should only do something when variant is not undefined */
-        ${({ isInverted, theme: { button }, variant }): SimpleInterpolation =>
+        ${({
+            isInverted,
+            theme: { button },
+            variant,
+        }): SimpleInterpolation =>
             variant === ButtonVariant.FILLED &&
             css`
                 background-color: ${isInverted
@@ -65,41 +69,33 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
             `}
 
         ${({ size, theme }): FlattenSimpleInterpolation => css`
-            ${
-                size === Size.SMALL &&
-                css`
-                    width: ${theme.spacing(1)};
-                    height: ${theme.spacing(1)};
-                `
-            }
+            ${size === Size.SMALL &&
+            css`
+                width: ${theme.spacing(1)};
+                height: ${theme.spacing(1)};
+            `}
 
-            ${
-                size === Size.MEDIUM &&
-                css`
-                    width: ${theme.spacing(1.25)};
-                    height: ${theme.spacing(1.25)};
-                `
-            }
+            ${size === Size.MEDIUM &&
+            css`
+                width: ${theme.spacing(1.25)};
+                height: ${theme.spacing(1.25)};
+            `}
 
-            ${
-                size === Size.LARGE &&
-                css`
-                    width: ${theme.spacing(1.5)};
-                    height: ${theme.spacing(1.5)};
-                `
-            }
+            ${size === Size.LARGE &&
+            css`
+                width: ${theme.spacing(1.5)};
+                height: ${theme.spacing(1.5)};
+            `}
 
-            ${
-                size === Size.XLARGE &&
-                css`
-                    width: ${theme.spacing(1.75)};
-                    height: ${theme.spacing(1.75)};
-                `
-            }
+            ${size === Size.XLARGE &&
+            css`
+                width: ${theme.spacing(1.75)};
+                height: ${theme.spacing(1.75)};
+            `}
         `}
 
         &:nth-child(2) {
-            animation-delay: .5s;
+            animation-delay: 0.5s;
         }
 
         &:nth-child(3) {

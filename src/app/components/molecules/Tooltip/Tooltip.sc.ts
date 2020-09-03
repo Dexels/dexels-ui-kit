@@ -19,8 +19,13 @@ interface StyledTooltipProps {
 export const StyledTooltip = styled.span<StyledTooltipProps>`
     ${setBoxSizing()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
-    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
-    ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
+    ${({
+        elevation,
+    }): FlattenSimpleInterpolation => getElevation(elevation)}
+    ${({
+        transitionDuration,
+        transitionEasing,
+    }): FlattenSimpleInterpolation =>
         transitionEffect({
             duration: transitionDuration,
             easing: transitionEasing,
