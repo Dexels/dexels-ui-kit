@@ -19,40 +19,32 @@ export const StyledDropdown = styled.div<StyledDropdownProps>`
     ${({ hasError, isDisabled, isFocused, isValid, theme, variant }): SimpleInterpolation =>
         variant === DropdownVariant.COMPACT &&
         css`
-        &::after {
-            display: block;
-            height: 1px;
-            content: '';
+            &::after {
+                display: block;
+                height: 1px;
+                content: '';
 
-            ${
-                isFocused &&
+                ${isFocused &&
                 css`
                     background-color: ${theme.colorSecondary};
-                `
-            }
+                `}
 
-            ${
-                isValid &&
+                ${isValid &&
                 css`
                     background-color: ${theme.colorValid};
-                `
-            }
+                `}
 
-            ${
-                hasError &&
+                ${hasError &&
                 css`
                     background-color: ${theme.colorInvalid};
-                `
-            }
+                `}
 
-            ${
-                isDisabled &&
+                ${isDisabled &&
                 css`
                     background-color: transparent;
-                `
+                `}
             }
-        }
-    `}
+        `}
 `;
 
 StyledDropdown.defaultProps = {

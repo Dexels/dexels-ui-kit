@@ -48,29 +48,31 @@ addDecorator(
 
 // Make it possible to switch between background-colors
 addParameters({
-    backgrounds: [
-        {
-            default: true,
-            name: 'light',
-            value: themeBasic.shades.nine,
-        },
-        {
-            name: 'intermediate',
-            value: themeBasic.shades.five,
-        },
-        {
-            name: 'dark',
-            value: '#212121',
-        },
-        {
-            name: 'blue',
-            value: themeBasic.colorSecondary,
-        },
-        {
-            name: 'purple',
-            value: themeBasic.colorPrimary,
-        },
-    ],
+    backgrounds: {
+        default: 'light',
+        values: [
+            {
+                name: 'light',
+                value: themeBasic.shades.nine,
+            },
+            {
+                name: 'intermediate',
+                value: themeBasic.shades.five,
+            },
+            {
+                name: 'dark',
+                value: '#212121',
+            },
+            {
+                name: 'blue',
+                value: themeBasic.colorSecondary,
+            },
+            {
+                name: 'purple',
+                value: themeBasic.colorPrimary,
+            },
+        ],
+    },
     info: {},
 });
 

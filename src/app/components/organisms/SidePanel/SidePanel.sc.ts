@@ -19,40 +19,30 @@ export const StyledSidePanel = styled.div<StyledSidePanelProps>`
             easing: transitionEasing,
         })}
     ${({ size, theme }): SimpleInterpolation => css`
-        ${
-            size === SidePanelSize.SMALL &&
-            css`
-                max-width: ${theme.spacing(60)};
-            `
-        }
+        ${size === SidePanelSize.SMALL &&
+        css`
+            max-width: ${theme.spacing(60)};
+        `}
 
-        ${
-            size === SidePanelSize.MEDIUM &&
-            css`
-                max-width: ${theme.spacing(72)};
-            `
-        }
+        ${size === SidePanelSize.MEDIUM &&
+        css`
+            max-width: ${theme.spacing(72)};
+        `}
 
-        ${
-            size === SidePanelSize.LARGE &&
-            css`
-                max-width: ${theme.spacing(84)};
-            `
-        }
+        ${size === SidePanelSize.LARGE &&
+        css`
+            max-width: ${theme.spacing(84)};
+        `}
 
-        ${
-            size === SidePanelSize.XLARGE &&
-            css`
-                max-width: ${theme.spacing(128)};
-            `
-        }
+        ${size === SidePanelSize.XLARGE &&
+        css`
+            max-width: ${theme.spacing(128)};
+        `}
 
-        ${
-            size === SidePanelSize.FULL &&
-            css`
-                max-width: 100%;
-            `
-        }
+        ${size === SidePanelSize.FULL &&
+        css`
+            max-width: 100%;
+        `}
     `}
 
     position: fixed;

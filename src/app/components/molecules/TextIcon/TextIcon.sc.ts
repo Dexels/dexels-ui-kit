@@ -16,45 +16,37 @@ export const StyledTextIcon = styled.div<StyledTextIcon>`
     font-family: ${({ theme }): string => theme.fontFamilyPrimary};
 
     ${({ size, theme }): FlattenSimpleInterpolation => css`
-        ${
-            size === Size.SMALL &&
-            css`
-                width: ${theme.spacing(2.5)};
-                height: ${theme.spacing(2.5)};
-                line-height: ${theme.spacing(2.5)};
-                font-size: ${theme.spacing(1.25)};
-            `
-        }
+        ${size === Size.SMALL &&
+        css`
+            width: ${theme.spacing(2.5)};
+            height: ${theme.spacing(2.5)};
+            line-height: ${theme.spacing(2.5)};
+            font-size: ${theme.spacing(1.25)};
+        `}
 
-        ${
-            size === Size.MEDIUM &&
-            css`
-                width: ${theme.spacing(3)};
-                height: ${theme.spacing(3)};
-                line-height: ${theme.spacing(3)};
-                font-size: ${theme.spacing(1.5)};
-            `
-        }
+        ${size === Size.MEDIUM &&
+        css`
+            width: ${theme.spacing(3)};
+            height: ${theme.spacing(3)};
+            line-height: ${theme.spacing(3)};
+            font-size: ${theme.spacing(1.5)};
+        `}
 
-        ${
-            size === Size.LARGE &&
-            css`
-                width: ${theme.spacing(3.5)};
-                height: ${theme.spacing(3.5)};
-                line-height: ${theme.spacing(3.5)};
-                font-size: ${theme.spacing(1.75)};
-            `
-        }
+        ${size === Size.LARGE &&
+        css`
+            width: ${theme.spacing(3.5)};
+            height: ${theme.spacing(3.5)};
+            line-height: ${theme.spacing(3.5)};
+            font-size: ${theme.spacing(1.75)};
+        `}
 
-        ${
-            size === Size.XLARGE &&
-            css`
-                width: ${theme.spacing(4.5)};
-                height: ${theme.spacing(4.5)};
-                line-height: ${theme.spacing(4.5)};
-                font-size: ${theme.spacing(2.5)};
-            `
-        }
+        ${size === Size.XLARGE &&
+        css`
+            width: ${theme.spacing(4.5)};
+            height: ${theme.spacing(4.5)};
+            line-height: ${theme.spacing(4.5)};
+            font-size: ${theme.spacing(2.5)};
+        `}
     `}
 `;
 

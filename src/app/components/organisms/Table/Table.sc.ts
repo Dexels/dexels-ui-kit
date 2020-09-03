@@ -20,7 +20,8 @@ interface ClickableProps {
 export const TableCaption = styled.div`
     ${setBoxSizing()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
-    padding: ${({ theme }): string => theme.spacing(0, 0, 4, 0)};
+    padding: ${({ theme }): string =>
+        theme.spacing(0, 0, 4, 0)};
     color: ${({ theme }): string => theme.colorText.primary};
 `;
 
