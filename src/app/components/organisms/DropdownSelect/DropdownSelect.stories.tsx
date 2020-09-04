@@ -51,8 +51,8 @@ const options: DropdownSelectOption[] = [
 const OPTION_LABEL = "gebruik '{{${variableKey}}}' as chosen fruit";
 
 export const Configurable: FunctionComponent = () => {
-    const [value] = useState('pear');
-    const [optionLabel, setOptionLabel] = useState('select pear');
+    const [value] = useState('');
+    const [optionLabel, setOptionLabel] = useState('');
 
     const onChangeCallback = (option: DropdownOption) => {
         // eslint-disable-next-line no-console
