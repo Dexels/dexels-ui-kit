@@ -2,7 +2,9 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 
-export const StyledDropdownSelect = styled.div``;
+export const StyledDropdownSelect = styled.div`
+    position: relative;
+`;
 
 interface SuggestionListProps {
     elevation: Elevation;
