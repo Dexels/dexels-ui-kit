@@ -80,6 +80,12 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownSelectOption[]);
     const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelectOption[]);
 
+    useEffect(() => {
+        if (value.length) {
+            setIsOptionSelected(true);
+        }
+    }, []);
+
     const handleOnChange = (newLabel?: string, newValue?: string | number) => {
         if (onChange) {
             onChange({
@@ -146,7 +152,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                     : option.searchValue.indexOf(toBasicLowercase(inputValue)) === 0
             )
         );
-    }, [inputValue]);
+    }, [inputValue, updatedOptions]);
 
     const handleClickOutsideComponent = (): void => {
         setIsSelectOpen(false);
