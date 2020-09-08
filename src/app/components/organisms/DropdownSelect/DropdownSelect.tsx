@@ -173,11 +173,11 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
             if (event.key === 'Enter') {
                 onSelectOptionCallback(event, {
                     label: inputValue,
-                    value: inputValue,
+                    value: defaultValue || inputValue,
                 });
             }
         },
-        [inputValue]
+        [defaultValue, inputValue]
     );
 
     return (
