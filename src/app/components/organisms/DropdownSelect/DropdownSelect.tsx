@@ -156,14 +156,12 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
     const handleClickOutsideComponent = (): void => {
         setIsSelectOpen(false);
-        handleOnChange();
     };
 
     const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
     const onFocusCallback = useCallback((): void => {
         setIsSelectOpen(inputValue.length > 0);
-        handleOnChange();
     }, [inputValue]);
 
     const onKeyDownCallback = useCallback(
