@@ -1,6 +1,6 @@
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { ButtonSize, IconType } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
-import { select, text } from '@storybook/addon-knobs';
 import ToggleCheckbox from './ToggleCheckbox';
 
 export default { title: 'organisms/ToggleCheckbox' };
@@ -18,6 +18,7 @@ export const Configurable: FunctionComponent = () => {
         <ToggleCheckbox
             iconOff={select('Icon Off', IconType, IconType.CROSS)}
             iconOn={select('Icon On', IconType, IconType.CHECKBOXCHECK)}
+            isDisabled={boolean('Is disabled', false)}
             isInitialChecked={isChecked}
             onChange={(value) => onChange(value)}
             size={select('Size', ButtonSize, ButtonSize.LARGE)}

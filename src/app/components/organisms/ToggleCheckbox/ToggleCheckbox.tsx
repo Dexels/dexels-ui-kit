@@ -6,6 +6,7 @@ export interface ToggleCheckboxProps {
     className?: string;
     iconOff?: IconType;
     iconOn?: IconType;
+    isDisabled?: boolean;
     isInitialChecked?: boolean;
     onChange(value: boolean): void;
     size?: ButtonSize;
@@ -22,6 +23,7 @@ export const ToggleCheckbox: FunctionComponent<ToggleCheckboxProps> = ({
     size,
     isInitialChecked = false,
     onChange,
+    isDisabled,
 }) => {
     const [isChecked, setIsChecked] = useState(isInitialChecked);
 
@@ -34,6 +36,7 @@ export const ToggleCheckbox: FunctionComponent<ToggleCheckboxProps> = ({
         <div className={className}>
             <ToggleOn
                 iconType={iconOn}
+                isDisabled={isDisabled}
                 isInverted={!isChecked}
                 onClick={onClick}
                 size={size}
@@ -43,6 +46,7 @@ export const ToggleCheckbox: FunctionComponent<ToggleCheckboxProps> = ({
             </ToggleOn>
             <ToggleOff
                 iconType={iconOff}
+                isDisabled={isDisabled}
                 isInverted={isChecked}
                 onClick={onClick}
                 size={size}
