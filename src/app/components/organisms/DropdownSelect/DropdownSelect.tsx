@@ -1,15 +1,7 @@
 import { Elevation, IconType, InputType, InputVariant } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { LabelWrapper, StyledDropdownSelect, SuggestionList } from './DropdownSelect.sc';
-import React, {
-    ChangeEvent,
-    FunctionComponent,
-    ReactNode,
-    SyntheticEvent,
-    useCallback,
-    useEffect,
-    useState,
-} from 'react';
+import React, { ChangeEvent, ReactNode, SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { DialogFooter } from '../../molecules/DialogFooter/DialogFooter';
 import { DropdownOption } from '../../molecules/Dropdown/Dropdown';
 
@@ -25,12 +17,11 @@ export interface DropdownSelectOption extends DropdownOption {
     searchValue?: string;
 }
 
-interface UpdatedDropdownSelectOption extends DropdownOption {
-    adornment?: ReactNode;
+interface UpdatedDropdownSelectOption extends DropdownSelectOption {
     searchValue: string;
 }
 
-export interface DropdownSelectProps {
+export interface DropdownSelectProps<T extends DropdownSelectOption> {
     children?: never;
     className?: string;
     defaultValue?: string;
@@ -46,15 +37,15 @@ export interface DropdownSelectProps {
     maxHeight?: number;
     name: string;
     noResultsMessage: string;
-    onChange?: (option: DropdownOption) => void;
-    onConfirm?: (event: SyntheticEvent, option: DropdownOption) => void;
+    onChange?: (option: T) => void;
+    onConfirm?: (event: SyntheticEvent, option: T) => void;
     optionLabel: ReactNode;
-    options: DropdownSelectOption[];
+    options: T[];
     value: string;
     variant?: InputVariant;
 }
 
-export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
+export const DropdownSelect = <T extends DropdownSelectOption>({
     className,
     defaultValue,
     elevation = Elevation.LEVEL_6,
@@ -75,12 +66,12 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     optionLabel,
     value,
     variant,
-}) => {
+}: DropdownSelectProps<T>): JSX.Element => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [isOptionSelected, setIsOptionSelected] = useState(false);
     const [inputValue, setInputValue] = useState(value);
-    const [suggestedOptions, setSuggestedOptions] = useState([] as DropdownSelectOption[]);
-    const [updatedOptions, setUpdatedOptions] = useState([] as UpdatedDropdownSelectOption[]);
+    const [suggestedOptions, setSuggestedOptions] = useState<T[]>([]);
+    const [updatedOptions, setUpdatedOptions] = useState<T[]>([]);
 
     useEffect(() => {
         if (value.length) {
@@ -88,12 +79,13 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         }
     }, []);
 
-    const handleOnChange = (newLabel?: string, newValue?: string | number) => {
+    const handleOnChange = (newOption: T) => {
         if (onChange) {
             onChange({
-                label: newLabel || inputValue,
-                value: newValue || inputValue,
-            });
+                ...newOption,
+                label: newOption.label || inputValue,
+                value: newOption.value || inputValue,
+            } as T);
         }
     };
 
@@ -105,7 +97,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                     searchValue: option.searchValue
                         ? toBasicLowercase(option.searchValue)
                         : toBasicLowercase(option.label),
-                };
+                } as T;
             })
         );
     }, [options]);
@@ -116,24 +108,30 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 setIsOptionSelected(false);
                 const newOptionValue = parseInputValue(event.currentTarget);
                 setInputValue(newOptionValue);
-                handleOnChange(newOptionValue, defaultValue || newOptionValue);
+
+                handleOnChange({
+                    label: newOptionValue,
+                    value: defaultValue || newOptionValue,
+                } as T);
             }
         },
         [inputValue, onChange, options]
     );
 
     const onSelectOptionCallback = useCallback(
-        (event: SyntheticEvent, option?: DropdownOption) => {
+        (event: SyntheticEvent, option?: T) => {
             event.persist();
 
-            const selectedOption = option || {
-                label: inputValue,
-                value: defaultValue || inputValue,
-            };
+            const selectedOption =
+                option ||
+                ({
+                    label: inputValue,
+                    value: defaultValue || inputValue,
+                } as T);
 
             setIsOptionSelected(true);
             setInputValue(selectedOption.label);
-            handleOnChange(selectedOption.label, selectedOption.value);
+            handleOnChange(selectedOption);
 
             if (onConfirm) {
                 onConfirm(event, selectedOption);
@@ -152,8 +150,8 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
         setSuggestedOptions(
             updatedOptions.filter((option) =>
                 isSearchAny
-                    ? option.searchValue.includes(toBasicLowercase(inputValue))
-                    : option.searchValue.indexOf(toBasicLowercase(inputValue)) === 0
+                    ? (option as UpdatedDropdownSelectOption).searchValue.includes(toBasicLowercase(inputValue))
+                    : (option as UpdatedDropdownSelectOption).searchValue.indexOf(toBasicLowercase(inputValue)) === 0
             )
         );
     }, [inputValue, updatedOptions]);
@@ -174,7 +172,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 onSelectOptionCallback(event, {
                     label: inputValue,
                     value: defaultValue || inputValue,
-                });
+                } as T);
             }
         },
         [defaultValue, inputValue]
