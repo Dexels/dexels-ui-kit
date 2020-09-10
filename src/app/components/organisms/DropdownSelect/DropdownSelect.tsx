@@ -33,6 +33,7 @@ interface UpdatedDropdownSelectOption extends DropdownOption {
 export interface DropdownSelectProps {
     children?: never;
     className?: string;
+    defaultValue?: string;
     elevation?: Elevation;
     errorMessage?: ReactNode;
     footerText?: ReactNode;
@@ -55,6 +56,7 @@ export interface DropdownSelectProps {
 
 export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
     className,
+    defaultValue,
     elevation = Elevation.LEVEL_6,
     errorMessage,
     hasError = false,
@@ -114,7 +116,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
                 setIsOptionSelected(false);
                 const newOptionValue = parseInputValue(event.currentTarget);
                 setInputValue(newOptionValue);
-                handleOnChange(newOptionValue, newOptionValue);
+                handleOnChange(newOptionValue, defaultValue || newOptionValue);
             }
         },
         [inputValue, onChange, options]
@@ -122,9 +124,11 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
     const onSelectOptionCallback = useCallback(
         (event: SyntheticEvent, option?: DropdownOption) => {
+            event.persist();
+
             const selectedOption = option || {
                 label: inputValue,
-                value: inputValue,
+                value: defaultValue || inputValue,
             };
 
             setIsOptionSelected(true);
@@ -137,7 +141,7 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
             setIsSelectOpen(false);
         },
-        [inputValue, onConfirm]
+        [defaultValue, inputValue, onConfirm]
     );
 
     useEffect(() => {
@@ -156,14 +160,12 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
 
     const handleClickOutsideComponent = (): void => {
         setIsSelectOpen(false);
-        handleOnChange();
     };
 
     const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
     const onFocusCallback = useCallback((): void => {
         setIsSelectOpen(inputValue.length > 0);
-        handleOnChange();
     }, [inputValue]);
 
     const onKeyDownCallback = useCallback(
@@ -171,11 +173,11 @@ export const DropdownSelect: FunctionComponent<DropdownSelectProps> = ({
             if (event.key === 'Enter') {
                 onSelectOptionCallback(event, {
                     label: inputValue,
-                    value: inputValue,
+                    value: defaultValue || inputValue,
                 });
             }
         },
-        [inputValue]
+        [defaultValue, inputValue]
     );
 
     return (

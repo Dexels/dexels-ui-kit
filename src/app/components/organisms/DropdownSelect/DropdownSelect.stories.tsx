@@ -66,6 +66,7 @@ export const Configurable: FunctionComponent = () => {
 
     return (
         <DropdownSelect
+            defaultValue="-1"
             errorMessage={text('Error message', 'Help, something went wrong!')}
             footerText={text('Instructions', 'Choose a fruit or type yourself a fruit!')}
             iconType={select('Type', IconType, IconType.CLUBPLACEHOLDER1)}
