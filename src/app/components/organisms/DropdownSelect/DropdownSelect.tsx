@@ -21,7 +21,7 @@ interface UpdatedDropdownSelectOption extends DropdownSelectOption {
     searchValue: string;
 }
 
-export interface DropdownSelectProps<T extends DropdownSelectOption, U extends T & UpdatedDropdownSelectOption> {
+export interface DropdownSelectProps<T extends DropdownSelectOption> {
     children?: never;
     className?: string;
     defaultValue?: string;
@@ -37,15 +37,15 @@ export interface DropdownSelectProps<T extends DropdownSelectOption, U extends T
     maxHeight?: number;
     name: string;
     noResultsMessage: string;
-    onChange?: (option: T | U) => void;
-    onConfirm?: (event: SyntheticEvent, option: T | U) => void;
+    onChange?: (option: T) => void;
+    onConfirm?: (event: SyntheticEvent, option: T) => void;
     optionLabel: ReactNode;
     options: T[];
     value: string;
     variant?: InputVariant;
 }
 
-export const DropdownSelect = <T extends DropdownSelectOption, U extends T & UpdatedDropdownSelectOption>({
+export const DropdownSelect = <T extends DropdownSelectOption>({
     className,
     defaultValue,
     elevation = Elevation.LEVEL_6,
@@ -66,12 +66,12 @@ export const DropdownSelect = <T extends DropdownSelectOption, U extends T & Upd
     optionLabel,
     value,
     variant,
-}: DropdownSelectProps<T, U>): JSX.Element => {
+}: DropdownSelectProps<T>): JSX.Element => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [isOptionSelected, setIsOptionSelected] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const [suggestedOptions, setSuggestedOptions] = useState<T[]>([]);
-    const [updatedOptions, setUpdatedOptions] = useState<U[]>([]);
+    const [updatedOptions, setUpdatedOptions] = useState<T[]>([]);
 
     useEffect(() => {
         if (value.length) {
@@ -97,7 +97,7 @@ export const DropdownSelect = <T extends DropdownSelectOption, U extends T & Upd
                     searchValue: option.searchValue
                         ? toBasicLowercase(option.searchValue)
                         : toBasicLowercase(option.label),
-                } as U;
+                } as T;
             })
         );
     }, [options]);
@@ -150,8 +150,8 @@ export const DropdownSelect = <T extends DropdownSelectOption, U extends T & Upd
         setSuggestedOptions(
             updatedOptions.filter((option) =>
                 isSearchAny
-                    ? option.searchValue.includes(toBasicLowercase(inputValue))
-                    : option.searchValue.indexOf(toBasicLowercase(inputValue)) === 0
+                    ? (option as UpdatedDropdownSelectOption).searchValue.includes(toBasicLowercase(inputValue))
+                    : (option as UpdatedDropdownSelectOption).searchValue.indexOf(toBasicLowercase(inputValue)) === 0
             )
         );
     }, [inputValue, updatedOptions]);
