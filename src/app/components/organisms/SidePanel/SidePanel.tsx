@@ -1,5 +1,5 @@
-import { Body, HeaderWrapper, StyledSidePanel } from './SidePanel.sc';
 import { Easing, SidePanelSize } from '../../../types';
+import { HeaderWrapper, StyledSidePanel } from './SidePanel.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { ButtonIconProps } from '../../molecules/ButtonIcon/ButtonIcon';
 import Header from '../../molecules/Header/Header';
@@ -43,7 +43,7 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
                     {options}
                 </Header>
             </HeaderWrapper>
-            <Body>{children}</Body>
+            {children}
         </StyledSidePanel>
     </>
 );
