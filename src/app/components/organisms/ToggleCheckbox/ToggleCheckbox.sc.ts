@@ -4,7 +4,15 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export const ToggleButton = styled(Button)`
     margin: 0;
-    ${({ isInverted, theme }): SimpleInterpolation => {
+    ${({ isInverted, theme, isDisabled }): SimpleInterpolation => {
+        if (isDisabled) {
+            return css`
+                border-color: ${theme.button.filled.backgroundColor.disabled};
+                background-color: ${theme.button.filled.backgroundColor.disabled};
+                color: ${theme.button.filled.color.disabled};
+            `;
+        }
+
         if (isInverted) {
             return css`
                 border-color: ${theme.button.filled.backgroundColor.disabled};
