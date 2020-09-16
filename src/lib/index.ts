@@ -60,11 +60,15 @@ export {
     toMoneyValue,
 } from '../app/utils/functions/financialFunctions';
 export {
+    base64ToBlob,
+    blobToObjectUrl,
     getFileFormats,
     getFileNames,
     getFileSizes,
     getFileTypes,
     getTotalSizeFiles,
+    openBinary,
+    openUrl,
 } from '../app/utils/functions/fileFunctions';
 
 // Export atoms
