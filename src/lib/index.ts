@@ -33,7 +33,11 @@ export {
     selectOptionsFacade,
     setElementSelected,
 } from '../app/utils/functions/arrayObjectFunctions';
-export { toBasicLowercase } from '../app/utils/functions/stringFunctions';
+export {
+    toBasicLowercase,
+    capitalizeFirstLetter,
+    capitalizeFirstLetters,
+} from '../app/utils/functions/stringFunctions';
 export { cloneArray } from '../app/utils/functions/arrayFunctions';
 export { convertLocale } from '../app/utils/functions/localeFunctions';
 export { createTable } from '../app/utils/functions/createTable';
@@ -70,6 +74,7 @@ export {
     openBinary,
     openUrl,
 } from '../app/utils/functions/fileFunctions';
+export { useInterval } from '../app/utils/functions/timerFunctions';
 
 // Export atoms
 export { Card, CardProps } from '../app/components/atoms/Card/Card';
