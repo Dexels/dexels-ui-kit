@@ -48,7 +48,8 @@ export const openBinary = (
     title: string,
     mimeType = 'application/pdf',
     height = window.innerHeight / 1.2,
-    width = window.innerWidth / 2
+    width = window.innerWidth / 2,
+    isEncoded = false // If the input is already in the desired base64 format, then don't apply atob function
 ): void => {
     const windowParameters = `left=0,top=0,width=${width},height=${height},toolbar=0,scrollbars=0,status=0,dir=ltr`;
     const winRef = window.open('', '_blank', windowParameters);
@@ -56,7 +57,7 @@ export const openBinary = (
     const head = `<html><head><title>${title || ''}</title></head><body>`;
 
     const content = `<iframe src="data:${mimeType};base64,${encodeURI(
-        atob(base64Data)
+        isEncoded ? atob(base64Data) : base64Data
     )}" width="100%" height="100%"></iframe>`;
 
     try {
