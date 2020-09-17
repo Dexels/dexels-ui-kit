@@ -72,6 +72,7 @@ export {
     getFileTypes,
     getTotalSizeFiles,
     openBinary,
+    OpenBinaryProps,
     openUrl,
 } from '../app/utils/functions/fileFunctions';
 export { useInterval } from '../app/utils/functions/timerFunctions';
