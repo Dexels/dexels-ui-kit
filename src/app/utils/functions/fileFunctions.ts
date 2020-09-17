@@ -43,14 +43,22 @@ export const base64ToBlob = (base64: string): Blob => {
 
 export const blobToObjectUrl = (input: string): string => URL.createObjectURL(base64ToBlob(input));
 
-export const openBinary = (
-    base64Data: string,
-    title: string,
-    mimeType = 'application/pdf',
-    height = window.innerHeight / 1.2,
-    width = window.innerWidth / 2,
-    isEncoded = false // If the input is already in the desired base64 format, then don't apply atob function
-): void => {
+export interface OpenBinaryProps {
+    base64Data: string;
+    height?: number;
+    isEncoded?: boolean; // If the input is already in the desired base64 format, then don't apply atob function
+    mimeType?: string;
+    title?: string;
+    width?: number;
+}
+
+export const openBinary = (openBinaryProps: OpenBinaryProps): void => {
+    const { base64Data } = openBinaryProps;
+    const height = openBinaryProps.height || window.innerHeight / 1.2;
+    const isEncoded = openBinaryProps.isEncoded || false;
+    const mimeType = openBinaryProps.mimeType || 'application/pdf';
+    const title = openBinaryProps.title || '';
+    const width = openBinaryProps.width || window.innerWidth / 2;
     const windowParameters = `left=0,top=0,width=${width},height=${height},toolbar=0,scrollbars=0,status=0,dir=ltr`;
     const winRef = window.open('', '_blank', windowParameters);
     const footer = '</body></html>';
