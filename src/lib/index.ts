@@ -42,9 +42,9 @@ export { cloneArray } from '../app/utils/functions/arrayFunctions';
 export { convertLocale } from '../app/utils/functions/localeFunctions';
 export { createTable } from '../app/utils/functions/createTable';
 export {
-    isValidStringDate,
-    isValidDate,
     isValidClockTime,
+    isValidDate,
+    isValidStringDate,
     formatAsSystemDate,
     formatDate,
     formatTime,
@@ -53,7 +53,13 @@ export {
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 export { parseInputValue } from '../app/utils/functions/parseInputValue';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
-export { isEmpty, isValidEmail, isValidPhoneNumber, isValidMoney } from '../app/utils/functions/validateFunctions';
+export {
+    isEmpty,
+    isValidEmail,
+    isValidMoney,
+    isValidNumber,
+    isValidPhoneNumber,
+} from '../app/utils/functions/validateFunctions';
 export { areEqualObjects, getObjectDifference, isObjectPropertyChanged } from '../app/utils/functions/objectFunctions';
 export {
     defaultCurrencySettings,
