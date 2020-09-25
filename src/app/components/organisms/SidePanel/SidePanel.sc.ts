@@ -63,7 +63,3 @@ StyledSidePanel.defaultProps = {
 export const HeaderWrapper = styled.header`
     position: relative;
 `;
-
-export const Body = styled.div`
-    overflow: auto;
-`;
