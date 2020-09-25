@@ -71,7 +71,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
-            let validInput = true;
+            let isValidInput = true;
 
             if (
                 type === InputType.NUMBER &&
@@ -79,14 +79,14 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 ((maxLength && event.currentTarget.value.length > maxLength) ||
                     !isValidNumber(event.currentTarget.value))
             ) {
-                validInput = false;
+                isValidInput = false;
             }
 
             if (type === InputType.EMAIL && !isValidEmail(event.currentTarget.value)) {
-                validInput = false;
+                isValidInput = false;
             }
 
-            if (validInput && onChange) {
+            if (isValidInput && onChange) {
                 onChange(event);
             }
         },
