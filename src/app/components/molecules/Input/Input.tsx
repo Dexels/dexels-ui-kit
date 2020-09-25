@@ -1,5 +1,6 @@
 import { AdornmentPosition, InputType, InputVariant } from '../../../types';
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
+import { isValidEmail, isValidNumber } from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
     FocusEvent,
@@ -68,6 +69,30 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const hasValue = value.length > 0;
     const textFieldProps: { [key: string]: number } = {};
 
+    const onChangeCallback = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            let validInput = true;
+
+            if (
+                type === InputType.NUMBER &&
+                event.currentTarget.value.length > 0 &&
+                ((maxLength && event.currentTarget.value.length > maxLength) ||
+                    !isValidNumber(event.currentTarget.value))
+            ) {
+                validInput = false;
+            }
+
+            if (type === InputType.EMAIL && !isValidEmail(event.currentTarget.value)) {
+                validInput = false;
+            }
+
+            if (validInput && onChange) {
+                onChange(event);
+            }
+        },
+        [maxLength, onChange, type]
+    );
+
     const toggleIsFocusedCallback = useCallback(
         (event: FocusEvent<HTMLInputElement>) => {
             setIsFocused(!isFocused);
@@ -120,7 +145,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     minLength={minLength}
                     name={name}
                     onBlur={toggleIsFocusedCallback}
-                    onChange={isDisabled || !onChange ? undefined : onChange}
+                    onChange={onChangeCallback}
                     onFocus={toggleIsFocusedCallback}
                     onKeyDown={isDisabled || !onKeyDown ? undefined : onKeyDown}
                     onMouseEnter={toggleIsHoveredCallback}
