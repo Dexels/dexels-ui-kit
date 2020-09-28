@@ -1,6 +1,5 @@
 import { AdornmentPosition, InputType, InputVariant } from '../../../types';
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
-import { isValidEmail, isValidNumber } from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
     FocusEvent,
@@ -13,6 +12,7 @@ import React, {
 } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
+import { isValidNumber } from '../../../utils/functions/validateFunctions';
 
 export interface InputProps {
     adornment?: ReactNode;
@@ -79,10 +79,6 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 ((maxLength && event.currentTarget.value.length > maxLength) ||
                     !isValidNumber(event.currentTarget.value))
             ) {
-                isValidInput = false;
-            }
-
-            if (type === InputType.EMAIL && !isValidEmail(event.currentTarget.value)) {
                 isValidInput = false;
             }
 
