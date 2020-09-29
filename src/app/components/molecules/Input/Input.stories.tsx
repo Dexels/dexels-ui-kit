@@ -93,7 +93,8 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             isDisabled={boolean('Is disabled', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This input can only contain numbers')}
-            max={number('Max', 100)}
+            max={number('Max', 100000000)}
+            maxLength={number('Max length', 8)}
             min={number('Min', 0)}
             name="an-input-name"
             onChange={({ currentTarget }): void => {

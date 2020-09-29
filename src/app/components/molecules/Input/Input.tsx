@@ -12,6 +12,7 @@ import React, {
 } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
+import { isValidNumber } from '../../../utils/functions/validateFunctions';
 
 export interface InputProps {
     adornment?: ReactNode;
@@ -68,6 +69,26 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const hasValue = value.length > 0;
     const textFieldProps: { [key: string]: number } = {};
 
+    const onChangeCallback = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            let isValidInput = true;
+
+            if (
+                type === InputType.NUMBER &&
+                event.currentTarget.value.length > 0 &&
+                ((maxLength && event.currentTarget.value.length > maxLength) ||
+                    !isValidNumber(event.currentTarget.value))
+            ) {
+                isValidInput = false;
+            }
+
+            if (isValidInput && onChange) {
+                onChange(event);
+            }
+        },
+        [maxLength, onChange, type]
+    );
+
     const toggleIsFocusedCallback = useCallback(
         (event: FocusEvent<HTMLInputElement>) => {
             setIsFocused(!isFocused);
@@ -120,7 +141,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     minLength={minLength}
                     name={name}
                     onBlur={toggleIsFocusedCallback}
-                    onChange={isDisabled || !onChange ? undefined : onChange}
+                    onChange={isDisabled ? undefined : onChangeCallback}
                     onFocus={toggleIsFocusedCallback}
                     onKeyDown={isDisabled || !onKeyDown ? undefined : onKeyDown}
                     onMouseEnter={toggleIsHoveredCallback}
