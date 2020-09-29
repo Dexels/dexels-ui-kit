@@ -23,10 +23,21 @@ export const createTable = <T extends object>(
     data: T[],
     initialState?: Partial<TableState<T>>,
     defaultColumn?: Partial<Column<T>>
-): TableInstance<T> =>
-    useTable<T>(
+): TableInstance<T> => {
+    const columnsWithDefaultProps = columns.map((column) => {
+        if (column.width) {
+            return {
+                ...column,
+                disableResizing: column.disableResizing === undefined && column.width ? true : column.disableResizing,
+            };
+        }
+
+        return column;
+    });
+
+    return useTable<T>(
         {
-            columns,
+            columns: columnsWithDefaultProps,
             data,
             defaultColumn,
             initialState,
@@ -43,5 +54,6 @@ export const createTable = <T extends object>(
         usePagination,
         useRowSelect
     );
+};
 
 export default createTable;
