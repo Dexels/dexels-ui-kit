@@ -17,10 +17,7 @@ export const StyledChip = styled.button<StyledChipProps>`
     ${setBoxSizing()}
     ${rippleEffectInit()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
-    ${({
-        transitionDuration,
-        transitionEasing,
-    }): FlattenSimpleInterpolation =>
+    ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
         transitionEffect({
             duration: transitionDuration,
             easing: transitionEasing,

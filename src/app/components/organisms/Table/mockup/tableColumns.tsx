@@ -43,7 +43,6 @@ export const tableColumns = (): Column<TableData>[] => [
         aggregate: 'text',
         disableSortBy: true,
         hasCellPadding: false,
-        minWidth: 56,
         width: 56,
     },
     {

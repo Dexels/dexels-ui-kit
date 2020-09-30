@@ -15,6 +15,7 @@ import {
     useSortBy,
     useTable,
 } from 'react-table';
+import { useMemo } from 'react';
 
 // Mind the order of the hooks, this is not random, but required by the package
 /* eslint-disable @typescript-eslint/ban-types */
@@ -24,16 +25,21 @@ export const createTable = <T extends object>(
     initialState?: Partial<TableState<T>>,
     defaultColumn?: Partial<Column<T>>
 ): TableInstance<T> => {
-    const columnsWithDefaultProps = columns.map((column) => {
-        if (column.width) {
-            return {
-                ...column,
-                disableResizing: column.disableResizing === undefined && column.width ? true : column.disableResizing,
-            };
-        }
+    const columnsWithDefaultProps = useMemo(
+        () =>
+            columns.map((column) => {
+                if (column.width) {
+                    return {
+                        ...column,
+                        disableResizing:
+                            column.disableResizing === undefined && column.width ? true : column.disableResizing,
+                    };
+                }
 
-        return column;
-    });
+                return column;
+            }),
+        [columns]
+    );
 
     return useTable<T>(
         {

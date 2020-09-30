@@ -42,11 +42,7 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
 
         /* This is a special part for loader inside a button */
         /* Should only do something when variant is not undefined */
-        ${({
-            isInverted,
-            theme: { button },
-            variant,
-        }): SimpleInterpolation =>
+        ${({ isInverted, theme: { button }, variant }): SimpleInterpolation =>
             variant === ButtonVariant.FILLED &&
             css`
                 background-color: ${isInverted

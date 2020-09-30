@@ -13,11 +13,8 @@ export interface StyledCardProps {
 export const StyledCard = styled.div<StyledCardProps>`
     ${setBoxSizing()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
-    ${({
-        elevation,
-    }): FlattenSimpleInterpolation => getElevation(elevation)}
-    background-color: ${({ theme }): string =>
-        theme.card.backgroundColor};
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    background-color: ${({ theme }): string => theme.card.backgroundColor};
     width: 100%;
     color: ${({ theme }): string => theme.colorText.primary};
 
