@@ -6,6 +6,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface TextProps {
     isCapitalized: boolean;
+    isSelectable: boolean;
     isTruncatable: boolean;
 }
 
@@ -16,6 +17,7 @@ export const Text = styled.p<TextProps>`
     order: 2;
     margin: 0;
     word-break: break-word;
+    user-select: ${({ isSelectable }): string => (isSelectable ? 'auto' : 'none')};
 
     ${({ isCapitalized }): SimpleInterpolation =>
         isCapitalized &&
