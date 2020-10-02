@@ -30,7 +30,7 @@ export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject:
         return false;
     });
 
-    return IsDifferenceFound;
+    return !IsDifferenceFound;
 };
 
 // Check the value in 2 objects of the same interface
