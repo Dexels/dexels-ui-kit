@@ -1,5 +1,11 @@
+import moment, { Moment } from 'moment';
+
 const isObject = (object: unknown): boolean => {
     return object != null && typeof object === 'object';
+};
+
+const isMomentObject = (object: unknown): boolean => {
+    return isObject(object) && moment.isMoment(object);
 };
 
 export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject: Record<string, unknown>): boolean => {
@@ -17,9 +23,12 @@ export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject:
         const prevValue = prevObject[key];
         const nextValue = nextObject[key];
 
+        const areMomentsObjects = isMomentObject(prevValue) && isMomentObject(nextValue);
+
         const areObjects = isObject(prevValue) && isObject(nextValue);
 
         if (
+            (areMomentsObjects && !(prevValue as Moment).isSame(nextValue as Moment)) ||
             (areObjects &&
                 !areEqualObjects(prevValue as Record<string, unknown>, nextValue as Record<string, unknown>)) ||
             (!areObjects && prevValue !== nextValue)
