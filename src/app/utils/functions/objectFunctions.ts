@@ -19,7 +19,7 @@ export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject:
         return false;
     }
 
-    const IsDifferenceFound = prevKeys.some((key) => {
+    const isDifferenceFound = prevKeys.some((key) => {
         const prevValue = prevObject[key];
         const nextValue = nextObject[key];
 
@@ -39,7 +39,7 @@ export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject:
         return false;
     });
 
-    return !IsDifferenceFound;
+    return !isDifferenceFound;
 };
 
 // Check the value in 2 objects of the same interface
