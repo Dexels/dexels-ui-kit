@@ -1,3 +1,13 @@
+import moment, { Moment } from 'moment';
+
+const isObject = (object: unknown): boolean => {
+    return object != null && typeof object === 'object';
+};
+
+const isMomentObject = (object: unknown): boolean => {
+    return isObject(object) && moment.isMoment(object);
+};
+
 export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject: Record<string, unknown>): boolean => {
     const prevKeys = Object.keys(prevObject);
     const nextKeys = Object.keys(nextObject);
@@ -9,19 +19,27 @@ export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject:
         return false;
     }
 
-    const differValues = prevKeys.filter((key) => {
-        if (typeof prevObject[key] === 'object') {
-            return false;
+    const isDifferenceFound = prevKeys.some((key) => {
+        const prevValue = prevObject[key];
+        const nextValue = nextObject[key];
+
+        const areMomentsObjects = isMomentObject(prevValue) && isMomentObject(nextValue);
+
+        const areObjects = isObject(prevValue) && isObject(nextValue);
+
+        if (
+            (areMomentsObjects && !(prevValue as Moment).isSame(nextValue as Moment)) ||
+            (areObjects &&
+                !areEqualObjects(prevValue as Record<string, unknown>, nextValue as Record<string, unknown>)) ||
+            (!areObjects && prevValue !== nextValue)
+        ) {
+            return true;
         }
 
-        return prevObject[key] !== nextObject[key];
+        return false;
     });
 
-    if (differValues.length > 0) {
-        return false;
-    }
-
-    return true;
+    return !isDifferenceFound;
 };
 
 // Check the value in 2 objects of the same interface
