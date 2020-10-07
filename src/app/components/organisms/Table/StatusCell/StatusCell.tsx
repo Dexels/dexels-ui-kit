@@ -11,9 +11,10 @@ export interface StatusCellProps {
     iconColor?: string;
     image?: string | ReactNode;
     status: Status;
+    tooltipText?: string;
 }
 
-export const StatusCell: FunctionComponent<StatusCellProps> = ({ icon, iconColor, image, status }) => {
+export const StatusCell: FunctionComponent<StatusCellProps> = ({ icon, iconColor, image, status, tooltipText }) => {
     const theme = useContext(ThemeContext);
 
     return (
@@ -22,6 +23,7 @@ export const StatusCell: FunctionComponent<StatusCellProps> = ({ icon, iconColor
             placement={Placement.LEFT}
             size={StatusIndicatorSize.LARGE}
             status={status}
+            tooltipText={tooltipText}
         >
             {(image || icon) &&
                 (image ? (

@@ -11,6 +11,7 @@ export interface StatusIndicatorProps {
     placement?: Placement;
     size?: StatusIndicatorSize;
     status: Status;
+    tooltipText?: string;
 }
 
 export const StatusIndicator: FunctionComponent<StatusIndicatorProps> = ({
@@ -21,11 +22,13 @@ export const StatusIndicator: FunctionComponent<StatusIndicatorProps> = ({
     placement,
     size,
     status,
+    tooltipText,
 }) => (
     <StyledStatusIndicator
         as={as}
         background={background}
         className={className}
+        data-tooltip-component={tooltipText || null}
         placement={placement}
         size={size}
         status={status}
