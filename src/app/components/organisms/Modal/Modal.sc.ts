@@ -27,17 +27,17 @@ export const StyledModal = styled.div<StyledModalProps>`
 
         ${size === ModalSize.MEDIUM &&
         css`
-            max-width: ${theme.spacing(72)};
+            max-width: ${theme.spacing(80)};
         `}
 
         ${size === ModalSize.LARGE &&
         css`
-            max-width: ${theme.spacing(84)};
+            max-width: ${theme.spacing(128)};
         `}
 
         ${size === ModalSize.XLARGE &&
         css`
-            max-width: ${theme.spacing(128)};
+            max-width: ${theme.spacing(160)};
         `}
 
         ${size === ModalSize.FULL &&
