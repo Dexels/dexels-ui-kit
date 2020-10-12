@@ -1,11 +1,12 @@
-import styled, { FlattenSimpleInterpolation } from 'styled-components';
-import { Easing } from '../../../types';
+import { Easing, ModalSize } from '../../../types';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledModalProps {
     isVisible: boolean;
+    size: ModalSize;
     transitionDuration: number;
     transitionEasing: Easing;
 }
@@ -18,6 +19,33 @@ export const StyledModal = styled.div<StyledModalProps>`
             easing: transitionEasing,
             isVisible,
         })}
+    ${({ size, theme }): SimpleInterpolation => css`
+        ${size === ModalSize.SMALL &&
+        css`
+            max-width: ${theme.spacing(60)};
+        `}
+
+        ${size === ModalSize.MEDIUM &&
+        css`
+            max-width: ${theme.spacing(72)};
+        `}
+
+        ${size === ModalSize.LARGE &&
+        css`
+            max-width: ${theme.spacing(84)};
+        `}
+
+        ${size === ModalSize.XLARGE &&
+        css`
+            max-width: ${theme.spacing(128)};
+        `}
+
+        ${size === ModalSize.FULL &&
+        css`
+            max-width: 100%;
+        `}
+    `}
+
     display: flex;
     position: fixed;
     top: 0;
@@ -28,7 +56,6 @@ export const StyledModal = styled.div<StyledModalProps>`
     z-index: 3;
     padding: ${({ theme }): string => theme.spacing(3.5)} 0 0 0;
     width: 100%;
-    max-width: ${({ theme }): string => theme.spacing(128)};
     height: 100%;
 `;
 

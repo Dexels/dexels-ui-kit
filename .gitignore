@@ -1,5 +1,8 @@
 node_modules
 .out
+.vs/VSWorkspaceState.json
+.vs/dexels-ui-kit/v15/.suo
+.vs/slnx.sqlite
 
 # Build files
 fonts

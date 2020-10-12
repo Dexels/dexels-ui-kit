@@ -1,4 +1,4 @@
-import { ButtonSize, ButtonVariant, Easing, IconType } from '../../../types';
+import { ButtonSize, ButtonVariant, Easing, IconType, ModalSize } from '../../../types';
 import { number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
@@ -49,6 +49,7 @@ export const ConfigurableModal: FunctionComponent = () => {
                     setIsVisible(false);
                 }}
                 options={functionalItems}
+                size={select('Size', ModalSize, ModalSize.XLARGE)}
                 title={text('Header title', 'Heading')}
                 transitionDuration={number('Transition duration', 500)}
                 transitionEasing={select('Transition type', Easing, Easing.EASE)}
