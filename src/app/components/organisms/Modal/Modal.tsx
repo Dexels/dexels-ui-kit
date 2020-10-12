@@ -38,12 +38,16 @@ export const Modal: FunctionComponent<ModalProps> = ({
         >
             <HeaderWrapper>
                 <Header
-                    buttons={[
-                        {
-                            iconType: IconType.CHEVRONLEFT,
-                            onClick: onBack,
-                        },
-                    ]}
+                    buttons={
+                        onBack
+                            ? [
+                                  {
+                                      iconType: IconType.CHEVRONLEFT,
+                                      onClick: onBack,
+                                  },
+                              ]
+                            : []
+                    }
                     isInverted
                     title={title}
                 >
