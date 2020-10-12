@@ -286,6 +286,14 @@ export enum Locale {
     US = 'US',
 }
 
+export enum ModalSize {
+    FULL = 'FULL',
+    LARGE = 'LARGE',
+    MEDIUM = 'MEDIUM',
+    SMALL = 'SMALL',
+    XLARGE = 'XLARGE',
+}
+
 export enum Placement {
     BOTTOM = 'BOTTOM',
     LEFT = 'LEFT',

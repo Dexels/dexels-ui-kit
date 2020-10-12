@@ -1,5 +1,5 @@
 import { Body, HeaderWrapper, StyledModal } from './Modal.sc';
-import { Easing, IconType } from '../../../types';
+import { Easing, IconType, ModalSize } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import Header from '../../molecules/Header/Header';
 import Overlay from '../../molecules/Overlay/Overlay';
@@ -10,6 +10,7 @@ export interface ModalProps {
     isVisible: boolean;
     onBack?: MouseEventHandler;
     options?: ReactNode;
+    size?: ModalSize;
     title: ReactNode;
     transitionDuration?: number;
     transitionEasing?: Easing;
@@ -21,6 +22,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
     isVisible = false,
     onBack,
     options,
+    size = ModalSize.XLARGE,
     title,
     transitionDuration = 500,
     transitionEasing = Easing.EASE,
@@ -30,6 +32,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
         <StyledModal
             className={className}
             isVisible={isVisible}
+            size={size}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
         >
