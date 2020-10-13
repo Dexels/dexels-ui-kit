@@ -5,6 +5,6 @@ export interface ConfirmDialog {
     buttonCancelText: ReactNode;
     buttonConfirmText: ReactNode;
     iconType: IconType;
-    status: Status;
+    status?: Status;
     text: ReactNode;
 }
