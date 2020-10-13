@@ -99,7 +99,6 @@ export { Chip, ChipProps } from '../app/components/molecules/Chip/Chip';
 export { CloseablePanel, CloseablePanelProps } from '../app/components/molecules/CloseablePanel/CloseablePanel';
 export { DialogFooter, DialogFooterProps } from '../app/components/molecules/DialogFooter/DialogFooter';
 export { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../app/components/molecules/Dropdown';
-export { EditablePanel, EditablePanelProps } from '../app/components/molecules/EditablePanel/EditablePanel';
 export { FormElementLabel, FormElementLabelProps } from '../app/components/molecules/FormElementLabel/FormElementLabel';
 export {
     FullscreenLoader,
@@ -153,6 +152,7 @@ export {
     DropdownSelectProps,
     DropdownSelectOption,
 } from '../app/components/organisms/DropdownSelect/DropdownSelect';
+export { ConfirmDialog, EditablePanel, EditablePanelProps } from '../app/components/organisms/EditablePanel';
 export {
     FileUploader,
     FileUploaderProps,
