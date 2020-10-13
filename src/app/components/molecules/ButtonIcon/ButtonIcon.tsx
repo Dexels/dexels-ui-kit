@@ -53,7 +53,7 @@ export const ButtonIcon: FunctionComponent<ButtonIconProps & { [key: string]: an
             className={className}
             isDisabled={isDisabled}
             isInverted={isInverted}
-            onClick={onClick}
+            onClick={!isDisabled && onClick ? onClick : undefined}
             size={size}
             {...rest}
         >
