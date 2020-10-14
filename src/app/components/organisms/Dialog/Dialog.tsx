@@ -12,10 +12,9 @@ import {
 } from './Dialog.sc';
 import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import { Easing, Elevation, IconType, Status } from '../../../types';
+import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
-import { IconCustomizable } from '../../../../lib';
-import { IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { IconProps } from '../../atoms/Icon/Icon';
 import Overlay from '../../molecules/Overlay/Overlay';
 
