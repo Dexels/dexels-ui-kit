@@ -1,6 +1,10 @@
 import { Locale } from '../../types';
 
 export const isEmpty = (value: string | unknown | undefined): boolean => {
+    if (typeof value === 'undefined') {
+        return true;
+    }
+
     if (typeof value === 'string') {
         return value === null || value === '';
     }
