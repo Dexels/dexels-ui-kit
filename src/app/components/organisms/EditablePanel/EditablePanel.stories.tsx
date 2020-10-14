@@ -15,10 +15,10 @@ export const Configurable: FunctionComponent = () => (
         onCancel={action('onCancel')}
         onEdit={action('onEdit')}
         onSave={action('onSave')}
-        textCancel={text('Text Cancel', 'Annuleren')}
-        textEdit={text('Text Edit', 'Wijzig')}
-        textSave={text('Text Save', 'Opslaan')}
-        title={text('Title', 'Locatie')}
+        textCancel={text('Text Cancel', 'Cancel')}
+        textEdit={text('Text Edit', 'Edit')}
+        textSave={text('Text Save', 'Save')}
+        title={text('Title', 'Location')}
     >
         <div>{'The panel has these children'}</div>
     </EditablePanel>
@@ -47,10 +47,10 @@ export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => (
             status: Status.DEFAULT,
             text: 'Are you sure you want to save?',
         }}
-        textCancel={text('Text Cancel', 'Annuleren')}
-        textEdit={text('Text Edit', 'Wijzig')}
-        textSave={text('Text Save', 'Opslaan')}
-        title={text('Title', 'Locatie')}
+        textCancel={text('Text Cancel', 'Cancel')}
+        textEdit={text('Text Edit', 'Edit')}
+        textSave={text('Text Save', 'Save')}
+        title={text('Title', 'Location')}
     >
         <div>{'The panel has these children'}</div>
     </EditablePanel>
