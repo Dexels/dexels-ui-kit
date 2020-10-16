@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'SL-Small-Icons';
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?ek2yb9');
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?ek2yb9#iefix') format('embedded-opentype'),
-        url('~fonts/iconfont/SL-Small-Icons.ttf?ek2yb9') format('truetype'),
-        url('~fonts/iconfont/SL-Small-Icons.woff?ek2yb9') format('woff'),
-        url('~fonts/iconfont/SL-Small-Icons.svg?ek2yb9#SL-Small-Icons') format('svg');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?3372nn');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?3372nn#iefix') format('embedded-opentype'),
+        url('~fonts/iconfont/SL-Small-Icons.ttf?3372nn') format('truetype'),
+        url('~fonts/iconfont/SL-Small-Icons.woff?3372nn') format('woff'),
+        url('~fonts/iconfont/SL-Small-Icons.svg?3372nn#SL-Small-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -26,6 +26,114 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ICON-LETTERICON-A:before {
+    content: '\e9b8';
+}
+.ICON-LETTERICON-B:before {
+    content: '\e9bb';
+}
+.ICON-LETTERICON-C:before {
+    content: '\e9bc';
+}
+.ICON-LETTERICON-D:before {
+    content: '\e9bd';
+}
+.ICON-LETTERICON-E:before {
+    content: '\e9be';
+}
+.ICON-LETTERICON-F:before {
+    content: '\e9bf';
+}
+.ICON-LETTERICON-G:before {
+    content: '\e9c0';
+}
+.ICON-LETTERICON-H:before {
+    content: '\e9c1';
+}
+.ICON-LETTERICON-I:before {
+    content: '\e9c2';
+}
+.ICON-LETTERICON-J:before {
+    content: '\e9c3';
+}
+.ICON-LETTERICON-K:before {
+    content: '\e9c4';
+}
+.ICON-LETTERICON-L:before {
+    content: '\e9c5';
+}
+.ICON-LETTERICON-M:before {
+    content: '\e9c6';
+}
+.ICON-LETTERICON-N:before {
+    content: '\e9c7';
+}
+.ICON-LETTERICON-O:before {
+    content: '\e9c8';
+}
+.ICON-LETTERICON-P:before {
+    content: '\e9c9';
+}
+.ICON-LETTERICON-Q:before {
+    content: '\e9ca';
+}
+.ICON-LETTERICON-R:before {
+    content: '\e9cb';
+}
+.ICON-LETTERICON-S:before {
+    content: '\e9cc';
+}
+.ICON-LETTERICON-T:before {
+    content: '\e9cd';
+}
+.ICON-LETTERICON-U:before {
+    content: '\e9ce';
+}
+.ICON-LETTERICON-V:before {
+    content: '\e9cf';
+}
+.ICON-LETTERICON-W:before {
+    content: '\e9d0';
+}
+.ICON-LETTERICON-X:before {
+    content: '\e9d1';
+}
+.ICON-LETTERICON-y:before {
+    content: '\e9d2';
+}
+.ICON-LETTERICON-Z:before {
+    content: '\e9d3';
+}
+.ICON-NUMBERICON-1:before {
+    content: '\e9d4';
+}
+.ICON-NUMBERICON-2:before {
+    content: '\e9d5';
+}
+.ICON-NUMBERICON-3:before {
+    content: '\e9d6';
+}
+.ICON-NUMBERICON-4:before {
+    content: '\e9d7';
+}
+.ICON-NUMBERICON-5:before {
+    content: '\e9d8';
+}
+.ICON-BENCH:before {
+    content: '\e9d9';
+}
+.ICON-FLAME:before {
+    content: '\e9da';
+}
+.ICON-FENCE:before {
+    content: '\e9db';
+}
+.ICON-LIGHTPOLE:before {
+    content: '\e9dc';
+}
+.ICON-ROOF:before {
+    content: '\e9dd';
+}
 .ICON-FILEDOCUMENT:before {
     content: '\e9b7';
 }
