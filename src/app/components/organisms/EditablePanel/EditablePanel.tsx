@@ -14,6 +14,7 @@ export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 
     iconSave?: IconType;
     iconType: IconType;
     isDisabled?: boolean;
+    isSaving?: boolean;
     onCancel: () => void;
     onEdit: () => void;
     onSave: () => void;
@@ -32,6 +33,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     iconSave = IconType.CHECK,
     iconType,
     isDisabled = false,
+    isSaving = false,
     onCancel,
     onEdit,
     onSave,
@@ -109,6 +111,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                             <Button
                                 iconType={iconSave}
                                 isDisabled={isDisabled}
+                                isLoading={isSaving}
                                 onClick={onSaveCallback}
                                 size={ButtonSize.SMALL}
                                 variant={ButtonVariant.OUTLINE}
