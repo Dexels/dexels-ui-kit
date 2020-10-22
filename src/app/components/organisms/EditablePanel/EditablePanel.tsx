@@ -123,6 +123,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         <Button
                             iconType={iconEdit}
                             isDisabled={isDisabled}
+                            isLoading={isSaving}
                             onClick={setIsBeingEditedCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.TEXT_ONLY}
