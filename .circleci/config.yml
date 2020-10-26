@@ -9,6 +9,10 @@ references:
     container_config: &container_config
         docker:
             - image: circleci/node:10.16.0
+              auth:
+                  username: $DOCKERHUB_USER
+                  password: $DOCKERHUB_PASS
+
         working_directory: ~/dexels-ui-kit
     restore_dependencies: &restore_dependencies
         restore_cache:
@@ -60,10 +64,16 @@ jobs:
 workflows:
     install_dependencies_and_lint:
         jobs:
-            - install_dependencies
+            - install_dependencies:
+                context:
+                    - dexels_docker_hub
             - lint_javascript:
+                context:
+                    - dexels_docker_hub
                 requires:
                     - install_dependencies
             - lint_css:
+                context:
+                    - dexels_docker_hub
                 requires:
                     - install_dependencies
