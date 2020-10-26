@@ -1,6 +1,6 @@
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { IconType, Status } from '../../../types';
 import React, { FunctionComponent } from 'react';
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import EditablePanel from './EditablePanel';
 
@@ -12,6 +12,8 @@ export const Configurable: FunctionComponent = () => (
         iconEdit={select('Icon Edit', IconType, IconType.PENCIL)}
         iconSave={select('Icon Save', IconType, IconType.CHECK)}
         iconType={select('Icon type', IconType, IconType.FLAG)}
+        isDisabled={boolean('Is disabled', false)}
+        isSaving={boolean('Is saving', false)}
         onCancel={action('onCancel')}
         onEdit={action('onEdit')}
         onSave={action('onSave')}
@@ -37,6 +39,8 @@ export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => (
         iconEdit={select('Icon Edit', IconType, IconType.PENCIL)}
         iconSave={select('Icon Save', IconType, IconType.CHECK)}
         iconType={select('Icon type', IconType, IconType.FLAG)}
+        isDisabled={boolean('Is disabled', false)}
+        isSaving={boolean('Is saving', false)}
         onCancel={action('onCancel')}
         onEdit={action('onEdit')}
         onSave={action('On confirm')}
