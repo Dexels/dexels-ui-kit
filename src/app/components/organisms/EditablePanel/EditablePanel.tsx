@@ -1,6 +1,6 @@
 import { ButtonSize, ButtonVariant, IconType } from '../../../types';
 import PanelHeader, { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
-import React, { FunctionComponent, ReactNode, useCallback, useState } from 'react';
+import React, { FunctionComponent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import Button from '../../molecules/Button/Button';
 import { ButtonWrapper } from './EditablePanel.sc';
 import { ConfirmDialog } from './types';
@@ -47,12 +47,24 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     const [isSaveConfirmDialogVisible, setIsSaveConfirmDialogVisible] = useState(false);
     const [isCancelConfirmDialogVisible, setIsCancelConfirmDialogVisible] = useState(false);
 
+    const savedCallback = useRef<() => void>();
+    const canceledCallback = useRef<() => void>();
+
+    // After every render, save the latest callback into a ref.
+    useEffect(() => {
+        savedCallback.current = onSave;
+        canceledCallback.current = onCancel;
+    });
+
     const onCancelCallback = () => {
         if (cancelConfirmDialog) {
             setIsCancelConfirmDialogVisible(true);
         } else {
             setIsBeingEdited(false);
-            onCancel();
+
+            if (canceledCallback.current) {
+                canceledCallback.current();
+            }
         }
     };
 
@@ -61,7 +73,10 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
             setIsSaveConfirmDialogVisible(true);
         } else {
             setIsBeingEdited(false);
-            onSave();
+
+            if (savedCallback.current) {
+                savedCallback.current();
+            }
         }
     };
 
@@ -72,8 +87,11 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     const onConfirmSaveCallback = useCallback(() => {
         setIsBeingEdited(false);
         setIsSaveConfirmDialogVisible(false);
-        onSave();
-    }, []);
+
+        if (savedCallback.current) {
+            savedCallback.current();
+        }
+    }, [savedCallback.current]);
 
     const onCloseCancelConfirmDialogCallback = useCallback(() => {
         setIsCancelConfirmDialogVisible(false);
@@ -82,8 +100,11 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     const onConfirmCancelCallback = useCallback(() => {
         setIsBeingEdited(false);
         setIsCancelConfirmDialogVisible(false);
-        onCancel();
-    }, []);
+
+        if (canceledCallback.current) {
+            canceledCallback.current();
+        }
+    }, [canceledCallback.current]);
 
     const setIsBeingEditedCallback = useCallback(() => {
         setIsBeingEdited(!isBeingEdited);
