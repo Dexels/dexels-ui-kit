@@ -102,7 +102,7 @@ export const TextField = styled.input<TextFieldProps>`
             border: 0;
             border-bottom: 1px solid ${theme.colorPrimary};
             padding: 0;
-            height: ${theme.spacing(3)};
+            height: ${theme.spacing(3.5)};
         `}
 
     ${({ theme, variant }): SimpleInterpolation =>
