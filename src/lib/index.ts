@@ -81,6 +81,7 @@ export {
     OpenBinaryProps,
     openUrl,
 } from '../app/utils/functions/fileFunctions';
+export { toBoolean } from '../app/utils/functions/toBoolean';
 export { useInterval } from '../app/utils/functions/timerFunctions';
 
 // Export atoms
