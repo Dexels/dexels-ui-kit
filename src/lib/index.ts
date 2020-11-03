@@ -82,6 +82,7 @@ export {
     openUrl,
 } from '../app/utils/functions/fileFunctions';
 export { toBoolean } from '../app/utils/functions/toBoolean';
+export { toString } from '../app/utils/functions/toString';
 export { useInterval } from '../app/utils/functions/timerFunctions';
 
 // Export atoms
