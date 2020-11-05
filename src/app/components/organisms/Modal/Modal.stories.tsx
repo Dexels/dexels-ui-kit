@@ -48,6 +48,7 @@ export const ConfigurableModal: FunctionComponent = () => {
                     action('On back');
                     setIsVisible(false);
                 }}
+                onBackIconType={select('OnBack icon type', IconType, undefined)}
                 options={functionalItems}
                 size={select('Size', ModalSize, ModalSize.XLARGE)}
                 title={text('Header title', 'Heading')}

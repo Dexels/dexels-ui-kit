@@ -9,6 +9,7 @@ export interface ModalProps {
     className?: string;
     isVisible: boolean;
     onBack?: MouseEventHandler;
+    onBackIconType?: IconType;
     options?: ReactNode;
     size?: ModalSize;
     title: ReactNode;
@@ -21,6 +22,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
     className,
     isVisible = false,
     onBack,
+    onBackIconType,
     options,
     size = ModalSize.XLARGE,
     title,
@@ -42,7 +44,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
                         onBack
                             ? [
                                   {
-                                      iconType: IconType.CHEVRONLEFT,
+                                      iconType: onBackIconType || IconType.CROSS,
                                       onClick: onBack,
                                   },
                               ]
