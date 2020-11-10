@@ -26,6 +26,54 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ICON-ROUND_ALERT:before {
+    content: '\e91d';
+}
+.ICON-ROUND_ARROWLEFT:before {
+    content: '\e91e';
+}
+.ICON-ROUND_ARROWDOWN:before {
+    content: '\e92e';
+}
+.ICON-ROUND_ARROWUP:before {
+    content: '\e92f';
+}
+.ICON-ROUND_CHECK_DASHED:before {
+    content: '\e930';
+}
+.ICON-ROUND_CHECK:before {
+    content: '\e931';
+}
+.ICON-ROUND_CROSS_DASHED:before {
+    content: '\e936';
+}
+.ICON-ROUND_CROSS:before {
+    content: '\e937';
+}
+.ICON-ROUND_HELP:before {
+    content: '\e938';
+}
+.ICON-ROUND_INFO:before {
+    content: '\e939';
+}
+.ICON-ROUND_MINUS:before {
+    content: '\e93a';
+}
+.ICON-ROUND_PAUSE_DASHED:before {
+    content: '\e93b';
+}
+.ICON-ROUND_PAUSE:before {
+    content: '\e93c';
+}
+.ICON-ROUND_PLUS_DASHED:before {
+    content: '\e95e';
+}
+.ICON-ROUND_PLUS:before {
+    content: '\e95f';
+}
+.ICON-DANGER:before {
+    content: '\e9e0';
+}
 .ICON-ROUND_NONE:before {
     content: '\e9de';
 }
@@ -416,50 +464,44 @@
 .ICON-COMMUNICATIONPHONE:before {
     content: '\e950';
 }
-.ICON-PRODUCTADS:before {
+.ICON-ADVERTISEMENT:before {
     content: '\e951';
 }
-.ICON-PRODUCTAVG:before {
+.ICON-IDCARD:before {
     content: '\e952';
 }
-.ICON-PRODUCTBOEKHOUDING:before {
+.ICON-CHART:before {
     content: '\e953';
 }
-.ICON-PRODUCTCONTRIBUTIE:before {
+.ICON-CONTRIBUTION:before {
     content: '\e954';
 }
-.ICON-PRODUCTDATASERVICE:before {
+.ICON-PUZZLEPIECE:before {
     content: '\e955';
 }
-.ICON-PRODUCTDWF:before {
+.ICON-SCOREBOARD:before {
     content: '\e956';
 }
-.ICON-PRODUCTMOBIEL:before {
+.ICON-SMARTPHONE:before {
     content: '\e957';
 }
-.ICON-PRODUCTOPLEIDINGEN:before {
+.ICON-AWARD:before {
     content: '\e958';
 }
-.ICON-PRODUCTTOERNOOIEN:before {
+.ICON-PLATFORM:before {
     content: '\e959';
 }
-.ICON-PRODUCTTRAININGEN:before {
+.ICON-TIMER:before {
     content: '\e95a';
 }
-.ICON-PRODUCTTV:before {
+.ICON-TV:before {
     content: '\e95b';
 }
-.ICON-PRODUCTVRIJWILLIGERS:before {
+.ICON-HEART:before {
     content: '\e95c';
 }
-.ICON-PRODUCTWEBSITE:before {
+.ICON-WEBSITE:before {
     content: '\e95d';
-}
-.ICON-ROUNDCHECK:before {
-    content: '\e95e';
-}
-.ICON-ROUNDCROSS:before {
-    content: '\e95f';
 }
 .ICON-USERDOUBLE:before {
     content: '\e960';
@@ -593,12 +635,6 @@
 .ICON-MATCHCANCEL:before {
     content: '\e91c';
 }
-.ICON-MATCHCOMPA:before {
-    content: '\e91d';
-}
-.ICON-MATCHCOMPB:before {
-    content: '\e91e';
-}
 .ICON-MATCHCUP:before {
     content: '\e91f';
 }
@@ -644,18 +680,6 @@
 .ICON-POSTBOXOUT:before {
     content: '\e92d';
 }
-.ICON-ROUNDHELP:before {
-    content: '\e92e';
-}
-.ICON-ROUNDINFO:before {
-    content: '\e92f';
-}
-.ICON-ROUNDMINUS:before {
-    content: '\e930';
-}
-.ICON-ROUNDPLUS:before {
-    content: '\e931';
-}
 .ICON-SEARCH:before {
     content: '\e932';
 }
@@ -667,27 +691,6 @@
 }
 .ICON-SHIRT:before {
     content: '\e935';
-}
-.ICON-STATUSALERT:before {
-    content: '\e936';
-}
-.ICON-STATUSCANCELED:before {
-    content: '\e937';
-}
-.ICON-STATUSCONCEPT:before {
-    content: '\e938';
-}
-.ICON-STATUSCONCEPTALERT:before {
-    content: '\e939';
-}
-.ICON-STATUSDONE:before {
-    content: '\e93a';
-}
-.ICON-STATUSERROR:before {
-    content: '\e93b';
-}
-.ICON-STATUSSUSPENDED:before {
-    content: '\e93c';
 }
 .ICON-TRASHCAN:before {
     content: '\e93d';

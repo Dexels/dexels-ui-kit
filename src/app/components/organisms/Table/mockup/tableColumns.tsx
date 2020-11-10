@@ -13,19 +13,19 @@ import { TableData } from './tableData';
 const getStatusIcon = (status: Status): IconType => {
     switch (status) {
         case Status.ALERT:
-            return IconType.ROUNDINFO;
+            return IconType.ROUND_INFO;
 
         case Status.DEFAULT:
             return IconType.CHECK;
 
         case Status.DISABLED:
-            return IconType.ROUNDHELP;
+            return IconType.ROUND_HELP;
 
         case Status.INVALID:
-            return IconType.ROUNDCROSS;
+            return IconType.ROUND_CROSS;
 
         case Status.NONE:
-            return IconType.ROUNDMINUS;
+            return IconType.ROUND_MINUS;
 
         case Status.VALID:
             return IconType.CHECK;
