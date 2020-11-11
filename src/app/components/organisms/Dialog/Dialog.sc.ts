@@ -1,5 +1,4 @@
-import { Easing, Elevation, Status } from '../../../types';
-import getZIndex, { zIndexComponent } from '../../../styles/mixins/getZIndex';
+import { Easing, Elevation, Status, zIndexComponent } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { DialogButtonClosePosition } from './types';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
@@ -17,7 +16,7 @@ export const OverlayWrapper = styled.div<OverlayWrapperProps>`
     position: fixed;
     top: 0;
     left: 0;
-    z-index: ${getZIndex(zIndexComponent.DIALOGOVERLAYWRAPPER)};
+    z-index: ${zIndexComponent.DIALOG - 2};
     width: 100%;
     height: 100%;
     pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};
@@ -40,7 +39,7 @@ export const Wrapper = styled.div<WrapperProps>`
         })}
     position: fixed;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
-    z-index: ${getZIndex(zIndexComponent.DIALOGWRAPPER)};
+    z-index: ${zIndexComponent.DIALOG - 1};
     padding: 40px;
     width: 100%;
     max-width: 544px;
@@ -70,7 +69,7 @@ interface ButtonCloseProps {
 export const ButtonClose = styled.button<ButtonCloseProps>`
     position: fixed;
     top: 2px;
-    z-index: ${getZIndex(zIndexComponent.DIALOG)};
+    z-index: ${zIndexComponent.DIALOG};
     outline: none;
     border: 0;
     background-color: transparent;

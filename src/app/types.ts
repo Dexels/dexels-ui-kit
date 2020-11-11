@@ -548,3 +548,13 @@ export interface ThemeTextStyle {
 export type ThemeTextStylesMap = {
     [TextStyle in keyof Theme['textStyles']]: TextStyle;
 };
+
+export enum zIndexComponent {
+    DIALOG = 10000,
+    // DIALOGOVERLAYWRAPPER = 9998,
+    // DIALOGWRAPPER = 9999,
+    MODAL = 9997, // Needs -3 from DIALOG, because DIALOG uses 3 layers
+    OVERLAY = 2,
+    SIDEPANEL = 6,
+    TOOLTIP = 99999999,
+}

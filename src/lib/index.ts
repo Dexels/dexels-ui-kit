@@ -19,7 +19,6 @@ export { getElevation } from '../app/styles/mixins/getElevation';
 export { getPosition } from '../app/styles/mixins/getPosition';
 export { getStatusColor } from '../app/styles/mixins/getStatusColor';
 export { getStatusIndicator } from '../app/styles/mixins/getStatusIndicator';
-export { getZIndex } from '../app/styles/mixins/getZIndex';
 export { rippleEffect, rippleEffectInit, rippleEffectReset } from '../app/styles/mixins/rippleEffect';
 export { setBoxSizing } from '../app/styles/mixins/setBoxSizing';
 export { setCentered } from '../app/styles/mixins/setCentered';

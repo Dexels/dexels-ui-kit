@@ -1,5 +1,4 @@
-import { Easing, Elevation } from '../../../types';
-import getZIndex, { zIndexComponent } from '../../../styles/mixins/getZIndex';
+import { Easing, Elevation, zIndexComponent } from '../../../types';
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
@@ -35,7 +34,7 @@ export const StyledTooltip = styled.span<StyledTooltipProps>`
     left: ${({ left }): string => left};
     visibility: ${({ isVisible }): string => (isVisible ? 'visible' : 'hidden')};
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
-    z-index: ${getZIndex(zIndexComponent.TOOLTIP)};
+    z-index: ${zIndexComponent.TOOLTIP};
     border-radius: ${({ theme }): string => theme.spacing(1)};
     background-color: ${({ theme }): string => theme.colorSecondary};
     padding: ${({ theme }): string => theme.spacing(0.5, 1, 0.5, 1)};
