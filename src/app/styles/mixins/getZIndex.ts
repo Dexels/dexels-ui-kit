@@ -1,39 +1,13 @@
 export enum zIndexComponent {
-    DIALOG = 'DIALOG',
-    DIALOGOVERLAYWRAPPER = 'DIALOGOVERLAYWRAPPER',
-    DIALOGWRAPPER = 'DIALOGWRAPPER',
-    MODAL = 'MODAL',
-    OVERLAY = 'OVERLAY',
-    SIDEPANEL = 'SIDEPANEL',
-    TOOLTIP = 'TOOLTIP',
+    DIALOG = 10000,
+    DIALOGOVERLAYWRAPPER = 9998,
+    DIALOGWRAPPER = 9999,
+    MODAL = 9997,
+    OVERLAY = 2,
+    SIDEPANEL = 6,
+    TOOLTIP = 99999999,
 }
 
-export const getZIndex = (element: zIndexComponent): number => {
-    switch (element) {
-        case zIndexComponent.DIALOG:
-            return 10000;
-
-        case zIndexComponent.DIALOGOVERLAYWRAPPER:
-            return 9998;
-
-        case zIndexComponent.DIALOGWRAPPER:
-            return 9999;
-
-        case zIndexComponent.MODAL:
-            return 9997;
-
-        case zIndexComponent.OVERLAY:
-            return 2;
-
-        case zIndexComponent.SIDEPANEL:
-            return 6;
-
-        case zIndexComponent.TOOLTIP:
-            return 99999999;
-
-        default:
-            return 0;
-    }
-};
+export const getZIndex = (component: zIndexComponent): number => component;
 
 export default getZIndex;
