@@ -1,5 +1,6 @@
-import { Easing, ModalSize } from '../../../types';
+import { Easing, ModalSize, zIndex } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import { Overlay } from '../../molecules/Overlay/Overlay';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -10,6 +11,10 @@ interface StyledModalProps {
     transitionDuration: number;
     transitionEasing: Easing;
 }
+
+export const StyledModalOverlay = styled(Overlay)`
+    z-index: ${zIndex.MODAL - 1};
+`;
 
 export const StyledModal = styled.div<StyledModalProps>`
     ${setBoxSizing()}
@@ -53,7 +58,7 @@ export const StyledModal = styled.div<StyledModalProps>`
     flex-direction: column;
     flex-wrap: nowrap;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
-    z-index: 3;
+    z-index: ${zIndex.MODAL};
     padding: ${({ theme }): string => theme.spacing(3.5)} 0 0 0;
     width: 100%;
     height: 100%;

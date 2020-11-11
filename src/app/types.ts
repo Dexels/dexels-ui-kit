@@ -4,6 +4,7 @@ export enum AdornmentPosition {
     LEFT = 'LEFT',
     RIGHT = 'RIGHT',
 }
+
 export enum Alignment {
     CENTER = 'CENTER',
     LEFT = 'LEFT',
@@ -547,3 +548,11 @@ export interface ThemeTextStyle {
 export type ThemeTextStylesMap = {
     [TextStyle in keyof Theme['textStyles']]: TextStyle;
 };
+
+export enum zIndex {
+    DIALOG = 10000, // Uses 3 layers down
+    MODAL = 9996, // Uses 2 layers down. Needs at least -3 from DIALOG, because DIALOG uses 3 layers
+    OVERLAY = 10,
+    SIDEPANEL = 9997, // It's possible to have a sidepanel in a modal, so this needs to be at least +1 to modal
+    TOOLTIP = 99999999,
+}
