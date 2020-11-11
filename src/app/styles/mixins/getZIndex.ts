@@ -8,7 +8,7 @@ export enum zIndexComponent {
     TOOLTIP = 'TOOLTIP',
 }
 
-const getZIndex = (element: zIndexComponent): number => {
+export const getZIndex = (element: zIndexComponent): number => {
     switch (element) {
         case zIndexComponent.DIALOG:
             return 10000;
