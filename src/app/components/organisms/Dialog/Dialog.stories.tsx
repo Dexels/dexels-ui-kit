@@ -113,7 +113,7 @@ export const ConfigurableAlert: FunctionComponent = () => {
                     },
                 ]}
                 footerText={text('Footer text', 'We need you..')}
-                iconType={select('Icon type', IconType, IconType.STATUSALERT)}
+                iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
                 isVisible={isVisible}
                 onClose={(): void => {
                     setIsVisible(false);
@@ -153,7 +153,7 @@ export const ConfigurableAlertWithContent: FunctionComponent = () => {
                     },
                 ]}
                 footerText={text('Footer text', 'Hint: its not 3 or 5')}
-                iconType={select('Icon type', IconType, IconType.STATUSALERT)}
+                iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
                 isVisible={isVisible}
                 onClose={(): void => {
                     setIsVisible(false);
