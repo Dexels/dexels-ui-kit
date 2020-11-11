@@ -1,4 +1,5 @@
 import { Easing, SidePanelSize } from '../../../types';
+import getZIndex, { zIndexComponent } from '../../../styles/mixins/getZIndex';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -49,7 +50,7 @@ export const StyledSidePanel = styled.div<StyledSidePanelProps>`
     top: 0;
     right: 0;
     transform: ${({ isVisible }): string => `translate3d(${isVisible ? 0 : '100%'}, 0, 0)`};
-    z-index: 6;
+    z-index: ${getZIndex(zIndexComponent.SIDEPANEL)};
     background-color: ${({ theme }): string => theme.background.secondary};
     width: 100%;
     height: 100%;

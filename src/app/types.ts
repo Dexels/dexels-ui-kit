@@ -4,6 +4,7 @@ export enum AdornmentPosition {
     LEFT = 'LEFT',
     RIGHT = 'RIGHT',
 }
+
 export enum Alignment {
     CENTER = 'CENTER',
     LEFT = 'LEFT',

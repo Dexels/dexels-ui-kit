@@ -1,4 +1,5 @@
 import { Easing, ModalSize } from '../../../types';
+import getZIndex, { zIndexComponent } from '../../../styles/mixins/getZIndex';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
@@ -53,7 +54,7 @@ export const StyledModal = styled.div<StyledModalProps>`
     flex-direction: column;
     flex-wrap: nowrap;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
-    z-index: 3;
+    z-index: ${getZIndex(zIndexComponent.MODAL)};
     padding: ${({ theme }): string => theme.spacing(3.5)} 0 0 0;
     width: 100%;
     height: 100%;
