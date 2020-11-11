@@ -17,9 +17,9 @@ export const Configurable: FunctionComponent = () => {
             <ButtonIcon iconType={IconType.SEARCH} key={2} onClick={action('On buttonicon SEARCH')} />
             <ButtonIcon iconType={IconType.SHARE} key={3} onClick={action('On buttonicon SHARE')} />
             <ButtonIcon iconType={IconType.GEAR} key={4} onClick={action('On buttonicon GEAR')} />
-            <ButtonIcon iconType={IconType.ROUNDHELP} key={5} onClick={action('On buttonicon ROUNDHELP')} />
+            <ButtonIcon iconType={IconType.ROUND_HELP} key={5} onClick={action('On buttonicon ROUNDHELP')} />
             <Button
-                iconType={IconType.ROUNDINFO}
+                iconType={IconType.ROUND_INFO}
                 key={6}
                 onClick={action('On buttonicon ROUNDINFO')}
                 size={ButtonSize.SMALL}
@@ -27,7 +27,7 @@ export const Configurable: FunctionComponent = () => {
                 {'label'}
             </Button>
             <Button
-                iconType={IconType.ROUNDINFO}
+                iconType={IconType.ROUND_INFO}
                 key={7}
                 onClick={action('On buttonicon ROUNDINFO')}
                 size={ButtonSize.SMALL}

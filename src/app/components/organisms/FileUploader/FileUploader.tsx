@@ -195,7 +195,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 )}
                 {status === FileUploaderStatus.ALERT && (
                     <FileUploaderInfo>
-                        <AlertIcon iconSize={IconCustomizableSize.SIZE36} iconType={IconType.STATUSERROR} />
+                        <AlertIcon iconSize={IconCustomizableSize.SIZE36} iconType={IconType.DANGER} />
                         <AlertText>{message}</AlertText>
                         {button}
                         <BottomText>{bottomText}</BottomText>
