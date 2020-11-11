@@ -1,7 +1,7 @@
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-import { zIndexComponent } from '../../../types';
+import { zIndex } from '../../../types';
 
 export interface OverlayProps {
     isClickable: boolean;
@@ -16,7 +16,7 @@ export const StyledOverlay = styled.div<OverlayProps>`
     left: 0;
     visibility: ${({ isVisible }): string => (isVisible ? 'visible' : 'hidden')};
     opacity: ${({ isVisible }): string => (isVisible ? '0.4' : '0')};
-    z-index: ${zIndexComponent.OVERLAY};
+    z-index: ${zIndex.OVERLAY};
     background-color: black;
     cursor: ${({ isClickable }): string => (isClickable ? 'pointer' : 'auto')};
     width: 100%;

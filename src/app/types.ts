@@ -549,12 +549,10 @@ export type ThemeTextStylesMap = {
     [TextStyle in keyof Theme['textStyles']]: TextStyle;
 };
 
-export enum zIndexComponent {
-    DIALOG = 10000,
-    // DIALOGOVERLAYWRAPPER = 9998,
-    // DIALOGWRAPPER = 9999,
-    MODAL = 9997, // Needs -3 from DIALOG, because DIALOG uses 3 layers
-    OVERLAY = 2,
-    SIDEPANEL = 6,
+export enum zIndex {
+    DIALOG = 10000, // Uses 3 layers down
+    MODAL = 9996, // Uses 2 layers down. Needs at least -3 from DIALOG, because DIALOG uses 3 layers
+    OVERLAY = 10,
+    SIDEPANEL = 9997, // It's possible to have a sidepanel in a modal, so this needs to be at least +1 to modal
     TOOLTIP = 99999999,
 }
