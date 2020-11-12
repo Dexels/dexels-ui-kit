@@ -1,15 +1,10 @@
+import { Elevation, OpenDirection } from '../../../types';
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { DropdownVariant } from '../../../../lib';
-import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
-
-export enum OpenDirection {
-    DOWN = 'DOWN',
-    UP = 'UP',
-}
 
 export const StyledDropdownMultiSelect = styled.div`
     ${setBoxSizing()}

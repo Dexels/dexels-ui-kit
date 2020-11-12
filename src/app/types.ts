@@ -563,3 +563,8 @@ export enum zIndex {
     SIDEPANEL = 9997, // It's possible to have a sidepanel in a modal, so this needs to be at least +1 to modal
     TOOLTIP = 99999999,
 }
+
+export enum OpenDirection {
+    DOWN = 'DOWN',
+    UP = 'UP',
+}

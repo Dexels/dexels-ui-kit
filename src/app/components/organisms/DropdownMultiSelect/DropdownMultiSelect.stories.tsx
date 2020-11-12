@@ -12,7 +12,7 @@ import { data } from './mockup/data';
 import DropdownMultiSelect from './DropdownMultiSelect';
 import { DropdownMultiSelectOption } from './types';
 import { DropdownVariant } from '../../molecules/Dropdown';
-import { OpenDirection } from './DropdownMultiSelect.sc';
+import { OpenDirection } from '../../../types';
 
 export default { title: 'organisms/DropdownMultiSelect' };
 

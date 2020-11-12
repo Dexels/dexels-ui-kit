@@ -6,13 +6,12 @@ import {
     setAllElementsDeselected,
     setAllElementsSelected,
 } from '../../../utils/functions/arrayObjectFunctions';
-import { ButtonSize, ButtonVariant, Elevation, IconType } from '../../../types';
+import { ButtonSize, ButtonVariant, Elevation, IconType, OpenDirection } from '../../../types';
 import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import {
     DialogFooterWrapper,
     DropdownWrapper,
     ListWrapper,
-    OpenDirection,
     StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
