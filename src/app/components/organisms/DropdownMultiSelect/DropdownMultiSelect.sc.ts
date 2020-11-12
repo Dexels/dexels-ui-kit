@@ -1,9 +1,15 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
-import styled, { FlattenSimpleInterpolation } from 'styled-components';
+import styled, { FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import { DropdownVariant } from '../../../../lib';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
+
+export enum OpenDirection {
+    DOWN = 'DOWN',
+    UP = 'UP',
+}
 
 export const StyledDropdownMultiSelect = styled.div`
     ${setBoxSizing()}
@@ -15,6 +21,8 @@ export const DropdownWrapper = styled.div``;
 
 interface ListWrapperProps {
     elevation: Elevation;
+    openDirection: OpenDirection;
+    variant?: DropdownVariant;
 }
 
 export const ListWrapper = styled.div<ListWrapperProps>`
@@ -25,6 +33,16 @@ export const ListWrapper = styled.div<ListWrapperProps>`
     border-radius: ${({ theme }): string => theme.spacing(1)};
     background-color: ${({ theme }): string => theme.shades.nine};
     width: 100%;
+    ${({ openDirection, variant, theme }): SimpleInterpolation => {
+        if (openDirection === OpenDirection.UP) {
+            return `
+                margin-bottom: 5px;
+                bottom: ${variant === DropdownVariant.COMPACT ? theme.spacing(3.5) : theme.spacing(6)}
+            `;
+        }
+
+        return '';
+    }}
 `;
 
 ListWrapper.defaultProps = {

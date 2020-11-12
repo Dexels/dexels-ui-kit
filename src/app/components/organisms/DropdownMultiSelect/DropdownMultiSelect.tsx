@@ -12,6 +12,7 @@ import {
     DialogFooterWrapper,
     DropdownWrapper,
     ListWrapper,
+    OpenDirection,
     StaticItem,
     StyledDropdownMultiSelect,
 } from './DropdownMultiSelect.sc';
@@ -45,6 +46,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     onClick?: MouseEventHandler;
     onConfirm: (event: SyntheticEvent, options: T[]) => void;
     options: T[];
+    parentContainer?: HTMLDivElement;
     placeholder?: string;
     resetOnOutsideClick?: boolean;
     selectAllLabel: ReactNode;
@@ -76,6 +78,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     resetOnOutsideClick = true,
     selectAllLabel,
     variant,
+    parentContainer,
 }: DropdownMultiSelectProps<T>): JSX.Element => {
     const [dialogFooterHeight, setDialogFooterHeight] = useState(0);
     const dialogFooterRef = useRef<HTMLDivElement>(null);
@@ -96,6 +99,22 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const [staticItemHeight, setStaticItemHeight] = useState(0);
     const staticItemRef = useRef<HTMLDivElement>(null);
     const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
+    const [openDirection, setOpenDirection] = useState<OpenDirection>(OpenDirection.DOWN);
+
+    useEffect(() => {
+        if (parentContainer && dropdownMultiSelectRef.current) {
+            setOpenDirection(
+                parentContainer.offsetHeight -
+                    dropdownMultiSelectRef.current.offsetTop -
+                    dropdownMultiSelectRef.current.offsetHeight >=
+                    dropdownMultiSelectRef.current.offsetTop - parentContainer.offsetTop
+                    ? OpenDirection.DOWN
+                    : OpenDirection.UP
+            );
+        } else {
+            setOpenDirection(OpenDirection.DOWN);
+        }
+    }, [parentContainer]);
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
@@ -279,7 +298,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
             </DropdownWrapper>
 
             {isOpen && (
-                <ListWrapper elevation={elevation} ref={componentRef}>
+                <ListWrapper elevation={elevation} openDirection={openDirection} ref={componentRef} variant={variant}>
                     <StaticItem elevation={Elevation.LEVEL_1} ref={staticItemRef}>
                         <SelectionControl
                             isChecked={isAllSelected}
