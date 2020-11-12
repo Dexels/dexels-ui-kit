@@ -82,7 +82,12 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
 
     useEffect(() => {
         if (parentContainer && elementRef.current) {
-            setOpenDirection(parentContainer.offsetTop - elementRef.current.offsetTop > 0 ? 'down' : 'up');
+            setOpenDirection(
+                parentContainer.offsetHeight - elementRef.current.offsetHeight - elementRef.current.offsetTop >=
+                    elementRef.current.offsetTop - parentContainer.offsetTop
+                    ? 'down'
+                    : 'up'
+            );
         } else {
             setOpenDirection('down');
         }
