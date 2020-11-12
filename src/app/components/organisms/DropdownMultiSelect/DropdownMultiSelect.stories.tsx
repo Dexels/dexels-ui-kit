@@ -1,16 +1,18 @@
 /* eslint-disable no-console */
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import {
     getSelectedElements,
     getSelectedText,
     selectOptionsExtend,
 } from '../../../utils/functions/arrayObjectFunctions';
-import React, { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
+import React, { FunctionComponent, SyntheticEvent, useEffect, useRef, useState } from 'react';
+import styled, { SimpleInterpolation } from 'styled-components';
 import { action } from '@storybook/addon-actions';
 import { data } from './mockup/data';
 import DropdownMultiSelect from './DropdownMultiSelect';
 import { DropdownMultiSelectOption } from './types';
 import { DropdownVariant } from '../../molecules/Dropdown';
+import { OpenDirection } from './DropdownMultiSelect.sc';
 
 export default { title: 'organisms/DropdownMultiSelect' };
 
@@ -18,12 +20,25 @@ const TEXT_OPTION_ALL_SELECTED = 'All fruits selected';
 const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 
+interface WrapperProps {
+    direction: OpenDirection;
+}
+
+const Wrapper = styled.div<WrapperProps>`
+    ${({ direction }): SimpleInterpolation => {
+        return `padding-top: ${direction === OpenDirection.DOWN ? '0;' : '200px;'}`;
+    }}
+`;
+
 const BaseComponent = <T extends DropdownMultiSelectOption>(
     options: Array<T>,
     variant: DropdownVariant = DropdownVariant.COMPACT,
     label = ''
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
+    const parentRef = useRef<HTMLDivElement>(null);
+    const directionRef = React.useRef<OpenDirection>();
+    directionRef.current = select('Open direction', OpenDirection, OpenDirection.DOWN);
 
     const generateValue = (Options: T[]): string => {
         const selectedOptions = getSelectedElements(Options, 'isSelected');
@@ -50,7 +65,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     };
 
     return (
-        <>
+        <Wrapper direction={directionRef.current} ref={parentRef}>
             <DropdownMultiSelect
                 allSelectedLabel={text('all selected label', TEXT_OPTION_ALL_SELECTED)}
                 buttonCancelText={text('ButtonCancel text', 'Cancel')}
@@ -67,12 +82,17 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 onChange={action('On change')}
                 onConfirm={onConfirmCallback}
                 options={optionValues}
+                parentContainer={
+                    parentRef.current !== null && directionRef.current === OpenDirection.UP
+                        ? parentRef.current
+                        : undefined
+                }
                 placeholder={text('Placeholder', 'Select the best fruits')}
                 resetOnOutsideClick={boolean('resetOnOutsideClick', true)}
                 selectAllLabel={text('select all label', TEXT_OPTION_SELECT_ALL)}
                 variant={variant}
             />
-            {value && (
+            {directionRef.current !== OpenDirection.UP && value && (
                 <div style={{ margin: '20px 0 0' }}>
                     {'Selected items:'}
                     {optionValues
@@ -84,7 +104,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                     {value}
                 </div>
             )}
-        </>
+        </Wrapper>
     );
 };
 
