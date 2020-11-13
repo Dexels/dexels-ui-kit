@@ -1,9 +1,11 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
+import { OpenDirectionShape } from 'react-dates';
 import { SingleDatePickerVariant } from '../types';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 interface StyledSingleDatePickerProps {
     isFocused: boolean;
+    openDirection?: OpenDirectionShape;
     variant: SingleDatePickerVariant;
 }
 
@@ -56,6 +58,14 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
             variant === SingleDatePickerVariant.COMPACT &&
             css`
                 height: ${theme.spacing(3)};
+            `}
+    }
+
+    .SingleDatePicker_picker {
+        ${({ openDirection }): SimpleInterpolation =>
+            openDirection === ('up' as OpenDirectionShape) &&
+            css`
+                margin-bottom: 5px;
             `}
     }
 `;

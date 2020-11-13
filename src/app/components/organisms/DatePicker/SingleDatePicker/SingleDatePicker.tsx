@@ -1,7 +1,7 @@
-import { SingleDatePicker as AirbnbSingleDatePicker, SingleDatePickerShape } from 'react-dates';
+import { SingleDatePicker as AirbnbSingleDatePicker, OpenDirectionShape, SingleDatePickerShape } from 'react-dates';
 import { ButtonSize, ButtonVariant, IconType, InputVariant } from '../../../../types';
 import DialogFooter, { DialogFooterProps } from '../../../molecules/DialogFooter/DialogFooter';
-import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, useState } from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import InputIcon from '../InputIcon/InputIcon';
@@ -37,6 +37,7 @@ export interface SingleDatePickerProps {
     onConfirm?: MouseEventHandler;
     onDateChange: SingleDatePickerShape['onDateChange'];
     onFocusChange: SingleDatePickerShape['onFocusChange'];
+    parentContainer?: HTMLDivElement;
     placeholder?: string;
     variant?: SingleDatePickerVariant;
     yearCount?: number;
@@ -71,10 +72,21 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     variant = SingleDatePickerVariant.OUTLINE,
     yearCount = 100,
     yearCountFuture = 0,
+    parentContainer,
 }) => {
     const footerButtons: DialogFooterProps['buttons'] = [];
     const [isHovered, setIsHovered] = useState(false);
     const { spacingValue } = useContext(ThemeContext);
+    const elementRef = useRef<HTMLDivElement>(null);
+    const [openDirection, setOpenDirection] = useState<OpenDirectionShape>('down');
+
+    useEffect(() => {
+        if (parentContainer && elementRef.current) {
+            setOpenDirection(parentContainer.offsetTop - elementRef.current.offsetTop > 0 ? 'down' : 'up');
+        } else {
+            setOpenDirection('down');
+        }
+    }, [parentContainer]);
 
     if (onCancel) {
         footerButtons.push({
@@ -96,65 +108,70 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     }
 
     return (
-        <Wrapper
-            className={className}
-            hasYearSelector={hasYearSelector}
-            isFocused={isFocused}
-            onMouseEnter={(): void => {
-                setIsHovered(true);
-            }}
-            onMouseLeave={(): void => {
-                setIsHovered(false);
-            }}
-        >
-            <StyledSingleDatePicker isFocused={isFocused} variant={variant}>
-                <FormElementLabel
-                    isActive
-                    isDisabled={isDisabled}
-                    isFocused={isFocused}
-                    isHovered={isHovered}
-                    variant={variant === SingleDatePickerVariant.OUTLINE ? InputVariant.OUTLINE : InputVariant.COMPACT}
-                >
-                    {label}
-                </FormElementLabel>
-                <AirbnbSingleDatePicker
-                    customInputIcon={<InputIcon isDisabled={isDisabled} isFocused={isFocused} variant={variant} />}
-                    date={date}
-                    daySize={daySize}
-                    disabled={isDisabled}
-                    displayFormat={displayFormat}
-                    focused={isFocused}
-                    hideKeyboardShortcutsPanel
-                    id={id}
-                    isDayHighlighted={isDayHighlighted}
-                    isOutsideRange={isOutsideRange}
-                    keepOpenOnDateSelect={keepOpenOnDateSelect}
-                    navNext={<ButtonNavigation isNext />}
-                    navPrev={<ButtonNavigation isPrev />}
-                    numberOfMonths={numberOfMonths}
-                    onClose={onClose}
-                    onDateChange={onDateChange}
-                    onFocusChange={onFocusChange}
-                    placeholder={placeholder}
-                    renderCalendarInfo={
-                        footerButtons.length > 0
-                            ? (): JSX.Element => <DialogFooter buttons={footerButtons} text={footerText} />
-                            : undefined
-                    }
-                    renderMonthElement={(props): JSX.Element => (
-                        <Navigation
-                            {...props}
-                            hasYearSelector={hasYearSelector}
-                            labelMonth={labelMonth}
-                            labelYear={labelYear}
-                            yearCount={yearCount}
-                            yearCountFuture={yearCountFuture}
-                        />
-                    )}
-                    verticalSpacing={spacingValue * (variant === SingleDatePickerVariant.OUTLINE ? 6 : 3.25) - 40}
-                />
-            </StyledSingleDatePicker>
-        </Wrapper>
+        <div ref={elementRef}>
+            <Wrapper
+                className={className}
+                hasYearSelector={hasYearSelector}
+                isFocused={isFocused}
+                onMouseEnter={(): void => {
+                    setIsHovered(true);
+                }}
+                onMouseLeave={(): void => {
+                    setIsHovered(false);
+                }}
+            >
+                <StyledSingleDatePicker isFocused={isFocused} openDirection={openDirection} variant={variant}>
+                    <FormElementLabel
+                        isActive
+                        isDisabled={isDisabled}
+                        isFocused={isFocused}
+                        isHovered={isHovered}
+                        variant={
+                            variant === SingleDatePickerVariant.OUTLINE ? InputVariant.OUTLINE : InputVariant.COMPACT
+                        }
+                    >
+                        {label}
+                    </FormElementLabel>
+                    <AirbnbSingleDatePicker
+                        customInputIcon={<InputIcon isDisabled={isDisabled} isFocused={isFocused} variant={variant} />}
+                        date={date}
+                        daySize={daySize}
+                        disabled={isDisabled}
+                        displayFormat={displayFormat}
+                        focused={isFocused}
+                        hideKeyboardShortcutsPanel
+                        id={id}
+                        isDayHighlighted={isDayHighlighted}
+                        isOutsideRange={isOutsideRange}
+                        keepOpenOnDateSelect={keepOpenOnDateSelect}
+                        navNext={<ButtonNavigation isNext />}
+                        navPrev={<ButtonNavigation isPrev />}
+                        numberOfMonths={numberOfMonths}
+                        onClose={onClose}
+                        onDateChange={onDateChange}
+                        onFocusChange={onFocusChange}
+                        openDirection={openDirection}
+                        placeholder={placeholder}
+                        renderCalendarInfo={
+                            footerButtons.length > 0
+                                ? (): JSX.Element => <DialogFooter buttons={footerButtons} text={footerText} />
+                                : undefined
+                        }
+                        renderMonthElement={(props): JSX.Element => (
+                            <Navigation
+                                {...props}
+                                hasYearSelector={hasYearSelector}
+                                labelMonth={labelMonth}
+                                labelYear={labelYear}
+                                yearCount={yearCount}
+                                yearCountFuture={yearCountFuture}
+                            />
+                        )}
+                        verticalSpacing={spacingValue * (variant === SingleDatePickerVariant.OUTLINE ? 6 : 3.25) - 40}
+                    />
+                </StyledSingleDatePicker>
+            </Wrapper>
+        </div>
     );
 };
 
