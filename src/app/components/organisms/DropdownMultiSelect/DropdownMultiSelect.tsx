@@ -162,6 +162,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
         staticItemHeight,
         window.innerHeight,
         containerMaxHeight,
+        containerTopOffset,
     ]);
 
     useEffect(() => {
