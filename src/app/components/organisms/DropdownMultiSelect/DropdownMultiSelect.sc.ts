@@ -1,5 +1,6 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
-import styled, { FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import { DropdownVariant } from '../../molecules/Dropdown/types';
 import { Elevation } from '../../../types';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
@@ -15,10 +16,18 @@ export const DropdownWrapper = styled.div``;
 
 interface ListWrapperProps {
     elevation: Elevation;
+    isTopDropdown: boolean;
+    variant?: DropdownVariant;
 }
 
 export const ListWrapper = styled.div<ListWrapperProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    ${({ isTopDropdown, variant, theme }): SimpleInterpolation =>
+        isTopDropdown &&
+        css`
+            bottom: ${variant === DropdownVariant.COMPACT ? theme.spacing(3.5) : theme.spacing(6)};
+            margin-bottom: 5px;
+        `}
     position: absolute;
     z-index: 2;
     margin: ${({ theme }): string => theme.spacing(1, 0, 0, 0)};

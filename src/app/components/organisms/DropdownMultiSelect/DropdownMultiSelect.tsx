@@ -30,6 +30,8 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     buttonConfirmText: ReactNode;
     children?: never;
     className?: string;
+    containerMaxHeight?: number;
+    containerTopOffset?: number;
     deselectAllLabel: ReactNode;
     elevation?: Elevation;
     errorMessage?: ReactNode;
@@ -57,6 +59,8 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     buttonCancelText,
     buttonConfirmText,
     className,
+    containerMaxHeight,
+    containerTopOffset = 0,
     deselectAllLabel,
     elevation = Elevation.LEVEL_6,
     errorMessage,
@@ -96,6 +100,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const [staticItemHeight, setStaticItemHeight] = useState(0);
     const staticItemRef = useRef<HTMLDivElement>(null);
     const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
+    const [isTopDropdown, setIsTopDropdown] = useState(false);
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
@@ -129,21 +134,35 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     useEffect(() => {
         if (dropdownMultiSelectRef.current && dialogFooterHeight + staticItemHeight > 0) {
             const { top } = dropdownMultiSelectRef.current.getBoundingClientRect();
-            const availableSpaceForDropdown = Math.round(window.innerHeight - top);
+
+            const containerHeight = containerMaxHeight || window.innerHeight;
+
+            const availableSpaceForDropdown = Math.round(containerHeight - top);
             const dropdownMaxHeight = maxHeight ? maxHeight + top : availableSpaceForDropdown;
+            let newListMaxHeight = dropdownMaxHeight - inputHeight - staticItemHeight - dialogFooterHeight - 15;
 
             if (dropdownMaxHeight >= availableSpaceForDropdown) {
-                const newListMaxHeight =
-                    availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+                newListMaxHeight = availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 15;
 
-                if (minHeight && newListMaxHeight < minHeight) {
-                    // @TODO check if there is room to show the list above the dropdown
+                if (newListMaxHeight < 0) {
+                    // calculating the maxHeight of the options list top open above the drop down
+                    newListMaxHeight =
+                        top - containerTopOffset - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+
+                    setIsTopDropdown(true);
                 }
-
-                setListMaxHeight(newListMaxHeight);
             }
+
+            setListMaxHeight(newListMaxHeight);
         }
-    }, [dialogFooterHeight, dropdownMultiSelectRef, inputHeight, staticItemHeight, window.innerHeight]);
+    }, [
+        dialogFooterHeight,
+        dropdownMultiSelectRef,
+        inputHeight,
+        staticItemHeight,
+        window.innerHeight,
+        containerMaxHeight,
+    ]);
 
     useEffect(() => {
         setIsAllSelected(areAllOptionsSelected(updatedOptions, 'isSelected'));
@@ -279,7 +298,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
             </DropdownWrapper>
 
             {isOpen && (
-                <ListWrapper elevation={elevation} ref={componentRef}>
+                <ListWrapper elevation={elevation} isTopDropdown={isTopDropdown} ref={componentRef} variant={variant}>
                     <StaticItem elevation={Elevation.LEVEL_1} ref={staticItemRef}>
                         <SelectionControl
                             isChecked={isAllSelected}
