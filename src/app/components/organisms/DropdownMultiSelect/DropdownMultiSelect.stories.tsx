@@ -5,7 +5,7 @@ import {
     getSelectedText,
     selectOptionsExtend,
 } from '../../../utils/functions/arrayObjectFunctions';
-import React, { FunctionComponent, SyntheticEvent, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { data } from './mockup/data';
 import DropdownMultiSelect from './DropdownMultiSelect';
@@ -27,7 +27,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     label = ''
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
-    const parentRef = useRef<HTMLDivElement>(null);
+    const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
 
     const generateValue = (Options: T[]): string => {
         const selectedOptions = getSelectedElements(Options, 'isSelected');
@@ -40,12 +40,6 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     useEffect(() => {
         setValue(generateValue(optionValues));
     }, [optionValues]);
-
-    useEffect(() => {
-        if (parentRef.current) {
-            console.log(parentRef.current);
-        }
-    }, [parentRef.current]);
 
     const onConfirmCallback = (_: SyntheticEvent, updatedOptions: Array<T>): void => {
         setOptionValues(updatedOptions);
@@ -60,7 +54,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     };
 
     return (
-        <DropdownMultiSelectWrapper ref={parentRef}>
+        <DropdownMultiSelectWrapper className="Parent" ref={setElementRef}>
             <DropdownMultiSelect
                 allSelectedLabel={text('all selected label', TEXT_OPTION_ALL_SELECTED)}
                 buttonCancelText={text('ButtonCancel text', 'Cancel')}
@@ -77,7 +71,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 onChange={action('On change')}
                 onConfirm={onConfirmCallback}
                 options={optionValues}
-                parentContainer={parentRef.current || undefined}
+                parentContainer={elementRef || undefined}
                 placeholder={text('Placeholder', 'Select the best fruits')}
                 resetOnOutsideClick={boolean('resetOnOutsideClick', true)}
                 selectAllLabel={text('select all label', TEXT_OPTION_SELECT_ALL)}
