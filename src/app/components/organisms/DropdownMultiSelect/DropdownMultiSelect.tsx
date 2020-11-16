@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
     areAllOptionsSelected,
     getSelectedElements,
@@ -47,6 +48,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     onClick?: MouseEventHandler;
     onConfirm: (event: SyntheticEvent, options: T[]) => void;
     options: T[];
+    parentContainer?: HTMLDivElement;
     placeholder?: string;
     resetOnOutsideClick?: boolean;
     selectAllLabel: ReactNode;
@@ -76,6 +78,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     onConfirm,
     onChange,
     options,
+    parentContainer,
     placeholder,
     resetOnOutsideClick = true,
     selectAllLabel,
@@ -101,6 +104,8 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const staticItemRef = useRef<HTMLDivElement>(null);
     const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
     const [isTopDropdown, setIsTopDropdown] = useState(false);
+
+    console.log('[parentContainer]', parentContainer);
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
