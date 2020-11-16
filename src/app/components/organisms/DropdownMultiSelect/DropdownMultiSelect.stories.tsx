@@ -27,7 +27,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     label = ''
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
-    const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
+    const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);
 
     const generateValue = (Options: T[]): string => {
         const selectedOptions = getSelectedElements(Options, 'isSelected');
@@ -54,7 +54,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     };
 
     return (
-        <DropdownMultiSelectWrapper className="Parent" ref={setElementRef}>
+        <DropdownMultiSelectWrapper className="Parent" ref={setWrapperElementRef}>
             <DropdownMultiSelect
                 allSelectedLabel={text('all selected label', TEXT_OPTION_ALL_SELECTED)}
                 buttonCancelText={text('ButtonCancel text', 'Cancel')}
@@ -71,7 +71,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 onChange={action('On change')}
                 onConfirm={onConfirmCallback}
                 options={optionValues}
-                parentContainer={elementRef || undefined}
+                parentContainer={wrapperElementRef || undefined}
                 placeholder={text('Placeholder', 'Select the best fruits')}
                 resetOnOutsideClick={boolean('resetOnOutsideClick', true)}
                 selectAllLabel={text('select all label', TEXT_OPTION_SELECT_ALL)}

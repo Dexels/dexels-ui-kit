@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
     areAllOptionsSelected,
     getSelectedElements,
@@ -31,8 +30,6 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     buttonConfirmText: ReactNode;
     children?: never;
     className?: string;
-    containerMaxHeight?: number;
-    containerTopOffset?: number;
     deselectAllLabel: ReactNode;
     elevation?: Elevation;
     errorMessage?: ReactNode;
@@ -61,8 +58,6 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     buttonCancelText,
     buttonConfirmText,
     className,
-    containerMaxHeight,
-    containerTopOffset = 0,
     deselectAllLabel,
     elevation = Elevation.LEVEL_6,
     errorMessage,
@@ -105,8 +100,6 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
     const [isTopDropdown, setIsTopDropdown] = useState(false);
 
-    console.log('[parentContainer]', parentContainer);
-
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
 
@@ -138,24 +131,38 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
 
     useEffect(() => {
         if (dropdownMultiSelectRef.current && dialogFooterHeight + staticItemHeight > 0) {
-            const { top } = dropdownMultiSelectRef.current.getBoundingClientRect();
+            // dropdown top offset relative to viewport
+            let { top } = dropdownMultiSelectRef.current.getBoundingClientRect();
 
-            const containerHeight = containerMaxHeight || window.innerHeight;
+            if (parentContainer) {
+                const parentContainerRect = parentContainer.getBoundingClientRect();
+                top -= parentContainerRect.top;
+            }
 
-            const availableSpaceForDropdown = Math.round(containerHeight - top);
-            const dropdownMaxHeight = maxHeight ? maxHeight + top : availableSpaceForDropdown;
-            let newListMaxHeight = dropdownMaxHeight - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+            const containerHeight = parentContainer ? parentContainer.offsetHeight : window.innerHeight;
+            // calculate available space under the dropdown
+            let availableSpaceForDropdown = Math.round(containerHeight - top);
 
-            if (dropdownMaxHeight >= availableSpaceForDropdown) {
-                newListMaxHeight = availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+            if (maxHeight) {
+                availableSpaceForDropdown = Math.min(maxHeight, availableSpaceForDropdown);
+            }
 
-                if (newListMaxHeight < 0) {
-                    // calculating the maxHeight of the options list top open above the drop down
-                    newListMaxHeight =
-                        top - containerTopOffset - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+            let newListMaxHeight = Math.round(
+                availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 24
+            );
 
-                    setIsTopDropdown(true);
+            // available space is too small, try make the drop down smaller or open it above
+            if (newListMaxHeight < 0) {
+                availableSpaceForDropdown = top - 24;
+
+                // calculate available space above drop down
+                if (maxHeight) {
+                    availableSpaceForDropdown = Math.min(maxHeight, top);
                 }
+
+                newListMaxHeight = Math.round(availableSpaceForDropdown - staticItemHeight - dialogFooterHeight);
+
+                setIsTopDropdown(true);
             }
 
             setListMaxHeight(newListMaxHeight);
@@ -164,10 +171,9 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
         dialogFooterHeight,
         dropdownMultiSelectRef,
         inputHeight,
+        parentContainer,
         staticItemHeight,
         window.innerHeight,
-        containerMaxHeight,
-        containerTopOffset,
     ]);
 
     useEffect(() => {
