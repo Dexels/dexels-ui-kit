@@ -23,6 +23,7 @@ interface DropdownMultiSelectWrapperProps {
 }
 
 const DropdownMultiSelectWrapper = styled.div<DropdownMultiSelectWrapperProps>`
+    min-height: 500px;
     max-height: 500px;
     ${({ topPadding }): SimpleInterpolation =>
         css`
@@ -32,9 +33,9 @@ const DropdownMultiSelectWrapper = styled.div<DropdownMultiSelectWrapperProps>`
 
 const BaseComponent = <T extends DropdownMultiSelectOption>(
     options: Array<T>,
-    topPadding: string,
     variant: DropdownVariant = DropdownVariant.COMPACT,
-    label = ''
+    label = '',
+    topPadding = '0px'
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
     const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);
@@ -76,6 +77,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 isValid={boolean('Is valid', false)}
                 label={label}
                 maxHeight={number('Max height', 400)}
+                minHeight={50}
                 name="the-best-fruit"
                 onCancel={action('On cancel')}
                 onChange={action('On change')}
@@ -106,18 +108,21 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
 export const ConfigurableCompactVariant: FunctionComponent = () => (
     <>
         <p>{'What is the best fruit?'}</p>
-        {BaseComponent(
-            selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
-            text('Wrapper top padding', '0px'),
-            DropdownVariant.COMPACT
-        )}
+        {BaseComponent(selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'))}
     </>
 );
 
 export const ConfigurableOutlineVariant: FunctionComponent = () =>
     BaseComponent(
         selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
-        text('Wrapper top padding', 'px'),
         DropdownVariant.OUTLINE,
         'What are the best fruits?'
+    );
+
+export const ConfigurableDropdownOpensAbove: FunctionComponent = () =>
+    BaseComponent(
+        selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
+        DropdownVariant.OUTLINE,
+        'What are the best fruits?',
+        '300px'
     );
