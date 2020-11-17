@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { boolean, number, text } from '@storybook/addon-knobs';
 import {
     getSelectedElements,
@@ -6,12 +5,12 @@ import {
     selectOptionsExtend,
 } from '../../../utils/functions/arrayObjectFunctions';
 import React, { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { action } from '@storybook/addon-actions';
 import { data } from './mockup/data';
 import DropdownMultiSelect from './DropdownMultiSelect';
 import { DropdownMultiSelectOption } from './types';
 import { DropdownVariant } from '../../molecules/Dropdown';
-import styled from 'styled-components';
 
 export default { title: 'organisms/DropdownMultiSelect' };
 
@@ -19,10 +18,21 @@ const TEXT_OPTION_ALL_SELECTED = 'All fruits selected';
 const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 
-const DropdownMultiSelectWrapper = styled.div``;
+interface DropdownMultiSelectWrapperProps {
+    topPadding: string;
+}
+
+const DropdownMultiSelectWrapper = styled.div<DropdownMultiSelectWrapperProps>`
+    max-height: 500px;
+    ${({ topPadding }): SimpleInterpolation =>
+        css`
+            padding-top: ${topPadding};
+        `}
+`;
 
 const BaseComponent = <T extends DropdownMultiSelectOption>(
     options: Array<T>,
+    topPadding: string,
     variant: DropdownVariant = DropdownVariant.COMPACT,
     label = ''
 ): JSX.Element => {
@@ -54,7 +64,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     };
 
     return (
-        <DropdownMultiSelectWrapper className="Parent" ref={setWrapperElementRef}>
+        <DropdownMultiSelectWrapper className="Parent" ref={setWrapperElementRef} topPadding={topPadding}>
             <DropdownMultiSelect
                 allSelectedLabel={text('all selected label', TEXT_OPTION_ALL_SELECTED)}
                 buttonCancelText={text('ButtonCancel text', 'Cancel')}
@@ -96,13 +106,18 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
 export const ConfigurableCompactVariant: FunctionComponent = () => (
     <>
         <p>{'What is the best fruit?'}</p>
-        {BaseComponent(selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'))}
+        {BaseComponent(
+            selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
+            text('Wrapper top padding', '0px'),
+            DropdownVariant.COMPACT
+        )}
     </>
 );
 
 export const ConfigurableOutlineVariant: FunctionComponent = () =>
     BaseComponent(
         selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
+        text('Wrapper top padding', 'px'),
         DropdownVariant.OUTLINE,
         'What are the best fruits?'
     );

@@ -171,6 +171,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
         dialogFooterHeight,
         dropdownMultiSelectRef,
         inputHeight,
+        maxHeight,
         parentContainer,
         staticItemHeight,
         window.innerHeight,
