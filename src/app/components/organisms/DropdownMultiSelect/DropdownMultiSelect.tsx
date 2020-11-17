@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
     areAllOptionsSelected,
     getSelectedElements,
@@ -140,12 +139,8 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                 top -= parentContainerRect.top;
             }
 
-            console.log(parentContainer);
-
             const containerHeight = parentContainer ? parentContainer.offsetHeight : window.innerHeight;
 
-            console.log('[parent container height]', containerHeight);
-            console.log('[top offset dropdown]', top);
             // calculate available space under the dropdown
             let availableSpaceForDropdown = Math.round(containerHeight - top);
 
@@ -153,13 +148,9 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                 availableSpaceForDropdown = Math.min(maxHeight, availableSpaceForDropdown);
             }
 
-            console.log('[available Space For Dropdown]', availableSpaceForDropdown);
-
             let newListMaxHeight = Math.round(
                 availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 24
             );
-
-            console.log('[newListMaxHeight]', newListMaxHeight);
 
             // available space is too small, try make the drop down smaller or open it above
             if ((minHeight && newListMaxHeight < minHeight) || newListMaxHeight < 0) {
