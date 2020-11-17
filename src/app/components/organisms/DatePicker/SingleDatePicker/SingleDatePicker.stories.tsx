@@ -1,37 +1,51 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import moment, { Moment } from 'moment';
-import React, { FunctionComponent, useRef, useState } from 'react';
-import styled, { SimpleInterpolation } from 'styled-components';
-import { OpenDirectionShape } from 'react-dates';
+import React, { FunctionComponent, useState } from 'react';
 import SingleDatePicker from './SingleDatePicker';
 import { SingleDatePickerVariant } from '../types';
+import styled from 'styled-components';
 
 export default { title: 'organisms/DatePicker' };
 
-interface WrapperProps {
-    direction: OpenDirectionShape;
-}
-
-const Wrapper = styled.div<WrapperProps>`
-    ${({ direction }): SimpleInterpolation => {
-        return `padding-top: ${direction === ('DOWN' as OpenDirectionShape) ? '0px' : '200px;'}`;
-    }}
-`;
-
 export const Default: FunctionComponent = () => {
-    const OpenDirection = {
-        DOWN: 'DOWN',
-        UP: 'UP',
-    };
-
     const [date, setDate] = useState<Moment | null>(moment());
     const [isFocused, setIsFocused] = useState(true);
-    const parentRef = useRef<HTMLDivElement>(null);
-    const directionRef = React.useRef<string>();
-    directionRef.current = select('Open direction', OpenDirection, OpenDirection.DOWN);
 
     return (
-        <Wrapper direction={directionRef.current as OpenDirectionShape} ref={parentRef}>
+        <SingleDatePicker
+            date={date}
+            displayFormat={text('Display format', 'ddd D MMM Y')}
+            id="datepicker"
+            isDayHighlighted={(day): boolean => day.day() === 6}
+            isDisabled={boolean('Is disabled', false)}
+            isFocused={isFocused}
+            keepOpenOnDateSelect={boolean('Keep open on date select', true)}
+            label={text('Label', 'Speeldatum')}
+            numberOfMonths={number('Number of months', 1)}
+            onDateChange={(newDate): void => {
+                setDate(newDate);
+            }}
+            onFocusChange={({ focused }): void => {
+                setIsFocused(Boolean(focused));
+            }}
+            placeholder={text('Placeholder', 'Selecteer je datum')}
+            variant={select('Variant', SingleDatePickerVariant, SingleDatePickerVariant.OUTLINE)}
+        />
+    );
+};
+
+const Wrapper = styled.div`
+    padding-top: 450px;
+    max-height: 500px;
+`;
+
+export const DatePickerOpensUnder: FunctionComponent = () => {
+    const [date, setDate] = useState<Moment | null>(moment());
+    const [isFocused, setIsFocused] = useState(false);
+    const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);
+
+    return (
+        <Wrapper className="Parent" ref={setWrapperElementRef}>
             <SingleDatePicker
                 date={date}
                 displayFormat={text('Display format', 'ddd D MMM Y')}
@@ -48,11 +62,7 @@ export const Default: FunctionComponent = () => {
                 onFocusChange={({ focused }): void => {
                     setIsFocused(Boolean(focused));
                 }}
-                parentContainer={
-                    parentRef.current !== null && directionRef.current === OpenDirection.UP
-                        ? parentRef.current
-                        : undefined
-                }
+                parentContainer={wrapperElementRef || undefined}
                 placeholder={text('Placeholder', 'Selecteer je datum')}
                 variant={select('Variant', SingleDatePickerVariant, SingleDatePickerVariant.OUTLINE)}
             />
