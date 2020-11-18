@@ -2,13 +2,13 @@ import { SingleDatePicker as AirbnbSingleDatePicker, OpenDirectionShape, SingleD
 import { ButtonSize, ButtonVariant, IconType, InputVariant } from '../../../../types';
 import DialogFooter, { DialogFooterProps } from '../../../molecules/DialogFooter/DialogFooter';
 import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import { StyledSingleDatePicker, StyledWrapper } from './SingleDatePicker.sc';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
 import InputIcon from '../InputIcon/InputIcon';
 import { Moment } from 'moment';
 import Navigation from '../Navigation/Navigation';
 import { SingleDatePickerVariant } from '../types';
-import { StyledSingleDatePicker } from './SingleDatePicker.sc';
 import { ThemeContext } from 'styled-components';
 import Wrapper from '../Wrapper/Wrapper';
 
@@ -77,16 +77,39 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     const footerButtons: DialogFooterProps['buttons'] = [];
     const [isHovered, setIsHovered] = useState(false);
     const { spacingValue } = useContext(ThemeContext);
-    const elementRef = useRef<HTMLDivElement>(null);
+    const singleDatePickerRef = useRef<HTMLDivElement>(null);
     const [openDirection, setOpenDirection] = useState<OpenDirectionShape>('down');
+    const [isTopDatepicker, setIsTopDatepicker] = useState(false);
 
     useEffect(() => {
-        if (parentContainer && elementRef.current) {
-            setOpenDirection(parentContainer.offsetTop - elementRef.current.offsetTop > 0 ? 'down' : 'up');
-        } else {
-            setOpenDirection('down');
+        if (singleDatePickerRef.current) {
+            // Get the height of de DOM element SingleDatePicker_picker
+            const datePickerContainer = document.querySelectorAll('div.SingleDatePicker_picker');
+            let openDatePickerMinHeight = 400;
+
+            if (datePickerContainer && datePickerContainer.length !== 0) {
+                openDatePickerMinHeight = datePickerContainer[0].clientHeight;
+            }
+
+            let { top } = singleDatePickerRef.current.getBoundingClientRect();
+
+            if (parentContainer) {
+                const parentContainerRect = parentContainer.getBoundingClientRect();
+                top -= parentContainerRect.top;
+            }
+
+            const containerHeight = parentContainer ? parentContainer.offsetHeight : window.innerHeight;
+            // calculate available space under the dropdown
+            const availableSpaceUnder = Math.round(containerHeight - top);
+
+            // open date picker above only if there is enough space above and not enough space under
+            setIsTopDatepicker(openDatePickerMinHeight > availableSpaceUnder && openDatePickerMinHeight < top);
         }
-    }, [parentContainer]);
+    }, [parentContainer, singleDatePickerRef.current]);
+
+    useEffect(() => {
+        setOpenDirection(isTopDatepicker ? 'up' : 'down');
+    }, [isTopDatepicker]);
 
     if (onCancel) {
         footerButtons.push({
@@ -108,7 +131,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     }
 
     return (
-        <div ref={elementRef}>
+        <StyledWrapper ref={singleDatePickerRef}>
             <Wrapper
                 className={className}
                 hasYearSelector={hasYearSelector}
@@ -120,7 +143,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                     setIsHovered(false);
                 }}
             >
-                <StyledSingleDatePicker isFocused={isFocused} openDirection={openDirection} variant={variant}>
+                <StyledSingleDatePicker isFocused={isFocused} isTopDatepicker={isTopDatepicker} variant={variant}>
                     <FormElementLabel
                         isActive
                         isDisabled={isDisabled}
@@ -171,7 +194,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                     />
                 </StyledSingleDatePicker>
             </Wrapper>
-        </div>
+        </StyledWrapper>
     );
 };
 

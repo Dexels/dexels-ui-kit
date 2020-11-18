@@ -45,6 +45,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     onClick?: MouseEventHandler;
     onConfirm: (event: SyntheticEvent, options: T[]) => void;
     options: T[];
+    parentContainer?: HTMLDivElement;
     placeholder?: string;
     resetOnOutsideClick?: boolean;
     selectAllLabel: ReactNode;
@@ -72,6 +73,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     onConfirm,
     onChange,
     options,
+    parentContainer,
     placeholder,
     resetOnOutsideClick = true,
     selectAllLabel,
@@ -96,6 +98,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const [staticItemHeight, setStaticItemHeight] = useState(0);
     const staticItemRef = useRef<HTMLDivElement>(null);
     const [updatedOptions, setUpdatedOptions] = useState(cloneArray(options));
+    const [isTopDropdown, setIsTopDropdown] = useState(false);
 
     const handleClickOutsideComponent = (event: SyntheticEvent): void => {
         setIsOpen(false);
@@ -128,22 +131,53 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
 
     useEffect(() => {
         if (dropdownMultiSelectRef.current && dialogFooterHeight + staticItemHeight > 0) {
-            const { top } = dropdownMultiSelectRef.current.getBoundingClientRect();
-            const availableSpaceForDropdown = Math.round(window.innerHeight - top);
-            const dropdownMaxHeight = maxHeight ? maxHeight + top : availableSpaceForDropdown;
+            // dropdown top offset relative to viewport
+            let { top } = dropdownMultiSelectRef.current.getBoundingClientRect();
 
-            if (dropdownMaxHeight >= availableSpaceForDropdown) {
-                const newListMaxHeight =
-                    availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 15;
+            if (parentContainer) {
+                const parentContainerRect = parentContainer.getBoundingClientRect();
+                top -= parentContainerRect.top;
+            }
 
-                if (minHeight && newListMaxHeight < minHeight) {
-                    // @TODO check if there is room to show the list above the dropdown
+            const containerHeight = parentContainer ? parentContainer.offsetHeight : window.innerHeight;
+
+            // calculate available space under the dropdown
+            let availableSpaceForDropdown = Math.round(containerHeight - top);
+
+            if (maxHeight) {
+                availableSpaceForDropdown = Math.min(maxHeight, availableSpaceForDropdown);
+            }
+
+            let newListMaxHeight = Math.round(
+                availableSpaceForDropdown - inputHeight - staticItemHeight - dialogFooterHeight - 24
+            );
+
+            // available space is too small, try make the drop down smaller or open it above
+            if ((minHeight && newListMaxHeight < minHeight) || newListMaxHeight < 0) {
+                availableSpaceForDropdown = top - 24;
+
+                // calculate available space above drop down
+                if (maxHeight) {
+                    availableSpaceForDropdown = Math.min(maxHeight, top);
                 }
 
-                setListMaxHeight(newListMaxHeight);
+                newListMaxHeight = Math.round(availableSpaceForDropdown - staticItemHeight - dialogFooterHeight);
+
+                setIsTopDropdown(true);
             }
+
+            setListMaxHeight(newListMaxHeight);
         }
-    }, [dialogFooterHeight, dropdownMultiSelectRef, inputHeight, staticItemHeight, window.innerHeight]);
+    }, [
+        dialogFooterHeight,
+        dropdownMultiSelectRef,
+        inputHeight,
+        maxHeight,
+        minHeight,
+        parentContainer,
+        staticItemHeight,
+        window.innerHeight,
+    ]);
 
     useEffect(() => {
         setIsAllSelected(areAllOptionsSelected(updatedOptions, 'isSelected'));
@@ -279,7 +313,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
             </DropdownWrapper>
 
             {isOpen && (
-                <ListWrapper elevation={elevation} ref={componentRef}>
+                <ListWrapper elevation={elevation} isTopDropdown={isTopDropdown} ref={componentRef} variant={variant}>
                     <StaticItem elevation={Elevation.LEVEL_1} ref={staticItemRef}>
                         <SelectionControl
                             isChecked={isAllSelected}
