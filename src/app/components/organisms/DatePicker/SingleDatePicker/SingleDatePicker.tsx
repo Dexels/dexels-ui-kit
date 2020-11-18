@@ -87,7 +87,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
             const datePickerContainer = document.querySelectorAll('div.SingleDatePicker_picker');
             let openDatePickerMinHeight = 400;
 
-            if (datePickerContainer && datePickerContainer[0]) {
+            if (datePickerContainer && datePickerContainer.length !== 0) {
                 openDatePickerMinHeight = datePickerContainer[0].clientHeight;
             }
 
