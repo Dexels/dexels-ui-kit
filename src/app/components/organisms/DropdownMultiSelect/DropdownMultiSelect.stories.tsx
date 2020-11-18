@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { boolean, number, text } from '@storybook/addon-knobs';
 import {
     getSelectedElements,
@@ -6,6 +5,7 @@ import {
     selectOptionsExtend,
 } from '../../../utils/functions/arrayObjectFunctions';
 import React, { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { action } from '@storybook/addon-actions';
 import { data } from './mockup/data';
 import DropdownMultiSelect from './DropdownMultiSelect';
@@ -18,12 +18,27 @@ const TEXT_OPTION_ALL_SELECTED = 'All fruits selected';
 const TEXT_OPTION_DESELECT_ALL = 'Deselect all fruits';
 const TEXT_OPTION_SELECT_ALL = 'Select all fruits';
 
+interface DropdownMultiSelectWrapperProps {
+    topPadding: string;
+}
+
+const DropdownMultiSelectWrapper = styled.div<DropdownMultiSelectWrapperProps>`
+    min-height: 500px;
+    max-height: 500px;
+    ${({ topPadding }): SimpleInterpolation =>
+        css`
+            padding-top: ${topPadding};
+        `}
+`;
+
 const BaseComponent = <T extends DropdownMultiSelectOption>(
     options: Array<T>,
     variant: DropdownVariant = DropdownVariant.COMPACT,
-    label = ''
+    label = '',
+    topPadding = '0px'
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
+    const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);
 
     const generateValue = (Options: T[]): string => {
         const selectedOptions = getSelectedElements(Options, 'isSelected');
@@ -50,7 +65,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     };
 
     return (
-        <>
+        <DropdownMultiSelectWrapper className="Parent" ref={setWrapperElementRef} topPadding={topPadding}>
             <DropdownMultiSelect
                 allSelectedLabel={text('all selected label', TEXT_OPTION_ALL_SELECTED)}
                 buttonCancelText={text('ButtonCancel text', 'Cancel')}
@@ -62,11 +77,13 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 isValid={boolean('Is valid', false)}
                 label={label}
                 maxHeight={number('Max height', 400)}
+                minHeight={50}
                 name="the-best-fruit"
                 onCancel={action('On cancel')}
                 onChange={action('On change')}
                 onConfirm={onConfirmCallback}
                 options={optionValues}
+                parentContainer={wrapperElementRef || undefined}
                 placeholder={text('Placeholder', 'Select the best fruits')}
                 resetOnOutsideClick={boolean('resetOnOutsideClick', true)}
                 selectAllLabel={text('select all label', TEXT_OPTION_SELECT_ALL)}
@@ -84,7 +101,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                     {value}
                 </div>
             )}
-        </>
+        </DropdownMultiSelectWrapper>
     );
 };
 
@@ -100,4 +117,12 @@ export const ConfigurableOutlineVariant: FunctionComponent = () =>
         selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
         DropdownVariant.OUTLINE,
         'What are the best fruits?'
+    );
+
+export const ConfigurableDropdownOpensAbove: FunctionComponent = () =>
+    BaseComponent(
+        selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
+        DropdownVariant.OUTLINE,
+        'What are the best fruits?',
+        '300px'
     );
