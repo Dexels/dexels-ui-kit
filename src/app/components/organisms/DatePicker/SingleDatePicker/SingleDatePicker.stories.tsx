@@ -39,7 +39,7 @@ const Wrapper = styled.div`
     max-height: 500px;
 `;
 
-export const DatePickerOpensUnder: FunctionComponent = () => {
+export const DatePickerOpensUp: FunctionComponent = () => {
     const [date, setDate] = useState<Moment | null>(moment());
     const [isFocused, setIsFocused] = useState(false);
     const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);

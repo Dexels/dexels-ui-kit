@@ -83,8 +83,14 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
 
     useEffect(() => {
         if (singleDatePickerRef.current) {
-            // @TODO check if there is a way to get the height of de DOM element DayPicker_transitionContainer
-            const openDatePickerMinHeight = 400;
+            // Get the height of de DOM element SingleDatePicker_picker
+            const datePickerContainer = document.querySelectorAll('div.SingleDatePicker_picker');
+            let openDatePickerMinHeight = 400;
+
+            if (datePickerContainer && datePickerContainer[0]) {
+                openDatePickerMinHeight = datePickerContainer[0].clientHeight;
+            }
+
             let { top } = singleDatePickerRef.current.getBoundingClientRect();
 
             if (parentContainer) {
