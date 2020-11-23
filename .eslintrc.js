@@ -18,6 +18,10 @@ module.exports = {
         'prettier/react',
     ],
     rules: {
+        'no-use-before-define': 'off',
+        '@typescript-eslint/no-use-before-define': ['error'],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error", { ignoreTypeValueShadow: true }],
         '@typescript-eslint/no-empty-interface': 0,
         '@typescript-eslint/no-unused-vars': 2,
         'brace-style': [2, '1tbs'],

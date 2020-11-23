@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import {
-    Cell,
-    ColumnInterface,
-    Row,
     UseExpandedInstanceProps,
     UseExpandedOptions,
     UseExpandedRowProps,

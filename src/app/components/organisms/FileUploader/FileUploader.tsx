@@ -128,7 +128,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 } else if (filesNames.filter((name) => name.length > fileNameLength).length > 0) {
                     onAlert(FileAlertType.NAME, filesNames);
                 } else {
-                    // eslint-disable-next-line no-use-before-define
+                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
                     manageListeners(listenerAction.remove);
                     onDrop(files);
                 }
