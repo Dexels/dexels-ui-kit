@@ -17,7 +17,7 @@ export interface SingleDatePickerProps {
     buttonConfirmText?: ReactNode;
     children?: never;
     className?: string;
-    date: SingleDatePickerShape['date'];
+    date?: SingleDatePickerShape['date'];
     daySize?: number;
     displayFormat?: string;
     footerText?: DialogFooterProps['text'];
@@ -48,7 +48,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     buttonCancelText,
     buttonConfirmText,
     className,
-    date,
+    date = null,
     daySize = 40,
     displayFormat = 'ddd D MMM Y',
     footerText,
