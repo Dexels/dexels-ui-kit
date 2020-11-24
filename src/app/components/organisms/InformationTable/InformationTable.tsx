@@ -43,9 +43,6 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
               ))
             : [];
 
-    // eslint-disable-next-line no-console
-    console.log('[columnArray length]', columnArray.length);
-
     return (
         <StyledInformationTable isSidePanel={isSidePanel}>
             {columnArray}
