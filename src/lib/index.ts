@@ -131,6 +131,7 @@ export {
     TextWithOptionalIcon,
     TextWithOptionalIconProps,
 } from '../app/components/molecules/TextWithOptionalIcon/TextWithOptionalIcon';
+export { TimePicker, TimePickerProps } from '../app/components/molecules/TimePicker/TimePicker';
 export { Tooltip, TooltipProps } from '../app/components/molecules/Tooltip/Tooltip';
 
 // Export organisms
