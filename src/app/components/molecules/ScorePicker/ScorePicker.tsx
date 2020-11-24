@@ -12,7 +12,7 @@ export interface ScorePickerProps {
     value: [string, string];
 }
 
-const ScorePicker: FunctionComponent<ScorePickerProps> = ({ isDisabled, label, name, onChange, value }) => (
+export const ScorePicker: FunctionComponent<ScorePickerProps> = ({ isDisabled, label, name, onChange, value }) => (
     <StyledScorePicker>
         <InputWrapper>
             <Input
