@@ -12,9 +12,15 @@ export interface InformationTableProps {
     amountOfColumns?: AmountOfColumns;
     children?: ReactNode;
     data?: InformationTableData[];
+    isSidePanel?: boolean;
 }
 
-const InformationTable: FunctionComponent<InformationTableProps> = ({ amountOfColumns = 2, children, data = [] }) => {
+export const InformationTable: FunctionComponent<InformationTableProps> = ({
+    amountOfColumns = 2,
+    children,
+    data = [],
+    isSidePanel = false,
+}) => {
     const amountOfRowsPerColumn = Math.ceil(data.length / amountOfColumns);
 
     // eslint-disable-next-line no-console
@@ -41,7 +47,7 @@ const InformationTable: FunctionComponent<InformationTableProps> = ({ amountOfCo
     console.log('[columnArray length]', columnArray.length);
 
     return (
-        <StyledInformationTable>
+        <StyledInformationTable isSidePanel={isSidePanel}>
             {columnArray}
             {children && <ChildrenWrapper>{children}</ChildrenWrapper>}
         </StyledInformationTable>

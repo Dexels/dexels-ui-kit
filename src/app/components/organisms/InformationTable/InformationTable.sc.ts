@@ -1,10 +1,19 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { AmountOfColumns } from './types';
 
-export const StyledInformationTable = styled.div`
+interface StyledInformationTableProps {
+    isSidePanel: boolean;
+}
+export const StyledInformationTable = styled.div<StyledInformationTableProps>`
     display: flex;
     flex-wrap: nowrap;
-    padding: 24px 24px 12px;
+    padding: 24px 72px 12px;
+
+    ${({ isSidePanel }): SimpleInterpolation =>
+        isSidePanel &&
+        css`
+            padding: 24px 24px 12px;
+        `}
 `;
 
 interface ColumnProps {
