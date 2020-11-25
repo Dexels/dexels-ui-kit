@@ -63,7 +63,6 @@ export enum Elevation {
 // Since we don't want to include selection.json in our distribution bundle we came up with the following solution:
 // If the contents of selection.json ever change just run `npm run build:iconTypes` and replace the enum with
 // the output from the console.
-
 export enum IconType {
     ADJUSTMENT = 'ADJUSTMENT',
     ADVERTISEMENT = 'ADVERTISEMENT',
@@ -74,7 +73,6 @@ export enum IconType {
     AWARD = 'AWARD',
     BEACH = 'BEACH',
     BENCH = 'BENCH',
-    BOXINGGLOVE = 'BOXINGGLOVE',
     CABLE = 'CABLE',
     CALENDAR = 'CALENDAR',
     CALENDARACCEPT = 'CALENDARACCEPT',
@@ -229,6 +227,7 @@ export enum IconType {
     PUZZLEPIECE = 'PUZZLEPIECE',
     QUESTION = 'QUESTION',
     ROOF = 'ROOF',
+    ROUNDEURO_DASHED = 'ROUNDEURO_DASHED',
     ROUND_ALERT = 'ROUND_ALERT',
     ROUND_ARROWDOWN = 'ROUND_ARROWDOWN',
     ROUND_ARROWDOWN_DASHED = 'ROUND_ARROWDOWN_DASHED',
@@ -251,6 +250,7 @@ export enum IconType {
     ROUND_NONE = 'ROUND_NONE',
     ROUND_PAUSE = 'ROUND_PAUSE',
     ROUND_PAUSE_DASHED = 'ROUND_PAUSE_DASHED',
+    ROUND_PERSON = 'ROUND_PERSON',
     ROUND_PLUS = 'ROUND_PLUS',
     ROUND_PLUS_DASHED = 'ROUND_PLUS_DASHED',
     ROUND_STAR = 'ROUND_STAR',
