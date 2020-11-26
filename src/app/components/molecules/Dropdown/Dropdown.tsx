@@ -25,6 +25,7 @@ export interface DropdownProps {
     isValid?: boolean;
     label?: ReactNode;
     name: string;
+    noOptionsText?: string;
     onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
     onClick?: MouseEventHandler;
     options?: DropdownOption[];
@@ -46,6 +47,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
     isValid = false,
     label,
     name,
+    noOptionsText,
     onChange,
     onClick,
     options,
@@ -56,6 +58,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const placeholderText = options && options.length !== 0 ? placeholder : noOptionsText || placeholder;
 
     return (
         <>
@@ -86,14 +89,14 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     isDisabled={isDisabled}
                     isFocused={isFocused || isOpen}
                     isHovered={isHovered}
-                    isPlaceholderSelected={placeholder === value}
+                    isPlaceholderSelected={placeholder === value || !options || options.length === 0}
                     isValid={isValid}
                     name={name}
                     onBlur={(): void => {
                         setIsFocused(false);
                     }}
                     onChange={onChange}
-                    onClick={onClick}
+                    onClick={options && options.length !== 0 ? onClick : undefined}
                     onFocus={(): void => {
                         setIsFocused(true);
                     }}
@@ -107,13 +110,21 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     value={value}
                     variant={variant}
                 >
-                    {as === 'select' && placeholder && (
-                        <option disabled hidden value={placeholder}>
-                            {placeholder}
-                        </option>
+                    {as === 'select' && placeholderText && (
+                        <>
+                            <option disabled hidden value={placeholderText}>
+                                {placeholderText}
+                            </option>
+                            {(!options || options.length === 0) && (
+                                <option key={'dummy'} value={placeholderText}>
+                                    {placeholderText}
+                                </option>
+                            )}
+                        </>
                     )}
 
                     {options &&
+                        options.length !== 0 &&
                         options.map((option) => (
                             <option key={`option-${option.value}`} value={option.value}>
                                 {option.label}

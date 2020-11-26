@@ -95,3 +95,21 @@ export const ConfigurableOutlineVariant: FunctionComponent = () => {
         </>
     );
 };
+
+export const ConfigurableEmptyOptions: FunctionComponent = () => {
+    return (
+        <Dropdown
+            errorMessage={text('Error message', 'Everything is broken, oops')}
+            hasError={boolean('Has error', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isValid={boolean('Is valid', false)}
+            name="the-best-empty-fruit"
+            noOptionsText={text('No options text', 'No options')}
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            onChange={(): void => {}}
+            options={[]}
+            placeholder={text('Placeholder', 'Something here')}
+            value={''}
+        />
+    );
+};
