@@ -119,6 +119,7 @@ export { Overlay, OverlayProps } from '../app/components/molecules/Overlay/Overl
 export { PanelHeader, PanelHeaderProps } from '../app/components/molecules/PanelHeader/PanelHeader';
 export { PanelStatus, PanelStatusProps } from '../app/components/molecules/PanelStatus/PanelStatus';
 export { ProgressBar } from '../app/components/molecules/ProgressBar/ProgressBar';
+export { ScorePicker, ScorePickerProps } from '../app/components/molecules/ScorePicker/ScorePicker';
 export {
     SelectionControl,
     SelectionControlProps,
@@ -130,6 +131,7 @@ export {
     TextWithOptionalIcon,
     TextWithOptionalIconProps,
 } from '../app/components/molecules/TextWithOptionalIcon/TextWithOptionalIcon';
+export { TimePicker, TimePickerProps } from '../app/components/molecules/TimePicker/TimePicker';
 export { Tooltip, TooltipProps } from '../app/components/molecules/Tooltip/Tooltip';
 
 // Export organisms
@@ -163,6 +165,12 @@ export {
     FileUploaderStatus,
 } from '../app/components/organisms/FileUploader';
 export { FileUploadDialog, FileUploadDialogProps } from '../app/components/organisms/FileUploadDialog/FileUploadDialog';
+export {
+    AmountOfColumns,
+    InformationTable,
+    InformationTableData,
+    InformationTableProps,
+} from '../app/components/organisms/InformationTable';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';
 export { InputCurrency, InputCurrencyProps } from '../app/components/organisms/InputCurrency/InputCurrency';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
