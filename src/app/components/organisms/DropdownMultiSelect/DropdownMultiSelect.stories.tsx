@@ -79,6 +79,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 maxHeight={number('Max height', 400)}
                 minHeight={50}
                 name="the-best-fruit"
+                noOptionsText={text('No options text', 'No options')}
                 onCancel={action('On cancel')}
                 onChange={action('On change')}
                 onConfirm={onConfirmCallback}
@@ -126,3 +127,10 @@ export const ConfigurableDropdownOpensAbove: FunctionComponent = () =>
         'What are the best fruits?',
         '300px'
     );
+
+export const ConfigurableEmptyOptions: FunctionComponent = () => (
+    <>
+        <p>{'What is the best fruit?'}</p>
+        {BaseComponent(selectOptionsExtend([], 'Description', 'Id', 'IsSelected'), DropdownVariant.OUTLINE)}
+    </>
+);
