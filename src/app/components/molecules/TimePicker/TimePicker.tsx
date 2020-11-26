@@ -4,7 +4,7 @@ import { Dropdown } from '../Dropdown';
 
 export interface TimePickerProps {
     isDisabled?: boolean;
-    minuteStep: number;
+    minuteStep?: number;
     name: string;
     onChange: (name: string, time: TimePickerProps['value']) => void;
     value: [string, string];
