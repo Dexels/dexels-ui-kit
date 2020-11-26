@@ -4,12 +4,19 @@ import { Dropdown } from '../Dropdown';
 
 export interface TimePickerProps {
     isDisabled?: boolean;
+    minuteStep?: number;
     name: string;
     onChange: (name: string, time: TimePickerProps['value']) => void;
     value: [string, string];
 }
 
-export const TimePicker: FunctionComponent<TimePickerProps> = ({ isDisabled, name, onChange, value }) => {
+export const TimePicker: FunctionComponent<TimePickerProps> = ({
+    isDisabled,
+    minuteStep = 5,
+    name,
+    onChange,
+    value,
+}) => {
     const hours = useMemo(
         () =>
             Array.from(Array(24).keys()).map((key) => {
@@ -25,7 +32,7 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({ isDisabled, nam
     const minutes = useMemo(
         () =>
             Array.from(Array(12).keys()).map((key) => {
-                const minute = key * 5;
+                const minute = key * minuteStep;
 
                 if (minute < 10) {
                     return `0${minute}`;
@@ -33,7 +40,7 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({ isDisabled, nam
 
                 return minute.toString();
             }),
-        []
+        [minuteStep]
     );
 
     return (
