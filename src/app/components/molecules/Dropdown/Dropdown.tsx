@@ -87,6 +87,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     as={as}
                     hasError={hasError}
                     isDisabled={isDisabled}
+                    isEmpty={!options || options.length === 0}
                     isFocused={isFocused || isOpen}
                     isHovered={isHovered}
                     isPlaceholderSelected={placeholder === value || !options || options.length === 0}
