@@ -1,4 +1,4 @@
-import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
 import PanelHeader, { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
 import React, { FunctionComponent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import Button from '../../molecules/Button/Button';
@@ -19,6 +19,7 @@ export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 
     onEdit: () => void;
     onSave: () => void;
     saveConfirmDialog?: ConfirmDialog;
+    status?: Status;
     textCancel: string;
     textEdit: string;
     textSave: string;
@@ -38,6 +39,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     onEdit,
     onSave,
     saveConfirmDialog,
+    status,
     textCancel,
     textEdit,
     textSave,
@@ -116,6 +118,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
             <PanelHeader
                 hasCapitalizedTitle={hasCapitalizedTitle}
                 hasMarginBottom
+                hasTitleStatusAppearance
                 iconType={iconType}
                 options={
                     isBeingEdited ? (
@@ -153,6 +156,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         </Button>
                     )
                 }
+                status={status}
                 title={title}
             />
             {children}
