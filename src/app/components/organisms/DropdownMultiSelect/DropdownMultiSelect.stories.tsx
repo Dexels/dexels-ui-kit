@@ -131,6 +131,6 @@ export const ConfigurableDropdownOpensAbove: FunctionComponent = () =>
 export const ConfigurableEmptyOptions: FunctionComponent = () => (
     <>
         <p>{'What is the best fruit?'}</p>
-        {BaseComponent(selectOptionsExtend([], 'Description', 'Id', 'IsSelected'), DropdownVariant.OUTLINE)}
+        {BaseComponent([], DropdownVariant.OUTLINE)}
     </>
 );

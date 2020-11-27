@@ -40,7 +40,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     maxHeight?: number;
     minHeight?: number;
     name: string;
-    noOptionsText?: string;
+    noOptionsText?: ReactNode;
     onCancel?: MouseEventHandler;
     onChange?: (options: T[]) => void;
     onClick?: MouseEventHandler;
@@ -69,7 +69,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     maxHeight,
     minHeight,
     name,
-    noOptionsText = '',
+    noOptionsText,
     onCancel,
     onClick,
     onConfirm,
@@ -311,12 +311,8 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                     value={selectedOptionsText}
                     variant={variant}
                 >
-                    {/* eslint-disable-next-line no-nested-ternary */}
-                    {!hasOptions
-                        ? noOptionsText
-                        : isAllSelected
-                        ? allSelectedLabel
-                        : selectedOptionsText || placeholder}
+                    {!hasOptions && noOptionsText}
+                    {hasOptions && (isAllSelected ? allSelectedLabel : selectedOptionsText || placeholder)}
                 </Dropdown>
             </DropdownWrapper>
 
