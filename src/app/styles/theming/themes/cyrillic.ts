@@ -30,8 +30,6 @@ export const themeCyrillic = {
 };
 /* eslint-enable */
 
-export default themeCyrillic;
-
 themeCyrillic.colorDisabled = themeCyrillic.shades.seven;
 
 themeCyrillic.colorTextContrast = {
@@ -222,3 +220,5 @@ themeCyrillic.textStyles.h3 = {
     fontWeight: '600',
     lineHeight: '24px',
 };
+
+export default themeCyrillic;

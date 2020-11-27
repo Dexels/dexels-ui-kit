@@ -11,7 +11,7 @@ import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
-import { themeCyrillic } from '../app/styles/theming/themes/cyrillicfont';
+import { themeCyrillic } from '../app/styles/theming/themes/cyrillic';
 import { themeDark } from '../app/styles/theming/themes/dark';
 import { withInfo } from '@storybook/addon-info';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
