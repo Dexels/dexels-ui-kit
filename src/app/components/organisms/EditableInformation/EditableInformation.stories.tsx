@@ -26,6 +26,27 @@ export const Configurable: FunctionComponent = () => {
     );
 };
 
+export const ConfigurableInformationNotEditable: FunctionComponent = () => {
+    return (
+        <EditableInformation
+            amountOfColumns={select('Columns', [1, 2, 3], 2)}
+            data={editableInformationData().map((element) => ({
+                ...element,
+                isEditable: false,
+            }))}
+            iconType={select('Icon Type', IconType, IconType.CALENDAR)}
+            isLoading={boolean('Is loading', false)}
+            onCancel={action('onCancel')}
+            onEdit={action('onEdit')}
+            onSave={action('onSave')}
+            textCancel={text('Text Cancel', 'Cancel')}
+            textEdit={text('Text Edit', 'Edit')}
+            textSave={text('Text Save', 'Save')}
+            title={text('Title', 'Information')}
+        />
+    );
+};
+
 export const ConfigurableLoading: FunctionComponent = () => {
     return (
         <EditableInformation

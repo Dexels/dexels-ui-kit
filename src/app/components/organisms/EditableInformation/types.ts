@@ -1,5 +1,5 @@
-import { DropdownOption, DropdownProps } from '../../molecules/Dropdown';
-import { DropdownSelectProps } from '../DropdownSelect/DropdownSelect';
+import { DropdownSelectOption, DropdownSelectProps } from '../DropdownSelect/DropdownSelect';
+import { DropdownProps } from '../../molecules/Dropdown';
 import { InputProps } from '../../molecules/Input/Input';
 import { ReactNode } from 'react';
 import { ScorePickerProps } from '../../molecules/ScorePicker/ScorePicker';
@@ -48,21 +48,34 @@ export interface EditableDropdownDataProps extends DropdownDataProps {
     options: DropdownProps['options'];
 }
 
-export interface DropdownSelectDataProps<T extends DropdownOption> extends BaseDataProps {
+export interface DropdownSelectDataProps<T extends DropdownSelectOption> extends BaseDataProps {
     component: 'DropdownSelect';
     value: DropdownSelectProps<T>['value'];
 }
 
-export interface EditableDropdownSelectDataProps<T extends DropdownOption> extends DropdownSelectDataProps<T> {
+export interface EditableDropdownSelectDataProps<T extends DropdownSelectOption> extends DropdownSelectDataProps<T> {
     defaultValue?: string;
-    footerText: ReactNode;
+    footerText: DropdownSelectProps<T>['footerText'];
     iconType: DropdownSelectProps<T>['iconType'];
     name: DropdownSelectProps<T>['name'];
     nameId: string;
     noResultsMessage: DropdownSelectProps<T>['noResultsMessage'];
+    optionLabel: string;
     options: DropdownSelectProps<T>['options'];
     type: string;
     valueId: string;
+}
+
+export interface InputNumberDataProps extends BaseDataProps {
+    component: 'InputNumber';
+    value: number;
+}
+
+export interface EditableInputNumberDataProps extends InputNumberDataProps {
+    max?: InputProps['max'];
+    min?: InputProps['min'];
+    name: InputProps['name'];
+    placeholder?: InputProps['label'];
 }
 
 export interface InputDataProps extends BaseDataProps {
@@ -72,7 +85,6 @@ export interface InputDataProps extends BaseDataProps {
 
 export interface EditableInputDataProps extends InputDataProps {
     maxLength?: InputProps['maxLength'];
-    min?: InputProps['min'];
     name: InputProps['name'];
     placeholder?: InputProps['label'];
     type?: InputProps['type'];
@@ -108,7 +120,7 @@ export interface EditableTextareaDataProps extends TextareaDataProps {
     placeholder?: InputProps['label'];
 }
 
-export type DataType<T extends DropdownOption> =
+export type DataType<T extends DropdownSelectOption> =
     | CheckboxDataProps
     | DatePickerDataProps
     | DropdownDataProps
@@ -118,32 +130,36 @@ export type DataType<T extends DropdownOption> =
     | EditableDropdownDataProps
     | EditableDropdownSelectDataProps<T>
     | EditableInputDataProps
+    | EditableInputNumberDataProps
     | EditableTimePickerDataProps
     | EditableScorePickerDataProps
     | EditableTextareaDataProps
     | InputDataProps
+    | InputNumberDataProps
     | ScorePickerDataProps
     | TextareaDataProps
     | TimePickerDataProps;
 
-export type Data<T extends DropdownOption> = Array<DataType<T>>;
+export type Data<T extends DropdownSelectOption> = Array<DataType<T>>;
 
-export type ComponentTypes<T extends DropdownOption> =
+export type ComponentTypes<T extends DropdownSelectOption> =
     | CheckboxDataProps['component']
     | DatePickerDataProps['component']
     | DropdownDataProps['component']
     | DropdownSelectDataProps<T>['component']
     | InputDataProps['component']
+    | InputNumberDataProps['component']
     | ScorePickerDataProps['component']
     | TextareaDataProps['component']
     | TimePickerDataProps['component'];
 
-export type ValueTypes<T extends DropdownOption> =
+export type ValueTypes<T extends DropdownSelectOption> =
     | EditableCheckboxDataProps['value']
     | EditableDatePickerDataProps['value']
     | EditableDropdownDataProps['value']
     | EditableDropdownSelectDataProps<T>['value']
     | EditableInputDataProps['value']
+    | EditableInputNumberDataProps['value']
     | EditableScorePickerDataProps['value']
     | EditableTextareaDataProps['value']
     | EditableTimePickerDataProps['value'];

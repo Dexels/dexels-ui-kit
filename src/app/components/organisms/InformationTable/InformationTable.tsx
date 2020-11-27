@@ -21,8 +21,6 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
     data = [],
     isSidePanel = false,
 }) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
     const amountOfRowsPerColumn = Math.ceil(data.length / amountOfColumns);
 
     const columnArray =

@@ -1,21 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Data, DatePickerFocuses } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
-import { generateValuesArray, getStatus, isEditableData } from './utils/editableInformationFunctions';
+import { getStatus, getValue, isEditableData } from './utils/informationDataFunctions';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
-import { DropdownOption } from '../../molecules/Dropdown';
+import { ConfirmDialog } from '../EditablePanel';
+import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
 import { EditablePanel } from '../EditablePanel/EditablePanel';
+import { generateValuesArray } from './utils/generateValuesArray';
 import { IconType } from '../../../types';
 import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
 
-export interface EditableInformationProps<T extends DropdownOption>
+export interface EditableInformationProps<T extends DropdownSelectOption>
     extends Omit<PanelHeaderProps, 'children' | 'options'> {
     amountOfColumns?: InformationTableProps['amountOfColumns'];
+    cancelConfirmDialog?: ConfirmDialog;
     data: Data<T>;
     dateFormat?: string;
     errors?: ReactNode;
+    iconCancel?: IconType;
+    iconEdit?: IconType;
+    iconSave?: IconType;
     iconType: IconType;
     isBeingSaved?: boolean;
     isDisabled?: boolean;
@@ -24,16 +30,21 @@ export interface EditableInformationProps<T extends DropdownOption>
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
     onSave?: (data: unknown) => void;
+    saveConfirmDialog?: ConfirmDialog;
     textCancel: string;
     textEdit: string;
     textSave: string;
 }
 
-export const EditableInformation = <T extends DropdownOption>({
+export const EditableInformation = <T extends DropdownSelectOption>({
     amountOfColumns,
     data,
     dateFormat = 'dd. D MMM YYYY',
+    cancelConfirmDialog,
     errors,
+    iconCancel,
+    iconEdit,
+    iconSave,
     iconType,
     isDisabled = false,
     isLoading = false,
@@ -41,6 +52,7 @@ export const EditableInformation = <T extends DropdownOption>({
     onChange,
     onEdit,
     onSave,
+    saveConfirmDialog,
     textCancel,
     textEdit,
     textSave,
@@ -52,8 +64,8 @@ export const EditableInformation = <T extends DropdownOption>({
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
     const [isBeingEdited, setIsBeingEdited] = useState(false);
     const [isEditable, setIsEditable] = useState<boolean>(false);
-    const [originalValues, setOriginalValues] = useState<EditableDataProps<DropdownOption>['values']>({});
-    const [updatedValues, setUpdatedValues] = useState<EditableDataProps<DropdownOption>['values']>({});
+    const [originalValues, setOriginalValues] = useState<EditableDataProps<DropdownSelectOption>['values']>({});
+    const [updatedValues, setUpdatedValues] = useState<EditableDataProps<DropdownSelectOption>['values']>({});
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(!isBeingEdited);
@@ -80,9 +92,6 @@ export const EditableInformation = <T extends DropdownOption>({
 
     const onChangeCallback = useCallback(
         (name, value) => {
-            // eslint-disable-next-line no-console
-            console.log('[onChangeCallback]', name, value);
-
             const newValues = {
                 ...updatedValues,
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -96,6 +105,34 @@ export const EditableInformation = <T extends DropdownOption>({
             }
         },
         [onChange, updatedValues]
+    );
+
+    const onDatePickerFocusChangeCallback = useCallback(
+        (name, focused) => {
+            setDatePickerFocuses({
+                ...datePickerFocuses,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                [name]: focused,
+            });
+        },
+        [datePickerFocuses]
+    );
+
+    const onDropdownSelectChangeCallback = useCallback(
+        (option: T, name: string, propertyNameOfId: string): void => {
+            const newValues = {
+                ...updatedValues,
+                [name]: option.label,
+                [propertyNameOfId]: option.value,
+            };
+
+            setUpdatedValues(newValues);
+
+            if (onChange) {
+                onChange(newValues);
+            }
+        },
+        [updatedValues]
     );
 
     useEffect(() => {
@@ -128,9 +165,9 @@ export const EditableInformation = <T extends DropdownOption>({
     useEffect(() => {
         if (!isBeingEdited || isLoading || !isEditable) {
             setInformationTableData(
-                data.map(({ label, value }) => ({
-                    label,
-                    value,
+                data.map((element) => ({
+                    label: element.label,
+                    value: getValue(element, dateFormat),
                 }))
             );
         } else if (isBeingEdited && Object.keys(updatedValues).length > 0) {
@@ -140,19 +177,37 @@ export const EditableInformation = <T extends DropdownOption>({
                 datePickerFocuses,
                 isBeingEdited,
                 onChange: onChangeCallback,
+                onDatePickerFocusChange: onDatePickerFocusChangeCallback,
+                onDropdownSelectChange: onDropdownSelectChangeCallback,
                 values: updatedValues,
             }) as InformationTableData[];
 
             setInformationTableData(newData);
         }
-    }, [data, isEditable, isBeingEdited, isLoading, updatedValues]);
+    }, [
+        data,
+        dateFormat,
+        datePickerFocuses,
+        isBeingEdited,
+        isEditable,
+        isLoading,
+        updatedValues,
+        onChangeCallback,
+        onDatePickerFocusChangeCallback,
+    ]);
 
     return (
         <EditablePanel
+            cancelConfirmDialog={cancelConfirmDialog}
+            iconCancel={iconCancel}
+            iconEdit={iconEdit}
+            iconSave={iconSave}
             iconType={iconType}
+            isDisabled={!isEditable}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}
+            saveConfirmDialog={saveConfirmDialog}
             status={getStatus(hasError, isDisabled)}
             textCancel={textCancel}
             textEdit={textEdit}
