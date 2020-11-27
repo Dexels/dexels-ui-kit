@@ -1,6 +1,6 @@
 import '../app/styles/fonts/cuprum/cuprum.css';
 import '../app/styles/fonts/exo2/exo2.css';
-import '../app/styles/fonts/firasansextracondensed/firasansextracondensed.css';
+import '../app/styles/fonts/firasans/firasans.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
 import '../app/styles/global.css';

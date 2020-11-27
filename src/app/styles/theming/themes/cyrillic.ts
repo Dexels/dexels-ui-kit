@@ -2,9 +2,9 @@ import { createDuiTheme } from '../createDuiTheme';
 import { themeBasic } from './basic';
 
 /* eslint-disable sort-keys */
-const themeTemp = createDuiTheme(themeBasic, {
+export const themeCyrillic = createDuiTheme(themeBasic, {
     shades: {
-        one: '#002451',
+        one: '#647B96',
         two: '#324F73',
         three: '#647B96',
         four: '#96A5B8',
@@ -22,12 +22,8 @@ const themeTemp = createDuiTheme(themeBasic, {
     colorValid: '#2DD67B',
     spacingValue: 8,
     fontFamilyPrimary: 'Cuprum, Arial, sans-serif',
-    fontFamilySecondary: "'Fira Sans Extra Condensed', Arial, sans-serif",
+    fontFamilySecondary: "'Fira Sans', Arial, sans-serif",
 });
-
-export const themeCyrillic = {
-    ...themeTemp,
-};
 /* eslint-enable */
 
 themeCyrillic.colorDisabled = themeCyrillic.shades.seven;
@@ -156,69 +152,6 @@ themeCyrillic.table = {
         backgroundColorEven: themeCyrillic.hover.backgroundColor,
         backgroundColorOdd: themeCyrillic.shades.nine,
     },
-};
-
-themeCyrillic.textStyles.body1 = {
-    fontFamily: themeCyrillic.fontFamilyPrimary,
-    fontSize: '16px',
-    fontWeight: '400',
-    lineHeight: '22px',
-};
-
-themeCyrillic.textStyles.body2 = {
-    fontFamily: themeCyrillic.fontFamilyPrimary,
-    fontSize: '14px',
-    fontWeight: '400',
-    lineHeight: '18px',
-};
-
-themeCyrillic.textStyles.buttonLarge = {
-    fontFamily: themeCyrillic.fontFamilySecondary,
-    fontSize: '16px',
-    fontWeight: '600',
-    lineHeight: '22px',
-};
-
-themeCyrillic.textStyles.buttonMedium = {
-    fontFamily: themeCyrillic.fontFamilySecondary,
-    fontSize: '14px',
-    fontWeight: '600',
-    lineHeight: '22px',
-};
-
-themeCyrillic.textStyles.buttonSmall = {
-    fontFamily: themeCyrillic.fontFamilySecondary,
-    fontSize: '14px',
-    fontWeight: '600',
-    lineHeight: '22px',
-};
-
-themeCyrillic.textStyles.caption = {
-    fontFamily: themeCyrillic.fontFamilyPrimary,
-    fontSize: '12px',
-    fontWeight: '400',
-    lineHeight: '16px',
-};
-
-themeCyrillic.textStyles.h1 = {
-    fontFamily: themeCyrillic.fontFamilySecondary,
-    fontSize: '24px',
-    fontWeight: '500',
-    lineHeight: '34px',
-};
-
-themeCyrillic.textStyles.h2 = {
-    fontFamily: themeCyrillic.fontFamilySecondary,
-    fontSize: '20px',
-    fontWeight: '500',
-    lineHeight: '28px',
-};
-
-themeCyrillic.textStyles.h3 = {
-    fontFamily: themeCyrillic.fontFamilySecondary,
-    fontSize: '16px',
-    fontWeight: '600',
-    lineHeight: '24px',
 };
 
 export default themeCyrillic;
