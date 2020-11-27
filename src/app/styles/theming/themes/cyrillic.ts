@@ -1,8 +1,9 @@
 import { createDuiTheme } from '../createDuiTheme';
+import { Theme } from '../../../types';
 import { themeBasic } from './basic';
 
 /* eslint-disable sort-keys */
-export const themeCyrillic = createDuiTheme(themeBasic, {
+export const themeCyrillic: Theme = createDuiTheme(themeBasic, {
     shades: {
         one: '#647B96',
         two: '#324F73',
