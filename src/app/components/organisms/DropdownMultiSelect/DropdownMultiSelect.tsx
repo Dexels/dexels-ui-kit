@@ -40,6 +40,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     maxHeight?: number;
     minHeight?: number;
     name: string;
+    noOptionsText?: ReactNode;
     onCancel?: MouseEventHandler;
     onChange?: (options: T[]) => void;
     onClick?: MouseEventHandler;
@@ -68,6 +69,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     maxHeight,
     minHeight,
     name,
+    noOptionsText,
     onCancel,
     onClick,
     onConfirm,
@@ -83,6 +85,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     const dialogFooterRef = useRef<HTMLDivElement>(null);
     const dropdownMultiSelectRef = useRef<HTMLDivElement>(null);
     const footerButtons: DialogFooterProps['buttons'] = [];
+    const hasOptions = options.length !== 0;
     const [inputHeight, setInputHeight] = useState(0);
     const inputRef = useRef<HTMLDivElement>(null);
     const [isAllSelected, setIsAllSelected] = useState(false);
@@ -301,14 +304,15 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                     isValid={isValid}
                     label={label}
                     name={name}
-                    onClick={onClickCallback}
+                    onClick={hasOptions ? onClickCallback : undefined}
                     onMouseEnter={onMouseEnterCallback}
                     onMouseLeave={onMouseLeaveCallback}
                     placeholder={placeholder}
                     value={selectedOptionsText}
                     variant={variant}
                 >
-                    {isAllSelected ? allSelectedLabel : selectedOptionsText || placeholder}
+                    {!hasOptions && noOptionsText}
+                    {hasOptions && (isAllSelected ? allSelectedLabel : selectedOptionsText || placeholder)}
                 </Dropdown>
             </DropdownWrapper>
 

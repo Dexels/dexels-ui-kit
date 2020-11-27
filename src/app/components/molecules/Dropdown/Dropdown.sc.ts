@@ -52,6 +52,7 @@ StyledDropdown.defaultProps = {
 };
 
 interface SelectProps extends StyledDropdownProps {
+    isEmpty: boolean;
     isHovered: boolean;
     isPlaceholderSelected: boolean;
     variant: DropdownVariant;
@@ -120,6 +121,12 @@ export const Select = styled.select<SelectProps>`
         css`
             border-color: ${theme.colorDisabled};
             color: ${theme.colorDisabled};
+            pointer-events: none;
+        `}
+
+    ${({ isEmpty }): SimpleInterpolation =>
+        isEmpty &&
+        css`
             pointer-events: none;
         `}
 `;
