@@ -22,7 +22,7 @@ export const themeCyrillic = createDuiTheme(themeBasic, {
     colorValid: '#2DD67B',
     spacingValue: 8,
     fontFamilyPrimary: 'Cuprum, Arial, sans-serif',
-    fontFamilySecondary: "'Fira Sans', Arial, sans-serif",
+    fontFamilySecondary: "'Fira Sans Condensed', Arial, sans-serif",
 });
 /* eslint-enable */
 
