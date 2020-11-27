@@ -56,9 +56,10 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
     variant = DropdownVariant.COMPACT,
     ...rest
 }) => {
+    const [isEmpty] = useState(options && options.length === 0);
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const placeholderText = options && options.length !== 0 ? placeholder : noOptionsText || placeholder;
+    const placeholderText = !isEmpty ? placeholder : noOptionsText || placeholder;
 
     return (
         <>
@@ -87,10 +88,10 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     as={as}
                     hasError={hasError}
                     isDisabled={isDisabled}
-                    isEmpty={!options || options.length === 0}
+                    isEmpty={isEmpty}
                     isFocused={isFocused || isOpen}
                     isHovered={isHovered}
-                    isPlaceholderSelected={placeholder === value || !options || options.length === 0}
+                    isPlaceholderSelected={placeholder === value || isEmpty}
                     isValid={isValid}
                     name={name}
                     onBlur={(): void => {
@@ -116,7 +117,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                             <option disabled hidden value={placeholderText}>
                                 {placeholderText}
                             </option>
-                            {(!options || options.length === 0) && (
+                            {isEmpty && (
                                 <option key={'dummy'} value={placeholderText}>
                                     {placeholderText}
                                 </option>
@@ -125,7 +126,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     )}
 
                     {options &&
-                        options.length !== 0 &&
+                        !isEmpty &&
                         options.map((option) => (
                             <option key={`option-${option.value}`} value={option.value}>
                                 {option.label}
