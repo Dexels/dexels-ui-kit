@@ -98,7 +98,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                         setIsFocused(false);
                     }}
                     onChange={onChange}
-                    onClick={options && options.length !== 0 ? onClick : undefined}
+                    onClick={!isEmpty ? onClick : undefined}
                     onFocus={(): void => {
                         setIsFocused(true);
                     }}
