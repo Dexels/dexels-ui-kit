@@ -11,47 +11,43 @@ import {
     TimePickerDataProps,
 } from '../types';
 import { IconCustomizable, IconCustomizableSize } from '../../../molecules/IconCustomizable';
-import React, { ReactNode } from 'react';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { IconType } from '../../../../types';
 import moment from 'moment';
-import { selectOptionsFacade } from '../../../../utils/functions/arrayObjectFunctions';
+import React from 'react';
 
-interface Fruit {
-    Adornment: ReactNode;
-    Id: number;
-    IsSelected: boolean;
-    Name: string;
+interface Fruit extends DropdownSelectOption {
+    isSelected: boolean;
 }
 
 const fruits: Fruit[] = [
     {
-        Adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
-        Id: 1,
-        IsSelected: true,
-        Name: 'Banana',
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
+        isSelected: true,
+        label: 'Banana',
+        value: 1,
     },
     {
-        Adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER09} />,
-        Id: 2,
-        IsSelected: false,
-        Name: 'Apple',
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER09} />,
+        isSelected: false,
+        label: 'Apple',
+        value: 2,
     },
     {
-        Adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
-        Id: 3,
-        IsSelected: false,
-        Name: 'Pear',
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
+        isSelected: false,
+        label: 'Pear',
+        value: 3,
     },
     {
-        Adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER12} />,
-        Id: 4,
-        IsSelected: false,
-        Name: 'Mango',
+        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER12} />,
+        isSelected: false,
+        label: 'Peach',
+        value: 4,
     },
 ];
 
-export const editableInformationData = <T extends DropdownSelectOption>(): Data<T> => {
+export const editableInformationData = <T extends Fruit>(): Data<T> => {
     const result: Data<T> = [];
 
     result.push({
@@ -108,7 +104,7 @@ export const editableInformationData = <T extends DropdownSelectOption>(): Data<
         isRequired: true,
         label: 'Dropdown',
         name: 'a-dropdown-name',
-        options: selectOptionsFacade(fruits, 'Name', 'Id'),
+        options: fruits,
         textValue: 'Banana',
         value: '1',
     } as EditableDropdownDataProps);
@@ -173,7 +169,7 @@ export const editableInformationData = <T extends DropdownSelectOption>(): Data<
         nameId: 'dropdown-select-publicId',
         noResultsMessage: 'no results',
         optionLabel: "Use '{{option}}' as chosen {{type}}",
-        options: selectOptionsFacade(fruits, 'Name', 'Id'),
+        options: fruits,
         type: 'fruit',
         value: 'Banana',
         valueId: '1',

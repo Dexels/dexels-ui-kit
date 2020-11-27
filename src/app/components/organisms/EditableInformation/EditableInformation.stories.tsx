@@ -50,7 +50,7 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () => {
 export const ConfigurableLoading: FunctionComponent = () => {
     return (
         <EditableInformation
-            amountOfColumns={2}
+            amountOfColumns={select('Columns', [1, 2, 3], 2)}
             data={Array(8).fill({
                 label: <Skeleton width="60%" />,
                 value: <Skeleton width="90%" />,
