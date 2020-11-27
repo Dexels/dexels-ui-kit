@@ -1,5 +1,13 @@
 import { ErrorMessageWrapper, IconWrapper, Select, StyledDropdown } from './Dropdown.sc';
-import React, { ChangeEvent, ComponentType, FunctionComponent, MouseEventHandler, ReactNode, useState } from 'react';
+import React, {
+    ChangeEvent,
+    ComponentType,
+    FunctionComponent,
+    MouseEventHandler,
+    ReactNode,
+    useMemo,
+    useState,
+} from 'react';
 import { DropdownVariant } from './types';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
@@ -56,9 +64,13 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
     variant = DropdownVariant.COMPACT,
     ...rest
 }) => {
-    const [isEmpty] = useState(options && options.length === 0);
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+
+    const isEmpty = useMemo(() => {
+        return options && options.length === 0;
+    }, [options]);
+
     const placeholderText = !isEmpty ? placeholder : noOptionsText || placeholder;
 
     return (
