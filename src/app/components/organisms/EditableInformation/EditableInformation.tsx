@@ -1,22 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Data, DatePickerFocuses } from './types';
+import { Data, DatePickerFocuses, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
 import { getStatus, getValue, isEditableData } from './utils/informationDataFunctions';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
+import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
 import { EditablePanel } from '../EditablePanel/EditablePanel';
 import { generateValuesArray } from './utils/generateValuesArray';
+
 import { IconType } from '../../../types';
 import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
 
-export interface EditableInformationProps<T extends DropdownSelectOption>
+export interface EditableInformationProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption>
     extends Omit<PanelHeaderProps, 'children' | 'options'> {
     amountOfColumns?: InformationTableProps['amountOfColumns'];
     cancelConfirmDialog?: ConfirmDialog;
-    data: Data<T>;
+    data: Data<T, U>;
     dateFormat?: string;
     errors?: ReactNode;
     iconCancel?: IconType;
@@ -29,14 +31,14 @@ export interface EditableInformationProps<T extends DropdownSelectOption>
     onCancel?: () => void;
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
-    onSave?: (data: unknown) => void;
+    onSave: (data: unknown) => void;
     saveConfirmDialog?: ConfirmDialog;
     textCancel: string;
     textEdit: string;
     textSave: string;
 }
 
-export const EditableInformation = <T extends DropdownSelectOption>({
+export const EditableInformation = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>({
     amountOfColumns,
     data,
     dateFormat = 'dd. D MMM YYYY',
@@ -57,15 +59,17 @@ export const EditableInformation = <T extends DropdownSelectOption>({
     textEdit,
     textSave,
     title,
-}: EditableInformationProps<T>): JSX.Element => {
+}: EditableInformationProps<T, U>): JSX.Element => {
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
 
     const hasError = errors !== undefined;
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
     const [isBeingEdited, setIsBeingEdited] = useState(false);
     const [isEditable, setIsEditable] = useState<boolean>(false);
-    const [originalValues, setOriginalValues] = useState<EditableDataProps<DropdownSelectOption>['values']>({});
-    const [updatedValues, setUpdatedValues] = useState<EditableDataProps<DropdownSelectOption>['values']>({});
+
+    const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
+
+    const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(!isBeingEdited);
@@ -91,10 +95,9 @@ export const EditableInformation = <T extends DropdownSelectOption>({
     }, [originalValues, onCancel]);
 
     const onChangeCallback = useCallback(
-        (name, value) => {
+        (name: string, value: ValueTypes<T, U>) => {
             const newValues = {
                 ...updatedValues,
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 [name]: value,
             };
 
@@ -108,10 +111,9 @@ export const EditableInformation = <T extends DropdownSelectOption>({
     );
 
     const onDatePickerFocusChangeCallback = useCallback(
-        (name, focused) => {
+        (name: string, focused: boolean) => {
             setDatePickerFocuses({
                 ...datePickerFocuses,
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 [name]: focused,
             });
         },

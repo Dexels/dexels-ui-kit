@@ -1,8 +1,10 @@
 import { CheckboxDataProps, Data, DataType, DropdownDataProps } from '../types';
+import { EditableDataComponent, Status } from '../../../../types';
+import { DropdownMultiSelectOption } from '../../../../../lib';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
+import { getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
 import moment from 'moment';
 import { ReactNode } from 'react';
-import { Status } from '../../../../types';
 
 export const getStatus = (hasError: boolean, isDisabled: boolean, isLoading?: boolean): Status => {
     if (hasError) {
@@ -16,11 +18,14 @@ export const getStatus = (hasError: boolean, isDisabled: boolean, isLoading?: bo
     return Status.DEFAULT;
 };
 
-export const getValue = <T extends DropdownSelectOption>(element: DataType<T>, dateFormat: string): ReactNode => {
+export const getValue = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
+    element: DataType<T, U>,
+    dateFormat: string
+): ReactNode => {
     const { component, value } = element;
 
     const textValue =
-        component === 'Dropdown' || component === 'Checkbox'
+        component === EditableDataComponent.DROPDOWN || component === EditableDataComponent.CHECKBOX
             ? (element as DropdownDataProps | CheckboxDataProps).textValue
             : undefined;
 
@@ -29,16 +34,20 @@ export const getValue = <T extends DropdownSelectOption>(element: DataType<T>, d
         return '-';
     }
 
-    if (component === 'DatePicker' && moment.isMoment(value)) {
+    if (component === EditableDataComponent.DROPDOWNMULTISELECT && Array.isArray(value)) {
+        return getSelectedText(value as U[], 'label');
+    }
+
+    if (component === EditableDataComponent.DATEPICKER && moment.isMoment(value)) {
         return value.format(dateFormat);
     }
 
-    if (component === 'ScorePicker' && Array.isArray(value)) {
-        return `${value[0]} - ${value[1]}`;
+    if (component === EditableDataComponent.SCOREPICKER && Array.isArray(value)) {
+        return `${value[0] as string} - ${value[1] as string}`;
     }
 
-    if (component === 'TimePicker' && Array.isArray(value)) {
-        return value[0] && value[1] ? `${value[0]}:${value[1]}` : '-';
+    if (component === EditableDataComponent.TIMEPICKER && Array.isArray(value)) {
+        return value[0] && value[1] ? `${value[0] as string}:${value[1] as string}` : '-';
     }
 
     return textValue || value;
@@ -47,9 +56,11 @@ export const getValue = <T extends DropdownSelectOption>(element: DataType<T>, d
 export const generateDropdownSelectOptionLabel = (selectOptionText: string, option: string, type: string): string =>
     selectOptionText.replace(`{{option}}`, option).replace(`{{type}}`, type);
 
-export const isEditableData = <T extends DropdownSelectOption>(data: Data<T>): boolean =>
+export const isEditableData = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
+    data: Data<T, U>
+): boolean =>
     data.some(
-        (dataInstance: DataType<T>) =>
+        (dataInstance: DataType<T, U>) =>
             typeof dataInstance === 'object' &&
             dataInstance !== null &&
             'component' in dataInstance &&

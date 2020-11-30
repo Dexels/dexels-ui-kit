@@ -274,7 +274,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     );
 
     // Set the dialog footer buttons
-    if (onCancel && buttonCancelText) {
+    if (buttonCancelText) {
         footerButtons.push({
             children: buttonCancelText,
             iconType: IconType.CROSS,

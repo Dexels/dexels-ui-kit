@@ -4,19 +4,24 @@ import {
     DatePickerDataProps,
     EditableDatePickerDataProps,
     EditableDropdownDataProps,
+    EditableDropdownMultiSelectDataProps,
     EditableDropdownSelectDataProps,
+    EditableInputCurrencyDataProps,
     EditableInputDataProps,
     EditableInputNumberDataProps,
+    EditableScorePickerDataProps,
+    EditableTextareaDataProps,
     EditableTimePickerDataProps,
     TimePickerDataProps,
 } from '../types';
+import { EditableDataComponent, IconType, Locale } from '../../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../../molecules/IconCustomizable';
+import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
-import { IconType } from '../../../../types';
 import moment from 'moment';
 import React from 'react';
 
-interface Fruit extends DropdownSelectOption {
+interface Fruit extends DropdownSelectOption, DropdownMultiSelectOption {
     isSelected: boolean;
 }
 
@@ -47,126 +52,154 @@ const fruits: Fruit[] = [
     },
 ];
 
-export const editableInformationData = <T extends Fruit>(): Data<T> => {
-    const result: Data<T> = [];
+export const editableInformationData = <T extends Fruit, U extends Fruit>(): Data<T, U> => {
+    const result: Data<T, U> = [];
 
     result.push({
-        component: 'DatePicker',
+        component: EditableDataComponent.DATEPICKER,
         isEditable: false,
-        label: 'Date 1',
-        name: 'a-date-name',
+        label: 'Date',
+        name: 'Date',
         value: moment(),
     } as DatePickerDataProps);
 
     result.push({
-        component: 'TimePicker',
+        component: EditableDataComponent.TIMEPICKER,
         isEditable: false,
-        label: 'Time 2',
-        name: 'a-time-name',
+        label: 'Time',
+        name: 'Time',
         value: ['10', '00'],
     } as TimePickerDataProps);
 
     result.push({
-        component: 'Checkbox',
+        component: EditableDataComponent.CHECKBOX,
         isEditable: false,
         label: 'Checkbox 1',
-        name: 'a-checkbox-name',
+        name: 'Checkbox',
         textValue: 'Yes',
         value: true,
     } as CheckboxDataProps);
 
     result.push({
-        component: 'InputNumber',
+        component: EditableDataComponent.INPUTNUMBER,
         isDisabled: false,
         isEditable: false,
         isRequired: true,
         label: 'Number',
         min: 0,
-        name: 'a-nubmer-name',
+        name: 'Number',
         value: 0,
     } as EditableInputNumberDataProps);
 
     result.push({
-        component: 'Input',
+        component: EditableDataComponent.INPUT,
         isDisabled: false,
         isEditable: false,
         isRequired: true,
         label: 'Input (not editable)',
         maxLength: 20,
-        name: 'a-input-name',
+        name: 'Input',
         value: 'Apple',
     } as EditableInputDataProps);
 
     result.push({
-        component: 'Dropdown',
+        component: EditableDataComponent.DROPDOWN,
         isDisabled: false,
         isEditable: true,
         isRequired: true,
         label: 'Dropdown',
-        name: 'a-dropdown-name',
+        name: 'Dropdown',
         options: fruits,
         textValue: 'Banana',
         value: '1',
     } as EditableDropdownDataProps);
 
     result.push({
-        component: 'DatePicker',
+        component: EditableDataComponent.SCOREPICKER,
+        isEditable: false,
+        label: 'Score',
+        name: 'Score',
+        placeholder: ['home', 'away'],
+        value: ['2', '0'],
+    } as EditableScorePickerDataProps);
+
+    result.push({
+        component: EditableDataComponent.TEXTAREA,
         isEditable: true,
-        label: 'Date 2',
-        name: 'a-date2-name',
+        label: 'Textarea',
+        name: 'Textarea',
+        value: 'text here',
+    } as EditableTextareaDataProps);
+
+    result.push({
+        component: EditableDataComponent.INPUTCURRENCY,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'Currency',
+        locale: Locale.NL,
+        name: 'Currency',
+        value: '0',
+    } as EditableInputCurrencyDataProps);
+
+    result.push({
+        component: EditableDataComponent.DATEPICKER,
+        isEditable: true,
+        label: 'Editable Date',
+        name: 'Date2',
         value: moment(),
     } as EditableDatePickerDataProps);
 
     result.push({
-        component: 'TimePicker',
+        component: EditableDataComponent.TIMEPICKER,
         isEditable: true,
-        label: 'Time 2',
-        name: 'a-time2-name',
+        label: 'Editable Time',
+        name: 'Time2',
         value: ['12', '00'],
     } as EditableTimePickerDataProps);
 
     result.push({
-        component: 'Checkbox',
+        component: EditableDataComponent.CHECKBOX,
         isEditable: true,
         label: 'Checkbox 2',
-        name: 'a-checkbox2-name',
+        name: 'Checkbox2',
         textValue: 'Yes',
         value: true,
     } as CheckboxDataProps);
 
     result.push({
-        component: 'InputNumber',
+        component: EditableDataComponent.INPUTNUMBER,
         isDisabled: false,
         isEditable: true,
         isRequired: true,
         label: 'Number Max 10',
         max: 10,
         min: 0,
-        name: 'a-nubmer2-name',
+        name: 'Number2',
         value: 0,
     } as EditableInputNumberDataProps);
 
     result.push({
-        component: 'Input',
+        component: EditableDataComponent.INPUT,
         isDisabled: false,
         isEditable: true,
         isRequired: true,
-        label: 'Input',
+        label: 'Editable Input',
         maxLength: 20,
-        name: 'a-input2-name',
+        name: 'Input2',
         value: 'Orange',
     } as EditableInputDataProps);
 
     result.push({
-        component: 'DropdownSelect',
+        component: EditableDataComponent.DROPDOWNSELECT,
         footerText: 'Select',
         iconType: IconType.CLUBPLACEHOLDER1,
         isDisabled: false,
         isEditable: true,
         isRequired: true,
         label: 'DropdownSelect',
-        name: 'a-dropdown-select-name',
-        nameId: 'dropdown-select-publicId',
+        name: 'DropdownSelect',
+        nameId: 'DropdownSelectId',
         noResultsMessage: 'no results',
         optionLabel: "Use '{{option}}' as chosen {{type}}",
         options: fruits,
@@ -174,6 +207,30 @@ export const editableInformationData = <T extends Fruit>(): Data<T> => {
         value: 'Banana',
         valueId: '1',
     } as EditableDropdownSelectDataProps<T>);
+
+    result.push({
+        component: EditableDataComponent.SCOREPICKER,
+        isEditable: true,
+        label: 'Editable Score',
+        name: 'Score2',
+        placeholder: ['home', 'away'],
+        value: ['1', '0'],
+    } as EditableScorePickerDataProps);
+
+    result.push({
+        allSelectedLabel: 'All selected',
+        buttonCancelText: 'Cancel',
+        buttonConfirmText: 'ok',
+        component: EditableDataComponent.DROPDOWNMULTISELECT,
+        deselectAllLabel: 'Deselect all',
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'DropdownMultiSelect',
+        name: 'DropdownMultiSelect',
+        options: fruits,
+        selectAllLabel: 'Select all',
+    } as EditableDropdownMultiSelectDataProps<U>);
 
     return result;
 };

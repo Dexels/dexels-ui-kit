@@ -1,5 +1,8 @@
+import { DropdownMultiSelectOption, DropdownMultiSelectProps } from '../DropdownMultiSelect';
 import { DropdownSelectOption, DropdownSelectProps } from '../DropdownSelect/DropdownSelect';
 import { DropdownProps } from '../../molecules/Dropdown';
+import { EditableDataComponent } from '../../../types';
+import { InputCurrencyProps } from '../../../../lib';
 import { InputProps } from '../../molecules/Input/Input';
 import { ReactNode } from 'react';
 import { ScorePickerProps } from '../../molecules/ScorePicker/ScorePicker';
@@ -16,7 +19,7 @@ export interface BaseDataProps {
 }
 
 export interface CheckboxDataProps extends BaseDataProps {
-    component: 'Checkbox';
+    component: EditableDataComponent.CHECKBOX;
     textValue: string;
     value: SelectionControlProps['isChecked'];
 }
@@ -28,7 +31,7 @@ export interface EditableCheckboxDataProps extends CheckboxDataProps {
 }
 
 export interface DatePickerDataProps extends BaseDataProps {
-    component: 'DatePicker';
+    component: EditableDataComponent.DATEPICKER;
     value: SingleDatePickerProps['date'];
 }
 
@@ -38,7 +41,7 @@ export interface EditableDatePickerDataProps extends DatePickerDataProps {
 }
 
 export interface DropdownDataProps extends BaseDataProps {
-    component: 'Dropdown';
+    component: EditableDataComponent.DROPDOWN;
     textValue?: string;
     value: DropdownProps['value'];
 }
@@ -49,7 +52,7 @@ export interface EditableDropdownDataProps extends DropdownDataProps {
 }
 
 export interface DropdownSelectDataProps<T extends DropdownSelectOption> extends BaseDataProps {
-    component: 'DropdownSelect';
+    component: EditableDataComponent.DROPDOWNSELECT;
     value: DropdownSelectProps<T>['value'];
 }
 
@@ -66,8 +69,27 @@ export interface EditableDropdownSelectDataProps<T extends DropdownSelectOption>
     valueId: string;
 }
 
+export interface DropdownMultiSelectDataProps<T extends DropdownMultiSelectOption> extends BaseDataProps {
+    component: EditableDataComponent.DROPDOWNMULTISELECT;
+    value: T[];
+}
+
+export interface EditableDropdownMultiSelectDataProps<T extends DropdownMultiSelectOption>
+    extends DropdownMultiSelectDataProps<T> {
+    allSelectedLabel: DropdownMultiSelectProps<T>['allSelectedLabel'];
+    buttonCancelText?: DropdownMultiSelectProps<T>['buttonCancelText'];
+    buttonConfirmText?: DropdownMultiSelectProps<T>['buttonConfirmText'];
+    deselectAllLabel: DropdownMultiSelectProps<T>['deselectAllLabel'];
+    maxHeight?: DropdownMultiSelectProps<T>['maxHeight'];
+    minHeight?: DropdownMultiSelectProps<T>['minHeight'];
+    name: DropdownMultiSelectProps<T>['name'];
+    noOptionsText?: DropdownMultiSelectProps<T>['noOptionsText'];
+    options: DropdownMultiSelectProps<T>['options'];
+    selectAllLabel: DropdownMultiSelectProps<T>['selectAllLabel'];
+}
+
 export interface InputNumberDataProps extends BaseDataProps {
-    component: 'InputNumber';
+    component: EditableDataComponent.INPUTNUMBER;
     value: number;
 }
 
@@ -79,7 +101,7 @@ export interface EditableInputNumberDataProps extends InputNumberDataProps {
 }
 
 export interface InputDataProps extends BaseDataProps {
-    component: 'Input';
+    component: EditableDataComponent.INPUT;
     value: InputProps['value'];
 }
 
@@ -91,7 +113,7 @@ export interface EditableInputDataProps extends InputDataProps {
 }
 
 export interface TimePickerDataProps extends BaseDataProps {
-    component: 'TimePicker';
+    component: EditableDataComponent.TIMEPICKER;
     value: TimePickerProps['value'];
 }
 
@@ -101,16 +123,17 @@ export interface EditableTimePickerDataProps extends TimePickerDataProps {
 }
 
 export interface ScorePickerDataProps extends BaseDataProps {
-    component: 'ScorePicker';
+    component: EditableDataComponent.SCOREPICKER;
     value: ScorePickerProps['value'];
 }
 
 export interface EditableScorePickerDataProps extends ScorePickerDataProps {
     name: ScorePickerProps['name'];
+    placeholder: ScorePickerProps['label'];
 }
 
 export interface TextareaDataProps extends BaseDataProps {
-    component: 'Textarea';
+    component: EditableDataComponent.TEXTAREA;
     value: InputProps['value'];
 }
 
@@ -120,44 +143,51 @@ export interface EditableTextareaDataProps extends TextareaDataProps {
     placeholder?: InputProps['label'];
 }
 
-export type DataType<T extends DropdownSelectOption> =
+export interface InputCurrencyDataProps extends BaseDataProps {
+    component: EditableDataComponent.INPUTCURRENCY;
+    value: InputCurrencyProps['value'];
+}
+
+export interface EditableInputCurrencyDataProps extends InputCurrencyDataProps {
+    adornmentPosition?: InputCurrencyProps['adornmentPosition'];
+    locale: InputCurrencyProps['locale'];
+    name: InputCurrencyProps['name'];
+    placeholder?: InputCurrencyProps['label'];
+}
+
+export type DataType<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> =
     | CheckboxDataProps
     | DatePickerDataProps
     | DropdownDataProps
+    | DropdownMultiSelectDataProps<U>
     | DropdownSelectDataProps<T>
     | EditableCheckboxDataProps
     | EditableDatePickerDataProps
     | EditableDropdownDataProps
+    | EditableDropdownMultiSelectDataProps<U>
     | EditableDropdownSelectDataProps<T>
+    | EditableInputCurrencyDataProps
     | EditableInputDataProps
     | EditableInputNumberDataProps
     | EditableTimePickerDataProps
     | EditableScorePickerDataProps
     | EditableTextareaDataProps
+    | InputCurrencyDataProps
     | InputDataProps
     | InputNumberDataProps
     | ScorePickerDataProps
     | TextareaDataProps
     | TimePickerDataProps;
 
-export type Data<T extends DropdownSelectOption> = Array<DataType<T>>;
+export type Data<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> = Array<DataType<T, U>>;
 
-export type ComponentTypes<T extends DropdownSelectOption> =
-    | CheckboxDataProps['component']
-    | DatePickerDataProps['component']
-    | DropdownDataProps['component']
-    | DropdownSelectDataProps<T>['component']
-    | InputDataProps['component']
-    | InputNumberDataProps['component']
-    | ScorePickerDataProps['component']
-    | TextareaDataProps['component']
-    | TimePickerDataProps['component'];
-
-export type ValueTypes<T extends DropdownSelectOption> =
+export type ValueTypes<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> =
     | EditableCheckboxDataProps['value']
     | EditableDatePickerDataProps['value']
     | EditableDropdownDataProps['value']
+    | EditableDropdownMultiSelectDataProps<U>['options']
     | EditableDropdownSelectDataProps<T>['value']
+    | EditableInputCurrencyDataProps['value']
     | EditableInputDataProps['value']
     | EditableInputNumberDataProps['value']
     | EditableScorePickerDataProps['value']

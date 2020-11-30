@@ -45,6 +45,20 @@ export enum Easing {
     NONE = 'none',
 }
 
+export enum EditableDataComponent {
+    CHECKBOX = 'Checkbox',
+    DATEPICKER = 'DatePicker',
+    DROPDOWN = 'Dropdown',
+    DROPDOWNMULTISELECT = 'DropdownMultiSelect',
+    DROPDOWNSELECT = 'DropdownSelect',
+    INPUT = 'Input',
+    INPUTCURRENCY = 'InputCurrency',
+    INPUTNUMBER = 'InputNumber',
+    SCOREPICKER = 'ScorePicker',
+    TEXTAREA = 'Textarea',
+    TIMEPICKER = 'TimePicker',
+}
+
 /* eslint-disable typescript-sort-keys/string-enum */
 export enum Elevation {
     LEVEL_0 = 'LEVEL_0',
