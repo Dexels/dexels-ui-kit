@@ -1,7 +1,9 @@
 /* eslint-disable sort-imports */
 // The sort-imports ESLint rule is disabled in this file so we can group the import by folder
 // Import the CSS
+import '../app/styles/fonts/cuprum/cuprum.css';
 import '../app/styles/fonts/exo2/exo2.css';
+import '../app/styles/fonts/firasanscondensed/firasanscondensed.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
 
@@ -10,6 +12,7 @@ export * from '../app/types';
 
 // Export theming
 export { themeBasic } from '../app/styles/theming/themes/basic';
+export { themeCyrillic } from '../app/styles/theming/themes/cyrillic';
 export { themeDark } from '../app/styles/theming/themes/dark';
 export { createDuiTheme } from '../app/styles/theming/createDuiTheme';
 

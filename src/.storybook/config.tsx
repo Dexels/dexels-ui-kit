@@ -1,4 +1,6 @@
+import '../app/styles/fonts/cuprum/cuprum.css';
 import '../app/styles/fonts/exo2/exo2.css';
+import '../app/styles/fonts/firasanscondensed/firasanscondensed.css';
 import '../app/styles/fonts/iconfont/iconfont.css';
 import '../app/styles/fonts/opensans/opensans.css';
 import '../app/styles/global.css';
@@ -9,6 +11,7 @@ import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
+import { themeCyrillic } from '../app/styles/theming/themes/cyrillic';
 import { themeDark } from '../app/styles/theming/themes/dark';
 import { withInfo } from '@storybook/addon-info';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
@@ -38,6 +41,10 @@ addDecorator(
         {
             ...themeBasic,
             name: 'Basic',
+        },
+        {
+            ...themeCyrillic,
+            name: 'Cyrillic',
         },
         {
             ...themeDark,

@@ -1,5 +1,13 @@
 import { ErrorMessageWrapper, IconWrapper, Select, StyledDropdown } from './Dropdown.sc';
-import React, { ChangeEvent, ComponentType, FunctionComponent, MouseEventHandler, ReactNode, useState } from 'react';
+import React, {
+    ChangeEvent,
+    ComponentType,
+    FunctionComponent,
+    MouseEventHandler,
+    ReactNode,
+    useMemo,
+    useState,
+} from 'react';
 import { DropdownVariant } from './types';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
@@ -25,6 +33,7 @@ export interface DropdownProps {
     isValid?: boolean;
     label?: ReactNode;
     name: string;
+    noOptionsText?: string;
     onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
     onClick?: MouseEventHandler;
     options?: DropdownOption[];
@@ -46,6 +55,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
     isValid = false,
     label,
     name,
+    noOptionsText,
     onChange,
     onClick,
     options,
@@ -56,6 +66,12 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+
+    const isEmpty = useMemo(() => {
+        return options && options.length === 0;
+    }, [options]);
+
+    const placeholderText = !isEmpty ? placeholder : noOptionsText || placeholder;
 
     return (
         <>
@@ -84,16 +100,17 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     as={as}
                     hasError={hasError}
                     isDisabled={isDisabled}
+                    isEmpty={isEmpty}
                     isFocused={isFocused || isOpen}
                     isHovered={isHovered}
-                    isPlaceholderSelected={placeholder === value}
+                    isPlaceholderSelected={placeholder === value || isEmpty}
                     isValid={isValid}
                     name={name}
                     onBlur={(): void => {
                         setIsFocused(false);
                     }}
                     onChange={onChange}
-                    onClick={onClick}
+                    onClick={!isEmpty ? onClick : undefined}
                     onFocus={(): void => {
                         setIsFocused(true);
                     }}
@@ -107,13 +124,21 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     value={value}
                     variant={variant}
                 >
-                    {as === 'select' && placeholder && (
-                        <option disabled hidden value={placeholder}>
-                            {placeholder}
-                        </option>
+                    {as === 'select' && placeholderText && (
+                        <>
+                            <option disabled hidden value={placeholderText}>
+                                {placeholderText}
+                            </option>
+                            {isEmpty && (
+                                <option key={'dummy'} value={placeholderText}>
+                                    {placeholderText}
+                                </option>
+                            )}
+                        </>
                     )}
 
                     {options &&
+                        !isEmpty &&
                         options.map((option) => (
                             <option key={`option-${option.value}`} value={option.value}>
                                 {option.label}
