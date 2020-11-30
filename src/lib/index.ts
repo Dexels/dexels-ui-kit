@@ -164,6 +164,7 @@ export {
     DropdownSelectProps,
     DropdownSelectOption,
 } from '../app/components/organisms/DropdownSelect/DropdownSelect';
+export { EditableInformation, EditableInformationProps } from '../app/components/organisms/EditableInformation';
 export { ConfirmDialog, EditablePanel, EditablePanelProps } from '../app/components/organisms/EditablePanel';
 export {
     FileUploader,

@@ -5,7 +5,7 @@ node_modules
 .vs/slnx.sqlite
 
 # Build files
-# fonts
+fonts
 index.d.ts
 index.js
 index.esm.js
