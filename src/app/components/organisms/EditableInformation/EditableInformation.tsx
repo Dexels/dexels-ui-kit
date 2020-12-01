@@ -26,12 +26,13 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     iconSave?: IconType;
     iconType: IconType;
     isBeingSaved?: boolean;
+    isButtonDisabled?: boolean;
     isDisabled?: boolean;
     isLoading: boolean;
     onCancel?: () => void;
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
-    onSave: (data: unknown) => void;
+    onSave?: (data: { [key: string]: ValueTypes<T, U> }) => void;
     saveConfirmDialog?: ConfirmDialog;
     textCancel: string;
     textEdit: string;
@@ -48,6 +49,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     iconEdit,
     iconSave,
     iconType,
+    isButtonDisabled = false,
     isDisabled = false,
     isLoading = false,
     onCancel,
@@ -205,19 +207,24 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             iconEdit={iconEdit}
             iconSave={iconSave}
             iconType={iconType}
-            isDisabled={!isEditable}
+            isButtonDisabled={isButtonDisabled}
+            isDisabled={isDisabled || !isEditable}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}
             saveConfirmDialog={saveConfirmDialog}
-            status={getStatus(hasError, isDisabled)}
+            status={getStatus(hasError, isLoading)}
             textCancel={textCancel}
             textEdit={textEdit}
             textSave={textSave}
             title={title}
         >
-            <CardStatus status={getStatus(hasError, isDisabled, isLoading)}>
-                <InformationTable amountOfColumns={amountOfColumns} data={informationTableData} />
+            <CardStatus status={getStatus(hasError, isLoading)}>
+                <InformationTable
+                    amountOfColumns={amountOfColumns}
+                    data={informationTableData}
+                    isDisabled={isDisabled}
+                />
             </CardStatus>
             {errors}
         </EditablePanel>

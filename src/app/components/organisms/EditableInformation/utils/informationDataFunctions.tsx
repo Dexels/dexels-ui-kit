@@ -6,12 +6,12 @@ import { getSelectedText } from '../../../../utils/functions/arrayObjectFunction
 import moment from 'moment';
 import { ReactNode } from 'react';
 
-export const getStatus = (hasError: boolean, isDisabled: boolean, isLoading?: boolean): Status => {
+export const getStatus = (hasError: boolean, isLoading?: boolean): Status => {
     if (hasError) {
         return Status.INVALID;
     }
 
-    if (isDisabled || isLoading) {
+    if (isLoading) {
         return Status.DISABLED;
     }
 

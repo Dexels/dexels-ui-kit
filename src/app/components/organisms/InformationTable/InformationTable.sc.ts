@@ -37,18 +37,18 @@ export const Row = styled.div`
     min-height: 32px;
 `;
 
-export const Label = styled.div`
-    flex: 0 1 auto;
-    padding: 0 16px 0 8px;
-    width: 50%;
-    color: ${({ theme }): string => theme.shades.three};
-`;
-
-interface ValueProps {
+interface ColumnValueProps {
     isDisabled: boolean;
 }
 
-export const Value = styled.div<ValueProps>`
+export const Label = styled.div<ColumnValueProps>`
+    flex: 0 1 auto;
+    padding: 0 16px 0 8px;
+    width: 50%;
+    color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.shades.three)};
+`;
+
+export const Value = styled.div<ColumnValueProps>`
     flex: 0 1 auto;
     padding: 0 16px 0 8px;
     width: 50%;

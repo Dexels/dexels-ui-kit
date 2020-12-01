@@ -12,6 +12,7 @@ export const Configurable: FunctionComponent = () => (
         iconEdit={select('Icon Edit', IconType, IconType.PENCIL)}
         iconSave={select('Icon Save', IconType, IconType.CHECK)}
         iconType={select('Icon type', IconType, IconType.FLAG)}
+        isButtonDisabled={boolean('Is button disabled', false)}
         isDisabled={boolean('Is disabled', false)}
         isSaving={boolean('Is saving', false)}
         onCancel={action('onCancel')}
@@ -39,6 +40,7 @@ export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => (
         iconEdit={select('Icon Edit', IconType, IconType.PENCIL)}
         iconSave={select('Icon Save', IconType, IconType.CHECK)}
         iconType={select('Icon type', IconType, IconType.FLAG)}
+        isButtonDisabled={boolean('Is button disabled', false)}
         isDisabled={boolean('Is disabled', false)}
         isSaving={boolean('Is saving', false)}
         onCancel={action('onCancel')}

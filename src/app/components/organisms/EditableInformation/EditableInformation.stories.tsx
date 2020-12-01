@@ -19,6 +19,8 @@ export const Configurable: FunctionComponent = () => {
             amountOfColumns={select('Columns', [1, 2, 3], 2)}
             data={editableInformationData()}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
+            isButtonDisabled={boolean('Is button disabled', false)}
+            isDisabled={boolean('Is disabled', false)}
             isLoading={boolean('Is loading', false)}
             onCancel={action('onCancel')}
             onEdit={action('onEdit')}
@@ -44,6 +46,8 @@ export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => {
             }}
             data={editableInformationData()}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
+            isButtonDisabled={boolean('Is button disabled', false)}
+            isDisabled={boolean('Is disabled', false)}
             isLoading={boolean('Is loading', false)}
             onCancel={action('onCancel')}
             onEdit={action('onEdit')}
@@ -72,6 +76,7 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () => {
                 isEditable: false,
             }))}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
+            isButtonDisabled={boolean('Is button disabled', false)}
             isLoading={boolean('Is loading', false)}
             onCancel={action('onCancel')}
             onEdit={action('onEdit')}

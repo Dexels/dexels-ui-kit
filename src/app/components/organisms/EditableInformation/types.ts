@@ -11,6 +11,7 @@ import { SingleDatePickerProps } from '../DatePicker';
 import { TimePickerProps } from '../../molecules/TimePicker/TimePicker';
 
 export interface BaseDataProps {
+    component: EditableDataComponent;
     isDisabled?: boolean;
     isEditable?: boolean;
     isRequired?: boolean;
