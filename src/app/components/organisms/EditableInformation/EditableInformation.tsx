@@ -82,6 +82,8 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     }, [onEdit]);
 
     const onSaveCallback = useCallback(() => {
+        setIsBeingEdited(false);
+
         if (onSave) {
             onSave(updatedValues);
         }
@@ -167,14 +169,14 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     }, [data, isEditable]);
 
     useEffect(() => {
-        if (!isBeingEdited || isLoading || !isEditable) {
+        if (isLoading || !isEditable) {
             setInformationTableData(
                 data.map((element) => ({
                     label: element.label,
                     value: getValue(element, dateFormat),
                 }))
             );
-        } else if (isBeingEdited && Object.keys(updatedValues).length > 0) {
+        } else if (Object.keys(updatedValues).length > 0) {
             const newData = editableData({
                 data,
                 dateFormat,

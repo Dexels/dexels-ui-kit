@@ -58,7 +58,8 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Dat
     result.push({
         component: EditableDataComponent.DATEPICKER,
         isDisabled: true,
-        isEditable: false,
+        isEditable: true,
+        isVisibleOnlyOnEdit: true,
         label: 'Date',
         name: 'Date',
         value: moment(),
