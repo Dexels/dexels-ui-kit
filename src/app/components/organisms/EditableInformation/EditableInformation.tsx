@@ -25,9 +25,9 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     iconEdit?: IconType;
     iconSave?: IconType;
     iconType: IconType;
-    isBeingSaved?: boolean;
     isButtonDisabled?: boolean;
     isDisabled?: boolean;
+    isEditing?: boolean;
     isLoading: boolean;
     onCancel?: () => void;
     onChange?: (data: unknown) => void;
@@ -51,6 +51,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     iconType,
     isButtonDisabled = false,
     isDisabled = false,
+    isEditing = false,
     isLoading = false,
     onCancel,
     onChange,
@@ -66,7 +67,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
 
     const hasError = errors !== undefined;
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
-    const [isBeingEdited, setIsBeingEdited] = useState(false);
+    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isEditable, setIsEditable] = useState<boolean>(false);
 
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
@@ -209,8 +210,8 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             iconEdit={iconEdit}
             iconSave={iconSave}
             iconType={iconType}
-            isButtonDisabled={isButtonDisabled}
-            isDisabled={isDisabled || !isEditable}
+            isDisabled={isButtonDisabled || isDisabled}
+            isEditing={isEditing}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}

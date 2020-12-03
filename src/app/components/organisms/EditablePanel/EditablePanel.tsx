@@ -13,8 +13,8 @@ export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 
     iconEdit?: IconType;
     iconSave?: IconType;
     iconType: IconType;
-    isButtonDisabled?: boolean;
     isDisabled?: boolean;
+    isEditing?: boolean;
     isSaving?: boolean;
     onCancel: () => void;
     onEdit: () => void;
@@ -34,8 +34,8 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     iconEdit = IconType.PENCIL,
     iconSave = IconType.CHECK,
     iconType,
-    isButtonDisabled = false,
     isDisabled = false,
+    isEditing = false,
     isSaving = false,
     onCancel,
     onEdit,
@@ -47,7 +47,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     textSave,
     title,
 }) => {
-    const [isBeingEdited, setIsBeingEdited] = useState(false);
+    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isSaveConfirmDialogVisible, setIsSaveConfirmDialogVisible] = useState(false);
     const [isCancelConfirmDialogVisible, setIsCancelConfirmDialogVisible] = useState(false);
 
@@ -127,7 +127,6 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         <ButtonWrapper>
                             <Button
                                 iconType={iconCancel}
-                                isDisabled={isButtonDisabled || isDisabled}
                                 onClick={onCancelCallback}
                                 size={ButtonSize.SMALL}
                                 variant={ButtonVariant.TEXT_ONLY}
@@ -136,7 +135,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                             </Button>
                             <Button
                                 iconType={iconSave}
-                                isDisabled={isButtonDisabled || isDisabled}
+                                isDisabled={isDisabled}
                                 isLoading={isSaving}
                                 onClick={onSaveCallback}
                                 size={ButtonSize.SMALL}
@@ -148,7 +147,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                     ) : (
                         <Button
                             iconType={iconEdit}
-                            isDisabled={isButtonDisabled || isDisabled}
+                            isDisabled={isDisabled}
                             isLoading={isSaving}
                             onClick={setIsBeingEditedCallback}
                             size={ButtonSize.SMALL}

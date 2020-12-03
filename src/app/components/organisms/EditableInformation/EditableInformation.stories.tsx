@@ -33,6 +33,32 @@ export const Configurable: FunctionComponent = () => {
     );
 };
 
+export const ConfigurableEditingDefault: FunctionComponent = () => {
+    const onSaveCallback = (data: unknown): void => {
+        // eslint-disable-next-line no-console
+        console.log('[payload]', data);
+    };
+
+    return (
+        <EditableInformation
+            amountOfColumns={select('Columns', [1, 2, 3], 2)}
+            data={editableInformationData()}
+            iconType={select('Icon Type', IconType, IconType.CALENDAR)}
+            isButtonDisabled={boolean('Is button disabled', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isEditing
+            isLoading={boolean('Is loading', false)}
+            onCancel={action('onCancel')}
+            onEdit={action('onEdit')}
+            onSave={onSaveCallback}
+            textCancel={text('Text Cancel', 'Cancel')}
+            textEdit={text('Text Edit', 'Edit')}
+            textSave={text('Text Save', 'Save')}
+            title={text('Title', 'Information')}
+        />
+    );
+};
+
 export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => {
     return (
         <EditableInformation
