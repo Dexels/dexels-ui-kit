@@ -75,7 +75,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
     const onEditCallback = useCallback(() => {
-        setIsBeingEdited(!isBeingEdited);
+        setIsBeingEdited(true);
 
         if (onEdit) {
             onEdit();
@@ -211,7 +211,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             iconSave={iconSave}
             iconType={iconType}
             isDisabled={isButtonDisabled || isDisabled}
-            isEditing={isEditing}
+            isEditing={isBeingEdited}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}
