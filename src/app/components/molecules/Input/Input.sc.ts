@@ -197,7 +197,6 @@ export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
         variant === InputVariant.COMPACT &&
         css`
             top: 0;
-
             ${adornmentPosition === AdornmentPosition.LEFT &&
             css`
                 left: 0;

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Data, DatePickerFocuses, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
 import { getStatus, getValue, isEditableData } from './utils/informationDataFunctions';
