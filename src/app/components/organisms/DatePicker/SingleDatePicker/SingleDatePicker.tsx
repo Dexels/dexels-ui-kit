@@ -80,17 +80,23 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     const singleDatePickerRef = useRef<HTMLDivElement>(null);
     const [openDirection, setOpenDirection] = useState<OpenDirectionShape>('down');
     const [isTopDatepicker, setIsTopDatepicker] = useState(false);
+    const [openDatePickerMinHeight, setOpenDatePickerMinHeight] = useState(400);
+
+    useEffect(() => {
+        // Get the height of de DOM element of the calendar part of a SingleDatePicker_picker
+        const datePickerContainer = document.querySelectorAll('div.DayPicker__horizontal');
+
+        if (
+            datePickerContainer &&
+            datePickerContainer.length !== 0 &&
+            datePickerContainer[0].clientHeight !== openDatePickerMinHeight
+        ) {
+            setOpenDatePickerMinHeight(datePickerContainer[0].clientHeight);
+        }
+    });
 
     useEffect(() => {
         if (singleDatePickerRef.current) {
-            // Get the height of de DOM element SingleDatePicker_picker
-            const datePickerContainer = document.querySelectorAll('div.SingleDatePicker_picker');
-            let openDatePickerMinHeight = 400;
-
-            if (datePickerContainer && datePickerContainer.length !== 0) {
-                openDatePickerMinHeight = datePickerContainer[0].clientHeight;
-            }
-
             let { top } = singleDatePickerRef.current.getBoundingClientRect();
 
             if (parentContainer) {
