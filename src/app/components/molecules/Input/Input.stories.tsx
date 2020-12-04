@@ -22,9 +22,11 @@ export const Configurable: FunctionComponent = () => {
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
+            onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}
+            onFocus={action('On focus')}
             type={select('Type', InputType, InputType.TEXT)}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
@@ -48,6 +50,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
+            onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}
@@ -72,6 +75,7 @@ export const ConfigurableClickable: FunctionComponent = () => {
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
+            onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}
@@ -97,6 +101,7 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             maxLength={number('Max length', 8)}
             min={number('Min', 0)}
             name="an-input-name"
+            onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}
@@ -121,6 +126,7 @@ export const ConfigurableTextarea: FunctionComponent = () => {
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="a-textarea-name"
+            onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}
@@ -145,6 +151,7 @@ export const ConfigurableTextareaClickable: FunctionComponent = () => {
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="a-textarea-name"
+            onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
                 setValue(parseInputValue(currentTarget));
             }}

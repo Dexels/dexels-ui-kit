@@ -1,10 +1,9 @@
 import { Elevation, IconType, InputType, InputVariant } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { LabelWrapper, StyledDropdownSelect, SuggestionList } from './DropdownSelect.sc';
-import React, { ChangeEvent, ReactNode, SyntheticEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, FocusEvent, ReactNode, SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { DialogFooter } from '../../molecules/DialogFooter/DialogFooter';
 import { DropdownOption } from '../../molecules/Dropdown/Dropdown';
-
 import { Input } from '../../molecules/Input/Input';
 import { List } from '../../molecules/List/List';
 import { ListItem } from '../../atoms/ListItem/ListItem';
@@ -37,6 +36,7 @@ export interface DropdownSelectProps<T extends DropdownSelectOption> {
     maxHeight?: number;
     name: string;
     noResultsMessage: string;
+    onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
     onChange?: (option: T) => void;
     onConfirm?: (event: SyntheticEvent, option: T) => void;
     optionLabel: ReactNode;
@@ -60,6 +60,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
     maxHeight,
     name,
     noResultsMessage,
+    onBlur,
     onChange,
     onConfirm,
     options,
@@ -162,6 +163,26 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
 
     const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
+    const onBlurCallback = useCallback(
+        (event: React.FocusEvent<HTMLInputElement>): void => {
+            if (onBlur) {
+                event.persist();
+                onBlur(event);
+
+                const selectedOption = {
+                    label: event.currentTarget.value,
+                    value: event.currentTarget.value,
+                } as T;
+
+                setIsOptionSelected(false);
+                setInputValue(selectedOption.label);
+                handleOnChange(selectedOption);
+                setIsSelectOpen(false);
+            }
+        },
+        [onBlur]
+    );
+
     const onFocusCallback = useCallback((): void => {
         setIsSelectOpen(inputValue.length > 0);
     }, [inputValue]);
@@ -187,6 +208,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
                 isValid={isValid}
                 label={label}
                 name={name}
+                onBlur={onBlurCallback}
                 onChange={onChangeCallback}
                 onFocus={onFocusCallback}
                 onKeyDown={onKeyDownCallback}
