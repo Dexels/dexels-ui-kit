@@ -56,7 +56,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     const onConfirmCallback = (_: SyntheticEvent, updatedOptions: Array<T>): void => {
         setOptionValues(updatedOptions);
 
-        const convertedOptions = optionValues.map((option) => ({
+        const convertedOptions = updatedOptions.map((option) => ({
             ...option,
             IsSelected: option.isSelected,
         }));
