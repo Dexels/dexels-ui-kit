@@ -167,9 +167,10 @@ export {
 export {
     EditableInformation,
     EditableInformationProps,
-    generateValuesArray,
-    generateDropdownSelectOptionLabel,
-    getValueOfEditableDataComponent,
+    EditableInformationActionsProps,
+    DataType,
+    ValueTypes,
+    Data,
 } from '../app/components/organisms/EditableInformation';
 export { ConfirmDialog, EditablePanel, EditablePanelProps } from '../app/components/organisms/EditablePanel';
 export {

@@ -11,7 +11,6 @@ import { EditablePanel } from '../EditablePanel/EditablePanel';
 import { generateValuesArray } from './utils/generateValuesArray';
 import { IconType } from '../../../types';
 import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
-import PanelStatus from '../../molecules/PanelStatus/PanelStatus';
 
 export interface EditableInformationActionsProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> {
     iconCancel?: IconType;
@@ -237,10 +236,8 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             {errors}
         </EditablePanel>
     ) : (
-        <PanelStatus iconType={iconType} status={getStatus(hasError, isLoading)} title={title}>
-            {cardData}
-            {errors}
-        </PanelStatus>
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        <></>
     );
 };
 
