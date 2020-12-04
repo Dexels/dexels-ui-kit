@@ -21,7 +21,7 @@ import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import moment from 'moment';
 import React from 'react';
 
-interface Fruit extends DropdownSelectOption, DropdownMultiSelectOption {
+export interface Fruit extends DropdownSelectOption, DropdownMultiSelectOption {
     isSelected: boolean;
 }
 
