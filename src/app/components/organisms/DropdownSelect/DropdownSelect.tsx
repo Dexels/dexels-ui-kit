@@ -68,9 +68,10 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
     value,
     variant,
 }: DropdownSelectProps<T>): JSX.Element => {
-    const [isSelectOpen, setIsSelectOpen] = useState(false);
-    const [isOptionSelected, setIsOptionSelected] = useState(false);
     const [inputValue, setInputValue] = useState(value);
+    const [isListClicked, setIsListClicked] = useState(false); // Used for keeping track if we need to fire onBlur (if present)
+    const [isOptionSelected, setIsOptionSelected] = useState(false);
+    const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [suggestedOptions, setSuggestedOptions] = useState<T[]>([]);
     const [updatedOptions, setUpdatedOptions] = useState<T[]>([]);
 
@@ -132,6 +133,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
 
             setIsOptionSelected(true);
             setInputValue(selectedOption.label);
+            setIsListClicked(true);
             handleOnChange(selectedOption);
 
             if (onConfirm) {
@@ -140,7 +142,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
 
             setIsSelectOpen(false);
         },
-        [defaultValue, inputValue, onConfirm]
+        [defaultValue, inputValue, isListClicked, onConfirm]
     );
 
     useEffect(() => {
@@ -165,26 +167,27 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
 
     const onBlurCallback = useCallback(
         (event: React.FocusEvent<HTMLInputElement>): void => {
-            if (onBlur) {
+            if (onBlur && !isListClicked) {
                 event.persist();
+
+                setIsOptionSelected(true);
+                const newOptionValue = parseInputValue(event.currentTarget);
+                setInputValue(newOptionValue);
+
+                handleOnChange({
+                    label: newOptionValue,
+                    value: defaultValue || newOptionValue,
+                } as T);
+
                 onBlur(event);
-
-                const selectedOption = {
-                    label: event.currentTarget.value,
-                    value: event.currentTarget.value,
-                } as T;
-
-                setIsOptionSelected(false);
-                setInputValue(selectedOption.label);
-                handleOnChange(selectedOption);
-                setIsSelectOpen(false);
             }
         },
-        [onBlur]
+        [defaultValue, isListClicked, onBlur]
     );
 
     const onFocusCallback = useCallback((): void => {
         setIsSelectOpen(inputValue.length > 0);
+        setIsListClicked(false);
     }, [inputValue]);
 
     const onKeyDownCallback = useCallback(
