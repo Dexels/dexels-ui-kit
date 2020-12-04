@@ -108,8 +108,6 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             setUpdatedValues(newValues);
 
             if (onChange) {
-                // eslint-disable-next-line no-console
-                console.log('[onchange newValues]', newValues);
                 onChange(newValues);
             }
         },
