@@ -1,4 +1,4 @@
-import { Data, DatePickerFocuses, ValueTypes } from './types';
+import { DatePickerFocuses, EditableInformationData, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
 import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
@@ -29,7 +29,7 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     actions?: EditableInformationActionsProps<T, U>;
     amountOfColumns?: InformationTableProps['amountOfColumns'];
     cancelConfirmDialog?: ConfirmDialog;
-    data: Data<T, U>;
+    data: EditableInformationData<T, U>;
     dateFormat?: string;
     errors?: ReactNode;
     iconType: IconType;

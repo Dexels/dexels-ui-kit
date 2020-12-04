@@ -156,7 +156,7 @@ export interface EditableInputCurrencyDataProps extends InputCurrencyDataProps {
     placeholder?: InputCurrencyProps['label'];
 }
 
-export type DataType<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> =
+export type EditableInformationDataType<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> =
     | CheckboxDataProps
     | DatePickerDataProps
     | DropdownDataProps
@@ -180,7 +180,9 @@ export type DataType<T extends DropdownSelectOption, U extends DropdownMultiSele
     | TextareaDataProps
     | TimePickerDataProps;
 
-export type Data<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> = Array<DataType<T, U>>;
+export type EditableInformationData<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> = Array<
+    EditableInformationDataType<T, U>
+>;
 
 export type ValueTypes<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> =
     | EditableCheckboxDataProps['value']

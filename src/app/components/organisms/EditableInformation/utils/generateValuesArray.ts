@@ -1,11 +1,11 @@
-import { Data } from '../types';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent } from '../../../../types';
 import { EditableDataProps } from '../editableData/editableData';
+import { EditableInformationData } from '../types';
 
 export const generateValuesArray = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
-    data: Data<T, U>
+    data: EditableInformationData<T, U>
 ): EditableDataProps<T, U>['values'] =>
     data.reduce((accumulator, dataInstance) => {
         if ('name' in dataInstance) {
