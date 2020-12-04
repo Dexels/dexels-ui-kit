@@ -1,11 +1,11 @@
 import {
     CheckboxDataProps,
-    Data,
     DatePickerDataProps,
     EditableDatePickerDataProps,
     EditableDropdownDataProps,
     EditableDropdownMultiSelectDataProps,
     EditableDropdownSelectDataProps,
+    EditableInformationData,
     EditableInputCurrencyDataProps,
     EditableInputDataProps,
     EditableInputNumberDataProps,
@@ -52,8 +52,8 @@ const fruits: Fruit[] = [
     },
 ];
 
-export const editableInformationData = <T extends Fruit, U extends Fruit>(): Data<T, U> => {
-    const result: Data<T, U> = [];
+export const editableInformationData = <T extends Fruit, U extends Fruit>(): EditableInformationData<T, U> => {
+    const result: EditableInformationData<T, U> = [];
 
     result.push({
         component: EditableDataComponent.DATEPICKER,

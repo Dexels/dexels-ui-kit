@@ -1,8 +1,8 @@
-import { Data, ScorePickerDataProps, ValueTypes } from '../types';
 import { Dropdown, DropdownProps, DropdownVariant } from '../../../molecules/Dropdown';
 import { DropdownMultiSelect, DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import DropdownSelect, { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent, InputType, InputVariant } from '../../../../types';
+import { EditableInformationData, ScorePickerDataProps, ValueTypes } from '../types';
 import { generateDropdownSelectOptionLabel, getValueOfEditableDataComponent } from '../utils/informationDataFunctions';
 import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
@@ -15,7 +15,7 @@ import ScorePicker from '../../../molecules/ScorePicker/ScorePicker';
 import { SelectionControl } from '../../../molecules/SelectionControl';
 
 export interface EditableDataProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> {
-    data: Data<T, U>;
+    data: EditableInformationData<T, U>;
     dateFormat: string;
     datePickerFocuses: {
         [key: string]: boolean;
