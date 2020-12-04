@@ -18,7 +18,7 @@ export const getStatus = (hasError: boolean, isLoading?: boolean): Status => {
     return Status.DEFAULT;
 };
 
-export const getValue = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
+export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     element: DataType<T, U>,
     dateFormat: string
 ): ReactNode => {

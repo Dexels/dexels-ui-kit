@@ -3,7 +3,7 @@ import { Dropdown, DropdownProps, DropdownVariant } from '../../../molecules/Dro
 import { DropdownMultiSelect, DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import DropdownSelect, { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent, InputType, InputVariant } from '../../../../types';
-import { generateDropdownSelectOptionLabel, getValue } from '../utils/informationDataFunctions';
+import { generateDropdownSelectOptionLabel, getValueOfEditableDataComponent } from '../utils/informationDataFunctions';
 import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
 import { InformationTableProps } from '../../InformationTable';
@@ -48,7 +48,7 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                 return {
                     isDisabled,
                     label,
-                    value: getValue(dataInstance, dateFormat),
+                    value: getValueOfEditableDataComponent(dataInstance, dateFormat),
                 };
             }
 

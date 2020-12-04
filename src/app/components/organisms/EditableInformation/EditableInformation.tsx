@@ -1,6 +1,6 @@
 import { Data, DatePickerFocuses, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
-import { getStatus, getValue, isEditableData } from './utils/informationDataFunctions';
+import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
@@ -173,7 +173,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             setInformationTableData(
                 data.map((element) => ({
                     label: element.label,
-                    value: getValue(element, dateFormat),
+                    value: getValueOfEditableDataComponent(element, dateFormat),
                 }))
             );
         } else if (Object.keys(updatedValues).length > 0) {
