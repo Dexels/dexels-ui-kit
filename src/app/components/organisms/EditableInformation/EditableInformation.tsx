@@ -10,9 +10,8 @@ import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
 import { EditablePanel } from '../EditablePanel/EditablePanel';
 import { generateValuesArray } from './utils/generateValuesArray';
 import { IconType } from '../../../types';
-
 import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
-import { PanelStatus } from '../../../../lib';
+import PanelStatus from '../../molecules/PanelStatus/PanelStatus';
 
 export interface EditableInformationActionsProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> {
     iconCancel?: IconType;
