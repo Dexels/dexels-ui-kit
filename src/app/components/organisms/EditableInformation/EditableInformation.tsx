@@ -11,50 +11,55 @@ import { EditablePanel } from '../EditablePanel/EditablePanel';
 import { generateValuesArray } from './utils/generateValuesArray';
 import { IconType } from '../../../types';
 import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
-
-export interface EditableInformationActionsProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> {
-    iconCancel?: IconType;
-    iconEdit?: IconType;
-    iconSave?: IconType;
-    onCancel: () => void;
-    onEdit: () => void;
-    onSave: (data: { [key: string]: ValueTypes<T, U> }) => void;
-    textCancel: string;
-    textEdit: string;
-    textSave: string;
-}
+import { PanelStatus } from '../../molecules/PanelStatus/PanelStatus';
 
 export interface EditableInformationProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption>
     extends Omit<PanelHeaderProps, 'children' | 'options'> {
-    actions?: EditableInformationActionsProps<T, U>;
     amountOfColumns?: InformationTableProps['amountOfColumns'];
     cancelConfirmDialog?: ConfirmDialog;
     data: EditableInformationData<T, U>;
     dateFormat?: string;
     errors?: ReactNode;
+    iconCancel?: IconType;
+    iconEdit?: IconType;
+    iconSave?: IconType;
     iconType: IconType;
     isButtonDisabled?: boolean;
     isDisabled?: boolean;
     isEditing?: boolean;
     isLoading: boolean;
+    onCancel?: () => void;
     onChange?: (data: unknown) => void;
+    onEdit?: () => void;
+    onSave?: (data: { [key: string]: ValueTypes<T, U> }) => void;
     saveConfirmDialog?: ConfirmDialog;
+    textCancel?: string;
+    textEdit?: string;
+    textSave?: string;
 }
 
 export const EditableInformation = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>({
-    actions,
     amountOfColumns,
     data,
     dateFormat = 'dd. D MMM YYYY',
     cancelConfirmDialog,
     errors,
+    iconCancel,
+    iconEdit,
+    iconSave,
     iconType,
     isButtonDisabled = false,
     isDisabled = false,
     isEditing = false,
     isLoading = false,
+    onCancel,
     onChange,
+    onEdit,
+    onSave,
     saveConfirmDialog,
+    textCancel,
+    textEdit,
+    textSave,
     title,
 }: EditableInformationProps<T, U>): JSX.Element => {
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
@@ -67,18 +72,6 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
 
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
-
-    const { iconCancel, iconEdit, iconSave, onCancel, onEdit, onSave, textCancel, textEdit, textSave } = actions || {
-        iconCancel: undefined,
-        iconEdit: undefined,
-        iconSave: undefined,
-        onCancel: undefined,
-        onEdit: undefined,
-        onSave: undefined,
-        textCancel: '',
-        textEdit: '',
-        textSave: '',
-    };
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
@@ -115,6 +108,8 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             setUpdatedValues(newValues);
 
             if (onChange) {
+                // eslint-disable-next-line no-console
+                console.log('[onchange newValues]', newValues);
                 onChange(newValues);
             }
         },
@@ -213,7 +208,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
         <InformationTable amountOfColumns={amountOfColumns} data={informationTableData} isDisabled={isDisabled} />
     );
 
-    return actions ? (
+    return onEdit || onSave ? (
         <EditablePanel
             cancelConfirmDialog={cancelConfirmDialog}
             iconCancel={iconCancel}
@@ -221,23 +216,25 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             iconSave={iconSave}
             iconType={iconType}
             isDisabled={isButtonDisabled || isDisabled || isLoading}
-            isEditing={isBeingEdited}
+            isEditing={isEditing}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}
             saveConfirmDialog={saveConfirmDialog}
             status={getStatus(hasError)}
-            textCancel={textCancel}
-            textEdit={textEdit}
-            textSave={textSave}
+            textCancel={textCancel || ''}
+            textEdit={textEdit || ''}
+            textSave={textSave || ''}
             title={title}
         >
             <CardStatus status={getStatus(hasError, isLoading)}>{cardData}</CardStatus>
             {errors}
         </EditablePanel>
     ) : (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
-        <></>
+        <PanelStatus iconType={iconType} status={getStatus(hasError, isLoading)} title={title}>
+            {cardData}
+            {errors}
+        </PanelStatus>
     );
 };
 

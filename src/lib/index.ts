@@ -167,7 +167,6 @@ export {
 export {
     EditableInformation,
     EditableInformationProps,
-    EditableInformationActionsProps,
     EditableInformationDataType,
     ValueTypes,
     EditableInformationData,
