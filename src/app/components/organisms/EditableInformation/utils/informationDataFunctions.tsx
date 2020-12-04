@@ -1,4 +1,4 @@
-import { CheckboxDataProps, Data, DataType, DropdownDataProps } from '../types';
+import { CheckboxDataProps, DropdownDataProps, EditableInformationData, EditableInformationDataType } from '../types';
 import { EditableDataComponent, Status } from '../../../../types';
 import { DropdownMultiSelectOption } from '../../../../../lib';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
@@ -19,7 +19,7 @@ export const getStatus = (hasError: boolean, isLoading?: boolean): Status => {
 };
 
 export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
-    element: DataType<T, U>,
+    element: EditableInformationDataType<T, U>,
     dateFormat: string
 ): ReactNode => {
     const { component, value } = element;
@@ -57,10 +57,10 @@ export const generateDropdownSelectOptionLabel = (selectOptionText: string, opti
     selectOptionText.replace(`{{option}}`, option).replace(`{{type}}`, type);
 
 export const isEditableData = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
-    data: Data<T, U>
+    data: EditableInformationData<T, U>
 ): boolean =>
     data.some(
-        (dataInstance: DataType<T, U>) =>
+        (dataInstance: EditableInformationDataType<T, U>) =>
             typeof dataInstance === 'object' &&
             dataInstance !== null &&
             'component' in dataInstance &&
