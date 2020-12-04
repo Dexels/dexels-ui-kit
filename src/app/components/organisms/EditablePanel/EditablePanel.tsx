@@ -1,4 +1,4 @@
-import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
 import PanelHeader, { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
 import React, { FunctionComponent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import Button from '../../molecules/Button/Button';
@@ -14,11 +14,13 @@ export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 
     iconSave?: IconType;
     iconType: IconType;
     isDisabled?: boolean;
+    isEditing?: boolean;
     isSaving?: boolean;
     onCancel: () => void;
     onEdit: () => void;
     onSave: () => void;
     saveConfirmDialog?: ConfirmDialog;
+    status?: Status;
     textCancel: string;
     textEdit: string;
     textSave: string;
@@ -33,17 +35,19 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     iconSave = IconType.CHECK,
     iconType,
     isDisabled = false,
+    isEditing = false,
     isSaving = false,
     onCancel,
     onEdit,
     onSave,
     saveConfirmDialog,
+    status,
     textCancel,
     textEdit,
     textSave,
     title,
 }) => {
-    const [isBeingEdited, setIsBeingEdited] = useState(false);
+    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isSaveConfirmDialogVisible, setIsSaveConfirmDialogVisible] = useState(false);
     const [isCancelConfirmDialogVisible, setIsCancelConfirmDialogVisible] = useState(false);
 
@@ -116,13 +120,13 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
             <PanelHeader
                 hasCapitalizedTitle={hasCapitalizedTitle}
                 hasMarginBottom
+                hasTitleStatusAppearance
                 iconType={iconType}
                 options={
                     isBeingEdited ? (
                         <ButtonWrapper>
                             <Button
                                 iconType={iconCancel}
-                                isDisabled={isDisabled}
                                 onClick={onCancelCallback}
                                 size={ButtonSize.SMALL}
                                 variant={ButtonVariant.TEXT_ONLY}
@@ -153,6 +157,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         </Button>
                     )
                 }
+                status={status}
                 title={title}
             />
             {children}

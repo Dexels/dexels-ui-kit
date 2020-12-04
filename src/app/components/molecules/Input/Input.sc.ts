@@ -208,6 +208,13 @@ export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
             `}
         `}
 
+    ${({ hasValue, isFocused, variant }): SimpleInterpolation =>
+        variant === InputVariant.COMPACT &&
+        (hasValue || isFocused) &&
+        css`
+            top: 4px;
+        `}
+
     ${({ adornmentPosition, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.OUTLINE &&
         css`

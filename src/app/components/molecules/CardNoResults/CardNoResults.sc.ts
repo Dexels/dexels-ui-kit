@@ -45,6 +45,7 @@ Title.defaultProps = {
 export const Item = styled.p`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     margin: ${({ theme }): string => theme.spacing(0, 0, 0.5)};
+    color: ${({ theme }): string => theme.shades.one};
 `;
 
 Item.defaultProps = {
