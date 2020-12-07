@@ -64,5 +64,8 @@ export const formatTime = (value: string | Date | Moment): string => {
     return value.toString();
 };
 
+export const isDateBetween = (date: Moment, dateFrom: Moment, dateTo: Moment): boolean =>
+    date.isSameOrAfter(dateFrom) && date.isSameOrBefore(dateTo);
+
 export const toMoment = (value: string | Date | Moment, lang: string = defaultLocale): Moment | null =>
     isValidDate(value) ? moment(value).locale(lang) : null;
