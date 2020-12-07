@@ -1,10 +1,9 @@
 import { Elevation, IconType, InputType, InputVariant } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { LabelWrapper, StyledDropdownSelect, SuggestionList } from './DropdownSelect.sc';
-import React, { ChangeEvent, ReactNode, SyntheticEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, FocusEvent, ReactNode, SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { DialogFooter } from '../../molecules/DialogFooter/DialogFooter';
 import { DropdownOption } from '../../molecules/Dropdown/Dropdown';
-
 import { Input } from '../../molecules/Input/Input';
 import { List } from '../../molecules/List/List';
 import { ListItem } from '../../atoms/ListItem/ListItem';
@@ -37,6 +36,7 @@ export interface DropdownSelectProps<T extends DropdownSelectOption> {
     maxHeight?: number;
     name: string;
     noResultsMessage: string;
+    onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
     onChange?: (option: T) => void;
     onConfirm?: (event: SyntheticEvent, option: T) => void;
     optionLabel: ReactNode;
@@ -60,6 +60,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
     maxHeight,
     name,
     noResultsMessage,
+    onBlur,
     onChange,
     onConfirm,
     options,
@@ -67,9 +68,10 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
     value,
     variant,
 }: DropdownSelectProps<T>): JSX.Element => {
-    const [isSelectOpen, setIsSelectOpen] = useState(false);
-    const [isOptionSelected, setIsOptionSelected] = useState(false);
     const [inputValue, setInputValue] = useState(value);
+    const [isListClicked, setIsListClicked] = useState(false); // Used for keeping track if we need to fire onBlur (if present)
+    const [isOptionSelected, setIsOptionSelected] = useState(false);
+    const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [suggestedOptions, setSuggestedOptions] = useState<T[]>([]);
     const [updatedOptions, setUpdatedOptions] = useState<T[]>([]);
 
@@ -131,6 +133,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
 
             setIsOptionSelected(true);
             setInputValue(selectedOption.label);
+            setIsListClicked(true);
             handleOnChange(selectedOption);
 
             if (onConfirm) {
@@ -139,7 +142,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
 
             setIsSelectOpen(false);
         },
-        [defaultValue, inputValue, onConfirm]
+        [defaultValue, inputValue, isListClicked, onConfirm]
     );
 
     useEffect(() => {
@@ -162,8 +165,29 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
 
     const { componentRef } = useClickOutsideComponent(() => handleClickOutsideComponent());
 
+    const onBlurCallback = useCallback(
+        (event: React.FocusEvent<HTMLInputElement>): void => {
+            if (onBlur && !isListClicked) {
+                event.persist();
+
+                setIsOptionSelected(true);
+                const newOptionValue = parseInputValue(event.currentTarget);
+                setInputValue(newOptionValue);
+
+                handleOnChange({
+                    label: newOptionValue,
+                    value: defaultValue || newOptionValue,
+                } as T);
+
+                onBlur(event);
+            }
+        },
+        [defaultValue, isListClicked, onBlur]
+    );
+
     const onFocusCallback = useCallback((): void => {
         setIsSelectOpen(inputValue.length > 0);
+        setIsListClicked(false);
     }, [inputValue]);
 
     const onKeyDownCallback = useCallback(
@@ -187,6 +211,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
                 isValid={isValid}
                 label={label}
                 name={name}
+                onBlur={onBlurCallback}
                 onChange={onChangeCallback}
                 onFocus={onFocusCallback}
                 onKeyDown={onKeyDownCallback}
