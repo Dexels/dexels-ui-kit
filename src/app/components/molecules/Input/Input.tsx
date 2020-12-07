@@ -30,6 +30,7 @@ export interface InputProps {
     min?: number;
     minLength?: number;
     name: string;
+    onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onClick?: MouseEventHandler;
     onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
@@ -55,6 +56,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     min,
     minLength,
     name,
+    onBlur,
     onChange,
     onClick,
     onKeyDown,
@@ -96,8 +98,13 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             if (onFocus) {
                 onFocus(event);
             }
+
+            // This a weird condition, because you would expect isFocused to be false for an onBlur action, but ok, here it is
+            if (isFocused && onBlur) {
+                onBlur(event);
+            }
         },
-        [isFocused, onFocus]
+        [isFocused, onBlur, onFocus]
     );
 
     const toggleIsHoveredCallback = useCallback(() => {
@@ -140,12 +147,12 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     maxLength={maxLength}
                     minLength={minLength}
                     name={name}
-                    onBlur={toggleIsFocusedCallback}
+                    onBlur={isDisabled ? undefined : toggleIsFocusedCallback}
                     onChange={isDisabled ? undefined : onChangeCallback}
-                    onFocus={toggleIsFocusedCallback}
+                    onFocus={isDisabled ? undefined : toggleIsFocusedCallback}
                     onKeyDown={isDisabled || !onKeyDown ? undefined : onKeyDown}
-                    onMouseEnter={toggleIsHoveredCallback}
-                    onMouseLeave={toggleIsHoveredCallback}
+                    onMouseEnter={isDisabled ? undefined : toggleIsHoveredCallback}
+                    onMouseLeave={isDisabled ? undefined : toggleIsHoveredCallback}
                     type={type}
                     value={value}
                     variant={variant}
