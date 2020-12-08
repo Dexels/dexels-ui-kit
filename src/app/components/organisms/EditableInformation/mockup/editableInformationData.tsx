@@ -23,16 +23,6 @@ import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import moment from 'moment';
 import React from 'react';
 
-export interface Information {
-    checkboxValue: boolean;
-    currencyValue: string;
-    dateValue: moment.Moment;
-    inputValue: string;
-    numberValue: number;
-    scoreValue: [string, string];
-    textAreaValue: string;
-    timeValue: [string, string];
-}
 export interface Fruit extends DropdownSelectOption, DropdownMultiSelectOption {
     isSelected: boolean;
 }
@@ -83,20 +73,9 @@ const fruits: Fruit[] = [
 ];
 
 export const editableInformationData = <T extends Fruit, U extends Fruit>(
-    values: Information
+
 ): EditableInformationData<T, U> => {
     const result: EditableInformationData<T, U> = [];
-
-    const {
-        checkboxValue,
-        currencyValue,
-        dateValue,
-        inputValue,
-        numberValue,
-        scoreValue,
-        textAreaValue,
-        timeValue,
-    } = values;
 
     result.push({
         component: EditableDataComponent.DATEPICKER,
@@ -105,7 +84,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         isVisibleOnlyOnEdit: true,
         label: 'Date',
         name: 'Date',
-        value: dateValue,
+        value: moment(),
     } as DatePickerDataProps);
 
     result.push({
@@ -113,7 +92,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         isEditable: false,
         label: 'Time',
         name: 'Time',
-        value: timeValue as [string, string],
+        value: ['12','00'],
     } as TimePickerDataProps);
 
     result.push({
@@ -122,7 +101,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         label: 'Checkbox 1',
         name: 'Checkbox',
         textValue: 'Yes',
-        value: checkboxValue,
+        value: true,
     } as CheckboxDataProps);
 
     result.push({
@@ -133,7 +112,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         label: 'Number',
         min: 0,
         name: 'Number',
-        value: numberValue,
+        value: 0,
     } as EditableInputNumberDataProps);
 
     result.push({
@@ -144,7 +123,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         label: 'Input (not editable)',
         maxLength: 20,
         name: 'Input',
-        value: inputValue,
+        value: 'Banana',
     } as EditableInputDataProps);
 
     result.push({
@@ -173,7 +152,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         isEditable: true,
         label: 'Textarea',
         name: 'EditableTextArea',
-        value: textAreaValue,
+        value: 'text here',
     } as EditableTextareaDataProps);
 
     result.push({
@@ -184,7 +163,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         label: 'Currency',
         locale: Locale.NL,
         name: 'EditableCurrency',
-        value: currencyValue,
+        value: '0',
     } as EditableInputCurrencyDataProps);
 
     result.push({
@@ -192,7 +171,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         isEditable: true,
         label: 'Editable Date',
         name: 'EditableDate',
-        value: dateValue,
+        value: moment(),
     } as EditableDatePickerDataProps);
 
     result.push({
@@ -200,7 +179,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         isEditable: true,
         label: 'Editable Time',
         name: 'EditableTime',
-        value: timeValue,
+        value: ['10','30'],
     } as EditableTimePickerDataProps);
 
     result.push({
@@ -209,7 +188,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         label: 'Checkbox 2',
         name: 'EditableCheckbox',
         textValue: 'Yes',
-        value: checkboxValue,
+        value: true,
     } as CheckboxDataProps);
 
     result.push({
@@ -221,7 +200,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         max: 10,
         min: 0,
         name: 'EditableNumber',
-        value: numberValue,
+        value: 5,
     } as EditableInputNumberDataProps);
 
     result.push({
@@ -232,7 +211,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         label: 'Editable Input',
         maxLength: 20,
         name: 'EditableInput',
-        value: inputValue,
+        value: 'Apple',
     } as EditableInputDataProps);
 
     result.push({
@@ -259,7 +238,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         label: 'Editable Score',
         name: 'EditableScore',
         placeholder: ['home', 'away'],
-        value: scoreValue,
+        value: ['2','1'],
     } as EditableScorePickerDataProps);
 
     result.push({

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { editableInformationData, Information, updateValuesOfData } from './mockup/editableInformationData';
+import { editableInformationData, updateValuesOfData } from './mockup/editableInformationData';
 import { EditableInformationData, ValueTypes } from './types';
 import { IconType, Status } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
@@ -8,22 +8,10 @@ import { action } from '@storybook/addon-actions';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
 import EditableInformation from './EditableInformation';
-import moment from 'moment';
 
 export default { title: 'organisms/EditableInformation' };
 
-const defaultValues: Information = {
-    checkboxValue: true,
-    currencyValue: '10',
-    dateValue: moment(),
-    inputValue: 'Apple',
-    numberValue: 0,
-    scoreValue: ['1', '2'],
-    textAreaValue: 'text here',
-    timeValue: ['12', '00'],
-};
-
-const theData = editableInformationData(defaultValues);
+const theData = editableInformationData();
 
 const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
