@@ -20,7 +20,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     isEditable = true
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
-
     const [isSaving, setIsSaving] = useState(false);
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
