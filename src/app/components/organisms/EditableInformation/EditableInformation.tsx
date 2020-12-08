@@ -12,6 +12,7 @@ import { generateValuesArray } from './utils/generateValuesArray';
 import { IconType } from '../../../types';
 import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
 import { PanelStatus } from '../../molecules/PanelStatus/PanelStatus';
+import { Skeleton } from '../../molecules/Skeleton/Skeleton';
 
 export interface EditableInformationProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption>
     extends Omit<PanelHeaderProps, 'children' | 'options'> {
@@ -27,7 +28,8 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     isButtonDisabled?: boolean;
     isDisabled?: boolean;
     isEditing?: boolean;
-    isLoading: boolean;
+    isLoading?: boolean;
+    isSaving?: boolean;
     onCancel?: () => void;
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
@@ -39,7 +41,7 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
 }
 
 export const EditableInformation = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>({
-    amountOfColumns,
+    amountOfColumns = 2,
     data,
     dateFormat = 'dd. D MMM YYYY',
     cancelConfirmDialog,
@@ -52,6 +54,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     isDisabled = false,
     isEditing = false,
     isLoading = false,
+    isSaving = false,
     onCancel,
     onChange,
     onEdit,
@@ -62,6 +65,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     textSave,
     title,
 }: EditableInformationProps<T, U>): JSX.Element => {
+    const DEFAULT_AMOUNT_ROWS = 4;
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
 
     const hasError = errors !== undefined;
@@ -169,7 +173,14 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     }, [data, isEditable]);
 
     useEffect(() => {
-        if (isLoading || !isEditable) {
+        if (isLoading || !data.length) {
+            setInformationTableData(
+                Array(amountOfColumns * DEFAULT_AMOUNT_ROWS).fill({
+                    label: <Skeleton width="60%" />,
+                    value: <Skeleton width="90%" />,
+                })
+            );
+        } else if (!isEditable) {
             setInformationTableData(
                 data.map((element) => ({
                     label: element.label,
@@ -191,6 +202,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             setInformationTableData(newData);
         }
     }, [
+        amountOfColumns,
         data,
         dateFormat,
         datePickerFocuses,
@@ -215,6 +227,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             iconType={iconType}
             isDisabled={isButtonDisabled || isDisabled || isLoading}
             isEditing={isEditing}
+            isSaving={isSaving}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}
@@ -225,11 +238,11 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             textSave={textSave || ''}
             title={title}
         >
-            <CardStatus status={getStatus(hasError, isLoading)}>{cardData}</CardStatus>
+            <CardStatus status={getStatus(hasError, isLoading, isDisabled)}>{cardData}</CardStatus>
             {errors}
         </EditablePanel>
     ) : (
-        <PanelStatus iconType={iconType} status={getStatus(hasError, isLoading)} title={title}>
+        <PanelStatus iconType={iconType} status={getStatus(hasError, isLoading, isDisabled)} title={title}>
             {cardData}
             {errors}
         </PanelStatus>

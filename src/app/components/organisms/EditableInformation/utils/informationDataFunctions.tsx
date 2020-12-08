@@ -1,17 +1,17 @@
 import { CheckboxDataProps, DropdownDataProps, EditableInformationData, EditableInformationDataType } from '../types';
 import { EditableDataComponent, Status } from '../../../../types';
-import { DropdownMultiSelectOption } from '../../../../../lib';
+import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
 import moment from 'moment';
 import { ReactNode } from 'react';
 
-export const getStatus = (hasError: boolean, isLoading?: boolean): Status => {
+export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: boolean): Status => {
     if (hasError) {
         return Status.INVALID;
     }
 
-    if (isLoading) {
+    if (isLoading || isDisabled) {
         return Status.DISABLED;
     }
 
