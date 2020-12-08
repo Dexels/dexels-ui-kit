@@ -40,7 +40,7 @@ themeCyrillic.colorText = {
 
 themeCyrillic.colorTextBody = {
     primary: themeCyrillic.shades.one,
-    secondary: themeCyrillic.shades.four,
+    secondary: themeCyrillic.shades.three,
 };
 
 themeCyrillic.background = {

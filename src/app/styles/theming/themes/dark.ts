@@ -26,7 +26,7 @@ export const themeDark: Theme = createDuiTheme(themeBasic, {
     colorTertiary: '#80CFFE',
 });
 
-themeDark.colorDisabled = themeDark.shades.six;
+themeDark.colorDisabled = themeDark.shades.five;
 
 themeDark.colorTextContrast = {
     primary: themeDark.shades.one,
@@ -39,7 +39,7 @@ themeDark.colorText = {
 
 themeDark.colorTextBody = {
     primary: themeDark.shades.one,
-    secondary: themeDark.shades.four,
+    secondary: themeDark.shades.three,
 };
 
 themeDark.background = {
