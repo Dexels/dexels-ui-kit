@@ -22,7 +22,7 @@ const background = {
 };
 
 const colorAlert = '#EB6500';
-const colorDisabled = shades.six;
+const colorDisabled = shades.five;
 const colorInvalid = '#F94E4E';
 const colorPrimary = '#3D4A9A';
 const colorSecondary = '#009FFD';
@@ -109,7 +109,7 @@ export const themeBasic: Theme = {
     colorText,
     colorTextBody: {
         primary: shades.one,
-        secondary: shades.four,
+        secondary: shades.three,
     },
     colorTextContrast,
     datePicker: {
