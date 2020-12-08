@@ -72,9 +72,7 @@ const fruits: Fruit[] = [
     },
 ];
 
-export const editableInformationData = <T extends Fruit, U extends Fruit>(
-
-): EditableInformationData<T, U> => {
+export const editableInformationData = <T extends Fruit, U extends Fruit>(): EditableInformationData<T, U> => {
     const result: EditableInformationData<T, U> = [];
 
     result.push({
@@ -92,7 +90,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         isEditable: false,
         label: 'Time',
         name: 'Time',
-        value: ['12','00'],
+        value: ['12', '00'],
     } as TimePickerDataProps);
 
     result.push({
@@ -179,7 +177,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         isEditable: true,
         label: 'Editable Time',
         name: 'EditableTime',
-        value: ['10','30'],
+        value: ['10', '30'],
     } as EditableTimePickerDataProps);
 
     result.push({
@@ -238,7 +236,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(
         label: 'Editable Score',
         name: 'EditableScore',
         placeholder: ['home', 'away'],
-        value: ['2','1'],
+        value: ['2', '1'],
     } as EditableScorePickerDataProps);
 
     result.push({

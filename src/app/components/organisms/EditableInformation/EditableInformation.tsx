@@ -67,14 +67,11 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
 }: EditableInformationProps<T, U>): JSX.Element => {
     const DEFAULT_AMOUNT_ROWS = 4;
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
-
     const hasError = errors !== undefined;
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
     const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isEditable, setIsEditable] = useState<boolean>(false);
-
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
-
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
     const onEditCallback = useCallback(() => {
