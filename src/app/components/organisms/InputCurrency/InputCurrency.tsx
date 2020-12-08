@@ -14,7 +14,7 @@ export interface InputCurrencyProps {
     errorMessage?: ReactNode;
     hasValidColor?: boolean;
     isDisabled?: boolean;
-    label: ReactNode;
+    label?: ReactNode;
     locale: Locale;
     name: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;

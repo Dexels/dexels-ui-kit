@@ -7,12 +7,12 @@ interface StyledInformationTableProps {
 export const StyledInformationTable = styled.div<StyledInformationTableProps>`
     display: flex;
     flex-wrap: nowrap;
-    padding: 24px 72px 12px;
+    padding: 24px 16px 12px 32px;
 
     ${({ isSidePanel }): SimpleInterpolation =>
         isSidePanel &&
         css`
-            padding: 24px 24px 12px;
+            padding: 24px 12px 12px 24px;
         `}
 `;
 
@@ -37,20 +37,20 @@ export const Row = styled.div`
     min-height: 32px;
 `;
 
-export const Label = styled.div`
-    flex: 0 1 auto;
-    padding: 0 16px 0 8px;
-    width: 50%;
-    color: ${({ theme }): string => theme.shades.three};
-`;
-
-interface ValueProps {
+interface ColumnValueProps {
     isDisabled: boolean;
 }
 
-export const Value = styled.div<ValueProps>`
+export const Label = styled.div<ColumnValueProps>`
     flex: 0 1 auto;
-    padding: 0 16px 0 8px;
+    padding: 0 8px 0 0;
+    width: 50%;
+    color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.shades.three)};
+`;
+
+export const Value = styled.div<ColumnValueProps>`
+    flex: 0 1 auto;
+    padding: 0 16px 0 0;
     width: 50%;
     color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorTextBody.primary)};
 `;

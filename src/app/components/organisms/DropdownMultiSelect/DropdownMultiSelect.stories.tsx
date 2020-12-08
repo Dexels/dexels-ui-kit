@@ -35,7 +35,8 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     options: Array<T>,
     variant: DropdownVariant = DropdownVariant.COMPACT,
     label = '',
-    topPadding = '0px'
+    topPadding = '0px',
+    withCancel = true
 ): JSX.Element => {
     const [optionValues, setOptionValues] = useState(options);
     const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);
@@ -55,7 +56,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
     const onConfirmCallback = (_: SyntheticEvent, updatedOptions: Array<T>): void => {
         setOptionValues(updatedOptions);
 
-        const convertedOptions = optionValues.map((option) => ({
+        const convertedOptions = updatedOptions.map((option) => ({
             ...option,
             IsSelected: option.isSelected,
         }));
@@ -68,7 +69,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
         <DropdownMultiSelectWrapper className="Parent" ref={setWrapperElementRef} topPadding={topPadding}>
             <DropdownMultiSelect
                 allSelectedLabel={text('all selected label', TEXT_OPTION_ALL_SELECTED)}
-                buttonCancelText={text('ButtonCancel text', 'Cancel')}
+                buttonCancelText={withCancel ? text('ButtonCancel text', 'Cancel') : undefined}
                 buttonConfirmText={text('Button confirm text', 'Ok')}
                 deselectAllLabel={text('de-select all label', TEXT_OPTION_DESELECT_ALL)}
                 errorMessage={text('Error message', 'Everything is broken, oops')}
@@ -80,7 +81,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 minHeight={50}
                 name="the-best-fruit"
                 noOptionsText={text('No options text', 'No options')}
-                onCancel={action('On cancel')}
+                onCancel={withCancel ? action('On cancel') : undefined}
                 onChange={action('On change')}
                 onConfirm={onConfirmCallback}
                 options={optionValues}
@@ -132,5 +133,18 @@ export const ConfigurableEmptyOptions: FunctionComponent = () => (
     <>
         <p>{'What is the best fruit?'}</p>
         {BaseComponent([], DropdownVariant.OUTLINE)}
+    </>
+);
+
+export const ConfigurableNoCancelButton: FunctionComponent = () => (
+    <>
+        <p>{'What is the best fruit?'}</p>
+        {BaseComponent(
+            selectOptionsExtend(data, 'Description', 'Id', 'IsSelected'),
+            DropdownVariant.OUTLINE,
+            'What are the best fruits?',
+            '0px',
+            false
+        )}
     </>
 );

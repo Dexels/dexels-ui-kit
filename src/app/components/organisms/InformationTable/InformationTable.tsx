@@ -12,6 +12,7 @@ export interface InformationTableProps {
     amountOfColumns?: AmountOfColumns;
     children?: ReactNode;
     data?: InformationTableData[];
+    isDisabled?: boolean;
     isSidePanel?: boolean;
 }
 
@@ -19,12 +20,10 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
     amountOfColumns = 2,
     children,
     data = [],
+    isDisabled = false,
     isSidePanel = false,
 }) => {
     const amountOfRowsPerColumn = Math.ceil(data.length / amountOfColumns);
-
-    // eslint-disable-next-line no-console
-    console.log('[amountOfRowsPerColumn]', amountOfRowsPerColumn);
 
     const columnArray =
         data.length > 0
@@ -32,11 +31,11 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
                   <Column amountOfColumns={amountOfColumns} key={key}>
                       {data
                           .slice(key * amountOfRowsPerColumn, (key + 1) * amountOfRowsPerColumn)
-                          .map(({ isDisabled = false, label, value }, index) => (
+                          .map((element, index) => (
                               // eslint-disable-next-line react/no-array-index-key
                               <Row key={index}>
-                                  <Label>{label}</Label>
-                                  <Value isDisabled={isDisabled}>{value}</Value>
+                                  <Label isDisabled={isDisabled}>{element.label}</Label>
+                                  <Value isDisabled={isDisabled || element.isDisabled || false}>{element.value}</Value>
                               </Row>
                           ))}
                   </Column>
