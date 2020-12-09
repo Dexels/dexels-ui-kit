@@ -21,6 +21,7 @@ export const TabHeader = styled.button<TabHeaderProps>`
     ${rippleEffectInit()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonSmall)}
     appearance: none;
+    flex-grow: 2;
     outline: none;
     border: 0;
     border-bottom: 2px solid ${({ theme }): string => theme.colorDisabled};
@@ -71,6 +72,8 @@ TabHeader.defaultProps = {
 export const TabPanel = styled.div`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
 `;
+
+export const StyledTabs = styled.div``;
 
 TabPanel.defaultProps = {
     theme: themeBasic,
