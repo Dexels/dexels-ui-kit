@@ -72,6 +72,8 @@ export const TabPanel = styled.div`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
 `;
 
+export const StyledTabs = styled.div``;
+
 TabPanel.defaultProps = {
     theme: themeBasic,
 };
