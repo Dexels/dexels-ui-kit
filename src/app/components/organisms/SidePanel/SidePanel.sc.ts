@@ -51,10 +51,8 @@ export const StyledSidePanel = styled.div<StyledSidePanelProps>`
     top: 0;
     right: 0;
     transform: ${({ isVisible }): string => `translate3d(${isVisible ? 0 : '100%'}, 0, 0)`};
-    z-index: ${({ isModalSidePanel }): number =>
-        isModalSidePanel
-            ? zIndex.SIDEPANEL + 2
-            : zIndex.SIDEPANEL}; /* Overlay will get a different z-index as well when isModalSidePanel = true */
+    /* Overlay will get a different z-index as well when isModalSidePanel = true */
+    z-index: ${({ isModalSidePanel }): number => (isModalSidePanel ? zIndex.SIDEPANEL + 2 : zIndex.SIDEPANEL)};
     background-color: ${({ theme }): string => theme.background.secondary};
     width: 100%;
     height: 100%;
