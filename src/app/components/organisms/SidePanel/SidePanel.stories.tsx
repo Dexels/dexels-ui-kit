@@ -1,5 +1,5 @@
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { ButtonSize, ButtonVariant, Easing, IconType, SidePanelSize } from '../../../types';
-import { number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
@@ -58,6 +58,7 @@ export const ConfigurableSidePanel: FunctionComponent = () => {
                         onClick: onBack,
                     },
                 ]}
+                isModalSidePanel={boolean('Is within modal', false)}
                 isVisible={isVisible}
                 options={functionalItems}
                 size={select('Size', SidePanelSize, SidePanelSize.MEDIUM)}

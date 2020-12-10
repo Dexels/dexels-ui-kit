@@ -5,6 +5,7 @@ import { zIndex } from '../../../types';
 
 export interface OverlayProps {
     isClickable: boolean;
+    isModalSidePanel: boolean;
     isVisible: boolean;
 }
 
@@ -16,7 +17,10 @@ export const StyledOverlay = styled.div<OverlayProps>`
     left: 0;
     visibility: ${({ isVisible }): string => (isVisible ? 'visible' : 'hidden')};
     opacity: ${({ isVisible }): string => (isVisible ? '0.4' : '0')};
-    z-index: ${zIndex.OVERLAY};
+    z-index: ${({ isModalSidePanel }): number =>
+        isModalSidePanel
+            ? zIndex.SIDEPANEL + 1
+            : zIndex.OVERLAY}; /* When isModalSidePanel = true, then we need to make sure that the modal is not clickable as long as the sidepanel is visible */
     background-color: black;
     cursor: ${({ isClickable }): string => (isClickable ? 'pointer' : 'auto')};
     width: 100%;
