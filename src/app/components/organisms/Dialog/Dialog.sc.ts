@@ -62,6 +62,12 @@ StyledDialog.defaultProps = {
     theme: themeBasic,
 };
 
+export const TitleWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+`;
+
 interface ButtonCloseProps {
     position: DialogButtonClosePosition;
 }

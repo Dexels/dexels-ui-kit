@@ -1,12 +1,13 @@
 import { FileAlertType, FileTypes, FileUploaderStatus } from '../FileUploader/types';
-import { IconSize, IconType, InputType } from '../../../types';
+import { IconType, InputType } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
-import { StyledFileUploader, StyledTextWithOptionalIcon } from './FileUploadDialog.sc';
 import { Dialog } from '../Dialog';
 import { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
+import { DialogTextWithOptionalIcon } from '../Dialog/components/DialogTextWithOptionalIcon';
 import { FileUploaderData } from '../FileUploader/FileUploader';
 import Input from '../../molecules/Input/Input';
 import parseInputValue from '../../../utils/functions/parseInputValue';
+import { StyledFileUploader } from './FileUploadDialog.sc';
 
 export interface FileUploadDialogProps {
     buttons: DialogFooterProps['buttons'];
@@ -46,9 +47,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     title,
 }) => (
     <Dialog className={className} footerButtons={buttons} isVisible={isVisible} onClose={onClose}>
-        <StyledTextWithOptionalIcon iconSize={IconSize.XLARGE} iconType={IconType.FILEADD}>
-            {title}
-        </StyledTextWithOptionalIcon>
+        <DialogTextWithOptionalIcon iconType={IconType.FILEADD} title={title} />
         <StyledFileUploader
             data={data}
             fileNameLength={fileNameLength}

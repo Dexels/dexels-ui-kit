@@ -15,6 +15,7 @@ import { Easing, Elevation, IconType, Status } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
+import { DialogTextWithOptionalIcon } from './components/DialogTextWithOptionalIcon';
 import { IconProps } from '../../atoms/Icon/Icon';
 import Overlay from '../../molecules/Overlay/Overlay';
 
@@ -35,6 +36,8 @@ export interface DialogProps {
     onClose?: MouseEventHandler;
     status?: Status;
     text?: ReactNode;
+    title?: ReactNode;
+    titleIcon?: IconType;
     transitionDuration?: number;
     transitionEasing?: Easing;
 }
@@ -56,6 +59,8 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     onClose,
     status = Status.DEFAULT,
     text,
+    title,
+    titleIcon,
     transitionDuration = 300,
     transitionEasing = Easing.EASE,
 }) => (
@@ -79,6 +84,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
             <StyledDialog elevation={elevation}>
                 {header && <Header hasHeaderPadding={hasHeaderPadding}>{header}</Header>}
                 <Body hasBodyPadding={hasBodyPadding}>
+                    {title && <DialogTextWithOptionalIcon iconType={titleIcon} title={title} />}
                     <Content>
                         {iconType && (
                             <IconWrapper status={status}>
