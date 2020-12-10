@@ -9,6 +9,7 @@ export interface SidePanelProps {
     buttons?: Omit<ButtonIconProps, 'isInverted'>[];
     children?: ReactNode;
     className?: string;
+    isModalSidePanel?: boolean; // When used within a modal, then z-index needs to be handled correctly
     isVisible: boolean;
     onBack?: MouseEventHandler;
     options?: ReactNode;
@@ -22,6 +23,7 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
     buttons,
     children,
     className,
+    isModalSidePanel = false,
     isVisible = false,
     options,
     size = SidePanelSize.MEDIUM,
@@ -30,9 +32,10 @@ export const SidePanel: FunctionComponent<SidePanelProps> = ({
     transitionEasing = Easing.EASE,
 }) => (
     <>
-        <Overlay isVisible={isVisible} />
+        <Overlay isModalSidePanel={isModalSidePanel} isVisible={isVisible} />
         <StyledSidePanel
             className={className}
+            isModalSidePanel={isModalSidePanel}
             isVisible={isVisible}
             size={size}
             transitionDuration={transitionDuration}
