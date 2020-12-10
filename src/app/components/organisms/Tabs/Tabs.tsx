@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactNode, SyntheticEvent, useState } from 'react';
-import { TabHeader, TabHeaders, TabPanel } from './Tabs.sc';
+import { StyledTabs, TabHeader, TabHeaders, TabPanel } from './Tabs.sc';
 
 export interface Tab {
     content: ReactNode;
@@ -9,6 +9,7 @@ export interface Tab {
 
 export interface TabsProps {
     children?: never;
+    className?: string;
     hasFullWidthTabHeaders?: boolean;
     initiallyActiveTabIndex?: number;
     onClickTab?: (event: SyntheticEvent, tabIndex: number) => void;
@@ -24,6 +25,7 @@ const getInitiallyActiveTabIndex = (tabs: Tab[], initiallyActiveTabIndex?: numbe
 };
 
 export const Tabs: FunctionComponent<TabsProps> = ({
+    className,
     hasFullWidthTabHeaders = true,
     initiallyActiveTabIndex,
     onClickTab,
@@ -32,7 +34,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
     const [activeTabIndex, setActiveTabIndex] = useState(getInitiallyActiveTabIndex(tabs, initiallyActiveTabIndex));
 
     return (
-        <>
+        <StyledTabs className={className}>
             <TabHeaders>
                 {tabs.length > 0 &&
                     tabs.map(({ isDisabled = false, title }: Tab, index: number) => (
@@ -55,7 +57,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
                     ))}
             </TabHeaders>
             {tabs[activeTabIndex] && <TabPanel>{tabs[activeTabIndex].content}</TabPanel>}
-        </>
+        </StyledTabs>
     );
 };
 
