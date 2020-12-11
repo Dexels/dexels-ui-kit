@@ -31,13 +31,12 @@ export interface DialogProps {
     hasHeaderPadding?: boolean;
     hasOverlay?: boolean;
     header?: ReactNode;
-    iconType?: IconProps['type'];
+    iconType?: IconProps['type'] /* IconType will be used by title and inside content */;
     isVisible: boolean;
     onClose?: MouseEventHandler;
     status?: Status;
     text?: ReactNode;
     title?: ReactNode;
-    titleIcon?: IconType;
     transitionDuration?: number;
     transitionEasing?: Easing;
 }
@@ -60,7 +59,6 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     status = Status.DEFAULT,
     text,
     title,
-    titleIcon,
     transitionDuration = 300,
     transitionEasing = Easing.EASE,
 }) => (
@@ -84,9 +82,9 @@ export const Dialog: FunctionComponent<DialogProps> = ({
             <StyledDialog elevation={elevation}>
                 {header && <Header hasHeaderPadding={hasHeaderPadding}>{header}</Header>}
                 <Body hasBodyPadding={hasBodyPadding}>
-                    {title && <DialogTextWithOptionalIcon iconType={titleIcon} title={title} />}
+                    {title && iconType && <DialogTextWithOptionalIcon iconType={iconType} title={title} />}
                     <Content>
-                        {iconType && (
+                        {iconType && !title && (
                             <IconWrapper status={status}>
                                 <IconCustomizable iconSize={IconCustomizableSize.SIZE32} iconType={iconType} />
                             </IconWrapper>
@@ -95,7 +93,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
                     </Content>
                     {children && (
                         <ChildrenWrapper
-                            hasPaddingLeft={Boolean(iconType) && Boolean(text)}
+                            hasPaddingLeft={Boolean(iconType) && Boolean(text) && !title}
                             hasPaddingTop={Boolean(iconType) || Boolean(text)}
                         >
                             {children}

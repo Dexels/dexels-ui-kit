@@ -19,7 +19,6 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
     status,
     text: textProp,
     title: titleProp,
-    titleIcon,
 }) => (
     <Dialog
         buttonClosePosition={select('ButtonClose position', DialogButtonClosePosition, DialogButtonClosePosition.LEFT)}
@@ -37,7 +36,6 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
         status={status}
         text={textProp}
         title={titleProp}
-        titleIcon={titleIcon}
         transitionDuration={number('Transition duration', 300)}
         transitionEasing={select('Transition type', Easing, Easing.EASE)}
     >
@@ -78,6 +76,7 @@ export const Configurable: FunctionComponent = () => {
                         size: ButtonSize.SMALL,
                     },
                 ]}
+                iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
                 isVisible={isVisible}
                 onClose={(): void => {
                     setIsVisible(false);
@@ -87,7 +86,6 @@ export const Configurable: FunctionComponent = () => {
                     'You can put all kinds of text in here. From short ones to long ones, from boring ones to fun ones.'
                 )}
                 title={text('Title', 'We should title this')}
-                titleIcon={select('Title icon type', IconType, IconType.FILEVIDEO)}
             />
         </>
     );
@@ -126,8 +124,6 @@ export const ConfigurableAlert: FunctionComponent = () => {
                 }}
                 status={select('Status', Status, Status.ALERT)}
                 text={text('Text', 'Help, the world is going to end!')}
-                title={text('Title', 'We should title this')}
-                titleIcon={select('Title icon type', IconType, IconType.FILEVIDEO)}
             />
         </>
     );
@@ -168,8 +164,6 @@ export const ConfigurableAlertWithContent: FunctionComponent = () => {
                 }}
                 status={select('Status', Status, Status.ALERT)}
                 text="What is 2 + 2?"
-                title={text('Title', 'We should title this')}
-                titleIcon={select('Title icon type', IconType, IconType.FILEVIDEO)}
             >
                 <Input
                     isValid={answer === 4}
