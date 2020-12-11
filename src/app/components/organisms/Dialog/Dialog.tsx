@@ -7,6 +7,7 @@ import {
     IconWrapper,
     OverlayWrapper,
     StyledDialog,
+    StyledTextWithOptionalIcon,
     Text,
     Wrapper,
 } from './Dialog.sc';
@@ -15,7 +16,6 @@ import { Easing, Elevation, IconType, Status } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
-import { DialogTextWithOptionalIcon } from './components/DialogTextWithOptionalIcon';
 import { IconProps } from '../../atoms/Icon/Icon';
 import Overlay from '../../molecules/Overlay/Overlay';
 
@@ -82,7 +82,9 @@ export const Dialog: FunctionComponent<DialogProps> = ({
             <StyledDialog elevation={elevation}>
                 {header && <Header hasHeaderPadding={hasHeaderPadding}>{header}</Header>}
                 <Body hasBodyPadding={hasBodyPadding}>
-                    {title && iconType && <DialogTextWithOptionalIcon iconType={iconType} title={title} />}
+                    {iconType && title && (
+                        <StyledTextWithOptionalIcon iconType={iconType}>{title}</StyledTextWithOptionalIcon>
+                    )}
                     <Content>
                         {iconType && !title && (
                             <IconWrapper status={status}>

@@ -3,7 +3,6 @@ import { IconType, InputType } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { Dialog } from '../Dialog';
 import { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
-import { DialogTextWithOptionalIcon } from '../Dialog/components/DialogTextWithOptionalIcon';
 import { FileUploaderData } from '../FileUploader/FileUploader';
 import Input from '../../molecules/Input/Input';
 import parseInputValue from '../../../utils/functions/parseInputValue';
@@ -46,8 +45,14 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     onDrop,
     title,
 }) => (
-    <Dialog className={className} footerButtons={buttons} isVisible={isVisible} onClose={onClose}>
-        <DialogTextWithOptionalIcon iconType={IconType.FILEADD} title={title} />
+    <Dialog
+        className={className}
+        footerButtons={buttons}
+        iconType={IconType.FILEADD}
+        isVisible={isVisible}
+        onClose={onClose}
+        title={title}
+    >
         <StyledFileUploader
             data={data}
             fileNameLength={fileNameLength}
