@@ -6,7 +6,9 @@ import { getElevation } from '../../../styles/mixins/getElevation';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { setCentered } from '../../../styles/mixins/setCentered';
+import { TextWithOptionalIcon } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
 import { themeBasic } from '../../../styles/theming/themes/basic';
+import { Text as TText } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon.sc';
 
 interface OverlayWrapperProps {
     isVisible: boolean;
@@ -61,6 +63,12 @@ export const StyledDialog = styled.div<StyledDialogProps>`
 StyledDialog.defaultProps = {
     theme: themeBasic,
 };
+
+export const TitleWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+`;
 
 interface ButtonCloseProps {
     position: DialogButtonClosePosition;
@@ -142,6 +150,17 @@ export const Body = styled.div<BodyProps>`
 Body.defaultProps = {
     theme: themeBasic,
 };
+
+export const StyledTextWithOptionalIcon = styled(TextWithOptionalIcon)`
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonLarge)}
+    justify-content: flex-start;
+    margin: ${({ theme }): string => theme.spacing(1, 0, 2, 0)};
+    color: ${({ theme }): string => theme.colorPrimary};
+
+    ${TText} {
+        margin: ${({ theme }): string => theme.spacing(0, 0, 0, 0.5)};
+    }
+`;
 
 export const Content = styled.div`
     display: flex;

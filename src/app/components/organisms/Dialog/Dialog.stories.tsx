@@ -18,6 +18,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
     onClose,
     status,
     text: textProp,
+    title: titleProp,
 }) => (
     <Dialog
         buttonClosePosition={select('ButtonClose position', DialogButtonClosePosition, DialogButtonClosePosition.LEFT)}
@@ -34,6 +35,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
         onClose={onClose}
         status={status}
         text={textProp}
+        title={titleProp}
         transitionDuration={number('Transition duration', 300)}
         transitionEasing={select('Transition type', Easing, Easing.EASE)}
     >
@@ -74,6 +76,7 @@ export const Configurable: FunctionComponent = () => {
                         size: ButtonSize.SMALL,
                     },
                 ]}
+                iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
                 isVisible={isVisible}
                 onClose={(): void => {
                     setIsVisible(false);
@@ -82,6 +85,7 @@ export const Configurable: FunctionComponent = () => {
                     'Text',
                     'You can put all kinds of text in here. From short ones to long ones, from boring ones to fun ones.'
                 )}
+                title={text('Title', 'We should title this')}
             />
         </>
     );
@@ -167,6 +171,73 @@ export const ConfigurableAlertWithContent: FunctionComponent = () => {
                     max={number('Max', 100)}
                     min={number('Min', 0)}
                     name="an-input-name"
+                    onChange={({ currentTarget }): void => {
+                        setAnswer(parseInt(parseInputValue(currentTarget), 10));
+                    }}
+                    type={InputType.NUMBER}
+                    value={answer ? answer.toString() : ''}
+                />
+            </ConfigurableDialog>
+        </>
+    );
+};
+
+export const ConfigurableAlertWithInput: FunctionComponent = () => {
+    const [answer, setAnswer] = useState<number | undefined>(undefined);
+    const [isVisible, setIsVisible] = useState(false);
+
+    return (
+        <>
+            <Button
+                onClick={(): void => {
+                    setIsVisible(true);
+                }}
+                variant={ButtonVariant.FILLED}
+            >
+                {isVisible ? 'Dialog is showing' : 'Show dialog'}
+            </Button>
+            <ConfigurableDialog
+                footerButtons={[
+                    {
+                        children: 'Back to safety',
+                        direction: Direction.RTL,
+                        iconType: IconType.ARROWRIGHT,
+                        isDisabled: answer !== 4,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                    },
+                ]}
+                footerText={text('Footer text', 'Hint: its not 3 or 5')}
+                iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
+                isVisible={isVisible}
+                onClose={(): void => {
+                    setIsVisible(false);
+                }}
+                status={select('Status', Status, Status.ALERT)}
+                text="What is 2 + 2?"
+                title={text('Title', 'Title and input components')}
+            >
+                {/* Don't mind the lack of padding/margin between the input components ;-) */}
+                <Input
+                    isValid={answer === 4}
+                    label="Your answer"
+                    max={number('Max', 100)}
+                    min={number('Min', 0)}
+                    name="an-input-name"
+                    onChange={({ currentTarget }): void => {
+                        setAnswer(parseInt(parseInputValue(currentTarget), 10));
+                    }}
+                    type={InputType.NUMBER}
+                    value={answer ? answer.toString() : ''}
+                />
+                <Input
+                    isValid={answer === 4}
+                    label="Your other answer"
+                    max={number('Max', 100)}
+                    min={number('Min', 0)}
+                    name="an-input-name2"
                     onChange={({ currentTarget }): void => {
                         setAnswer(parseInt(parseInputValue(currentTarget), 10));
                     }}
