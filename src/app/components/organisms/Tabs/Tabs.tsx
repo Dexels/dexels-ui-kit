@@ -61,7 +61,6 @@ export const Tabs: FunctionComponent<TabsProps> = ({
                         isActive={false}
                         isDisabled
                         isFullWidth={false}
-                        // eslint-disable-next-line react/no-array-index-key
                         key={tabs.length + 1}
                     />
                 )}
