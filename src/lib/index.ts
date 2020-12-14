@@ -144,6 +144,7 @@ export { TimePicker, TimePickerProps } from '../app/components/molecules/TimePic
 export { Tooltip, TooltipProps } from '../app/components/molecules/Tooltip/Tooltip';
 
 // Export organisms
+export { ChipInfo, ChipInfoProps } from '../app/components/organisms/ChipInfo';
 export { ChipStatus, ChipStatusProps, ChipStatusVariant } from '../app/components/organisms/ChipStatus';
 export { ContentCell, ContentCellProps } from '../app/components/organisms/Table/ContentCell/ContentCell';
 export {
