@@ -1,8 +1,15 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import { Theme } from '../../../types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
+const getTabStyling = (theme: Theme): FlattenSimpleInterpolation => css`
+    border: 0;
+    background-color: ${`${theme.background.secondary}`};
+`;
+
 export const TabHeaders = styled.div`
+    ${({ theme }): FlattenSimpleInterpolation => getTabStyling(theme)}
     display: flex;
     flex-wrap: nowrap;
 `;
@@ -20,15 +27,22 @@ interface TabHeaderProps {
 export const TabHeader = styled.button<TabHeaderProps>`
     ${rippleEffectInit()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonSmall)}
+    ${({ theme }): FlattenSimpleInterpolation => getTabStyling(theme)}
     appearance: none;
     outline: none;
-    border: 0;
     border-bottom: 2px solid ${({ theme }): string => theme.colorDisabled};
-    background-color: ${({ theme }): string => theme.background.secondary};
     cursor: pointer;
     padding: ${({ theme }): string => theme.spacing(1.25, 3)};
     text-align: center;
     color: ${({ theme }): string => theme.colorText.primary};
+
+    ${({ isFullWidth }): SimpleInterpolation =>
+        !isFullWidth &&
+        css`
+            &:last-of-type {
+                flex-grow: 2;
+            }
+        `}
 
     ${({ isFullWidth }): SimpleInterpolation =>
         isFullWidth &&
