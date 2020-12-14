@@ -21,7 +21,6 @@ export const TabHeader = styled.button<TabHeaderProps>`
     ${rippleEffectInit()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonSmall)}
     appearance: none;
-    flex-grow: 2;
     outline: none;
     border: 0;
     border-bottom: 2px solid ${({ theme }): string => theme.colorDisabled};
@@ -34,6 +33,7 @@ export const TabHeader = styled.button<TabHeaderProps>`
     ${({ isFullWidth }): SimpleInterpolation =>
         isFullWidth &&
         css`
+            flex-grow: 2;
             width: 100%;
         `}
 

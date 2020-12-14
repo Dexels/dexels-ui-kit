@@ -29,7 +29,7 @@ export const Configurable: FunctionComponent = () => (
             },
             {
                 content: 'Tab 2 content',
-                title: 'Tab 2',
+                title: 'Tab 2 with longer text',
             },
             {
                 content: 'Tab 3 content',
