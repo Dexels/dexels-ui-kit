@@ -58,16 +58,7 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                 return {
                     label,
                     value:
-                        isEditable && !isBeingEdited ? (
-                            <Input
-                                hasError={isRequired && Boolean(name) && !values[name]}
-                                isDisabled={isDisabled}
-                                label={dataInstance.placeholder}
-                                name={name}
-                                value={dataInstance.textValue}
-                                variant={InputVariant.COMPACT}
-                            />
-                        ) : (
+                        isEditable && isBeingEdited ? (
                             <SelectionControl
                                 errorMessage={dataInstance.errorMessage}
                                 hasError={isRequired && Boolean(name) && !values[name]}
@@ -80,6 +71,15 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                                     onChange(name, !values[name]);
                                 }}
                                 value={name}
+                            />
+                        ) : (
+                            <Input
+                                hasError={isRequired && Boolean(name) && !values[name]}
+                                isDisabled={isDisabled}
+                                label={dataInstance.placeholder}
+                                name={name}
+                                value={dataInstance.textValue}
+                                variant={InputVariant.COMPACT}
                             />
                         ),
                 };
