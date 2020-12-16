@@ -57,13 +57,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
                     ))}
                 {/* When not using full width, we need to add a dummy tab to make sure the background and bottom border are shown */}
                 {!hasFullWidthTabHeaders && (
-                    <TabHeader
-                        isActive={false}
-                        isDisabled
-                        isFullWidth={false}
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={tabs.length + 1}
-                    />
+                    <TabHeader isActive={false} isDisabled isFullWidth={false} key={tabs.length + 1} />
                 )}
             </TabHeaders>
             {tabs[activeTabIndex] && <TabPanel>{tabs[activeTabIndex].content}</TabPanel>}

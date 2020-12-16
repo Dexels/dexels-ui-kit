@@ -57,21 +57,31 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
             if (dataInstance.component === EditableDataComponent.CHECKBOX) {
                 return {
                     label,
-                    value: (
-                        <SelectionControl
-                            errorMessage={dataInstance.errorMessage}
-                            hasError={isRequired && Boolean(name) && !values[name]}
-                            hasVerticalCorrection
-                            isChecked={values[name] as boolean}
-                            isDisabled={isDisabled}
-                            label={dataInstance.placeholder}
-                            name={name}
-                            onChange={(): void => {
-                                onChange(name, !values[name]);
-                            }}
-                            value={name}
-                        />
-                    ),
+                    value:
+                        isEditable && !isBeingEdited ? (
+                            <Input
+                                hasError={isRequired && Boolean(name) && !values[name]}
+                                isDisabled={isDisabled}
+                                label={dataInstance.placeholder}
+                                name={name}
+                                value={dataInstance.textValue}
+                                variant={InputVariant.COMPACT}
+                            />
+                        ) : (
+                            <SelectionControl
+                                errorMessage={dataInstance.errorMessage}
+                                hasError={isRequired && Boolean(name) && !values[name]}
+                                hasVerticalCorrection
+                                isChecked={values[name] as boolean}
+                                isDisabled={isDisabled}
+                                label={dataInstance.placeholder}
+                                name={name}
+                                onChange={(): void => {
+                                    onChange(name, !values[name]);
+                                }}
+                                value={name}
+                            />
+                        ),
                 };
             }
 
