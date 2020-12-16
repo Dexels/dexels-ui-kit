@@ -177,6 +177,7 @@ export enum IconType {
     HASH = 'HASH',
     HEART = 'HEART',
     HELPDESK = 'HELPDESK',
+    HOME = 'HOME',
     IDCARD = 'IDCARD',
     INDICATOR = 'INDICATOR',
     LETTERICON_A = 'LETTERICON_A',
