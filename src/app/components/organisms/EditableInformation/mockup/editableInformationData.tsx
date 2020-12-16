@@ -167,9 +167,10 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     result.push({
         component: EditableDataComponent.DATEPICKER,
         isEditable: true,
+        isOutsideRange: () => false,
         label: 'Editable Date',
         name: 'EditableDate',
-        value: moment(),
+        value: moment('1950-06-03'),
     } as EditableDatePickerDataProps);
 
     result.push({
