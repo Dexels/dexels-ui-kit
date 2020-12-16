@@ -17,7 +17,8 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     data: EditableInformationData<T, U>,
     isEditing = false,
     withDialogs = false,
-    isEditable = true
+    isEditable = true,
+    errors = (undefined as unknown) as string[]
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
@@ -47,6 +48,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                     : undefined
             }
             data={updatedData}
+            errors={errors}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
             isButtonDisabled={boolean('Is button disabled', false)}
             isDisabled={boolean('Is disabled', false)}
@@ -79,6 +81,9 @@ export const Configurable: FunctionComponent = () => BaseComponent(theData);
 
 export const ConfigurableEditingDefault: FunctionComponent = () => BaseComponent(theData, true);
 
+export const ConfigurableEditingDefaultWithErrors: FunctionComponent = () =>
+    BaseComponent(theData, true, false, false, ['Error number 1', 'Error number 2']);
+
 export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => BaseComponent(theData, false, true);
 
 export const ConfigurableInformationNotEditable: FunctionComponent = () =>
@@ -91,3 +96,6 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () =>
         false,
         false
     );
+
+export const ConfigurableWithErrors: FunctionComponent = () =>
+    BaseComponent(theData, false, false, false, ['Error number 1', 'Error number 2']);

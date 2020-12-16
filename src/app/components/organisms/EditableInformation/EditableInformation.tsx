@@ -1,8 +1,9 @@
 import { DatePickerFocuses, EditableInformationData, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
+import { ErrorMessage, ErrorMessageWrapper } from './EditableInformation.sc';
 import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
-import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
@@ -20,7 +21,7 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     cancelConfirmDialog?: ConfirmDialog;
     data: EditableInformationData<T, U>;
     dateFormat?: string;
-    errors?: ReactNode;
+    errors?: string[];
     iconCancel?: IconType;
     iconEdit?: IconType;
     iconSave?: IconType;
@@ -215,6 +216,17 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
         <InformationTable amountOfColumns={amountOfColumns} data={informationTableData} isDisabled={isDisabled} />
     );
 
+    const getErrorObject = () => {
+        return (
+            <ErrorMessageWrapper>
+                {errors?.map((error, index) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <ErrorMessage key={index}>{error}</ErrorMessage>
+                ))}
+            </ErrorMessageWrapper>
+        );
+    };
+
     return onEdit || onSave ? (
         <EditablePanel
             cancelConfirmDialog={cancelConfirmDialog}
@@ -236,12 +248,12 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             title={title}
         >
             <CardStatus status={getStatus(hasError, isLoading, isDisabled)}>{cardData}</CardStatus>
-            {errors}
+            {hasError && getErrorObject()}
         </EditablePanel>
     ) : (
         <PanelStatus iconType={iconType} status={getStatus(hasError, isLoading, isDisabled)} title={title}>
             {cardData}
-            {errors}
+            {hasError && getErrorObject()}
         </PanelStatus>
     );
 };
