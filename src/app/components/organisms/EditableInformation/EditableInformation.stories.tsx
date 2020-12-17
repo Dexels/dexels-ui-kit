@@ -15,18 +15,18 @@ const theData = editableInformationData();
 
 const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
-    isEditing = false,
+    isEditingMode = false,
     withDialogs = false,
     isEditable = true,
     errors = (undefined as unknown) as string[]
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
-    const [isEditingMode, setIsEditingMode] = useState(isEditing);
+    const [isEditing, setIsEditing] = useState(isEditingMode);
     const [saveErrors, setSaveErrors] = useState<Array<string>>((undefined as unknown) as string[]);
 
     useEffect(() => {
-        setIsEditingMode(isEditingMode || (saveErrors && saveErrors.length !== 0));
+        setIsEditing(isEditing || (saveErrors && saveErrors.length !== 0));
     }, [saveErrors]);
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
@@ -62,7 +62,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
             isButtonDisabled={boolean('Is button disabled', false)}
             isDisabled={boolean('Is disabled', false)}
-            isEditing={isEditingMode}
+            isEditing={isEditing}
             isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
             onCancel={action('onCancel')}

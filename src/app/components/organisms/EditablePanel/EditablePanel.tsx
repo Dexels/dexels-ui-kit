@@ -49,12 +49,16 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     textSave,
     title,
 }) => {
-    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
+    const [isBeingEdited, setIsBeingEdited] = useState(false);
     const [isSaveConfirmDialogVisible, setIsSaveConfirmDialogVisible] = useState(false);
     const [isCancelConfirmDialogVisible, setIsCancelConfirmDialogVisible] = useState(false);
 
     const savedCallback = useRef<() => void>();
     const canceledCallback = useRef<() => void>();
+
+    useEffect(() => {
+        setIsBeingEdited(isEditing);
+    }, [isEditing]);
 
     // After every render, save the latest callback into a ref.
     useEffect(() => {
