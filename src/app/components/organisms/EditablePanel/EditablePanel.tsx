@@ -82,7 +82,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
         if (saveConfirmDialog) {
             setIsSaveConfirmDialogVisible(true);
         } else {
-            setIsBeingEdited(hasError);
+            setIsBeingEdited(false);
 
             if (savedCallback.current) {
                 savedCallback.current();
@@ -95,7 +95,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     }, []);
 
     const onConfirmSaveCallback = useCallback(() => {
-        setIsBeingEdited(hasError);
+        setIsBeingEdited(false);
         setIsSaveConfirmDialogVisible(false);
 
         if (savedCallback.current) {
