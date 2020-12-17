@@ -22,6 +22,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
+    const [saveErrors, setSaveErrors] = useState<Array<string>>((undefined as unknown) as string[]);
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
         setIsSaving(true);
@@ -29,6 +30,10 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
 
         // show loading state for 5 seconds
         setTimeout(() => {
+            if (errors && errors.length) {
+                setSaveErrors(errors);
+            }
+
             setIsSaving(false);
         }, 5000);
     };
@@ -48,7 +53,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                     : undefined
             }
             data={updatedData}
-            errors={errors}
+            errors={saveErrors}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
             isButtonDisabled={boolean('Is button disabled', false)}
             isDisabled={boolean('Is disabled', false)}
@@ -81,9 +86,6 @@ export const Configurable: FunctionComponent = () => BaseComponent(theData);
 
 export const ConfigurableEditingDefault: FunctionComponent = () => BaseComponent(theData, true);
 
-export const ConfigurableEditingDefaultWithErrors: FunctionComponent = () =>
-    BaseComponent(theData, true, false, false, ['Error number 1', 'Error number 2']);
-
 export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => BaseComponent(theData, false, true);
 
 export const ConfigurableInformationNotEditable: FunctionComponent = () =>
@@ -97,5 +99,5 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () =>
         false
     );
 
-export const ConfigurableWithErrors: FunctionComponent = () =>
+export const ConfigurableWithErrorsAfterSaving: FunctionComponent = () =>
     BaseComponent(theData, false, false, true, ['Error number 1', 'Error number 2']);
