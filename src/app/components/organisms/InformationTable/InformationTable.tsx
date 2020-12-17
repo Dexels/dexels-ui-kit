@@ -1,6 +1,7 @@
 import { ChildrenWrapper, Column, Label, Row, StyledInformationTable, Value } from './InformationTable.sc';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { AmountOfColumns } from './types';
+import InformationErrors from './components/InformationErrors';
 
 export interface InformationTableData {
     isDisabled?: boolean;
@@ -12,6 +13,7 @@ export interface InformationTableProps {
     amountOfColumns?: AmountOfColumns;
     children?: ReactNode;
     data?: InformationTableData[];
+    errors?: string[];
     isDisabled?: boolean;
     isSidePanel?: boolean;
 }
@@ -20,6 +22,7 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
     amountOfColumns = 2,
     children,
     data = [],
+    errors,
     isDisabled = false,
     isSidePanel = false,
 }) => {
@@ -43,10 +46,13 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
             : [];
 
     return (
-        <StyledInformationTable isSidePanel={isSidePanel}>
-            {columnArray}
-            {children && <ChildrenWrapper>{children}</ChildrenWrapper>}
-        </StyledInformationTable>
+        <>
+            <StyledInformationTable isSidePanel={isSidePanel}>
+                {columnArray}
+                {children && <ChildrenWrapper>{children}</ChildrenWrapper>}
+            </StyledInformationTable>
+            {errors && InformationErrors(errors)}
+        </>
     );
 };
 

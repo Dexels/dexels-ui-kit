@@ -2,7 +2,7 @@ import { DatePickerFocuses, EditableInformationData, ValueTypes } from './types'
 import { editableData, EditableDataProps } from './editableData/editableData';
 import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
-import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
@@ -20,7 +20,7 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     cancelConfirmDialog?: ConfirmDialog;
     data: EditableInformationData<T, U>;
     dateFormat?: string;
-    errors?: ReactNode;
+    errors?: string[];
     iconCancel?: IconType;
     iconEdit?: IconType;
     iconSave?: IconType;
@@ -69,10 +69,14 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
     const hasError = errors !== undefined;
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
-    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
+    const [isBeingEdited, setIsBeingEdited] = useState(false);
     const [isEditable, setIsEditable] = useState<boolean>(false);
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
+
+    useEffect(() => {
+        setIsBeingEdited(isEditing);
+    }, [isEditing]);
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
@@ -212,12 +216,18 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     ]);
 
     const cardData = (
-        <InformationTable amountOfColumns={amountOfColumns} data={informationTableData} isDisabled={isDisabled} />
+        <InformationTable
+            amountOfColumns={amountOfColumns}
+            data={informationTableData}
+            errors={errors}
+            isDisabled={isDisabled}
+        />
     );
 
     return onEdit || onSave ? (
         <EditablePanel
             cancelConfirmDialog={cancelConfirmDialog}
+            hasError={hasError}
             iconCancel={iconCancel}
             iconEdit={iconEdit}
             iconSave={iconSave}
@@ -236,12 +246,10 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             title={title}
         >
             <CardStatus status={getStatus(hasError, isLoading, isDisabled)}>{cardData}</CardStatus>
-            {errors}
         </EditablePanel>
     ) : (
         <PanelStatus iconType={iconType} status={getStatus(hasError, isLoading, isDisabled)} title={title}>
             {cardData}
-            {errors}
         </PanelStatus>
     );
 };

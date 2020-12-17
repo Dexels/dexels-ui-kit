@@ -3,7 +3,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { editableInformationData, updateValuesOfData } from './mockup/editableInformationData';
 import { EditableInformationData, ValueTypes } from './types';
 import { IconType, Status } from '../../../types';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
@@ -15,19 +15,30 @@ const theData = editableInformationData();
 
 const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
-    isEditing = false,
+    isEditingMode = false,
     withDialogs = false,
-    isEditable = true
+    isEditable = true,
+    errors = (undefined as unknown) as string[]
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
+    const [isEditing, setIsEditing] = useState(isEditingMode);
+    const [saveErrors, setSaveErrors] = useState<Array<string>>((undefined as unknown) as string[]);
+
+    useEffect(() => {
+        setIsEditing(isEditing || (saveErrors && saveErrors.length !== 0));
+    }, [saveErrors]);
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
         setIsSaving(true);
         setUpdatedData(updateValuesOfData(updatedData, newData));
 
-        // show loading state for 5 seconds
+        // Show loading state for 5 seconds
         setTimeout(() => {
+            if (errors && errors.length) {
+                setSaveErrors(errors);
+            }
+
             setIsSaving(false);
         }, 5000);
     };
@@ -47,6 +58,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                     : undefined
             }
             data={updatedData}
+            errors={saveErrors}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
             isButtonDisabled={boolean('Is button disabled', false)}
             isDisabled={boolean('Is disabled', false)}
@@ -91,3 +103,6 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () =>
         false,
         false
     );
+
+export const ConfigurableWithErrorsAfterSaving: FunctionComponent = () =>
+    BaseComponent(theData, false, false, true, ['Error number 1', 'Error number 2']);
