@@ -3,7 +3,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { editableInformationData, updateValuesOfData } from './mockup/editableInformationData';
 import { EditableInformationData, ValueTypes } from './types';
 import { IconType, Status } from '../../../types';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
@@ -22,7 +22,12 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
+    const [isEditingMode, setIsEditingMode] = useState(isEditing);
     const [saveErrors, setSaveErrors] = useState<Array<string>>((undefined as unknown) as string[]);
+
+    useEffect(() => {
+        setIsEditingMode(isEditingMode || (saveErrors && saveErrors.length !== 0));
+    }, [saveErrors]);
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
         setIsSaving(true);
@@ -57,7 +62,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
             isButtonDisabled={boolean('Is button disabled', false)}
             isDisabled={boolean('Is disabled', false)}
-            isEditing={isEditing}
+            isEditing={isEditingMode}
             isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
             onCancel={action('onCancel')}
