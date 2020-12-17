@@ -33,7 +33,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setIsSaving(true);
         setUpdatedData(updateValuesOfData(updatedData, newData));
 
-        // show loading state for 5 seconds
+        // Show loading state for 5 seconds
         setTimeout(() => {
             if (errors && errors.length) {
                 setSaveErrors(errors);
