@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, SyntheticEvent, useState } from 'react';
+import React, { FunctionComponent, ReactNode, SyntheticEvent, useEffect, useState } from 'react';
 import { StyledTabs, TabHeader, TabHeaders, TabPanel } from './Tabs.sc';
 
 export interface Tab {
@@ -32,6 +32,12 @@ export const Tabs: FunctionComponent<TabsProps> = ({
     tabs,
 }) => {
     const [activeTabIndex, setActiveTabIndex] = useState(getInitiallyActiveTabIndex(tabs, initiallyActiveTabIndex));
+
+    useEffect(() => {
+        if (initiallyActiveTabIndex) {
+            setActiveTabIndex(getInitiallyActiveTabIndex(tabs, initiallyActiveTabIndex));
+        }
+    }, [initiallyActiveTabIndex]);
 
     return (
         <StyledTabs className={className}>
