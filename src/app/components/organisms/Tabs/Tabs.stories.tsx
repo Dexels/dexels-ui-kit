@@ -1,6 +1,6 @@
+import { boolean, select } from '@storybook/addon-knobs';
 import React, { FunctionComponent, SyntheticEvent } from 'react';
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
 import Button from '../../molecules/Button/Button';
 import Tabs from './Tabs';
 
@@ -20,6 +20,7 @@ const getTab = (event: SyntheticEvent, tabIndex: number): number => {
 export const Configurable: FunctionComponent = () => (
     <Tabs
         hasFullWidthTabHeaders={boolean('Has fullwidth tab headers', true)}
+        initiallyActiveTabIndex={select('Active tab', [1, 2], 1)}
         onClickTab={getTab}
         tabs={[
             {
