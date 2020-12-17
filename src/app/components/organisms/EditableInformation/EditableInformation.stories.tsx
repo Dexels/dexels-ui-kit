@@ -98,4 +98,4 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () =>
     );
 
 export const ConfigurableWithErrors: FunctionComponent = () =>
-    BaseComponent(theData, false, false, false, ['Error number 1', 'Error number 2']);
+    BaseComponent(theData, false, false, true, ['Error number 1', 'Error number 2']);

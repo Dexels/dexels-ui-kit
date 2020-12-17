@@ -1,6 +1,5 @@
 import { DatePickerFocuses, EditableInformationData, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
-import { ErrorMessage, ErrorMessageWrapper } from './EditableInformation.sc';
 import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -213,23 +212,18 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     ]);
 
     const cardData = (
-        <InformationTable amountOfColumns={amountOfColumns} data={informationTableData} isDisabled={isDisabled} />
+        <InformationTable
+            amountOfColumns={amountOfColumns}
+            data={informationTableData}
+            errors={errors}
+            isDisabled={isDisabled}
+        />
     );
-
-    const getErrorObject = () => {
-        return (
-            <ErrorMessageWrapper>
-                {errors?.map((error, index) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <ErrorMessage key={index}>{error}</ErrorMessage>
-                ))}
-            </ErrorMessageWrapper>
-        );
-    };
 
     return onEdit || onSave ? (
         <EditablePanel
             cancelConfirmDialog={cancelConfirmDialog}
+            hasError={hasError}
             iconCancel={iconCancel}
             iconEdit={iconEdit}
             iconSave={iconSave}
@@ -248,12 +242,10 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             title={title}
         >
             <CardStatus status={getStatus(hasError, isLoading, isDisabled)}>{cardData}</CardStatus>
-            {hasError && getErrorObject()}
         </EditablePanel>
     ) : (
         <PanelStatus iconType={iconType} status={getStatus(hasError, isLoading, isDisabled)} title={title}>
             {cardData}
-            {hasError && getErrorObject()}
         </PanelStatus>
     );
 };

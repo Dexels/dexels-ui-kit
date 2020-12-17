@@ -9,6 +9,7 @@ import { Dialog } from '../Dialog';
 export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 'options'> {
     cancelConfirmDialog?: ConfirmDialog;
     children: ReactNode;
+    hasError?: boolean;
     iconCancel?: IconType;
     iconEdit?: IconType;
     iconSave?: IconType;
@@ -30,6 +31,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     cancelConfirmDialog,
     children,
     hasCapitalizedTitle,
+    hasError = false,
     iconCancel = IconType.CROSS,
     iconEdit = IconType.PENCIL,
     iconSave = IconType.CHECK,
@@ -76,7 +78,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
         if (saveConfirmDialog) {
             setIsSaveConfirmDialogVisible(true);
         } else {
-            setIsBeingEdited(false);
+            setIsBeingEdited(hasError);
 
             if (savedCallback.current) {
                 savedCallback.current();
@@ -89,13 +91,13 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     }, []);
 
     const onConfirmSaveCallback = useCallback(() => {
-        setIsBeingEdited(false);
+        setIsBeingEdited(hasError);
         setIsSaveConfirmDialogVisible(false);
 
         if (savedCallback.current) {
             savedCallback.current();
         }
-    }, [savedCallback.current]);
+    }, [hasError, savedCallback.current]);
 
     const onCloseCancelConfirmDialogCallback = useCallback(() => {
         setIsCancelConfirmDialogVisible(false);
@@ -127,6 +129,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         <ButtonWrapper>
                             <Button
                                 iconType={iconCancel}
+                                isDisabled={isSaving}
                                 onClick={onCancelCallback}
                                 size={ButtonSize.SMALL}
                                 variant={ButtonVariant.TEXT_ONLY}
