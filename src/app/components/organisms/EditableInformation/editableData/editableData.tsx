@@ -184,6 +184,11 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                             onChange={({ currentTarget }): void => {
                                 onChange(currentTarget.name, currentTarget.value);
                             }}
+                            onFocus={(event): void => {
+                                if (dataInstance.onFocus) {
+                                    dataInstance.onFocus(event);
+                                }
+                            }}
                             type={dataInstance.type}
                             value={values[name] as string | undefined}
                             variant={InputVariant.COMPACT}
