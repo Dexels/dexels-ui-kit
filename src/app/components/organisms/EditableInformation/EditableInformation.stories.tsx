@@ -43,7 +43,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         }, 5000);
     };
 
-    const onCancelcallback = () => {
+    const onCancelCallback = () => {
         setSaveErrors((undefined as unknown) as string[]);
     };
 
@@ -69,7 +69,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             isEditing={isEditing}
             isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
-            onCancel={onCancelcallback}
+            onCancel={onCancelCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
             onSave={isEditable ? onSaveCallback : undefined}
             saveConfirmDialog={
