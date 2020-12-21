@@ -176,8 +176,18 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                             label={dataInstance.placeholder}
                             maxLength={dataInstance.maxLength}
                             name={name}
+                            onBlur={(event): void => {
+                                if (dataInstance.onBlur) {
+                                    dataInstance.onBlur(event);
+                                }
+                            }}
                             onChange={({ currentTarget }): void => {
                                 onChange(currentTarget.name, currentTarget.value);
+                            }}
+                            onFocus={(event): void => {
+                                if (dataInstance.onFocus) {
+                                    dataInstance.onFocus(event);
+                                }
                             }}
                             type={dataInstance.type}
                             value={values[name] as string | undefined}
