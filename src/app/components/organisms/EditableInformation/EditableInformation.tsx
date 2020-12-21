@@ -69,14 +69,14 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
     const hasError = errors !== undefined;
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
-    const [isBeingEdited, setIsBeingEdited] = useState(false);
+    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isEditable, setIsEditable] = useState<boolean>(false);
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
     useEffect(() => {
-        setIsBeingEdited(isEditing);
-    }, [isEditing]);
+        setIsBeingEdited(hasError);
+    }, [hasError]);
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
@@ -227,13 +227,12 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     return onEdit || onSave ? (
         <EditablePanel
             cancelConfirmDialog={cancelConfirmDialog}
-            hasError={hasError}
             iconCancel={iconCancel}
             iconEdit={iconEdit}
             iconSave={iconSave}
             iconType={iconType}
             isDisabled={isButtonDisabled || isDisabled || isLoading}
-            isEditing={isEditing}
+            isEditing={isBeingEdited}
             isSaving={isSaving}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}

@@ -26,7 +26,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     const [saveErrors, setSaveErrors] = useState<Array<string>>((undefined as unknown) as string[]);
 
     useEffect(() => {
-        setIsEditing(isEditing || (saveErrors && saveErrors.length !== 0));
+        setIsEditing(saveErrors && saveErrors.length !== 0);
     }, [saveErrors]);
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
@@ -41,6 +41,10 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
 
             setIsSaving(false);
         }, 5000);
+    };
+
+    const onCancelCallback = () => {
+        setSaveErrors((undefined as unknown) as string[]);
     };
 
     return (
@@ -65,7 +69,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             isEditing={isEditing}
             isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
-            onCancel={action('onCancel')}
+            onCancel={onCancelCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
             onSave={isEditable ? onSaveCallback : undefined}
             saveConfirmDialog={

@@ -9,7 +9,6 @@ import { Dialog } from '../Dialog';
 export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 'options'> {
     cancelConfirmDialog?: ConfirmDialog;
     children: ReactNode;
-    hasError?: boolean;
     iconCancel?: IconType;
     iconEdit?: IconType;
     iconSave?: IconType;
@@ -31,7 +30,6 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     cancelConfirmDialog,
     children,
     hasCapitalizedTitle,
-    hasError = false,
     iconCancel = IconType.CROSS,
     iconEdit = IconType.PENCIL,
     iconSave = IconType.CHECK,
@@ -49,7 +47,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     textSave,
     title,
 }) => {
-    const [isBeingEdited, setIsBeingEdited] = useState(false);
+    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isSaveConfirmDialogVisible, setIsSaveConfirmDialogVisible] = useState(false);
     const [isCancelConfirmDialogVisible, setIsCancelConfirmDialogVisible] = useState(false);
 
@@ -101,7 +99,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
         if (savedCallback.current) {
             savedCallback.current();
         }
-    }, [hasError, savedCallback.current]);
+    }, [savedCallback.current]);
 
     const onCloseCancelConfirmDialogCallback = useCallback(() => {
         setIsCancelConfirmDialogVisible(false);
