@@ -92,6 +92,7 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                             onFocusChange={({ focused }): void => {
                                 onDatePickerFocusChange(name, Boolean(focused));
                             }}
+                            placeholder={dataInstance.placeholder}
                             variant={SingleDatePickerVariant.COMPACT}
                         />
                     ),
