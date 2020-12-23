@@ -1,7 +1,7 @@
 import { Locale } from '../../types';
 
-export const isEmpty = (value: string | unknown | undefined): boolean => {
-    if (typeof value === 'undefined') {
+export const isEmpty = (value: string | unknown | undefined | null): boolean => {
+    if (value === null || typeof value === 'undefined') {
         return true;
     }
 
