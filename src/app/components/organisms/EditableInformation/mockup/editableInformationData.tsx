@@ -116,6 +116,16 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     result.push({
         component: EditableDataComponent.INPUT,
         isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'Input (null value)',
+        name: 'InputNull',
+        value: null,
+    } as EditableInputDataProps);
+
+    result.push({
+        component: EditableDataComponent.INPUT,
+        isDisabled: false,
         isEditable: false,
         isRequired: true,
         label: 'Input (not editable)',
