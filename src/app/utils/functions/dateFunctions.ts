@@ -74,9 +74,5 @@ export const compareDates = (d1: Moment | Date | string | null, d2: Moment | Dat
     const D1 = toMoment(d1 || '');
     const D2 = toMoment(d2 || '');
 
-    return (
-        (D1 === null && D2 === null) ||
-        (D1 !== null && D2 !== null && !D1?.isAfter(D2, 'day') && !D2?.isAfter(D1, 'day')) ||
-        false
-    );
+    return (D1 === null && D2 === null) || (D1 !== null && D2 !== null && D1?.isSame(D2, 'day')) || false;
 };
