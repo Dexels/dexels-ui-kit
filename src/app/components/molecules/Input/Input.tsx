@@ -36,7 +36,7 @@ export interface InputProps {
     onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     type?: InputType;
-    value?: string;
+    value?: string | null;
     variant?: InputVariant;
 }
 
@@ -68,7 +68,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const hasValue = value.length > 0;
+    const hasValue = value ? value.length > 0 : false;
     const textFieldProps: { [key: string]: number } = {};
 
     const onChangeCallback = useCallback(
@@ -154,7 +154,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     onMouseEnter={isDisabled ? undefined : toggleIsHoveredCallback}
                     onMouseLeave={isDisabled ? undefined : toggleIsHoveredCallback}
                     type={type}
-                    value={value}
+                    value={value === null ? undefined : value} // Assuming that null equals undefined
                     variant={variant}
                     {...textFieldProps}
                 />
