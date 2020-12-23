@@ -259,7 +259,9 @@ TableFooterCell.defaultProps = {
     theme: themeBasic,
 };
 
-export const TableFooterCellInner = styled(TableHeaderCellInner)``;
+export const TableFooterCellInner = styled(TableHeaderCellInner)`
+    min-height: 100%;
+`;
 
 export const TableFooterCellContent = styled(TableHeaderCellContent)``;
 

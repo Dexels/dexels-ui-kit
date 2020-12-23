@@ -206,7 +206,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
-        amount: '-',
+        amount: '',
         companyName: 'Dexels',
         firstName: 'Firstname',
         id: '700',

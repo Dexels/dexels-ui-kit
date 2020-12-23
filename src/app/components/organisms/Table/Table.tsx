@@ -28,6 +28,10 @@ import React, { ReactNode, SyntheticEvent } from 'react';
 import { Row, TableInstance } from 'react-table';
 import { renderSortIcon } from './utils/tableFunctions';
 
+export interface TableTexts {
+    sortByTooltip?: ReactNode;
+}
+
 export interface TableProps<T extends object> {
     caption?: ReactNode;
     children?: never;
@@ -42,6 +46,7 @@ export interface TableProps<T extends object> {
     onClickFooter?: (event: SyntheticEvent) => void;
     onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
     paginator?: ReactNode;
+    texts?: TableTexts;
 }
 
 const dataSource = <T extends object>(instance: TableInstance<T>, hasPaging: boolean): Row<T>[] =>
@@ -60,6 +65,7 @@ export const Table = <T extends object>({
     onClickFooter,
     onClickRow,
     paginator,
+    texts,
 }: TableProps<T>): JSX.Element => {
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
     let hasFooterColumns = false;
@@ -76,7 +82,11 @@ export const Table = <T extends object>({
                                     .filter(({ isVisible }) => isVisible)
                                     .map((column) => (
                                         <TableHeaderCell
-                                            {...column.getHeaderProps(column.getSortByToggleProps())}
+                                            {...column.getHeaderProps(
+                                                column.getSortByToggleProps({
+                                                    title: (texts && texts.sortByTooltip) || undefined,
+                                                })
+                                            )}
                                             hasCellPadding={column.hasCellPadding}
                                             isDisabled={isDisabled}
                                             width={column.width}

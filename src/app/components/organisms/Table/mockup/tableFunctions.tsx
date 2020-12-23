@@ -3,6 +3,18 @@ import React, { SyntheticEvent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../../molecules/Button/Button';
 
+export const createLocalizedTableTexts = (
+    language = 'nl'
+): {
+    sortByTooltip: string;
+} => {
+    const localizedTexts = {
+        sortByTooltip: language === 'en' ? 'Sort by' : 'Sorteren op',
+    };
+
+    return localizedTexts;
+};
+
 export const createLocalizedPagingTexts = (
     language = 'nl'
 ): {
