@@ -1,5 +1,10 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import { createLocalizedPagingTexts, getTableFooter, getTableRow } from './mockup/tableFunctions';
+import {
+    createLocalizedPagingTexts,
+    createLocalizedTableTexts,
+    getTableFooter,
+    getTableRow,
+} from './mockup/tableFunctions';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
@@ -21,6 +26,7 @@ export default {
 // @TODO: figure out how to rerender the table instance after state changes. Most likely with useEffect
 export const Configurable: FunctionComponent = () => {
     const [isNL, setIsNL] = useState(true);
+    const localizedTexts = createLocalizedTableTexts(isNL ? 'nl' : 'en');
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
     const data = useMemo(() => tableData(), []);
@@ -106,6 +112,7 @@ export const Configurable: FunctionComponent = () => {
                             texts={createLocalizedPagingTexts(isNL ? 'nl' : 'en')}
                         />
                     }
+                    texts={{ sortByTooltip: localizedTexts.sortByTooltip }}
                 />
             ) : (
                 <div>{'Loading...'}</div>
