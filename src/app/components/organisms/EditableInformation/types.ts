@@ -39,7 +39,7 @@ export interface DatePickerDataProps extends BaseDataProps {
 export interface EditableDatePickerDataProps extends DatePickerDataProps {
     isOutsideRange?: SingleDatePickerProps['isOutsideRange'];
     name: string;
-    placeholder?: SingleDatePickerProps['label'];
+    placeholder?: SingleDatePickerProps['placeholder'];
 }
 
 export interface DropdownDataProps extends BaseDataProps {
