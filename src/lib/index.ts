@@ -45,6 +45,7 @@ export { cloneArray } from '../app/utils/functions/arrayFunctions';
 export { convertLocale } from '../app/utils/functions/localeFunctions';
 export { createTable } from '../app/utils/functions/createTable';
 export {
+    compareDates,
     isValidClockTime,
     isValidDate,
     isValidStringDate,
