@@ -28,7 +28,7 @@ export interface SingleDatePickerProps {
     isFocused: boolean;
     isOutsideRange?: (day: Moment) => boolean;
     keepOpenOnDateSelect?: boolean;
-    label: ReactNode;
+    label?: ReactNode;
     labelMonth?: ReactNode;
     labelYear?: ReactNode;
     numberOfMonths?: number;
@@ -150,17 +150,21 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                 }}
             >
                 <StyledSingleDatePicker isFocused={isFocused} isTopDatepicker={isTopDatepicker} variant={variant}>
-                    <FormElementLabel
-                        isActive
-                        isDisabled={isDisabled}
-                        isFocused={isFocused}
-                        isHovered={isHovered}
-                        variant={
-                            variant === SingleDatePickerVariant.OUTLINE ? InputVariant.OUTLINE : InputVariant.COMPACT
-                        }
-                    >
-                        {label}
-                    </FormElementLabel>
+                    {label && (
+                        <FormElementLabel
+                            isActive
+                            isDisabled={isDisabled}
+                            isFocused={isFocused}
+                            isHovered={isHovered}
+                            variant={
+                                variant === SingleDatePickerVariant.OUTLINE
+                                    ? InputVariant.OUTLINE
+                                    : InputVariant.COMPACT
+                            }
+                        >
+                            {label}
+                        </FormElementLabel>
+                    )}
                     <AirbnbSingleDatePicker
                         customInputIcon={<InputIcon isDisabled={isDisabled} isFocused={isFocused} variant={variant} />}
                         date={date}
