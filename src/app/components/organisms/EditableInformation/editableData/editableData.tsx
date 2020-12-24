@@ -85,7 +85,6 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                             isDisabled={isDisabled}
                             isFocused={datePickerFocuses[name]}
                             isOutsideRange={dataInstance.isOutsideRange}
-                            label={dataInstance.label}
                             onDateChange={(date): void => {
                                 onChange(name, date);
                             }}
