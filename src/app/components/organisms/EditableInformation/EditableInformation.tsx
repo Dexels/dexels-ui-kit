@@ -69,14 +69,14 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
     const hasError = errors !== undefined;
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
-    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
+    const [isBeingEdited, setIsBeingEdited] = useState(false);
     const [isEditable, setIsEditable] = useState<boolean>(false);
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
     useEffect(() => {
-        setIsBeingEdited(hasError);
-    }, [hasError]);
+        setIsBeingEdited(hasError || isEditing);
+    }, [hasError, isEditing]);
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
