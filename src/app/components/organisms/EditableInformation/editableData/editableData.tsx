@@ -81,6 +81,7 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                     value: (
                         <SingleDatePicker
                             date={values[name] as moment.Moment | null}
+                            displayFormat={dataInstance.dateFormat || dateFormat}
                             id={name}
                             isDisabled={isDisabled}
                             isFocused={datePickerFocuses[name]}

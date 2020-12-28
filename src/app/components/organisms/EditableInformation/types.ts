@@ -33,6 +33,7 @@ export interface EditableCheckboxDataProps extends CheckboxDataProps {
 
 export interface DatePickerDataProps extends BaseDataProps {
     component: EditableDataComponent.DATEPICKER;
+    dateFormat?: string;
     value: SingleDatePickerProps['date'];
 }
 

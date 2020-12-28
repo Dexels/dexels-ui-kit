@@ -184,6 +184,16 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     } as EditableDatePickerDataProps);
 
     result.push({
+        component: EditableDataComponent.DATEPICKER,
+        dateFormat: 'D MMM YYYY',
+        isEditable: true,
+        isOutsideRange: () => false,
+        label: 'Date format (D MMM YYYY)',
+        name: 'FormatDate',
+        value: moment('1970-06-03'),
+    } as EditableDatePickerDataProps);
+
+    result.push({
         component: EditableDataComponent.TIMEPICKER,
         isEditable: true,
         label: 'Editable Time',
