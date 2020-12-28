@@ -56,6 +56,9 @@ const pagingResultsText = <T extends object>(instance: TableInstance<T>, texts: 
         end = (pageIndex + 1) * pageSize <= rowCount ? (pageIndex + 1) * pageSize : rowCount;
     }
 
+    // Make sure that start can not be greater than end
+    start = start > end ? end : start;
+
     result = `${start} - ${end}`;
 
     return (
