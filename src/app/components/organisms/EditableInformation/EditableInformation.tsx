@@ -30,12 +30,12 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     isEditing?: boolean;
     isLoading?: boolean;
     isSaving?: boolean;
+    keepEditMode?: boolean;
     onCancel?: () => void;
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
     onSave?: (data: { [key: string]: ValueTypes<T, U> }) => void;
     saveConfirmDialog?: ConfirmDialog;
-    stayInEditMode?: boolean;
     textCancel?: string;
     textEdit?: string;
     textSave?: string;
@@ -56,12 +56,12 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     isEditing = false,
     isLoading = false,
     isSaving = false,
+    keepEditMode = false,
     onCancel,
     onChange,
     onEdit,
     onSave,
     saveConfirmDialog,
-    stayInEditMode = false,
     textCancel,
     textEdit,
     textSave,
@@ -89,7 +89,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     }, [onEdit]);
 
     const onSaveCallback = useCallback(() => {
-        if (!stayInEditMode) {
+        if (!keepEditMode) {
             setIsBeingEdited(false);
         }
 
@@ -238,12 +238,12 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             isDisabled={isButtonDisabled || isDisabled || isLoading}
             isEditing={isBeingEdited}
             isSaving={isSaving}
+            keepEditMode={keepEditMode}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}
             saveConfirmDialog={saveConfirmDialog}
             status={getStatus(hasError)}
-            stayInEditMode={stayInEditMode}
             textCancel={textCancel || ''}
             textEdit={textEdit || ''}
             textSave={textSave || ''}
