@@ -35,6 +35,7 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     onEdit?: () => void;
     onSave?: (data: { [key: string]: ValueTypes<T, U> }) => void;
     saveConfirmDialog?: ConfirmDialog;
+    stayInEditMode?: boolean;
     textCancel?: string;
     textEdit?: string;
     textSave?: string;
@@ -60,6 +61,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     onEdit,
     onSave,
     saveConfirmDialog,
+    stayInEditMode = false,
     textCancel,
     textEdit,
     textSave,
@@ -87,7 +89,9 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     }, [onEdit]);
 
     const onSaveCallback = useCallback(() => {
-        setIsBeingEdited(false);
+        if (!stayInEditMode) {
+            setIsBeingEdited(false);
+        }
 
         if (onSave) {
             onSave(updatedValues);
@@ -239,6 +243,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             onSave={onSaveCallback}
             saveConfirmDialog={saveConfirmDialog}
             status={getStatus(hasError)}
+            stayInEditMode={stayInEditMode}
             textCancel={textCancel || ''}
             textEdit={textEdit || ''}
             textSave={textSave || ''}
