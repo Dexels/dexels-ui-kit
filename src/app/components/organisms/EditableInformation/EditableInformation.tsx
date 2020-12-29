@@ -30,6 +30,7 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     isEditing?: boolean;
     isLoading?: boolean;
     isSaving?: boolean;
+    keepEditMode?: boolean;
     onCancel?: () => void;
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
@@ -55,6 +56,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     isEditing = false,
     isLoading = false,
     isSaving = false,
+    keepEditMode = false,
     onCancel,
     onChange,
     onEdit,
@@ -87,7 +89,9 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
     }, [onEdit]);
 
     const onSaveCallback = useCallback(() => {
-        setIsBeingEdited(false);
+        if (!keepEditMode) {
+            setIsBeingEdited(false);
+        }
 
         if (onSave) {
             onSave(updatedValues);
@@ -234,6 +238,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
             isDisabled={isButtonDisabled || isDisabled || isLoading}
             isEditing={isBeingEdited}
             isSaving={isSaving}
+            keepEditMode={keepEditMode}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}

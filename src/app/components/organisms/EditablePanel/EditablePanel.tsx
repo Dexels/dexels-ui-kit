@@ -16,6 +16,7 @@ export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 
     isDisabled?: boolean;
     isEditing?: boolean;
     isSaving?: boolean;
+    keepEditMode?: boolean;
     onCancel: () => void;
     onEdit: () => void;
     onSave: () => void;
@@ -37,6 +38,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     isDisabled = false,
     isEditing = false,
     isSaving = false,
+    keepEditMode = false,
     onCancel,
     onEdit,
     onSave,
@@ -80,7 +82,9 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
         if (saveConfirmDialog) {
             setIsSaveConfirmDialogVisible(true);
         } else {
-            setIsBeingEdited(false);
+            if (!keepEditMode) {
+                setIsBeingEdited(false);
+            }
 
             if (savedCallback.current) {
                 savedCallback.current();
