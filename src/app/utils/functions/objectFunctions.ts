@@ -52,9 +52,6 @@ export const areEqualObjects = (
         }
 
         if (!areObjects && !(isEmpty(prevValue) && isEmpty(nextValue))) {
-            // eslint-disable-next-line no-console
-            console.log('[compare values]', prevValue, nextValue);
-
             return prevValue !== nextValue;
         }
 
