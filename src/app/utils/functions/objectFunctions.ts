@@ -1,4 +1,6 @@
+import { compareDates, isValidDate } from './dateFunctions';
 import moment, { Moment } from 'moment';
+import { isEmpty } from './validateFunctions';
 
 const isObject = (object: unknown): boolean => {
     return object != null && typeof object === 'object';
@@ -8,9 +10,18 @@ const isMomentObject = (object: unknown): boolean => {
     return isObject(object) && moment.isMoment(object);
 };
 
-export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject: Record<string, unknown>): boolean => {
-    const prevKeys = Object.keys(prevObject);
-    const nextKeys = Object.keys(nextObject);
+export const areEqualObjects = (
+    prevObject: Record<string, unknown>,
+    nextObject: Record<string, unknown>,
+    ignoreKeys?: string[]
+): boolean => {
+    let prevKeys = Object.keys(prevObject);
+    let nextKeys = Object.keys(nextObject);
+
+    if (ignoreKeys && ignoreKeys.length !== 0) {
+        prevKeys = prevKeys.filter((key) => !ignoreKeys.includes(key));
+        nextKeys = nextKeys.filter((key) => !ignoreKeys.includes(key));
+    }
 
     if (
         prevKeys.filter((key) => !nextKeys.includes(key)).length > 0 ||
@@ -23,17 +34,25 @@ export const areEqualObjects = (prevObject: Record<string, unknown>, nextObject:
         const prevValue = prevObject[key];
         const nextValue = nextObject[key];
 
-        const areMomentsObjects = isMomentObject(prevValue) && isMomentObject(nextValue);
+        const areValidDates =
+            isValidDate(prevValue as string | Date | Moment) && isMomentObject(nextValue as string | Date | Moment);
 
         const areObjects = isObject(prevValue) && isObject(nextValue);
 
-        if (
-            (areMomentsObjects && !(prevValue as Moment).isSame(nextValue as Moment)) ||
-            (areObjects &&
-                !areEqualObjects(prevValue as Record<string, unknown>, nextValue as Record<string, unknown>)) ||
-            (!areObjects && prevValue !== nextValue)
-        ) {
-            return true;
+        if (areValidDates) {
+            return !compareDates(prevValue as Moment | Date | string, nextValue as Moment | Date | string);
+        }
+
+        if (areObjects) {
+            return !areEqualObjects(
+                prevValue as Record<string, unknown>,
+                nextValue as Record<string, unknown>,
+                ignoreKeys
+            );
+        }
+
+        if (!areObjects && !(isEmpty(prevValue) && isEmpty(nextValue))) {
+            return prevValue !== nextValue;
         }
 
         return false;
