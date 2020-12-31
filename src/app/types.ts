@@ -307,6 +307,7 @@ export enum IconType {
     TUTORIAL = 'TUTORIAL',
     TV = 'TV',
     TWITTER = 'TWITTER',
+    UNDO = 'UNDO',
     USER = 'USER',
     USERADD = 'USERADD',
     USERCROSS = 'USERCROSS',
