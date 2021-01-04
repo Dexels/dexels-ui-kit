@@ -1,9 +1,15 @@
 import Button, { ButtonProps } from '../Button/Button';
 import { ButtonBarWrapper, ButtonWrapper, StyledDialogFooter, Text } from './DialogFooter.sc';
 import React, { FunctionComponent, ReactNode } from 'react';
+import { Alignment } from '../../../types';
+
+export interface DialogFooterButtonProps extends ButtonProps {
+    alignment?: Alignment;
+}
 
 export interface DialogFooterProps {
-    buttons?: ButtonProps[];
+    alignLeft?: boolean;
+    buttons?: DialogFooterButtonProps[];
     children?: never;
     className?: string;
     text?: ReactNode;
@@ -15,7 +21,7 @@ export const DialogFooter: FunctionComponent<DialogFooterProps> = ({ buttons = [
         <ButtonBarWrapper>
             {buttons.map((button, index) => (
                 // eslint-disable-next-line react/no-array-index-key
-                <ButtonWrapper key={index}>
+                <ButtonWrapper alingment={button.alignment} key={index}>
                     {/* eslint-disable-next-line react/no-array-index-key */}
                     <Button {...button}>{button.children}</Button>
                 </ButtonWrapper>

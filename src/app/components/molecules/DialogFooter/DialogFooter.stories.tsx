@@ -1,4 +1,4 @@
-import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { Alignment, ButtonSize, ButtonVariant, IconType } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import { action } from '@storybook/addon-actions';
 import DialogFooter from './DialogFooter';
@@ -9,6 +9,13 @@ export default { title: 'molecules/DialogFooter' };
 export const Configurable: FunctionComponent = () => (
     <DialogFooter
         buttons={[
+            {
+                alignment: Alignment.LEFT,
+                iconType: IconType.TRASHCAN,
+                onClick: action('On cancel click'),
+                size: ButtonSize.SMALL,
+                variant: ButtonVariant.TEXT_ONLY,
+            },
             {
                 children: 'Cancel',
                 iconType: IconType.CROSS,
