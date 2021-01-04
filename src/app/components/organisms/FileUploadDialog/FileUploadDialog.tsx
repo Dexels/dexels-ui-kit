@@ -45,12 +45,12 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     onClose,
     onDrop,
     title,
-    iconType,
+    iconType = IconType.FILEADD,
 }) => (
     <Dialog
         className={className}
         footerButtons={buttons}
-        iconType={iconType || IconType.FILEADD}
+        iconType={iconType}
         isVisible={isVisible}
         onClose={onClose}
         title={title}
