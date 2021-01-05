@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
-import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
+import { DropdownOption } from '../../molecules/Dropdown';
 import { EditablePanel } from '../EditablePanel/EditablePanel';
 import { generateValuesArray } from './utils/generateValuesArray';
 import { IconType } from '../../../types';
@@ -14,7 +14,7 @@ import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
 import { PanelStatus } from '../../molecules/PanelStatus/PanelStatus';
 import { Skeleton } from '../../molecules/Skeleton/Skeleton';
 
-export interface EditableInformationProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption>
+export interface EditableInformationProps<T extends DropdownOption, U extends DropdownMultiSelectOption>
     extends Omit<PanelHeaderProps, 'children' | 'options'> {
     amountOfColumns?: InformationTableProps['amountOfColumns'];
     cancelConfirmDialog?: ConfirmDialog;
@@ -41,7 +41,7 @@ export interface EditableInformationProps<T extends DropdownSelectOption, U exte
     textSave?: string;
 }
 
-export const EditableInformation = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>({
+export const EditableInformation = <T extends DropdownOption, U extends DropdownMultiSelectOption>({
     amountOfColumns = 2,
     data,
     dateFormat = 'dd. D MMM YYYY',
@@ -133,13 +133,20 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
         [datePickerFocuses]
     );
 
-    const onDropdownSelectChangeCallback = useCallback(
-        (option: T, name: string, propertyNameOfId: string): void => {
-            const newValues = {
+    const onDropdownChangeCallback = useCallback(
+        (option: T, name: string, propertyNameOfId?: string): void => {
+            let newValues = {
                 ...updatedValues,
                 [name]: option.label,
-                [propertyNameOfId]: option.value,
             };
+
+            if (propertyNameOfId) {
+                newValues = {
+                    ...updatedValues,
+                    [name]: option.label,
+                    [propertyNameOfId]: option.value,
+                };
+            }
 
             setUpdatedValues(newValues);
 
@@ -200,7 +207,7 @@ export const EditableInformation = <T extends DropdownSelectOption, U extends Dr
                 isBeingEdited,
                 onChange: onChangeCallback,
                 onDatePickerFocusChange: onDatePickerFocusChangeCallback,
-                onDropdownSelectChange: onDropdownSelectChangeCallback,
+                onDropdownChange: onDropdownChangeCallback,
                 values: updatedValues,
             }) as InformationTableData[];
 

@@ -51,6 +51,7 @@ export interface DropdownDataProps extends BaseDataProps {
 
 export interface EditableDropdownDataProps extends DropdownDataProps {
     name: DropdownProps['name'];
+    nameTextValue?: string;
     options: DropdownProps['options'];
 }
 
