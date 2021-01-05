@@ -15,13 +15,14 @@ export interface FileUploadDialogProps {
     description?: string;
     fileNameLength?: number;
     fileTypes: FileTypes[];
+    iconType?: IconType;
     inputText: ReactNode;
     isVisible: boolean;
     maxFileSize?: number;
     maxFiles: number;
     maxLengthDescription?: number;
     onAlert(type: FileAlertType, fileNames?: string[]): void;
-    onChangeDescription(value: string): void;
+    onChangeDescription?(value: string): void;
     onClose(): void;
     onDrop(files: FileList): void;
     title: ReactNode;
@@ -44,11 +45,12 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     onClose,
     onDrop,
     title,
+    iconType = IconType.FILEADD,
 }) => (
     <Dialog
         className={className}
         footerButtons={buttons}
-        iconType={IconType.FILEADD}
+        iconType={iconType}
         isVisible={isVisible}
         onClose={onClose}
         title={title}
@@ -62,17 +64,19 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
             onAlert={onAlert}
             onDrop={onDrop}
         />
-        <Input
-            isDisabled={data.status === FileUploaderStatus.LOADING}
-            label={inputText}
-            maxLength={maxLengthDescription}
-            name="description"
-            onChange={({ currentTarget }): void => {
-                onChangeDescription(parseInputValue(currentTarget));
-            }}
-            type={InputType.TEXT}
-            value={description}
-        />
+        {onChangeDescription && (
+            <Input
+                isDisabled={data.status === FileUploaderStatus.LOADING}
+                label={inputText}
+                maxLength={maxLengthDescription}
+                name="description"
+                onChange={({ currentTarget }): void => {
+                    onChangeDescription(parseInputValue(currentTarget));
+                }}
+                type={InputType.TEXT}
+                value={description}
+            />
+        )}
     </Dialog>
 );
 
