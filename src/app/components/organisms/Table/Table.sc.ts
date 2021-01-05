@@ -6,7 +6,7 @@ import { IconCustomizableSize } from '../../molecules/IconCustomizable/types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
-const alignRightSpacing = 2; // value is the spacing value from the theme
+const alignRightSpacing = 1.5; // value is the spacing value from the theme
 
 interface ColumnProps {
     hasCellPadding?: boolean;
