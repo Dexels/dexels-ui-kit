@@ -1,11 +1,11 @@
-import { Dropdown, DropdownProps, DropdownVariant } from '../../../molecules/Dropdown';
+import { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../../../molecules/Dropdown';
 import { DropdownMultiSelect, DropdownMultiSelectOption } from '../../DropdownMultiSelect';
-import DropdownSelect, { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent, InputType, InputVariant } from '../../../../types';
 import { EditableInformationData, ScorePickerDataProps, ValueTypes } from '../types';
 import { generateDropdownSelectOptionLabel, getValueOfEditableDataComponent } from '../utils/informationDataFunctions';
 import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
+import DropdownSelect from '../../DropdownSelect/DropdownSelect';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
 import InputCurrency from '../../InputCurrency/InputCurrency';
@@ -14,7 +14,7 @@ import React from 'react';
 import ScorePicker from '../../../molecules/ScorePicker/ScorePicker';
 import { SelectionControl } from '../../../molecules/SelectionControl';
 
-export interface EditableDataProps<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> {
+export interface EditableDataProps<T extends DropdownOption, U extends DropdownMultiSelectOption> {
     data: EditableInformationData<T, U>;
     dateFormat: string;
     datePickerFocuses: {
@@ -23,19 +23,19 @@ export interface EditableDataProps<T extends DropdownSelectOption, U extends Dro
     isBeingEdited: boolean;
     onChange: (name: string, value: ValueTypes<T, U>) => void;
     onDatePickerFocusChange: (name: string, focused: boolean) => void;
-    onDropdownSelectChange: (option: T, name: string, propertyNameOfId: string) => void;
+    onDropdownChange: (option: T, name: string, propertyNameOfId?: string) => void;
     values: {
         [key: string]: ValueTypes<T, U>;
     };
 }
 
-export const editableData = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>({
+export const editableData = <T extends DropdownOption, U extends DropdownMultiSelectOption>({
     data,
     dateFormat,
     datePickerFocuses,
     isBeingEdited,
     onDatePickerFocusChange,
-    onDropdownSelectChange,
+    onDropdownChange,
     onChange,
     values,
 }: EditableDataProps<T, U>): InformationTableProps['data'] =>
@@ -109,7 +109,14 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                             isDisabled={isDisabled}
                             name={name}
                             onChange={({ currentTarget }): void => {
-                                onChange(currentTarget.name, currentTarget.value);
+                                onDropdownChange(
+                                    {
+                                        label: currentTarget.selectedOptions[0].textContent,
+                                        value: currentTarget.value,
+                                    } as T,
+                                    dataInstance.nameTextValue || '',
+                                    name
+                                );
                             }}
                             options={dataInstance.options}
                             value={values[name] as DropdownProps['value']}
@@ -153,7 +160,7 @@ export const editableData = <T extends DropdownSelectOption, U extends DropdownM
                             isDisabled={isDisabled}
                             name={dataInstance.name}
                             noResultsMessage={dataInstance.noResultsMessage}
-                            onChange={(option: T) => onDropdownSelectChange(option, name, dataInstance.nameId)}
+                            onChange={(option: T) => onDropdownChange(option, name, dataInstance.nameId)}
                             optionLabel={generateDropdownSelectOptionLabel(
                                 dataInstance.optionLabel,
                                 values[name] as string,
