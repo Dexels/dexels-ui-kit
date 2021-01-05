@@ -6,7 +6,7 @@ import { IconCustomizableSize } from '../../molecules/IconCustomizable/types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
-const alignRightSpacing = 1.5; // value is the spacing value from the theme
+const alignRightSpacing = 1; // value is the spacing value from the theme. This value is taken from the invision ui-kit light base row.
 
 interface ColumnProps {
     hasCellPadding?: boolean;

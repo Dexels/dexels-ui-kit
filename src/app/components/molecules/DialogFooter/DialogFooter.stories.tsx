@@ -20,6 +20,13 @@ export const Configurable: FunctionComponent = () => {
                     variant: ButtonVariant.TEXT_ONLY,
                 },
                 {
+                    alignment: leftAlignment ? Alignment.LEFT : undefined,
+                    iconType: IconType.PLUS,
+                    onClick: action('On add click'),
+                    size: ButtonSize.SMALL,
+                    variant: ButtonVariant.TEXT_ONLY,
+                },
+                {
                     children: 'Cancel',
                     iconType: IconType.CROSS,
                     onClick: action('On cancel click'),

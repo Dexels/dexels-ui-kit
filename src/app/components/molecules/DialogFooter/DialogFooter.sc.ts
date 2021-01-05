@@ -35,16 +35,17 @@ export const ButtonBarWrapper = styled.div`
 `;
 
 interface ButtonWrapperProps {
-    alingment?: Alignment;
+    alignment?: Alignment;
 }
 
 export const ButtonWrapper = styled.div<ButtonWrapperProps>`
     display: inline-flex;
     align-items: center;
-    margin: ${({ theme }): string => theme.spacing(0, 1, 0, 1)};
+    margin: ${({ alignment, theme }): string =>
+        theme.spacing(0, alignment === Alignment.LEFT ? 0.5 : 1, 0, alignment === Alignment.LEFT ? 0 : 1)};
     min-height: 32px;
     vertical-align: middle;
-    ${({ alingment }) => alingment === Alignment.LEFT && 'float: left;'}
+    ${({ alignment }) => alignment === Alignment.LEFT && 'float: left;'}
 
     &:last-of-type {
         margin-right: 0;
