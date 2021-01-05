@@ -1,3 +1,4 @@
+import { Alignment } from '../../../types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -29,16 +30,22 @@ Text.defaultProps = {
 };
 
 export const ButtonBarWrapper = styled.div`
-    display: flex;
-    flex: 0 0 auto;
-    flex-wrap: nowrap;
-    align-items: center;
-    margin: 0 0 0 auto;
+    width: 100%;
+    text-align: right;
 `;
 
-export const ButtonWrapper = styled.div`
-    flex: 0 1 auto;
-    margin: ${({ theme }): string => theme.spacing(0, 1, 0, 1)};
+interface ButtonWrapperProps {
+    alignment?: Alignment;
+}
+
+export const ButtonWrapper = styled.div<ButtonWrapperProps>`
+    display: inline-flex;
+    align-items: center;
+    margin: ${({ alignment, theme }): string =>
+        theme.spacing(0, alignment === Alignment.LEFT ? 0.5 : 1, 0, alignment === Alignment.LEFT ? 0 : 1)};
+    min-height: 32px;
+    vertical-align: middle;
+    ${({ alignment }) => alignment === Alignment.LEFT && 'float: left;'}
 
     &:last-of-type {
         margin-right: 0;
