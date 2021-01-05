@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'SL-Small-Icons';
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?4qp4bi');
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?4qp4bi#iefix') format('embedded-opentype'),
-        url('~fonts/iconfont/SL-Small-Icons.ttf?4qp4bi') format('truetype'),
-        url('~fonts/iconfont/SL-Small-Icons.woff?4qp4bi') format('woff'),
-        url('~fonts/iconfont/SL-Small-Icons.svg?4qp4bi#SL-Small-Icons') format('svg');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?8x3rh8');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?8x3rh8#iefix') format('embedded-opentype'),
+        url('~fonts/iconfont/SL-Small-Icons.ttf?8x3rh8') format('truetype'),
+        url('~fonts/iconfont/SL-Small-Icons.woff?8x3rh8') format('woff'),
+        url('~fonts/iconfont/SL-Small-Icons.svg?8x3rh8#SL-Small-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -26,6 +26,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ICON-UNDO:before {
+    content: '\e9f1';
+}
 .ICON-PASSADD:before {
     content: '\e9f0';
 }
