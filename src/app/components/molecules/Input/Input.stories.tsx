@@ -13,6 +13,7 @@ export const Configurable: FunctionComponent = () => {
 
     return (
         <Input
+            autoFocus={boolean('Auto focus', true)}
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
