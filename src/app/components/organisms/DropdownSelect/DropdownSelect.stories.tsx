@@ -2,7 +2,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import DropdownSelect, { DropdownSelectOption } from './DropdownSelect';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import { IconType, InputVariant } from '../../../types';
-import React, { FocusEvent, FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { DropdownOption } from '../../molecules/Dropdown';
 
@@ -54,16 +54,6 @@ export const Configurable: FunctionComponent = () => {
     const [value] = useState('');
     const [optionLabel, setOptionLabel] = useState('');
 
-    const onBlurCallback = (event: FocusEvent<HTMLInputElement>) => {
-        // eslint-disable-next-line no-console
-        console.log('onBlurCallback', event.currentTarget.value);
-
-        if (event.currentTarget.value) {
-            // eslint-disable-next-line no-template-curly-in-string
-            setOptionLabel(OPTION_LABEL.replace('{{${variableKey}}}', event.currentTarget.value));
-        }
-    };
-
     const onChangeCallback = (option: DropdownOption) => {
         // eslint-disable-next-line no-console
         console.log('onChangeCallback', option);
@@ -86,7 +76,6 @@ export const Configurable: FunctionComponent = () => {
             label={text('Label', 'This is a label')}
             name="an-input-name"
             noResultsMessage={text('No results message', 'No fruit is found!')}
-            onBlur={onBlurCallback}
             onChange={onChangeCallback}
             onConfirm={action('On confirm')}
             optionLabel={optionLabel}
