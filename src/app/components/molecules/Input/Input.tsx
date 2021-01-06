@@ -17,6 +17,7 @@ import { isValidNumber } from '../../../utils/functions/validateFunctions';
 export interface InputProps {
     adornment?: ReactNode;
     adornmentPosition?: AdornmentPosition;
+    autoFocus?: boolean;
     children?: never;
     className?: string;
     errorMessage?: ReactNode;
@@ -44,6 +45,7 @@ export interface InputProps {
 export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     adornment,
     adornmentPosition = AdornmentPosition.LEFT,
+    autoFocus = false,
     className,
     errorMessage,
     hasError = false,
@@ -137,6 +139,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 <TextField
                     adornmentPosition={adornmentPosition}
                     as={isTextarea ? 'textarea' : 'input'}
+                    autoFocus={autoFocus}
                     hasAdornment={adornment !== undefined}
                     hasError={hasError}
                     isDisabled={isDisabled}

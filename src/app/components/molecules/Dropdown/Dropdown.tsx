@@ -23,6 +23,7 @@ export interface DropdownOption {
 export interface DropdownProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     as?: keyof JSX.IntrinsicElements | ComponentType<any>;
+    autoFocus?: boolean;
     children?: ReactNode;
     className?: string;
     errormessage?: ReactNode;
@@ -45,6 +46,7 @@ export interface DropdownProps {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }> = ({
     as = 'select',
+    autoFocus = false,
     children,
     className,
     errorMessage,
@@ -98,6 +100,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                 )}
                 <Select
                     as={as}
+                    autoFocus={autoFocus}
                     hasError={hasError}
                     isDisabled={isDisabled}
                     isEmpty={isEmpty}

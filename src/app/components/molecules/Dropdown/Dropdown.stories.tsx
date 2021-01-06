@@ -45,6 +45,7 @@ export const ConfigurableCompactVariant: FunctionComponent = () => {
         <>
             <p>{'What is the best fruit?'}</p>
             <Dropdown
+                autoFocus={boolean('Auto focus', true)}
                 errorMessage={text('Error message', 'Everything is broken, oops')}
                 hasError={boolean('Has error', false)}
                 isDisabled={boolean('Is disabled', false)}
