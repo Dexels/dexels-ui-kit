@@ -34,8 +34,9 @@ export const CardNoResults: FunctionComponent<CardNoResultsProps> = ({
             <Header>{header}</Header>
             <Title>{title}</Title>
             {items.length > 0 &&
-                items.map((item) => (
-                    <Item key={item?.toString()}>
+                items.map((item, index) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <Item key={`Item-${index}`}>
                         {`${itemPrefix} `}
                         {item}
                     </Item>
