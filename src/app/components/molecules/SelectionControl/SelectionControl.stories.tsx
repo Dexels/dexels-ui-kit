@@ -9,6 +9,7 @@ export default { title: 'molecules/SelectionControl' };
 export const ConfigurableRadioButton: FunctionComponent = () => {
     const [gender, setGender] = useState('female');
     const direction = select('Direction', Direction, Direction.LTR);
+    const hasAlternativeTextStyle = boolean('Has alternative textstyle', false);
     const hasError = boolean('Has error', false);
     const isDisabled = boolean('Is disabled', false);
     const isValid = boolean('Is valid', false);
@@ -21,6 +22,7 @@ export const ConfigurableRadioButton: FunctionComponent = () => {
             <br />
             <SelectionControl
                 direction={direction}
+                hasAlternativeTextStyle={hasAlternativeTextStyle}
                 hasError={hasError}
                 hasHorizontalCorrection={boolean('Has horizontal correction', true)}
                 hasVerticalCorrection={boolean('Has vertical correction', false)}
@@ -41,6 +43,7 @@ export const ConfigurableRadioButton: FunctionComponent = () => {
             <SelectionControl
                 direction={direction}
                 errorMessage={text('Errormessage', 'Oops, something went wrong!')}
+                hasAlternativeTextStyle={hasAlternativeTextStyle}
                 hasError={hasError}
                 hasHorizontalCorrection={boolean('Has horizontal correction', true)}
                 hasVerticalCorrection={boolean('Has vertical correction', false)}
@@ -68,6 +71,7 @@ export const ConfigurableCheckbox: FunctionComponent = () => {
         <SelectionControl
             direction={select('Direction', Direction, Direction.LTR)}
             errorMessage={text('Errormessage', 'Oops, something went wrong!')}
+            hasAlternativeTextStyle={boolean('Has alternative textstyle', false)}
             hasError={boolean('Has error', false)}
             hasHorizontalCorrection={boolean('Has horizontal correction', true)}
             hasVerticalCorrection={boolean('Has vertical correction', false)}

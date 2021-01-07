@@ -4,6 +4,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 
 interface StyledLabelProps {
+    hasAlternativeTextStyle: boolean;
     hasError: boolean;
     isActive: boolean;
     isDisabled: boolean;
@@ -16,8 +17,18 @@ interface StyledLabelProps {
 }
 
 export const StyledLabel = styled.label<StyledLabelProps>`
-    ${({ isSmall, theme }): string =>
-        theme.textStyling(isSmall ? theme.availableTextStyles().caption : theme.availableTextStyles().body1)}
+    ${({ hasAlternativeTextStyle, isSmall, theme }): string =>
+        theme.textStyling(
+            /* Mind the fact that hasAlternativeTextStyle does not yet have an isSmall implementation
+               This has to do with that fact that we than need another new style, so left it like this for now
+            */
+            // eslint-disable-next-line no-nested-ternary
+            hasAlternativeTextStyle
+                ? theme.availableTextStyles().caption2
+                : isSmall
+                ? theme.availableTextStyles().caption
+                : theme.availableTextStyles().body1
+        )}
     ${transitionEffect({
         duration: 300,
         property: 'font-size',

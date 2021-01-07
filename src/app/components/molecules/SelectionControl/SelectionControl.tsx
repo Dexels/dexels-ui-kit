@@ -19,6 +19,7 @@ export interface SelectionControlProps {
     className?: string;
     direction?: Direction;
     errorMessage?: ReactNode;
+    hasAlternativeTextStyle?: boolean;
     hasError?: boolean;
     hasHorizontalCorrection?: boolean;
     hasVerticalCorrection?: boolean;
@@ -40,6 +41,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
     className,
     direction = Direction.LTR,
     errorMessage,
+    hasAlternativeTextStyle = false,
     hasError = false,
     hasHorizontalCorrection = true,
     hasVerticalCorrection = false,
@@ -106,7 +108,12 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                     />
                 </InputWrapper>
                 <LabelWrapper direction={direction} isDisabled={isDisabled} onClick={onChange}>
-                    <Label hasError={hasError} isSelectionControlLabel isValid={isValid}>
+                    <Label
+                        hasAlternativeTextStyle={hasAlternativeTextStyle}
+                        hasError={hasError}
+                        isSelectionControlLabel
+                        isValid={isValid}
+                    >
                         {label}
                     </Label>
                 </LabelWrapper>
