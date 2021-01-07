@@ -12,7 +12,7 @@ export interface CardNoResultsProps {
     iconType: IconType;
     itemPrefix?: string;
     items?: ReactNode[];
-    title: ReactNode;
+    title?: ReactNode;
 }
 
 export const CardNoResults: FunctionComponent<CardNoResultsProps> = ({
@@ -32,7 +32,7 @@ export const CardNoResults: FunctionComponent<CardNoResultsProps> = ({
         </Left>
         <Right>
             <Header>{header}</Header>
-            <Title>{title}</Title>
+            {title && <Title>{title}</Title>}
             {items.length > 0 &&
                 items.map((item) => (
                     <Item key={item?.toString()}>
