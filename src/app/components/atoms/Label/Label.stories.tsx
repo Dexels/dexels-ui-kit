@@ -6,6 +6,7 @@ export default { title: 'atoms/Label' };
 
 export const Configurable: FunctionComponent = () => (
     <Label
+        hasAlternativeTextStyle={boolean('Has alternative textstyle', false)}
         hasError={boolean('Has error', false)}
         isActive={boolean('Is active', false)}
         isDisabled={boolean('Is disabled', false)}

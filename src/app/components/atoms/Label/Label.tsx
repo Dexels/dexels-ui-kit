@@ -4,6 +4,7 @@ import { StyledLabel } from './Label.sc';
 export interface LabelProps {
     children?: ReactNode;
     className?: string;
+    hasAlternativeTextStyle?: boolean;
     hasError?: boolean;
     isActive?: boolean;
     isDisabled?: boolean;
@@ -18,6 +19,7 @@ export interface LabelProps {
 export const Label: FunctionComponent<LabelProps> = ({
     children,
     className,
+    hasAlternativeTextStyle = false,
     hasError = false,
     isActive = false,
     isDisabled = false,
@@ -30,6 +32,7 @@ export const Label: FunctionComponent<LabelProps> = ({
 }) => (
     <StyledLabel
         className={className}
+        hasAlternativeTextStyle={hasAlternativeTextStyle}
         hasError={hasError}
         isActive={isActive}
         isDisabled={isDisabled}

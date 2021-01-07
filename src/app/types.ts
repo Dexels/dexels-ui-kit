@@ -555,6 +555,7 @@ export interface Theme {
         buttonMedium: ThemeTextStyle;
         buttonSmall: ThemeTextStyle;
         caption: ThemeTextStyle;
+        caption2: ThemeTextStyle;
         h1: ThemeTextStyle;
         h2: ThemeTextStyle;
         h3: ThemeTextStyle;

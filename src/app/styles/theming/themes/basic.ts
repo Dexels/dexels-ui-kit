@@ -199,6 +199,12 @@ export const themeBasic: Theme = {
             fontWeight: '400',
             lineHeight: '16px',
         },
+        caption2: {
+            fontFamily: fontFamilySecondary,
+            fontSize: '14px',
+            fontWeight: '600',
+            lineHeight: '22px',
+        },
         h1: {
             fontFamily: fontFamilySecondary,
             fontSize: '24px',

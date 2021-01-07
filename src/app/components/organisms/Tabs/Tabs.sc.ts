@@ -26,7 +26,7 @@ interface TabHeaderProps {
 
 export const TabHeader = styled.button<TabHeaderProps>`
     ${rippleEffectInit()}
-    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().buttonSmall)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption2)}
     ${({ theme }): FlattenSimpleInterpolation => getTabStyling(theme)}
     appearance: none;
     outline: none;
