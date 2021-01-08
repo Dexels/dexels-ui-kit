@@ -26,6 +26,10 @@ export const Header = styled.div`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
     margin: ${({ theme }): string => theme.spacing(0, 0, 2)};
     color: ${({ theme }): string => theme.colorText.primary};
+
+    &:last-child {
+        margin: 0;
+    }
 `;
 
 Header.defaultProps = {
