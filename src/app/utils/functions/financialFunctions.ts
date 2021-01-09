@@ -41,18 +41,16 @@ export const getCurrencyIcon = (locale?: Locale): IconType => {
     }
 };
 
-export const defaultCurrencySettings = (hasRounding = false): currencyOptions => {
-    return {
-        decimal: ',',
-        fromCents: false,
-        increment: hasRounding ? 0.05 : 0,
-        negativePattern: '-!#',
-        pattern: '!#',
-        precision: 2,
-        separator: '.',
-        symbol: `${getCurrencySymbol(Locale.NL)} `,
-    };
-};
+export const defaultCurrencySettings = (hasRounding = false): currencyOptions => ({
+    decimal: ',',
+    fromCents: false,
+    increment: hasRounding ? 0.05 : 0,
+    negativePattern: '-!#',
+    pattern: '!#',
+    precision: 2,
+    separator: '.',
+    symbol: `${getCurrencySymbol(Locale.NL)} `,
+});
 
 export const EUR = (value: number | string, hasRounding = false): currency =>
     currency(value, {

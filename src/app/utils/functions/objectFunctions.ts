@@ -2,13 +2,9 @@ import { compareDates, isValidDate } from './dateFunctions';
 import moment, { Moment } from 'moment';
 import { isEmpty } from './validateFunctions';
 
-const isObject = (object: unknown): boolean => {
-    return object != null && typeof object === 'object';
-};
+const isObject = (object: unknown): boolean => object != null && typeof object === 'object';
 
-const isMomentObject = (object: unknown): boolean => {
-    return isObject(object) && moment.isMoment(object);
-};
+const isMomentObject = (object: unknown): boolean => isObject(object) && moment.isMoment(object);
 
 export const areEqualObjects = (
     prevObject: Record<string, unknown>,

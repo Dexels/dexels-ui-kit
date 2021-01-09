@@ -170,36 +170,34 @@ export const Table = <T extends object>({
                     </TableBody>
                     {hasFooterColumns && (
                         <TableFooter elevation={elevation}>
-                            {footerGroups.map((footerGroup) => {
-                                return (
-                                    <TableFooterRow {...footerGroup.getFooterGroupProps()}>
-                                        {footerGroup.headers
-                                            .filter(({ isVisible }) => isVisible)
-                                            .map(
-                                                (column, index) =>
-                                                    (index === 0 || index >= footerTitleColumnSpan) && (
-                                                        <TableFooterCell
-                                                            {...column.getFooterProps()}
-                                                            // colSpan={index === 0 ? footerTitleColumnSpan : 1}
-                                                            hasCellPadding={column.hasCellPadding}
-                                                            isDisabled={isDisabled}
+                            {footerGroups.map((footerGroup) => (
+                                <TableFooterRow {...footerGroup.getFooterGroupProps()}>
+                                    {footerGroup.headers
+                                        .filter(({ isVisible }) => isVisible)
+                                        .map(
+                                            (column, index) =>
+                                                (index === 0 || index >= footerTitleColumnSpan) && (
+                                                    <TableFooterCell
+                                                        {...column.getFooterProps()}
+                                                        // colSpan={index === 0 ? footerTitleColumnSpan : 1}
+                                                        hasCellPadding={column.hasCellPadding}
+                                                        isDisabled={isDisabled}
+                                                    >
+                                                        <TableFooterCellInner
+                                                            align={column.align || Alignment.LEFT}
+                                                            isSorted={column.isSorted}
                                                         >
-                                                            <TableFooterCellInner
-                                                                align={column.align || Alignment.LEFT}
-                                                                isSorted={column.isSorted}
-                                                            >
-                                                                <TableFooterCellContent>
-                                                                    {column.aggregate
-                                                                        ? column.render('Aggregated')
-                                                                        : column.render('Footer')}
-                                                                </TableFooterCellContent>
-                                                            </TableFooterCellInner>
-                                                        </TableFooterCell>
-                                                    )
-                                            )}
-                                    </TableFooterRow>
-                                );
-                            })}
+                                                            <TableFooterCellContent>
+                                                                {column.aggregate
+                                                                    ? column.render('Aggregated')
+                                                                    : column.render('Footer')}
+                                                            </TableFooterCellContent>
+                                                        </TableFooterCellInner>
+                                                    </TableFooterCell>
+                                                )
+                                        )}
+                                </TableFooterRow>
+                            ))}
                         </TableFooter>
                     )}
 

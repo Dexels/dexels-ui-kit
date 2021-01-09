@@ -96,9 +96,9 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                     {'Selected items:'}
                     {optionValues
                         .filter((item) => item.isSelected)
-                        .map((item) => {
-                            return <p key={item.value}>{`${item.value} - ${item.label}`}</p>;
-                        })}
+                        .map((item) => (
+                            <p key={item.value}>{`${item.value} - ${item.label}`}</p>
+                        ))}
                     {'Selected items as string:'}
                     {value}
                 </div>

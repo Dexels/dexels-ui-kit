@@ -69,9 +69,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
-    const isEmpty = useMemo(() => {
-        return options && options.length === 0;
-    }, [options]);
+    const isEmpty = useMemo(() => options && options.length === 0, [options]);
 
     const placeholderText = !isEmpty ? placeholder : noOptionsText || placeholder;
 

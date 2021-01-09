@@ -84,30 +84,27 @@ export const selectOptionsFacade = <U, T extends U>(
     data: Array<T>,
     labelPropertyName: keyof U,
     valuePropertyName: keyof U
-): DropdownOption[] => {
-    return data.map((option) => {
-        return {
-            label: (option[labelPropertyName] as unknown) as string,
-            value: (option[valuePropertyName] as unknown) as string | number,
-        };
-    });
-};
+): DropdownOption[] =>
+    data.map((option) => ({
+        label: (option[labelPropertyName] as unknown) as string,
+        value: (option[valuePropertyName] as unknown) as string | number,
+    }));
 
 export const selectOptionsExtend = <T, U extends T & DropdownMultiSelectOption>(
     data: Array<T>,
     labelPropertyName: keyof T,
     valuePropertyName: keyof T,
     selectedPropertyName: keyof T
-): Array<U> => {
-    return data.map((option) => {
-        return {
-            ...option,
-            isSelected: (option[selectedPropertyName] as unknown) as boolean,
-            label: (option[labelPropertyName] as unknown) as string,
-            value: (option[valuePropertyName] as unknown) as string | number,
-        } as U;
-    });
-};
+): Array<U> =>
+    data.map(
+        (option) =>
+            ({
+                ...option,
+                isSelected: (option[selectedPropertyName] as unknown) as boolean,
+                label: (option[labelPropertyName] as unknown) as string,
+                value: (option[valuePropertyName] as unknown) as string | number,
+            } as U)
+    );
 
 export const removeElement = <U, T extends U>(data: T[], propertyName: keyof U, propertyValue: unknown): Array<T> =>
     data.filter((option) => option[propertyName] !== propertyValue);
