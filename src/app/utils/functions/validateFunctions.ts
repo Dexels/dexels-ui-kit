@@ -45,6 +45,4 @@ export const isValidNumber = (value: string, allowDecimals = false, locale?: Loc
     return numberRegExp.test(value);
 };
 
-export const isValidMoney = (value: string, locale?: Locale): boolean => {
-    return isValidNumber(value, true, locale);
-};
+export const isValidMoney = (value: string, locale?: Locale): boolean => isValidNumber(value, true, locale);

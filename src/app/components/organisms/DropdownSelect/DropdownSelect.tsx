@@ -90,14 +90,15 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
 
     useEffect(() => {
         setUpdatedOptions(
-            options.map((option) => {
-                return {
-                    ...option,
-                    searchValue: option.searchValue
-                        ? toBasicLowercase(option.searchValue)
-                        : toBasicLowercase(option.label),
-                } as T;
-            })
+            options.map(
+                (option) =>
+                    ({
+                        ...option,
+                        searchValue: option.searchValue
+                            ? toBasicLowercase(option.searchValue)
+                            : toBasicLowercase(option.label),
+                    } as T)
+            )
         );
     }, [options]);
 
