@@ -5,9 +5,9 @@ module.exports = {
     ],
     preset: 'ts-jest',
     testEnvironment: 'node',
-    testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
+    testRegex: '(/__tests__/|(\\.|/)(test|spec))\\.tsx?$',
     setupFilesAfterEnv: [
-      '<rootDir>/src/setupEnzyme.ts',
+      '<rootDir>/src/app/__tests__/setupEnzyme.ts',
     ],
     globals: {
       'ts-jest': {
