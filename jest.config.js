@@ -13,6 +13,12 @@ module.exports = {
             },
         },
     },
+    collectCoverage: true,
+    collectCoverageFrom: [
+        "<rootDir>/src/app/components/**/**/*.tsx",
+        "<rootDir>/src/app/utils/**/*.ts",
+        "!<rootDir>/src/app/components/**/**/*.stories.tsx"
+    ],
     snapshotSerializers: ['enzyme-to-json/serializer'],
     testMatch: null,
 };
