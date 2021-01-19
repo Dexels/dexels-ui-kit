@@ -18,4 +18,19 @@ describe('test component ListItem', () => {
         wrapper.setProps({ adornment: <Icon type={IconType.SEARCH} /> });
         expect(wrapper.find(AdornmentWrapper)).toHaveLength(1);
     });
+
+    test('render ListItem with isDisabled, isFocused and isHovered props set to true', () => {
+        wrapper.setProps({
+            adornment: <Icon type={IconType.SEARCH} />,
+            isDisabled: true,
+            isFocused: true,
+            isHovered: true,
+        });
+
+        const adormentWrapper = wrapper.find(AdornmentWrapper);
+
+        expect(adormentWrapper.props().isFocused).toBeTruthy();
+        expect(adormentWrapper.props().isDisabled).toBeTruthy();
+        expect(adormentWrapper.props().isHovered).toBeTruthy();
+    });
 });

@@ -1,4 +1,6 @@
 node_modules
+coverage
+fonts
 .out
 .vs/VSWorkspaceState.json
 .vs/dexels-ui-kit/v15/.suo
