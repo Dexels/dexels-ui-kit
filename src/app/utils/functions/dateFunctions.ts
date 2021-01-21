@@ -39,7 +39,7 @@ export const formatAsSystemDate = (value: string | Date | Moment, lang: string =
 export const formatDate = (
     value: string | Date | Moment,
     lang: string = defaultLocale,
-    format = 'DD-MMM-YYYY'
+    format = 'DD MMM YYYY'
 ): string => (isValidDate(value) ? moment(value).locale(lang).format(format) : value.toString());
 
 export const formatTime = (value: string | Date | Moment): string => {
