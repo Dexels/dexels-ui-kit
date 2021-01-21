@@ -1,11 +1,13 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { ButtonSize, ButtonVariant, Direction, Easing, Elevation, IconType, InputType, Status } from '../../../types';
 import Dialog, { DialogProps } from './Dialog';
+import moment, { Moment } from 'moment';
 import React, { FunctionComponent, useState } from 'react';
 import Button from '../../molecules/Button/Button';
 import { DialogButtonClosePosition } from './types';
 import Input from '../../molecules/Input/Input';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
+import { SingleDatePicker } from '../DatePicker';
 
 export default { title: 'organisms/Dialog' };
 
@@ -14,6 +16,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
     footerButtons,
     footerText,
     iconType,
+    isScrollable,
     isVisible,
     onClose,
     status,
@@ -31,6 +34,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
         hasOverlay={boolean('Has overlay', true)}
         header={text('Header', '')}
         iconType={iconType}
+        isScrollable={isScrollable}
         isVisible={isVisible}
         onClose={onClose}
         status={status}
@@ -243,6 +247,68 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                     }}
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}
+                />
+            </ConfigurableDialog>
+        </>
+    );
+};
+
+export const ConfigurableAlertWithDatePicker: FunctionComponent = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [date, setDate] = useState<Moment | null>(moment());
+    const [isFocused, setIsFocused] = useState(false);
+
+    return (
+        <>
+            <Button
+                onClick={(): void => {
+                    setIsVisible(true);
+                }}
+                variant={ButtonVariant.FILLED}
+            >
+                {isVisible ? 'Dialog is showing' : 'Show dialog'}
+            </Button>
+            <ConfigurableDialog
+                footerButtons={[
+                    {
+                        children: 'Cancel',
+                        iconType: IconType.CROSS,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                        variant: ButtonVariant.TEXT_ONLY,
+                    },
+                    {
+                        children: 'Confirm date',
+                        iconType: IconType.USERREMOVE,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                    },
+                ]}
+                iconType={select('Icon type', IconType, IconType.USER)}
+                isScrollable={false}
+                isVisible={isVisible}
+                onClose={(): void => {
+                    setIsVisible(false);
+                }}
+                status={select('Status', Status, Status.ALERT)}
+                text="choose a date"
+                title={text('Title', 'Title and input components')}
+            >
+                <SingleDatePicker
+                    date={date}
+                    id="datepicker"
+                    isFocused={isFocused}
+                    onDateChange={(newDate): void => {
+                        setDate(newDate);
+                    }}
+                    onFocusChange={({ focused }): void => {
+                        setIsFocused(Boolean(focused));
+                    }}
+                    placeholder={'Selecteer je datum'}
                 />
             </ConfigurableDialog>
         </>

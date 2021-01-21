@@ -32,6 +32,7 @@ export interface DialogProps {
     hasOverlay?: boolean;
     header?: ReactNode;
     iconType?: IconProps['type'] /* IconType will be used by title and inside content */;
+    isScrollable?: boolean;
     isVisible: boolean;
     onClose?: MouseEventHandler;
     status?: Status;
@@ -54,6 +55,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     hasOverlay = true,
     header,
     iconType,
+    isScrollable = true,
     isVisible,
     onClose,
     status = Status.DEFAULT,
@@ -75,11 +77,12 @@ export const Dialog: FunctionComponent<DialogProps> = ({
         )}
         <Wrapper
             className={className}
+            isScrollable={isScrollable}
             isVisible={isVisible}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
         >
-            <StyledDialog elevation={elevation}>
+            <StyledDialog elevation={elevation} isScrollable={isScrollable}>
                 {header && <Header hasHeaderPadding={hasHeaderPadding}>{header}</Header>}
                 <Body hasBodyPadding={hasBodyPadding}>
                     {iconType && title && (
