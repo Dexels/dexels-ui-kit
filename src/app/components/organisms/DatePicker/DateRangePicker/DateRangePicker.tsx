@@ -25,6 +25,7 @@ export interface DateRangePickerProps {
     focusedInput: FocusedInputShape | null;
     footerText?: DialogFooterProps['text'];
     hasYearSelector?: boolean;
+    isDayBlocked?: (day: Moment) => boolean;
     isDayHighlighted?: (day: Moment) => boolean;
     isDisabled?: boolean;
     isOutsideRange?: (day: Moment) => boolean;
@@ -59,6 +60,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     focusedInput,
     footerText,
     hasYearSelector = false,
+    isDayBlocked,
     isDayHighlighted,
     isDisabled = false,
     isOutsideRange,
@@ -130,6 +132,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
                     endDatePlaceholderText={endDatePlaceholderText}
                     focusedInput={focusedInput}
                     hideKeyboardShortcutsPanel
+                    isDayBlocked={isDayBlocked}
                     isDayHighlighted={isDayHighlighted}
                     isOutsideRange={isOutsideRange}
                     keepOpenOnDateSelect={keepOpenOnDateSelect}
