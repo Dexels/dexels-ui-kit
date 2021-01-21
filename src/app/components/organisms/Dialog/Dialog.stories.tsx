@@ -288,7 +288,6 @@ export const ConfigurableAlertWithDatePicker: FunctionComponent = () => {
                         size: ButtonSize.SMALL,
                     },
                 ]}
-                footerText={text('Footer text', 'Hint: its not 3 or 5')}
                 iconType={select('Icon type', IconType, IconType.USER)}
                 isScrollable={false}
                 isVisible={isVisible}
@@ -299,7 +298,6 @@ export const ConfigurableAlertWithDatePicker: FunctionComponent = () => {
                 text="choose a date"
                 title={text('Title', 'Title and input components')}
             >
-                {/* Don't mind the lack of padding/margin between the input components ;-) */}
                 <SingleDatePicker
                     date={date}
                     id="datepicker"
