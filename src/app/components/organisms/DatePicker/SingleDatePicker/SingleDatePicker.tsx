@@ -23,6 +23,7 @@ export interface SingleDatePickerProps {
     footerText?: DialogFooterProps['text'];
     hasYearSelector?: boolean;
     id: string;
+    isDayBlocked?: (day: Moment) => boolean;
     isDayHighlighted?: (day: Moment) => boolean;
     isDisabled?: boolean;
     isFocused: boolean;
@@ -54,6 +55,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     footerText,
     hasYearSelector = false,
     id,
+    isDayBlocked,
     isDayHighlighted,
     isDisabled = false,
     isFocused,
@@ -174,6 +176,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                         focused={isFocused}
                         hideKeyboardShortcutsPanel
                         id={id}
+                        isDayBlocked={isDayBlocked}
                         isDayHighlighted={isDayHighlighted}
                         isOutsideRange={isOutsideRange}
                         keepOpenOnDateSelect={keepOpenOnDateSelect}

@@ -16,6 +16,7 @@ export const Default: FunctionComponent = () => {
             date={date}
             displayFormat={text('Display format', 'ddd D MMM Y')}
             id="datepicker"
+            isDayBlocked={(day): boolean => day.day() === 3}
             isDayHighlighted={(day): boolean => day.day() === 6}
             isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}
@@ -50,6 +51,7 @@ export const DatePickerOpensUp: FunctionComponent = () => {
                 date={date}
                 displayFormat={text('Display format', 'ddd D MMM Y')}
                 id="datepicker"
+                isDayBlocked={(day): boolean => day.day() === 3}
                 isDayHighlighted={(day): boolean => day.day() === 6}
                 isDisabled={boolean('Is disabled', false)}
                 isFocused={isFocused}
@@ -80,6 +82,7 @@ export const WithYearSelector: FunctionComponent = () => {
             displayFormat={text('Display format', 'ddd D MMM Y')}
             hasYearSelector
             id="datepickerWithYearSelector"
+            isDayBlocked={(day): boolean => day.day() === 3}
             isDayHighlighted={(day): boolean => day.day() === 5}
             isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}
@@ -115,6 +118,7 @@ export const WithFooter: FunctionComponent = () => {
             date={date}
             displayFormat={text('Display format', 'ddd D MMM Y')}
             id="datepickerWithYearSelector"
+            isDayBlocked={(day): boolean => day.day() === 3}
             isDayHighlighted={(day): boolean => day.day() === 5}
             isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}

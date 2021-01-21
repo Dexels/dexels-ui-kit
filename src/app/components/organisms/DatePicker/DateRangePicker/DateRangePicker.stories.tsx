@@ -24,6 +24,7 @@ export const Default: FunctionComponent = () => {
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             footerText="Selecteer minimaal twee dagen"
+            isDayBlocked={(day): boolean => day.day() === 3}
             isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
@@ -97,6 +98,7 @@ export const DefaultWithoutShortcuts: FunctionComponent = () => {
             endDateId="daterangepicker_end"
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
+            isDayBlocked={(day): boolean => day.day() === 3}
             isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
@@ -139,6 +141,7 @@ export const DefaultWithoutFooter: FunctionComponent = () => {
             endDateId="daterangepicker_end"
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
+            isDayBlocked={(day): boolean => day.day() === 3}
             isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
@@ -203,6 +206,7 @@ export const WithYearSelector: FunctionComponent = () => {
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             hasYearSelector
+            isDayBlocked={(day): boolean => day.day() === 1}
             isDayHighlighted={(day): boolean => day.day() === 3}
             isDisabled={boolean('Is disabled', false)}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}

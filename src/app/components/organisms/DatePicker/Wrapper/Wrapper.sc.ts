@@ -199,6 +199,13 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
         }
     }
 
+    .CalendarDay__blocked_calendar {
+        background-color: ${({ theme }): string => theme.shades.eight};
+        cursor: initial;
+        color: ${({ theme }): string => theme.colorDisabled};
+        pointer-events: none;
+    }
+
     .CalendarDay__highlighted_calendar {
         &::after {
             display: block;
