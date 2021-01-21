@@ -25,6 +25,7 @@ export const OverlayWrapper = styled.div<OverlayWrapperProps>`
 `;
 
 interface WrapperProps {
+    isScrollable: boolean;
     isVisible: boolean;
     transitionDuration: number;
     transitionEasing: Easing;
@@ -46,18 +47,19 @@ export const Wrapper = styled.div<WrapperProps>`
     width: 100%;
     max-width: 544px;
     max-height: 100%;
-    overflow: auto;
+    overflow: ${({ isScrollable }): string => (isScrollable ? 'auto' : 'visible')};
     pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};
 `;
 
 interface StyledDialogProps {
     elevation: Elevation;
+    isScrollable: boolean;
 }
 
 export const StyledDialog = styled.div<StyledDialogProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     border-radius: ${({ theme }): string => theme.spacing(1)};
-    overflow: hidden;
+    overflow: ${({ isScrollable }): string => (isScrollable ? 'hidden' : 'inherit')};
 `;
 
 StyledDialog.defaultProps = {
