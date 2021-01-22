@@ -9,9 +9,7 @@ describe('test component Button', () => {
     let wrapper: ShallowWrapper<ButtonProps>;
 
     beforeEach(() => {
-        const button = <Button />;
-
-        wrapper = shallow(button) as ShallowWrapper<ButtonProps>;
+        wrapper = shallow(<Button />) as ShallowWrapper<ButtonProps>;
     });
 
     test('render without props', () => {

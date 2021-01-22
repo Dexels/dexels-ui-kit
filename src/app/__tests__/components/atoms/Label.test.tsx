@@ -7,9 +7,7 @@ describe('test component Label', () => {
     let wrapper: ShallowWrapper<LabelProps>;
 
     beforeEach(() => {
-        const label = <Label />;
-
-        wrapper = shallow(label) as ShallowWrapper<LabelProps>;
+        wrapper = shallow(<Label />) as ShallowWrapper<LabelProps>;
     });
 
     test('render Label', () => {

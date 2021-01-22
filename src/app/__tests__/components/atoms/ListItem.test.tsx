@@ -9,9 +9,7 @@ describe('test component ListItem', () => {
     let wrapper: ShallowWrapper<ListItemProps>;
 
     beforeEach(() => {
-        const listItem = <ListItem />;
-
-        wrapper = shallow(listItem) as ShallowWrapper<ListItemProps>;
+        wrapper = shallow(<ListItem />) as ShallowWrapper<ListItemProps>;
     });
 
     test('passing props to children', () => {
