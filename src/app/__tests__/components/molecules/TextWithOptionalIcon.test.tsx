@@ -20,7 +20,7 @@ describe('test component TextWithOptionalIcon', () => {
         expect(wrapper.exists()).toBe(true);
         expect(wrapper.hasClass('test-text-with-option-icon')).toBe(true);
         expect(wrapper.props().direction).toBe(Direction.LTR);
-        expect(wrapper.find(Text).prop('isCapitalized')).toBe(false);
+        expect(wrapper.find(Text).prop('isCapitalized')).toBeFalsy();
     });
 
     test('passing props to children', () => {
@@ -36,8 +36,8 @@ describe('test component TextWithOptionalIcon', () => {
 
         expect(wrapper.find(IconCustomizable).prop('iconSize')).toBe(IconCustomizableSize.SIZE20);
         expect(wrapper.find(IconCustomizable).prop('iconType')).toBe(IconType.CHECK);
-        expect(wrapper.find(Text).prop('isCapitalized')).toBe(true);
-        expect(wrapper.find(Text).prop('isSelectable')).toBe(false);
-        expect(wrapper.find(Text).prop('isTruncatable')).toBe(true);
+        expect(wrapper.find(Text).prop('isCapitalized')).toBeTruthy();
+        expect(wrapper.find(Text).prop('isSelectable')).toBeFalsy();
+        expect(wrapper.find(Text).prop('isTruncatable')).toBeTruthy();
     });
 });
