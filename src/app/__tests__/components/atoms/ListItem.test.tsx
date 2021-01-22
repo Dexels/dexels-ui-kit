@@ -14,12 +14,7 @@ describe('test component ListItem', () => {
         wrapper = shallow(listItem) as ShallowWrapper<ListItemProps>;
     });
 
-    test('render ListItem with adornment props', () => {
-        wrapper.setProps({ adornment: <Icon type={IconType.SEARCH} /> });
-        expect(wrapper.find(AdornmentWrapper)).toHaveLength(1);
-    });
-
-    test('render ListItem with isDisabled, isFocused and isHovered props set to true', () => {
+    test('passing props to children', () => {
         wrapper.setProps({
             adornment: <Icon type={IconType.SEARCH} />,
             isDisabled: true,
@@ -27,10 +22,16 @@ describe('test component ListItem', () => {
             isHovered: true,
         });
 
-        const adormentWrapper = wrapper.find(AdornmentWrapper);
+        expect(wrapper.find(AdornmentWrapper)).toHaveLength(1);
+        expect(wrapper.find(AdornmentWrapper).prop('isFocused')).toBeTruthy();
+        expect(wrapper.find(AdornmentWrapper).prop('isDisabled')).toBeTruthy();
+        expect(wrapper.find(AdornmentWrapper).prop('isHovered')).toBeTruthy();
+    });
 
-        expect(adormentWrapper.props().isFocused).toBeTruthy();
-        expect(adormentWrapper.props().isDisabled).toBeTruthy();
-        expect(adormentWrapper.props().isHovered).toBeTruthy();
+    test('onClick should fire when clicked', () => {
+        const mockCallbackFn = jest.fn();
+        wrapper.setProps({ onClick: mockCallbackFn });
+        wrapper.simulate('click');
+        expect(mockCallbackFn).toHaveBeenCalled();
     });
 });
