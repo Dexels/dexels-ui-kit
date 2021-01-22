@@ -156,6 +156,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     onKeyDown={isDisabled || !onKeyDown ? undefined : onKeyDown}
                     onMouseEnter={isDisabled ? undefined : toggleIsHoveredCallback}
                     onMouseLeave={isDisabled ? undefined : toggleIsHoveredCallback}
+                    readOnly={isDisabled}
                     type={type}
                     value={value === null ? undefined : value} // Assuming that null equals undefined
                     variant={variant}
