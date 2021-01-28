@@ -71,3 +71,21 @@ export const renderSortIcon = <T extends object>(
 
     return iconType ? <Icon className="icon" type={iconType} /> : null;
 };
+
+export const getColumnWidthByPercentage = (
+    tableId: string,
+    requestedPercentage: number,
+    columnWidths: number
+): number => {
+    const doc = document.getElementById(tableId);
+    const availableWidth = doc ? doc.getBoundingClientRect().width : 1240 - columnWidths;
+
+    console.group('doc', doc, tableId);
+    console.log('requestedPercentage', requestedPercentage);
+    console.log('availableWidth before', availableWidth);
+
+    console.log('availableWidth after', availableWidth);
+    console.log('calculated width', availableWidth / (100 / requestedPercentage));
+
+    return availableWidth / (100 / requestedPercentage);
+};
