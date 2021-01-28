@@ -25,7 +25,7 @@ import {
     TableRow,
     TableWrapper,
 } from './Table.sc';
-import React, { ReactNode, SyntheticEvent, useRef } from 'react';
+import React, { ReactNode, SyntheticEvent, useEffect, useRef, useState } from 'react';
 import { Row, TableInstance } from 'react-table';
 import CardNoResults from '../../molecules/CardNoResults/CardNoResults';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
@@ -73,8 +73,9 @@ export const Table = <T extends object>({
 }: TableProps<T>): JSX.Element => {
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
     let hasFooterColumns = false;
+    const [availableTableWidth, setAvailableTableWidth] = useState(0);
     const tableWrapperRef = useRef<HTMLDivElement>(null);
-    const randomTableId = Math.random().toString(36).substr(2, 5);
+    const randomTableId = Math.random().toString(36).substr(5);
 
     // This const contains the calculated widths in pixels.
     // Mind the fact that the default value for missing widths = 100
@@ -85,6 +86,12 @@ export const Table = <T extends object>({
 
     const fixedColumnWidthsTotal = fixedColumnWidths.reduce((a, b) => a + b, 0);
     const hasResults = instance.data.length !== 0;
+
+    useEffect(() => {
+        if (tableWrapperRef.current) {
+            setAvailableTableWidth(tableWrapperRef.current.getBoundingClientRect().width);
+        }
+    }, [availableTableWidth, tableWrapperRef]);
 
     return (
         <>
@@ -113,12 +120,9 @@ export const Table = <T extends object>({
                                                     width={
                                                         column.width?.toString().includes('%')
                                                             ? getColumnWidthByPercentage(
-                                                                  randomTableId,
-                                                                  parseInt(
-                                                                      column.width.toString().replace('%', ''),
-                                                                      10
-                                                                  ),
-                                                                  fixedColumnWidthsTotal
+                                                                  availableTableWidth,
+                                                                  fixedColumnWidthsTotal,
+                                                                  parseInt(column.width.toString().replace('%', ''), 10)
                                                               )
                                                             : column.width
                                                     }
@@ -176,14 +180,14 @@ export const Table = <T extends object>({
                                                             width={
                                                                 cell.column.width?.toString().includes('%')
                                                                     ? getColumnWidthByPercentage(
-                                                                          randomTableId,
+                                                                          availableTableWidth,
+                                                                          fixedColumnWidthsTotal,
                                                                           parseInt(
                                                                               cell.column.width
                                                                                   .toString()
                                                                                   .replace('%', ''),
                                                                               10
-                                                                          ),
-                                                                          fixedColumnWidthsTotal
+                                                                          )
                                                                       )
                                                                     : cell.column.width
                                                             }
@@ -199,7 +203,9 @@ export const Table = <T extends object>({
                                                                                 ? IconType.ARROWDOWN
                                                                                 : IconType.ARROWRIGHT}
                                                                         </span>{' '}
-                                                                        {cell.render('Cell', { editable: false })}
+                                                                        {cell.render('Cell', {
+                                                                            editable: false,
+                                                                        })}
                                                                     </>
                                                                 ) : cell.isAggregated ? (
                                                                     // If the cell is aggregated, use the Aggregated
@@ -252,14 +258,14 @@ export const Table = <T extends object>({
                                                                           )
                                                                         : column.width?.toString().includes('%')
                                                                         ? getColumnWidthByPercentage(
-                                                                              randomTableId,
+                                                                              availableTableWidth,
+                                                                              fixedColumnWidthsTotal,
                                                                               parseInt(
                                                                                   column.width
                                                                                       .toString()
                                                                                       .replace('%', ''),
                                                                                   10
-                                                                              ),
-                                                                              fixedColumnWidthsTotal
+                                                                              )
                                                                           )
                                                                         : column.width
                                                                 }
