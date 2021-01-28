@@ -28,10 +28,18 @@ export const Configurable: FunctionComponent = () => {
     const [isNL, setIsNL] = useState(true);
     const localizedTexts = createLocalizedTableTexts(isNL ? 'nl' : 'en');
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
+    const [isEmpty, setIsEmpty] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
-    const data = useMemo(() => tableData(), []);
     const columns = useMemo(() => tableColumns(), []);
     const columnsWithGroupHeader = useMemo(() => tableColumnsWithGroupHeader(), []);
+
+    const data = useMemo(() => {
+        if (isEmpty) {
+            return [] as TableData[];
+        }
+
+        return tableData();
+    }, [isEmpty]);
 
     const instance = createTable<TableData>(
         hasGroupHeader ? columnsWithGroupHeader : columns,
@@ -64,6 +72,15 @@ export const Configurable: FunctionComponent = () => {
                         setIsNL(!isNL);
                     }}
                     value="isNL"
+                />
+                <SelectionControl
+                    isChecked={isEmpty}
+                    label={isEmpty ? 'Empty table' : 'Not an empty table'}
+                    name="ISEMPTY   "
+                    onChange={(): void => {
+                        setIsEmpty(!isEmpty);
+                    }}
+                    value="isEmpty"
                 />
                 <SelectionControl
                     isChecked={hasGroupHeader}
@@ -104,6 +121,7 @@ export const Configurable: FunctionComponent = () => {
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
                     instance={instance}
                     isFullWidth={boolean('Is full width', true)}
+                    noResultsMessage={text('No result message', 'No results found')}
                     onClickFooter={isFooterVisible ? getTableFooter : undefined}
                     onClickRow={getTableRow}
                     paginator={

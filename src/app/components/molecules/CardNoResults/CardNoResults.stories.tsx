@@ -15,3 +15,13 @@ export const Configurable: FunctionComponent = () => (
         title={text('Title', 'Some title text')}
     />
 );
+
+export const ConfigurableWithoutIcon: FunctionComponent = () => (
+    <CardNoResults
+        elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
+        header={text('Header', 'Some header text')}
+        itemPrefix={text('Item prefix', '-')}
+        items={array('Items', ['Item 1', 'Item 2'])}
+        title={text('Title', 'Some title text')}
+    />
+);
