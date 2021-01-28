@@ -80,7 +80,7 @@ export const getColumnWidthByPercentage = (
     const doc = document.getElementById(tableId);
     const availableWidth = doc ? doc.getBoundingClientRect().width : 1240 - columnWidths;
 
-    console.group('doc', doc, tableId);
+    console.group('doc', doc, tableId, document);
     console.log('requestedPercentage', requestedPercentage);
     console.log('availableWidth before', availableWidth);
 
