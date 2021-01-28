@@ -78,12 +78,12 @@ export const Table = <T extends object>({
     return (
         <>
             {caption && <TableCaption>{caption}</TableCaption>}
-            {!hasResults && !isEmpty(noResultsMessage) ? (
-                <CardNoResults header={noResultsMessage} title={''} />
-            ) : (
-                <>
-                    <TableWrapper>
-                        <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
+            <TableWrapper>
+                <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
+                    {!hasResults && !isEmpty(noResultsMessage) ? (
+                        <CardNoResults header={noResultsMessage} title={''} />
+                    ) : (
+                        <>
                             <TableHead>
                                 {headerGroups.map((headerGroup) => (
                                     <TableHeaderRow {...headerGroup.getHeaderGroupProps()}>
@@ -212,27 +212,26 @@ export const Table = <T extends object>({
                                     ))}
                                 </TableFooter>
                             )}
-
-                            {footer && (
-                                <TableFooterComponent
-                                    elevation={elevation}
-                                    isClickable={Boolean(onClickFooter)}
-                                    onClick={
-                                        onClickFooter
-                                            ? (event: SyntheticEvent): void => {
-                                                  onClickFooter(event);
-                                              }
-                                            : undefined
-                                    }
-                                >
-                                    {footer}
-                                </TableFooterComponent>
-                            )}
-                        </StyledTable>
-                    </TableWrapper>
-                    {paginator && <PaginatorWrapper>{paginator}</PaginatorWrapper>}
-                </>
-            )}
+                        </>
+                    )}
+                    {footer && (
+                        <TableFooterComponent
+                            elevation={elevation}
+                            isClickable={Boolean(onClickFooter)}
+                            onClick={
+                                onClickFooter
+                                    ? (event: SyntheticEvent): void => {
+                                          onClickFooter(event);
+                                      }
+                                    : undefined
+                            }
+                        >
+                            {footer}
+                        </TableFooterComponent>
+                    )}
+                </StyledTable>
+            </TableWrapper>
+            {paginator && <PaginatorWrapper>{paginator}</PaginatorWrapper>}
         </>
     );
 };
