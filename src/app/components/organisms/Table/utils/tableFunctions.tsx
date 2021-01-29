@@ -72,8 +72,5 @@ export const renderSortIcon = <T extends object>(
     return iconType ? <Icon className="icon" type={iconType} /> : null;
 };
 
-export const getColumnWidthByPercentage = (
-    availableWidth: number,
-    columnWidths: number,
-    requestedPercentage: number
-): number => (availableWidth - columnWidths) / (100 / requestedPercentage);
+export const getColumnWidthByPercentage = (availableWidth: number, requestedPercentage: number): number =>
+    Math.round((requestedPercentage / 100) * availableWidth);

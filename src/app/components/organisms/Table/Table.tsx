@@ -75,7 +75,6 @@ export const Table = <T extends object>({
     let hasFooterColumns = false;
     const [availableTableWidth, setAvailableTableWidth] = useState(0);
     const tableWrapperRef = useRef<HTMLDivElement>(null);
-    const randomTableId = Math.random().toString(36).substr(5);
 
     // This const contains the calculated widths in pixels.
     // Mind the fact that the default value for missing widths = 100
@@ -89,14 +88,16 @@ export const Table = <T extends object>({
 
     useEffect(() => {
         if (tableWrapperRef.current) {
-            setAvailableTableWidth(tableWrapperRef.current.getBoundingClientRect().width);
+            setAvailableTableWidth(
+                Math.round(tableWrapperRef.current.getBoundingClientRect().width - fixedColumnWidthsTotal)
+            );
         }
-    }, [availableTableWidth, tableWrapperRef]);
+    }, [availableTableWidth, tableWrapperRef, fixedColumnWidthsTotal]);
 
     return (
         <>
             {caption && <TableCaption>{caption}</TableCaption>}
-            <TableWrapper id={randomTableId} ref={tableWrapperRef}>
+            <TableWrapper ref={tableWrapperRef}>
                 <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
                     {!hasResults && !isEmpty(noResultsMessage) ? (
                         <CardNoResults header={noResultsMessage} title={''} />
@@ -121,7 +122,6 @@ export const Table = <T extends object>({
                                                         column.width?.toString().includes('%')
                                                             ? getColumnWidthByPercentage(
                                                                   availableTableWidth,
-                                                                  fixedColumnWidthsTotal,
                                                                   parseInt(column.width.toString().replace('%', ''), 10)
                                                               )
                                                             : column.width
@@ -181,7 +181,6 @@ export const Table = <T extends object>({
                                                                 cell.column.width?.toString().includes('%')
                                                                     ? getColumnWidthByPercentage(
                                                                           availableTableWidth,
-                                                                          fixedColumnWidthsTotal,
                                                                           parseInt(
                                                                               cell.column.width
                                                                                   .toString()
@@ -259,7 +258,6 @@ export const Table = <T extends object>({
                                                                         : column.width?.toString().includes('%')
                                                                         ? getColumnWidthByPercentage(
                                                                               availableTableWidth,
-                                                                              fixedColumnWidthsTotal,
                                                                               parseInt(
                                                                                   column.width
                                                                                       .toString()
