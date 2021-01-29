@@ -25,7 +25,7 @@ import {
     TableRow,
     TableWrapper,
 } from './Table.sc';
-import React, { ReactNode, SyntheticEvent, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Row, TableInstance } from 'react-table';
 import CardNoResults from '../../molecules/CardNoResults/CardNoResults';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
@@ -85,6 +85,25 @@ export const Table = <T extends object>({
 
     const fixedColumnWidthsTotal = fixedColumnWidths.reduce((a, b) => a + b, 0);
     const hasResults = instance.data.length !== 0;
+
+    // check if total of presentages doesn't exceeds 100%, do this only once for an instance.
+    const precentageColumnWidthsTotal = useMemo(
+        () =>
+            instance.visibleColumns.reduce((total, column) => {
+                if (column.width !== undefined && column.width.toString().includes('%')) {
+                    return total + parseInt(column.width.toString().replace('%', ''), 10);
+                }
+
+                return total;
+            }, 0),
+        [instance]
+    );
+
+    useEffect(() => {
+        if (precentageColumnWidthsTotal > 100) {
+            throw Error('precentages of columns exceed 100%');
+        }
+    }, [precentageColumnWidthsTotal]);
 
     useEffect(() => {
         if (tableWrapperRef.current) {
