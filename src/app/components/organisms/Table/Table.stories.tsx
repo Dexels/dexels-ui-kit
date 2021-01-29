@@ -109,11 +109,10 @@ export const Configurable: FunctionComponent = () => {
                         isFooterVisible && (
                             <div
                                 style={{
-                                    backgroundColor: 'yellow',
-                                    height: '100px',
+                                    height: '50px',
                                 }}
                             >
-                                {`Column count - 2: ${instance.columns.length - 2}`}
+                                {'Footer text or some component, anything can be placed here'}
                             </div>
                         )
                     }

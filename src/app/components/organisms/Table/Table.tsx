@@ -3,6 +3,7 @@
 // The rule below is disabled because react-table already adds it's own keys
 /* eslint-disable react/jsx-key */
 import { Alignment, Elevation, IconType } from '../../../types';
+import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctions';
 import {
     PaginatorWrapper,
     StyledTable,
@@ -24,11 +25,10 @@ import {
     TableRow,
     TableWrapper,
 } from './Table.sc';
-import React, { ReactNode, SyntheticEvent } from 'react';
+import React, { ReactNode, SyntheticEvent, useEffect, useRef, useState } from 'react';
 import { Row, TableInstance } from 'react-table';
 import CardNoResults from '../../molecules/CardNoResults/CardNoResults';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
-import { renderSortIcon } from './utils/tableFunctions';
 
 export interface TableTexts {
     sortByTooltip?: ReactNode;
@@ -73,12 +73,31 @@ export const Table = <T extends object>({
 }: TableProps<T>): JSX.Element => {
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
     let hasFooterColumns = false;
+    const [availableTableWidth, setAvailableTableWidth] = useState(0);
+    const tableWrapperRef = useRef<HTMLDivElement>(null);
+
+    // This const contains the calculated widths in pixels.
+    // Mind the fact that the default value for missing widths = 100
+    // It's deliberately split into 2 consts, because we need the array for footer purposes
+    const fixedColumnWidths = instance.visibleColumns.map((column) =>
+        column.width && typeof column.width === 'number' ? column.width : 0
+    );
+
+    const fixedColumnWidthsTotal = fixedColumnWidths.reduce((a, b) => a + b, 0);
     const hasResults = instance.data.length !== 0;
+
+    useEffect(() => {
+        if (tableWrapperRef.current) {
+            setAvailableTableWidth(
+                Math.round(tableWrapperRef.current.getBoundingClientRect().width - fixedColumnWidthsTotal)
+            );
+        }
+    }, [availableTableWidth, tableWrapperRef, fixedColumnWidthsTotal]);
 
     return (
         <>
             {caption && <TableCaption>{caption}</TableCaption>}
-            <TableWrapper>
+            <TableWrapper ref={tableWrapperRef}>
                 <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
                     {!hasResults && !isEmpty(noResultsMessage) ? (
                         <CardNoResults header={noResultsMessage} title={''} />
@@ -98,7 +117,15 @@ export const Table = <T extends object>({
                                                     )}
                                                     hasCellPadding={column.hasCellPadding}
                                                     isDisabled={isDisabled}
-                                                    width={column.width}
+                                                    // Check if the column is a percentage, if so then calculate in pixels
+                                                    width={
+                                                        column.width?.toString().includes('%')
+                                                            ? getColumnWidthByPercentage(
+                                                                  availableTableWidth,
+                                                                  parseInt(column.width.toString().replace('%', ''), 10)
+                                                              )
+                                                            : column.width
+                                                    }
                                                 >
                                                     <TableHeaderCellInner
                                                         align={column.align || Alignment.LEFT}
@@ -149,7 +176,20 @@ export const Table = <T extends object>({
                                                                     cell.column.onClick(cell, row, event);
                                                                 }
                                                             }}
-                                                            width={cell.column.width}
+                                                            // Check if the column is a percentage, if so then calculate in pixels
+                                                            width={
+                                                                cell.column.width?.toString().includes('%')
+                                                                    ? getColumnWidthByPercentage(
+                                                                          availableTableWidth,
+                                                                          parseInt(
+                                                                              cell.column.width
+                                                                                  .toString()
+                                                                                  .replace('%', ''),
+                                                                              10
+                                                                          )
+                                                                      )
+                                                                    : cell.column.width
+                                                            }
                                                         >
                                                             <TableCellContent
                                                                 align={cell.column.align || Alignment.LEFT}
@@ -162,7 +202,9 @@ export const Table = <T extends object>({
                                                                                 ? IconType.ARROWDOWN
                                                                                 : IconType.ARROWRIGHT}
                                                                         </span>{' '}
-                                                                        {cell.render('Cell', { editable: false })}
+                                                                        {cell.render('Cell', {
+                                                                            editable: false,
+                                                                        })}
                                                                     </>
                                                                 ) : cell.isAggregated ? (
                                                                     // If the cell is aggregated, use the Aggregated
@@ -191,9 +233,40 @@ export const Table = <T extends object>({
                                                         (index === 0 || index >= footerTitleColumnSpan) && (
                                                             <TableFooterCell
                                                                 {...column.getFooterProps()}
-                                                                // colSpan={index === 0 ? footerTitleColumnSpan : 1}
+                                                                colSpan={
+                                                                    index === 0 && index <= footerTitleColumnSpan
+                                                                        ? footerTitleColumnSpan
+                                                                        : 1
+                                                                }
                                                                 hasCellPadding={column.hasCellPadding}
+                                                                isClickable={false}
                                                                 isDisabled={isDisabled}
+                                                                isTitleColumn={
+                                                                    index === 0 && index <= footerTitleColumnSpan
+                                                                }
+                                                                width={
+                                                                    // When the first column(s) concerns the title, then check if we need to calculate something
+                                                                    // reduce is ebing used to accumulate all necessary values for the title column
+                                                                    index === 0 && index <= footerTitleColumnSpan
+                                                                        ? fixedColumnWidths.reduce(
+                                                                              (a, b, c) =>
+                                                                                  c <= footerTitleColumnSpan
+                                                                                      ? a + b
+                                                                                      : a,
+                                                                              0
+                                                                          )
+                                                                        : column.width?.toString().includes('%')
+                                                                        ? getColumnWidthByPercentage(
+                                                                              availableTableWidth,
+                                                                              parseInt(
+                                                                                  column.width
+                                                                                      .toString()
+                                                                                      .replace('%', ''),
+                                                                                  10
+                                                                              )
+                                                                          )
+                                                                        : column.width
+                                                                }
                                                             >
                                                                 <TableFooterCellInner
                                                                     align={column.align || Alignment.LEFT}

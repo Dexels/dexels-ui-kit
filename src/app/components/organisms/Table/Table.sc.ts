@@ -171,6 +171,12 @@ export const TableCell = styled.td<TableCellProps>`
     height: ${({ theme }): string => theme.spacing(6)};
     vertical-align: middle;
 
+    ${({ width }): SimpleInterpolation =>
+        width &&
+        css`
+            width: ${typeof width === 'number' ? `${width}px` : width};
+        `}
+
     &::after {
         position: absolute;
         top: 0;
@@ -230,23 +236,27 @@ export const TableFooterRow = styled.tr`
 
 interface TableFooterCellProps extends ColumnProps {
     isDisabled: boolean;
+    isTitleColumn: boolean;
 }
 
-export const TableFooterCell = styled.td<TableFooterCellProps>`
+export const TableFooterCell = styled(TableCell)<TableFooterCellProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
     border-top: 4px solid ${({ theme }): string => theme.shades.six};
     background-color: transparent;
-    padding: ${({ hasCellPadding = true, theme }): string => theme.spacing(0.5, hasCellPadding ? 0.5 : 0, 1)};
-    height: ${({ theme }): string => theme.spacing(6)}; /* Maintain same height as tablecell */
-    vertical-align: middle;
     text-align: left;
     color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorTextBody.primary)};
     font-weight: 600;
 
-    ${({ width }): SimpleInterpolation =>
-        width &&
+    ${({ isTitleColumn }): SimpleInterpolation =>
+        isTitleColumn &&
         css`
-            width: ${typeof width === 'number' ? `${width}px` : width};
+            flex: 100 0 auto;
+        `}
+
+    ${({ isTitleColumn, width }): SimpleInterpolation =>
+        isTitleColumn &&
+        css`
+            width: ${typeof width === 'number' ? `${width}px` : width} !important;
         `}
 
     &:first-of-type {
@@ -271,7 +281,13 @@ interface TableFooterComponentProps extends ClickableProps {
 
 export const TableFooterComponent = styled.caption<TableFooterComponentProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    border-top: 4px solid ${({ theme }): string => theme.shades.six};
+    border-left: 8px solid ${({ theme }): string => theme.shades.six};
+    background-color: ${({ theme }): string => theme.table.footer.backgroundColor};
+    padding: ${({ theme }): string => theme.spacing(1.5)};
+    min-height: ${({ theme }): string => theme.spacing(6)}; /* Maintain same height as tablecell */
     caption-side: bottom;
+    text-align: left;
 
     ${({ isClickable }): SimpleInterpolation =>
         isClickable &&
