@@ -27,13 +27,15 @@ export const TableCaption = styled.div`
 interface StyledTableProps {
     isFullWidth: boolean;
 }
-
-export const TableWrapper = styled.div``;
+export const TableWrapper = styled.div`
+    margin: -8px;
+    overflow: auto;
+`;
 
 export const StyledTable = styled.table<StyledTableProps>`
     ${setBoxSizing()}
     background-color: transparent;
-    overflow: auto;
+    padding: 8px;
     border-collapse: separate;
     border-spacing: 0;
 
