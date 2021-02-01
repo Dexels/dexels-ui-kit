@@ -33,6 +33,7 @@ export const TableWrapper = styled.div``;
 export const StyledTable = styled.table<StyledTableProps>`
     ${setBoxSizing()}
     background-color: transparent;
+    overflow: auto;
     border-collapse: separate;
     border-spacing: 0;
 
@@ -120,7 +121,6 @@ interface TableBodyProps {
 }
 
 export const TableBody = styled.tbody<TableBodyProps>`
-    overflow: auto;
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
 `;
 
