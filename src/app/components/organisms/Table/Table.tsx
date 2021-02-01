@@ -5,6 +5,8 @@
 import { Alignment, Elevation, IconType } from '../../../types';
 import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctions';
 import {
+    NoResultsContent,
+    NoResultsRow,
     PaginatorWrapper,
     StyledTable,
     TableBody,
@@ -27,7 +29,6 @@ import {
 } from './Table.sc';
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Row, TableInstance } from 'react-table';
-import CardNoResults from '../../molecules/CardNoResults/CardNoResults';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export interface TableTexts {
@@ -119,7 +120,9 @@ export const Table = <T extends object>({
             <TableWrapper ref={tableWrapperRef}>
                 <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
                     {!hasResults && !isEmpty(noResultsMessage) ? (
-                        <CardNoResults header={noResultsMessage} title={''} />
+                        <NoResultsRow>
+                            <NoResultsContent>{noResultsMessage}</NoResultsContent>
+                        </NoResultsRow>
                     ) : (
                         <>
                             <TableHead>
