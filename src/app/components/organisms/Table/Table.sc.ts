@@ -27,9 +27,9 @@ export const TableCaption = styled.div`
 interface StyledTableProps {
     isFullWidth: boolean;
 }
-export const TableWrapper = styled.div`
-    overflow: auto;
-`;
+
+export const TableWrapper = styled.div``;
+
 export const StyledTable = styled.table<StyledTableProps>`
     ${setBoxSizing()}
     background-color: transparent;
@@ -120,6 +120,7 @@ interface TableBodyProps {
 }
 
 export const TableBody = styled.tbody<TableBodyProps>`
+    overflow: auto;
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
 `;
 
