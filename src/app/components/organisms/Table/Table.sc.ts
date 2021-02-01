@@ -28,14 +28,14 @@ interface StyledTableProps {
     isFullWidth: boolean;
 }
 export const TableWrapper = styled.div`
-    margin: -5px -8px;
+    margin: -8px;
     overflow: auto;
 `;
 
 export const StyledTable = styled.table<StyledTableProps>`
     ${setBoxSizing()}
     background-color: transparent;
-    padding: 5px 8px;
+    padding: 8px;
     border-collapse: separate;
     border-spacing: 0;
 
