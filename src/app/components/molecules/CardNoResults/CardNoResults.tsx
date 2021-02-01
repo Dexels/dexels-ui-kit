@@ -9,7 +9,7 @@ export interface CardNoResultsProps {
     className?: string;
     elevation?: Elevation;
     header: ReactNode;
-    iconType: IconType;
+    iconType?: IconType;
     itemPrefix?: string;
     items?: ReactNode[];
     title?: ReactNode;
@@ -25,11 +25,13 @@ export const CardNoResults: FunctionComponent<CardNoResultsProps> = ({
     title,
 }) => (
     <StyledCardNoResults className={className} elevation={elevation}>
-        <Left>
-            <IconWrapper>
-                <IconCustomizable iconSize={IconCustomizableSize.SIZE30} iconType={iconType} />
-            </IconWrapper>
-        </Left>
+        {iconType && (
+            <Left>
+                <IconWrapper>
+                    <IconCustomizable iconSize={IconCustomizableSize.SIZE30} iconType={iconType} />
+                </IconWrapper>
+            </Left>
+        )}
         <Right>
             <Header>{header}</Header>
             {title && <Title>{title}</Title>}
