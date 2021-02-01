@@ -1,14 +1,13 @@
 import Label, { LabelProps } from '../../../components/atoms/Label/Label';
 import { shallow, ShallowWrapper } from 'enzyme';
 import React from 'react';
+import StyledLabel from '../../../components/atoms/Label/Label.sc';
 
 describe('test component Label', () => {
     let wrapper: ShallowWrapper<LabelProps>;
 
     beforeEach(() => {
-        const label = <Label />;
-
-        wrapper = shallow(label) as ShallowWrapper<LabelProps>;
+        wrapper = shallow(<Label />) as ShallowWrapper<LabelProps>;
     });
 
     test('render Label', () => {
@@ -25,7 +24,7 @@ describe('test component Label', () => {
             isValid: true,
         });
 
-        expect(wrapper.props().isSmall).toBe(true);
-        expect(wrapper.props().isValid).toBe(true);
+        expect(wrapper.find(StyledLabel).props().isSmall).toBe(true);
+        expect(wrapper.find(StyledLabel).props().isValid).toBe(true);
     });
 });
