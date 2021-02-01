@@ -27,12 +27,13 @@ export const TableCaption = styled.div`
 interface StyledTableProps {
     isFullWidth: boolean;
 }
-export const TableWrapper = styled.div`
-    overflow: auto;
-`;
+
+export const TableWrapper = styled.div``;
+
 export const StyledTable = styled.table<StyledTableProps>`
     ${setBoxSizing()}
     background-color: transparent;
+    overflow: auto;
     border-collapse: separate;
     border-spacing: 0;
 
@@ -44,6 +45,23 @@ export const StyledTable = styled.table<StyledTableProps>`
 `;
 
 StyledTable.defaultProps = {
+    theme: themeBasic,
+};
+
+export const NoResultsRow = styled.tr`
+    ${getElevation(Elevation.LEVEL_1)}
+    background-color: ${({ theme }): string => theme.colorPrimary};
+`;
+
+NoResultsRow.defaultProps = {
+    theme: themeBasic,
+};
+
+export const NoResultsContent = styled.td`
+    ${getElevation(Elevation.LEVEL_1)}
+`;
+
+NoResultsContent.defaultProps = {
     theme: themeBasic,
 };
 
@@ -275,16 +293,17 @@ export const TableFooterCellInner = styled(TableHeaderCellInner)`
 
 export const TableFooterCellContent = styled(TableHeaderCellContent)``;
 
-interface TableFooterComponentProps extends ClickableProps {
+interface FooterWrapperProps extends ClickableProps {
     elevation: Elevation;
 }
 
-export const TableFooterComponent = styled.caption<TableFooterComponentProps>`
+export const FooterWrapper = styled.div<FooterWrapperProps>`
     ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
     border-top: 4px solid ${({ theme }): string => theme.shades.six};
     border-left: 8px solid ${({ theme }): string => theme.shades.six};
     background-color: ${({ theme }): string => theme.table.footer.backgroundColor};
     padding: ${({ theme }): string => theme.spacing(1.5)};
+    width: 100%;
     min-height: ${({ theme }): string => theme.spacing(6)}; /* Maintain same height as tablecell */
     caption-side: bottom;
     text-align: left;
