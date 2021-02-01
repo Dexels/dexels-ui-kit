@@ -48,6 +48,23 @@ StyledTable.defaultProps = {
     theme: themeBasic,
 };
 
+export const NoResultsRow = styled.tr`
+    ${getElevation(Elevation.LEVEL_1)}
+    background-color: ${({ theme }): string => theme.colorPrimary};
+`;
+
+NoResultsRow.defaultProps = {
+    theme: themeBasic,
+};
+
+export const NoResultsContent = styled.td`
+    ${getElevation(Elevation.LEVEL_1)}
+`;
+
+NoResultsContent.defaultProps = {
+    theme: themeBasic,
+};
+
 export const TableHead = styled.thead`
     background-color: transparent;
 `;

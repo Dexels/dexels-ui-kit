@@ -26,9 +26,8 @@ import {
 } from './Table.sc';
 import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctions';
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
-
 import { Row, TableInstance } from 'react-table';
-import CardNoResults from '../../molecules/CardNoResults/CardNoResults';
+import { CardNoResults } from '../../molecules/CardNoResults/CardNoResults';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export interface TableTexts {
