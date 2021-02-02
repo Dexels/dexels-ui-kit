@@ -6,6 +6,7 @@ import { ContentCell } from '../ContentCell/ContentCell';
 import { customSortByDate } from '../utils/tableFunctions';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { getTableCell } from './tableFunctions';
+import { Icon } from '../../../atoms/Icon/Icon';
 import { StatusCell } from '../StatusCell/StatusCell';
 import { sum } from '../utils/aggregateFunctions';
 import { TableData } from './tableData';
@@ -95,7 +96,7 @@ export const tableColumns = (): Column<TableData>[] => [
         Aggregated: ({ rows }) =>
             sum(rows.map((row) => (row.values.info !== undefined ? (row.values.info as number | string) : 0))),
         Cell: ({ value }): ReactNode => <ContentCell colorNegativeAmount="red" value={value} />,
-        Header: 'Info',
+        Header: <Icon type={IconType.CARDS} />,
         accessor: 'info',
         aggregate: 'sum',
         sortType: 'basic',
