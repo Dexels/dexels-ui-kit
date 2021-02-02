@@ -1,10 +1,6 @@
 {
     "name": "dexels-ui-kit",
-<<<<<<< HEAD
-    "version": "5.19.8",
-=======
     "version": "5.19.9",
->>>>>>> bdd50fdfe3d635a5fae658a45881567075a7b729
     "author": {
         "name": "Dexels B.V.",
         "email": "info@dexels.com"
