@@ -6,6 +6,7 @@ import { Alignment, Elevation, IconType } from '../../../types';
 import {
     FooterWrapper,
     PaginatorWrapper,
+    StyledCardNoResults,
     StyledTable,
     TableBody,
     TableCaption,
@@ -27,8 +28,6 @@ import {
 import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctions';
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Row, TableInstance } from 'react-table';
-import { CardNoResults } from '../../molecules/CardNoResults/CardNoResults';
-import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export interface TableTexts {
     sortByTooltip?: ReactNode;
@@ -45,7 +44,7 @@ export interface TableProps<T extends object> {
     instance: TableInstance<T>;
     isDisabled?: boolean;
     isFullWidth?: boolean;
-    noResultsMessage?: string;
+    noResults?: ReactNode | string;
     onClickFooter?: (event: SyntheticEvent) => void;
     onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
     paginator?: ReactNode;
@@ -65,7 +64,7 @@ export const Table = <T extends object>({
     instance,
     isDisabled = false,
     isFullWidth = true,
-    noResultsMessage,
+    noResults,
     onClickFooter,
     onClickRow,
     paginator,
@@ -113,11 +112,18 @@ export const Table = <T extends object>({
         }
     }, [availableTableWidth, tableWrapperRef, fixedColumnWidthsTotal]);
 
+    // eslint-disable-next-line no-console
+    console.log(noResults, typeof noResults);
+
     return (
         <>
             {caption && <TableCaption>{caption}</TableCaption>}
-            {!hasResults && !isEmpty(noResultsMessage) ? (
-                <CardNoResults header={noResultsMessage} title={''} />
+            {!hasResults && noResults ? (
+                typeof noResults === 'string' ? (
+                    <StyledCardNoResults elevation={elevation}>{noResults}</StyledCardNoResults>
+                ) : (
+                    noResults
+                )
             ) : (
                 <TableWrapper ref={tableWrapperRef}>
                     <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
