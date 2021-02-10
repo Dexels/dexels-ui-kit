@@ -29,7 +29,7 @@ export const Header: FunctionComponent<HeaderProps> = ({
                 ))}
             </Buttons>
         )}
-        <Title>{title}</Title>
+        <Title className={className}>{title}</Title>
         <ToolbarWrapper>
             <Toolbar isInverted={!isInverted}>{children}</Toolbar>
         </ToolbarWrapper>
