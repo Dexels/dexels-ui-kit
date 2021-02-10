@@ -1,19 +1,20 @@
-import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { array, boolean, number, select, text } from '@storybook/addon-knobs';
 import {
     createLocalizedPagingTexts,
     createLocalizedTableTexts,
     getTableFooter,
     getTableRow,
 } from './mockup/tableFunctions';
+import { Elevation, IconType } from '../../../types';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
+import CardNoResults from '../../molecules/CardNoResults/CardNoResults';
 import { createTable } from '../../../utils/functions/createTable';
-import { Elevation } from '../../../types';
 import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
-import Table from './Table';
+import { Table } from './Table';
 
 export default {
     parameters: {
@@ -120,7 +121,7 @@ export const Configurable: FunctionComponent = () => {
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
                     instance={instance}
                     isFullWidth={boolean('Is full width', true)}
-                    noResultsMessage={text('No result message', 'No results found')}
+                    noResults={text('No result message', 'No results found')}
                     onClickFooter={isFooterVisible ? getTableFooter : undefined}
                     onClickRow={getTableRow}
                     paginator={
@@ -135,5 +136,55 @@ export const Configurable: FunctionComponent = () => {
                 <div>{'Loading...'}</div>
             )}
         </>
+    );
+};
+
+export const ConfigurableEmptyTableMessage: FunctionComponent = () => {
+    const columns = useMemo(() => tableColumns(), []);
+    const data = useMemo(() => [] as TableData[], []);
+    const localizedTexts = createLocalizedTableTexts('nl');
+
+    const instance = createTable<TableData>(columns, data);
+
+    return (
+        <Table<TableData>
+            caption={text('Table caption', 'Table caption')}
+            elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
+            instance={instance}
+            isFullWidth={boolean('Is full width', true)}
+            noResults={text('No result message', 'No results found')}
+            onClickRow={getTableRow}
+            paginator={<Paginator<TableData> instance={instance} texts={createLocalizedPagingTexts('nl')} />}
+            texts={{ sortByTooltip: localizedTexts.sortByTooltip }}
+        />
+    );
+};
+
+export const ConfigurableEmptyTableCard: FunctionComponent = () => {
+    const columns = useMemo(() => tableColumns(), []);
+    const data = useMemo(() => [] as TableData[], []);
+    const localizedTexts = createLocalizedTableTexts('nl');
+
+    const instance = createTable<TableData>(columns, data);
+
+    return (
+        <Table<TableData>
+            caption={text('Table caption', 'Table caption')}
+            elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
+            instance={instance}
+            isFullWidth={boolean('Is full width', true)}
+            noResults={
+                <CardNoResults
+                    elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
+                    header={text('Header', 'No results found')}
+                    iconType={select('Type', IconType, IconType.SEARCH)}
+                    items={array('Items', ['Option A', 'Option B', 'Option C'])}
+                    title={text('Title', 'What can you do?')}
+                />
+            }
+            onClickRow={getTableRow}
+            paginator={<Paginator<TableData> instance={instance} texts={createLocalizedPagingTexts('nl')} />}
+            texts={{ sortByTooltip: localizedTexts.sortByTooltip }}
+        />
     );
 };

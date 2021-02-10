@@ -324,3 +324,23 @@ export const FooterWrapper = styled.div<FooterWrapperProps>`
 export const PaginatorWrapper = styled.div`
     padding: ${({ theme }): string => theme.spacing(1.5, 0, 0)};
 `;
+
+interface StyledCardNoResultsProps {
+    elevation: Elevation;
+}
+
+export const StyledCardNoResults = styled.div<StyledCardNoResultsProps>`
+    ${setBoxSizing()}
+    ${({ elevation }): FlattenSimpleInterpolation => getElevation(elevation)}
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    background-color: ${({ theme }): string => theme.card.backgroundColor};
+    padding: ${({ theme }): string => theme.spacing(3)};
+    color: ${({ theme }): string => theme.colorTextBody.secondary};
+`;
+
+StyledCardNoResults.defaultProps = {
+    theme: themeBasic,
+};
