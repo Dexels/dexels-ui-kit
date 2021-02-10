@@ -2,6 +2,7 @@ import { CheckboxDataProps, DropdownDataProps, EditableInformationData, Editable
 import { EditableDataComponent, Status } from '../../../../types';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
+import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
 import moment from 'moment';
 import { ReactNode } from 'react';
@@ -40,6 +41,10 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
 
     if (component === EditableDataComponent.DATEPICKER && moment.isMoment(value)) {
         return value.format(dateFormat);
+    }
+
+    if (component === EditableDataComponent.INPUTCURRENCY && value) {
+        return formatMoney(value.toString());
     }
 
     if (component === EditableDataComponent.SCOREPICKER && Array.isArray(value)) {
