@@ -1,5 +1,6 @@
 import { Easing, ModalSize, zIndex } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import { Header } from '../../molecules/Header/Header';
 import { Overlay } from '../../molecules/Overlay/Overlay';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
@@ -72,6 +73,14 @@ export const HeaderWrapper = styled.header`
     position: relative;
     flex: 0 0 auto;
 `;
+
+export const StyledHeader = styled(Header)`
+    ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h2)}
+`;
+
+StyledHeader.defaultProps = {
+    theme: themeBasic,
+};
 
 export const Body = styled.div`
     flex: 1 1 auto;
