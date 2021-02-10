@@ -176,6 +176,17 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     } as EditableInputCurrencyDataProps);
 
     result.push({
+        component: EditableDataComponent.INPUTCURRENCY,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'NegativeCurrency',
+        locale: Locale.NL,
+        name: 'NegativeCurrency',
+        value: '-108',
+    } as EditableInputCurrencyDataProps);
+
+    result.push({
         component: EditableDataComponent.DATEPICKER,
         isEditable: true,
         isOutsideRange: () => false,
