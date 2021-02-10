@@ -1,7 +1,6 @@
-import { Body, HeaderWrapper, StyledModal, StyledModalOverlay } from './Modal.sc';
+import { Body, HeaderWrapper, StyledHeader, StyledModal, StyledModalOverlay } from './Modal.sc';
 import { Easing, IconType, ModalSize } from '../../../types';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
-import Header from '../../molecules/Header/Header';
 
 export interface ModalProps {
     children?: ReactNode;
@@ -38,7 +37,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
             transitionEasing={transitionEasing}
         >
             <HeaderWrapper>
-                <Header
+                <StyledHeader
                     buttons={
                         onBack
                             ? [
@@ -53,7 +52,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
                     title={title}
                 >
                     {options}
-                </Header>
+                </StyledHeader>
             </HeaderWrapper>
             <Body>{children}</Body>
         </StyledModal>
