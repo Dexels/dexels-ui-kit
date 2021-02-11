@@ -181,6 +181,17 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isDisabled: false,
         isEditable: true,
         isRequired: true,
+        label: 'Currency2',
+        locale: DEFAULT_LOCALE,
+        name: 'EditableCurrency2',
+        value: '123.51',
+    } as EditableInputCurrencyDataProps);
+
+    result.push({
+        component: EditableDataComponent.INPUTCURRENCY,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
         label: 'Currency (comma)',
         locale: DEFAULT_LOCALE,
         name: 'EditableCurrencyComma',
