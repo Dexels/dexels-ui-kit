@@ -71,6 +71,7 @@ export {
     formatMoney,
     formatMoneyWithoutSymbol,
     getCurrencySymbol,
+    getCurrencyType,
     toMoney,
     toMoneyValue,
 } from '../app/utils/functions/financialFunctions';
