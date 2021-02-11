@@ -17,7 +17,8 @@ references:
     restore_dependencies: &restore_dependencies
         restore_cache:
             # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-            key: dependency-cache-{{ checksum "package-lock.json" }}
+            key: dependency-cache-erik
+            # key: dependency-cache-{{ checksum "package-lock.json" }}
 
 jobs:
     install_dependencies:
@@ -27,11 +28,13 @@ jobs:
             - run:
                 name: Update NPM
                 command: sudo npm install -g npm@latest
+            - *restore_dependencies
             - run:
                 name: Install dependencies
                 command: npm install
             - save_cache:
-                key: dependency-cache-{{ checksum "package-lock.json" }}
+                key: dependency-cache-erik
+                # key: dependency-cache-{{ checksum "package-lock.json" }}
                 paths:
                     - ./node_modules
     lint_javascript:
