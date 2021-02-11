@@ -17,8 +17,7 @@ references:
     restore_dependencies: &restore_dependencies
         restore_cache:
             # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-            key: dependency-cache-erik
-            # key: dependency-cache-{{ checksum "package-lock.json" }}
+            key: dependency-cache-{{ checksum "package.json" }}
 
 jobs:
     install_dependencies:
@@ -28,23 +27,19 @@ jobs:
             - run:
                 name: Update NPM
                 command: sudo npm install -g npm@latest
-            # - *restore_dependencies
-            - restore_cache:
-                key: dependency-cache-{{ checksum "package-lock.json" }}
+            - *restore_dependencies
             - run:
                 name: Install dependencies
                 command: npm install
             - save_cache:
-                key: dependency-cache-{{ checksum "package-lock.json" }}
+                key: dependency-cache-{{ checksum "package.json" }}
                 paths:
                     - ./node_modules
     lint_javascript:
         <<: *container_config
         steps:
             - checkout
-            # - *restore_dependencies
-            - restore_cache:
-                key: dependency-cache-{{ checksum "package-lock.json" }}
+            - *restore_dependencies
             - run:
                 name: Run ESLint
                 command: npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml
@@ -56,9 +51,7 @@ jobs:
         <<: *container_config
         steps:
             - checkout
-            # - *restore_dependencies
-            - restore_cache:
-                key: dependency-cache-{{ checksum "package-lock.json" }}
+            - *restore_dependencies
             - run:
                 command: |
                     mkdir -p reports/junit
