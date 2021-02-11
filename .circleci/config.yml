@@ -28,20 +28,23 @@ jobs:
             - run:
                 name: Update NPM
                 command: sudo npm install -g npm@latest
-            - *restore_dependencies
+            # - *restore_dependencies
+            - restore_cache:
+                key: dependency-cache-{{ checksum "package-lock.json" }}
             - run:
                 name: Install dependencies
                 command: npm install
             - save_cache:
-                key: dependency-cache-erik
-                # key: dependency-cache-{{ checksum "package-lock.json" }}
+                key: dependency-cache-{{ checksum "package-lock.json" }}
                 paths:
                     - ./node_modules
     lint_javascript:
         <<: *container_config
         steps:
             - checkout
-            - *restore_dependencies
+            # - *restore_dependencies
+            - restore_cache:
+                key: dependency-cache-{{ checksum "package-lock.json" }}
             - run:
                 name: Run ESLint
                 command: npm run lint:js -- --format junit --output-file reports/junit/js-lint-results.xml
@@ -53,7 +56,9 @@ jobs:
         <<: *container_config
         steps:
             - checkout
-            - *restore_dependencies
+            # - *restore_dependencies
+            - restore_cache:
+                key: dependency-cache-{{ checksum "package-lock.json" }}
             - run:
                 command: |
                     mkdir -p reports/junit
