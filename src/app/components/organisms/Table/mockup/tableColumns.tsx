@@ -4,6 +4,7 @@ import { Button } from '../../../molecules/Button/Button';
 import { Column } from 'react-table';
 import { ContentCell } from '../ContentCell/ContentCell';
 import { customSortByDate } from '../utils/tableFunctions';
+import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { getTableCell } from './tableFunctions';
 import { Icon } from '../../../atoms/Icon/Icon';
@@ -76,8 +77,10 @@ export const tableColumns = (): Column<TableData>[] => [
             formatMoney(
                 sum(
                     rows.map((row) => (row.values.amount !== undefined ? (row.values.amount as number | string) : 0)),
-                    true
-                )
+                    true,
+                    DEFAULT_LOCALE
+                ),
+                DEFAULT_LOCALE
             ),
         Cell: ({ value }): ReactNode => <ContentCell colorNegativeAmount="red" isCurrency value={value} />,
         Header: 'Amount',

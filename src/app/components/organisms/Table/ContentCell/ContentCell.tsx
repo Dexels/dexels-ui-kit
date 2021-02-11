@@ -2,6 +2,7 @@ import { AmountWrapper, ImageWrapper, StyledContentCell } from './ContentCell.sc
 import { formatDate, formatTime, isValidClockTime, isValidDate } from '../../../../utils/functions/dateFunctions';
 import moment, { Moment } from 'moment';
 import React, { FunctionComponent, ReactNode } from 'react';
+import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { Locale } from '../../../../types';
 
@@ -30,7 +31,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
     isBold = false,
     isDisabled = false,
     isImage = false,
-    locale = Locale.NL,
+    locale = DEFAULT_LOCALE,
     renderDateAsTime = false,
     textColor = '',
     timeFormat = 'HH:mm',
@@ -45,7 +46,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
     if (isCurrency) {
         content = typeof value === 'number' && (
             <AmountWrapper colorNegativeAmount={colorNegativeAmount} isNegativeCurrency={value < 0}>
-                {formatMoney(value)}
+                {formatMoney(value, locale)}
             </AmountWrapper>
         );
     }

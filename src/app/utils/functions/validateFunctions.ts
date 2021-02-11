@@ -30,19 +30,19 @@ export const isValidPhoneNumber = (value: string): boolean => {
 };
 
 export const isValidNumber = (value: string, allowDecimals = false, locale?: Locale): boolean => {
-    let numberRegExp;
+    const isDotDecimalCountry = locale === Locale.GB || locale === Locale.US;
+    let numberRegExp = allowDecimals ? /^-?[0-9]+(\.[0-9]{3})*(,[0-9]{1,2})?$/ : /^-?[0-9]+(\.[0-9]{3})*$/; // Default with , as decimal separator
+    let tmpValue = value;
 
-    switch (locale) {
-        case Locale.US:
-            numberRegExp = allowDecimals ? /^-?[0-9]+(,[0-9]{3})*(\.[0-9]{1,2})?$/ : /^-?[0-9]+(,[0-9]{3})*$/;
-            break;
-
-        default:
-            numberRegExp = allowDecimals ? /^-?[0-9]+(\.[0-9]{3})*(,[0-9]{1,2})?$/ : /^-?[0-9]+(\.[0-9]{3})*$/;
-            break;
+    if (isDotDecimalCountry) {
+        numberRegExp = allowDecimals ? /^-?[0-9]+(,[0-9]{3})*(\.[0-9]{1,2})?$/ : /^-?[0-9]+(,[0-9]{3})*$/;
     }
 
-    return numberRegExp.test(value);
+    if (!isDotDecimalCountry && value.startsWith('0') && value.includes('.')) {
+        tmpValue = value.replace('.', ',');
+    }
+
+    return numberRegExp.test(tmpValue);
 };
 
 export const isValidMoney = (value: string, locale?: Locale): boolean => isValidNumber(value, true, locale);

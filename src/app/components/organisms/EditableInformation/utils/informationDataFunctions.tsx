@@ -1,5 +1,6 @@
 import { CheckboxDataProps, DropdownDataProps, EditableInformationData, EditableInformationDataType } from '../types';
 import { EditableDataComponent, Status } from '../../../../types';
+import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
@@ -21,7 +22,8 @@ export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: b
 
 export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     element: EditableInformationDataType<T, U>,
-    dateFormat: string
+    dateFormat: string,
+    locale = DEFAULT_LOCALE
 ): ReactNode => {
     const { component, value } = element;
 
@@ -44,7 +46,7 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
     }
 
     if (component === EditableDataComponent.INPUTCURRENCY && value) {
-        return formatMoney(value.toString());
+        return formatMoney(value.toString(), locale);
     }
 
     if (component === EditableDataComponent.SCOREPICKER && Array.isArray(value)) {

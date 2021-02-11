@@ -1,10 +1,11 @@
 import { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../../../molecules/Dropdown';
 import { DropdownMultiSelect, DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { EditableDataComponent, InputType, InputVariant } from '../../../../types';
-import { EditableInformationData, ScorePickerDataProps, ValueTypes } from '../types';
+import { EditableInformationData, EditableInputCurrencyDataProps, ScorePickerDataProps, ValueTypes } from '../types';
 import { generateDropdownSelectOptionLabel, getValueOfEditableDataComponent } from '../utils/informationDataFunctions';
 import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
+import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import DropdownSelect from '../../DropdownSelect/DropdownSelect';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
@@ -45,10 +46,16 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             const { isDisabled, isEditable, isRequired, label } = dataInstance;
 
             if (!isBeingEdited || !('name' in dataInstance) || ('name' in dataInstance && !isEditable)) {
+                let locale = DEFAULT_LOCALE;
+
+                if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
+                    locale = (dataInstance as EditableInputCurrencyDataProps).locale;
+                }
+
                 return {
                     isDisabled,
                     label,
-                    value: getValueOfEditableDataComponent(dataInstance, dateFormat),
+                    value: getValueOfEditableDataComponent(dataInstance, dateFormat, locale),
                 };
             }
 

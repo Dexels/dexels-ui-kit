@@ -61,99 +61,87 @@ export const getCurrencyType = (locale?: Locale): Currencies => {
     }
 };
 
-export const defaultCurrencySettings = (hasRounding = false): currencyOptions => ({
+export const defaultCurrencySettings = (
+    value: number | string,
+    hasRounding = false,
+    hasSymbol = true
+): currencyOptions => ({
     decimal: ',',
-    fromCents: false,
+    fromCents: value.toString().startsWith('0'), // If the first digit is a 0, then we need to treat it differently
     increment: hasRounding ? 0.05 : 0,
     negativePattern: '-!#',
     pattern: '!#',
     precision: 2,
     separator: '.',
-    symbol: `${getCurrencySymbol(Locale.NL)} `,
+    symbol: hasSymbol ? `${getCurrencySymbol(Locale.NL)} ` : '',
 });
 
-export const EUR = (value: number | string, hasRounding = false): currency =>
+export const EUR = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(hasRounding),
+        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
     });
 
-export const GBP = (value: number | string, hasRounding = false): currency =>
+export const GBP = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(hasRounding),
+        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
         decimal: '.',
         separator: ',',
-        symbol: `${getCurrencySymbol(Locale.GB)} `,
+        symbol: hasSymbol ? `${getCurrencySymbol(Locale.GB)} ` : '',
     });
 
-export const KZT = (value: number | string, hasRounding = false): currency =>
+export const KZT = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(hasRounding),
-        symbol: `${getCurrencySymbol(Locale.KZ)} `,
+        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
+        symbol: hasSymbol ? `${getCurrencySymbol(Locale.KZ)} ` : '',
     });
 
-export const RUB = (value: number | string, hasRounding = false): currency =>
+export const RUB = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(hasRounding),
-        symbol: `${getCurrencySymbol(Locale.RU)} `,
+        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
+        symbol: hasSymbol ? `${getCurrencySymbol(Locale.RU)} ` : '',
     });
 
-export const USD = (value: number | string, hasRounding = false): currency =>
+export const USD = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(hasRounding),
+        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
         decimal: '.',
         separator: ',',
-        symbol: `${getCurrencySymbol(Locale.US)} `,
+        symbol: hasSymbol ? `${getCurrencySymbol(Locale.US)} ` : '',
     });
 
-export const toMoney = (
+export const toMoneyInternal = (
     value: number | string,
-    currencyType: Currencies = Currencies.EUR,
-    locale?: Locale
+    locale: Locale,
+    hasRounding: boolean,
+    hasSymbol: boolean
 ): currency => {
-    switch (currencyType) {
+    switch (getCurrencyType(locale)) {
         case Currencies.GBP:
-            return GBP(value);
+            return GBP(value, hasRounding, hasSymbol);
 
         case Currencies.KZT:
-            return KZT(value);
+            return KZT(value, hasRounding, hasSymbol);
 
         case Currencies.RUB:
-            return RUB(value);
+            return RUB(value, hasRounding, hasSymbol);
 
         case Currencies.USD:
-            return USD(value);
+            return USD(value, hasRounding, hasSymbol);
 
         default:
-            // Rounding is default for NL, hence the check
-            return EUR(value, locale && locale === Locale.NL);
+            // Rounding is default for NL, but we can not really apply this
+            // Leaving it here as documentation though
+            // return EUR(value, locale && locale === Locale.NL, hasSymbol);
+            return EUR(value, hasRounding, hasSymbol);
     }
 };
 
-export const toMoneyValue = (
-    value: number | string,
-    currencyType: Currencies = Currencies.EUR,
-    locale?: Locale
-): number => toMoney(value, currencyType, locale).value;
+export const toMoney = (value: number | string, locale: Locale): currency =>
+    toMoneyInternal(value, locale, false, true);
 
-export const formatMoney = (
-    value: number | string,
-    currencyType: Currencies = Currencies.EUR,
-    locale?: Locale
-): string => {
-    const options = { ...defaultCurrencySettings(locale && locale === Locale.NL) };
+export const toMoneyValue = (value: number | string, locale: Locale): number => toMoney(value, locale).value;
 
-    return toMoney(value, currencyType, locale).format(options);
-};
+export const formatMoney = (value: number | string, locale: Locale): string => toMoney(value, locale).format();
 
-export const formatMoneyWithoutSymbol = (
-    value: number | string,
-    currencyType: Currencies = Currencies.EUR,
-    locale?: Locale
-): string => {
-    const options = {
-        ...defaultCurrencySettings(locale && locale === Locale.NL),
-        symbol: '',
-    };
-
-    return toMoney(value, currencyType, locale).format(options);
-};
+export const formatMoneyWithoutSymbol = (value: number | string, locale: Locale): string =>
+    toMoneyInternal(value, locale, false, false).format();

@@ -16,8 +16,9 @@ import {
     TimePickerDataProps,
     ValueTypes,
 } from '../types';
-import { EditableDataComponent, IconType, Locale } from '../../../../types';
+import { EditableDataComponent, IconType } from '../../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../../molecules/IconCustomizable';
+import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import moment from 'moment';
@@ -170,7 +171,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isEditable: true,
         isRequired: true,
         label: 'Currency',
-        locale: Locale.NL,
+        locale: DEFAULT_LOCALE,
         name: 'EditableCurrency',
         value: '0.51',
     } as EditableInputCurrencyDataProps);
@@ -181,7 +182,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isEditable: true,
         isRequired: true,
         label: 'Currency (comma)',
-        locale: Locale.NL,
+        locale: DEFAULT_LOCALE,
         name: 'EditableCurrencyComma',
         value: '4,51',
     } as EditableInputCurrencyDataProps);
@@ -192,7 +193,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isEditable: true,
         isRequired: true,
         label: 'NegativeCurrency',
-        locale: Locale.NL,
+        locale: DEFAULT_LOCALE,
         name: 'NegativeCurrency',
         value: '-108',
     } as EditableInputCurrencyDataProps);
