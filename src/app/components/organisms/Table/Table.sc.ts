@@ -81,8 +81,9 @@ interface TableHeaderCellProps extends ColumnProps {
 
 export const TableHeaderCell = styled.th<TableHeaderCellProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
-    border-bottom: 4px solid ${({ isDisabled, theme }): string =>
-        isDisabled ? theme.colorDisabled : theme.colorPrimary};
+    display: flex;
+    border-bottom: 4px solid
+        ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorPrimary)};
     background-color: transparent;
     padding: ${({ hasCellPadding = true, theme }): string => theme.spacing(0.5, hasCellPadding ? 0.5 : 0, 1)};
     height: ${({ theme }): string => theme.spacing(5)};
