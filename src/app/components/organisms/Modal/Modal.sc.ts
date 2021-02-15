@@ -6,16 +6,17 @@ import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { slideUpEffect } from '../../../styles/mixins/transitionEffects';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
+export const StyledModalOverlay = styled(Overlay)`
+    z-index: ${zIndex.MODAL - 1};
+`;
+
 interface StyledModalProps {
+    isScrollable: boolean;
     isVisible: boolean;
     size: ModalSize;
     transitionDuration: number;
     transitionEasing: Easing;
 }
-
-export const StyledModalOverlay = styled(Overlay)`
-    z-index: ${zIndex.MODAL - 1};
-`;
 
 export const StyledModal = styled.div<StyledModalProps>`
     ${setBoxSizing()}
@@ -63,6 +64,7 @@ export const StyledModal = styled.div<StyledModalProps>`
     padding: ${({ theme }): string => theme.spacing(3.5)} 0 0 0;
     width: 100%;
     height: 100%;
+    overflow: ${({ isScrollable }): string => (isScrollable ? 'auto' : 'visible')};
 `;
 
 StyledModal.defaultProps = {
@@ -82,11 +84,15 @@ StyledHeader.defaultProps = {
     theme: themeBasic,
 };
 
-export const Body = styled.div`
+interface BodyProps {
+    isScrollable: boolean;
+}
+
+export const Body = styled.div<BodyProps>`
     flex: 1 1 auto;
     background-color: ${({ theme }): string => theme.card.backgroundColor};
     padding: ${({ theme }): string => theme.spacing(2)};
-    overflow: auto;
+    overflow: ${({ isScrollable }): string => (isScrollable ? 'auto' : 'visible')};
     color: ${({ theme }): string => theme.colorText.primary};
 `;
 

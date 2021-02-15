@@ -5,6 +5,7 @@ import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 export interface ModalProps {
     children?: ReactNode;
     className?: string;
+    isScrollable?: boolean;
     isVisible: boolean;
     onBack?: MouseEventHandler;
     onBackIconType?: IconType;
@@ -18,6 +19,7 @@ export interface ModalProps {
 export const Modal: FunctionComponent<ModalProps> = ({
     children,
     className,
+    isScrollable = true,
     isVisible = false,
     onBack,
     onBackIconType,
@@ -31,6 +33,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
         <StyledModalOverlay isVisible={isVisible} />
         <StyledModal
             className={className}
+            isScrollable={isScrollable}
             isVisible={isVisible}
             size={size}
             transitionDuration={transitionDuration}
@@ -54,7 +57,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
                     {options}
                 </StyledHeader>
             </HeaderWrapper>
-            <Body>{children}</Body>
+            <Body isScrollable={isScrollable}>{children}</Body>
         </StyledModal>
     </>
 );

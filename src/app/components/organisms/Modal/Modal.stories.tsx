@@ -1,10 +1,12 @@
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { ButtonSize, ButtonVariant, Easing, IconType, ModalSize } from '../../../types';
-import { number, select, text } from '@storybook/addon-knobs';
+import moment, { Moment } from 'moment';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import Modal from './Modal';
+import { SingleDatePicker } from '../DatePicker';
 
 export default { title: 'organisms/Modal' };
 
@@ -29,7 +31,10 @@ export const Configurable: FunctionComponent = () => (
 );
 
 export const ConfigurableModal: FunctionComponent = () => {
+    const [date, setDate] = useState<Moment | null>(moment());
+    const [isFocused, setIsFocused] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);
 
     return (
         <>
@@ -43,6 +48,7 @@ export const ConfigurableModal: FunctionComponent = () => {
                 {isVisible ? 'MODAL IS SHOWING' : 'SHOW MODAL'}
             </Button>
             <Modal
+                isScrollable={boolean('isScrollable', true)}
                 isVisible={isVisible}
                 onBack={(): void => {
                     action('On back');
@@ -55,7 +61,31 @@ export const ConfigurableModal: FunctionComponent = () => {
                 transitionDuration={number('Transition duration', 500)}
                 transitionEasing={select('Transition type', Easing, Easing.EASE)}
             >
-                {text('Body', 'Some body text')}
+                <>
+                    {text('Body', 'Some body text')}
+                    <div
+                        className="Parent"
+                        ref={setWrapperElementRef}
+                        style={{
+                            marginLeft: 'auto',
+                            width: '200px',
+                        }}
+                    >
+                        <SingleDatePicker
+                            date={date}
+                            id="datepicker"
+                            isFocused={isFocused}
+                            onDateChange={(newDate): void => {
+                                setDate(newDate);
+                            }}
+                            onFocusChange={({ focused }): void => {
+                                setIsFocused(Boolean(focused));
+                            }}
+                            parentContainer={wrapperElementRef || undefined}
+                            placeholder={'Selecteer je datum'}
+                        />
+                    </div>
+                </>
             </Modal>
         </>
     );
