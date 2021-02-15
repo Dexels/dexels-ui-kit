@@ -112,9 +112,6 @@ export const Table = <T extends object>({
         }
     }, [availableTableWidth, tableWrapperRef, fixedColumnWidthsTotal]);
 
-    // eslint-disable-next-line no-console
-    console.log(noResults, typeof noResults);
-
     return (
         <>
             {caption && <TableCaption>{caption}</TableCaption>}
