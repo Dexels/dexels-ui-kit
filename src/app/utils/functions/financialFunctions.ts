@@ -1,5 +1,6 @@
 import { Currencies, IconType, Locale } from '../../types';
 import currency, { Options as currencyOptions } from 'currency.js';
+import { isEmpty } from './validateFunctions';
 
 export const getCurrencyIcon = (locale?: Locale): IconType => {
     switch (locale) {
@@ -67,7 +68,10 @@ export const defaultCurrencySettings = (
     hasSymbol = true
 ): currencyOptions => ({
     decimal: ',',
-    fromCents: value.toString().startsWith('0'), // If the first digit is a 0, then we need to treat it differently
+    // If the first digit is a 0, then we need to treat it differently
+    fromCents:
+        (typeof value === 'string' && !isEmpty(value) && value.startsWith('0')) ||
+        (typeof value === 'number' && value > 0 && value.toString().startsWith('0')),
     increment: hasRounding ? 0.05 : 0,
     negativePattern: '-!#',
     pattern: '!#',
