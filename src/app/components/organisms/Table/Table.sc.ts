@@ -86,7 +86,7 @@ export const TableHeaderCell = styled.th<TableHeaderCellProps>`
         ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorPrimary)};
     background-color: transparent;
     padding: ${({ hasCellPadding = true, theme }): string => theme.spacing(0.5, hasCellPadding ? 0.5 : 0, 1)};
-    height: ${({ theme }): string => theme.spacing(5)};
+    min-height: ${({ theme }): string => theme.spacing(5)};
     vertical-align: middle;
     text-align: left;
     color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorTextBody.primary)};
