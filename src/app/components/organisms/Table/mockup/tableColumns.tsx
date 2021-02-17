@@ -205,7 +205,7 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
                         }
                     />
                 ),
-                Header: 'Action',
+                Header: 'Action with breaking text',
                 accessor: 'id',
                 align: Alignment.RIGHT,
                 disableSortBy: true,
