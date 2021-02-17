@@ -124,7 +124,7 @@ export const tableColumns = (): Column<TableData>[] => [
                 }
             />
         ),
-        Header: 'Action with breaking text',
+        Header: 'Action with breaking text and three lines',
         accessor: 'id',
         align: Alignment.RIGHT,
         disableSortBy: true,
