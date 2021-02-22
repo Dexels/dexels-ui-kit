@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactNode, SyntheticEvent, useEffect, useState } from 'react';
-import { StyledTabs, TabHeader, TabHeaders, TabPanel } from './Tabs.sc';
+import { StyledTabs, TabHeader, TabHeaders, TabHeaderText, TabPanel } from './Tabs.sc';
 
 export interface Tab {
     content: ReactNode;
@@ -58,7 +58,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
                                 }
                             }}
                         >
-                            {title}
+                            <TabHeaderText>{title}</TabHeaderText>
                         </TabHeader>
                     ))}
                 {/* When not using full width, we need to add a dummy tab to make sure the background and bottom border are shown */}

@@ -33,6 +33,7 @@ export const TabHeader = styled.button<TabHeaderProps>`
     border-bottom: 2px solid ${({ theme }): string => theme.colorDisabled};
     cursor: pointer;
     padding: ${({ theme }): string => theme.spacing(1.25, 3)};
+    height: 54px;
     text-align: center;
     color: ${({ theme }): string => theme.colorText.primary};
 
@@ -77,6 +78,17 @@ export const TabHeader = styled.button<TabHeaderProps>`
     &:active::after {
         ${rippleEffectReset()}
     }
+`;
+
+export const TabHeaderText = styled.div`
+    /* stylelint-disable-next-line value-no-vendor-prefix */
+    display: -webkit-box;
+    max-height: 32px;
+    overflow: hidden;
+    line-height: 16px;
+    -webkit-line-clamp: 2;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-box-orient: vertical;
 `;
 
 TabHeader.defaultProps = {
