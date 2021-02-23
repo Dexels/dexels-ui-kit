@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactNode, SyntheticEvent, useEffect, useState } from 'react';
-import { StyledTabs, TabHeader, TabHeaders, TabPanel } from './Tabs.sc';
+import { StyledTabs, TabHeader, TabHeaders, TabHeaderText, TabPanel } from './Tabs.sc';
 
 export interface Tab {
     content: ReactNode;
@@ -11,7 +11,9 @@ export interface TabsProps {
     children?: never;
     className?: string;
     hasFullWidthTabHeaders?: boolean;
+    hasPadding?: boolean;
     initiallyActiveTabIndex?: number;
+    isSmall?: boolean;
     onClickTab?: (event: SyntheticEvent, tabIndex: number) => void;
     tabs: Tab[];
 }
@@ -27,7 +29,9 @@ const getInitiallyActiveTabIndex = (tabs: Tab[], initiallyActiveTabIndex?: numbe
 export const Tabs: FunctionComponent<TabsProps> = ({
     className,
     hasFullWidthTabHeaders = true,
+    hasPadding = false,
     initiallyActiveTabIndex,
+    isSmall = false,
     onClickTab,
     tabs,
 }) => {
@@ -40,7 +44,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
     }, [initiallyActiveTabIndex]);
 
     return (
-        <StyledTabs className={className}>
+        <StyledTabs className={className} hasPadding={hasPadding} isSmall={isSmall}>
             <TabHeaders>
                 {tabs.length > 0 &&
                     tabs.map(({ isDisabled = false, title }: Tab, index: number) => (
@@ -58,7 +62,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
                                 }
                             }}
                         >
-                            {title}
+                            <TabHeaderText>{title}</TabHeaderText>
                         </TabHeader>
                     ))}
                 {/* When not using full width, we need to add a dummy tab to make sure the background and bottom border are shown */}

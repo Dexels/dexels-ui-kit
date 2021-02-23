@@ -20,7 +20,9 @@ const getTab = (event: SyntheticEvent, tabIndex: number): number => {
 export const Configurable: FunctionComponent = () => (
     <Tabs
         hasFullWidthTabHeaders={boolean('Has fullwidth tab headers', true)}
+        hasPadding={boolean('Has padding', false)}
         initiallyActiveTabIndex={select('Active tab', [1, 2], 1)}
+        isSmall={boolean('Is small', false)}
         onClickTab={getTab}
         tabs={[
             {

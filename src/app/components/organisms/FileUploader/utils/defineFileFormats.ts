@@ -7,7 +7,7 @@ export function defineFileFormat(fileFormat: FileTypes): string[] {
             break;
 
         case FileTypes.EXCEL:
-            return ['application/excel'];
+            return ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
             break;
 
         case FileTypes.IMAGE:
@@ -18,12 +18,16 @@ export function defineFileFormat(fileFormat: FileTypes): string[] {
             return ['application/pdf', 'application/x-java-jnlp-file', 'text/html'];
             break;
 
+        case FileTypes.POWERPOINT:
+            return ['application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.pr'];
+            break;
+
         case FileTypes.TEXT:
             return ['application/text', 'text/html', 'text/plain'];
             break;
 
         case FileTypes.WORD:
-            return ['application/msword'];
+            return ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingm'];
             break;
 
         default:
