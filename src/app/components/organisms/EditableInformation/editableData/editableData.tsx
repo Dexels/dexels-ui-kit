@@ -7,6 +7,7 @@ import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import DropdownSelect from '../../DropdownSelect/DropdownSelect';
+import { formatMoneyWithoutSymbol } from '../../../../utils/functions/financialFunctions';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
 import InputCurrency from '../../InputCurrency/InputCurrency';
@@ -224,7 +225,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             onChange={({ currentTarget }): void => {
                                 onChange(currentTarget.name, currentTarget.value);
                             }}
-                            value={values[name] as string | undefined}
+                            value={formatMoneyWithoutSymbol((values[name] as string) || '', dataInstance.locale)}
                             variant={InputVariant.COMPACT}
                         />
                     ),
