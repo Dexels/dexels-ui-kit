@@ -8,6 +8,31 @@ const getTabStyling = (theme: Theme): FlattenSimpleInterpolation => css`
     background-color: ${`${theme.background.secondary}`};
 `;
 
+interface TabProps {
+    hasPadding: boolean;
+    isSmall: boolean;
+}
+
+export const StyledTabs = styled.div<TabProps>`
+    ${({ hasPadding, isSmall, theme }): SimpleInterpolation =>
+        hasPadding &&
+        isSmall &&
+        css`
+            padding: ${theme.spacing(0, 2)};
+        `}
+
+    ${({ hasPadding, isSmall, theme }): SimpleInterpolation =>
+        hasPadding &&
+        !isSmall &&
+        css`
+            padding: ${theme.spacing(0, 5)};
+        `}
+`;
+
+StyledTabs.defaultProps = {
+    theme: themeBasic,
+};
+
 export const TabHeaders = styled.div`
     ${({ theme }): FlattenSimpleInterpolation => getTabStyling(theme)}
     display: flex;
@@ -30,10 +55,10 @@ export const TabHeader = styled.button<TabHeaderProps>`
     ${({ theme }): FlattenSimpleInterpolation => getTabStyling(theme)}
     appearance: none;
     outline: none;
-    border-bottom: 2px solid ${({ theme }): string => theme.colorDisabled};
+    border-bottom: 2px solid ${({ theme }): string => theme.shades.six};
     cursor: pointer;
     padding: ${({ theme }): string => theme.spacing(1.25, 3)};
-    height: 54px;
+    height: ${({ theme }): string => theme.spacing(6.75)};
     text-align: center;
     color: ${({ theme }): string => theme.colorText.primary};
 
@@ -81,14 +106,11 @@ export const TabHeader = styled.button<TabHeaderProps>`
 `;
 
 export const TabHeaderText = styled.div`
-    /* stylelint-disable-next-line value-no-vendor-prefix */
-    display: -webkit-box;
-    max-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: ${({ theme }): string => theme.spacing(4.75)};
     overflow: hidden;
-    line-height: 16px;
-    -webkit-line-clamp: 2;
-    /* stylelint-disable-next-line property-no-vendor-prefix */
-    -webkit-box-orient: vertical;
 `;
 
 TabHeader.defaultProps = {
@@ -98,8 +120,6 @@ TabHeader.defaultProps = {
 export const TabPanel = styled.div`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
 `;
-
-export const StyledTabs = styled.div``;
 
 TabPanel.defaultProps = {
     theme: themeBasic,

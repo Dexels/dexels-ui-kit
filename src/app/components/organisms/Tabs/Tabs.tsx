@@ -11,7 +11,9 @@ export interface TabsProps {
     children?: never;
     className?: string;
     hasFullWidthTabHeaders?: boolean;
+    hasPadding?: boolean;
     initiallyActiveTabIndex?: number;
+    isSmall?: boolean;
     onClickTab?: (event: SyntheticEvent, tabIndex: number) => void;
     tabs: Tab[];
 }
@@ -27,7 +29,9 @@ const getInitiallyActiveTabIndex = (tabs: Tab[], initiallyActiveTabIndex?: numbe
 export const Tabs: FunctionComponent<TabsProps> = ({
     className,
     hasFullWidthTabHeaders = true,
+    hasPadding = false,
     initiallyActiveTabIndex,
+    isSmall = false,
     onClickTab,
     tabs,
 }) => {
@@ -40,7 +44,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
     }, [initiallyActiveTabIndex]);
 
     return (
-        <StyledTabs className={className}>
+        <StyledTabs className={className} hasPadding={hasPadding} isSmall={isSmall}>
             <TabHeaders>
                 {tabs.length > 0 &&
                     tabs.map(({ isDisabled = false, title }: Tab, index: number) => (
