@@ -21,7 +21,7 @@ export const StyledFormElementLabel = styled.div<StyledFormElementLabelProps>`
     ${({ adornmentPosition, hasAdornment, isActive, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.COMPACT &&
         css`
-            top: ${isActive ? '-16px' : 0};
+            top: ${isActive ? '-16px' : '4px'};
             left: 0;
             ${!isActive &&
             hasAdornment &&
