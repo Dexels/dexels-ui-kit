@@ -1,5 +1,6 @@
 import { AdornmentPosition, InputType, InputVariant } from '../../../types';
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
+import { isValidEmail, isValidNumber, isValidPhoneNumber } from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
     FocusEvent,
@@ -12,7 +13,6 @@ import React, {
 } from 'react';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
-import { isValidNumber } from '../../../utils/functions/validateFunctions';
 
 export interface InputProps {
     adornment?: ReactNode;
@@ -71,6 +71,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const hasValue = value ? value.length > 0 : false;
+    const [hasValidationError, setHasValidationError] = useState(hasError);
     const textFieldProps: { [key: string]: number } = {};
 
     const onChangeCallback = useCallback(
@@ -95,16 +96,31 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
     const toggleIsFocusedCallback = useCallback(
         (event: FocusEvent<HTMLInputElement>) => {
-            setIsFocused(!isFocused);
-
-            if (onFocus) {
+            if (onFocus && !isFocused) {
                 onFocus(event);
             }
 
-            // This a weird condition, because you would expect isFocused to be false for an onBlur action, but ok, here it is
             if (isFocused && onBlur) {
+                if (type === InputType.EMAIL) {
+                    if (event.currentTarget.value && !isValidEmail(event.currentTarget.value)) {
+                        setHasValidationError(true);
+                    } else {
+                        setHasValidationError(false);
+                    }
+                }
+
+                if (type === InputType.TEL) {
+                    if (event.currentTarget.value && !isValidPhoneNumber(event.currentTarget.value)) {
+                        setHasValidationError(true);
+                    } else {
+                        setHasValidationError(false);
+                    }
+                }
+
                 onBlur(event);
             }
+
+            setIsFocused(!isFocused);
         },
         [isFocused, onBlur, onFocus]
     );
@@ -127,7 +143,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
         <>
             <StyledInput
                 className={className}
-                hasError={hasError}
+                hasError={hasValidationError}
                 isClickable={!isDisabled && Boolean(onClick)}
                 isDisabled={isDisabled}
                 isFocused={isFocused}
@@ -141,7 +157,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     as={isTextarea ? 'textarea' : 'input'}
                     autoFocus={autoFocus}
                     hasAdornment={adornment !== undefined}
-                    hasError={hasError}
+                    hasError={hasValidationError}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
@@ -166,7 +182,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     <FormElementLabel
                         adornmentPosition={adornmentPosition}
                         hasAdornment={adornment !== undefined}
-                        hasError={hasError}
+                        hasError={hasValidationError}
                         isActive={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
@@ -181,7 +197,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 {adornment && (
                     <AdornmentWrapper
                         adornmentPosition={adornmentPosition}
-                        hasError={hasError}
+                        hasError={hasValidationError}
                         hasValue={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
@@ -193,7 +209,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     </AdornmentWrapper>
                 )}
             </StyledInput>
-            {errorMessage && hasError && !isDisabled && (
+            {errorMessage && hasValidationError && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>
                     <ErrorMessage>{errorMessage}</ErrorMessage>
                 </ErrorMessageWrapper>
