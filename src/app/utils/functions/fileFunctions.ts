@@ -28,7 +28,7 @@ export const toBase64 = (file: File): Promise<string> =>
     });
 
 export const base64ToBlob = (base64: string): Blob => {
-    const binaryString = window.atob(base64);
+    const binaryString = atob(base64);
     const len = binaryString.length;
     const bytes = new Uint8Array(len);
 
