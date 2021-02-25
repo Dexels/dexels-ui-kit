@@ -109,7 +109,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     }
                 }
 
-                if (type === InputType.TEL) {
+                if (type === InputType.TELEPHONE) {
                     if (event.currentTarget.value && !isValidPhoneNumber(event.currentTarget.value)) {
                         setHasValidationError(true);
                     } else {

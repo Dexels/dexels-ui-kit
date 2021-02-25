@@ -334,7 +334,7 @@ export enum InputType {
     EMAIL = 'email',
     NUMBER = 'number',
     PASSWORD = 'password',
-    TEL = 'tel',
+    TELEPHONE = 'telephone',
     TEXT = 'text',
 }
 

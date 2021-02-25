@@ -193,10 +193,10 @@ export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
             color: ${theme.shades.three};
         `}
 
-    ${({ adornmentPosition, variant }): SimpleInterpolation =>
+    ${({ adornmentPosition, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.COMPACT &&
         css`
-            top: 4px;
+            top: ${theme.spacing(0.5)};
             ${adornmentPosition === AdornmentPosition.LEFT &&
             css`
                 left: 0;
@@ -211,7 +211,7 @@ export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
     ${({ adornmentPosition, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.OUTLINE &&
         css`
-            top: 14px;
+            top: ${theme.spacing(1.75)};
 
             ${adornmentPosition === AdornmentPosition.LEFT &&
             css`
