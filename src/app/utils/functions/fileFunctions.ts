@@ -53,6 +53,7 @@ export interface OpenBinaryProps {
 
 export const openBinary = (openBinaryProps: OpenBinaryProps): void => {
     const { base64Data } = openBinaryProps;
+    const isFullBase64Data = base64Data.startsWith('data:');
     const height = openBinaryProps.height || window.innerHeight / 1.2;
     const isEncoded = openBinaryProps.isEncoded || false;
     const mimeType = openBinaryProps.mimeType || 'application/pdf';
@@ -63,9 +64,11 @@ export const openBinary = (openBinaryProps: OpenBinaryProps): void => {
     const footer = '</body></html>';
     const head = `<html><head><title>${title || ''}</title></head><body>`;
 
-    const content = `<iframe src="data:${mimeType};base64,${encodeURI(
-        isEncoded ? atob(base64Data) : base64Data
-    )}" width="100%" height="100%"></iframe>`;
+    const contentSrc = isFullBase64Data
+        ? `${base64Data}`
+        : `data:${mimeType};base64,${encodeURI(isEncoded ? atob(base64Data) : base64Data)}`;
+
+    const content = `<iframe src="${contentSrc}" width="100%" height="100%"></iframe>`;
 
     try {
         if (!winRef || winRef.closed) {
