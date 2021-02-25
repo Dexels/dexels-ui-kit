@@ -5,7 +5,6 @@ export function getTypeName(type: string): string {
 }
 
 export const getFileFormats = (types: string[]): string[] => Array.from(types).map((type) => getTypeName(type));
-
 export const getFileNames = (files: FileList): string[] => Array.from(files).map((file) => file.name);
 export const getFileSizes = (files: FileList): number[] => Array.from(files).map((file) => file.size);
 export const getFileTypes = (files: FileList): string[] => Array.from(files).map((file) => file.type);
