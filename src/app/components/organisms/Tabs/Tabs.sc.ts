@@ -111,6 +111,8 @@ export const TabHeaderText = styled.div`
     justify-content: center;
     max-height: ${({ theme }): string => theme.spacing(4.75)};
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: break-spaces;
 `;
 
 TabHeader.defaultProps = {
