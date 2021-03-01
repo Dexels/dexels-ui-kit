@@ -2,6 +2,7 @@ import { ButtonSize, ButtonVariant, IconType } from '../../../../types';
 import React, { SyntheticEvent } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../../molecules/Button/Button';
+import { TableInstance } from 'react-table';
 
 export const createLocalizedTableTexts = (
     language = 'nl'
@@ -44,16 +45,20 @@ export const getTableCell = (cell: unknown, row: unknown, event: SyntheticEvent)
     return cell;
 };
 
-export const getTableRow = (event: SyntheticEvent, row: unknown): unknown => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const getTableRow = <T extends object>(
+    event: SyntheticEvent,
+    row: unknown,
+    instance: TableInstance<T>
+): void => {
     // eslint-disable-next-line no-console
     console.log('Clicked row:', row);
     // eslint-disable-next-line no-console
     console.log('Event:', event);
-
-    return row;
+    // eslint-disable-next-line no-console
+    console.log('Instance:', instance);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getTableFooter = (event: SyntheticEvent): void => {
     // eslint-disable-next-line no-console
     console.log('Footer:', event);
