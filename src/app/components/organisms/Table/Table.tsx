@@ -46,7 +46,7 @@ export interface TableProps<T extends object> {
     isFullWidth?: boolean;
     noResults?: ReactNode | string;
     onClickFooter?: (event: SyntheticEvent) => void;
-    onClickRow?: (event: SyntheticEvent, row: Row<T>) => void;
+    onClickRow?: (event: SyntheticEvent, row: Row<T>, instance: TableInstance<T>) => void;
     paginator?: ReactNode;
     texts?: TableTexts;
 }
@@ -173,7 +173,7 @@ export const Table = <T extends object>({
                                         onClick={
                                             onClickRow
                                                 ? (event: SyntheticEvent): void => {
-                                                      onClickRow(event, row);
+                                                      onClickRow(event, row, instance);
                                                   }
                                                 : undefined
                                         }
