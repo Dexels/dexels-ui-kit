@@ -5,6 +5,7 @@ export interface MenuItemChild {
     exact?: boolean;
     isDisabled?: boolean;
     isVisible?: boolean;
+    onClick?: () => void;
     path: string;
     text: ReactNode;
 }

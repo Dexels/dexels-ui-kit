@@ -6,6 +6,8 @@ export const menuItems: MenuItems = [
         children: [],
         exact: true,
         iconType: IconType.WORLD,
+        // eslint-disable-next-line no-console
+        onClick: (): void => console.log('clicked Home'),
         path: '/',
         text: 'Home',
     },
