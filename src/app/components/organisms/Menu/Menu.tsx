@@ -19,7 +19,7 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
 
     return (
         <StyledMenu className={className}>
-            {items.map(({ children, exact, iconType, isDisabled, isVisible, path, text }) => {
+            {items.map(({ children, exact, iconType, isDisabled, isVisible, onClick, path, text }) => {
                 if (children && children.length > 0) {
                     const isOpen = openItemPath === path;
 
@@ -33,6 +33,10 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
                                 isParent
                                 isVisible={isVisible}
                                 onClick={(): void => {
+                                    if (onClick) {
+                                        onClick();
+                                    }
+
                                     handleSetOpenItem(path);
                                 }}
                             >
@@ -45,6 +49,7 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
                                         isDisabled={child.isDisabled}
                                         isVisible={child.isVisible}
                                         key={child.path}
+                                        onClick={child.onClick}
                                         path={child.path}
                                     >
                                         {child.text}
@@ -55,7 +60,15 @@ export const Menu: FunctionComponent<MenuProps> = ({ className, defaultOpenItemP
                 }
 
                 return (
-                    <Item exact={exact} iconType={iconType} isDisabled={isDisabled} isParent key={path} path={path}>
+                    <Item
+                        exact={exact}
+                        iconType={iconType}
+                        isDisabled={isDisabled}
+                        isParent
+                        key={path}
+                        onClick={onClick}
+                        path={path}
+                    >
                         {text}
                     </Item>
                 );
