@@ -1,6 +1,11 @@
 import { AdornmentPosition, InputType, InputVariant } from '../../../types';
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
-import { isValidEmail, isValidNumber, isValidPhoneNumber } from '../../../utils/functions/validateFunctions';
+import {
+    isValidEmail,
+    isValidMoney,
+    isValidNumber,
+    isValidPhoneNumber,
+} from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
     FocusEvent,
@@ -101,8 +106,24 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             }
 
             if (isFocused && onBlur) {
+                if (type === InputType.CURRENCY) {
+                    if (event.currentTarget.value && !isValidMoney(event.currentTarget.value)) {
+                        setHasValidationError(true);
+                    } else {
+                        setHasValidationError(false);
+                    }
+                }
+
                 if (type === InputType.EMAIL) {
                     if (event.currentTarget.value && !isValidEmail(event.currentTarget.value)) {
+                        setHasValidationError(true);
+                    } else {
+                        setHasValidationError(false);
+                    }
+                }
+
+                if (type === InputType.NUMBER) {
+                    if (event.currentTarget.value && !isValidNumber(event.currentTarget.value)) {
                         setHasValidationError(true);
                     } else {
                         setHasValidationError(false);
