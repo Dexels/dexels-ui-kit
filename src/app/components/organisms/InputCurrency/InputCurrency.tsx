@@ -1,6 +1,6 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
-import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
+import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useState } from 'react';
+import { formatMoneyWithoutSymbol, getCurrencyIcon } from '../../../utils/functions/financialFunctions';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
 import { isValidMoney } from '../../../utils/functions/validateFunctions';
@@ -36,7 +36,28 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     value,
     variant = InputVariant.OUTLINE,
 }) => {
-    const isValid = value ? isValidMoney(value, locale) : allowEmpty;
+    const [inputValue, setInputValue] = useState(value);
+    const isValid = inputValue ? isValidMoney(inputValue, locale) : allowEmpty;
+
+    console.log('root', value, inputValue, formatMoneyWithoutSymbol(inputValue || '', locale));
+
+    const onChangeCallback = useCallback(
+        (event: ChangeEvent<HTMLInputElement>): void => {
+            console.log(
+                'onChangeCallback',
+                event.currentTarget.value,
+                inputValue,
+                formatMoneyWithoutSymbol(event.currentTarget.value || '', locale)
+            );
+
+            setInputValue(formatMoneyWithoutSymbol(event.currentTarget.value || '', locale));
+
+            if (onChange) {
+                onChange(event);
+            }
+        },
+        [inputValue]
+    );
 
     return (
         <StyledInputCurrency className={className}>
@@ -50,9 +71,9 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 isValid={hasValidColor && isValid}
                 label={label}
                 name={name}
-                onChange={onChange}
+                onChange={onChangeCallback}
                 type={InputType.TEXT}
-                value={value}
+                value={inputValue}
                 variant={variant}
             />
         </StyledInputCurrency>
