@@ -106,11 +106,11 @@ export const TabHeader = styled.button<TabHeaderProps>`
 `;
 
 export const TabHeaderText = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
     max-height: ${({ theme }): string => theme.spacing(4.75)};
     overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3; /* necessary in this case!!! */
+    white-space: break-spaces;
 `;
 
 TabHeader.defaultProps = {
