@@ -261,7 +261,12 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             <CardStatus status={status || getStatus(hasError, isLoading, isDisabled)}>{cardData}</CardStatus>
         </EditablePanel>
     ) : (
-        <PanelStatus iconType={iconType} status={status || getStatus(hasError, isLoading, isDisabled)} title={title}>
+        <PanelStatus
+            hasTitleStatusAppearance={Boolean(status)}
+            iconType={iconType}
+            status={status || getStatus(hasError, isLoading, isDisabled)}
+            title={title}
+        >
             {cardData}
         </PanelStatus>
     );
