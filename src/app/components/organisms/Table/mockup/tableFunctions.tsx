@@ -52,7 +52,7 @@ export const getTableRow = <T extends object>(event: SyntheticEvent, row: unknow
     // eslint-disable-next-line no-console
     console.log('Event:', event);
     // eslint-disable-next-line no-console
-    console.log('Instance:', tableState);
+    console.log('Instance state:', tableState);
 };
 
 export const getTableFooter = (event: SyntheticEvent): void => {
