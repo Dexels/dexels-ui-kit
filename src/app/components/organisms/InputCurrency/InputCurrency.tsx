@@ -42,13 +42,9 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     const onBlurCallback = useCallback((): void => {
         if (isEmpty(inputValue) && allowEmpty) {
             setInputValue(undefined);
-        }
-
-        if (!isEmpty(inputValue) && isValid) {
+        } else if (isValid) {
             setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
-        }
-
-        if (!isEmpty(inputValue) && !isValid) {
+        } else {
             setInputValue(inputValue);
         }
     }, [inputValue]);
@@ -75,6 +71,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 isDisabled={isDisabled}
                 isValid={hasValidColor && isValid}
                 label={label}
+                locale={locale}
                 name={name}
                 onBlur={onBlurCallback}
                 onChange={onChangeCallback}

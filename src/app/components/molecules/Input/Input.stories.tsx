@@ -1,4 +1,4 @@
-import { AdornmentPosition, IconType, InputType, InputVariant } from '../../../types';
+import { AdornmentPosition, IconType, InputType, InputVariant, Locale } from '../../../types';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
@@ -20,6 +20,7 @@ export const Configurable: FunctionComponent = () => {
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
@@ -48,6 +49,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
@@ -73,6 +75,7 @@ export const ConfigurableClickable: FunctionComponent = () => {
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
@@ -98,6 +101,7 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             isDisabled={boolean('Is disabled', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This input can only contain numbers')}
+            locale={select('Locale', Locale, Locale.NL)}
             max={number('Max', 100000000)}
             maxLength={number('Max length', 8)}
             min={number('Min', 0)}
@@ -124,6 +128,7 @@ export const ConfigurableTextarea: FunctionComponent = () => {
             isTextarea
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a textarea, write some text')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="a-textarea-name"
@@ -149,6 +154,7 @@ export const ConfigurableTextareaClickable: FunctionComponent = () => {
             isTextarea
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a textarea, write some text')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="a-textarea-name"

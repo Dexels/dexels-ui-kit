@@ -1,3 +1,5 @@
+import { DEFAULT_LOCALE } from '../../../global/constants';
+import { isDotDecimalCountry } from './localeFunctions';
 import { Locale } from '../../types';
 
 export const isEmpty = (value: string | unknown | undefined | null): boolean => {
@@ -30,19 +32,24 @@ export const isValidPhoneNumber = (value: string): boolean => {
 };
 
 export const isValidNumber = (value: string, allowDecimals = false, locale?: Locale): boolean => {
-    const isDotDecimalCountry = locale === Locale.GB || locale === Locale.US;
+    const isDotDecimal = isDotDecimalCountry(locale || DEFAULT_LOCALE);
     let numberRegExp = allowDecimals ? /^-?[0-9]+(\.[0-9]{3})*(,[0-9]{1,2})?$/ : /^-?[0-9]+(\.[0-9]{3})*$/; // Default with , as decimal separator
-    let tmpValue = value;
 
-    if (isDotDecimalCountry) {
+    if (isDotDecimal) {
         numberRegExp = allowDecimals ? /^-?[0-9]+(,[0-9]{3})*(\.[0-9]{1,2})?$/ : /^-?[0-9]+(,[0-9]{3})*$/;
     }
 
-    if (!isDotDecimalCountry && value.startsWith('0') && value.includes('.')) {
-        tmpValue = value.replace('.', ',');
-    }
-
-    return numberRegExp.test(tmpValue);
+    return numberRegExp.test(value);
 };
 
-export const isValidMoney = (value: string, locale?: Locale): boolean => isValidNumber(value, true, locale);
+export const isValidMoney = (value: string, locale?: Locale): boolean => {
+    const localeValue = locale || DEFAULT_LOCALE;
+    const decimalSeparator = isDotDecimalCountry(localeValue) ? '.' : ',';
+    const startsWithZero = value.startsWith('0');
+
+    if (startsWithZero) {
+        return value === '0' || value.startsWith(`0${decimalSeparator}`);
+    }
+
+    return isValidNumber(value, true, localeValue);
+};

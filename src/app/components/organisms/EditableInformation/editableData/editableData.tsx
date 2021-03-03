@@ -223,9 +223,12 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             locale={dataInstance.locale}
                             name={name}
                             onChange={({ currentTarget }): void => {
-                                onChange(currentTarget.name, currentTarget.value);
+                                onChange(
+                                    currentTarget.name,
+                                    formatMoneyWithoutSymbol(currentTarget.value, dataInstance.locale)
+                                );
                             }}
-                            value={formatMoneyWithoutSymbol((values[name] as string) || '', dataInstance.locale)}
+                            value={(values[name] as string) || ''}
                             variant={InputVariant.COMPACT}
                         />
                     ),
