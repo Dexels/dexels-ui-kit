@@ -292,6 +292,22 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                 };
             }
 
+            if (dataInstance.component === EditableDataComponent.TEXTAREA_READONLY) {
+                return {
+                    label,
+                    value: (
+                        <Input
+                            hasError={isRequired && Boolean(name) && !values[name]}
+                            isDisabled={isDisabled}
+                            isTextarea
+                            label={dataInstance.placeholder}
+                            name={name}
+                            value={values[name] as string | undefined}
+                        />
+                    ),
+                };
+            }
+
             if (dataInstance.component === EditableDataComponent.TIMEPICKER) {
                 return {
                     label,

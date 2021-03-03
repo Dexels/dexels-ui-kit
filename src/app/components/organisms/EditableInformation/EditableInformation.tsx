@@ -1,6 +1,7 @@
 import { DatePickerFocuses, EditableInformationData, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
 import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
+import { IconType, Status } from '../../../types';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
@@ -9,7 +10,6 @@ import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownOption } from '../../molecules/Dropdown';
 import { EditablePanel } from '../EditablePanel/EditablePanel';
 import { generateValuesArray } from './utils/generateValuesArray';
-import { IconType, Status } from '../../../types';
 import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
 import { PanelStatus } from '../../molecules/PanelStatus/PanelStatus';
 import { Skeleton } from '../../molecules/Skeleton/Skeleton';

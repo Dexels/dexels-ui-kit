@@ -56,6 +56,7 @@ export enum EditableDataComponent {
     INPUTNUMBER = 'InputNumber',
     SCOREPICKER = 'ScorePicker',
     TEXTAREA = 'Textarea',
+    TEXTAREA_READONLY = 'TextareaReadOnly',
     TIMEPICKER = 'TimePicker',
 }
 

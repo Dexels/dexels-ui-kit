@@ -12,6 +12,7 @@ import {
     EditableInputNumberDataProps,
     EditableScorePickerDataProps,
     EditableTextareaDataProps,
+    EditableTextareaReadOnlyDataProps,
     EditableTimePickerDataProps,
     TimePickerDataProps,
     ValueTypes,
@@ -164,6 +165,21 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         name: 'EditableTextArea',
         value: 'text here',
     } as EditableTextareaDataProps);
+
+    result.push({
+        component: EditableDataComponent.TEXTAREA_READONLY,
+        label: 'Textarea ReactNode',
+        name: 'NonEditableTextAreaReactNode',
+        value: (
+            <span
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                    __html:
+                        'Bondssport:<br/>- Voetbal - Algemeen/Veld<br/>Verenigingssport:<br/>- Balgooien - Maandag/ACTIE<br/><br/>Er is/zijn één of meer verenigingssporten vastgelegd.<br/><br/>Voormalige of huidige vereniging:<br/>- Spero (BBKT07Z)<br/>- Relatiecode: HDHDHDGU (Niet gevonden)<br/><br/>Aangevraagd lidsoort: Bondslid<br/><br/>Aangevraagd lidsoort: Verenigingslid',
+                }}
+            />
+        ),
+    } as EditableTextareaReadOnlyDataProps);
 
     result.push({
         component: EditableDataComponent.INPUTCURRENCY,
