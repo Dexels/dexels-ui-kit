@@ -83,6 +83,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                       }
                     : undefined
             }
+            status={select('Status', Status, undefined)} // In storybook it looks like the first element is selected, but that's not true
             textCancel={text('Text Cancel', 'Cancel')}
             textEdit={text('Text Edit', 'Edit')}
             textSave={text('Text Save', 'Save')}
