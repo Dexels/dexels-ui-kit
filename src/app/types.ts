@@ -331,6 +331,7 @@ export enum IconSize {
 }
 
 export enum InputType {
+    CURRENCY = 'currency',
     EMAIL = 'email',
     NUMBER = 'number',
     PASSWORD = 'password',

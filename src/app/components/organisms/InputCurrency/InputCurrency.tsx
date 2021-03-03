@@ -1,9 +1,9 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
-import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
+import { formatMoneyWithoutSymbol, getCurrencyIcon } from '../../../utils/functions/financialFunctions';
+import { isEmpty, isValidMoney } from '../../../utils/functions/validateFunctions';
+import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useState } from 'react';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
-import { isValidMoney } from '../../../utils/functions/validateFunctions';
 import { StyledInputCurrency } from './InputCurrency.sc';
 
 export interface InputCurrencyProps {
@@ -36,7 +36,29 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     value,
     variant = InputVariant.OUTLINE,
 }) => {
-    const isValid = value ? isValidMoney(value, locale) : allowEmpty;
+    const [inputValue, setInputValue] = useState(value);
+    const isValid = inputValue ? isValidMoney(inputValue, locale) : allowEmpty;
+
+    const onBlurCallback = useCallback((): void => {
+        if (isEmpty(inputValue) && allowEmpty) {
+            setInputValue(undefined);
+        } else if (isValid) {
+            setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
+        } else {
+            setInputValue(inputValue);
+        }
+    }, [inputValue]);
+
+    const onChangeCallback = useCallback(
+        (event: ChangeEvent<HTMLInputElement>): void => {
+            setInputValue(event.currentTarget.value);
+
+            if (onChange) {
+                onChange(event);
+            }
+        },
+        [inputValue]
+    );
 
     return (
         <StyledInputCurrency className={className}>
@@ -49,10 +71,12 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 isDisabled={isDisabled}
                 isValid={hasValidColor && isValid}
                 label={label}
+                locale={locale}
                 name={name}
-                onChange={onChange}
-                type={InputType.TEXT}
-                value={value}
+                onBlur={onBlurCallback}
+                onChange={onChangeCallback}
+                type={InputType.CURRENCY}
+                value={inputValue}
                 variant={variant}
             />
         </StyledInputCurrency>
