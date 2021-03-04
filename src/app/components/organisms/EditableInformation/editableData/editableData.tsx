@@ -223,9 +223,12 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             locale={dataInstance.locale}
                             name={name}
                             onChange={({ currentTarget }): void => {
-                                onChange(currentTarget.name, currentTarget.value);
+                                onChange(
+                                    currentTarget.name,
+                                    formatMoneyWithoutSymbol(currentTarget.value, dataInstance.locale)
+                                );
                             }}
-                            value={formatMoneyWithoutSymbol((values[name] as string) || '', dataInstance.locale)}
+                            value={(values[name] as string) || ''}
                             variant={InputVariant.COMPACT}
                         />
                     ),
@@ -283,6 +286,22 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             onChange={({ currentTarget }): void => {
                                 onChange(currentTarget.name, currentTarget.value);
                             }}
+                            value={values[name] as string | undefined}
+                        />
+                    ),
+                };
+            }
+
+            if (dataInstance.component === EditableDataComponent.TEXTAREA_READONLY) {
+                return {
+                    label,
+                    value: (
+                        <Input
+                            hasError={isRequired && Boolean(name) && !values[name]}
+                            isDisabled={isDisabled}
+                            isTextarea
+                            label={dataInstance.placeholder}
+                            name={name}
                             value={values[name] as string | undefined}
                         />
                     ),

@@ -27,7 +27,7 @@ import {
 } from './Table.sc';
 import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctions';
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
-import { Row, TableInstance } from 'react-table';
+import { Row, TableInstance, TableState } from 'react-table';
 
 export interface TableTexts {
     sortByTooltip?: ReactNode;
@@ -46,7 +46,7 @@ export interface TableProps<T extends object> {
     isFullWidth?: boolean;
     noResults?: ReactNode | string;
     onClickFooter?: (event: SyntheticEvent) => void;
-    onClickRow?: (event: SyntheticEvent, row: Row<T>, instance: TableInstance<T>) => void;
+    onClickRow?: (event: SyntheticEvent, row: Row<T>, tableState: TableState<T>) => void;
     paginator?: ReactNode;
     texts?: TableTexts;
 }
@@ -173,7 +173,7 @@ export const Table = <T extends object>({
                                         onClick={
                                             onClickRow
                                                 ? (event: SyntheticEvent): void => {
-                                                      onClickRow(event, row, instance);
+                                                      onClickRow(event, row, instance.state);
                                                   }
                                                 : undefined
                                         }

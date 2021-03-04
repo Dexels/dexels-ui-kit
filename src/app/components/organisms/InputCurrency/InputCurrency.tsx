@@ -1,9 +1,8 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
+import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback } from 'react';
 import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
-import { isValidMoney } from '../../../utils/functions/validateFunctions';
 import { StyledInputCurrency } from './InputCurrency.sc';
 
 export interface InputCurrencyProps {
@@ -14,6 +13,7 @@ export interface InputCurrencyProps {
     errorMessage?: ReactNode;
     hasValidColor?: boolean;
     isDisabled?: boolean;
+    isRequired?: boolean;
     label?: ReactNode;
     locale: Locale;
     name: string;
@@ -24,11 +24,11 @@ export interface InputCurrencyProps {
 
 export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     adornmentPosition = AdornmentPosition.LEFT,
-    allowEmpty = true,
     className,
     errorMessage,
     hasValidColor = false,
     isDisabled = false,
+    isRequired = false,
     label,
     locale,
     name,
@@ -36,7 +36,14 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     value,
     variant = InputVariant.OUTLINE,
 }) => {
-    const isValid = value ? isValidMoney(value, locale) : allowEmpty;
+    const onChangeCallback = useCallback((event: ChangeEvent<HTMLInputElement>): void => {
+        if (onChange) {
+            onChange(event);
+        }
+    }, []);
+
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const onBlur = (): void => {}; // Fake function so the correct things get triggered in Input.tsx
 
     return (
         <StyledInputCurrency className={className}>
@@ -45,13 +52,15 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 adornmentPosition={adornmentPosition}
                 className={className}
                 errorMessage={errorMessage}
-                hasError={!isValid}
                 isDisabled={isDisabled}
-                isValid={hasValidColor && isValid}
+                isRequired={isRequired}
+                isValid={hasValidColor}
                 label={label}
+                locale={locale}
                 name={name}
-                onChange={onChange}
-                type={InputType.TEXT}
+                onBlur={onBlur}
+                onChange={onChangeCallback}
+                type={InputType.CURRENCY}
                 value={value}
                 variant={variant}
             />

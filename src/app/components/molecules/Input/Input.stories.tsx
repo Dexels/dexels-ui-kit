@@ -1,4 +1,4 @@
-import { AdornmentPosition, IconType, InputType, InputVariant } from '../../../types';
+import { AdornmentPosition, IconType, InputType, InputVariant, Locale } from '../../../types';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
@@ -17,9 +17,11 @@ export const Configurable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
@@ -45,9 +47,11 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
@@ -70,9 +74,11 @@ export const ConfigurableClickable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="an-input-name"
@@ -96,8 +102,10 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This input can only contain numbers')}
+            locale={select('Locale', Locale, Locale.NL)}
             max={number('Max', 100000000)}
             maxLength={number('Max length', 8)}
             min={number('Min', 0)}
@@ -121,9 +129,11 @@ export const ConfigurableTextarea: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a textarea, write some text')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="a-textarea-name"
@@ -146,9 +156,11 @@ export const ConfigurableTextareaClickable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a textarea, write some text')}
+            locale={select('Locale', Locale, Locale.NL)}
             maxLength={number('Max length', 100)}
             minLength={number('Min length', 0)}
             name="a-textarea-name"

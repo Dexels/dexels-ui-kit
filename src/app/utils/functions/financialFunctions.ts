@@ -1,6 +1,8 @@
+/* eslint-disable padding-line-between-statements */
 import { Currencies, IconType, Locale } from '../../types';
 import currency, { Options as currencyOptions } from 'currency.js';
-import { isEmpty } from './validateFunctions';
+import { DEFAULT_LOCALE } from '../../../global/constants';
+import { isDotDecimalCountry } from './localeFunctions';
 
 export const getCurrencyIcon = (locale?: Locale): IconType => {
     switch (locale) {
@@ -13,7 +15,9 @@ export const getCurrencyIcon = (locale?: Locale): IconType => {
         case Locale.US:
             return IconType.CURRENCY_US;
 
-        case Locale.UK || Locale.GB:
+        case Locale.EN:
+        case Locale.GB:
+        case Locale.UK:
             return IconType.CURRENCY_UK;
 
         default:
@@ -33,7 +37,9 @@ export const getCurrencySymbol = (locale?: Locale): string => {
         case Locale.US:
             return '$';
 
-        case Locale.UK || Locale.GB:
+        case Locale.EN:
+        case Locale.GB:
+        case Locale.UK:
             return '£';
 
         default:
@@ -53,7 +59,9 @@ export const getCurrencyType = (locale?: Locale): Currencies => {
         case Locale.US:
             return Currencies.USD;
 
-        case Locale.UK || Locale.GB:
+        case Locale.EN:
+        case Locale.GB:
+        case Locale.UK:
             return Currencies.GBP;
 
         default:
@@ -62,32 +70,25 @@ export const getCurrencyType = (locale?: Locale): Currencies => {
     }
 };
 
-export const defaultCurrencySettings = (
-    value: number | string,
-    hasRounding = false,
-    hasSymbol = true
-): currencyOptions => ({
+export const defaultCurrencySettings = (hasRounding = false, hasSymbol = true, locale?: Locale): currencyOptions => ({
     decimal: ',',
-    // If the first digit is a 0, then we need to treat it differently
-    fromCents:
-        (typeof value === 'string' && !isEmpty(value) && value.startsWith('0')) ||
-        (typeof value === 'number' && value > 0 && value.toString().startsWith('0')),
+    fromCents: false,
     increment: hasRounding ? 0.05 : 0,
     negativePattern: '-!#',
     pattern: '!#',
     precision: 2,
     separator: '.',
-    symbol: hasSymbol ? `${getCurrencySymbol(Locale.NL)} ` : '',
+    symbol: hasSymbol ? `${getCurrencySymbol(locale || DEFAULT_LOCALE)} ` : '',
 });
 
-export const EUR = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
+export const EUR = (value: number | string, hasRounding = false, hasSymbol = true, locale: Locale): currency =>
     currency(value, {
-        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
+        ...defaultCurrencySettings(hasRounding, hasSymbol, locale),
     });
 
 export const GBP = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
+        ...defaultCurrencySettings(hasRounding, hasSymbol),
         decimal: '.',
         separator: ',',
         symbol: hasSymbol ? `${getCurrencySymbol(Locale.GB)} ` : '',
@@ -95,19 +96,19 @@ export const GBP = (value: number | string, hasRounding = false, hasSymbol = tru
 
 export const KZT = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
+        ...defaultCurrencySettings(hasRounding, hasSymbol),
         symbol: hasSymbol ? `${getCurrencySymbol(Locale.KZ)} ` : '',
     });
 
 export const RUB = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
+        ...defaultCurrencySettings(hasRounding, hasSymbol),
         symbol: hasSymbol ? `${getCurrencySymbol(Locale.RU)} ` : '',
     });
 
 export const USD = (value: number | string, hasRounding = false, hasSymbol = true): currency =>
     currency(value, {
-        ...defaultCurrencySettings(value, hasRounding, hasSymbol),
+        ...defaultCurrencySettings(hasRounding, hasSymbol),
         decimal: '.',
         separator: ',',
         symbol: hasSymbol ? `${getCurrencySymbol(Locale.US)} ` : '',
@@ -135,8 +136,8 @@ export const toMoneyInternal = (
         default:
             // Rounding is default for NL, but we can not really apply this
             // Leaving it here as documentation though
-            // return EUR(value, locale && locale === Locale.NL, hasSymbol);
-            return EUR(value, hasRounding, hasSymbol);
+            // return EUR(value, locale && locale === Locale.NL, hasSymbol, locale);
+            return EUR(value, hasRounding, hasSymbol, locale);
     }
 };
 
@@ -149,3 +150,9 @@ export const formatMoney = (value: number | string, locale: Locale): string => t
 
 export const formatMoneyWithoutSymbol = (value: number | string, locale: Locale): string =>
     toMoneyInternal(value, locale, false, false).format();
+
+// Assume that the input is in the system format 123.45, so a . as decimal separator
+export const convertToLocaleValue = (value: number | string, locale: Locale): string =>
+    isDotDecimalCountry(locale)
+        ? value.toString()
+        : value.toString().replace('.', ';').replace(',', '.').replace(';', ',');

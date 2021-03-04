@@ -42,7 +42,7 @@ export {
     capitalizeFirstLetters,
 } from '../app/utils/functions/stringFunctions';
 export { cloneArray } from '../app/utils/functions/arrayFunctions';
-export { convertLocale } from '../app/utils/functions/localeFunctions';
+export { convertLocale, isDotDecimalCountry } from '../app/utils/functions/localeFunctions';
 export { createTable } from '../app/utils/functions/createTable';
 export {
     compareDates,
@@ -67,6 +67,7 @@ export {
 } from '../app/utils/functions/validateFunctions';
 export { areEqualObjects, getObjectDifference, isObjectPropertyChanged } from '../app/utils/functions/objectFunctions';
 export {
+    convertToLocaleValue,
     defaultCurrencySettings,
     formatMoney,
     formatMoneyWithoutSymbol,

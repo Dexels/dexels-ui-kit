@@ -143,8 +143,18 @@ export interface TextareaDataProps extends BaseDataProps {
     value: InputProps['value'];
 }
 
+export interface TextareaReadOnlyDataProps extends BaseDataProps {
+    component: EditableDataComponent.TEXTAREA_READONLY;
+    value: InputProps['value'] | ReactNode;
+}
+
 export interface EditableTextareaDataProps extends TextareaDataProps {
     maxLength?: InputProps['maxLength'];
+    name: InputProps['name'];
+    placeholder?: InputProps['label'];
+}
+
+export interface EditableTextareaReadOnlyDataProps extends TextareaReadOnlyDataProps {
     name: InputProps['name'];
     placeholder?: InputProps['label'];
 }
@@ -178,6 +188,7 @@ export type EditableInformationDataType<T extends DropdownSelectOption, U extend
     | EditableTimePickerDataProps
     | EditableScorePickerDataProps
     | EditableTextareaDataProps
+    | EditableTextareaReadOnlyDataProps
     | InputCurrencyDataProps
     | InputDataProps
     | InputNumberDataProps
@@ -200,6 +211,7 @@ export type ValueTypes<T extends DropdownSelectOption, U extends DropdownMultiSe
     | EditableInputNumberDataProps['value']
     | EditableScorePickerDataProps['value']
     | EditableTextareaDataProps['value']
+    | EditableTextareaReadOnlyDataProps['value']
     | EditableTimePickerDataProps['value'];
 
 export interface DatePickerFocuses {

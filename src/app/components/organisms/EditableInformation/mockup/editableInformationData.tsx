@@ -12,11 +12,12 @@ import {
     EditableInputNumberDataProps,
     EditableScorePickerDataProps,
     EditableTextareaDataProps,
+    EditableTextareaReadOnlyDataProps,
     EditableTimePickerDataProps,
     TimePickerDataProps,
     ValueTypes,
 } from '../types';
-import { EditableDataComponent, IconType } from '../../../../types';
+import { EditableDataComponent, IconType, Locale } from '../../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../../molecules/IconCustomizable';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
@@ -166,6 +167,21 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     } as EditableTextareaDataProps);
 
     result.push({
+        component: EditableDataComponent.TEXTAREA_READONLY,
+        label: 'Textarea ReactNode',
+        name: 'NonEditableTextAreaReactNode',
+        value: (
+            <span
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                    __html:
+                        'Bondssport:<br/>- Voetbal - Algemeen/Veld<br/>Verenigingssport:<br/>- Balgooien - Maandag/ACTIE<br/><br/>Er is/zijn één of meer verenigingssporten vastgelegd.<br/><br/>Voormalige of huidige vereniging:<br/>- Spero (BBKT07Z)<br/>- Relatiecode: HDHDHDGU (Niet gevonden)<br/><br/>Aangevraagd lidsoort: Bondslid<br/><br/>Aangevraagd lidsoort: Verenigingslid',
+                }}
+            />
+        ),
+    } as EditableTextareaReadOnlyDataProps);
+
+    result.push({
         component: EditableDataComponent.INPUTCURRENCY,
         isDisabled: false,
         isEditable: true,
@@ -192,10 +208,21 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isDisabled: false,
         isEditable: true,
         isRequired: true,
+        label: 'CurrencyEN',
+        locale: Locale.EN,
+        name: 'CurrencyEN',
+        value: '343.51',
+    } as EditableInputCurrencyDataProps);
+
+    result.push({
+        component: EditableDataComponent.INPUTCURRENCY,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
         label: 'Currency (comma)',
         locale: DEFAULT_LOCALE,
         name: 'EditableCurrencyComma',
-        value: '4,51',
+        value: '451,123.87',
     } as EditableInputCurrencyDataProps);
 
     result.push({

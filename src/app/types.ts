@@ -56,6 +56,7 @@ export enum EditableDataComponent {
     INPUTNUMBER = 'InputNumber',
     SCOREPICKER = 'ScorePicker',
     TEXTAREA = 'Textarea',
+    TEXTAREA_READONLY = 'TextareaReadOnly',
     TIMEPICKER = 'TimePicker',
 }
 
@@ -153,12 +154,18 @@ export enum IconType {
     FENCE = 'FENCE',
     FIELDSOCCER = 'FIELDSOCCER',
     FILEADD = 'FILEADD',
+    FILEAUDIO = 'FILEAUDIO',
+    FILECOMPRESSED = 'FILECOMPRESSED',
     FILEDELETE = 'FILEDELETE',
+    FILEDEV = 'FILEDEV',
     FILEDOCUMENT = 'FILEDOCUMENT',
     FILEDOWNLOAD = 'FILEDOWNLOAD',
     FILEGENERIC = 'FILEGENERIC',
     FILEIMAGE = 'FILEIMAGE',
+    FILEMAIL = 'FILEMAIL',
+    FILEPRESENTATION = 'FILEPRESENTATION',
     FILEREMOVE = 'FILEREMOVE',
+    FILETABLE = 'FILETABLE',
     FILEVIDEO = 'FILEVIDEO',
     FLAG = 'FLAG',
     FLAME = 'FLAME',
@@ -331,6 +338,7 @@ export enum IconSize {
 }
 
 export enum InputType {
+    CURRENCY = 'currency',
     EMAIL = 'email',
     NUMBER = 'number',
     PASSWORD = 'password',

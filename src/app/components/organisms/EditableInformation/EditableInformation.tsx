@@ -1,6 +1,7 @@
 import { DatePickerFocuses, EditableInformationData, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
 import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
+import { IconType, Status } from '../../../types';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
@@ -9,7 +10,6 @@ import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownOption } from '../../molecules/Dropdown';
 import { EditablePanel } from '../EditablePanel/EditablePanel';
 import { generateValuesArray } from './utils/generateValuesArray';
-import { IconType } from '../../../types';
 import { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
 import { PanelStatus } from '../../molecules/PanelStatus/PanelStatus';
 import { Skeleton } from '../../molecules/Skeleton/Skeleton';
@@ -36,6 +36,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     onEdit?: () => void;
     onSave?: (data: { [key: string]: ValueTypes<T, U> }) => void;
     saveConfirmDialog?: ConfirmDialog;
+    status?: Status;
     textCancel?: string;
     textEdit?: string;
     textSave?: string;
@@ -62,6 +63,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     onEdit,
     onSave,
     saveConfirmDialog,
+    status,
     textCancel,
     textEdit,
     textSave,
@@ -250,16 +252,21 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             onEdit={onEditCallback}
             onSave={onSaveCallback}
             saveConfirmDialog={saveConfirmDialog}
-            status={getStatus(hasError)}
+            status={status || getStatus(hasError)}
             textCancel={textCancel || ''}
             textEdit={textEdit || ''}
             textSave={textSave || ''}
             title={title}
         >
-            <CardStatus status={getStatus(hasError, isLoading, isDisabled)}>{cardData}</CardStatus>
+            <CardStatus status={status || getStatus(hasError, isLoading, isDisabled)}>{cardData}</CardStatus>
         </EditablePanel>
     ) : (
-        <PanelStatus iconType={iconType} status={getStatus(hasError, isLoading, isDisabled)} title={title}>
+        <PanelStatus
+            hasTitleStatusAppearance={Boolean(status)}
+            iconType={iconType}
+            status={status || getStatus(hasError, isLoading, isDisabled)}
+            title={title}
+        >
             {cardData}
         </PanelStatus>
     );

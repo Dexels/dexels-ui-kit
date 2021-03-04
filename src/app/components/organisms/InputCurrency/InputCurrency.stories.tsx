@@ -11,10 +11,10 @@ export const Configurable: FunctionComponent = () => {
     return (
         <InputCurrency
             adornmentPosition={select('Adornment Position', AdornmentPosition, AdornmentPosition.LEFT)}
-            allowEmpty={boolean('Allow empty', true)}
             errorMessage={text('Error message', 'Invalid currency!')}
             hasValidColor={boolean('Has valid color', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             label={text('Label', 'Amount')}
             locale={select('Locale', Locale, Locale.NL)}
             name="a-inputcurrency-name"

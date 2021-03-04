@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'SL-Small-Icons';
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?8x3rh8');
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?8x3rh8#iefix') format('embedded-opentype'),
-        url('~fonts/iconfont/SL-Small-Icons.ttf?8x3rh8') format('truetype'),
-        url('~fonts/iconfont/SL-Small-Icons.woff?8x3rh8') format('woff'),
-        url('~fonts/iconfont/SL-Small-Icons.svg?8x3rh8#SL-Small-Icons') format('svg');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?7bci7o');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?7bci7o#iefix') format('embedded-opentype'),
+        url('~fonts/iconfont/SL-Small-Icons.ttf?7bci7o') format('truetype'),
+        url('~fonts/iconfont/SL-Small-Icons.woff?7bci7o') format('woff'),
+        url('~fonts/iconfont/SL-Small-Icons.svg?7bci7o#SL-Small-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -26,6 +26,24 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ICON-FILEMAIL:before {
+    content: '\e9f2';
+}
+.ICON-FILEDEV:before {
+    content: '\e9f3';
+}
+.ICON-FILEAUDIO:before {
+    content: '\e9f4';
+}
+.ICON-FILECOMPRESSED:before {
+    content: '\e9f5';
+}
+.ICON-FILEPRESENTATION:before {
+    content: '\e9f6';
+}
+.ICON-FILETABLE:before {
+    content: '\e9f7';
+}
 .ICON-UNDO:before {
     content: '\e9f1';
 }

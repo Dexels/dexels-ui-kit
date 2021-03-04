@@ -34,4 +34,5 @@ export const convertLocale = (locale: Locale): string => {
     }
 };
 
-export default convertLocale;
+export const isDotDecimalCountry = (locale: Locale): boolean =>
+    locale === Locale.EN || locale === Locale.GB || locale === Locale.UK || locale === Locale.US;
