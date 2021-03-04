@@ -19,6 +19,7 @@ import React, {
 } from 'react';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
+import { formatMoneyWithoutSymbol } from '../../../utils/functions/financialFunctions';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 
 export interface InputProps {
@@ -30,6 +31,7 @@ export interface InputProps {
     errorMessage?: ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
+    isRequired?: boolean;
     isTextarea?: boolean;
     isValid?: boolean;
     label?: ReactNode;
@@ -58,6 +60,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     errorMessage,
     hasError = false,
     isDisabled = false,
+    isRequired = false,
     isTextarea = false,
     isValid = false,
     label,
@@ -79,7 +82,8 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const hasValue = value ? value.length > 0 : false;
+    const [inputValue, setInputValue] = useState(value);
+    const hasValue = inputValue ? inputValue.length > 0 : false;
     const [hasValidationError, setHasValidationError] = useState(hasError);
     const textFieldProps: { [key: string]: number } = {};
 
@@ -100,6 +104,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 onChange(event);
             }
 
+            setInputValue(event.currentTarget.value);
             setHasValidationError(!isValidInput);
         },
         [maxLength, onChange, type]
@@ -112,11 +117,21 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             }
 
             if (isFocused && onBlur) {
-                if (isEmpty(event.currentTarget.value)) {
+                if (isEmpty(event.currentTarget.value) && !isRequired) {
+                    setInputValue(null);
                     setHasValidationError(false);
+                } else if (isEmpty(event.currentTarget.value) && isRequired) {
+                    setInputValue(inputValue);
+                    setHasValidationError(true);
                 } else {
+                    setInputValue(inputValue);
+
                     switch (type) {
                         case InputType.CURRENCY:
+                            if (isValidMoney(event.currentTarget.value, locale)) {
+                                setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
+                            }
+
                             setHasValidationError(!isValidMoney(event.currentTarget.value, locale));
                             break;
 
@@ -142,7 +157,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
             setIsFocused(!isFocused);
         },
-        [isFocused, onBlur, onFocus]
+        [inputValue, isFocused, onBlur, onFocus]
     );
 
     const toggleIsHoveredCallback = useCallback(() => {
@@ -194,7 +209,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     onMouseLeave={isDisabled ? undefined : toggleIsHoveredCallback}
                     readOnly={isDisabled}
                     type={type}
-                    value={value === null ? undefined : value} // Assuming that null equals undefined
+                    value={inputValue === null ? undefined : inputValue} // Assuming that null equals undefined
                     variant={variant}
                     {...textFieldProps}
                 />

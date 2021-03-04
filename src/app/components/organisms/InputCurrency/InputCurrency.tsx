@@ -1,7 +1,6 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import { formatMoneyWithoutSymbol, getCurrencyIcon } from '../../../utils/functions/financialFunctions';
-import { isEmpty, isValidMoney } from '../../../utils/functions/validateFunctions';
-import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useState } from 'react';
+import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback } from 'react';
+import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from '../../molecules/Input/Input';
 import { StyledInputCurrency } from './InputCurrency.sc';
@@ -14,6 +13,7 @@ export interface InputCurrencyProps {
     errorMessage?: ReactNode;
     hasValidColor?: boolean;
     isDisabled?: boolean;
+    isRequired?: boolean;
     label?: ReactNode;
     locale: Locale;
     name: string;
@@ -24,11 +24,11 @@ export interface InputCurrencyProps {
 
 export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     adornmentPosition = AdornmentPosition.LEFT,
-    allowEmpty = true,
     className,
     errorMessage,
     hasValidColor = false,
     isDisabled = false,
+    isRequired = false,
     label,
     locale,
     name,
@@ -36,29 +36,14 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     value,
     variant = InputVariant.OUTLINE,
 }) => {
-    const [inputValue, setInputValue] = useState(value);
-    const isValid = inputValue ? isValidMoney(inputValue, locale) : allowEmpty;
-
-    const onBlurCallback = useCallback((): void => {
-        if (isEmpty(inputValue) && allowEmpty) {
-            setInputValue(undefined);
-        } else if (isValid) {
-            setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
-        } else {
-            setInputValue(inputValue);
+    const onChangeCallback = useCallback((event: ChangeEvent<HTMLInputElement>): void => {
+        if (onChange) {
+            onChange(event);
         }
-    }, [inputValue]);
+    }, []);
 
-    const onChangeCallback = useCallback(
-        (event: ChangeEvent<HTMLInputElement>): void => {
-            setInputValue(event.currentTarget.value);
-
-            if (onChange) {
-                onChange(event);
-            }
-        },
-        [inputValue]
-    );
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const onBlur = (): void => {}; // Fake function so the correct things get triggered in Input.tsx
 
     return (
         <StyledInputCurrency className={className}>
@@ -67,16 +52,16 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
                 adornmentPosition={adornmentPosition}
                 className={className}
                 errorMessage={errorMessage}
-                hasError={!isValid}
                 isDisabled={isDisabled}
-                isValid={hasValidColor && isValid}
+                isRequired={isRequired}
+                isValid={hasValidColor}
                 label={label}
                 locale={locale}
                 name={name}
-                onBlur={onBlurCallback}
+                onBlur={onBlur}
                 onChange={onChangeCallback}
                 type={InputType.CURRENCY}
-                value={inputValue}
+                value={value}
                 variant={variant}
             />
         </StyledInputCurrency>

@@ -17,6 +17,7 @@ export const Configurable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
@@ -46,6 +47,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
@@ -72,6 +74,7 @@ export const ConfigurableClickable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}
@@ -99,6 +102,7 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This input can only contain numbers')}
             locale={select('Locale', Locale, Locale.NL)}
@@ -125,6 +129,7 @@ export const ConfigurableTextarea: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a textarea, write some text')}
@@ -151,6 +156,7 @@ export const ConfigurableTextareaClickable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isTextarea
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a textarea, write some text')}
