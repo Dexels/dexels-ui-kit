@@ -1,6 +1,11 @@
 import { DatePickerFocuses, EditableInformationData, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
-import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
+import {
+    getStatus,
+    getValueOfEditableDataComponent,
+    isEditableData,
+    validateEditableInput,
+} from './utils/informationDataFunctions';
 import { IconType, Status } from '../../../types';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -72,6 +77,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     const DEFAULT_AMOUNT_ROWS = 4;
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
     const hasError = errors !== undefined;
+    const [hasValidInput, setHasValidInput] = useState(true);
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
     const [isBeingEdited, setIsBeingEdited] = useState(false);
     const [isEditable, setIsEditable] = useState<boolean>(false);
@@ -117,6 +123,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             };
 
             setUpdatedValues(newValues);
+            setHasValidInput(validateEditableInput(data, newValues));
 
             if (onChange) {
                 onChange(newValues);
@@ -244,7 +251,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             iconEdit={iconEdit}
             iconSave={iconSave}
             iconType={iconType}
-            isDisabled={isButtonDisabled || isDisabled || isLoading}
+            isDisabled={!hasValidInput || isButtonDisabled || isDisabled || isLoading}
             isEditing={isBeingEdited}
             isSaving={isSaving}
             keepEditMode={keepEditMode}

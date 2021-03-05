@@ -98,6 +98,7 @@ export interface InputNumberDataProps extends BaseDataProps {
 }
 
 export interface EditableInputNumberDataProps extends InputNumberDataProps {
+    locale?: InputProps['locale'];
     max?: InputProps['max'];
     min?: InputProps['min'];
     name: InputProps['name'];

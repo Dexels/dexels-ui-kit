@@ -1,6 +1,16 @@
-import { CheckboxDataProps, DropdownDataProps, EditableInformationData, EditableInformationDataType } from '../types';
+import {
+    CheckboxDataProps,
+    DropdownDataProps,
+    EditableInformationData,
+    EditableInformationDataType,
+    EditableInputCurrencyDataProps,
+    EditableInputDataProps,
+    EditableInputNumberDataProps,
+    ValueTypes,
+} from '../types';
 import { convertToLocaleValue, formatMoney } from '../../../../utils/functions/financialFunctions';
 import { EditableDataComponent, Status } from '../../../../types';
+import { isEmpty, isValidMoney, isValidNumber } from '../../../../utils/functions/validateFunctions';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
@@ -79,3 +89,70 @@ export const isEditableData = <T extends DropdownSelectOption, U extends Dropdow
             'component' in dataInstance &&
             dataInstance.isEditable
     );
+
+export const validateInput = (data: EditableInputDataProps): boolean => Boolean(data.isRequired) && isEmpty(data.value);
+
+export const validateInputCurrency = (data: EditableInputCurrencyDataProps): boolean => {
+    console.log(data);
+    console.log(data.isRequired && (isEmpty(data.value) || data.value === '0'));
+    console.log(isValidMoney(data.value || '', data.locale));
+
+    if (data.isRequired && (isEmpty(data.value) || data.value === '0')) {
+        return false;
+    }
+
+    // Can not be undefined/null ...
+    return isValidMoney(data.value || '', data.locale);
+};
+
+export const validateInputNumber = (data: EditableInputNumberDataProps): boolean => {
+    if (data.isRequired && (isEmpty(data.value) || data.value === 0)) {
+        return false;
+    }
+
+    if (data.min && data.min > 0) {
+        return data.value < data.min;
+    }
+
+    if (data.max && data.max > 0) {
+        return data.value > data.max;
+    }
+
+    return isValidNumber(data.value.toString(), true, data.locale);
+};
+
+export const validateEditableInput = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
+    data: EditableInformationData<T, U>,
+    values: ValueTypes<T, U>
+): boolean => {
+    if (data.length) {
+        let isValid = true;
+
+        console.log('data', data, values);
+
+        // Check all items, but only if still valid
+        data.forEach((item) => {
+            // if (item.component === EditableDataComponent.INPUT && isValid) {
+            //     isValid = validateInput(item as EditableInputDataProps);
+            //     console.log('validateInput result 1a', isValid);
+            // }
+
+            if (item.component === EditableDataComponent.INPUTCURRENCY && isValid) {
+                isValid = validateInputCurrency(item as EditableInputCurrencyDataProps);
+
+                console.log('validateInput result 1b', isValid);
+            }
+
+            // if (item.component === EditableDataComponent.INPUTNUMBER && isValid) {
+            //     isValid = validateInputNumber(item as EditableInputNumberDataProps);
+            //     console.log('validateInput result 1c', isValid);
+            // }
+        });
+
+        console.log('validateInput result 2', isValid);
+
+        return isValid;
+    }
+
+    return true;
+};
