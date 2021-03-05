@@ -101,6 +101,10 @@ export interface EditableInputNumberDataProps extends InputNumberDataProps {
     max?: InputProps['max'];
     min?: InputProps['min'];
     name: InputProps['name'];
+    onBlur?: InputProps['onBlur'];
+    onChange?: InputProps['onChange'];
+    onFocus?: InputProps['onFocus'];
+    onKeyDown?: InputProps['onKeyDown'];
     placeholder?: InputProps['label'];
 }
 
@@ -113,7 +117,9 @@ export interface EditableInputDataProps extends InputDataProps {
     maxLength?: InputProps['maxLength'];
     name: InputProps['name'];
     onBlur?: InputProps['onBlur'];
+    onChange?: InputProps['onChange'];
     onFocus?: InputProps['onFocus'];
+    onKeyDown?: InputProps['onKeyDown'];
     placeholder?: InputProps['label'];
     type?: InputProps['type'];
 }
@@ -151,6 +157,10 @@ export interface TextareaReadOnlyDataProps extends BaseDataProps {
 export interface EditableTextareaDataProps extends TextareaDataProps {
     maxLength?: InputProps['maxLength'];
     name: InputProps['name'];
+    onBlur?: InputProps['onBlur'];
+    onChange?: InputProps['onChange'];
+    onFocus?: InputProps['onFocus'];
+    onKeyDown?: InputProps['onKeyDown'];
     placeholder?: InputProps['label'];
 }
 
@@ -168,6 +178,10 @@ export interface EditableInputCurrencyDataProps extends InputCurrencyDataProps {
     adornmentPosition?: InputCurrencyProps['adornmentPosition'];
     locale: InputCurrencyProps['locale'];
     name: InputCurrencyProps['name'];
+    onBlur?: InputCurrencyProps['onBlur'];
+    onChange?: InputCurrencyProps['onChange'];
+    onFocus?: InputCurrencyProps['onFocus'];
+    onKeyDown?: InputCurrencyProps['onKeyDown'];
     placeholder?: InputCurrencyProps['label'];
 }
 

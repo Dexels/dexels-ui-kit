@@ -1,13 +1,12 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback } from 'react';
+import Input, { InputProps } from '../../molecules/Input/Input';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
 import { Icon } from '../../atoms/Icon/Icon';
-import Input from '../../molecules/Input/Input';
 import { StyledInputCurrency } from './InputCurrency.sc';
 
-export interface InputCurrencyProps {
+export interface InputCurrencyProps extends InputProps {
     adornmentPosition?: AdornmentPosition;
-    allowEmpty?: boolean;
     children?: never;
     className?: string;
     errorMessage?: ReactNode;
@@ -17,7 +16,6 @@ export interface InputCurrencyProps {
     label?: ReactNode;
     locale: Locale;
     name: string;
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     value?: string;
     variant?: InputVariant;
 }
@@ -32,40 +30,34 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     label,
     locale,
     name,
+    onBlur,
     onChange,
+    onFocus,
+    onKeyDown,
     value,
     variant = InputVariant.OUTLINE,
-}) => {
-    const onChangeCallback = useCallback((event: ChangeEvent<HTMLInputElement>): void => {
-        if (onChange) {
-            onChange(event);
-        }
-    }, []);
-
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const onBlur = (): void => {}; // Fake function so the correct things get triggered in Input.tsx
-
-    return (
-        <StyledInputCurrency className={className}>
-            <Input
-                adornment={<Icon type={getCurrencyIcon(locale)} />}
-                adornmentPosition={adornmentPosition}
-                className={className}
-                errorMessage={errorMessage}
-                isDisabled={isDisabled}
-                isRequired={isRequired}
-                isValid={hasValidColor}
-                label={label}
-                locale={locale}
-                name={name}
-                onBlur={onBlur}
-                onChange={onChangeCallback}
-                type={InputType.CURRENCY}
-                value={value}
-                variant={variant}
-            />
-        </StyledInputCurrency>
-    );
-};
+}) => (
+    <StyledInputCurrency className={className}>
+        <Input
+            adornment={<Icon type={getCurrencyIcon(locale)} />}
+            adornmentPosition={adornmentPosition}
+            className={className}
+            errorMessage={errorMessage}
+            isDisabled={isDisabled}
+            isRequired={isRequired}
+            isValid={hasValidColor}
+            label={label}
+            locale={locale}
+            name={name}
+            onBlur={onBlur}
+            onChange={onChange}
+            onFocus={onFocus}
+            onKeyDown={onKeyDown}
+            type={InputType.CURRENCY}
+            value={value}
+            variant={variant}
+        />
+    </StyledInputCurrency>
+);
 
 export default InputCurrency;
