@@ -31,6 +31,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
         setIsSaving(true);
+        setIsEditing(isEditingMode);
         setUpdatedData(updateValuesOfData(updatedData, newData));
 
         // Show loading state for 5 seconds

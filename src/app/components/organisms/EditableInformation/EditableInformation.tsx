@@ -4,7 +4,7 @@ import {
     getStatus,
     getValueOfEditableDataComponent,
     isEditableData,
-    validateEditableInput,
+    isValidEditableInput,
 } from './utils/informationDataFunctions';
 import { IconType, Status } from '../../../types';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
@@ -76,17 +76,13 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
 }: EditableInformationProps<T, U>): JSX.Element => {
     const DEFAULT_AMOUNT_ROWS = 4;
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
+    const [hasInputError, setHasInputError] = useState(false);
     const hasError = errors !== undefined;
-    const [hasValidInput, setHasValidInput] = useState(true);
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
-    const [isBeingEdited, setIsBeingEdited] = useState(false);
+    const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isEditable, setIsEditable] = useState<boolean>(false);
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
-
-    useEffect(() => {
-        setIsBeingEdited(hasError || isEditing);
-    }, [hasError, isEditing]);
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
@@ -97,17 +93,25 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [onEdit]);
 
     const onSaveCallback = useCallback(() => {
-        if (!keepEditMode) {
-            setIsBeingEdited(false);
-        }
+        const isValidInput = isValidEditableInput(data, updatedValues);
+        setHasInputError(!isValidInput);
 
-        if (onSave) {
-            onSave(updatedValues);
+        if (hasInputError || !isValidInput) {
+            setIsBeingEdited(true);
+        } else {
+            if (!keepEditMode) {
+                setIsBeingEdited(false);
+            }
+
+            if (onSave) {
+                onSave(updatedValues);
+            }
         }
-    }, [onSave, updatedValues]);
+    }, [data, hasError, hasInputError, onSave, updatedValues]);
 
     const onCancelCallback = useCallback(() => {
         setIsBeingEdited(false);
+        setHasInputError(false);
         setUpdatedValues(originalValues);
 
         if (onCancel) {
@@ -123,7 +127,6 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             };
 
             setUpdatedValues(newValues);
-            setHasValidInput(validateEditableInput(data, newValues));
 
             if (onChange) {
                 onChange(newValues);
@@ -169,6 +172,10 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     useEffect(() => {
         setIsEditable(isEditableData(data));
     }, [data]);
+
+    useEffect(() => {
+        setHasInputError(!isValidEditableInput(data, updatedValues));
+    }, [data, updatedValues]);
 
     useEffect(() => {
         if (isEditable) {
@@ -247,11 +254,12 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     return onEdit || onSave ? (
         <EditablePanel
             cancelConfirmDialog={cancelConfirmDialog}
+            hasError={hasError || hasInputError}
             iconCancel={iconCancel}
             iconEdit={iconEdit}
             iconSave={iconSave}
             iconType={iconType}
-            isDisabled={!hasValidInput || isButtonDisabled || isDisabled || isLoading}
+            isDisabled={isButtonDisabled || isDisabled || isLoading}
             isEditing={isBeingEdited}
             isSaving={isSaving}
             keepEditMode={keepEditMode}
@@ -259,19 +267,23 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             onEdit={onEditCallback}
             onSave={onSaveCallback}
             saveConfirmDialog={saveConfirmDialog}
-            status={status || getStatus(hasError)}
+            status={status || getStatus(hasError || (isBeingEdited && hasInputError))}
             textCancel={textCancel || ''}
             textEdit={textEdit || ''}
             textSave={textSave || ''}
             title={title}
         >
-            <CardStatus status={status || getStatus(hasError, isLoading, isDisabled)}>{cardData}</CardStatus>
+            <CardStatus
+                status={status || getStatus(hasError || (isBeingEdited && hasInputError), isLoading, isDisabled)}
+            >
+                {cardData}
+            </CardStatus>
         </EditablePanel>
     ) : (
         <PanelStatus
             hasTitleStatusAppearance={Boolean(status)}
             iconType={iconType}
-            status={status || getStatus(hasError, isLoading, isDisabled)}
+            status={status || getStatus(hasError || (isBeingEdited && hasInputError), isLoading, isDisabled)}
             title={title}
         >
             {cardData}

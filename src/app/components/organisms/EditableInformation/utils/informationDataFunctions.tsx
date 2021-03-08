@@ -9,8 +9,14 @@ import {
     ValueTypes,
 } from '../types';
 import { convertToLocaleValue, formatMoney } from '../../../../utils/functions/financialFunctions';
-import { EditableDataComponent, Locale, Status } from '../../../../types';
-import { isEmpty, isValidMoney, isValidNumber } from '../../../../utils/functions/validateFunctions';
+import { EditableDataComponent, InputType, Status } from '../../../../types';
+import {
+    isValidInputCurrency,
+    isValidInputEmail,
+    isValidInputNumber,
+    isValidInputTelephone,
+    isValidInputText,
+} from '../../../../utils/functions/validateFunctions';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
@@ -90,41 +96,7 @@ export const isEditableData = <T extends DropdownSelectOption, U extends Dropdow
             dataInstance.isEditable
     );
 
-export const validateInput = (data: EditableInputDataProps): boolean => Boolean(data.isRequired) && isEmpty(data.value);
-
-export const validateInputCurrency = (value: string, locale: Locale, isRequired: boolean): boolean => {
-    console.log(value, locale, isRequired && isEmpty(value), value === '0');
-    console.log(isValidMoney(value || '', locale));
-
-    if (isRequired && (isEmpty(value) || value === '0')) {
-        return false;
-    }
-
-    if (!isRequired && (isEmpty(value) || value === '0')) {
-        return true;
-    }
-
-    // Can not be undefined/null, because of previous check ...
-    return isValidMoney(value || '', locale);
-};
-
-export const validateInputNumber = (data: EditableInputNumberDataProps): boolean => {
-    if (data.isRequired && (isEmpty(data.value) || data.value === 0)) {
-        return false;
-    }
-
-    if (data.min && data.min > 0) {
-        return data.value < data.min;
-    }
-
-    if (data.max && data.max > 0) {
-        return data.value > data.max;
-    }
-
-    return isValidNumber(data.value.toString(), true, data.locale);
-};
-
-export const validateEditableInput = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
+export const isValidEditableInput = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
     values: { [key: string]: ValueTypes<T, U> }
 ): boolean => {
@@ -132,39 +104,59 @@ export const validateEditableInput = <T extends DropdownSelectOption, U extends 
         let i = 0;
         let isValid = true;
 
-        // console.log('validateInput', isValid);
-        // console.log('data', data);
-        // console.log('values', values);
-
         // Check all items, but only if still valid
         while (isValid && i < data.length) {
             const item = data[i];
-            console.log('item', item);
 
-            // if (item.component === EditableDataComponent.INPUT && isValid) {
-            //     isValid = validateInput(item as EditableInputDataProps);
-            //     console.log('validateInput result 1a', isValid);
-            // }
+            switch (item.component) {
+                case EditableDataComponent.INPUT:
+                    if ((item as EditableInputDataProps).type === InputType.EMAIL) {
+                        isValid = isValidInputEmail(
+                            values[(item as EditableInputDataProps).name]?.toString() || null,
+                            Boolean((item as EditableInputDataProps).isRequired)
+                        );
+                    } else if ((item as EditableInputDataProps).type === InputType.TELEPHONE) {
+                        isValid = isValidInputTelephone(
+                            values[(item as EditableInputDataProps).name]?.toString() || null,
+                            Boolean((item as EditableInputDataProps).isRequired)
+                        );
+                    } else {
+                        isValid = isValidInputText(
+                            values[(item as EditableInputDataProps).name]?.toString() || null,
+                            Boolean((item as EditableInputDataProps).isRequired),
+                            (item as EditableInputDataProps).minLength,
+                            (item as EditableInputDataProps).maxLength
+                        );
+                    }
 
-            if (item.component === EditableDataComponent.INPUTCURRENCY && isValid) {
-                console.log('value', values[(item as EditableInputCurrencyDataProps).name]);
+                    break;
 
-                isValid = validateInputCurrency(
-                    values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
-                    (item as EditableInputCurrencyDataProps).locale,
-                    Boolean((item as EditableInputCurrencyDataProps).isRequired)
-                );
+                case EditableDataComponent.INPUTCURRENCY:
+                    isValid = isValidInputCurrency(
+                        values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
+                        (item as EditableInputCurrencyDataProps).locale,
+                        Boolean((item as EditableInputCurrencyDataProps).isRequired)
+                    );
+
+                    break;
+
+                case EditableDataComponent.INPUTNUMBER:
+                    isValid = isValidInputNumber(
+                        values[(item as EditableInputNumberDataProps).name]?.toString() || null,
+                        (item as EditableInputNumberDataProps).locale || DEFAULT_LOCALE,
+                        Boolean((item as EditableInputNumberDataProps).isRequired),
+                        (item as EditableInputNumberDataProps).min,
+                        (item as EditableInputNumberDataProps).max
+                    );
+
+                    break;
+
+                default:
+                    isValid = true;
             }
-
-            // if (item.component === EditableDataComponent.INPUTNUMBER && isValid) {
-            //     isValid = validateInputNumber(item as EditableInputNumberDataProps);
-            //     console.log('validateInput result 1c', isValid);
-            // }
 
             i += 1;
         }
-
-        console.log('validateInput result 2', isValid);
 
         return isValid;
     }

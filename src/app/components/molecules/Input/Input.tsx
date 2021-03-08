@@ -2,10 +2,11 @@ import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../typ
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import {
     isEmpty,
-    isValidEmail,
-    isValidMoney,
-    isValidNumber,
-    isValidPhoneNumber,
+    isValidInputCurrency,
+    isValidInputEmail,
+    isValidInputNumber,
+    isValidInputTelephone,
+    isValidInputText,
 } from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
@@ -87,25 +88,43 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const [hasValidationError, setHasValidationError] = useState(hasError);
     const textFieldProps: { [key: string]: number } = {};
 
+    // Because this check might be performed in several actions, put it here
+    // The dependencies are at least required to make the stories work
+    const isValidInput = useCallback(
+        (valueToValidate: string): boolean => {
+            switch (type) {
+                case InputType.CURRENCY:
+                    return isValidInputCurrency(valueToValidate.toString(), locale, isRequired);
+
+                case InputType.EMAIL:
+                    return isValidInputEmail(valueToValidate, isRequired);
+
+                case InputType.NUMBER:
+                    return isValidInputNumber(parseInt(valueToValidate, 10), locale, isRequired, min, max);
+
+                case InputType.TELEPHONE:
+                    return isValidInputTelephone(valueToValidate, isRequired);
+
+                case InputType.TEXT:
+                    return isValidInputText(valueToValidate, isRequired, minLength, maxLength);
+
+                default:
+                    return true;
+            }
+        },
+        [isRequired, locale, max, maxLength, min, minLength]
+    );
+
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
-            let isValidInput = true;
+            const isValidData = isValidInput(event.currentTarget.value);
 
-            if (
-                type === InputType.NUMBER &&
-                event.currentTarget.value.length > 0 &&
-                ((maxLength && event.currentTarget.value.length > maxLength) ||
-                    !isValidNumber(event.currentTarget.value))
-            ) {
-                isValidInput = false;
-            }
-
-            if (isValidInput && onChange) {
+            if (onChange) {
                 onChange(event);
             }
 
             setInputValue(event.currentTarget.value);
-            setHasValidationError(!isValidInput);
+            setHasValidationError(!isValidData);
         },
         [maxLength, onChange, type]
     );
@@ -125,30 +144,12 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     setHasValidationError(true);
                 } else {
                     setInputValue(inputValue);
+                    const isValidData = isValidInput(event.currentTarget.value);
+                    setHasValidationError(!isValidData);
 
-                    switch (type) {
-                        case InputType.CURRENCY:
-                            if (isValidMoney(event.currentTarget.value, locale)) {
-                                setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
-                            }
-
-                            setHasValidationError(!isValidMoney(event.currentTarget.value, locale));
-                            break;
-
-                        case InputType.EMAIL:
-                            setHasValidationError(!isValidEmail(event.currentTarget.value));
-                            break;
-
-                        case InputType.NUMBER:
-                            setHasValidationError(!isValidNumber(event.currentTarget.value));
-                            break;
-
-                        case InputType.TELEPHONE:
-                            setHasValidationError(!isValidPhoneNumber(event.currentTarget.value));
-                            break;
-
-                        default:
-                            setHasValidationError(false);
+                    // Perform some possible post actions
+                    if (type === InputType.CURRENCY && isValidData) {
+                        setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
                     }
                 }
 

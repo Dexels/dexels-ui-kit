@@ -116,6 +116,7 @@ export interface InputDataProps extends BaseDataProps {
 
 export interface EditableInputDataProps extends InputDataProps {
     maxLength?: InputProps['maxLength'];
+    minLength?: InputProps['minLength'];
     name: InputProps['name'];
     onBlur?: InputProps['onBlur'];
     onChange?: InputProps['onChange'];

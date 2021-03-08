@@ -140,6 +140,21 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     } as EditableInputNumberDataProps);
 
     result.push({
+        component: EditableDataComponent.INPUTNUMBER,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'BadNumber',
+        min: 0,
+        name: 'BadNumber',
+        onBlur: onBlurCallback,
+        onChange: onChangeCallback,
+        onFocus: onFocusCallback,
+        onKeyDown: onKeyDownCallback,
+        value: -1,
+    } as EditableInputNumberDataProps);
+
+    result.push({
         component: EditableDataComponent.INPUT,
         isDisabled: false,
         isEditable: true,

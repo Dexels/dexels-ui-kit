@@ -74,7 +74,7 @@ export const defaultCurrencySettings = (hasRounding = false, hasSymbol = true, l
     decimal: ',',
     fromCents: false,
     increment: hasRounding ? 0.05 : 0,
-    negativePattern: '-!#',
+    negativePattern: '!-#',
     pattern: '!#',
     precision: 2,
     separator: '.',
