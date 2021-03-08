@@ -205,6 +205,11 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                                     dataInstance.onFocus(event);
                                 }
                             }}
+                            onKeyDown={(event): void => {
+                                if (dataInstance.onKeyDown) {
+                                    dataInstance.onKeyDown(event);
+                                }
+                            }}
                             type={dataInstance.type}
                             value={values[name] as string | undefined}
                             variant={InputVariant.COMPACT}
@@ -218,15 +223,30 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <InputCurrency
-                            allowEmpty={!isRequired}
                             isDisabled={isDisabled}
+                            isRequired={isRequired}
                             locale={dataInstance.locale}
                             name={name}
+                            onBlur={(event): void => {
+                                if (dataInstance.onBlur) {
+                                    dataInstance.onBlur(event);
+                                }
+                            }}
                             onChange={({ currentTarget }): void => {
                                 onChange(
                                     currentTarget.name,
                                     formatMoneyWithoutSymbol(currentTarget.value, dataInstance.locale)
                                 );
+                            }}
+                            onFocus={(event): void => {
+                                if (dataInstance.onFocus) {
+                                    dataInstance.onFocus(event);
+                                }
+                            }}
+                            onKeyDown={(event): void => {
+                                if (dataInstance.onKeyDown) {
+                                    dataInstance.onKeyDown(event);
+                                }
                             }}
                             value={(values[name] as string) || ''}
                             variant={InputVariant.COMPACT}
@@ -242,12 +262,28 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                         <Input
                             hasError={isRequired && Boolean(name) && values[name] === undefined}
                             isDisabled={isDisabled}
+                            isRequired={isRequired}
                             label={dataInstance.placeholder}
                             max={dataInstance.max}
                             min={dataInstance.min}
                             name={name}
+                            onBlur={(event): void => {
+                                if (dataInstance.onBlur) {
+                                    dataInstance.onBlur(event);
+                                }
+                            }}
                             onChange={({ currentTarget }): void => {
                                 onChange(currentTarget.name, parseInputValue(currentTarget));
+                            }}
+                            onFocus={(event): void => {
+                                if (dataInstance.onFocus) {
+                                    dataInstance.onFocus(event);
+                                }
+                            }}
+                            onKeyDown={(event): void => {
+                                if (dataInstance.onKeyDown) {
+                                    dataInstance.onKeyDown(event);
+                                }
                             }}
                             type={InputType.NUMBER}
                             value={values[name]?.toString()}
@@ -279,12 +315,28 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                         <Input
                             hasError={isRequired && Boolean(name) && !values[name]}
                             isDisabled={isDisabled}
+                            isRequired={isRequired}
                             isTextarea
                             label={dataInstance.placeholder}
                             maxLength={dataInstance.maxLength || 1024}
                             name={name}
+                            onBlur={(event): void => {
+                                if (dataInstance.onBlur) {
+                                    dataInstance.onBlur(event);
+                                }
+                            }}
                             onChange={({ currentTarget }): void => {
                                 onChange(currentTarget.name, currentTarget.value);
+                            }}
+                            onFocus={(event): void => {
+                                if (dataInstance.onFocus) {
+                                    dataInstance.onFocus(event);
+                                }
+                            }}
+                            onKeyDown={(event): void => {
+                                if (dataInstance.onKeyDown) {
+                                    dataInstance.onKeyDown(event);
+                                }
                             }}
                             value={values[name] as string | undefined}
                         />
@@ -328,6 +380,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     <Input
                         hasError={isRequired && Boolean(name) && !values[name]}
                         isDisabled={isDisabled}
+                        isRequired={isRequired}
                         name={name}
                         onChange={({ currentTarget }): void => {
                             onChange(currentTarget.name, currentTarget.value);
