@@ -9,7 +9,7 @@ import {
     ValueTypes,
 } from '../types';
 import { convertToLocaleValue, formatMoney } from '../../../../utils/functions/financialFunctions';
-import { EditableDataComponent, Status } from '../../../../types';
+import { EditableDataComponent, Locale, Status } from '../../../../types';
 import { isEmpty, isValidMoney, isValidNumber } from '../../../../utils/functions/validateFunctions';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
@@ -92,17 +92,20 @@ export const isEditableData = <T extends DropdownSelectOption, U extends Dropdow
 
 export const validateInput = (data: EditableInputDataProps): boolean => Boolean(data.isRequired) && isEmpty(data.value);
 
-export const validateInputCurrency = (data: EditableInputCurrencyDataProps): boolean => {
-    console.log(data);
-    console.log(data.isRequired && (isEmpty(data.value) || data.value === '0'));
-    console.log(isValidMoney(data.value || '', data.locale));
+export const validateInputCurrency = (value: string, locale: Locale, isRequired: boolean): boolean => {
+    console.log(value, locale, isRequired && isEmpty(value), value === '0');
+    console.log(isValidMoney(value || '', locale));
 
-    if (data.isRequired && (isEmpty(data.value) || data.value === '0')) {
+    if (isRequired && (isEmpty(value) || value === '0')) {
         return false;
     }
 
-    // Can not be undefined/null ...
-    return isValidMoney(data.value || '', data.locale);
+    if (!isRequired && (isEmpty(value) || value === '0')) {
+        return true;
+    }
+
+    // Can not be undefined/null, because of previous check ...
+    return isValidMoney(value || '', locale);
 };
 
 export const validateInputNumber = (data: EditableInputNumberDataProps): boolean => {
@@ -123,31 +126,43 @@ export const validateInputNumber = (data: EditableInputNumberDataProps): boolean
 
 export const validateEditableInput = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
-    values: ValueTypes<T, U>
+    values: { [key: string]: ValueTypes<T, U> }
 ): boolean => {
     if (data.length) {
+        let i = 0;
         let isValid = true;
 
-        console.log('data', data, values);
+        // console.log('validateInput', isValid);
+        // console.log('data', data);
+        // console.log('values', values);
 
         // Check all items, but only if still valid
-        data.forEach((item) => {
+        while (isValid && i < data.length) {
+            const item = data[i];
+            console.log('item', item);
+
             // if (item.component === EditableDataComponent.INPUT && isValid) {
             //     isValid = validateInput(item as EditableInputDataProps);
             //     console.log('validateInput result 1a', isValid);
             // }
 
             if (item.component === EditableDataComponent.INPUTCURRENCY && isValid) {
-                isValid = validateInputCurrency(item as EditableInputCurrencyDataProps);
+                console.log('value', values[(item as EditableInputCurrencyDataProps).name]);
 
-                console.log('validateInput result 1b', isValid);
+                isValid = validateInputCurrency(
+                    values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
+                    (item as EditableInputCurrencyDataProps).locale,
+                    Boolean((item as EditableInputCurrencyDataProps).isRequired)
+                );
             }
 
             // if (item.component === EditableDataComponent.INPUTNUMBER && isValid) {
             //     isValid = validateInputNumber(item as EditableInputNumberDataProps);
             //     console.log('validateInput result 1c', isValid);
             // }
-        });
+
+            i += 1;
+        }
 
         console.log('validateInput result 2', isValid);
 
