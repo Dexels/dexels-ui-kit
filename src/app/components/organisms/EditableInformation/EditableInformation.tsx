@@ -1,11 +1,6 @@
 import { DatePickerFocuses, EditableInformationData, ValueTypes } from './types';
 import { editableData, EditableDataProps } from './editableData/editableData';
-import {
-    getStatus,
-    getValueOfEditableDataComponent,
-    isEditableData,
-    isValidEditableInput,
-} from './utils/informationDataFunctions';
+import { getStatus, getValueOfEditableDataComponent, isEditableData } from './utils/informationDataFunctions';
 import { IconType, Status } from '../../../types';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -40,6 +35,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
     onSave?: (data: { [key: string]: ValueTypes<T, U> }) => void;
+    onValidation?: (isValidData: boolean) => void;
     saveConfirmDialog?: ConfirmDialog;
     status?: Status;
     textCancel?: string;
@@ -67,6 +63,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     onChange,
     onEdit,
     onSave,
+    onValidation,
     saveConfirmDialog,
     status,
     textCancel,
@@ -84,6 +81,17 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
+    const onValidationCallback = useCallback(
+        (isValidData: boolean) => {
+            setHasInputError(isValidData);
+
+            if (onValidation) {
+                onValidation(isValidData);
+            }
+        },
+        [onValidation]
+    );
+
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
 
@@ -93,25 +101,17 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [onEdit]);
 
     const onSaveCallback = useCallback(() => {
-        const isValidInput = isValidEditableInput(data, updatedValues);
-        setHasInputError(!isValidInput);
-
-        if (hasInputError || !isValidInput) {
-            setIsBeingEdited(true);
-        } else {
-            if (!keepEditMode) {
-                setIsBeingEdited(false);
-            }
-
-            if (onSave) {
-                onSave(updatedValues);
-            }
+        if (!keepEditMode) {
+            setIsBeingEdited(false);
         }
-    }, [data, hasError, hasInputError, onSave, updatedValues]);
+
+        if (onSave) {
+            onSave(updatedValues);
+        }
+    }, [onSave, updatedValues]);
 
     const onCancelCallback = useCallback(() => {
         setIsBeingEdited(false);
-        setHasInputError(false);
         setUpdatedValues(originalValues);
 
         if (onCancel) {
@@ -174,10 +174,6 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [data]);
 
     useEffect(() => {
-        setHasInputError(!isValidEditableInput(data, updatedValues));
-    }, [data, updatedValues]);
-
-    useEffect(() => {
         if (isEditable) {
             setDatePickerFocuses(
                 data.reduce((accumulator, dataInstance) => {
@@ -224,6 +220,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
                 onChange: onChangeCallback,
                 onDatePickerFocusChange: onDatePickerFocusChangeCallback,
                 onDropdownChange: onDropdownChangeCallback,
+                onValidation: onValidationCallback,
                 values: updatedValues,
             }) as InformationTableData[];
 

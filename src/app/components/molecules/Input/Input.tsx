@@ -16,6 +16,7 @@ import React, {
     MouseEventHandler,
     ReactNode,
     useCallback,
+    useEffect,
     useState,
 } from 'react';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
@@ -43,10 +44,11 @@ export interface InputProps {
     minLength?: number;
     name: string;
     onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, isValidData?: boolean) => void;
     onClick?: MouseEventHandler;
     onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+    onValidation?: (isValidData: boolean) => void;
     type?: InputType;
     value?: string | null;
     variant?: InputVariant;
@@ -75,6 +77,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     onChange,
     onClick,
     onKeyDown,
+    onValidation,
     onFocus,
     type = InputType.TEXT,
     value = '',
@@ -117,17 +120,24 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
-            const isValidData = isValidInput(event.currentTarget.value);
-
             if (onChange) {
                 onChange(event);
             }
 
             setInputValue(event.currentTarget.value);
-            setHasValidationError(!isValidData);
         },
-        [maxLength, onChange, type]
+        [onChange]
     );
+
+    useEffect(() => {
+        setHasValidationError(!isValidInput(inputValue || ''));
+    }, [inputValue]);
+
+    useEffect(() => {
+        if (onValidation) {
+            onValidation(hasValidationError);
+        }
+    }, [onValidation]);
 
     const toggleIsFocusedCallback = useCallback(
         (event: FocusEvent<HTMLInputElement>) => {

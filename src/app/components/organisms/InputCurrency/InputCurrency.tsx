@@ -34,6 +34,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     onChange,
     onFocus,
     onKeyDown,
+    onValidation,
     value,
     variant = InputVariant.OUTLINE,
 }) => (
@@ -53,6 +54,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
             onChange={onChange}
             onFocus={onFocus}
             onKeyDown={onKeyDown}
+            onValidation={onValidation}
             type={InputType.CURRENCY}
             value={value}
             variant={variant}

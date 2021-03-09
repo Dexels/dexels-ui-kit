@@ -26,6 +26,7 @@ export interface EditableDataProps<T extends DropdownOption, U extends DropdownM
     onChange: (name: string, value: ValueTypes<T, U>) => void;
     onDatePickerFocusChange: (name: string, focused: boolean) => void;
     onDropdownChange: (option: T, name: string, propertyNameOfId?: string) => void;
+    onValidation?: (isValidData: boolean) => void;
     values: {
         [key: string]: ValueTypes<T, U>;
     };
@@ -39,6 +40,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
     onDatePickerFocusChange,
     onDropdownChange,
     onChange,
+    onValidation,
     values,
 }: EditableDataProps<T, U>): InformationTableProps['data'] =>
     data
@@ -210,6 +212,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                                     dataInstance.onKeyDown(event);
                                 }
                             }}
+                            onValidation={onValidation}
                             type={dataInstance.type}
                             value={values[name] as string | undefined}
                             variant={InputVariant.COMPACT}
@@ -248,6 +251,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                                     dataInstance.onKeyDown(event);
                                 }
                             }}
+                            onValidation={onValidation}
                             value={(values[name] as string) || ''}
                             variant={InputVariant.COMPACT}
                         />
@@ -285,6 +289,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                                     dataInstance.onKeyDown(event);
                                 }
                             }}
+                            onValidation={onValidation}
                             type={InputType.NUMBER}
                             value={values[name]?.toString()}
                             variant={InputVariant.COMPACT}

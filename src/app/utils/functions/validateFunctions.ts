@@ -74,8 +74,8 @@ export const isValidInputCurrency = (
 };
 
 export const isValidInputEmail = (value: string | null | undefined, isRequired: boolean): boolean => {
-    if (isRequired && isEmpty(value)) {
-        return false;
+    if (isEmpty(value) && !isRequired) {
+        return true;
     }
 
     return value !== null && value !== undefined && isValidEmail(value);
