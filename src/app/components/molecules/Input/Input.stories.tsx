@@ -131,7 +131,7 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This input can only contain numbers')}
             locale={select('Locale', Locale, Locale.NL)}
-            max={number('Max', 100000000)}
+            max={number('Max', 100)}
             min={number('Min', 0)}
             name="an-input-name"
             onBlur={action('On blur')}
