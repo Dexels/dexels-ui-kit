@@ -16,6 +16,7 @@ import React, {
     MouseEventHandler,
     ReactNode,
     useCallback,
+    useEffect,
     useState,
 } from 'react';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
@@ -83,6 +84,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const [isValidInputData, setIsValidInputData] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const hasValue = inputValue ? inputValue.length > 0 : false;
     const [hasValidationError, setHasValidationError] = useState(hasError);
@@ -118,6 +120,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             const isValidData = isValidInput(event.currentTarget.value);
+            setIsValidInputData(isValidData);
 
             if (onChange) {
                 onChange(event);
@@ -144,11 +147,10 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     setHasValidationError(true);
                 } else {
                     setInputValue(inputValue);
-                    const isValidData = isValidInput(event.currentTarget.value);
-                    setHasValidationError(!isValidData);
+                    setHasValidationError(!isValidInputData);
 
                     // Perform some possible post actions
-                    if (type === InputType.CURRENCY && isValidData) {
+                    if (type === InputType.CURRENCY && isValidInputData) {
                         setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
                     }
                 }
@@ -158,7 +160,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
             setIsFocused(!isFocused);
         },
-        [inputValue, isFocused, onBlur, onFocus]
+        [inputValue, isFocused, isValidInputData, onBlur, onFocus]
     );
 
     const toggleIsHoveredCallback = useCallback(() => {
@@ -174,6 +176,13 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             textFieldProps.min = min;
         }
     }
+
+    // Initialize correct validation stuff
+    useEffect(() => {
+        const isValidData = value !== undefined && value !== null ? isValidInput(value) : !(isRequired && !value);
+        setIsValidInputData(isValidData);
+        setHasValidationError(!isValidData);
+    }, []);
 
     return (
         <>
