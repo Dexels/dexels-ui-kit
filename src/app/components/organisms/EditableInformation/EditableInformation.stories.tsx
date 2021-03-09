@@ -48,6 +48,11 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setSaveErrors((undefined as unknown) as string[]);
     };
 
+    const onValidationCallback = (isValidData: boolean) => {
+        // eslint-disable-next-line no-console
+        console.log('onValidationCallback', isValidData);
+    };
+
     return (
         <EditableInformation
             amountOfColumns={select('Columns', [1, 2, 3], 2)}
@@ -73,6 +78,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             onCancel={onCancelCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
             onSave={isEditable ? onSaveCallback : undefined}
+            onValidation={isEditable ? onValidationCallback : undefined}
             saveConfirmDialog={
                 withDialogs
                     ? {
