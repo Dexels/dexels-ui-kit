@@ -1,7 +1,6 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import {
-    isEmpty,
     isValidInputCurrency,
     isValidInputEmail,
     isValidInputNumber,
@@ -87,11 +86,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const [isValidInputData, setIsValidInputData] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const hasValue = inputValue ? inputValue.length > 0 : false;
-    const [hasValidationError, setHasValidationError] = useState(hasError);
     const textFieldProps: { [key: string]: number } = {};
 
     // Because this check might be performed in several actions, put it here
-    // The dependencies are at least required to make the stories work
     const isValidInput = useCallback(
         (valueToValidate: string): boolean => {
             switch (type) {
@@ -117,19 +114,20 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
         [isRequired, locale, max, maxLength, min, minLength]
     );
 
+    // wheh inputValue changes validate it
+    useEffect(() => {
+        setIsValidInputData(isValidInput(inputValue || ''));
+    }, [inputValue]);
+
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
-            const isValidData = isValidInput(event.currentTarget.value);
-            setIsValidInputData(isValidData);
-
             if (onChange) {
                 onChange(event);
             }
 
             setInputValue(event.currentTarget.value);
-            setHasValidationError(!isValidData);
         },
-        [maxLength, onChange, type]
+        [isValidInput, onChange]
     );
 
     const toggleIsFocusedCallback = useCallback(
@@ -139,20 +137,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             }
 
             if (isFocused && onBlur) {
-                if (isEmpty(event.currentTarget.value) && !isRequired) {
-                    setInputValue(null);
-                    setHasValidationError(false);
-                } else if (isEmpty(event.currentTarget.value) && isRequired) {
-                    setInputValue(inputValue);
-                    setHasValidationError(true);
-                } else {
-                    setInputValue(inputValue);
-                    setHasValidationError(!isValidInputData);
-
-                    // Perform some possible post actions
-                    if (type === InputType.CURRENCY && isValidInputData) {
-                        setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
-                    }
+                // Perform some possible post actions
+                if (type === InputType.CURRENCY && isValidInputData) {
+                    setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
                 }
 
                 onBlur(event);
@@ -160,7 +147,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
             setIsFocused(!isFocused);
         },
-        [inputValue, isFocused, isValidInputData, onBlur, onFocus]
+        [inputValue, isFocused, onBlur, onFocus]
     );
 
     const toggleIsHoveredCallback = useCallback(() => {
@@ -177,18 +164,11 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
         }
     }
 
-    // Initialize correct validation stuff
-    useEffect(() => {
-        const isValidData = value !== undefined && value !== null ? isValidInput(value) : !(isRequired && !value);
-        setIsValidInputData(isValidData);
-        setHasValidationError(!isValidData);
-    }, []);
-
     return (
         <>
             <StyledInput
                 className={className}
-                hasError={hasError || hasValidationError}
+                hasError={hasError || !isValidInputData}
                 isClickable={!isDisabled && Boolean(onClick)}
                 isDisabled={isDisabled}
                 isFocused={isFocused}
@@ -202,7 +182,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     as={isTextarea ? 'textarea' : 'input'}
                     autoFocus={autoFocus}
                     hasAdornment={adornment !== undefined}
-                    hasError={hasError || hasValidationError}
+                    hasError={hasError || !isValidInputData}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
@@ -227,7 +207,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     <FormElementLabel
                         adornmentPosition={adornmentPosition}
                         hasAdornment={adornment !== undefined}
-                        hasError={hasError || hasValidationError}
+                        hasError={hasError || !isValidInputData}
                         isActive={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
@@ -242,7 +222,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 {adornment && (
                     <AdornmentWrapper
                         adornmentPosition={adornmentPosition}
-                        hasError={hasError || hasValidationError}
+                        hasError={hasError || !isValidInputData}
                         hasValue={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
@@ -254,7 +234,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     </AdornmentWrapper>
                 )}
             </StyledInput>
-            {errorMessage && (hasError || hasValidationError) && !isDisabled && (
+            {errorMessage && (hasError || !isValidInputData) && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>
                     <ErrorMessage>{errorMessage}</ErrorMessage>
                 </ErrorMessageWrapper>

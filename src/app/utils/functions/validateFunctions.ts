@@ -73,13 +73,8 @@ export const isValidInputCurrency = (
     return isValidMoney(value || '', locale);
 };
 
-export const isValidInputEmail = (value: string | null | undefined, isRequired: boolean): boolean => {
-    if (isRequired && isEmpty(value)) {
-        return false;
-    }
-
-    return value !== null && value !== undefined && isValidEmail(value);
-};
+export const isValidInputEmail = (value: string | null | undefined, isRequired: boolean): boolean =>
+    (isEmpty(value) && !isRequired) || (!isEmpty(value) && isValidEmail(value as string));
 
 export const isValidInputNumber = (
     value: number | string | null | undefined,
@@ -115,13 +110,8 @@ export const isValidInputNumber = (
     return isValidNumber(tmpNumberValue.toString(), true, locale);
 };
 
-export const isValidInputTelephone = (value: string | null | undefined, isRequired: boolean): boolean => {
-    if (isRequired && isEmpty(value)) {
-        return false;
-    }
-
-    return value !== null && value !== undefined && isValidPhoneNumber(value);
-};
+export const isValidInputTelephone = (value: string | null | undefined, isRequired: boolean): boolean =>
+    (isEmpty(value) && !isRequired) || (!isEmpty(value) && isValidPhoneNumber(value as string));
 
 export const isValidInputText = (
     value: string | null | undefined,
