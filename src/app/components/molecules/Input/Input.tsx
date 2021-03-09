@@ -43,7 +43,7 @@ export interface InputProps {
     minLength?: number;
     name: string;
     onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
-    onChange?: (event: ChangeEvent<HTMLInputElement>, isValidData?: boolean) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onClick?: MouseEventHandler;
     onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
