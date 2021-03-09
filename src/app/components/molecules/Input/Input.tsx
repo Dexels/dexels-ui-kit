@@ -1,11 +1,11 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import {
-    isEmpty,
-    isValidEmail,
-    isValidMoney,
-    isValidNumber,
-    isValidPhoneNumber,
+    isValidInputCurrency,
+    isValidInputEmail,
+    isValidInputNumber,
+    isValidInputTelephone,
+    isValidInputText,
 } from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
@@ -15,6 +15,7 @@ import React, {
     MouseEventHandler,
     ReactNode,
     useCallback,
+    useEffect,
     useState,
 } from 'react';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
@@ -82,32 +83,51 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const [isValidInputData, setIsValidInputData] = useState(false);
     const [inputValue, setInputValue] = useState(value);
     const hasValue = inputValue ? inputValue.length > 0 : false;
-    const [hasValidationError, setHasValidationError] = useState(hasError);
     const textFieldProps: { [key: string]: number } = {};
+
+    // Because this check might be performed in several actions, put it here
+    const isValidInput = useCallback(
+        (valueToValidate: string): boolean => {
+            switch (type) {
+                case InputType.CURRENCY:
+                    return isValidInputCurrency(valueToValidate.toString(), locale, isRequired);
+
+                case InputType.EMAIL:
+                    return isValidInputEmail(valueToValidate, isRequired);
+
+                case InputType.NUMBER:
+                    return isValidInputNumber(parseInt(valueToValidate, 10), locale, isRequired, min, max);
+
+                case InputType.TELEPHONE:
+                    return isValidInputTelephone(valueToValidate, isRequired);
+
+                case InputType.TEXT:
+                    return isValidInputText(valueToValidate, isRequired, minLength, maxLength);
+
+                default:
+                    return true;
+            }
+        },
+        [isRequired, locale, max, maxLength, min, minLength]
+    );
+
+    // wheh inputValue changes validate it
+    useEffect(() => {
+        setIsValidInputData(isValidInput(inputValue || ''));
+    }, [inputValue]);
 
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
-            let isValidInput = true;
-
-            if (
-                type === InputType.NUMBER &&
-                event.currentTarget.value.length > 0 &&
-                ((maxLength && event.currentTarget.value.length > maxLength) ||
-                    !isValidNumber(event.currentTarget.value))
-            ) {
-                isValidInput = false;
-            }
-
-            if (isValidInput && onChange) {
+            if (onChange) {
                 onChange(event);
             }
 
             setInputValue(event.currentTarget.value);
-            setHasValidationError(!isValidInput);
         },
-        [maxLength, onChange, type]
+        [isValidInput, onChange]
     );
 
     const toggleIsFocusedCallback = useCallback(
@@ -117,39 +137,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             }
 
             if (isFocused && onBlur) {
-                if (isEmpty(event.currentTarget.value) && !isRequired) {
-                    setInputValue(null);
-                    setHasValidationError(false);
-                } else if (isEmpty(event.currentTarget.value) && isRequired) {
-                    setInputValue(inputValue);
-                    setHasValidationError(true);
-                } else {
-                    setInputValue(inputValue);
-
-                    switch (type) {
-                        case InputType.CURRENCY:
-                            if (isValidMoney(event.currentTarget.value, locale)) {
-                                setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
-                            }
-
-                            setHasValidationError(!isValidMoney(event.currentTarget.value, locale));
-                            break;
-
-                        case InputType.EMAIL:
-                            setHasValidationError(!isValidEmail(event.currentTarget.value));
-                            break;
-
-                        case InputType.NUMBER:
-                            setHasValidationError(!isValidNumber(event.currentTarget.value));
-                            break;
-
-                        case InputType.TELEPHONE:
-                            setHasValidationError(!isValidPhoneNumber(event.currentTarget.value));
-                            break;
-
-                        default:
-                            setHasValidationError(false);
-                    }
+                // Perform some possible post actions
+                if (type === InputType.CURRENCY && isValidInputData) {
+                    setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
                 }
 
                 onBlur(event);
@@ -178,7 +168,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
         <>
             <StyledInput
                 className={className}
-                hasError={hasError || hasValidationError}
+                hasError={hasError || !isValidInputData}
                 isClickable={!isDisabled && Boolean(onClick)}
                 isDisabled={isDisabled}
                 isFocused={isFocused}
@@ -192,7 +182,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     as={isTextarea ? 'textarea' : 'input'}
                     autoFocus={autoFocus}
                     hasAdornment={adornment !== undefined}
-                    hasError={hasError || hasValidationError}
+                    hasError={hasError || !isValidInputData}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
@@ -217,7 +207,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     <FormElementLabel
                         adornmentPosition={adornmentPosition}
                         hasAdornment={adornment !== undefined}
-                        hasError={hasError || hasValidationError}
+                        hasError={hasError || !isValidInputData}
                         isActive={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
@@ -232,7 +222,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 {adornment && (
                     <AdornmentWrapper
                         adornmentPosition={adornmentPosition}
-                        hasError={hasError || hasValidationError}
+                        hasError={hasError || !isValidInputData}
                         hasValue={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
@@ -244,7 +234,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     </AdornmentWrapper>
                 )}
             </StyledInput>
-            {errorMessage && (hasError || hasValidationError) && !isDisabled && (
+            {errorMessage && (hasError || !isValidInputData) && !isDisabled && (
                 <ErrorMessageWrapper variant={variant}>
                     <ErrorMessage>{errorMessage}</ErrorMessage>
                 </ErrorMessageWrapper>

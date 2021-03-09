@@ -1,6 +1,22 @@
-import { CheckboxDataProps, DropdownDataProps, EditableInformationData, EditableInformationDataType } from '../types';
+import {
+    CheckboxDataProps,
+    DropdownDataProps,
+    EditableInformationData,
+    EditableInformationDataType,
+    EditableInputCurrencyDataProps,
+    EditableInputDataProps,
+    EditableInputNumberDataProps,
+    ValueTypes,
+} from '../types';
 import { convertToLocaleValue, formatMoney } from '../../../../utils/functions/financialFunctions';
-import { EditableDataComponent, Status } from '../../../../types';
+import { EditableDataComponent, InputType, Status } from '../../../../types';
+import {
+    isValidInputCurrency,
+    isValidInputEmail,
+    isValidInputNumber,
+    isValidInputTelephone,
+    isValidInputText,
+} from '../../../../utils/functions/validateFunctions';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
@@ -79,3 +95,71 @@ export const isEditableData = <T extends DropdownSelectOption, U extends Dropdow
             'component' in dataInstance &&
             dataInstance.isEditable
     );
+
+export const isValidEditableInput = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
+    data: EditableInformationData<T, U>,
+    values: { [key: string]: ValueTypes<T, U> }
+): boolean => {
+    if (data.length) {
+        let i = 0;
+        let isValid = true;
+
+        // Check all items, but only if still valid
+        while (isValid && i < data.length) {
+            const item = data[i];
+
+            switch (item.component) {
+                case EditableDataComponent.INPUT:
+                    if ((item as EditableInputDataProps).type === InputType.EMAIL) {
+                        isValid = isValidInputEmail(
+                            values[(item as EditableInputDataProps).name]?.toString() || null,
+                            Boolean((item as EditableInputDataProps).isRequired)
+                        );
+                    } else if ((item as EditableInputDataProps).type === InputType.TELEPHONE) {
+                        isValid = isValidInputTelephone(
+                            values[(item as EditableInputDataProps).name]?.toString() || null,
+                            Boolean((item as EditableInputDataProps).isRequired)
+                        );
+                    } else {
+                        isValid = isValidInputText(
+                            values[(item as EditableInputDataProps).name]?.toString() || null,
+                            Boolean((item as EditableInputDataProps).isRequired),
+                            (item as EditableInputDataProps).minLength,
+                            (item as EditableInputDataProps).maxLength
+                        );
+                    }
+
+                    break;
+
+                case EditableDataComponent.INPUTCURRENCY:
+                    isValid = isValidInputCurrency(
+                        values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
+                        (item as EditableInputCurrencyDataProps).locale,
+                        Boolean((item as EditableInputCurrencyDataProps).isRequired)
+                    );
+
+                    break;
+
+                case EditableDataComponent.INPUTNUMBER:
+                    isValid = isValidInputNumber(
+                        values[(item as EditableInputNumberDataProps).name]?.toString() || null,
+                        (item as EditableInputNumberDataProps).locale || DEFAULT_LOCALE,
+                        Boolean((item as EditableInputNumberDataProps).isRequired),
+                        (item as EditableInputNumberDataProps).min,
+                        (item as EditableInputNumberDataProps).max
+                    );
+
+                    break;
+
+                default:
+                    isValid = true;
+            }
+
+            i += 1;
+        }
+
+        return isValid;
+    }
+
+    return true;
+};

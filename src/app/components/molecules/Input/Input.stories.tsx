@@ -94,6 +94,31 @@ export const ConfigurableClickable: FunctionComponent = () => {
     );
 };
 
+export const ConfigurableMinNumberAndRequired: FunctionComponent = () => {
+    const [value, setValue] = useState('-1');
+
+    return (
+        <Input
+            errorMessage={text('Error message', 'Help, something went wrong!')}
+            hasError={boolean('Has error', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', true)}
+            isValid={boolean('Is valid', false)}
+            label={text('Label', 'This input can only contain numbers greater or equal to 0')}
+            locale={select('Locale', Locale, Locale.NL)}
+            min={number('Min', 0)}
+            name="IsRequiredButBadNumber"
+            onBlur={action('On blur')}
+            onChange={({ currentTarget }): void => {
+                setValue(parseInputValue(currentTarget));
+            }}
+            type={InputType.NUMBER}
+            value={value}
+            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
+        />
+    );
+};
+
 export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
     const [value, setValue] = useState('10');
 
@@ -107,7 +132,6 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             label={text('Label', 'This input can only contain numbers')}
             locale={select('Locale', Locale, Locale.NL)}
             max={number('Max', 100000000)}
-            maxLength={number('Max length', 8)}
             min={number('Min', 0)}
             name="an-input-name"
             onBlur={action('On blur')}

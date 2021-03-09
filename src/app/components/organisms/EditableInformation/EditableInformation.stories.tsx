@@ -31,6 +31,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
         setIsSaving(true);
+        setIsEditing(isEditingMode);
         setUpdatedData(updateValuesOfData(updatedData, newData));
 
         // Show loading state for 5 seconds
@@ -45,6 +46,11 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
 
     const onCancelCallback = () => {
         setSaveErrors((undefined as unknown) as string[]);
+    };
+
+    const onValidationCallback = (isValidData: boolean) => {
+        // eslint-disable-next-line no-console
+        console.log('onValidationCallback', isValidData);
     };
 
     return (
@@ -72,6 +78,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             onCancel={onCancelCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
             onSave={isEditable ? onSaveCallback : undefined}
+            onValidation={isEditable ? onValidationCallback : undefined}
             saveConfirmDialog={
                 withDialogs
                     ? {
