@@ -30,7 +30,7 @@ export const Configurable: FunctionComponent = () => {
                 setValue(parseInputValue(currentTarget));
             }}
             onFocus={action('On focus')}
-            type={select('Type', InputType, InputType.EMAIL)}
+            type={select('Type', InputType, InputType.TEXT)}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />
