@@ -68,6 +68,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                     : undefined
             }
             data={updatedData}
+            debug={boolean('Print debug info', false)}
             errors={saveErrors}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
             isButtonDisabled={boolean('Is button disabled', false)}
