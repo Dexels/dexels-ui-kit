@@ -25,6 +25,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     cancelConfirmDialog?: ConfirmDialog;
     data: EditableInformationData<T, U>;
     dateFormat?: string;
+    debug?: boolean; // Prints some info for devs
     errors?: string[];
     iconCancel?: IconType;
     iconEdit?: IconType;
@@ -52,6 +53,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     amountOfColumns = 2,
     data,
     dateFormat = 'dd. D MMM YYYY',
+    debug = false,
     cancelConfirmDialog,
     errors,
     iconCancel,
@@ -78,6 +80,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
 }: EditableInformationProps<T, U>): JSX.Element => {
     const DEFAULT_AMOUNT_ROWS = 4;
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
+    const [debugCounter, setDebugCounter] = useState(1);
     const [isValidInputData, setIsValidInputData] = useState(true);
     const hasError = errors !== undefined;
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
@@ -85,6 +88,25 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     const [isEditable, setIsEditable] = useState<boolean>(false);
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
+
+    // Some basic debug info for the dev
+    useEffect(() => {
+        if (debug) {
+            /* eslint-disable */
+            console.log(`**** DEBUG EditableInformation (cycle number: ${debugCounter}) ***`);
+            console.log('data                 : ', data);
+            console.log('originalValues       : ', originalValues);
+            console.log('updatedValues        : ', updatedValues);
+            console.log('hasError             : ', hasError);
+            console.log('errors               : ', errors);
+            console.log('isBeingEdited        : ', isBeingEdited);
+            console.log('isEditable           : ', isEditable);
+            console.log('isValidInputData     : ', isValidInputData);
+            console.log('isValidEditableInput : ', isValidEditableInput(data, updatedValues));
+            /* eslint-enable */
+            setDebugCounter(debugCounter + 1);
+        }
+    }, [data, debug, errors, hasError, isBeingEdited, isEditable, isValidInputData, originalValues, updatedValues]);
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
@@ -167,12 +189,12 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         setIsEditable(isEditableData(data));
     }, [data]);
 
-    // when updated values are changed do validation
+    // When updated values are changed do validation
     useEffect(() => {
         setIsValidInputData(isValidEditableInput(data, updatedValues));
     }, [data, updatedValues]);
 
-    // when validation of the input data is changed call onValidation to perform action needed outside the component
+    // When validation of the input data is changed call onValidation to perform action needed outside the component
     useEffect(() => {
         if (onValidation) {
             onValidation(isValidInputData);
