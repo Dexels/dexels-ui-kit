@@ -2,6 +2,7 @@ import { DEFAULT_LOCALE } from '../../../global/constants';
 import { isDotDecimalCountry } from './localeFunctions';
 import { Locale } from '../../types';
 import { toMoneyValue } from './financialFunctions';
+import toNumber from './toNumber';
 
 export const isEmpty = (value: string | unknown | undefined | null): boolean => {
     if (value === null || typeof value === 'undefined') {
@@ -86,7 +87,7 @@ export const isValidInputNumber = (
     maxValue?: number
 ): boolean => {
     const stringValue = typeof value === 'number' ? value.toString() : value;
-    const numberValue = parseInt(stringValue || '0', 10);
+    const numberValue = toNumber(stringValue || '0');
 
     return (
         (isEmpty(value) && !isRequired) ||
