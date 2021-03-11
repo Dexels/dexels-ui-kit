@@ -94,6 +94,7 @@ export {
     parseTimePickerValueToClocktime,
 } from '../app/utils/functions/timePickerFunctions';
 export { toBoolean } from '../app/utils/functions/toBoolean';
+export { toNumber } from '../app/utils/functions/toNumber';
 export { toString } from '../app/utils/functions/toString';
 export { useInterval } from '../app/utils/functions/timerFunctions';
 
