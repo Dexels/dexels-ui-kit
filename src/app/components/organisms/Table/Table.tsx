@@ -134,7 +134,9 @@ export const Table = <T extends object>({
                                             <TableHeaderCell
                                                 {...column.getHeaderProps(
                                                     column.getSortByToggleProps({
-                                                        title: (texts && texts.sortByTooltip) || undefined,
+                                                        title:
+                                                            (column.canSort && texts && texts.sortByTooltip) ||
+                                                            undefined,
                                                     })
                                                 )}
                                                 hasCellPadding={column.hasCellPadding}
