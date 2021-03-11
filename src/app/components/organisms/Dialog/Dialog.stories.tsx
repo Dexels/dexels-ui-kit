@@ -8,6 +8,7 @@ import { DialogButtonClosePosition } from './types';
 import Input from '../../molecules/Input/Input';
 import { parseInputValue } from '../../../utils/functions/parseInputValue';
 import { SingleDatePicker } from '../DatePicker';
+import toNumber from '../../../utils/functions/toNumber';
 
 export default { title: 'organisms/Dialog' };
 
@@ -176,7 +177,7 @@ export const ConfigurableAlertWithContent: FunctionComponent = () => {
                     min={number('Min', 0)}
                     name="an-input-name"
                     onChange={({ currentTarget }): void => {
-                        setAnswer(parseInt(parseInputValue(currentTarget), 10));
+                        setAnswer(toNumber(parseInputValue(currentTarget)));
                     }}
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}
@@ -231,7 +232,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                     min={number('Min', 0)}
                     name="an-input-name"
                     onChange={({ currentTarget }): void => {
-                        setAnswer(parseInt(parseInputValue(currentTarget), 10));
+                        setAnswer(toNumber(parseInputValue(currentTarget)));
                     }}
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}
@@ -243,7 +244,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                     min={number('Min', 0)}
                     name="an-input-name2"
                     onChange={({ currentTarget }): void => {
-                        setAnswer(parseInt(parseInputValue(currentTarget), 10));
+                        setAnswer(toNumber(parseInputValue(currentTarget)));
                     }}
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}

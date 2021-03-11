@@ -22,6 +22,7 @@ import { DEFAULT_LOCALE } from '../../../../global/constants';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import { formatMoneyWithoutSymbol } from '../../../utils/functions/financialFunctions';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
+import toNumber from '../../../utils/functions/toNumber';
 
 export interface InputProps {
     adornment?: ReactNode;
@@ -93,13 +94,13 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
         (valueToValidate: string): boolean => {
             switch (type) {
                 case InputType.CURRENCY:
-                    return isValidInputCurrency(valueToValidate.toString(), locale, isRequired);
+                    return isValidInputCurrency(valueToValidate.toString(), locale, isRequired, min, max);
 
                 case InputType.EMAIL:
                     return isValidInputEmail(valueToValidate, isRequired);
 
                 case InputType.NUMBER:
-                    return isValidInputNumber(parseInt(valueToValidate, 10), locale, isRequired, min, max);
+                    return isValidInputNumber(toNumber(valueToValidate), locale, isRequired, min, max);
 
                 case InputType.TELEPHONE:
                     return isValidInputTelephone(valueToValidate, isRequired);

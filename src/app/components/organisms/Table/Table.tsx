@@ -28,6 +28,7 @@ import {
 import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctions';
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Row, TableInstance, TableState } from 'react-table';
+import toNumber from '../../../utils/functions/toNumber';
 
 export interface TableTexts {
     sortByTooltip?: ReactNode;
@@ -90,7 +91,7 @@ export const Table = <T extends object>({
         () =>
             instance.visibleColumns.reduce((total, column) => {
                 if (column.width !== undefined && column.width.toString().includes('%')) {
-                    return total + parseInt(column.width.toString().replace('%', ''), 10);
+                    return total + toNumber(column.width.toString().replace('%', ''));
                 }
 
                 return total;
@@ -143,7 +144,7 @@ export const Table = <T extends object>({
                                                     column.width?.toString().includes('%')
                                                         ? getColumnWidthByPercentage(
                                                               availableTableWidth,
-                                                              parseInt(column.width.toString().replace('%', ''), 10)
+                                                              toNumber(column.width.toString().replace('%', ''))
                                                           )
                                                         : column.width
                                                 }

@@ -1,6 +1,7 @@
 import { DEFAULT_LOCALE } from '../../../global/constants';
 import { isDotDecimalCountry } from './localeFunctions';
 import { Locale } from '../../types';
+import { toMoneyValue } from './financialFunctions';
 
 export const isEmpty = (value: string | unknown | undefined | null): boolean => {
     if (value === null || typeof value === 'undefined') {
@@ -59,18 +60,19 @@ export const isValidMoney = (value: string, locale?: Locale): boolean => {
 export const isValidInputCurrency = (
     value: string | null | undefined,
     locale: Locale,
-    isRequired: boolean
+    isRequired: boolean,
+    minValue?: number,
+    maxValue?: number
 ): boolean => {
-    if (isRequired && (isEmpty(value) || value === '0')) {
-        return false;
-    }
+    const numberValue = toMoneyValue(value || '', locale);
 
-    if (!isRequired && (isEmpty(value) || value === '0')) {
-        return true;
-    }
-
-    // Can not be undefined/null, because of previous check ...
-    return isValidMoney(value || '', locale);
+    return (
+        (!isRequired && (isEmpty(value) || value === '0')) ||
+        (!isEmpty(value) &&
+            (minValue === undefined || numberValue >= minValue) &&
+            (maxValue === undefined || numberValue <= maxValue) &&
+            isValidMoney(value || '', locale))
+    );
 };
 
 export const isValidInputEmail = (value: string | null | undefined, isRequired: boolean): boolean =>
@@ -84,18 +86,14 @@ export const isValidInputNumber = (
     maxValue?: number
 ): boolean => {
     const stringValue = typeof value === 'number' ? value.toString() : value;
-
-    if (Number.isNaN(stringValue)) {
-        return false;
-    }
-
     const numberValue = parseInt(stringValue || '0', 10);
 
     return (
-        (isEmpty(numberValue) && !isRequired) ||
-        (!isEmpty(numberValue) &&
+        (isEmpty(value) && !isRequired) ||
+        (!isEmpty(value) &&
+            !Number.isNaN(stringValue) &&
             (minValue === undefined || numberValue >= minValue) &&
-            (maxValue === undefined || numberValue >= maxValue) &&
+            (maxValue === undefined || numberValue <= maxValue) &&
             isValidNumber(numberValue.toString(), true, locale))
     );
 };
