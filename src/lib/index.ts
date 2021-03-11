@@ -175,6 +175,7 @@ export {
     EditableInformationDataType,
     ValueTypes,
     EditableInformationData,
+    isValidEditableInput,
 } from '../app/components/organisms/EditableInformation';
 export { ConfirmDialog, EditablePanel, EditablePanelProps } from '../app/components/organisms/EditablePanel';
 export {

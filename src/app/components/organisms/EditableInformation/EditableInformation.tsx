@@ -102,11 +102,10 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             console.log('isBeingEdited        : ', isBeingEdited);
             console.log('isEditable           : ', isEditable);
             console.log('isValidInputData     : ', isValidInputData);
-            console.log('isValidEditableInput : ', isValidEditableInput(data, updatedValues));
             /* eslint-enable */
             setDebugCounter(debugCounter + 1);
         }
-    }, [data, debug, errors, hasError, isBeingEdited, isEditable, isValidInputData, originalValues, updatedValues]);
+    }, [debug, hasError, isBeingEdited, isEditable, isValidInputData, originalValues]);
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);

@@ -145,6 +145,29 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
     );
 };
 
+export const ConfigurableAddress: FunctionComponent = () => {
+    const [value, setValue] = useState('');
+
+    return (
+        <Input
+            errorMessage={text('Error message', 'Help, something went wrong!')}
+            hasError={boolean('Has error', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isValid={boolean('Is valid', false)}
+            label={text('Label', 'This input has an empty string and maxlength')}
+            locale={select('Locale', Locale, Locale.NL)}
+            maxLength={number('Max', 32)}
+            name="address"
+            onBlur={action('On blur')}
+            onChange={({ currentTarget }): void => {
+                setValue(parseInputValue(currentTarget));
+            }}
+            value={value}
+            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
+        />
+    );
+};
+
 export const ConfigurableTextarea: FunctionComponent = () => {
     const [value, setValue] = useState('');
 

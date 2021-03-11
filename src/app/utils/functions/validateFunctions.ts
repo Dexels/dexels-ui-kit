@@ -83,31 +83,21 @@ export const isValidInputNumber = (
     minValue?: number,
     maxValue?: number
 ): boolean => {
-    const tmpValue = typeof value === 'number' ? value.toString() : value;
+    const stringValue = typeof value === 'number' ? value.toString() : value;
 
-    if (Number.isNaN(tmpValue)) {
+    if (Number.isNaN(stringValue)) {
         return false;
     }
 
-    const tmpNumberValue = parseInt(tmpValue || '0', 10);
+    const numberValue = parseInt(stringValue || '0', 10);
 
-    if (isRequired && isEmpty(tmpValue)) {
-        return false;
-    }
-
-    if (minValue !== undefined && maxValue !== undefined) {
-        return tmpNumberValue >= minValue && tmpNumberValue <= maxValue;
-    }
-
-    if (minValue !== undefined && maxValue === undefined) {
-        return tmpNumberValue >= minValue;
-    }
-
-    if (maxValue !== undefined && minValue === undefined) {
-        return tmpNumberValue <= maxValue;
-    }
-
-    return isValidNumber(tmpNumberValue.toString(), true, locale);
+    return (
+        (isEmpty(numberValue) && !isRequired) ||
+        (!isEmpty(numberValue) &&
+            (minValue === undefined || numberValue >= minValue) &&
+            (maxValue === undefined || numberValue >= maxValue) &&
+            isValidNumber(numberValue.toString(), true, locale))
+    );
 };
 
 export const isValidInputTelephone = (value: string | null | undefined, isRequired: boolean): boolean =>
@@ -118,22 +108,7 @@ export const isValidInputText = (
     isRequired: boolean,
     minLength?: number,
     maxLength?: number
-): boolean => {
-    if (isRequired && isEmpty(value)) {
-        return false;
-    }
-
-    if (minLength !== undefined && maxLength !== undefined) {
-        return value !== null && value !== undefined && value.length >= minLength && value.length <= maxLength;
-    }
-
-    if (minLength !== undefined && maxLength === undefined) {
-        return value !== null && value !== undefined && value.length >= minLength;
-    }
-
-    if (maxLength !== undefined && minLength === undefined) {
-        return value !== null && value !== undefined && value.length <= maxLength;
-    }
-
-    return true;
-};
+): boolean =>
+    (isEmpty(value) && !isRequired) ||
+    (!isEmpty(value) && (minLength === undefined || (value as string).length >= minLength)) ||
+    (!isEmpty(value) && (maxLength === undefined || (value as string).length <= maxLength));
