@@ -46,6 +46,7 @@ export { convertLocale, isDotDecimalCountry } from '../app/utils/functions/local
 export { createTable } from '../app/utils/functions/createTable';
 export {
     compareDates,
+    currentDate,
     isValidClockTime,
     isValidDate,
     isValidStringDate,
