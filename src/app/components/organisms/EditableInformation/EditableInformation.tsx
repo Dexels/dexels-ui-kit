@@ -11,6 +11,8 @@ import { InformationTable, InformationTableData, InformationTableProps } from '.
 import React, { useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
+import { convertToLocaleValue } from '../../../utils/functions/financialFunctions';
+import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownOption } from '../../molecules/Dropdown';
 import { EditablePanel } from '../EditablePanel/EditablePanel';
@@ -115,13 +117,18 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [originalValues, onCancel]);
 
     const onChangeCallback = useCallback(
-        (name: string, value: ValueTypes<T, U>) => {
-            const newValues = {
+        (name: string, value: ValueTypes<T, U>, isCurrency = false, locale = DEFAULT_LOCALE) => {
+            let newValues = {
                 ...updatedValues,
                 [name]: value,
             };
 
             setUpdatedValues(newValues);
+
+            newValues = {
+                ...updatedValues,
+                [name]: isCurrency && value ? convertToLocaleValue(value as string, locale) : value,
+            };
 
             if (onChange) {
                 onChange(newValues);
