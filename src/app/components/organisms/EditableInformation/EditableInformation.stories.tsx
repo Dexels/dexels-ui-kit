@@ -48,6 +48,11 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setSaveErrors((undefined as unknown) as string[]);
     };
 
+    const onChangeCallback = (newDate: unknown) => {
+        // eslint-disable-next-line no-console
+        console.log('onChangeCallback', newDate);
+    };
+
     const onValidationCallback = (isValidData: boolean) => {
         // eslint-disable-next-line no-console
         console.log('onValidationCallback', isValidData);
@@ -68,7 +73,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                     : undefined
             }
             data={updatedData}
-            debug={boolean('Print debug info', false)}
             errors={saveErrors}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
             isButtonDisabled={boolean('Is button disabled', false)}
@@ -77,6 +81,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
             onCancel={onCancelCallback}
+            onChange={onChangeCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
             onSave={isEditable ? onSaveCallback : undefined}
             onValidation={isEditable ? onValidationCallback : undefined}

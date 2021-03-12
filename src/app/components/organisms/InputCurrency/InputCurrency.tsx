@@ -29,6 +29,8 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     isRequired = false,
     label,
     locale,
+    max,
+    min,
     name,
     onBlur,
     onChange,
@@ -48,6 +50,8 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
             isValid={hasValidColor}
             label={label}
             locale={locale}
+            max={max}
+            min={min}
             name={name}
             onBlur={onBlur}
             onChange={onChange}

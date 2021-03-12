@@ -28,6 +28,7 @@ const colorPrimary = '#3D4A9A';
 const colorSecondary = '#009FFD';
 const colorTertiary = '#80CFFE';
 const colorValid = '#2DD67B';
+const colorYellow = '#F8C433';
 
 const colorText = {
     primary: colorPrimary,
@@ -57,6 +58,7 @@ export const themeBasic: Theme = {
     colorSecondary,
     colorTertiary,
     colorValid,
+    colorYellow,
     background,
     button: {
         filled: {

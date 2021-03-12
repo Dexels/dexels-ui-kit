@@ -7,7 +7,6 @@ import { DropdownOption } from '../../molecules/Dropdown/Dropdown';
 import { Input } from '../../molecules/Input/Input';
 import { List } from '../../molecules/List/List';
 import { ListItem } from '../../atoms/ListItem/ListItem';
-import { parseInputValue } from '../../../utils/functions/parseInputValue';
 import { toBasicLowercase } from '../../../utils/functions/stringFunctions';
 import { useClickOutsideComponent } from '../../../utils/functions/clickHandlers';
 
@@ -106,7 +105,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
         (event: ChangeEvent<HTMLInputElement>) => {
             if (event.currentTarget) {
                 setIsOptionSelected(false);
-                const newOptionValue = parseInputValue(event.currentTarget);
+                const newOptionValue = event.currentTarget.value;
                 setInputValue(newOptionValue);
 
                 handleOnChange({

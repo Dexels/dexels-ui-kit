@@ -113,17 +113,17 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                     if ((item as EditableInputDataProps).type === InputType.EMAIL) {
                         isValid = isValidInputEmail(
                             values[(item as EditableInputDataProps).name]?.toString() || null,
-                            Boolean((item as EditableInputDataProps).isRequired)
+                            (item as EditableInputDataProps).isRequired || false
                         );
                     } else if ((item as EditableInputDataProps).type === InputType.TELEPHONE) {
                         isValid = isValidInputTelephone(
                             values[(item as EditableInputDataProps).name]?.toString() || null,
-                            Boolean((item as EditableInputDataProps).isRequired)
+                            (item as EditableInputDataProps).isRequired || false
                         );
                     } else {
                         isValid = isValidInputText(
                             values[(item as EditableInputDataProps).name]?.toString() || null,
-                            Boolean((item as EditableInputDataProps).isRequired),
+                            (item as EditableInputDataProps).isRequired || false,
                             (item as EditableInputDataProps).minLength,
                             (item as EditableInputDataProps).maxLength
                         );
@@ -135,7 +135,7 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                     isValid = isValidInputCurrency(
                         values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
                         (item as EditableInputCurrencyDataProps).locale,
-                        Boolean((item as EditableInputCurrencyDataProps).isRequired)
+                        (item as EditableInputCurrencyDataProps).isRequired || false
                     );
 
                     break;
@@ -144,7 +144,7 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                     isValid = isValidInputNumber(
                         values[(item as EditableInputNumberDataProps).name]?.toString() || null,
                         (item as EditableInputNumberDataProps).locale || DEFAULT_LOCALE,
-                        Boolean((item as EditableInputNumberDataProps).isRequired),
+                        (item as EditableInputNumberDataProps).isRequired || false,
                         (item as EditableInputNumberDataProps).min,
                         (item as EditableInputNumberDataProps).max
                     );

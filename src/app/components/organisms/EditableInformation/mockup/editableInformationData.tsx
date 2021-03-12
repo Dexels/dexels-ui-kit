@@ -82,11 +82,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         console.log('onBlurCallback', event);
     };
 
-    const onChangeCallback = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        // eslint-disable-next-line no-console
-        console.log('onChangeCallback', event);
-    };
-
     const onFocusCallback = (event: React.FocusEvent<HTMLInputElement>): void => {
         // eslint-disable-next-line no-console
         console.log('onFocusCallback', event);
@@ -133,7 +128,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         min: 0,
         name: 'Number',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: 0,
@@ -148,7 +142,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         min: 0,
         name: 'BadNumber',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: -1,
@@ -162,7 +155,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         label: 'Input (null value)',
         name: 'InputNull',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: null,
@@ -177,7 +169,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         maxLength: 20,
         name: 'Input',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: 'Banana',
@@ -211,7 +202,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         label: 'Textarea',
         name: 'EditableTextArea',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: 'text here',
@@ -241,7 +231,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         locale: DEFAULT_LOCALE,
         name: 'EditableCurrency',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: '0.51',
@@ -256,7 +245,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         locale: DEFAULT_LOCALE,
         name: 'EditableCurrency2',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: '123.51',
@@ -271,7 +259,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         locale: Locale.EN,
         name: 'CurrencyEN',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: '343.51',
@@ -286,7 +273,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         locale: DEFAULT_LOCALE,
         name: 'EditableCurrencyComma',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: '451,123.87',
@@ -301,7 +287,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         locale: DEFAULT_LOCALE,
         name: 'NegativeCurrency',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: '-108',
@@ -353,7 +338,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         min: 0,
         name: 'EditableNumber',
         onBlur: onBlurCallback,
-        onChange: onChangeCallback,
         onFocus: onFocusCallback,
         onKeyDown: onKeyDownCallback,
         value: 5,

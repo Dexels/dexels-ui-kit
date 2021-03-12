@@ -1,6 +1,8 @@
 import { DEFAULT_LOCALE } from '../../../global/constants';
 import { isDotDecimalCountry } from './localeFunctions';
 import { Locale } from '../../types';
+import { toMoneyValue } from './financialFunctions';
+import toNumber from './toNumber';
 
 export const isEmpty = (value: string | unknown | undefined | null): boolean => {
     if (value === null || typeof value === 'undefined') {
@@ -59,18 +61,19 @@ export const isValidMoney = (value: string, locale?: Locale): boolean => {
 export const isValidInputCurrency = (
     value: string | null | undefined,
     locale: Locale,
-    isRequired: boolean
+    isRequired: boolean,
+    minValue?: number,
+    maxValue?: number
 ): boolean => {
-    if (isRequired && (isEmpty(value) || value === '0')) {
-        return false;
-    }
+    const numberValue = toMoneyValue(value || '', locale);
 
-    if (!isRequired && (isEmpty(value) || value === '0')) {
-        return true;
-    }
-
-    // Can not be undefined/null, because of previous check ...
-    return isValidMoney(value || '', locale);
+    return (
+        (!isRequired && (isEmpty(value) || value === '0')) ||
+        (!isEmpty(value) &&
+            (minValue === undefined || numberValue >= minValue) &&
+            (maxValue === undefined || numberValue <= maxValue) &&
+            isValidMoney(value || '', locale))
+    );
 };
 
 export const isValidInputEmail = (value: string | null | undefined, isRequired: boolean): boolean =>
@@ -83,31 +86,17 @@ export const isValidInputNumber = (
     minValue?: number,
     maxValue?: number
 ): boolean => {
-    const tmpValue = typeof value === 'number' ? value.toString() : value;
+    const stringValue = typeof value === 'number' ? value.toString() : value;
+    const numberValue = toNumber(stringValue || '0');
 
-    if (Number.isNaN(tmpValue)) {
-        return false;
-    }
-
-    const tmpNumberValue = parseInt(tmpValue || '0', 10);
-
-    if (isRequired && isEmpty(tmpValue)) {
-        return false;
-    }
-
-    if (minValue !== undefined && maxValue !== undefined) {
-        return tmpNumberValue >= minValue && tmpNumberValue <= maxValue;
-    }
-
-    if (minValue !== undefined && maxValue === undefined) {
-        return tmpNumberValue >= minValue;
-    }
-
-    if (maxValue !== undefined && minValue === undefined) {
-        return tmpNumberValue <= maxValue;
-    }
-
-    return isValidNumber(tmpNumberValue.toString(), true, locale);
+    return (
+        (isEmpty(value) && !isRequired) ||
+        (!isEmpty(value) &&
+            !Number.isNaN(stringValue) &&
+            (minValue === undefined || numberValue >= minValue) &&
+            (maxValue === undefined || numberValue <= maxValue) &&
+            isValidNumber(numberValue.toString(), true, locale))
+    );
 };
 
 export const isValidInputTelephone = (value: string | null | undefined, isRequired: boolean): boolean =>
@@ -118,22 +107,7 @@ export const isValidInputText = (
     isRequired: boolean,
     minLength?: number,
     maxLength?: number
-): boolean => {
-    if (isRequired && isEmpty(value)) {
-        return false;
-    }
-
-    if (minLength !== undefined && maxLength !== undefined) {
-        return value !== null && value !== undefined && value.length >= minLength && value.length <= maxLength;
-    }
-
-    if (minLength !== undefined && maxLength === undefined) {
-        return value !== null && value !== undefined && value.length >= minLength;
-    }
-
-    if (maxLength !== undefined && minLength === undefined) {
-        return value !== null && value !== undefined && value.length <= maxLength;
-    }
-
-    return true;
-};
+): boolean =>
+    (isEmpty(value) && !isRequired) ||
+    (!isEmpty(value) && (minLength === undefined || (value as string).length >= minLength)) ||
+    (!isEmpty(value) && (maxLength === undefined || (value as string).length <= maxLength));

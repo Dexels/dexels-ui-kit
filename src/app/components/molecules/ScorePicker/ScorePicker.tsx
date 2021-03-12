@@ -2,7 +2,6 @@ import { InputType, InputVariant } from '../../../types';
 import { InputWrapper, StyledScorePicker } from './ScorePicker.sc';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { Input } from '../Input/Input';
-import { parseInputValue } from '../../../utils/functions/parseInputValue';
 
 export interface ScorePickerProps {
     isDisabled?: boolean;
@@ -21,7 +20,7 @@ export const ScorePicker: FunctionComponent<ScorePickerProps> = ({ isDisabled, l
                 min={0}
                 name={`${name}-home`}
                 onChange={({ currentTarget }): void => {
-                    onChange(name, [parseInputValue(currentTarget), value[1]]);
+                    onChange(name, [currentTarget.value, value[1]]);
                 }}
                 type={InputType.NUMBER}
                 value={value[0]}
@@ -35,7 +34,7 @@ export const ScorePicker: FunctionComponent<ScorePickerProps> = ({ isDisabled, l
                 min={0}
                 name={`${name}-away`}
                 onChange={({ currentTarget }): void => {
-                    onChange(name, [value[0], parseInputValue(currentTarget)]);
+                    onChange(name, [value[0], currentTarget.value]);
                 }}
                 type={InputType.NUMBER}
                 value={value[1]}

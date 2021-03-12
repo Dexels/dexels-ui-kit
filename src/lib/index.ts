@@ -56,7 +56,6 @@ export {
     toMoment,
 } from '../app/utils/functions/dateFunctions';
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
-export { parseInputValue } from '../app/utils/functions/parseInputValue';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
 export {
     isEmpty,
@@ -94,6 +93,7 @@ export {
     parseTimePickerValueToClocktime,
 } from '../app/utils/functions/timePickerFunctions';
 export { toBoolean } from '../app/utils/functions/toBoolean';
+export { toNumber } from '../app/utils/functions/toNumber';
 export { toString } from '../app/utils/functions/toString';
 export { useInterval } from '../app/utils/functions/timerFunctions';
 
@@ -175,6 +175,7 @@ export {
     EditableInformationDataType,
     ValueTypes,
     EditableInformationData,
+    isValidEditableInput,
 } from '../app/components/organisms/EditableInformation';
 export { ConfirmDialog, EditablePanel, EditablePanelProps } from '../app/components/organisms/EditablePanel';
 export {

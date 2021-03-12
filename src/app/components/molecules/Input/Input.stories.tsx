@@ -4,7 +4,6 @@ import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from './Input';
-import { parseInputValue } from '../../../utils/functions/parseInputValue';
 
 export default { title: 'molecules/Input' };
 
@@ -27,7 +26,7 @@ export const Configurable: FunctionComponent = () => {
             name="an-input-name"
             onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
-                setValue(parseInputValue(currentTarget));
+                setValue(currentTarget.value);
             }}
             onFocus={action('On focus')}
             type={select('Type', InputType, InputType.TEXT)}
@@ -57,7 +56,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
             name="an-input-name"
             onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
-                setValue(parseInputValue(currentTarget));
+                setValue(currentTarget.value);
             }}
             type={select('Type', InputType, InputType.TEXT)}
             value={value}
@@ -84,7 +83,7 @@ export const ConfigurableClickable: FunctionComponent = () => {
             name="an-input-name"
             onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
-                setValue(parseInputValue(currentTarget));
+                setValue(currentTarget.value);
             }}
             onClick={action('On click')}
             type={select('Type', InputType, InputType.TEXT)}
@@ -110,7 +109,7 @@ export const ConfigurableMinNumberAndRequired: FunctionComponent = () => {
             name="IsRequiredButBadNumber"
             onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
-                setValue(parseInputValue(currentTarget));
+                setValue(currentTarget.value);
             }}
             type={InputType.NUMBER}
             value={value}
@@ -131,14 +130,37 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This input can only contain numbers')}
             locale={select('Locale', Locale, Locale.NL)}
-            max={number('Max', 100000000)}
+            max={number('Max', 10)}
             min={number('Min', 0)}
             name="an-input-name"
             onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
-                setValue(parseInputValue(currentTarget));
+                setValue(currentTarget.value);
             }}
             type={InputType.NUMBER}
+            value={value}
+            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
+        />
+    );
+};
+
+export const ConfigurableAddress: FunctionComponent = () => {
+    const [value, setValue] = useState('');
+
+    return (
+        <Input
+            errorMessage={text('Error message', 'Help, something went wrong!')}
+            hasError={boolean('Has error', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isValid={boolean('Is valid', false)}
+            label={text('Label', 'This input has an empty string and maxlength')}
+            locale={select('Locale', Locale, Locale.NL)}
+            maxLength={number('Max', 32)}
+            name="address"
+            onBlur={action('On blur')}
+            onChange={({ currentTarget }): void => {
+                setValue(currentTarget.value);
+            }}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />
@@ -163,7 +185,7 @@ export const ConfigurableTextarea: FunctionComponent = () => {
             name="a-textarea-name"
             onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
-                setValue(parseInputValue(currentTarget));
+                setValue(currentTarget.value);
             }}
             type={select('Type', InputType, InputType.TEXT)}
             value={value}
@@ -190,7 +212,7 @@ export const ConfigurableTextareaClickable: FunctionComponent = () => {
             name="a-textarea-name"
             onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
-                setValue(parseInputValue(currentTarget));
+                setValue(currentTarget.value);
             }}
             onClick={action('On click')}
             type={select('Type', InputType, InputType.TEXT)}
