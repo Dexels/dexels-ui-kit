@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { editableInformationCurrency, updateValuesOfCurrency } from './mockup/editableInformationCurrency';
 import { editableInformationData, updateValuesOfData } from './mockup/editableInformationData';
 import { EditableInformationData, ValueTypes } from './types';
 import { IconType, Status } from '../../../types';
@@ -11,14 +12,16 @@ import EditableInformation from './EditableInformation';
 
 export default { title: 'organisms/EditableInformation' };
 
-const theData = editableInformationData();
+const theData = (isCurrencyOnly = false): EditableInformationData<DropdownSelectOption, DropdownMultiSelectOption> =>
+    isCurrencyOnly ? editableInformationCurrency() : editableInformationData();
 
 const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
     isEditingMode = false,
     withDialogs = false,
     isEditable = true,
-    errors = (undefined as unknown) as string[]
+    errors = (undefined as unknown) as string[],
+    isCurrencyOnly = false
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
@@ -32,7 +35,10 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
         setIsSaving(true);
         setIsEditing(isEditingMode);
-        setUpdatedData(updateValuesOfData(updatedData, newData));
+
+        setUpdatedData(
+            isCurrencyOnly ? updateValuesOfCurrency(updatedData, newData) : updateValuesOfData(updatedData, newData)
+        );
 
         // Show loading state for 5 seconds
         setTimeout(() => {
@@ -105,15 +111,15 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     );
 };
 
-export const Configurable: FunctionComponent = () => BaseComponent(theData);
+export const Configurable: FunctionComponent = () => BaseComponent(theData());
 
-export const ConfigurableEditingDefault: FunctionComponent = () => BaseComponent(theData, true);
+export const ConfigurableEditingDefault: FunctionComponent = () => BaseComponent(theData(), true);
 
-export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => BaseComponent(theData, false, true);
+export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => BaseComponent(theData(), false, true);
 
 export const ConfigurableInformationNotEditable: FunctionComponent = () =>
     BaseComponent(
-        theData.map((element) => ({
+        theData().map((element) => ({
             ...element,
             isEditable: false,
         })),
@@ -123,4 +129,7 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () =>
     );
 
 export const ConfigurableWithErrorsAfterSaving: FunctionComponent = () =>
-    BaseComponent(theData, false, false, true, ['Error number 1', 'Error number 2']);
+    BaseComponent(theData(), false, false, true, ['Error number 1', 'Error number 2']);
+
+export const ConfigurableCurrencyOnly: FunctionComponent = () =>
+    BaseComponent(theData(true), false, false, true, undefined, true);

@@ -1,13 +1,12 @@
 import { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../../../molecules/Dropdown';
 import { DropdownMultiSelect, DropdownMultiSelectOption } from '../../DropdownMultiSelect';
-import { EditableDataComponent, InputType, InputVariant } from '../../../../types';
+import { EditableDataComponent, InputType, InputVariant, Locale } from '../../../../types';
 import { EditableInformationData, EditableInputCurrencyDataProps, ScorePickerDataProps, ValueTypes } from '../types';
 import { generateDropdownSelectOptionLabel, getValueOfEditableDataComponent } from '../utils/informationDataFunctions';
 import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import DropdownSelect from '../../DropdownSelect/DropdownSelect';
-import { formatMoneyWithoutSymbol } from '../../../../utils/functions/financialFunctions';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
 import InputCurrency from '../../InputCurrency/InputCurrency';
@@ -22,7 +21,7 @@ export interface EditableDataProps<T extends DropdownOption, U extends DropdownM
         [key: string]: boolean;
     };
     isBeingEdited: boolean;
-    onChange: (name: string, value: ValueTypes<T, U>) => void;
+    onChange: (name: string, value: ValueTypes<T, U>, isCurrency?: boolean, locale?: Locale) => void;
     onDatePickerFocusChange: (name: string, focused: boolean) => void;
     onDropdownChange: (option: T, name: string, propertyNameOfId?: string) => void;
     values: {
@@ -234,10 +233,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                                 }
                             }}
                             onChange={({ currentTarget }): void => {
-                                onChange(
-                                    currentTarget.name,
-                                    formatMoneyWithoutSymbol(currentTarget.value, dataInstance.locale)
-                                );
+                                onChange(currentTarget.name, currentTarget.value, true, dataInstance.locale);
                             }}
                             onFocus={(event): void => {
                                 if (dataInstance.onFocus) {
