@@ -71,6 +71,8 @@ export const isDateBetween = (date: Moment, dateFrom: Moment, dateTo: Moment): b
 export const toDate = (value: string | Date | Moment, lang: string = defaultLocale): Date | null =>
     isValidDate(value) ? moment(value).locale(lang).toDate() : null;
 
+export const currentDate = (lang: string = defaultLocale): Date => moment().locale(lang).toDate();
+
 export const toMoment = (value: string | Date | Moment, lang: string = defaultLocale): Moment | null =>
     isValidDate(value) ? moment(value).locale(lang) : null;
 
