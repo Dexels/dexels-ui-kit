@@ -53,6 +53,7 @@ export {
     formatDate,
     formatTime,
     isDateBetween,
+    toDate,
     toMoment,
 } from '../app/utils/functions/dateFunctions';
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
