@@ -56,7 +56,6 @@ export {
     toMoment,
 } from '../app/utils/functions/dateFunctions';
 export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
-export { parseInputValue } from '../app/utils/functions/parseInputValue';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
 export {
     isEmpty,

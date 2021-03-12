@@ -6,7 +6,6 @@ import React, { FunctionComponent, useState } from 'react';
 import Button from '../../molecules/Button/Button';
 import { DialogButtonClosePosition } from './types';
 import Input from '../../molecules/Input/Input';
-import { parseInputValue } from '../../../utils/functions/parseInputValue';
 import { SingleDatePicker } from '../DatePicker';
 import toNumber from '../../../utils/functions/toNumber';
 
@@ -177,7 +176,7 @@ export const ConfigurableAlertWithContent: FunctionComponent = () => {
                     min={number('Min', 0)}
                     name="an-input-name"
                     onChange={({ currentTarget }): void => {
-                        setAnswer(toNumber(parseInputValue(currentTarget)));
+                        setAnswer(toNumber(currentTarget.value));
                     }}
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}
@@ -232,7 +231,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                     min={number('Min', 0)}
                     name="an-input-name"
                     onChange={({ currentTarget }): void => {
-                        setAnswer(toNumber(parseInputValue(currentTarget)));
+                        setAnswer(toNumber(currentTarget.value));
                     }}
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}
@@ -244,7 +243,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                     min={number('Min', 0)}
                     name="an-input-name2"
                     onChange={({ currentTarget }): void => {
-                        setAnswer(toNumber(parseInputValue(currentTarget)));
+                        setAnswer(toNumber(currentTarget.value));
                     }}
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}

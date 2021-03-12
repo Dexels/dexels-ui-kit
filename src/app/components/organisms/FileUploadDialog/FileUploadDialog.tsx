@@ -5,7 +5,6 @@ import { Dialog } from '../Dialog';
 import { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import { FileUploaderData } from '../FileUploader/FileUploader';
 import Input from '../../molecules/Input/Input';
-import parseInputValue from '../../../utils/functions/parseInputValue';
 import { StyledFileUploader } from './FileUploadDialog.sc';
 
 export interface FileUploadDialogProps {
@@ -71,7 +70,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
                 maxLength={maxLengthDescription}
                 name="description"
                 onChange={({ currentTarget }): void => {
-                    onChangeDescription(parseInputValue(currentTarget));
+                    onChangeDescription(currentTarget.value);
                 }}
                 type={InputType.TEXT}
                 value={description}

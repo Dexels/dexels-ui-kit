@@ -11,7 +11,6 @@ import { formatMoneyWithoutSymbol } from '../../../../utils/functions/financialF
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
 import InputCurrency from '../../InputCurrency/InputCurrency';
-import { parseInputValue } from '../../../../utils/functions/parseInputValue';
 import React from 'react';
 import ScorePicker from '../../../molecules/ScorePicker/ScorePicker';
 import { SelectionControl } from '../../../molecules/SelectionControl';
@@ -226,6 +225,8 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             locale={dataInstance.locale}
+                            max={dataInstance.max}
+                            min={dataInstance.min}
                             name={name}
                             onBlur={(event): void => {
                                 if (dataInstance.onBlur) {
@@ -273,7 +274,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                                 }
                             }}
                             onChange={({ currentTarget }): void => {
-                                onChange(currentTarget.name, parseInputValue(currentTarget));
+                                onChange(currentTarget.name, currentTarget.value);
                             }}
                             onFocus={(event): void => {
                                 if (dataInstance.onFocus) {

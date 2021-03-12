@@ -115,6 +115,13 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
         [isRequired, locale, max, maxLength, min, minLength]
     );
 
+    // only onMount format initial value
+    useEffect(() => {
+        if (type === InputType.CURRENCY && value) {
+            setInputValue(formatMoneyWithoutSymbol(value || '', locale));
+        }
+    }, []);
+
     // wheh inputValue changes validate it
     useEffect(() => {
         setIsValidInputData(isValidInput(inputValue || ''));
@@ -122,11 +129,29 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
-            if (onChange) {
-                onChange(event);
+            let newValue = event.currentTarget.value;
+
+            if (!isTextarea) {
+                if (max !== undefined && newValue && toNumber(newValue) > max) {
+                    newValue = max.toString();
+                }
+
+                if (min !== undefined && newValue && toNumber(newValue) < min) {
+                    newValue = min.toString();
+                }
             }
 
-            setInputValue(event.currentTarget.value);
+            if (onChange) {
+                onChange({
+                    ...event,
+                    currentTarget: {
+                        name: event.currentTarget.name,
+                        value: newValue,
+                    },
+                } as ChangeEvent<HTMLInputElement>);
+            }
+
+            setInputValue(newValue);
         },
         [isValidInput, onChange]
     );
@@ -154,16 +179,6 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const toggleIsHoveredCallback = useCallback(() => {
         setIsHovered(!isHovered);
     }, [isHovered]);
-
-    if (!isTextarea) {
-        if (typeof max === 'number') {
-            textFieldProps.max = max;
-        }
-
-        if (typeof min === 'number') {
-            textFieldProps.min = min;
-        }
-    }
 
     return (
         <>
