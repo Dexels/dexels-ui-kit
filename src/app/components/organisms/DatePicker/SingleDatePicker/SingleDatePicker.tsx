@@ -93,7 +93,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     const [openDirection, setOpenDirection] = useState<OpenDirectionShape>('down');
 
     useEffect(() => {
-        // Om Mount: get the measures of de DOM element of the calendar part of a SingleDatePicker_picker
+        // On Mount: get the measures of de DOM element of the calendar part of a SingleDatePicker_picker
         const datePickerContainer = document.querySelectorAll('div.DayPicker__horizontal');
 
         if (datePickerContainer && datePickerContainer.length !== 0) {
