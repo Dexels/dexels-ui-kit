@@ -86,14 +86,14 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     const { spacingValue } = useContext(ThemeContext);
     const singleDatePickerRef = useRef<HTMLDivElement>(null);
     const [anchorDirection, setAnchorDirection] = useState<AnchorDirectionShape>('left');
-    const [openDirection, setOpenDirection] = useState<OpenDirectionShape>('down');
-    const [isTopDatepicker, setIsTopDatepicker] = useState(false);
     const [isRightDatepicker, setIsRightDatepicker] = useState(false);
+    const [isTopDatepicker, setIsTopDatepicker] = useState(false);
     const [openDatePickerMinHeight, setOpenDatePickerMinHeight] = useState(400);
     const [openDatePickerMinWidth, setOpenDatePickerMinWidth] = useState(350);
+    const [openDirection, setOpenDirection] = useState<OpenDirectionShape>('down');
 
     useEffect(() => {
-        // Get the measures of de DOM element of the calendar part of a SingleDatePicker_picker
+        // Om Mount: get the measures of de DOM element of the calendar part of a SingleDatePicker_picker
         const datePickerContainer = document.querySelectorAll('div.DayPicker__horizontal');
 
         if (datePickerContainer && datePickerContainer.length !== 0) {
@@ -105,7 +105,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                 setOpenDatePickerMinWidth(datePickerContainer[0].clientWidth);
             }
         }
-    });
+    }, []);
 
     useEffect(() => {
         if (singleDatePickerRef.current) {
