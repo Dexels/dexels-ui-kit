@@ -1,4 +1,9 @@
-import { SingleDatePicker as AirbnbSingleDatePicker, OpenDirectionShape, SingleDatePickerShape } from 'react-dates';
+import {
+    SingleDatePicker as AirbnbSingleDatePicker,
+    AnchorDirectionShape,
+    OpenDirectionShape,
+    SingleDatePickerShape,
+} from 'react-dates';
 import { ButtonSize, ButtonVariant, IconType, InputVariant } from '../../../../types';
 import DialogFooter, { DialogFooterProps } from '../../../molecules/DialogFooter/DialogFooter';
 import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, useEffect, useRef, useState } from 'react';
@@ -80,44 +85,60 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     const [isHovered, setIsHovered] = useState(false);
     const { spacingValue } = useContext(ThemeContext);
     const singleDatePickerRef = useRef<HTMLDivElement>(null);
+    const [anchorDirection, setAnchorDirection] = useState<AnchorDirectionShape>('left');
     const [openDirection, setOpenDirection] = useState<OpenDirectionShape>('down');
     const [isTopDatepicker, setIsTopDatepicker] = useState(false);
+    const [isRightDatepicker, setIsRightDatepicker] = useState(false);
     const [openDatePickerMinHeight, setOpenDatePickerMinHeight] = useState(400);
+    const [openDatePickerMinWidth, setOpenDatePickerMinWidth] = useState(350);
 
     useEffect(() => {
-        // Get the height of de DOM element of the calendar part of a SingleDatePicker_picker
+        // Get the measures of de DOM element of the calendar part of a SingleDatePicker_picker
         const datePickerContainer = document.querySelectorAll('div.DayPicker__horizontal');
 
-        if (
-            datePickerContainer &&
-            datePickerContainer.length !== 0 &&
-            datePickerContainer[0].clientHeight !== openDatePickerMinHeight
-        ) {
-            setOpenDatePickerMinHeight(datePickerContainer[0].clientHeight);
+        if (datePickerContainer && datePickerContainer.length !== 0) {
+            if (datePickerContainer[0].clientHeight !== openDatePickerMinHeight) {
+                setOpenDatePickerMinHeight(datePickerContainer[0].clientHeight);
+            }
+
+            if (datePickerContainer[0].clientWidth !== openDatePickerMinWidth) {
+                setOpenDatePickerMinWidth(datePickerContainer[0].clientWidth);
+            }
         }
     });
 
     useEffect(() => {
         if (singleDatePickerRef.current) {
-            let { top } = singleDatePickerRef.current.getBoundingClientRect();
+            let { top, right } = singleDatePickerRef.current.getBoundingClientRect();
 
             if (parentContainer) {
                 const parentContainerRect = parentContainer.getBoundingClientRect();
                 top -= parentContainerRect.top;
+                right -= parentContainerRect.right;
             }
 
             const containerHeight = parentContainer ? parentContainer.offsetHeight : window.innerHeight;
-            // calculate available space under the dropdown
+            const containerWidth = parentContainer ? parentContainer.offsetWidth : window.innerWidth;
+
+            // calculate available space under and to the right of the dropdown
             const availableSpaceUnder = Math.round(containerHeight - top);
+            const availableSpeceRight = Math.round(containerWidth - right);
 
             // open date picker above only if there is enough space above and not enough space under
             setIsTopDatepicker(openDatePickerMinHeight > availableSpaceUnder && openDatePickerMinHeight < top);
+
+            // align date picker to the right otherwise it exceeds parent container's width
+            setIsRightDatepicker(openDatePickerMinWidth > availableSpeceRight);
         }
     }, [parentContainer, singleDatePickerRef.current]);
 
     useEffect(() => {
         setOpenDirection(isTopDatepicker ? 'up' : 'down');
     }, [isTopDatepicker]);
+
+    useEffect(() => {
+        setAnchorDirection(isRightDatepicker ? 'right' : 'left');
+    }, [isRightDatepicker]);
 
     if (onCancel) {
         footerButtons.push({
@@ -168,6 +189,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                         </FormElementLabel>
                     )}
                     <AirbnbSingleDatePicker
+                        anchorDirection={anchorDirection}
                         customInputIcon={<InputIcon isDisabled={isDisabled} isFocused={isFocused} variant={variant} />}
                         date={date}
                         daySize={daySize}

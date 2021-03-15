@@ -72,6 +72,39 @@ export const DatePickerOpensUp: FunctionComponent = () => {
     );
 };
 
+const ThinWrapper = styled.div`
+    width: 300px;
+`;
+
+export const DatePickerAlignRight: FunctionComponent = () => {
+    const [date, setDate] = useState<Moment | null>(moment());
+    const [isFocused, setIsFocused] = useState(false);
+    const [wrapperElementRef, setWrapperElementRef] = useState<HTMLDivElement | null>(null);
+
+    return (
+        <ThinWrapper className="Parent" ref={setWrapperElementRef}>
+            <SingleDatePicker
+                date={date}
+                displayFormat={text('Display format', 'ddd D MMM Y')}
+                id="datepicker"
+                isFocused={isFocused}
+                keepOpenOnDateSelect={boolean('Keep open on date select', true)}
+                label={text('Label', 'Speeldatum')}
+                numberOfMonths={number('Number of months', 1)}
+                onDateChange={(newDate): void => {
+                    setDate(newDate);
+                }}
+                onFocusChange={({ focused }): void => {
+                    setIsFocused(Boolean(focused));
+                }}
+                parentContainer={wrapperElementRef || undefined}
+                placeholder={text('Placeholder', 'Selecteer je datum')}
+                variant={select('Variant', SingleDatePickerVariant, SingleDatePickerVariant.OUTLINE)}
+            />
+        </ThinWrapper>
+    );
+};
+
 export const WithYearSelector: FunctionComponent = () => {
     const [date, setDate] = useState<Moment | null>(moment());
     const [isFocused, setIsFocused] = useState(true);
