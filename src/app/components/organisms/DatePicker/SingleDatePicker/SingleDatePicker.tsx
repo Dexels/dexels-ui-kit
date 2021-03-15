@@ -122,13 +122,13 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
 
             // calculate available space under and to the right of the dropdown
             const availableSpaceUnder = Math.round(containerHeight - top);
-            const availableSpeceRight = Math.round(containerWidth - right);
+            const availableSpaceRight = Math.round(containerWidth - right);
 
             // open date picker above only if there is enough space above and not enough space under
             setIsTopDatepicker(openDatePickerMinHeight > availableSpaceUnder && openDatePickerMinHeight < top);
 
             // align date picker to the right otherwise it exceeds parent container's width
-            setIsRightDatepicker(openDatePickerMinWidth > availableSpeceRight);
+            setIsRightDatepicker(openDatePickerMinWidth > availableSpaceRight);
         }
     }, [parentContainer, singleDatePickerRef.current]);
 
