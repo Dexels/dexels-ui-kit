@@ -47,7 +47,7 @@ export const updateValuesOfData = <T extends DropdownSelectOption, U extends Dro
     return newData as EditableInformationData<T, U>;
 };
 
-const fruits: Fruit[] = [
+export const fruits: Fruit[] = [
     {
         adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
         isSelected: true,
@@ -94,12 +94,11 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
 
     result.push({
         component: EditableDataComponent.DATEPICKER,
-        isDisabled: true,
         isEditable: true,
-        isVisibleOnlyOnEdit: true,
+        isRequired: true,
         label: 'Date',
         name: 'Date',
-        value: moment(),
+        value: null,
     } as DatePickerDataProps);
 
     result.push({
@@ -132,33 +131,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         onKeyDown: onKeyDownCallback,
         value: 0,
     } as EditableInputNumberDataProps);
-
-    result.push({
-        component: EditableDataComponent.INPUTNUMBER,
-        isDisabled: false,
-        isEditable: true,
-        isRequired: true,
-        label: 'BadNumber',
-        min: 0,
-        name: 'BadNumber',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
-        value: -1,
-    } as EditableInputNumberDataProps);
-
-    result.push({
-        component: EditableDataComponent.INPUT,
-        isDisabled: false,
-        isEditable: true,
-        isRequired: true,
-        label: 'Input (null value)',
-        name: 'InputNull',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
-        value: null,
-    } as EditableInputDataProps);
 
     result.push({
         component: EditableDataComponent.INPUT,

@@ -10,6 +10,7 @@ import DropdownSelect from '../../DropdownSelect/DropdownSelect';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
 import InputCurrency from '../../InputCurrency/InputCurrency';
+import { isEmpty } from '../../../../../lib';
 import React from 'react';
 import ScorePicker from '../../../molecules/ScorePicker/ScorePicker';
 import { SelectionControl } from '../../../molecules/SelectionControl';
@@ -59,6 +60,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             }
 
             const { name } = dataInstance;
+            const hasError = isRequired && isEmpty(values[name]);
 
             if (dataInstance.component === EditableDataComponent.CHECKBOX) {
                 return {
@@ -66,7 +68,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     value: (
                         <SelectionControl
                             errorMessage={dataInstance.errorMessage}
-                            hasError={isRequired && Boolean(name) && !values[name]}
+                            hasError={hasError}
                             hasVerticalCorrection
                             isChecked={values[name] as boolean}
                             isDisabled={isDisabled}
@@ -88,6 +90,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                         <SingleDatePicker
                             date={values[name] as moment.Moment | null}
                             displayFormat={dataInstance.dateFormat || dateFormat}
+                            hasError={hasError}
                             id={name}
                             isDisabled={isDisabled}
                             isFocused={datePickerFocuses[name]}
@@ -112,7 +115,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     textValue: dataInstance.textValue,
                     value: (
                         <Dropdown
-                            hasError={isRequired && Boolean(name) && !values[name]}
+                            hasError={hasError}
                             isDisabled={isDisabled}
                             name={name}
                             onChange={({ currentTarget }): void => {
@@ -142,6 +145,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             buttonCancelText={dataInstance.buttonCancelText}
                             buttonConfirmText={dataInstance.buttonConfirmText}
                             deselectAllLabel={dataInstance.deselectAllLabel}
+                            hasError={hasError}
                             isDisabled={isDisabled}
                             maxHeight={dataInstance.maxHeight}
                             minHeight={dataInstance.minHeight}
@@ -162,7 +166,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                         <DropdownSelect
                             defaultValue={dataInstance.defaultValue}
                             footerText={dataInstance.footerText}
-                            hasError={isRequired && Boolean(name) && !values[name]}
+                            hasError={hasError}
                             iconType={dataInstance.iconType}
                             isDisabled={isDisabled}
                             name={dataInstance.name}
@@ -186,7 +190,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            hasError={isRequired && Boolean(name) && !values[name]}
+                            hasError={hasError}
                             isDisabled={isDisabled}
                             label={dataInstance.placeholder}
                             maxLength={dataInstance.maxLength}
@@ -222,6 +226,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <InputCurrency
+                            hasError={hasError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             locale={dataInstance.locale}
@@ -258,7 +263,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            hasError={isRequired && Boolean(name) && values[name] === undefined}
+                            hasError={hasError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             label={dataInstance.placeholder}
@@ -311,7 +316,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            hasError={isRequired && Boolean(name) && !values[name]}
+                            hasError={hasError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             isTextarea
@@ -347,7 +352,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            hasError={isRequired && Boolean(name) && !values[name]}
+                            hasError={hasError}
                             isDisabled={isDisabled}
                             isTextarea
                             label={dataInstance.placeholder}
@@ -376,7 +381,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                 label,
                 value: (
                     <Input
-                        hasError={isRequired && Boolean(name) && !values[name]}
+                        hasError={hasError}
                         isDisabled={isDisabled}
                         isRequired={isRequired}
                         name={name}
