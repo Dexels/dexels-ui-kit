@@ -94,11 +94,12 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
 
     result.push({
         component: EditableDataComponent.DATEPICKER,
+        isDisabled: true,
         isEditable: true,
-        isRequired: true,
+        isVisibleOnlyOnEdit: true,
         label: 'Date',
         name: 'Date',
-        value: null,
+        value: moment(),
     } as DatePickerDataProps);
 
     result.push({
@@ -131,6 +132,33 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         onKeyDown: onKeyDownCallback,
         value: 0,
     } as EditableInputNumberDataProps);
+
+    result.push({
+        component: EditableDataComponent.INPUTNUMBER,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'BadNumber',
+        min: 0,
+        name: 'BadNumber',
+        onBlur: onBlurCallback,
+        onFocus: onFocusCallback,
+        onKeyDown: onKeyDownCallback,
+        value: -1,
+    } as EditableInputNumberDataProps);
+
+    result.push({
+        component: EditableDataComponent.INPUT,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'Input (null value)',
+        name: 'InputNull',
+        onBlur: onBlurCallback,
+        onFocus: onFocusCallback,
+        onKeyDown: onKeyDownCallback,
+        value: null,
+    } as EditableInputDataProps);
 
     result.push({
         component: EditableDataComponent.INPUT,
