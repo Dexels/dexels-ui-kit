@@ -4,9 +4,13 @@ import { Locale } from '../../types';
 import { toMoneyValue } from './financialFunctions';
 import toNumber from './toNumber';
 
-export const isEmpty = (value: string | unknown | undefined | null): boolean => {
+export const isEmpty = (value: string | unknown | undefined | null | Array<unknown>): boolean => {
     if (value === null || typeof value === 'undefined') {
         return true;
+    }
+
+    if (Array.isArray(value)) {
+        return value.length <= 0;
     }
 
     if (typeof value === 'string') {

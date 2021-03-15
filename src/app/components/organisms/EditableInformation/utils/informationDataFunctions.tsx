@@ -1,6 +1,10 @@
 import {
     CheckboxDataProps,
     DropdownDataProps,
+    EditableDatePickerDataProps,
+    EditableDropdownDataProps,
+    EditableDropdownMultiSelectDataProps,
+    EditableDropdownSelectDataProps,
     EditableInformationData,
     EditableInformationDataType,
     EditableInputCurrencyDataProps,
@@ -11,6 +15,7 @@ import {
 import { convertToLocaleValue, formatMoney } from '../../../../utils/functions/financialFunctions';
 import { EditableDataComponent, InputType, Status } from '../../../../types';
 import {
+    isEmpty,
     isValidInputCurrency,
     isValidInputEmail,
     isValidInputNumber,
@@ -99,67 +104,66 @@ export const isEditableData = <T extends DropdownSelectOption, U extends Dropdow
 export const isValidEditableInput = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
     values: { [key: string]: ValueTypes<T, U> }
-): boolean => {
-    if (data.length) {
-        let i = 0;
-        let isValid = true;
+): boolean =>
+    data.every((item): boolean => {
+        switch (item.component) {
+            /* eslint-disable padding-line-between-statements */
+            case EditableDataComponent.DROPDOWN:
+            case EditableDataComponent.DROPDOWNSELECT:
+            case EditableDataComponent.DROPDOWNMULTISELECT:
+            case EditableDataComponent.DATEPICKER:
+                return (
+                    !item.isRequired ||
+                    !isEmpty(
+                        values[
+                            (item as
+                                | EditableDropdownDataProps
+                                | EditableDropdownSelectDataProps<T>
+                                | EditableDropdownMultiSelectDataProps<U>
+                                | EditableDatePickerDataProps).name
+                        ] || null
+                    )
+                );
 
-        // Check all items, but only if still valid
-        while (isValid && i < data.length) {
-            const item = data[i];
-
-            switch (item.component) {
-                case EditableDataComponent.INPUT:
-                    if ((item as EditableInputDataProps).type === InputType.EMAIL) {
-                        isValid = isValidInputEmail(
-                            values[(item as EditableInputDataProps).name]?.toString() || null,
-                            (item as EditableInputDataProps).isRequired || false
-                        );
-                    } else if ((item as EditableInputDataProps).type === InputType.TELEPHONE) {
-                        isValid = isValidInputTelephone(
-                            values[(item as EditableInputDataProps).name]?.toString() || null,
-                            (item as EditableInputDataProps).isRequired || false
-                        );
-                    } else {
-                        isValid = isValidInputText(
-                            values[(item as EditableInputDataProps).name]?.toString() || null,
-                            (item as EditableInputDataProps).isRequired || false,
-                            (item as EditableInputDataProps).minLength,
-                            (item as EditableInputDataProps).maxLength
-                        );
-                    }
-
-                    break;
-
-                case EditableDataComponent.INPUTCURRENCY:
-                    isValid = isValidInputCurrency(
-                        values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
-                        (item as EditableInputCurrencyDataProps).locale,
-                        (item as EditableInputCurrencyDataProps).isRequired || false
+            case EditableDataComponent.INPUT:
+                if ((item as EditableInputDataProps).type === InputType.EMAIL) {
+                    return isValidInputEmail(
+                        values[(item as EditableInputDataProps).name]?.toString() || null,
+                        item.isRequired || false
                     );
+                }
 
-                    break;
-
-                case EditableDataComponent.INPUTNUMBER:
-                    isValid = isValidInputNumber(
-                        values[(item as EditableInputNumberDataProps).name]?.toString() || null,
-                        (item as EditableInputNumberDataProps).locale || DEFAULT_LOCALE,
-                        (item as EditableInputNumberDataProps).isRequired || false,
-                        (item as EditableInputNumberDataProps).min,
-                        (item as EditableInputNumberDataProps).max
+                if ((item as EditableInputDataProps).type === InputType.TELEPHONE) {
+                    return isValidInputTelephone(
+                        values[(item as EditableInputDataProps).name]?.toString() || null,
+                        item.isRequired || false
                     );
+                }
 
-                    break;
+                return isValidInputText(
+                    values[(item as EditableInputDataProps).name]?.toString() || null,
+                    item.isRequired || false,
+                    (item as EditableInputDataProps).minLength,
+                    (item as EditableInputDataProps).maxLength
+                );
 
-                default:
-                    isValid = true;
-            }
+            case EditableDataComponent.INPUTCURRENCY:
+                return isValidInputCurrency(
+                    values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
+                    (item as EditableInputCurrencyDataProps).locale,
+                    item.isRequired || false
+                );
 
-            i += 1;
+            case EditableDataComponent.INPUTNUMBER:
+                return isValidInputNumber(
+                    values[(item as EditableInputNumberDataProps).name]?.toString() || null,
+                    (item as EditableInputNumberDataProps).locale || DEFAULT_LOCALE,
+                    item.isRequired || false,
+                    (item as EditableInputNumberDataProps).min,
+                    (item as EditableInputNumberDataProps).max
+                );
+
+            default:
+                return true;
         }
-
-        return isValid;
-    }
-
-    return true;
-};
+    });

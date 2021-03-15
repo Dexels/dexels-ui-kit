@@ -5,6 +5,7 @@ import { themeBasic } from '../../../../styles/theming/themes/basic';
 export const StyledWrapper = styled.div``;
 
 interface StyledSingleDatePickerProps {
+    hasError: boolean;
     isFocused: boolean;
     isTopDatepicker: boolean;
     variant: SingleDatePickerVariant;
@@ -36,7 +37,7 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
                 height: ${`calc(${theme.spacing(3)} + 1px)`};
             `}
 
-        ${({ isFocused, theme, variant }): SimpleInterpolation =>
+        ${({ hasError, isFocused, theme, variant }): SimpleInterpolation =>
             variant === SingleDatePickerVariant.COMPACT &&
             css`
                 overflow: visible;
@@ -49,6 +50,11 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
                     ${isFocused &&
                     css`
                         background-color: ${theme.colorSecondary};
+                    `}
+
+                    ${hasError &&
+                    css`
+                        background-color: ${theme.colorInvalid};
                     `}
                 }
             `}

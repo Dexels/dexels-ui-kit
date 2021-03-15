@@ -47,7 +47,7 @@ export const updateValuesOfData = <T extends DropdownSelectOption, U extends Dro
     return newData as EditableInformationData<T, U>;
 };
 
-const fruits: Fruit[] = [
+export const fruits: Fruit[] = [
     {
         adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
         isSelected: true,

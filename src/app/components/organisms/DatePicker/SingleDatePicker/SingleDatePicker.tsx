@@ -26,6 +26,7 @@ export interface SingleDatePickerProps {
     daySize?: number;
     displayFormat?: string;
     footerText?: DialogFooterProps['text'];
+    hasError?: boolean;
     hasYearSelector?: boolean;
     id: string;
     isDayBlocked?: (day: Moment) => boolean;
@@ -58,6 +59,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     daySize = 40,
     displayFormat = 'ddd D MMM Y',
     footerText,
+    hasError = false,
     hasYearSelector = false,
     id,
     isDayBlocked,
@@ -172,7 +174,12 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                     setIsHovered(false);
                 }}
             >
-                <StyledSingleDatePicker isFocused={isFocused} isTopDatepicker={isTopDatepicker} variant={variant}>
+                <StyledSingleDatePicker
+                    hasError={hasError}
+                    isFocused={isFocused}
+                    isTopDatepicker={isTopDatepicker}
+                    variant={variant}
+                >
                     {label && (
                         <FormElementLabel
                             isActive
