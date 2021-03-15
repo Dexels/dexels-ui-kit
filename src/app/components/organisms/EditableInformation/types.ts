@@ -40,6 +40,7 @@ export interface DatePickerDataProps extends BaseDataProps {
 export interface EditableDatePickerDataProps extends DatePickerDataProps {
     isOutsideRange?: SingleDatePickerProps['isOutsideRange'];
     name: string;
+    parentContainer?: SingleDatePickerProps['parentContainer'];
     placeholder?: SingleDatePickerProps['placeholder'];
 }
 
