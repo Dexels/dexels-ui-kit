@@ -10,7 +10,7 @@ import DropdownSelect from '../../DropdownSelect/DropdownSelect';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
 import InputCurrency from '../../InputCurrency/InputCurrency';
-import { isEmpty } from '../../../../../lib';
+import { isEmpty } from '../../../../utils/functions/validateFunctions';
 import React from 'react';
 import ScorePicker from '../../../molecules/ScorePicker/ScorePicker';
 import { SelectionControl } from '../../../molecules/SelectionControl';
