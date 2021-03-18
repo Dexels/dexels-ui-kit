@@ -111,12 +111,14 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
 
     useEffect(() => {
         if (singleDatePickerRef.current) {
-            let { top, right } = singleDatePickerRef.current.getBoundingClientRect();
+            // position of datePicker in the window
+            let { top, left } = singleDatePickerRef.current.getBoundingClientRect();
 
+            // position of the datePicker relative to the parentContainer.
             if (parentContainer) {
                 const parentContainerRect = parentContainer.getBoundingClientRect();
                 top -= parentContainerRect.top;
-                right -= parentContainerRect.right;
+                left -= parentContainerRect.left;
             }
 
             const containerHeight = parentContainer ? parentContainer.offsetHeight : window.innerHeight;
@@ -124,7 +126,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
 
             // calculate available space under and to the right of the dropdown
             const availableSpaceUnder = Math.round(containerHeight - top);
-            const availableSpaceRight = Math.round(containerWidth - right);
+            const availableSpaceRight = Math.round(containerWidth - left);
 
             // open date picker above only if there is enough space above and not enough space under
             setIsTopDatepicker(openDatePickerMinHeight > availableSpaceUnder && openDatePickerMinHeight < top);
