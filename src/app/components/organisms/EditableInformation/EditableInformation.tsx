@@ -89,6 +89,10 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
+    useEffect(() => {
+        setIsBeingEdited(isEditing);
+    }, [isEditing]);
+
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
 
