@@ -57,7 +57,7 @@ export const TabHeader = styled.button<TabHeaderProps>`
     outline: none;
     border-bottom: 2px solid ${({ theme }): string => theme.shades.six};
     cursor: pointer;
-    padding: ${({ theme }): string => theme.spacing(1.25)};
+    padding: ${({ theme }): string => theme.spacing(1.25, 2)};
     height: ${({ theme }): string => theme.spacing(6.75)};
     text-align: center;
     color: ${({ theme }): string => theme.colorText.primary};
