@@ -105,7 +105,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         if (onSave) {
             onSave(updatedValues);
         }
-    }, [onSave, updatedValues]);
+    }, [keepEditMode, onSave, updatedValues]);
 
     const onCancelCallback = useCallback(() => {
         setIsBeingEdited(false);
