@@ -60,6 +60,19 @@ jobs:
                 path: reports/junit
             - store_artifacts:
                 path: reports/junit
+    check_types:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - run:
+                command: |
+                    mkdir -p reports/junit
+                    npm run check-types
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
     jest:
         <<: *container_config
         steps:
@@ -86,6 +99,11 @@ workflows:
                 requires:
                     - install_dependencies
             - lint_css:
+                context:
+                    - dexels_docker_hub
+                requires:
+                    - install_dependencies
+            - check_types:
                 context:
                     - dexels_docker_hub
                 requires:
