@@ -115,6 +115,7 @@ export interface InputDataProps extends BaseDataProps {
 }
 
 export interface EditableInputDataProps extends InputDataProps {
+    locale?: InputProps['locale'];
     maxLength?: InputProps['maxLength'];
     minLength?: InputProps['minLength'];
     name: InputProps['name'];

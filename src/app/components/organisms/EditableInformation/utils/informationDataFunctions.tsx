@@ -136,7 +136,8 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                 if ((item as EditableInputDataProps).type === InputType.TELEPHONE) {
                     return isValidInputTelephone(
                         values[(item as EditableInputDataProps).name]?.toString() || null,
-                        item.isRequired || false
+                        item.isRequired || false,
+                        (item as EditableInputDataProps).locale
                     );
                 }
 

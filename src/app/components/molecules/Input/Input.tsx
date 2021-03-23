@@ -103,7 +103,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     return isValidInputNumber(toNumber(valueToValidate), locale, isRequired, min, max);
 
                 case InputType.TELEPHONE:
-                    return isValidInputTelephone(valueToValidate, isRequired);
+                    return isValidInputTelephone(valueToValidate, isRequired, locale);
 
                 case InputType.TEXT:
                     return isValidInputText(valueToValidate, isRequired, minLength, maxLength);
