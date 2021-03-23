@@ -1,7 +1,7 @@
 import { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../../../molecules/Dropdown';
 import { DropdownMultiSelect, DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { EditableDataComponent, InputType, InputVariant, Locale } from '../../../../types';
-import { EditableInformationData, EditableInputCurrencyDataProps, ScorePickerDataProps, ValueTypes } from '../types';
+import { EditableInformationData, ScorePickerDataProps, ValueTypes } from '../types';
 import { generateDropdownSelectOptionLabel, getValueOfEditableDataComponent } from '../utils/informationDataFunctions';
 import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
@@ -22,6 +22,7 @@ export interface EditableDataProps<T extends DropdownOption, U extends DropdownM
         [key: string]: boolean;
     };
     isBeingEdited: boolean;
+    locale?: Locale;
     onChange: (name: string, value: ValueTypes<T, U>, isCurrency?: boolean, locale?: Locale) => void;
     onDatePickerFocusChange: (name: string, focused: boolean) => void;
     onDropdownChange: (option: T, name: string, propertyNameOfId?: string) => void;
@@ -35,6 +36,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
     dateFormat,
     datePickerFocuses,
     isBeingEdited,
+    locale = DEFAULT_LOCALE,
     onDatePickerFocusChange,
     onDropdownChange,
     onChange,
@@ -46,12 +48,6 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             const { isDisabled, isEditable, isRequired, label } = dataInstance;
 
             if (!isBeingEdited || !('name' in dataInstance) || ('name' in dataInstance && !isEditable)) {
-                let locale = DEFAULT_LOCALE;
-
-                if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
-                    locale = (dataInstance as EditableInputCurrencyDataProps).locale;
-                }
-
                 return {
                     isDisabled,
                     label,
@@ -193,6 +189,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             hasError={hasError}
                             isDisabled={isDisabled}
                             label={dataInstance.placeholder}
+                            locale={locale}
                             maxLength={dataInstance.maxLength}
                             name={name}
                             onBlur={(event): void => {
@@ -229,7 +226,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             hasError={hasError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
-                            locale={dataInstance.locale}
+                            locale={locale}
                             max={dataInstance.max}
                             min={dataInstance.min}
                             name={name}
@@ -239,7 +236,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                                 }
                             }}
                             onChange={({ currentTarget }): void => {
-                                onChange(currentTarget.name, currentTarget.value, true, dataInstance.locale);
+                                onChange(currentTarget.name, currentTarget.value, true, locale);
                             }}
                             onFocus={(event): void => {
                                 if (dataInstance.onFocus) {
@@ -267,6 +264,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             label={dataInstance.placeholder}
+                            locale={locale}
                             max={dataInstance.max}
                             min={dataInstance.min}
                             name={name}
@@ -321,6 +319,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             isRequired={isRequired}
                             isTextarea
                             label={dataInstance.placeholder}
+                            locale={locale}
                             maxLength={dataInstance.maxLength || 1024}
                             name={name}
                             onBlur={(event): void => {
@@ -356,6 +355,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             isDisabled={isDisabled}
                             isTextarea
                             label={dataInstance.placeholder}
+                            locale={locale}
                             name={name}
                             value={values[name] as string | undefined}
                         />
@@ -384,6 +384,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                         hasError={hasError}
                         isDisabled={isDisabled}
                         isRequired={isRequired}
+                        locale={locale}
                         name={name}
                         onChange={({ currentTarget }): void => {
                             onChange(currentTarget.name, currentTarget.value);

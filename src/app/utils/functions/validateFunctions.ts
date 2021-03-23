@@ -33,12 +33,12 @@ export const isValidEmail = (value: string): boolean => {
 
 export const isValidPhoneNumber = (value: string, locale?: Locale): boolean => {
     if (locale && locale === Locale.NL) {
-        const phoneRegExp = /^(\+(([0-9]){1,2})[-.])?((((([0-9]){2,4})[-.]){1,2}([0-9]{4,10}))|([0-9]{10}))$/;
+        const phoneRegExp = /^(\+(([0-9]){1,2})[-. ])?((((([0-9]){2,4})[-. ]){1,2}([0-9]{4,8}))|([0-9]{10}))$/;
 
         return phoneRegExp.test(value);
     }
 
-    return true;
+    return true; // No idea what to implement here, because this differs per Locale
 };
 
 export const isValidNumber = (value: string, allowDecimals = false, locale?: Locale): boolean => {

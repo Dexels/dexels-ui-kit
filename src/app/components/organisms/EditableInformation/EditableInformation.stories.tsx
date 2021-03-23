@@ -3,9 +3,10 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { editableInformationCurrency, updateValuesOfCurrency } from './mockup/editableInformationCurrency';
 import { editableInformationData, updateValuesOfData } from './mockup/editableInformationData';
 import { EditableInformationData, ValueTypes } from './types';
-import { IconType, Status } from '../../../types';
+import { IconType, Locale, Status } from '../../../types';
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
 import EditableInformation from './EditableInformation';
@@ -86,6 +87,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             isEditing={isEditing}
             isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
+            locale={select('Locale', Locale, DEFAULT_LOCALE)} // Doesn't change dateFormat
             onCancel={onCancelCallback}
             onChange={onChangeCallback}
             onEdit={isEditable ? action('onEdit') : undefined}

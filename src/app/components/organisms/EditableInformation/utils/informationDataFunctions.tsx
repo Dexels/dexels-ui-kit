@@ -13,7 +13,7 @@ import {
     ValueTypes,
 } from '../types';
 import { convertToLocaleValue, formatMoney } from '../../../../utils/functions/financialFunctions';
-import { EditableDataComponent, InputType, Status } from '../../../../types';
+import { EditableDataComponent, InputType, Locale, Status } from '../../../../types';
 import {
     isEmpty,
     isValidInputCurrency,
@@ -103,7 +103,8 @@ export const isEditableData = <T extends DropdownSelectOption, U extends Dropdow
 
 export const isValidEditableInput = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
-    values: { [key: string]: ValueTypes<T, U> }
+    values: { [key: string]: ValueTypes<T, U> },
+    locale: Locale
 ): boolean =>
     data.every((item): boolean => {
         switch (item.component) {
@@ -137,7 +138,7 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                     return isValidInputTelephone(
                         values[(item as EditableInputDataProps).name]?.toString() || null,
                         item.isRequired || false,
-                        (item as EditableInputDataProps).locale
+                        locale
                     );
                 }
 
@@ -151,14 +152,14 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
             case EditableDataComponent.INPUTCURRENCY:
                 return isValidInputCurrency(
                     values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
-                    (item as EditableInputCurrencyDataProps).locale,
+                    locale,
                     item.isRequired || false
                 );
 
             case EditableDataComponent.INPUTNUMBER:
                 return isValidInputNumber(
                     values[(item as EditableInputNumberDataProps).name]?.toString() || null,
-                    (item as EditableInputNumberDataProps).locale || DEFAULT_LOCALE,
+                    locale,
                     item.isRequired || false,
                     (item as EditableInputNumberDataProps).min,
                     (item as EditableInputNumberDataProps).max

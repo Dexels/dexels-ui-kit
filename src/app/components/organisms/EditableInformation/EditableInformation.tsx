@@ -6,7 +6,7 @@ import {
     isEditableData,
     isValidEditableInput,
 } from './utils/informationDataFunctions';
-import { IconType, Status } from '../../../types';
+import { IconType, Locale, Status } from '../../../types';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { useCallback, useEffect, useState } from 'react';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
@@ -39,6 +39,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     isLoading?: boolean;
     isSaving?: boolean;
     keepEditMode?: boolean;
+    locale?: Locale;
     onCancel?: () => void;
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
@@ -67,6 +68,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     isLoading = false,
     isSaving = false,
     keepEditMode = false,
+    locale = DEFAULT_LOCALE,
     onCancel,
     onChange,
     onEdit,
@@ -86,12 +88,17 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
     const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isEditable, setIsEditable] = useState<boolean>(false);
+    const [localeValue, setLocaleValue] = useState(locale);
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
     useEffect(() => {
         setIsBeingEdited(isEditing);
     }, [isEditing]);
+
+    useEffect(() => {
+        setLocaleValue(locale);
+    }, [locale]);
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
@@ -121,7 +128,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [originalValues, onCancel]);
 
     const onChangeCallback = useCallback(
-        (name: string, value: ValueTypes<T, U>, isCurrency = false, locale = DEFAULT_LOCALE) => {
+        (name: string, value: ValueTypes<T, U>, isCurrency = false) => {
             let newValues = {
                 ...updatedValues,
                 [name]: value,
@@ -131,7 +138,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
 
             newValues = {
                 ...updatedValues,
-                [name]: isCurrency && value ? convertToLocaleValue(value as string, locale) : value,
+                [name]: isCurrency && value ? convertToLocaleValue(value as string, localeValue) : value,
             };
 
             if (onChange) {
@@ -182,7 +189,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     // When updated values are changed do validation
     useEffect(() => {
         if (!isEmpty(data) && !isEmpty(updatedValues)) {
-            setIsValidInputData(isValidEditableInput(data, updatedValues));
+            setIsValidInputData(isValidEditableInput(data, updatedValues, localeValue));
         }
     }, [data, updatedValues]);
 
@@ -208,7 +215,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
                 }, {})
             );
 
-            const values = generateValuesArray(data);
+            const values = generateValuesArray(data, localeValue);
 
             // initialize 2 arrays of Values
             setOriginalValues(values);
@@ -228,15 +235,16 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             setInformationTableData(
                 data.map((element) => ({
                     label: element.label,
-                    value: getValueOfEditableDataComponent(element, dateFormat),
+                    value: getValueOfEditableDataComponent(element, dateFormat, localeValue),
                 }))
             );
-        } else if (Object.keys(updatedValues).length > 0) {
+        } else if (!isEmpty(updatedValues)) {
             const newData = editableData({
                 data,
                 dateFormat,
                 datePickerFocuses,
                 isBeingEdited,
+                locale: localeValue,
                 onChange: onChangeCallback,
                 onDatePickerFocusChange: onDatePickerFocusChangeCallback,
                 onDropdownChange: onDropdownChangeCallback,
@@ -253,6 +261,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         isBeingEdited,
         isEditable,
         isLoading,
+        localeValue,
         updatedValues,
         onChangeCallback,
         onDatePickerFocusChangeCallback,
