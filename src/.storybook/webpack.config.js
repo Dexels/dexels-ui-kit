@@ -9,7 +9,7 @@ module.exports = ({ config }) => {
         test: /\.(ts|tsx)$/,
         use: [
             {
-                loader: 'awesome-typescript-loader',
+                loader: require.resolve('awesome-typescript-loader'),
             },
         ],
     });
