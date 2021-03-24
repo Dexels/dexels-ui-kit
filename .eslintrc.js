@@ -13,9 +13,6 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:import/typescript',
         'prettier',
-        'prettier/@typescript-eslint',
-        'prettier/babel',
-        'prettier/react',
     ],
     rules: {
         'no-use-before-define': 'off',
