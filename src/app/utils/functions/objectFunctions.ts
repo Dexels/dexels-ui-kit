@@ -1,16 +1,14 @@
 import { compareDates, isValidDate } from './dateFunctions';
-import moment, { Moment } from 'moment';
 import { isEmpty } from './validateFunctions';
+import { Moment } from 'moment';
 
 const isObject = (object: unknown): boolean => object != null && typeof object === 'object';
 
-const isMomentObject = (object: unknown): boolean => isObject(object) && moment.isMoment(object);
+export const areEqualObjects = <T, U>(prevObject: T, nextObject: U, ignoreKeys?: string[]): boolean => {
+    if (!isObject(prevObject) || !isObject(nextObject)) {
+        return false;
+    }
 
-export const areEqualObjects = (
-    prevObject: Record<string, unknown>,
-    nextObject: Record<string, unknown>,
-    ignoreKeys?: string[]
-): boolean => {
     let prevKeys = Object.keys(prevObject);
     let nextKeys = Object.keys(nextObject);
 
@@ -27,11 +25,11 @@ export const areEqualObjects = (
     }
 
     const isDifferenceFound = prevKeys.some((key) => {
-        const prevValue = prevObject[key];
-        const nextValue = nextObject[key];
+        const prevValue = (prevObject as Record<string, unknown>)[key];
+        const nextValue = (nextObject as Record<string, unknown>)[key];
 
         const areValidDates =
-            isValidDate(prevValue as string | Date | Moment) && isMomentObject(nextValue as string | Date | Moment);
+            isValidDate(prevValue as string | Date | Moment) && isValidDate(nextValue as string | Date | Moment);
 
         const areObjects = isObject(prevValue) && isObject(nextValue);
 
@@ -71,7 +69,11 @@ export const isObjectPropertyChanged = <T extends Record<string, unknown>>(
 };
 
 // Returns added keys or removed keys or keys of changed values when prevObject and nextObject are object of the same interface
-export const getObjectDifference = <T extends Record<string, unknown>>(prevObject: T, nextObject: T): Array<string> => {
+export const getObjectDifference = <T>(prevObject: T, nextObject: T): Array<string> => {
+    if (!isObject(prevObject) || !isObject(nextObject)) {
+        return [];
+    }
+
     const prevKeys = Object.keys(prevObject);
     const nextKeys = Object.keys(nextObject);
 
@@ -80,11 +82,14 @@ export const getObjectDifference = <T extends Record<string, unknown>>(prevObjec
         .concat(nextKeys.filter((key) => !prevKeys.includes(key)));
 
     const differValues = Object.keys(prevObject).filter((key) => {
-        if (typeof prevObject[key] === 'object') {
-            return JSON.stringify(prevObject[key]) !== JSON.stringify(nextObject[key]);
+        const prevValue = (prevObject as Record<string, unknown>)[key];
+        const nextValue = (nextObject as Record<string, unknown>)[key];
+
+        if (typeof prevValue === 'object') {
+            return JSON.stringify(prevValue) !== JSON.stringify(nextValue);
         }
 
-        return prevObject[key] !== nextObject[key];
+        return prevValue !== nextValue;
     });
 
     return Array.from(
