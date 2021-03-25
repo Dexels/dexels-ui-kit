@@ -61,6 +61,7 @@ export { hexToRgb, invertColor } from '../app/utils/functions/colorFunctions';
 export { sum } from '../app/components/organisms/Table/utils/aggregateFunctions';
 export {
     isEmpty,
+    isObject,
     isValidEmail,
     isValidMoney,
     isValidNumber,

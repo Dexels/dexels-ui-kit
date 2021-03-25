@@ -24,6 +24,8 @@ export const isEmpty = (value: string | unknown | undefined | null | Array<unkno
     return false;
 };
 
+export const isObject = (object: unknown): boolean => object != null && typeof object === 'object';
+
 export const isValidEmail = (value: string): boolean => {
     // eslint-disable-next-line max-len
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
