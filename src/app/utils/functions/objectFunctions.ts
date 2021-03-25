@@ -56,11 +56,7 @@ export const areEqualObjects = <T, U>(prevObject: T, nextObject: U, ignoreKeys?:
 };
 
 // Check the value in 2 objects of the same interface
-export const isObjectPropertyChanged = <T extends Record<string, unknown>>(
-    prevObject: T,
-    nextObject: T,
-    key: keyof T
-): boolean => {
+export const isObjectPropertyChanged = <T>(prevObject: T, nextObject: T, key: keyof T): boolean => {
     if (typeof prevObject[key] === 'object') {
         return JSON.stringify(prevObject[key]) !== JSON.stringify(nextObject[key]);
     }
