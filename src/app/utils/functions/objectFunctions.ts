@@ -1,8 +1,6 @@
 import { compareDates, isValidDate } from './dateFunctions';
-import { isEmpty } from './validateFunctions';
+import { isEmpty, isObject } from './validateFunctions';
 import { Moment } from 'moment';
-
-const isObject = (object: unknown): boolean => object != null && typeof object === 'object';
 
 export const areEqualObjects = <T, U>(prevObject: T, nextObject: U, ignoreKeys?: string[]): boolean => {
     if (!isObject(prevObject) || !isObject(nextObject)) {
