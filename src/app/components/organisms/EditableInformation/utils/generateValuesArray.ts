@@ -1,4 +1,5 @@
 import { convertToLocaleValue } from '../../../../utils/functions/financialFunctions';
+import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent } from '../../../../types';
@@ -7,7 +8,8 @@ import { EditableInformationData } from '../types';
 import { isDotDecimalCountry } from '../../../../utils/functions/localeFunctions';
 
 export const generateValuesArray = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
-    data: EditableInformationData<T, U>
+    data: EditableInformationData<T, U>,
+    locale = DEFAULT_LOCALE
 ): EditableDataProps<T, U>['values'] =>
     data.reduce((accumulator, dataInstance) => {
         if ('name' in dataInstance) {
@@ -29,8 +31,8 @@ export const generateValuesArray = <T extends DropdownSelectOption, U extends Dr
 
             if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
                 // Check if we can just format the value, or we might need to manipulate it a bit
-                const localeValue = !isDotDecimalCountry(dataInstance.locale)
-                    ? convertToLocaleValue(dataInstance.value || '', dataInstance.locale)
+                const localeValue = !isDotDecimalCountry(locale)
+                    ? convertToLocaleValue(dataInstance.value || '', locale)
                     : dataInstance.value || '';
 
                 return {

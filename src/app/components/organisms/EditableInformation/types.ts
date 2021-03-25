@@ -99,7 +99,6 @@ export interface InputNumberDataProps extends BaseDataProps {
 }
 
 export interface EditableInputNumberDataProps extends InputNumberDataProps {
-    locale?: InputProps['locale'];
     max?: InputProps['max'];
     min?: InputProps['min'];
     name: InputProps['name'];
@@ -176,7 +175,6 @@ export interface InputCurrencyDataProps extends BaseDataProps {
 
 export interface EditableInputCurrencyDataProps extends InputCurrencyDataProps {
     adornmentPosition?: InputCurrencyProps['adornmentPosition'];
-    locale: InputCurrencyProps['locale'];
     max?: InputCurrencyProps['max'];
     min?: InputCurrencyProps['min'];
     name: InputCurrencyProps['name'];

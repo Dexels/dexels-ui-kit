@@ -17,9 +17,8 @@ import {
     TimePickerDataProps,
     ValueTypes,
 } from '../types';
-import { EditableDataComponent, IconType, Locale } from '../../../../types';
+import { EditableDataComponent, IconType, InputType } from '../../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../../molecules/IconCustomizable';
-import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import moment from 'moment';
@@ -228,7 +227,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isEditable: true,
         isRequired: true,
         label: 'Currency',
-        locale: DEFAULT_LOCALE,
         name: 'EditableCurrency',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
@@ -242,7 +240,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isEditable: true,
         isRequired: true,
         label: 'Currency2',
-        locale: DEFAULT_LOCALE,
         name: 'EditableCurrency2',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
@@ -255,22 +252,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isDisabled: false,
         isEditable: true,
         isRequired: true,
-        label: 'CurrencyEN',
-        locale: Locale.EN,
-        name: 'CurrencyEN',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
-        value: '343.51',
-    } as EditableInputCurrencyDataProps);
-
-    result.push({
-        component: EditableDataComponent.INPUTCURRENCY,
-        isDisabled: false,
-        isEditable: true,
-        isRequired: true,
         label: 'Currency (comma)',
-        locale: DEFAULT_LOCALE,
         name: 'EditableCurrencyComma',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
@@ -284,7 +266,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isEditable: true,
         isRequired: true,
         label: 'NegativeCurrency',
-        locale: DEFAULT_LOCALE,
         name: 'NegativeCurrency',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
@@ -352,6 +333,18 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         maxLength: 20,
         name: 'EditableInput',
         value: 'Apple',
+    } as EditableInputDataProps);
+
+    result.push({
+        component: EditableDataComponent.INPUT,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'Telephone',
+        maxLength: 20,
+        name: 'EditableTelephone',
+        type: InputType.TELEPHONE,
+        value: '06-12345678',
     } as EditableInputDataProps);
 
     result.push({

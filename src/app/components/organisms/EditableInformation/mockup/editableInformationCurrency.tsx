@@ -1,13 +1,12 @@
-import { EditableDataComponent, Locale } from '../../../../types';
 import {
     EditableInformationData,
     EditableInformationDataType,
     EditableInputCurrencyDataProps,
     ValueTypes,
 } from '../types';
-import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
+import { EditableDataComponent } from '../../../../types';
 import React from 'react';
 
 export const updateValuesOfCurrency = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
@@ -55,7 +54,6 @@ export const editableInformationCurrency = <
         isEditable: true,
         isRequired: true,
         label: 'Currency',
-        locale: DEFAULT_LOCALE,
         name: 'EditableCurrency',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
@@ -69,7 +67,6 @@ export const editableInformationCurrency = <
         isEditable: true,
         isRequired: true,
         label: 'Currency2',
-        locale: DEFAULT_LOCALE,
         name: 'EditableCurrency2',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
@@ -82,22 +79,7 @@ export const editableInformationCurrency = <
         isDisabled: false,
         isEditable: true,
         isRequired: true,
-        label: 'CurrencyEN',
-        locale: Locale.EN,
-        name: 'CurrencyEN',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
-        value: '343.51',
-    } as EditableInputCurrencyDataProps);
-
-    result.push({
-        component: EditableDataComponent.INPUTCURRENCY,
-        isDisabled: false,
-        isEditable: true,
-        isRequired: true,
         label: 'Currency (comma)',
-        locale: DEFAULT_LOCALE,
         name: 'EditableCurrencyComma',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
@@ -111,7 +93,6 @@ export const editableInformationCurrency = <
         isEditable: true,
         isRequired: true,
         label: 'NegativeCurrency',
-        locale: DEFAULT_LOCALE,
         name: 'NegativeCurrency',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
