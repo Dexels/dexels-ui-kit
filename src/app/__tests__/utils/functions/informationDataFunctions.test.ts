@@ -2,6 +2,7 @@ import {
     DatePickerDataProps,
     EditableDropdownDataProps,
 } from '../../../components/organisms/EditableInformation/types';
+import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { EditableDataComponent } from '../../../types';
 import { fruits } from '../../../components/organisms/EditableInformation/mockup/editableInformationData';
 import { isValidEditableInput } from '../../../components/organisms/EditableInformation/utils/informationDataFunctions';
@@ -21,15 +22,23 @@ describe('test function isValidEditableInput', () => {
         ];
 
         expect(
-            isValidEditableInput(data, {
-                Date: moment(),
-            })
+            isValidEditableInput(
+                data,
+                {
+                    Date: moment(),
+                },
+                DEFAULT_LOCALE
+            )
         ).toBe(true);
 
         expect(
-            isValidEditableInput(data, {
-                Date: null,
-            })
+            isValidEditableInput(
+                data,
+                {
+                    Date: null,
+                },
+                DEFAULT_LOCALE
+            )
         ).toBe(false);
     });
 
@@ -48,15 +57,23 @@ describe('test function isValidEditableInput', () => {
         ];
 
         expect(
-            isValidEditableInput(data, {
-                Dropdown: '',
-            })
+            isValidEditableInput(
+                data,
+                {
+                    Dropdown: '',
+                },
+                DEFAULT_LOCALE
+            )
         ).toBe(false);
 
         expect(
-            isValidEditableInput(data, {
-                Dropdown: '2',
-            })
+            isValidEditableInput(
+                data,
+                {
+                    Dropdown: '2',
+                },
+                DEFAULT_LOCALE
+            )
         ).toBe(true);
     });
 });
