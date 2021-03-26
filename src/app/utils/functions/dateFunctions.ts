@@ -12,20 +12,13 @@ export const isValidStringDate = (inputText: string): boolean => {
     return dateWithTimezoneRegExp.test(inputText) || dateFormatRegExp.test(inputText);
 };
 
-export const isValidDate = (value: string | Date | Moment): boolean => {
-    // If the value is a string, then some checks need to be done, otherwise moment will throw warnings in the console
-    if (typeof value === 'string') {
-        return isValidStringDate(value);
-    }
-
-    return (
-        moment.isMoment(value) ||
-        moment.isDate(value) ||
-        ((moment.parseZone(value).inspect().includes('moment.parseZone') ||
-            moment.parseZone(value).inspect().includes('moment.utc')) &&
-            !moment.parseZone(value).inspect().includes('moment.invalid'))
-    );
-};
+export const isValidDate = (value: string | Date | Moment): boolean =>
+    (typeof value === 'string' && isValidStringDate(value)) ||
+    moment.isMoment(value) ||
+    moment.isDate(value) ||
+    ((moment.parseZone(value).inspect().includes('moment.parseZone') ||
+        moment.parseZone(value).inspect().includes('moment.utc')) &&
+        !moment.parseZone(value).inspect().includes('moment.invalid'));
 
 export const isValidClockTime = (value: string): boolean => {
     const timeRegExp = /^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)$/;
