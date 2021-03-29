@@ -12,8 +12,8 @@ import {
     EditableInputNumberDataProps,
     ValueTypes,
 } from '../types';
-import { convertToLocaleValue, formatMoney } from '../../../../utils/functions/financialFunctions';
 import { EditableDataComponent, InputType, Locale, Status } from '../../../../types';
+import { formatMoney, toCents, toMoneyValue } from '../../../../utils/functions/financialFunctions';
 import {
     isEmpty,
     isValidInputCurrency,
@@ -26,7 +26,6 @@ import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
-import { isDotDecimalCountry } from '../../../../utils/functions/localeFunctions';
 import moment from 'moment';
 import { ReactNode } from 'react';
 
@@ -68,12 +67,7 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
     }
 
     if (component === EditableDataComponent.INPUTCURRENCY && value) {
-        // Check if we can just format the value, or we might need to manipulate it a bit
-        const localeValue = !isDotDecimalCountry(locale)
-            ? convertToLocaleValue(value.toString(), locale)
-            : value.toString();
-
-        return formatMoney(localeValue, locale);
+        return formatMoney(toMoneyValue(toCents(value.toString()), locale, true), locale);
     }
 
     if (component === EditableDataComponent.SCOREPICKER && Array.isArray(value)) {

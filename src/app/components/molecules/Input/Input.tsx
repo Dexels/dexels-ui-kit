@@ -1,5 +1,6 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
+import { formatMoneyWithoutSymbol, toCents, toMoneyValue } from '../../../utils/functions/financialFunctions';
 import {
     isValidInputCurrency,
     isValidInputEmail,
@@ -20,7 +21,6 @@ import React, {
 } from 'react';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
-import { formatMoneyWithoutSymbol } from '../../../utils/functions/financialFunctions';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import toNumber from '../../../utils/functions/toNumber';
 
@@ -118,7 +118,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     // only onMount format initial value
     useEffect(() => {
         if (type === InputType.CURRENCY && value) {
-            setInputValue(formatMoneyWithoutSymbol(value || '', locale));
+            setInputValue(formatMoneyWithoutSymbol(toMoneyValue(toCents(value || ''), locale, true), locale));
         }
     }, []);
 

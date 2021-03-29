@@ -33,7 +33,9 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setIsEditing(saveErrors && saveErrors.length !== 0);
     }, [saveErrors]);
 
-    const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
+    const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }, isDataChanged?: boolean): void => {
+        // eslint-disable-next-line no-console
+        console.log('onSaveCallback -> isDataChanged : ', isDataChanged);
         setIsSaving(true);
         setIsEditing(isEditingMode);
 

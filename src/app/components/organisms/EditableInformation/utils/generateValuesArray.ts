@@ -1,11 +1,10 @@
-import { convertToLocaleValue } from '../../../../utils/functions/financialFunctions';
+import { toCents, toMoneyValue } from '../../../../utils/functions/financialFunctions';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent } from '../../../../types';
 import { EditableDataProps } from '../editableData/editableData';
 import { EditableInformationData } from '../types';
-import { isDotDecimalCountry } from '../../../../utils/functions/localeFunctions';
 
 export const generateValuesArray = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
@@ -30,14 +29,9 @@ export const generateValuesArray = <T extends DropdownSelectOption, U extends Dr
             }
 
             if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
-                // Check if we can just format the value, or we might need to manipulate it a bit
-                const localeValue = !isDotDecimalCountry(locale)
-                    ? convertToLocaleValue(dataInstance.value || '', locale)
-                    : dataInstance.value || '';
-
                 return {
                     ...accumulator,
-                    [dataInstance.name]: localeValue,
+                    [dataInstance.name]: toMoneyValue(toCents(dataInstance.value || ''), locale, true).toString(),
                 };
             }
 
