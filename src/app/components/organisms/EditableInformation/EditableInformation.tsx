@@ -9,6 +9,7 @@ import {
 import { IconType, Locale, Status } from '../../../types';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
 import React, { useCallback, useEffect, useState } from 'react';
+import { areEqualObjects } from '../../../utils/functions/objectFunctions';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
 import { convertToLocaleValue } from '../../../utils/functions/financialFunctions';
@@ -43,7 +44,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     onCancel?: () => void;
     onChange?: (data: unknown) => void;
     onEdit?: () => void;
-    onSave?: (data: { [key: string]: ValueTypes<T, U> }) => void;
+    onSave?: (data: { [key: string]: ValueTypes<T, U> }, isDataChanged?: boolean) => void;
     onValidation?: (isValidData: boolean) => void;
     saveConfirmDialog?: ConfirmDialog;
     status?: Status;
@@ -114,9 +115,9 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         }
 
         if (onSave) {
-            onSave(updatedValues);
+            onSave(updatedValues, !areEqualObjects(originalValues, updatedValues));
         }
-    }, [keepEditMode, onSave, updatedValues]);
+    }, [keepEditMode, onSave, originalValues, updatedValues]);
 
     const onCancelCallback = useCallback(() => {
         setIsBeingEdited(false);

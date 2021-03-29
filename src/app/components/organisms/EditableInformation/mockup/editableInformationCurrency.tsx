@@ -54,6 +54,8 @@ export const editableInformationCurrency = <
         isEditable: true,
         isRequired: true,
         label: 'Currency',
+        max: 10,
+        min: 0,
         name: 'EditableCurrency',
         onBlur: onBlurCallback,
         onFocus: onFocusCallback,
