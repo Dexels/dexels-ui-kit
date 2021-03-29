@@ -31,11 +31,7 @@ export const generateValuesArray = <T extends DropdownSelectOption, U extends Dr
             if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
                 return {
                     ...accumulator,
-                    [dataInstance.name]: toMoneyValue(
-                        toCents(dataInstance.value || ''),
-                        locale || DEFAULT_LOCALE,
-                        true
-                    ).toString(),
+                    [dataInstance.name]: toMoneyValue(toCents(dataInstance.value || ''), locale, true).toString(),
                 };
             }
 
