@@ -234,7 +234,8 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                                 yearCountFuture={yearCountFuture}
                             />
                         )}
-                        verticalSpacing={spacingValue * (variant === SingleDatePickerVariant.OUTLINE ? 6 : 3.25) - 40}
+                        small={variant === SingleDatePickerVariant.COMPACT}
+                        verticalSpacing={variant === SingleDatePickerVariant.OUTLINE ? spacingValue : 0}
                     />
                 </StyledSingleDatePicker>
             </Wrapper>
