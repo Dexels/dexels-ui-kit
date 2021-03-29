@@ -69,10 +69,10 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
     }
 
     .SingleDatePicker_picker {
-        ${({ isTopDatepicker }): SimpleInterpolation =>
+        ${({ isTopDatepicker, variant }): SimpleInterpolation =>
             isTopDatepicker &&
             css`
-                margin-bottom: 5px;
+                margin-bottom: ${variant === SingleDatePickerVariant.COMPACT ? '16px' : '8px'};
             `}
     }
 `;
