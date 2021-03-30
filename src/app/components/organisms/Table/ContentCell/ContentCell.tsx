@@ -12,10 +12,11 @@ export interface ContentCellProps {
     hasTooltip?: boolean;
     isBold?: boolean;
     isCurrency?: boolean;
+    isDate?: boolean;
     isDisabled?: boolean;
     isImage?: boolean;
+    isTime?: boolean;
     locale?: Locale;
-    renderDateAsTime?: boolean;
     textColor?: string;
     textLinesLimit?: number;
     timeFormat?: string;
@@ -29,10 +30,11 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
     hasTooltip = false,
     isCurrency = false,
     isBold = false,
+    isDate = false,
     isDisabled = false,
     isImage = false,
+    isTime = false,
     locale = DEFAULT_LOCALE,
-    renderDateAsTime = false,
     textColor = '',
     timeFormat = 'HH:mm',
     value,
@@ -59,8 +61,8 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
         );
     }
 
-    if (typeof value === 'string') {
-        if (renderDateAsTime) {
+    if ((isTime || isDate) && typeof value === 'string') {
+        if (isTime) {
             if (isValidClockTime(value)) {
                 content = formatTime(value);
             }
