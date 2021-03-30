@@ -61,7 +61,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
         );
     }
 
-    if (isDate && typeof value === 'string') {
+    if ((renderDateAsTime || isDate) && typeof value === 'string') {
         if (renderDateAsTime) {
             if (isValidClockTime(value)) {
                 content = formatTime(value);
