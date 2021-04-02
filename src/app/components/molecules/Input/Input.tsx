@@ -100,7 +100,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     return isValidInputEmail(valueToValidate, isRequired);
 
                 case InputType.NUMBER:
-                    return isValidInputNumber(toNumber(valueToValidate), locale, isRequired, min, max);
+                    return isValidInputNumber(valueToValidate, locale, isRequired, min, max);
 
                 case InputType.TELEPHONE:
                     return isValidInputTelephone(valueToValidate, isRequired, locale);
