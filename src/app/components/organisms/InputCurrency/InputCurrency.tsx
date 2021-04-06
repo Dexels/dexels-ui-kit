@@ -21,6 +21,7 @@ export interface InputCurrencyProps extends InputProps {
 }
 
 export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
+    autoFocus = false,
     adornmentPosition = AdornmentPosition.LEFT,
     className,
     errorMessage,
@@ -43,6 +44,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
         <Input
             adornment={<Icon type={getCurrencyIcon(locale)} />}
             adornmentPosition={adornmentPosition}
+            autoFocus={autoFocus}
             className={className}
             errorMessage={errorMessage}
             isDisabled={isDisabled}
