@@ -41,11 +41,19 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
     onDropdownChange,
     onChange,
     values,
-}: EditableDataProps<T, U>): InformationTableProps['data'] =>
-    data
+}: EditableDataProps<T, U>): InformationTableProps['data'] => {
+    let isFocusedInputSet = false;
+
+    return data
         .filter((dataInstance) => isBeingEdited || !dataInstance.isVisibleOnlyOnEdit)
         .map((dataInstance) => {
             const { isDisabled, isEditable, isRequired, label } = dataInstance;
+            let autoFocus = false;
+
+            if (!isFocusedInputSet && isEditable) {
+                autoFocus = true;
+                isFocusedInputSet = true;
+            }
 
             if (!isBeingEdited || !('name' in dataInstance) || ('name' in dataInstance && !isEditable)) {
                 return {
@@ -160,6 +168,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     textValue: dataInstance.value,
                     value: (
                         <DropdownSelect
+                            autoFocus={autoFocus}
                             defaultValue={dataInstance.defaultValue}
                             footerText={dataInstance.footerText}
                             hasError={hasError}
@@ -186,6 +195,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
+                            autoFocus={autoFocus}
                             hasError={hasError}
                             isDisabled={isDisabled}
                             label={dataInstance.placeholder}
@@ -223,6 +233,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <InputCurrency
+                            autoFocus={autoFocus}
                             hasError={hasError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
@@ -260,6 +271,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
+                            autoFocus={autoFocus}
                             hasError={hasError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
@@ -299,6 +311,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <ScorePicker
+                            autoFocus={autoFocus}
                             isDisabled={isDisabled}
                             label={dataInstance.placeholder}
                             name={name}
@@ -314,6 +327,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
+                            autoFocus={autoFocus}
                             hasError={hasError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
@@ -368,6 +382,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <TimePicker
+                            autoFocus={autoFocus}
                             isDisabled={isDisabled}
                             name={name}
                             onChange={onChange}
@@ -381,6 +396,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                 label,
                 value: (
                     <Input
+                        autoFocus={autoFocus}
                         hasError={hasError}
                         isDisabled={isDisabled}
                         isRequired={isRequired}
@@ -395,3 +411,4 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                 ),
             };
         });
+};
