@@ -1,6 +1,7 @@
 import {
     DatePickerDataProps,
     EditableDropdownDataProps,
+    EditableInputNumberDataProps,
 } from '../../../components/organisms/EditableInformation/types';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { EditableDataComponent } from '../../../types';
@@ -75,5 +76,62 @@ describe('test function isValidEditableInput', () => {
                 DEFAULT_LOCALE
             )
         ).toBe(true);
+    });
+
+    test('test InputNumber null value', () => {
+        const data = [
+            {
+                component: EditableDataComponent.INPUTNUMBER,
+                isDisabled: false,
+                isEditable: true,
+                label: 'BadNumber',
+                min: 0,
+                name: 'BadNumber',
+                value: null,
+            } as EditableInputNumberDataProps,
+        ];
+
+        expect(
+            isValidEditableInput(
+                data,
+                {
+                    BadNumber: -1,
+                },
+                DEFAULT_LOCALE
+            )
+        ).toBe(false);
+
+        expect(
+            isValidEditableInput(
+                data,
+                {
+                    BadNumber: null,
+                },
+                DEFAULT_LOCALE
+            )
+        ).toBe(true);
+
+        expect(
+            isValidEditableInput(
+                data,
+                {
+                    BadNumber: '',
+                },
+                DEFAULT_LOCALE
+            )
+        ).toBe(true);
+
+        expect(
+            isValidEditableInput(
+                data.map((item) => ({
+                    ...item,
+                    isRequired: true,
+                })),
+                {
+                    BadNumber: null,
+                },
+                DEFAULT_LOCALE
+            )
+        ).toBe(false);
     });
 });
