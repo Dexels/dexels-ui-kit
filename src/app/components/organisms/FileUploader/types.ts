@@ -13,17 +13,18 @@ export enum FileAlertType {
 }
 
 export enum FileTypes {
-    ARCHIVE = 'ARCHIVE',
-    AUDIO = 'AUDIO',
+    ARCHIVE = 'ZIP, RAR',
+    AUDIO = 'MP3, MIDI',
     CSV = 'CSV',
-    EXCEL = 'XLS, XLSX, XLSM, XLT',
+    EXCEL = 'XLS, XLSX, XLSM, XLT, ODS',
     HTML = 'HTML',
     IMAGE = 'BMP, GIF, JPEG, JPG, PNG',
+    OTHER = 'OTHER',
     PDF = 'PDF',
     POWERPOINT = 'PPT, PPTX',
     TEXT = 'TXT',
     VCF = 'VCF',
-    VIDEO = 'MP4, WEBM, MPG, MOV, WMV, FLV, AVI, AVCHD',
-    WORD = 'DOC, DOCX, DOT',
+    VIDEO = 'MP4, MPG, MOV, AVI',
+    WORD = 'DOC, DOCX, DOT, ODT',
     XML = 'XML',
 }
