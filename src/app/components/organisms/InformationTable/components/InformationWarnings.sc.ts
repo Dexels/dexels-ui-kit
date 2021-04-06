@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 export const WarningMessage = styled(Message)`
-    color: ${({ theme }): string => theme.colorText.primary};
+    color: ${({ theme }): string => theme.colorSecondary};
 `;
 
 WarningMessage.defaultProps = {
@@ -11,7 +11,7 @@ WarningMessage.defaultProps = {
 };
 
 export const WarningMessageWrapper = styled(MessageWrapper)`
-    border-left: ${({ theme }): string => `8px solid ${theme.colorText.primary}`};
+    border-left: ${({ theme }): string => `8px solid ${theme.colorSecondary}`};
 `;
 
 WarningMessageWrapper.defaultProps = {
