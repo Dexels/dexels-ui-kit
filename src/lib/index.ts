@@ -85,6 +85,7 @@ export {
     getFileFormats,
     getFileNames,
     getFileSizes,
+    getFileType,
     getFileTypes,
     getTotalSizeFiles,
     openBinary,

@@ -2,32 +2,94 @@ import { FileTypes } from '../types';
 
 export function defineFileFormat(fileFormat: FileTypes): string[] {
     switch (fileFormat) {
+        case FileTypes.ARCHIVE:
+            return ['zip', 'application/zip', 'rar', 'application/x-rar-compressed'];
+            break;
+
+        case FileTypes.AUDIO:
+            return ['mp3', 'audio/mpeg', 'audio/unknown'];
+            break;
+
         case FileTypes.CSV:
-            return ['application/text', 'text/csv', 'text/plain'];
+            return ['csv', 'text/csv'];
             break;
 
         case FileTypes.EXCEL:
-            return ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+            return [
+                'ods',
+                'xls',
+                'xlsx',
+                'xlsm',
+                'xlt',
+                'application/excel',
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'application/vnd.oasis.opendocument.spreadsheet',
+            ];
+            break;
+
+        case FileTypes.HTML:
+            return ['html', 'text/html'];
             break;
 
         case FileTypes.IMAGE:
-            return ['application/gif', 'image/bmp', 'image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+            return [
+                'bpm',
+                'image/bmp',
+                'gif',
+                'application/gif',
+                'image/gif',
+                'jpg',
+                'jpeg',
+                'image/jpeg',
+                'image/jpg',
+                'png',
+                'image/png',
+                'tiff',
+                'image/tiff',
+            ];
             break;
 
         case FileTypes.PDF:
-            return ['application/pdf', 'application/x-java-jnlp-file', 'text/html'];
+            return ['pdf', 'application/pdf'];
             break;
 
         case FileTypes.POWERPOINT:
-            return ['application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.pr'];
+            return [
+                'ppt',
+                'pptx',
+                'ppsx',
+                'application/powerpoint',
+                'application/vnd.ms-powerpoint',
+                'application/vnd.openxmlformats-officedocument.presentationml.pr',
+            ];
             break;
 
         case FileTypes.TEXT:
-            return ['application/text', 'text/html', 'text/plain'];
+            return ['txt', 'application/text', 'rtf', 'text/rtf', 'text/plain'];
+            break;
+
+        case FileTypes.VCF:
+            return ['vcf', 'text/x-vcard'];
             break;
 
         case FileTypes.WORD:
-            return ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingm'];
+            return [
+                'doc',
+                'docx',
+                'odt',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.oasis.opendocument.text',
+            ];
+            break;
+
+        case FileTypes.XML:
+            return ['xml', 'text/xml'];
+            break;
+
+        case FileTypes.OTHER:
+            return ['jnlp', 'application/x-java-jnlp-file'];
             break;
 
         default:

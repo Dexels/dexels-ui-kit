@@ -15,7 +15,7 @@ import {
     getTotalSizeFiles,
 } from '../../../utils/functions/fileFunctions';
 import { number, select } from '@storybook/addon-knobs';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import FileUploadDialog from './FileUploadDialog';
 import { FileUploaderData } from '../FileUploader/FileUploader';
 
@@ -27,7 +27,7 @@ export const Configurable: FunctionComponent = () => {
     const maxFilesRef = React.useRef<number>();
     maxFilesRef.current = number('Max files', 3);
     const fileTypesRef = React.useRef<FileTypes>();
-    fileTypesRef.current = select('Transition type', FileTypes, FileTypes.IMAGE);
+    fileTypesRef.current = select('Transition type', FileTypes, FileTypes.POWERPOINT);
     maxFilesRef.current = number('Max files', 3);
     const [isVisible, setIsVisible] = React.useState(true);
     const [droppedFileNames, setDroppedFileNames] = React.useState<string[]>();
@@ -74,13 +74,13 @@ export const Configurable: FunctionComponent = () => {
         setDescription(value);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (fileTypesRef.current && maxFileSizeRef.current) {
             setData(getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current));
         }
     }, [maxFileSizeRef.current, fileTypesRef.current]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (droppedFileFormats && droppedTotalSize && droppedFileNames) {
             setData(getSelectedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
         }
