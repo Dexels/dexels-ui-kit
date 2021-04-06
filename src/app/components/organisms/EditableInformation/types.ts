@@ -95,7 +95,7 @@ export interface EditableDropdownMultiSelectDataProps<T extends DropdownMultiSel
 
 export interface InputNumberDataProps extends BaseDataProps {
     component: EditableDataComponent.INPUTNUMBER;
-    value: number;
+    value: number | null;
 }
 
 export interface EditableInputNumberDataProps extends InputNumberDataProps {
