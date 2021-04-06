@@ -57,9 +57,9 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setSaveErrors((undefined as unknown) as string[]);
     };
 
-    const onChangeCallback = (newDate: unknown) => {
+    const onChangeCallback = (newData: unknown) => {
         // eslint-disable-next-line no-console
-        console.log('onChangeCallback', newDate);
+        console.log('onChangeCallback', newData);
     };
 
     const onValidationCallback = (isValidData: boolean) => {
@@ -73,12 +73,12 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             cancelConfirmDialog={
                 withDialogs
                     ? {
-                          buttonCancelText: 'No',
-                          buttonConfirmText: 'Yes',
-                          iconType: IconType.HANGER,
-                          status: Status.INVALID,
-                          text: 'Are you sure you want to cancel? you will loose all the changes you have made',
-                      }
+                        buttonCancelText: 'No',
+                        buttonConfirmText: 'Yes',
+                        iconType: IconType.HANGER,
+                        status: Status.INVALID,
+                        text: 'Are you sure you want to cancel? you will loose all the changes you have made',
+                    }
                     : undefined
             }
             data={updatedData}
@@ -98,12 +98,12 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             saveConfirmDialog={
                 withDialogs
                     ? {
-                          buttonCancelText: 'No',
-                          buttonConfirmText: 'Yes',
-                          iconType: IconType.HANGER,
-                          status: Status.DEFAULT,
-                          text: 'Are you sure you want to save?',
-                      }
+                        buttonCancelText: 'No',
+                        buttonConfirmText: 'Yes',
+                        iconType: IconType.HANGER,
+                        status: Status.DEFAULT,
+                        text: 'Are you sure you want to save?',
+                    }
                     : undefined
             }
             status={select('Status', Status, undefined)} // In storybook it looks like the first element is selected, but that's not true
