@@ -3,6 +3,7 @@ import React, { FunctionComponent, useMemo } from 'react';
 import { Dropdown } from '../Dropdown';
 
 export interface TimePickerProps {
+    autoFocus?: boolean;
     isDisabled?: boolean;
     minuteStep?: number;
     name: string;
@@ -11,6 +12,7 @@ export interface TimePickerProps {
 }
 
 export const TimePicker: FunctionComponent<TimePickerProps> = ({
+    autoFocus = false,
     isDisabled,
     minuteStep = 5,
     name,
@@ -47,6 +49,7 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({
         <StyledTimePicker>
             <DropdownWrapper>
                 <Dropdown
+                    autoFocus={autoFocus}
                     isDisabled={isDisabled}
                     name={`${name}-hours`}
                     onChange={({ currentTarget }): void => {

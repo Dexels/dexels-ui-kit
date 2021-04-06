@@ -20,6 +20,7 @@ interface UpdatedDropdownSelectOption extends DropdownSelectOption {
 }
 
 export interface DropdownSelectProps<T extends DropdownSelectOption> {
+    autoFocus?: boolean;
     children?: never;
     className?: string;
     defaultValue?: string;
@@ -44,6 +45,7 @@ export interface DropdownSelectProps<T extends DropdownSelectOption> {
 }
 
 export const DropdownSelect = <T extends DropdownSelectOption>({
+    autoFocus = false,
     className,
     defaultValue,
     elevation = Elevation.LEVEL_6,
@@ -180,6 +182,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
     return (
         <StyledDropdownSelect className={className} ref={componentRef}>
             <Input
+                autoFocus={autoFocus}
                 errorMessage={errorMessage}
                 hasError={hasError}
                 isDisabled={isDisabled}
