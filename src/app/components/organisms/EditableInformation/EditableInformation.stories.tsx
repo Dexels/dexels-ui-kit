@@ -57,9 +57,9 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setSaveErrors((undefined as unknown) as string[]);
     };
 
-    const onChangeCallback = (newDate: unknown) => {
+    const onChangeCallback = (newData: unknown) => {
         // eslint-disable-next-line no-console
-        console.log('onChangeCallback', newDate);
+        console.log('onChangeCallback', newData);
     };
 
     const onValidationCallback = (isValidData: boolean) => {

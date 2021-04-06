@@ -2,6 +2,7 @@ import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../typ
 import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
 import { formatMoneyWithoutSymbol, toCents, toMoneyValue } from '../../../utils/functions/financialFunctions';
 import {
+    isEmpty,
     isValidInputCurrency,
     isValidInputEmail,
     isValidInputNumber,
@@ -85,8 +86,14 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [isValidInputData, setIsValidInputData] = useState(false);
-    const [inputValue, setInputValue] = useState(value);
-    const hasValue = inputValue ? inputValue.length > 0 : false;
+    const [inputValue, setInputValue] = useState('');
+
+    // we want to be able to force re-render if the value is changed from outside the component
+    useEffect(() => {
+        setInputValue(value || '');
+    }, [value]);
+
+    const hasValue = !isEmpty(inputValue);
     const textFieldProps: { [key: string]: number } = {};
 
     // Because this check might be performed in several actions, put it here

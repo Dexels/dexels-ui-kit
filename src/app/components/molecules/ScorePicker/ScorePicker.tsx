@@ -4,6 +4,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import { Input } from '../Input/Input';
 
 export interface ScorePickerProps {
+    autoFocus?: boolean;
     isDisabled?: boolean;
     label: [ReactNode, ReactNode];
     name: string;
@@ -11,10 +12,18 @@ export interface ScorePickerProps {
     value: [string, string];
 }
 
-export const ScorePicker: FunctionComponent<ScorePickerProps> = ({ isDisabled, label, name, onChange, value }) => (
+export const ScorePicker: FunctionComponent<ScorePickerProps> = ({
+    autoFocus = false,
+    isDisabled,
+    label,
+    name,
+    onChange,
+    value,
+}) => (
     <StyledScorePicker>
         <InputWrapper>
             <Input
+                autoFocus={autoFocus}
                 isDisabled={isDisabled}
                 label={label[0]}
                 min={0}
