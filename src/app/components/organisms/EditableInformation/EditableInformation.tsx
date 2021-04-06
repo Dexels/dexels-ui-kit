@@ -51,6 +51,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     textCancel?: string;
     textEdit?: string;
     textSave?: string;
+    warnings?: string[];
 }
 
 export const EditableInformation = <T extends DropdownOption, U extends DropdownMultiSelectOption>({
@@ -81,6 +82,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     textEdit,
     textSave,
     title,
+    warnings,
 }: EditableInformationProps<T, U>): JSX.Element => {
     const DEFAULT_AMOUNT_ROWS = 4;
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
@@ -274,6 +276,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             data={informationTableData}
             errors={errors}
             isDisabled={isDisabled}
+            warnings={warnings}
         />
     );
 

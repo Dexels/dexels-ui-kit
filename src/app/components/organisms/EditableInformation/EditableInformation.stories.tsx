@@ -22,12 +22,14 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     withDialogs = false,
     isEditable = true,
     errors = (undefined as unknown) as string[],
+    warnings = (undefined as unknown) as string[],
     isCurrencyOnly = false
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
     const [isEditing, setIsEditing] = useState(isEditingMode);
     const [saveErrors, setSaveErrors] = useState<Array<string>>((undefined as unknown) as string[]);
+    const [saveWarnings, setSaveWarnings] = useState<Array<string>>((undefined as unknown) as string[]);
 
     useEffect(() => {
         setIsEditing(saveErrors && saveErrors.length !== 0);
@@ -47,6 +49,10 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setTimeout(() => {
             if (errors && errors.length) {
                 setSaveErrors(errors);
+            }
+
+            if (warnings && warnings.length) {
+                setSaveWarnings(warnings);
             }
 
             setIsSaving(false);
@@ -111,6 +117,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             textEdit={text('Text Edit', 'Edit')}
             textSave={text('Text Save', 'Save')}
             title={text('Title', 'Information')}
+            warnings={saveWarnings}
         />
     );
 };
@@ -135,5 +142,8 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () =>
 export const ConfigurableWithErrorsAfterSaving: FunctionComponent = () =>
     BaseComponent(theData(), false, false, true, ['Error number 1', 'Error number 2']);
 
+export const ConfigurableWithWarningsAfterSaving: FunctionComponent = () =>
+    BaseComponent(theData(), false, false, true, undefined, ['Warning number 1', 'Warning number 2']);
+
 export const ConfigurableCurrencyOnly: FunctionComponent = () =>
-    BaseComponent(theData(true), false, false, true, undefined, true);
+    BaseComponent(theData(true), false, false, true, undefined, undefined, true);

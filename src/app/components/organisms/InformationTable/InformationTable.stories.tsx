@@ -16,3 +16,15 @@ export const Configurable: FunctionComponent = () => {
         />
     );
 };
+
+export const ConfigurableWithWarnings: FunctionComponent = () => {
+    const data = useMemo(() => tableData(), []);
+
+    return (
+        <InformationTable
+            amountOfColumns={select('Columns', [1, 2, 3], 2)}
+            data={data}
+            warnings={['Warning number 1', 'Warning number 2']}
+        />
+    );
+};
