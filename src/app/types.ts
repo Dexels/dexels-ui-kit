@@ -412,6 +412,7 @@ export enum Status {
     DISABLED = 'DISABLED',
     INVALID = 'INVALID',
     NONE = 'NONE',
+    TIP = 'TIP',
     VALID = 'VALID',
 }
 

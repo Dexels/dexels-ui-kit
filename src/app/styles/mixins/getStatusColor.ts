@@ -20,6 +20,9 @@ export const getStatusColor = (status: Status, theme: Theme): string => {
         case Status.ALERT:
             return theme.colorAlert;
 
+        case Status.TIP:
+            return theme.colorSecondary;
+
         default:
             return theme.colorPrimary;
     }
