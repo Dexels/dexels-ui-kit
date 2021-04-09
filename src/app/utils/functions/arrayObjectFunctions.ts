@@ -8,7 +8,7 @@ export interface Option {
 export const areAllOptionsSelected = <U, T extends U[]>(data: T, propertyName: keyof U): boolean =>
     data.every((option) => option[propertyName]);
 
-export const getSelectedDropdownOption = (data: Array<DropdownOption>, key: string): DropdownOption | undefined =>
+export const getDropdownOption = (data: Array<DropdownOption>, key: string): DropdownOption | undefined =>
     data ? data.find((item) => item.value === key) : undefined;
 
 export const getSelectedElements = <U, T extends U>(data: Array<T>, propertyName: keyof U): Array<T> =>
