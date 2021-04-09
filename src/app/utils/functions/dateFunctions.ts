@@ -60,6 +60,10 @@ export const formatTime = (value: string | Date | Moment): string => {
 export const isDateBetween = (date: Moment, dateFrom: Moment, dateTo: Moment): boolean =>
     date.isSameOrAfter(dateFrom) && date.isSameOrBefore(dateTo);
 
+export const isFutureDate = (date: Moment | null, includeToday = false): boolean =>
+    date !== null &&
+    ((includeToday && date.isSameOrAfter(moment(), 'day')) || (!includeToday && date.isAfter(moment(), 'day')));
+
 // Can not use Date constructor due to browser differences, hence this function
 export const toDate = (value: string | Date | Moment, lang: string = defaultLocale): Date | null =>
     isValidDate(value) ? moment(value).locale(lang).toDate() : null;
