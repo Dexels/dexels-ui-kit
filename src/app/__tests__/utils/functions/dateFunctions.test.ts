@@ -20,6 +20,5 @@ describe('test date functions', () => {
         expect(isFutureDate(toMoment('2021-04-09'), false)).toBe(false);
         expect(isFutureDate(toMoment('2021-04-10'), true)).toBe(true);
         expect(isFutureDate(toMoment('2021-04-10'))).toBe(true);
-
     });
 });
