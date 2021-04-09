@@ -1,5 +1,6 @@
 import { DropdownMultiSelectOption } from '../../components/organisms/DropdownMultiSelect/types';
 import { DropdownOption } from '../../components/molecules/Dropdown/Dropdown';
+import { DropdownSelectOption } from '../../components/organisms/DropdownSelect/DropdownSelect';
 
 export interface Option {
     [key: string]: unknown;
@@ -8,8 +9,10 @@ export interface Option {
 export const areAllOptionsSelected = <U, T extends U[]>(data: T, propertyName: keyof U): boolean =>
     data.every((option) => option[propertyName]);
 
-export const getDropdownOption = (data: Array<DropdownOption>, key: string): DropdownOption | undefined =>
-    data ? data.find((item) => item.value === key) : undefined;
+export const getDropdownSelectOption = (
+    data: Array<DropdownSelectOption>,
+    key: string
+): DropdownSelectOption | undefined => (data ? data.find((item) => item.value === key) : undefined);
 
 export const getSelectedElements = <U, T extends U>(data: Array<T>, propertyName: keyof U): Array<T> =>
     data.filter((option) => option[propertyName]);
