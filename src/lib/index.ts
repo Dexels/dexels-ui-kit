@@ -54,6 +54,7 @@ export {
     formatDate,
     formatTime,
     isDateBetween,
+    isFutureDate,
     toDate,
     toMoment,
 } from '../app/utils/functions/dateFunctions';
