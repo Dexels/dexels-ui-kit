@@ -2,6 +2,7 @@ import { CurrentDate, DropdownWrapper, StyledNavigation } from './Navigation.sc'
 import { Dropdown, DropdownVariant } from '../../../molecules/Dropdown';
 import moment, { Moment } from 'moment';
 import React, { FunctionComponent, ReactNode } from 'react';
+import SelectOption from '../../../atoms/SelectOption/SelectOption';
 
 interface NavigationProps {
     children?: never;
@@ -30,9 +31,9 @@ const Navigation: FunctionComponent<NavigationProps> = ({
     }
 
     const monthArray = moment.months().map((label, value) => (
-        <option key={label} value={value}>
+        <SelectOption key={label} value={value}>
             {label}
-        </option>
+        </SelectOption>
     ));
 
     const currentYear = moment().year();
@@ -40,17 +41,17 @@ const Navigation: FunctionComponent<NavigationProps> = ({
 
     for (let i = currentYear - yearCount; i <= currentYear; i += 1) {
         yearArray.push(
-            <option key={i} value={i}>
+            <SelectOption key={i} value={i}>
                 {i}
-            </option>
+            </SelectOption>
         );
     }
 
     for (let i = currentYear + 1; i <= currentYear + yearCountFuture; i += 1) {
         yearArray.push(
-            <option key={i} value={i}>
+            <SelectOption key={i} value={i}>
                 {i}
-            </option>
+            </SelectOption>
         );
     }
 
