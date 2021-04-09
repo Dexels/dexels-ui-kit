@@ -30,6 +30,7 @@ export { setTruncate } from '../app/styles/mixins/setTruncate';
 // Export functions
 export {
     areAllOptionsSelected,
+    getDropdownOption,
     getSelectedElements,
     isAnyOptionSelected,
     selectOptionsExtend,
