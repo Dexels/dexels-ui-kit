@@ -9,10 +9,14 @@ export interface Option {
 export const areAllOptionsSelected = <U, T extends U[]>(data: T, propertyName: keyof U): boolean =>
     data.every((option) => option[propertyName]);
 
-export const getDropdownSelectOption = (
-    data: Array<DropdownSelectOption>,
-    key: string
-): DropdownSelectOption | undefined => (data ? data.find((item) => item.value === key) : undefined);
+export const getDropdownSelectOption = <T extends DropdownSelectOption>(data: Array<T>, value: string): T | undefined =>
+    data ? data.find((item) => item.value === value) : undefined;
+
+export const getOptionLabel = <T extends DropdownSelectOption>(data: Array<T>, value: string): string => {
+    const findOption = data.find((item) => item.value === value);
+
+    return findOption ? `${findOption.label}` : '';
+};
 
 export const getSelectedElements = <U, T extends U>(data: Array<T>, propertyName: keyof U): Array<T> =>
     data.filter((option) => option[propertyName]);

@@ -1,4 +1,5 @@
 import { boolean, text } from '@storybook/addon-knobs';
+import { Fruit, fruitOptions } from './mockup/data';
 import React, { FunctionComponent, useState } from 'react';
 import Dropdown from './Dropdown';
 import { DropdownVariant } from './types';
@@ -7,39 +8,10 @@ import { selectOptionsFacade } from '../../../utils/functions/arrayObjectFunctio
 
 export default { title: 'molecules/Dropdown' };
 
-interface Fruit {
-    Id: number;
-    IsSelected: boolean;
-    Name: string;
-}
-
 export const ConfigurableCompactVariant: FunctionComponent = () => {
     const placeholder = 'Select the best fruit';
     const [value, setValue] = useState(placeholder);
-
-    const fruits: Fruit[] = [
-        {
-            Id: 1,
-            IsSelected: true,
-            Name: 'Banana',
-        },
-        {
-            Id: 2,
-            IsSelected: false,
-            Name: 'Apple',
-        },
-        {
-            Id: 3,
-            IsSelected: false,
-            Name: 'Pear',
-        },
-        {
-            Id: 4,
-            IsSelected: false,
-            Name: 'Mango',
-        },
-    ];
-
+    const fruits: Fruit[] = fruitOptions;
     const options = selectOptionsFacade(fruits, 'Name', 'Id');
 
     return (
