@@ -197,7 +197,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            autoFocus={autoFocus && (!hasError || (hasError && !dataInstance.onBlur))}
+                            autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
                             hasError={hasInputError}
                             isDisabled={isDisabled}
                             label={dataInstance.placeholder}
@@ -235,7 +235,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <InputCurrency
-                            autoFocus={autoFocus && (!hasError || (hasError && !dataInstance.onBlur))}
+                            autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
                             hasError={hasInputError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
@@ -273,7 +273,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            autoFocus={autoFocus && (!hasError || (hasError && !dataInstance.onBlur))}
+                            autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
                             hasError={hasInputError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
@@ -329,7 +329,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            autoFocus={autoFocus && (!hasError || (hasError && !dataInstance.onBlur))}
+                            autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
                             hasError={hasInputError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
