@@ -1,7 +1,16 @@
 import { currentDate, isFutureDate, isValidDate, toMoment } from '../../../utils/functions/dateFunctions';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
+import { Locale } from '../../../types';
 
 describe('test date functions', () => {
+    test('test toMoment', () => {
+        expect(toMoment('2003-12-21')).toMatchObject({} as Moment);
+        expect(toMoment('21-12-2003')).toMatchObject({} as Moment);
+        expect(toMoment('21-12-2003', Locale.NL, 'DD-MM-YYYY')).toMatchObject({} as Moment);
+        expect(toMoment('12-21-2003', Locale.NL, 'MM-DD-YYYY')).toMatchObject({} as Moment);
+        expect(toMoment('12-21-2003', Locale.EN)).toMatchObject({} as Moment);
+    });
+
     test('test isValidDate', () => {
         expect(isValidDate(currentDate())).toBe(true);
         expect(isValidDate('21-12-2003')).toBe(true);
