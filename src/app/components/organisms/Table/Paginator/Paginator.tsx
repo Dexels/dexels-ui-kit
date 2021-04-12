@@ -13,6 +13,7 @@ import React, { ReactNode } from 'react';
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
+import SelectOption from '../../../atoms/SelectOption/SelectOption';
 import { TableInstance } from 'react-table';
 
 export interface PaginatorTexts {
@@ -111,9 +112,9 @@ export const Paginator = <T extends object>({
                         value={pageSize}
                     >
                         {pageSizes.map((size) => (
-                            <option key={size} value={size}>
+                            <SelectOption key={size} value={size}>
                                 {size}
-                            </option>
+                            </SelectOption>
                         ))}
                     </Dropdown>
                     <PageSizeSelectorText>{texts.rowsPerPage}</PageSizeSelectorText>

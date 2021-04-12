@@ -1,6 +1,7 @@
 import { DropdownWrapper, StyledTimePicker } from './TimePicker.sc';
 import React, { FunctionComponent, useMemo } from 'react';
 import { Dropdown } from '../Dropdown';
+import SelectOption from '../../atoms/SelectOption/SelectOption';
 
 export interface TimePickerProps {
     autoFocus?: boolean;
@@ -58,9 +59,9 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({
                     value={value[0]}
                 >
                     {hours.map((hour) => (
-                        <option key={hour} value={hour}>
+                        <SelectOption key={hour} value={hour}>
                             {hour}
-                        </option>
+                        </SelectOption>
                     ))}
                 </Dropdown>
             </DropdownWrapper>
@@ -74,9 +75,9 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({
                     value={value[1]}
                 >
                     {minutes.map((minute) => (
-                        <option key={minute} value={minute}>
+                        <SelectOption key={minute} value={minute}>
                             {minute}
-                        </option>
+                        </SelectOption>
                     ))}
                 </Dropdown>
             </DropdownWrapper>

@@ -2,6 +2,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import Dropdown from './Dropdown';
 import { DropdownVariant } from './types';
+import SelectOption from '../../atoms/SelectOption/SelectOption';
 import { selectOptionsFacade } from '../../../utils/functions/arrayObjectFunctions';
 
 export default { title: 'molecules/Dropdown' };
@@ -69,9 +70,9 @@ export const ConfigurableOutlineVariant: FunctionComponent = () => {
     const [value, setValue] = useState(placeholder);
 
     const optionArray = fruits.map((fruit, index) => (
-        <option disabled={index === 2} key={fruit} value={fruit}>
+        <SelectOption isDisabled={index === 2} key={fruit} value={fruit}>
             {fruit}
-        </option>
+        </SelectOption>
     ));
 
     return (

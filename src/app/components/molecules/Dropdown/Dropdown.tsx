@@ -14,6 +14,7 @@ import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import { IconCustomizable } from '../IconCustomizable/IconCustomizable';
 import { IconCustomizableSize } from '../IconCustomizable/types';
 import { IconType } from '../../../types';
+import SelectOption from '../../atoms/SelectOption/SelectOption';
 
 export interface DropdownOption {
     label: string;
@@ -125,13 +126,13 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                 >
                     {as === 'select' && placeholderText && (
                         <>
-                            <option disabled hidden value={placeholderText}>
+                            <SelectOption isDisabled isHidden value={placeholderText}>
                                 {placeholderText}
-                            </option>
+                            </SelectOption>
                             {isEmpty && (
-                                <option key={'dummy'} value={placeholderText}>
+                                <SelectOption key={'dummy'} value={placeholderText}>
                                     {placeholderText}
-                                </option>
+                                </SelectOption>
                             )}
                         </>
                     )}
@@ -139,9 +140,9 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                     {options &&
                         !isEmpty &&
                         options.map((option) => (
-                            <option key={`option-${option.value}`} value={option.value}>
+                            <SelectOption key={`option-${option.value}`} value={option.value}>
                                 {option.label}
-                            </option>
+                            </SelectOption>
                         ))}
                     {children}
                 </Select>
