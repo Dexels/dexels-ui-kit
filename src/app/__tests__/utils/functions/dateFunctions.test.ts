@@ -13,6 +13,8 @@ describe('test date functions', () => {
         expect(isValidDate('Fri Mar 26 2021 14:21:50 GMT+0100 (Central European Standard Time)')).toBe(true);
         expect(isValidDate('commissie 1')).toBe(false);
         expect(isValidDate('30-09-2021')).toBe(true);
+        expect(isValidDate('30-09-2021', Locale.NL)).toBe(true);
+        expect(isValidDate('09-30-2021', Locale.NL, 'MM-DD-YYYY')).toBe(true);
     });
 
     test('test isFutureDate', () => {
