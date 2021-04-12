@@ -16,9 +16,9 @@ describe('test date functions', () => {
         expect(isFutureDate(moment())).toBe(false);
         expect(isFutureDate(moment(), true)).toBe(true);
         expect(isFutureDate(toMoment('2021-04-08'), true)).toBe(false);
-        expect(isFutureDate(toMoment('2021-04-09'), true)).toBe(true);
-        expect(isFutureDate(toMoment('2021-04-09'), false)).toBe(false);
-        expect(isFutureDate(toMoment('2021-04-10'), true)).toBe(true);
-        expect(isFutureDate(toMoment('2021-04-10'))).toBe(true);
+        expect(isFutureDate(moment(), true)).toBe(true);
+        expect(isFutureDate(moment(), false)).toBe(false);
+        expect(isFutureDate(moment().add(1, 'day'), true)).toBe(true);
+        expect(isFutureDate(moment().add(1, 'day'))).toBe(true);
     });
 });
