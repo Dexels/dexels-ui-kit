@@ -147,3 +147,6 @@ export const ConfigurableWithWarningsAfterSaving: FunctionComponent = () =>
 
 export const ConfigurableCurrencyOnly: FunctionComponent = () =>
     BaseComponent(theData(true), false, false, true, undefined, undefined, true);
+
+export const ConfigurableCurrencyWithErrorsAfterSaving: FunctionComponent = () =>
+    BaseComponent(theData(true), false, false, true, ['Error number 1', 'Error number 2']);

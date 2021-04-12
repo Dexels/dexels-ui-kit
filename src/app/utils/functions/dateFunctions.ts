@@ -1,8 +1,6 @@
 /* eslint-disable radix */
+import { DEFAULT_DATE_FORMAT, DEFAULT_LOCALE } from '../../../global/constants';
 import moment, { Moment } from 'moment';
-
-const defaultLocale = 'NL';
-const systemDateFormat = 'YYYY-MM-DD';
 
 export const isValidStringDate = (inputText: string): boolean => {
     // eslint-disable-next-line max-len
@@ -26,12 +24,12 @@ export const isValidClockTime = (value: string): boolean => {
     return timeRegExp.test(value);
 };
 
-export const formatAsSystemDate = (value: string | Date | Moment, lang: string = defaultLocale): string =>
-    isValidDate(value) ? moment(value).locale(lang).format(systemDateFormat) : value.toString();
+export const formatAsSystemDate = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): string =>
+    isValidDate(value) ? moment(value).locale(lang).format(DEFAULT_DATE_FORMAT) : value.toString();
 
 export const formatDate = (
     value: string | Date | Moment,
-    lang: string = defaultLocale,
+    lang: string = DEFAULT_LOCALE,
     format = 'DD MMM YYYY'
 ): string => (isValidDate(value) ? moment(value).locale(lang).format(format) : value.toString());
 
@@ -65,13 +63,16 @@ export const isFutureDate = (date: Moment | null, includeToday = false): boolean
     ((includeToday && date.isSameOrAfter(moment(), 'day')) || (!includeToday && date.isAfter(moment(), 'day')));
 
 // Can not use Date constructor due to browser differences, hence this function
-export const toDate = (value: string | Date | Moment, lang: string = defaultLocale): Date | null =>
+export const toDate = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): Date | null =>
     isValidDate(value) ? moment(value).locale(lang).toDate() : null;
 
-export const currentDate = (lang: string = defaultLocale): Date => moment().locale(lang).toDate();
+export const currentDate = (lang: string = DEFAULT_LOCALE): Date => moment().locale(lang).toDate();
 
-export const toMoment = (value: string | Date | Moment, lang: string = defaultLocale): Moment | null =>
-    isValidDate(value) ? moment(value).locale(lang) : null;
+export const toMoment = (
+    value: string | Date | Moment,
+    lang: string = DEFAULT_LOCALE,
+    format: string = DEFAULT_DATE_FORMAT
+): Moment | null => (isValidDate(value) ? moment(moment(value).format(format)).locale(lang) : null);
 
 export const compareDates = (d1: Moment | Date | string | null, d2: Moment | Date | string | null): boolean => {
     const D1 = toMoment(d1 || '');
