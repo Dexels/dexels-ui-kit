@@ -21,6 +21,7 @@ export interface EditableDataProps<T extends DropdownOption, U extends DropdownM
     datePickerFocuses: {
         [key: string]: boolean;
     };
+    hasError?: boolean;
     isBeingEdited: boolean;
     locale?: Locale;
     onChange: (name: string, value: ValueTypes<T, U>, isCurrency?: boolean, locale?: Locale) => void;
@@ -41,6 +42,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
     onDropdownChange,
     onChange,
     values,
+    hasError = false,
 }: EditableDataProps<T, U>): InformationTableProps['data'] => {
     let isFocusedInputSet = false;
 
@@ -64,7 +66,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             }
 
             const { name } = dataInstance;
-            const hasError = isRequired && isEmpty(values[name]);
+            const hasInputError = isRequired && isEmpty(values[name]);
 
             if (dataInstance.component === EditableDataComponent.CHECKBOX) {
                 return {
@@ -72,7 +74,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     value: (
                         <SelectionControl
                             errorMessage={dataInstance.errorMessage}
-                            hasError={hasError}
+                            hasError={hasInputError}
                             hasVerticalCorrection
                             isChecked={values[name] as boolean}
                             isDisabled={isDisabled}
@@ -94,7 +96,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                         <SingleDatePicker
                             date={values[name] as moment.Moment | null}
                             displayFormat={dataInstance.dateFormat || dateFormat}
-                            hasError={hasError}
+                            hasError={hasInputError}
                             id={name}
                             isDisabled={isDisabled}
                             isFocused={datePickerFocuses[name]}
@@ -119,7 +121,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     textValue: dataInstance.textValue,
                     value: (
                         <Dropdown
-                            hasError={hasError}
+                            hasError={hasInputError}
                             isDisabled={isDisabled}
                             name={name}
                             onChange={({ currentTarget }): void => {
@@ -149,7 +151,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             buttonCancelText={dataInstance.buttonCancelText}
                             buttonConfirmText={dataInstance.buttonConfirmText}
                             deselectAllLabel={dataInstance.deselectAllLabel}
-                            hasError={hasError}
+                            hasError={hasInputError}
                             isDisabled={isDisabled}
                             maxHeight={dataInstance.maxHeight}
                             minHeight={dataInstance.minHeight}
@@ -171,7 +173,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             autoFocus={autoFocus}
                             defaultValue={dataInstance.defaultValue}
                             footerText={dataInstance.footerText}
-                            hasError={hasError}
+                            hasError={hasInputError}
                             iconType={dataInstance.iconType}
                             isDisabled={isDisabled}
                             name={dataInstance.name}
@@ -195,8 +197,8 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            autoFocus={autoFocus}
-                            hasError={hasError}
+                            autoFocus={autoFocus && (!hasError || (hasError && !dataInstance.onBlur))}
+                            hasError={hasInputError}
                             isDisabled={isDisabled}
                             label={dataInstance.placeholder}
                             locale={locale}
@@ -233,8 +235,8 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <InputCurrency
-                            autoFocus={autoFocus}
-                            hasError={hasError}
+                            autoFocus={autoFocus && (!hasError || (hasError && !dataInstance.onBlur))}
+                            hasError={hasInputError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             locale={locale}
@@ -271,8 +273,8 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            autoFocus={autoFocus}
-                            hasError={hasError}
+                            autoFocus={autoFocus && (!hasError || (hasError && !dataInstance.onBlur))}
+                            hasError={hasInputError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             label={dataInstance.placeholder}
@@ -327,8 +329,8 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            autoFocus={autoFocus}
-                            hasError={hasError}
+                            autoFocus={autoFocus && (!hasError || (hasError && !dataInstance.onBlur))}
+                            hasError={hasInputError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             isTextarea
@@ -365,7 +367,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     label,
                     value: (
                         <Input
-                            hasError={hasError}
+                            hasError={hasInputError}
                             isDisabled={isDisabled}
                             isTextarea
                             label={dataInstance.placeholder}
@@ -397,7 +399,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                 value: (
                     <Input
                         autoFocus={autoFocus}
-                        hasError={hasError}
+                        hasError={hasInputError}
                         isDisabled={isDisabled}
                         isRequired={isRequired}
                         locale={locale}

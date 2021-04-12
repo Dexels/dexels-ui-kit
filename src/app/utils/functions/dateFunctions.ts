@@ -1,5 +1,6 @@
 /* eslint-disable radix */
 import moment, { Moment } from 'moment';
+import { DEFAULT_DATE_FORMAT } from '../../../global/constants';
 
 const defaultLocale = 'NL';
 const systemDateFormat = 'YYYY-MM-DD';
@@ -70,8 +71,11 @@ export const toDate = (value: string | Date | Moment, lang: string = defaultLoca
 
 export const currentDate = (lang: string = defaultLocale): Date => moment().locale(lang).toDate();
 
-export const toMoment = (value: string | Date | Moment, lang: string = defaultLocale): Moment | null =>
-    isValidDate(value) ? moment(value).locale(lang) : null;
+export const toMoment = (
+    value: string | Date | Moment,
+    lang: string = defaultLocale,
+    format: string = DEFAULT_DATE_FORMAT
+): Moment | null => (isValidDate(value) ? moment(moment(value).format(format)).locale(lang) : null);
 
 export const compareDates = (d1: Moment | Date | string | null, d2: Moment | Date | string | null): boolean => {
     const D1 = toMoment(d1 || '');
