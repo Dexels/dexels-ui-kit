@@ -83,7 +83,7 @@ export const toMoment = (
     value: string | Date | Moment,
     lang: string = DEFAULT_LOCALE,
     format = DEFAULT_DATE_FORMAT
-): Moment | null => (isValidDate(value, lang, format) ? moment(moment(value).format(format)).locale(lang) : null);
+): Moment | null => (isValidDate(value, lang, format) ? moment(value, format).locale(lang) : null);
 
 export const compareDates = (d1: Moment | Date | string | null, d2: Moment | Date | string | null): boolean => {
     const D1 = toMoment(d1 || '');

@@ -1,4 +1,5 @@
 import { currentDate, isFutureDate, isValidDate, toDate, toMoment } from '../../../utils/functions/dateFunctions';
+import { DEFAULT_DATE_FORMAT } from '../../../../global/constants';
 import { Locale } from '../../../types';
 import moment from 'moment';
 
@@ -28,8 +29,17 @@ describe('test date functions', () => {
 
     test('test toMoment', () => {
         expect(toMoment('')).toBe(null);
-        expect(toMoment('2021-09-30')).toStrictEqual(moment('2021-09-30').locale(Locale.NL));
+        expect(toMoment('2021-09-30')).toStrictEqual(moment('2021-09-30', DEFAULT_DATE_FORMAT).locale(Locale.NL));
         expect(toMoment('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
+
+        // with different format than the default format
+        expect(toMoment('21-02-2021', Locale.NL, 'DD-MM-YYYY')).toStrictEqual(
+            moment('21-02-2021', 'DD-MM-YYYY').locale(Locale.NL)
+        );
+
+        expect(toMoment('02-21-2021', Locale.NL, 'MM-DD-YYYY')).toStrictEqual(
+            moment('02-21-2021', 'MM-DD-YYYY').locale(Locale.NL)
+        );
     });
 
     test('test toDate', () => {
