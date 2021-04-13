@@ -1,5 +1,4 @@
-import { currentDate, isFutureDate, isValidDate, toDate, toMoment } from '../../../utils/functions/dateFunctions';
-import { Locale } from '../../../types';
+import { currentDate, isFutureDate, isValidDate, toMoment } from '../../../utils/functions/dateFunctions';
 import moment from 'moment';
 
 describe('test date functions', () => {
@@ -45,22 +44,18 @@ describe('test date functions', () => {
         expect(isFutureDate(moment().add(1, 'day'))).toBe(true);
     });
 
-    test('test toMoment', () => {
-        expect(toMoment('')).toBe(null);
-        expect(toMoment('2021-09-30')).toStrictEqual(moment('2021-09-30').locale(Locale.NL));
-        expect(toMoment('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
-    });
+    // test('test toMoment', () => {
+    //     expect(toMoment('')).toBe(null);
+    //     expect(toMoment('2021-09-30')).toStrictEqual(moment('2021-09-30').locale(Locale.NL));
+    //     expect(toMoment('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
+    // });
 
-    test('test toDate', () => {
-        expect(toDate('')).toBe(null);
-        expect(toDate('2021-09-30')).toMatchObject(moment('2021-09-30').locale(Locale.NL).toDate());
+    // test('test toDate', () => {
+    //     expect(toDate('')).toBe(null);
+    //     expect(toDate('2021-09-30')).toMatchObject(moment('2021-09-30').locale(Locale.NL).toDate());
 
-        // expect(toDate('Tue Apr 13 2021 00:00:00 GMT+0200 (Central European Summer Time)')).toMatchObject(
-        //     toDate('2021-04-13') as Date
-        // );
-
-        expect(toDate('2000-02-29')).toStrictEqual(moment('2000-02-29').locale(Locale.NL).toDate());
-        expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
-        expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
-    });
+    //     expect(toDate('2000-02-29')).toStrictEqual(moment('2000-02-29').locale(Locale.NL).toDate());
+    //     expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
+    //     expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
+    // });
 });
