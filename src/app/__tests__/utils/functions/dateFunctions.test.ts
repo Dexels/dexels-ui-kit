@@ -1,11 +1,39 @@
-import { currentDate, isFutureDate, isValidDate, toDate, toMoment } from '../../../utils/functions/dateFunctions';
+import {
+    currentDate,
+    formatTime,
+    isFutureDate,
+    isValidDate,
+    toDate,
+    toMoment,
+} from '../../../utils/functions/dateFunctions';
 import { DEFAULT_DATE_FORMAT } from '../../../../global/constants';
 import { Locale } from '../../../types';
 import moment from 'moment';
 
 describe('test date functions', () => {
+    test('test formatTime', () => {
+        expect(formatTime('')).toEqual('');
+        expect(formatTime('2021-04-13T13:21:50.000Z')).toEqual('15:21');
+        expect(formatTime('2021-04-13T13:21:50.000Z', false)).toEqual('15:21');
+        expect(formatTime('2021-04-13T03:21:50.000Z')).toEqual('05:21');
+        expect(formatTime('2021-04-13T03:21:50.000Z', false)).toEqual('5:21');
+        expect(formatTime('2021-04-13 13:21')).toEqual('13:21');
+        expect(formatTime('2021-04-13 13:21', false)).toEqual('13:21');
+        expect(formatTime('2021-04-13 03:21')).toEqual('03:21');
+        expect(formatTime('2021-04-13 03:21', false)).toEqual('3:21');
+        expect(formatTime(moment('2021-04-13T13:21:50.000Z').toDate())).toEqual('15:21');
+        expect(formatTime(moment('2021-04-13T13:21:50.000Z').toDate(), false)).toEqual('15:21');
+        expect(formatTime(moment('2021-04-13T03:21:50.000Z').toDate())).toEqual('05:21');
+        expect(formatTime(moment('2021-04-13T03:21:50.000Z').toDate(), false)).toEqual('5:21');
+        expect(formatTime(moment('2021-04-13T13:21:50.000Z'))).toEqual('15:21');
+        expect(formatTime(moment('2021-04-13T13:21:50.000Z'), false)).toEqual('15:21');
+        expect(formatTime(moment('2021-04-13T03:21:50.000Z'))).toEqual('05:21');
+        expect(formatTime(moment('2021-04-13T03:21:50.000Z'), false)).toEqual('5:21');
+    });
+
     test('test isValidDate', () => {
         expect(isValidDate(currentDate())).toBe(true);
+        expect(isValidDate('2000-02-29')).toBe(true); // is leap year, so should be true
         expect(isValidDate('2021-02-29')).toBe(false); // this date doesn't exist in the calendar
         expect(isValidDate('2021-09-31')).toBe(false); // this date doesn't exist in the calendar
         expect(isValidDate('2021-09-30')).toBe(true);
@@ -44,7 +72,14 @@ describe('test date functions', () => {
 
     test('test toDate', () => {
         expect(toDate('')).toBe(null);
-        expect(toDate('2021-09-30')).toStrictEqual(moment('2021-09-30').locale('nl').toDate());
+        expect(toDate('2021-09-30')).toStrictEqual(moment('2021-09-30').locale(Locale.NL).toDate());
+
+        // TODO: figure out why this fails
+        // expect(toDate('2021-30-09', Locale.US, 'YYYY-DD-MM')).toStrictEqual(
+        //     moment('2021-09-30').locale(Locale.NL).toDate()
+        // );
+
+        expect(toDate('2000-02-29')).toStrictEqual(moment('2000-02-29').locale(Locale.NL).toDate());
         expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
         expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
 

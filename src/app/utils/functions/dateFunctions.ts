@@ -20,7 +20,7 @@ export const isValidDate = (
     }
 
     return (
-        (typeof value === 'string' && moment(value, format).locale(lang).isValid()) ||
+        (typeof value === 'string' && moment(value, format).locale(lang.toLowerCase()).isValid()) ||
         moment.isMoment(value) ||
         moment.isDate(value)
     );
@@ -33,27 +33,31 @@ export const isValidClockTime = (value: string): boolean => {
 };
 
 export const formatAsSystemDate = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): string =>
-    isValidDate(value) ? moment(value).locale(lang).format(DEFAULT_DATE_FORMAT) : value.toString();
+    isValidDate(value) ? moment(value).locale(lang.toLowerCase()).format(DEFAULT_DATE_FORMAT) : value.toString();
 
 export const formatDate = (
     value: string | Date | Moment,
     lang: string = DEFAULT_LOCALE,
     format = 'DD MMM YYYY'
-): string => (isValidDate(value) ? moment(value).locale(lang).format(format) : value.toString());
+): string => (isValidDate(value) ? moment(value).locale(lang.toLowerCase()).format(format) : value.toString());
 
-export const formatTime = (value: string | Date | Moment): string => {
+export const formatTime = (value: string | Date | Moment, addLeadingZero = true): string => {
     if (isValidDate(value)) {
-        return moment(value).format('HH:mm');
+        return moment(value).format(addLeadingZero ? 'HH:mm' : 'H:mm');
     }
 
     if (isValidClockTime(value.toString())) {
         if (typeof value === 'string') {
             if (value.includes(':')) {
-                return `${value.split(':')[0]}:${value.split(':')[1]}`;
+                return `${addLeadingZero ? value.split(':')[0].padStart(2, '0') : value.split(':')[0]}:${value
+                    .split(':')[1]
+                    .padStart(2, '0')}`;
             }
 
             if (value.length === 3) {
-                return `0${value.substring(0, 1)}:${value.substring(1, 2)}`;
+                return `${
+                    addLeadingZero ? value.substring(0, 1).padStart(2, '0') : value.substring(0, 1)
+                }:${value.substring(1, 2).padStart(2, '0')}`;
             }
 
             return value;
@@ -75,15 +79,15 @@ export const toDate = (
     value: string | Date | Moment,
     lang: string = DEFAULT_LOCALE,
     format = DEFAULT_DATE_FORMAT
-): Date | null => (isValidDate(value, lang, format) ? moment(value, format).locale(lang).toDate() : null);
+): Date | null => (isValidDate(value, lang, format) ? moment(value, format).locale(lang.toLowerCase()).toDate() : null);
 
-export const currentDate = (lang: string = DEFAULT_LOCALE): Date => moment().locale(lang).toDate();
+export const currentDate = (lang: string = DEFAULT_LOCALE): Date => moment().locale(lang.toLowerCase()).toDate();
 
 export const toMoment = (
     value: string | Date | Moment,
     lang: string = DEFAULT_LOCALE,
     format = DEFAULT_DATE_FORMAT
-): Moment | null => (isValidDate(value, lang, format) ? moment(value, format).locale(lang) : null);
+): Moment | null => (isValidDate(value, lang, format) ? moment(value, format).locale(lang.toLowerCase()) : null);
 
 export const compareDates = (d1: Moment | Date | string | null, d2: Moment | Date | string | null): boolean => {
     const D1 = toMoment(d1 || '');
