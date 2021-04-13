@@ -1,27 +1,34 @@
-import { currentDate, isFutureDate, isValidDate, toDate, toMoment } from '../../../utils/functions/dateFunctions';
+import {
+    currentDate,
+    formatTime,
+    isFutureDate,
+    isValidDate,
+    toDate,
+    toMoment,
+} from '../../../utils/functions/dateFunctions';
 import { Locale } from '../../../types';
 import moment from 'moment';
 
 describe('test date functions', () => {
-    // test('test formatTime', () => {
-    //     expect(formatTime('')).toEqual('');
-    //     expect(formatTime('2021-04-13T13:21:50.000Z')).toEqual('15:21');
-    //     expect(formatTime('2021-04-13T13:21:50.000Z', false)).toEqual('15:21');
-    //     expect(formatTime('2021-04-13T03:21:50.000Z')).toEqual('05:21');
-    //     expect(formatTime('2021-04-13T03:21:50.000Z', false)).toEqual('5:21');
-    //     expect(formatTime('2021-04-13 13:21')).toEqual('13:21');
-    //     expect(formatTime('2021-04-13 13:21', false)).toEqual('13:21');
-    //     expect(formatTime('2021-04-13 03:21')).toEqual('03:21');
-    //     expect(formatTime('2021-04-13 03:21', false)).toEqual('3:21');
-    //     expect(formatTime(moment('2021-04-13T13:21:50.000Z').toDate())).toEqual('15:21');
-    //     expect(formatTime(moment('2021-04-13T13:21:50.000Z').toDate(), false)).toEqual('15:21');
-    //     expect(formatTime(moment('2021-04-13T03:21:50.000Z').toDate())).toEqual('05:21');
-    //     expect(formatTime(moment('2021-04-13T03:21:50.000Z').toDate(), false)).toEqual('5:21');
-    //     expect(formatTime(moment('2021-04-13T13:21:50.000Z'))).toEqual('15:21');
-    //     expect(formatTime(moment('2021-04-13T13:21:50.000Z'), false)).toEqual('15:21');
-    //     expect(formatTime(moment('2021-04-13T03:21:50.000Z'))).toEqual('05:21');
-    //     expect(formatTime(moment('2021-04-13T03:21:50.000Z'), false)).toEqual('5:21');
-    // });
+    test('test formatTime', () => {
+        expect(formatTime('')).toEqual('');
+        expect(formatTime('2021-04-13T13:21:50.000+01:00')).toEqual('14:21');
+        expect(formatTime('2021-04-13T13:21:50.000+01:00', false)).toEqual('14:21');
+        expect(formatTime('2021-04-13T03:21:50.000+01:00')).toEqual('04:21');
+        expect(formatTime('2021-04-13T03:21:50.000+01:00', false)).toEqual('4:21');
+        expect(formatTime('2021-04-13 13:21')).toEqual('13:21');
+        expect(formatTime('2021-04-13 13:21', false)).toEqual('13:21');
+        expect(formatTime('2021-04-13 03:21')).toEqual('03:21');
+        expect(formatTime('2021-04-13 03:21', false)).toEqual('3:21');
+        expect(formatTime(moment('2021-04-13T13:21:50.000+01:00').toDate())).toEqual('14:21');
+        expect(formatTime(moment('2021-04-13T13:21:50.000+01:00').toDate(), false)).toEqual('14:21');
+        expect(formatTime(moment('2021-04-13T03:21:50.000+01:00').toDate())).toEqual('04:21');
+        expect(formatTime(moment('2021-04-13T03:21:50.000+01:00').toDate(), false)).toEqual('4:21');
+        expect(formatTime(moment('2021-04-13T13:21:50.000+01:00'))).toEqual('14:21');
+        expect(formatTime(moment('2021-04-13T13:21:50.000+01:00'), false)).toEqual('14:21');
+        expect(formatTime(moment('2021-04-13T03:21:50.000+01:00'))).toEqual('04:21');
+        expect(formatTime(moment('2021-04-13T03:21:50.000+01:00'), false)).toEqual('4:21');
+    });
 
     test('test isValidDate', () => {
         expect(isValidDate(currentDate())).toBe(true);
