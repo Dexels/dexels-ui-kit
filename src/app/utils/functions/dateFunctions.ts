@@ -4,23 +4,27 @@ import moment, { Moment } from 'moment';
 
 export const isValidStringDate = (inputText: string): boolean => {
     // eslint-disable-next-line max-len
-    const dateFormatRegExp = /^([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})/;
+    // const dateFormatRegExp = /^([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})/;
+
+    const dateFormatRegExpYYYYMMDD = /^[0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})/;
+    const dateFormatRegExpYYYYDDMM = /^[0-9]{4}[-]([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])/;
+
     const dateWithTimezoneRegExp = /\d{4}-[0-1]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\+\d{4}/;
 
-    return dateWithTimezoneRegExp.test(inputText) || dateFormatRegExp.test(inputText);
+    return (
+        dateWithTimezoneRegExp.test(inputText) ||
+        dateFormatRegExpYYYYMMDD.test(inputText) ||
+        dateFormatRegExpYYYYDDMM.test(inputText)
+    );
 };
 
-export const isValidDate = (
-    value: string | Date | Moment,
-    lang: string = DEFAULT_LOCALE,
-    format = DEFAULT_DATE_FORMAT
-): boolean => {
+export const isValidDate = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): boolean => {
     if (typeof value === 'string' && !isValidStringDate(value)) {
         return moment.parseZone(value).inspect().includes('moment.parseZone');
     }
 
     return (
-        (typeof value === 'string' && moment(value, format).locale(lang.toLowerCase()).isValid()) ||
+        (typeof value === 'string' && moment(value).locale(lang.toLowerCase()).isValid()) ||
         moment.isMoment(value) ||
         moment.isDate(value)
     );
@@ -75,19 +79,13 @@ export const isFutureDate = (date: Moment | null, includeToday = false): boolean
     ((includeToday && date.isSameOrAfter(moment(), 'day')) || (!includeToday && date.isAfter(moment(), 'day')));
 
 // Can not use Date constructor due to browser differences, hence this function
-export const toDate = (
-    value: string | Date | Moment,
-    lang: string = DEFAULT_LOCALE,
-    format = DEFAULT_DATE_FORMAT
-): Date | null => (isValidDate(value, lang, format) ? moment(value, format).locale(lang.toLowerCase()).toDate() : null);
+export const toDate = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): Date | null =>
+    isValidDate(value, lang) ? moment(value).locale(lang.toLowerCase()).toDate() : null;
 
 export const currentDate = (lang: string = DEFAULT_LOCALE): Date => moment().locale(lang.toLowerCase()).toDate();
 
-export const toMoment = (
-    value: string | Date | Moment,
-    lang: string = DEFAULT_LOCALE,
-    format = DEFAULT_DATE_FORMAT
-): Moment | null => (isValidDate(value, lang, format) ? moment(value, format).locale(lang.toLowerCase()) : null);
+export const toMoment = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): Moment | null =>
+    isValidDate(value, lang) ? moment(value).locale(lang.toLowerCase()) : null;
 
 export const compareDates = (d1: Moment | Date | string | null, d2: Moment | Date | string | null): boolean => {
     const D1 = toMoment(d1 || '');
