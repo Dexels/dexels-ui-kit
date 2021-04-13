@@ -89,7 +89,7 @@ export const tableColumns = (): Column<TableData>[] => [
         align: Alignment.RIGHT,
     },
     {
-        Cell: ({ value }): ReactNode => <ContentCell isDate value={value} />,
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
         Header: 'Startdate',
         accessor: 'relationStart',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

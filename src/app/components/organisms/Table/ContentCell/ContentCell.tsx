@@ -12,7 +12,6 @@ export interface ContentCellProps {
     hasTooltip?: boolean;
     isBold?: boolean;
     isCurrency?: boolean;
-    isDate?: boolean;
     isDisabled?: boolean;
     isImage?: boolean;
     isTime?: boolean;
@@ -30,7 +29,6 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
     hasTooltip = false,
     isCurrency = false,
     isBold = false,
-    isDate = false,
     isDisabled = false,
     isImage = false,
     isTime = false,
@@ -61,7 +59,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
         );
     }
 
-    if ((isTime || isDate) && typeof value === 'string') {
+    if (typeof value === 'string') {
         if (isTime) {
             if (isValidClockTime(value)) {
                 content = formatTime(value);
