@@ -60,11 +60,7 @@ describe('test date functions', () => {
 
     test('test toDate', () => {
         expect(toDate('')).toBe(null);
-        expect(toDate('2021-09-30')).toStrictEqual(moment('2021-09-30').locale(Locale.NL).toDate());
-
-        expect(toDate('Tue Apr 13 2021 00:00:00 GMT+0200 (Central European Summer Time)')).toStrictEqual(
-            toDate('2021-04-13')
-        );
+        expect(toDate('2021-09-30')).toMatchObject(moment('2021-09-30').locale(Locale.NL).toDate());
 
         expect(toDate('2000-02-29')).toStrictEqual(moment('2000-02-29').locale(Locale.NL).toDate());
         expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
