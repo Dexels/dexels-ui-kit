@@ -42,9 +42,9 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     keepEditMode?: boolean;
     locale?: Locale;
     onCancel?: () => void;
-    onChange?: (data: unknown) => void;
+    onChange?: (data: unknown, isDataChanged: boolean) => void;
     onEdit?: () => void;
-    onSave?: (data: { [key: string]: ValueTypes<T, U> }, isDataChanged?: boolean) => void;
+    onSave?: (data: { [key: string]: ValueTypes<T, U> }, isDataChanged: boolean) => void;
     onValidation?: (isValidData: boolean) => void;
     saveConfirmDialog?: ConfirmDialog;
     status?: Status;
@@ -145,10 +145,10 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             };
 
             if (onChange) {
-                onChange(newValues);
+                onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },
-        [onChange, updatedValues]
+        [onChange, originalValues, updatedValues]
     );
 
     const onDatePickerFocusChangeCallback = useCallback(
@@ -179,10 +179,10 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             setUpdatedValues(newValues);
 
             if (onChange) {
-                onChange(newValues);
+                onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },
-        [updatedValues]
+        [onChange, originalValues, updatedValues]
     );
 
     useEffect(() => {
