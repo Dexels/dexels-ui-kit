@@ -22,6 +22,7 @@ export const Configurable: FunctionComponent = () => (
         hasFullWidthTabHeaders={boolean('Has fullwidth tab headers', true)}
         hasPadding={boolean('Has padding', false)}
         initiallyActiveTabIndex={select('Active tab', [1, 2], 1)}
+        isChangeTabAllowed={boolean('Is change Tab allowed', true)}
         isSmall={boolean('Is small', false)}
         onClickTab={getTab}
         tabs={[
