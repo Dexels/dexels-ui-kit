@@ -1,3 +1,4 @@
+import { boolean, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useState } from 'react';
 import ScorePicker from './ScorePicker';
 
@@ -8,6 +9,8 @@ export const Configurable: FunctionComponent = () => {
 
     return (
         <ScorePicker
+            errorMessage={text('Error message', 'Incorrect score')}
+            hasError={boolean('Has error', false)}
             label={['Apples', 'Pears']}
             name={'a-score-picker'}
             onChange={(_, score) => setValue(score)}

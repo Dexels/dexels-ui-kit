@@ -58,6 +58,13 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
                     `}
                 }
             `}
+
+            ${({ hasError, theme, variant }): SimpleInterpolation =>
+            variant === SingleDatePickerVariant.OUTLINE &&
+            hasError &&
+            css`
+                border-color: ${theme.colorInvalid};
+            `}
     }
 
     .DateInput_input {
@@ -81,4 +88,18 @@ StyledSingleDatePicker.defaultProps = {
     theme: themeBasic,
 };
 
-export default StyledSingleDatePicker;
+interface ErrorMessageWrapperProps {
+    variant: SingleDatePickerVariant;
+}
+
+export const ErrorMessageWrapper = styled.div<ErrorMessageWrapperProps>`
+    ${({ theme, variant }): SimpleInterpolation =>
+        variant === SingleDatePickerVariant.COMPACT &&
+        css`
+            margin: ${theme.spacing(0.15, 0, 0, 0)};
+        `}
+`;
+
+ErrorMessageWrapper.defaultProps = {
+    theme: themeBasic,
+};

@@ -18,15 +18,11 @@ import {
     ValueTypes,
 } from '../types';
 import { EditableDataComponent, IconType, InputType } from '../../../../types';
-import { IconCustomizable, IconCustomizableSize } from '../../../molecules/IconCustomizable';
+import { Fruit, fruits } from './fruits';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import moment from 'moment';
 import React from 'react';
-
-export interface Fruit extends DropdownSelectOption, DropdownMultiSelectOption {
-    isSelected: boolean;
-}
 
 export const updateValuesOfData = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
@@ -45,33 +41,6 @@ export const updateValuesOfData = <T extends DropdownSelectOption, U extends Dro
 
     return newData as EditableInformationData<T, U>;
 };
-
-export const fruits: Fruit[] = [
-    {
-        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
-        isSelected: true,
-        label: 'Banana',
-        value: 1,
-    },
-    {
-        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER09} />,
-        isSelected: false,
-        label: 'Apple',
-        value: 2,
-    },
-    {
-        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER10} />,
-        isSelected: false,
-        label: 'Pear',
-        value: 3,
-    },
-    {
-        adornment: <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CLUBPLACEHOLDER12} />,
-        isSelected: false,
-        label: 'Peach',
-        value: 4,
-    },
-];
 
 export const editableInformationData = <T extends Fruit, U extends Fruit>(): EditableInformationData<T, U> => {
     const result: EditableInformationData<T, U> = [];

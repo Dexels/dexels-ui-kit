@@ -113,7 +113,6 @@ export const Select = styled.select<SelectProps>`
         hasError &&
         css`
             border-color: ${theme.colorInvalid};
-            color: ${theme.colorInvalid};
         `}
 
     ${({ isDisabled, theme }): SimpleInterpolation =>

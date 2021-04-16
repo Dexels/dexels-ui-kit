@@ -91,7 +91,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                         type={type}
                     />
                     {(isChecked || isIndeterminate) && type === SelectionControlType.CHECKBOX && (
-                        <IconWrapper hasError={hasError} isDisabled={isDisabled} isValid={isValid}>
+                        <IconWrapper isDisabled={isDisabled} isValid={isValid}>
                             <IconCustomizable
                                 iconSize={IconCustomizableSize.SIZE20}
                                 iconType={isChecked ? IconType.CHECKBOXCHECK : IconType.CHECKBOXMINUS1}

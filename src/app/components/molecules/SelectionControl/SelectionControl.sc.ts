@@ -198,18 +198,10 @@ export const FakeInput = styled.div<FakeInputProps>`
             `}
         `}
 
-    ${({ hasError, isChecked, isIndeterminate, theme, type }): SimpleInterpolation =>
+    ${({ hasError, theme }): SimpleInterpolation =>
         hasError &&
         css`
             border-color: ${theme.colorInvalid};
-
-            ${(isChecked || isIndeterminate) &&
-            type === SelectionControlType.RADIO &&
-            css`
-                &::after {
-                    background-color: ${theme.colorInvalid};
-                }
-            `}
         `}
 
     ${({ isChecked, isDisabled, isIndeterminate, theme, type }): SimpleInterpolation =>
@@ -232,7 +224,6 @@ FakeInput.defaultProps = {
 };
 
 interface IconWrapperProps {
-    hasError: boolean;
     isDisabled: boolean;
     isValid: boolean;
 }
@@ -247,12 +238,6 @@ export const IconWrapper = styled.div<IconWrapperProps>`
     span {
         display: block;
     }
-
-    ${({ hasError, theme }): SimpleInterpolation =>
-        hasError &&
-        css`
-            color: ${theme.colorInvalid};
-        `}
 
     ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled &&

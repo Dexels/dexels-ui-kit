@@ -10,6 +10,7 @@ import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
 import EditableInformation from './EditableInformation';
+import { editableInformationDataWithErrorMessages } from './mockup/editableInformationDataWithErrorMessages';
 
 export default { title: 'organisms/EditableInformation' };
 
@@ -150,3 +151,6 @@ export const ConfigurableCurrencyOnly: FunctionComponent = () =>
 
 export const ConfigurableCurrencyWithErrorsAfterSaving: FunctionComponent = () =>
     BaseComponent(theData(true), false, false, true, ['Error number 1', 'Error number 2']);
+
+export const ConfigurableWithDetailedErrorMessages: FunctionComponent = () =>
+    BaseComponent(editableInformationDataWithErrorMessages());

@@ -10,6 +10,7 @@ export interface InputCurrencyProps extends InputProps {
     children?: never;
     className?: string;
     errorMessage?: ReactNode;
+    hasError?: boolean;
     hasValidColor?: boolean;
     isDisabled?: boolean;
     isRequired?: boolean;
@@ -25,6 +26,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     adornmentPosition = AdornmentPosition.LEFT,
     className,
     errorMessage,
+    hasError = false,
     hasValidColor = false,
     isDisabled = false,
     isRequired = false,
@@ -47,6 +49,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
             autoFocus={autoFocus}
             className={className}
             errorMessage={errorMessage}
+            hasError={hasError}
             isDisabled={isDisabled}
             isRequired={isRequired}
             isValid={hasValidColor}

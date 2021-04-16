@@ -13,6 +13,7 @@ export const Configurable: FunctionComponent = () => {
         <InputCurrency
             adornmentPosition={select('Adornment Position', AdornmentPosition, AdornmentPosition.LEFT)}
             errorMessage={text('Error message', 'Invalid currency!')}
+            hasError={boolean('Has error', false)}
             hasValidColor={boolean('Has valid color', false)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
