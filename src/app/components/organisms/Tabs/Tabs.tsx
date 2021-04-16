@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactNode, SyntheticEvent, useEffect, useState } from 'react';
 import { StyledTabs, TabHeader, TabHeaders, TabHeaderText, TabPanel } from './Tabs.sc';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export interface Tab {
     content: ReactNode;
@@ -13,6 +14,7 @@ export interface TabsProps {
     hasFullWidthTabHeaders?: boolean;
     hasPadding?: boolean;
     initiallyActiveTabIndex?: number;
+    isChangeTabAllowed?: boolean;
     isSmall?: boolean;
     onClickTab?: (event: SyntheticEvent, tabIndex: number) => void;
     tabs: Tab[];
@@ -31,6 +33,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
     hasFullWidthTabHeaders = true,
     hasPadding = false,
     initiallyActiveTabIndex,
+    isChangeTabAllowed = true,
     isSmall = false,
     onClickTab,
     tabs,
@@ -38,7 +41,7 @@ export const Tabs: FunctionComponent<TabsProps> = ({
     const [activeTabIndex, setActiveTabIndex] = useState(getInitiallyActiveTabIndex(tabs, initiallyActiveTabIndex));
 
     useEffect(() => {
-        if (initiallyActiveTabIndex) {
+        if (!isEmpty(initiallyActiveTabIndex)) {
             setActiveTabIndex(getInitiallyActiveTabIndex(tabs, initiallyActiveTabIndex));
         }
     }, [initiallyActiveTabIndex]);
@@ -55,7 +58,9 @@ export const Tabs: FunctionComponent<TabsProps> = ({
                             // eslint-disable-next-line react/no-array-index-key
                             key={index}
                             onClick={(event: SyntheticEvent): void => {
-                                setActiveTabIndex(index);
+                                if (isChangeTabAllowed) {
+                                    setActiveTabIndex(index);
+                                }
 
                                 if (onClickTab) {
                                     onClickTab(event, index);
