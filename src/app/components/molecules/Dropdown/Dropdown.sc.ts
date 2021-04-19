@@ -1,5 +1,6 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { DropdownVariant } from './types';
+import { getBorderColor } from '../../../styles/mixins/getBorderColor';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { setTruncate } from '../../../styles/mixins/setTruncate';
 import { themeBasic } from '../../../styles/theming/themes/basic';
@@ -73,7 +74,7 @@ export const Select = styled.select<SelectProps>`
         variant === DropdownVariant.COMPACT &&
         css`
             border: 0;
-            border-bottom: 1px solid ${theme.colorText.primary};
+            border-bottom: 1px solid;
             border-radius: 0;
             padding: ${theme.spacing(0, 3, 0, 0)};
             height: ${theme.spacing(3.5)};
@@ -83,7 +84,7 @@ export const Select = styled.select<SelectProps>`
     ${({ theme, variant }): SimpleInterpolation =>
         variant === DropdownVariant.OUTLINE &&
         css`
-            border: 1px solid ${theme.colorText.primary};
+            border: 1px solid;
             border-radius: ${theme.spacing(1)};
             padding: ${theme.spacing(0, 4.5, 0, 1.5)};
             height: ${theme.spacing(6)};
@@ -96,29 +97,15 @@ export const Select = styled.select<SelectProps>`
             color: ${theme.shades.four};
         `}
 
-    ${({ isFocused, isHovered, theme }): SimpleInterpolation =>
-        (isFocused || isHovered) &&
-        css`
-            border-color: ${theme.colorSecondary};
-        `}
-
     ${({ isValid, theme }): SimpleInterpolation =>
         isValid &&
         css`
-            border-color: ${theme.colorValid};
             color: ${theme.colorValid};
-        `}
-
-    ${({ hasError, theme }): SimpleInterpolation =>
-        hasError &&
-        css`
-            border-color: ${theme.colorInvalid};
         `}
 
     ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled &&
         css`
-            border-color: ${theme.colorDisabled};
             color: ${theme.colorDisabled};
             pointer-events: none;
         `}
@@ -127,6 +114,19 @@ export const Select = styled.select<SelectProps>`
         isEmpty &&
         css`
             pointer-events: none;
+        `}
+
+    ${({ hasError, isDisabled, isFocused, isHovered, isValid, theme }): SimpleInterpolation =>
+        css`
+            border-color: ${getBorderColor({
+                defaultColor: theme.colorText.primary,
+                hasError,
+                isDisabled,
+                isFocused,
+                isHovered,
+                isValid,
+                theme,
+            })};
         `}
 `;
 
@@ -194,13 +194,5 @@ export const IconWrapper = styled.div<IconWrapperProps>`
 `;
 
 IconWrapper.defaultProps = {
-    theme: themeBasic,
-};
-
-export const ErrorMessageWrapper = styled.div`
-    margin: ${({ theme }): string => theme.spacing(0.5, 0, 0)};
-`;
-
-ErrorMessageWrapper.defaultProps = {
     theme: themeBasic,
 };

@@ -1,4 +1,4 @@
-import { ErrorMessageWrapper, IconWrapper, Select, StyledDropdown } from './Dropdown.sc';
+import { IconWrapper, Select, StyledDropdown } from './Dropdown.sc';
 import React, {
     ChangeEvent,
     ComponentType,
@@ -158,9 +158,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                 </IconWrapper>
             </StyledDropdown>
             {errorMessage && hasError && !isDisabled && (
-                <ErrorMessageWrapper>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
-                </ErrorMessageWrapper>
+                <ErrorMessage isOutlineVariant={variant === DropdownVariant.OUTLINE}>{errorMessage}</ErrorMessage>
             )}
         </>
     );

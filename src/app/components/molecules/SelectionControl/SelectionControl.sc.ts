@@ -1,6 +1,7 @@
 import { Direction, Easing } from '../../../types';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import { getBorderColor } from '../../../styles/mixins/getBorderColor';
 import { SelectionControlType } from './types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { setCentered } from '../../../styles/mixins/setCentered';
@@ -144,7 +145,7 @@ export const FakeInput = styled.div<FakeInputProps>`
     flex: 0 0 auto;
     z-index: 3;
     margin: auto;
-    border: 2px solid ${({ theme }): string => theme.colorPrimary};
+    border: 2px solid;
     background-color: transparent;
 
     ${({ theme, type }): SimpleInterpolation =>
@@ -178,17 +179,9 @@ export const FakeInput = styled.div<FakeInputProps>`
             }
         `}
 
-    ${({ isHovered, theme }): SimpleInterpolation =>
-        isHovered &&
-        css`
-            border-color: ${theme.colorSecondary};
-        `}
-
     ${({ isChecked, isIndeterminate, isValid, theme, type }): SimpleInterpolation =>
         isValid &&
         css`
-            border-color: ${theme.colorValid};
-
             ${(isChecked || isIndeterminate) &&
             type === SelectionControlType.RADIO &&
             css`
@@ -198,17 +191,9 @@ export const FakeInput = styled.div<FakeInputProps>`
             `}
         `}
 
-    ${({ hasError, theme }): SimpleInterpolation =>
-        hasError &&
-        css`
-            border-color: ${theme.colorInvalid};
-        `}
-
     ${({ isChecked, isDisabled, isIndeterminate, theme, type }): SimpleInterpolation =>
         isDisabled &&
         css`
-            border-color: ${theme.colorDisabled};
-
             ${(isChecked || isIndeterminate) &&
             type === SelectionControlType.RADIO &&
             css`
@@ -216,6 +201,18 @@ export const FakeInput = styled.div<FakeInputProps>`
                     background-color: ${theme.colorDisabled};
                 }
             `}
+        `}
+
+    ${({ hasError, isDisabled, isHovered, isValid, theme }): SimpleInterpolation =>
+        css`
+            border-color: ${getBorderColor({
+                defaultColor: theme.colorPrimary,
+                hasError,
+                isDisabled,
+                isHovered,
+                isValid,
+                theme,
+            })};
         `}
 `;
 

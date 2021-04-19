@@ -106,6 +106,7 @@ export const editableInformationDataWithErrorMessages = <T extends Fruit, U exte
         component: EditableDataComponent.TEXTAREA,
         errorMessage: 'Error in textarea',
         hasError: true,
+        ignoreOutlineVariant: true,
         isEditable: true,
         label: 'Textarea',
         name: 'EditableTextArea',

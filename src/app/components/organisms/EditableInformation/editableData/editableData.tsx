@@ -341,6 +341,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
                             errorMessage={dataInstance.errorMessage}
                             hasError={hasInputError || dataInstance.hasError}
+                            ignoreOutlineVariant
                             isDisabled={isDisabled}
                             isRequired={isRequired}
                             isTextarea
@@ -379,6 +380,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                         <Input
                             errorMessage={dataInstance.errorMessage}
                             hasError={hasInputError || dataInstance.hasError}
+                            ignoreOutlineVariant
                             isDisabled={isDisabled}
                             isTextarea
                             label={dataInstance.placeholder}

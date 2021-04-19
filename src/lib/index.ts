@@ -18,6 +18,7 @@ export { createDuiTheme } from '../app/styles/theming/createDuiTheme';
 
 // Export mixins
 export { getAlignment } from '../app/styles/mixins/getAlignment';
+export { getBorderColor } from '../app/styles/mixins/getBorderColor';
 export { getElevation } from '../app/styles/mixins/getElevation';
 export { getPosition } from '../app/styles/mixins/getPosition';
 export { getStatusColor } from '../app/styles/mixins/getStatusColor';

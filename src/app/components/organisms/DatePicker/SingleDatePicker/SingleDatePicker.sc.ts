@@ -87,19 +87,3 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
 StyledSingleDatePicker.defaultProps = {
     theme: themeBasic,
 };
-
-interface ErrorMessageWrapperProps {
-    variant: SingleDatePickerVariant;
-}
-
-export const ErrorMessageWrapper = styled.div<ErrorMessageWrapperProps>`
-    ${({ theme, variant }): SimpleInterpolation =>
-        variant === SingleDatePickerVariant.COMPACT &&
-        css`
-            margin: ${theme.spacing(0.15, 0, 0, 0)};
-        `}
-`;
-
-ErrorMessageWrapper.defaultProps = {
-    theme: themeBasic,
-};

@@ -59,7 +59,7 @@ export const ScorePicker: FunctionComponent<ScorePickerProps> = ({
                 />
             </InputWrapper>
         </StyledScorePicker>
-        {hasError && !isDisabled && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        {hasError && !isDisabled && <ErrorMessage isOutlineVariant={false}>{errorMessage}</ErrorMessage>}
     </>
 );
 

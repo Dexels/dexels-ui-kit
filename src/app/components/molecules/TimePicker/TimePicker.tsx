@@ -90,7 +90,7 @@ export const TimePicker: FunctionComponent<TimePickerProps> = ({
                     </Dropdown>
                 </DropdownWrapper>
             </StyledTimePicker>
-            {hasError && !isDisabled && <ErrorMessage>{errorMessage}</ErrorMessage>}
+            {hasError && !isDisabled && <ErrorMessage isOutlineVariant={false}>{errorMessage}</ErrorMessage>}
         </>
     );
 };

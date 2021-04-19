@@ -1,5 +1,5 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import { AdornmentWrapper, ErrorMessageWrapper, StyledInput, TextField } from './Input.sc';
+import { AdornmentWrapper, StyledInput, TextField } from './Input.sc';
 import { formatMoneyWithoutSymbol, toCents, toMoneyValue } from '../../../utils/functions/financialFunctions';
 import {
     isEmpty,
@@ -33,6 +33,7 @@ export interface InputProps {
     className?: string;
     errorMessage?: ReactNode;
     hasError?: boolean;
+    ignoreOutlineVariant?: boolean;
     isDisabled?: boolean;
     isRequired?: boolean;
     isTextarea?: boolean;
@@ -62,6 +63,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     className,
     errorMessage,
     hasError = false,
+    ignoreOutlineVariant = false,
     isDisabled = false,
     isRequired = false,
     isTextarea = false,
@@ -132,7 +134,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     // wheh inputValue changes validate it
     useEffect(() => {
         setIsValidInputData(isValidInput(inputValue || ''));
-    }, [inputValue]);
+    }, [inputValue, isRequired]);
 
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -258,9 +260,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 )}
             </StyledInput>
             {errorMessage && (hasError || !isValidInputData) && !isDisabled && (
-                <ErrorMessageWrapper variant={variant}>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
-                </ErrorMessageWrapper>
+                <ErrorMessage isOutlineVariant={variant === InputVariant.OUTLINE && !ignoreOutlineVariant}>
+                    {errorMessage}
+                </ErrorMessage>
             )}
         </>
     );

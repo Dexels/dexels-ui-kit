@@ -6,8 +6,8 @@ import {
 } from 'react-dates';
 import { ButtonSize, ButtonVariant, IconType, InputVariant } from '../../../../types';
 import DialogFooter, { DialogFooterProps } from '../../../molecules/DialogFooter/DialogFooter';
-import { ErrorMessageWrapper, StyledSingleDatePicker, StyledWrapper } from './SingleDatePicker.sc';
 import React, { FunctionComponent, MouseEventHandler, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import { StyledSingleDatePicker, StyledWrapper } from './SingleDatePicker.sc';
 import ButtonNavigation from '../ButtonNavigation/ButtonNavigation';
 import ErrorMessage from '../../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../../../molecules/FormElementLabel/FormElementLabel';
@@ -247,9 +247,9 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                 </Wrapper>
             </StyledWrapper>
             {hasError && !isDisabled && (
-                <ErrorMessageWrapper variant={variant}>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
-                </ErrorMessageWrapper>
+                <ErrorMessage isOutlineVariant={variant === SingleDatePickerVariant.OUTLINE}>
+                    {errorMessage}
+                </ErrorMessage>
             )}
         </>
     );

@@ -120,7 +120,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
             </StyledSelectionControl>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
+                    <ErrorMessage isOutlineVariant={false}>{errorMessage}</ErrorMessage>
                 </ErrorMessageWrapper>
             )}
         </>
