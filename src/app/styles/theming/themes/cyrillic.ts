@@ -3,11 +3,13 @@ import { createDuiTheme } from '../createDuiTheme';
 import { Theme } from '../../../types';
 import { themeBasicDefinition } from './basic';
 
+const colorAlert = '#EB6500';
+const colorInvalid = '#F94E4E';
+const colorValid = '#2DD67B';
 const fontFamilyPrimary = 'Cuprum, Arial, sans-serif';
 const fontFamilySecondary = "'Fira Sans Condensed', Arial, sans-serif";
 
-/* eslint-disable sort-keys */
-export const themeCyrillic: Theme = createDuiTheme(themeBasicDefinition(fontFamilyPrimary, fontFamilySecondary), {
+const themeCyrillicValues: Theme = createDuiTheme(themeBasicDefinition(fontFamilyPrimary, fontFamilySecondary), {
     shades: {
         one: '#647B96',
         two: '#324F73',
@@ -22,141 +24,143 @@ export const themeCyrillic: Theme = createDuiTheme(themeBasicDefinition(fontFami
     colorPrimary: '#647B96',
     colorSecondary: '#C2C2C2',
     colorTertiary: '#D6D6D6',
-    colorAlert: '#EB6500',
-    colorInvalid: '#F94E4E',
-    colorValid: '#2DD67B',
-    spacingValue: 8,
+    colorAlert,
+    colorInvalid,
+    colorValid,
     fontFamilyPrimary,
     fontFamilySecondary,
 });
+
+/* eslint-disable sort-keys */
+export const themeCyrillic: Theme = {
+    ...themeCyrillicValues,
+
+    colorDisabled: themeCyrillicValues.shades.seven,
+
+    colorTextContrast: {
+        primary: themeCyrillicValues.shades.nine,
+    },
+
+    colorText: {
+        primary: themeCyrillicValues.colorPrimary,
+        secondary: themeCyrillicValues.colorSecondary,
+    },
+
+    colorTextBody: {
+        primary: themeCyrillicValues.shades.one,
+        secondary: themeCyrillicValues.shades.three,
+    },
+
+    background: {
+        primary: themeCyrillicValues.shades.nine,
+        secondary: themeCyrillicValues.shades.eight,
+        tertiary: themeCyrillicValues.shades.seven,
+    },
+
+    button: {
+        filled: {
+            backgroundColor: {
+                disabled: themeCyrillicValues.colorDisabled,
+                hover: themeCyrillicValues.shades.four,
+                hoverInverted: themeCyrillicValues.colorSecondary,
+                inverted: themeCyrillicValues.shades.nine,
+                loader: themeCyrillicValues.colorTextContrast.primary,
+                loaderInverted: themeCyrillicValues.colorText.primary,
+                primary: themeCyrillicValues.colorPrimary,
+            },
+            color: {
+                disabled: themeCyrillicValues.shades.nine,
+                hover: themeCyrillicValues.shades.nine,
+                hoverInverted: themeCyrillicValues.shades.nine,
+                inverted: themeCyrillicValues.colorPrimary,
+                primary: themeCyrillicValues.shades.nine,
+            },
+        },
+        outline: {
+            backgroundColor: {
+                disabled: themeCyrillicValues.colorDisabled,
+                hover: themeCyrillicValues.shades.four,
+                hoverInverted: themeCyrillicValues.colorSecondary,
+                inverted: themeCyrillicValues.shades.nine,
+                loader: themeCyrillicValues.colorText.primary,
+                loaderInverted: themeCyrillicValues.colorTextContrast.primary,
+                primary: themeCyrillicValues.colorPrimary,
+            },
+            color: {
+                disabled: themeCyrillicValues.colorDisabled,
+                hover: themeCyrillicValues.shades.four,
+                hoverInverted: themeCyrillicValues.colorSecondary,
+                inverted: themeCyrillicValues.shades.nine,
+                primary: themeCyrillicValues.colorPrimary,
+            },
+        },
+        textOnly: {
+            disabled: themeCyrillicValues.colorDisabled,
+            disabledInverted: themeCyrillicValues.shades.four,
+            hover: themeCyrillicValues.shades.four,
+            hoverInverted: themeCyrillicValues.colorSecondary,
+            inverted: themeCyrillicValues.shades.nine,
+            loader: themeCyrillicValues.shades.one,
+            loaderInverted: themeCyrillicValues.shades.nine,
+            primary: themeCyrillicValues.colorPrimary,
+        },
+    },
+
+    card: {
+        backgroundColor: themeCyrillicValues.shades.nine,
+    },
+
+    datePicker: {
+        backgroundColor: themeCyrillicValues.shades.nine,
+        color: themeCyrillicValues.colorPrimary,
+        day: {
+            accent: themeCyrillicValues.colorPrimary,
+            backgroundColor: themeCyrillicValues.shades.seven,
+            color: themeCyrillicValues.shades.one,
+            disabled: {
+                backgroundColor: themeCyrillicValues.shades.eight,
+                color: themeCyrillicValues.colorDisabled,
+            },
+            hover: {
+                accent: themeCyrillicValues.colorSecondary,
+                backgroundColor: themeCyrillicValues.colorPrimary,
+                color: themeCyrillicValues.shades.nine,
+            },
+            selected: {
+                backgroundColor: themeCyrillicValues.colorSecondary,
+                color: themeCyrillicValues.shades.nine,
+            },
+            selectionLimit: {
+                backgroundColor: themeCyrillicValues.colorSecondary,
+                color: themeCyrillicValues.shades.nine,
+            },
+        },
+    },
+
+    header: {
+        backgroundColor: {
+            primary: themeCyrillicValues.colorPrimary,
+            secondary: themeCyrillicValues.shades.nine,
+        },
+    },
+
+    hover: {
+        backgroundColor: themeCyrillicValues.colorTertiary,
+    },
+
+    loader: {
+        primary: themeCyrillicValues.colorText.primary,
+        secondary: themeCyrillicValues.colorTextContrast.primary,
+    },
+
+    table: {
+        footer: {
+            backgroundColor: themeCyrillicValues.shades.seven,
+        },
+        row: {
+            backgroundColorEven: themeCyrillicValues.hover.backgroundColor,
+            backgroundColorOdd: themeCyrillicValues.shades.nine,
+        },
+    },
+};
 /* eslint-enable */
-
-themeCyrillic.colorDisabled = themeCyrillic.shades.seven;
-
-themeCyrillic.colorTextContrast = {
-    primary: themeCyrillic.shades.nine,
-};
-
-themeCyrillic.colorText = {
-    primary: themeCyrillic.colorPrimary,
-    secondary: themeCyrillic.colorSecondary,
-};
-
-themeCyrillic.colorTextBody = {
-    primary: themeCyrillic.shades.one,
-    secondary: themeCyrillic.shades.three,
-};
-
-themeCyrillic.background = {
-    primary: themeCyrillic.shades.nine,
-    secondary: themeCyrillic.shades.eight,
-    tertiary: themeCyrillic.shades.seven,
-};
-
-themeCyrillic.button = {
-    filled: {
-        backgroundColor: {
-            disabled: themeCyrillic.colorDisabled,
-            hover: themeCyrillic.shades.four,
-            hoverInverted: themeCyrillic.colorSecondary,
-            inverted: themeCyrillic.shades.nine,
-            loader: themeCyrillic.colorTextContrast.primary,
-            loaderInverted: themeCyrillic.colorText.primary,
-            primary: themeCyrillic.colorPrimary,
-        },
-        color: {
-            disabled: themeCyrillic.shades.nine,
-            hover: themeCyrillic.shades.nine,
-            hoverInverted: themeCyrillic.shades.nine,
-            inverted: themeCyrillic.colorPrimary,
-            primary: themeCyrillic.shades.nine,
-        },
-    },
-    outline: {
-        backgroundColor: {
-            disabled: themeCyrillic.colorDisabled,
-            hover: themeCyrillic.shades.four,
-            hoverInverted: themeCyrillic.colorSecondary,
-            inverted: themeCyrillic.shades.nine,
-            loader: themeCyrillic.colorText.primary,
-            loaderInverted: themeCyrillic.colorTextContrast.primary,
-            primary: themeCyrillic.colorPrimary,
-        },
-        color: {
-            disabled: themeCyrillic.colorDisabled,
-            hover: themeCyrillic.shades.four,
-            hoverInverted: themeCyrillic.colorSecondary,
-            inverted: themeCyrillic.shades.nine,
-            primary: themeCyrillic.colorPrimary,
-        },
-    },
-    textOnly: {
-        disabled: themeCyrillic.colorDisabled,
-        disabledInverted: themeCyrillic.shades.four,
-        hover: themeCyrillic.shades.four,
-        hoverInverted: themeCyrillic.colorSecondary,
-        inverted: themeCyrillic.shades.nine,
-        loader: themeCyrillic.shades.one,
-        loaderInverted: themeCyrillic.shades.nine,
-        primary: themeCyrillic.colorPrimary,
-    },
-};
-
-themeCyrillic.card = {
-    backgroundColor: themeCyrillic.shades.nine,
-};
-
-themeCyrillic.datePicker = {
-    backgroundColor: themeCyrillic.shades.nine,
-    color: themeCyrillic.colorPrimary,
-    day: {
-        accent: themeCyrillic.colorPrimary,
-        backgroundColor: themeCyrillic.shades.seven,
-        color: themeCyrillic.shades.one,
-        disabled: {
-            backgroundColor: themeCyrillic.shades.eight,
-            color: themeCyrillic.colorDisabled,
-        },
-        hover: {
-            accent: themeCyrillic.colorSecondary,
-            backgroundColor: themeCyrillic.colorPrimary,
-            color: themeCyrillic.shades.nine,
-        },
-        selected: {
-            backgroundColor: themeCyrillic.colorSecondary,
-            color: themeCyrillic.shades.nine,
-        },
-        selectionLimit: {
-            backgroundColor: themeCyrillic.colorSecondary,
-            color: themeCyrillic.shades.nine,
-        },
-    },
-};
-
-themeCyrillic.header = {
-    backgroundColor: {
-        primary: themeCyrillic.colorPrimary,
-        secondary: themeCyrillic.shades.nine,
-    },
-};
-
-themeCyrillic.hover = {
-    backgroundColor: themeCyrillic.colorTertiary,
-};
-
-themeCyrillic.loader = {
-    primary: themeCyrillic.colorText.primary,
-    secondary: themeCyrillic.colorTextContrast.primary,
-};
-
-themeCyrillic.table = {
-    footer: {
-        backgroundColor: themeCyrillic.shades.seven,
-    },
-    row: {
-        backgroundColorEven: themeCyrillic.hover.backgroundColor,
-        backgroundColorOdd: themeCyrillic.shades.nine,
-    },
-};
-
-export default themeCyrillic;

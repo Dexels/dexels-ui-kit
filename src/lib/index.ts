@@ -13,6 +13,7 @@ export * from '../app/types';
 // Export theming
 export { themeBasic, themeBasicDefinition } from '../app/styles/theming/themes/basic';
 export { themeCyrillic } from '../app/styles/theming/themes/cyrillic';
+export { themeCyrillicDark } from '../app/styles/theming/themes/cyrillicdark';
 export { themeDark } from '../app/styles/theming/themes/dark';
 export { createDuiTheme } from '../app/styles/theming/createDuiTheme';
 
