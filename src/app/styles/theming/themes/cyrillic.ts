@@ -1,9 +1,13 @@
+/* eslint-disable sort-keys */
 import { createDuiTheme } from '../createDuiTheme';
 import { Theme } from '../../../types';
-import { themeBasic } from './basic';
+import { themeBasicDefinition } from './basic';
+
+const fontFamilyPrimary = 'Cuprum, Arial, sans-serif';
+const fontFamilySecondary = "'Fira Sans Condensed', Arial, sans-serif";
 
 /* eslint-disable sort-keys */
-export const themeCyrillic: Theme = createDuiTheme(themeBasic, {
+export const themeCyrillic: Theme = createDuiTheme(themeBasicDefinition(fontFamilyPrimary, fontFamilySecondary), {
     shades: {
         one: '#647B96',
         two: '#324F73',
@@ -22,8 +26,8 @@ export const themeCyrillic: Theme = createDuiTheme(themeBasic, {
     colorInvalid: '#F94E4E',
     colorValid: '#2DD67B',
     spacingValue: 8,
-    fontFamilyPrimary: 'Cuprum, Arial, sans-serif',
-    fontFamilySecondary: "'Fira Sans Condensed', Arial, sans-serif",
+    fontFamilyPrimary,
+    fontFamilySecondary,
 });
 /* eslint-enable */
 

@@ -2,7 +2,7 @@ import { colorKeys } from '../../../styles/theming/colorKeys';
 import Colors from '../../../components/atoms/Colors/Colors';
 import React from 'react';
 import { render } from 'enzyme';
-import themeBasic from '../../../styles/theming/themes/basic';
+import { themeBasic } from '../../../styles/theming/themes/basic';
 import { ThemeProvider } from 'styled-components';
 
 describe('test component Colors', () => {

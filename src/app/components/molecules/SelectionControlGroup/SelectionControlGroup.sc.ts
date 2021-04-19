@@ -1,7 +1,7 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { Direction } from '../../../types';
 import { getBorderColor } from '../../../styles/mixins/getBorderColor';
-import themeBasic from '../../../styles/theming/themes/basic';
+import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledSelectionControlGroupProps {
     direction: Direction;
