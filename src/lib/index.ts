@@ -11,7 +11,7 @@ import '../app/styles/fonts/opensans/opensans.css';
 export * from '../app/types';
 
 // Export theming
-export { themeBasic } from '../app/styles/theming/themes/basic';
+export { themeBasic, themeBasicDefinition } from '../app/styles/theming/themes/basic';
 export { themeCyrillic } from '../app/styles/theming/themes/cyrillic';
 export { themeDark } from '../app/styles/theming/themes/dark';
 export { createDuiTheme } from '../app/styles/theming/createDuiTheme';
