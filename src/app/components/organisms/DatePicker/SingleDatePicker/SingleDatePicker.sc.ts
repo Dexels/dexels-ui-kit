@@ -59,7 +59,7 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
                 }
             `}
 
-            ${({ hasError, theme, variant }): SimpleInterpolation =>
+        ${({ hasError, theme, variant }): SimpleInterpolation =>
             variant === SingleDatePickerVariant.OUTLINE &&
             hasError &&
             css`

@@ -25,11 +25,7 @@ export const getBorderColor = ({
         return theme.colorDisabled;
     }
 
-    if (isFocused) {
-        return theme.colorSecondary;
-    }
-
-    if (isHovered) {
+    if (isFocused || isHovered) {
         return theme.colorSecondary;
     }
 
