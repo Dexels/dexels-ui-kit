@@ -146,6 +146,11 @@ export {
     SelectionControlProps,
     SelectionControlType,
 } from '../app/components/molecules/SelectionControl';
+export {
+    SelectionControlGroup,
+    SelectionControlGroupProps,
+    SelectionControlGroupItemProps,
+} from '../app/components/molecules/SelectionControlGroup/SelectionControlGroup';
 export { Skeleton, SkeletonProps } from '../app/components/molecules/Skeleton/Skeleton';
 export { TextIcon, TextIconProps } from '../app/components/molecules/TextIcon/TextIcon';
 export {

@@ -1,15 +1,17 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
+import { Direction } from '../../../types';
 import { getBorderColor } from '../../../styles/mixins/getBorderColor';
 import themeBasic from '../../../styles/theming/themes/basic';
 
-interface StyledSelectionGroupProps {
+interface StyledSelectionControlGroupProps {
+    direction: Direction;
     hasBorder: boolean;
     hasError: boolean;
     isDisabled: boolean;
     isHorizontal: boolean;
 }
 
-export const StyledSelectionGroup = styled.div<StyledSelectionGroupProps>`
+export const StyledSelectionControlGroup = styled.div<StyledSelectionControlGroupProps>`
     ${({ hasBorder, hasError, isDisabled, theme }): SimpleInterpolation =>
         hasBorder &&
         css`
@@ -23,17 +25,31 @@ export const StyledSelectionGroup = styled.div<StyledSelectionGroupProps>`
             padding: ${theme.spacing(1, 1.5)};
         `}
 
-    ${({ isHorizontal, theme }): SimpleInterpolation =>
+    ${({ direction, isHorizontal }): SimpleInterpolation =>
         isHorizontal &&
         css`
             display: flex;
-
-            button:nth-of-type(1) {
-                padding: ${theme.spacing(0, 1.5, 0, 0)};
-            }
+            justify-content: ${direction === Direction.LTR ? 'flex-start' : 'flex-end'};
         `}
 `;
 
-StyledSelectionGroup.defaultProps = {
+StyledSelectionControlGroup.defaultProps = {
+    theme: themeBasic,
+};
+
+interface SelectionControlWrapperProps {
+    isFirstElement: boolean;
+    isHorizontal: boolean;
+}
+
+export const SelectionControlWrapper = styled.div<SelectionControlWrapperProps>`
+    ${({ isFirstElement, isHorizontal, theme }): SimpleInterpolation =>
+        isHorizontal &&
+        css`
+            padding: ${isFirstElement ? 0 : theme.spacing(0, 0, 0, 1.5)};
+        `}
+`;
+
+SelectionControlWrapper.defaultProps = {
     theme: themeBasic,
 };
