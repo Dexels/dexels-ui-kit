@@ -20,3 +20,5 @@ export const SelectOption: FunctionComponent<SelectOptionProps> = ({
         {children}
     </StyledSelectOption>
 );
+
+export default SelectOption;
