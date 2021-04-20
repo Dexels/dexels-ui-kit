@@ -421,6 +421,11 @@ export enum StatusIndicatorSize {
     SMALL = 'SMALL',
 }
 
+export interface OptionObject {
+    label: string;
+    value: string | number;
+}
+
 export interface Theme {
     shades: {
         one: string;

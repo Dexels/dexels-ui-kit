@@ -15,6 +15,8 @@ export const Default: FunctionComponent = () => {
         <SingleDatePicker
             date={date}
             displayFormat={text('Display format', 'ddd D MMM Y')}
+            errorMessage={text('Error message', 'Some date you have there')}
+            hasError={boolean('Has error', false)}
             id="datepicker"
             isDayBlocked={(day): boolean => day.day() === 3}
             isDayHighlighted={(day): boolean => day.day() === 6}

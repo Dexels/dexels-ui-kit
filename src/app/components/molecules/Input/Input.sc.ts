@@ -1,5 +1,6 @@
 import { AdornmentPosition, InputType, InputVariant } from '../../../types';
 import styled, { css, SimpleInterpolation } from 'styled-components';
+import { getBorderColor } from '../../../styles/mixins/getBorderColor';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -100,7 +101,7 @@ export const TextField = styled.input<TextFieldProps>`
         variant === InputVariant.COMPACT &&
         css`
             border: 0;
-            border-bottom: 1px solid ${theme.colorPrimary};
+            border-bottom: 1px solid;
             padding: 0;
             height: ${theme.spacing(3.5)};
         `}
@@ -108,7 +109,7 @@ export const TextField = styled.input<TextFieldProps>`
     ${({ theme, variant }): SimpleInterpolation =>
         variant === InputVariant.OUTLINE &&
         css`
-            border: 1px solid ${theme.colorPrimary};
+            border: 1px solid;
             border-radius: ${theme.spacing(1)};
             padding: ${theme.spacing(0, 1.5)};
             height: ${theme.spacing(6)};
@@ -122,49 +123,29 @@ export const TextField = styled.input<TextFieldProps>`
             resize: none;
         `}
 
-    ${({ isFocused, isHovered, theme }): SimpleInterpolation =>
-        (isFocused || isHovered) &&
-        css`
-            border-color: ${theme.colorSecondary};
-        `}
-
-    ${({ isValid, theme }): SimpleInterpolation =>
-        isValid &&
-        css`
-            border-color: ${theme.colorValid};
-        `}
-
-    ${({ hasError, theme }): SimpleInterpolation =>
-        hasError &&
-        css`
-            border-color: ${theme.colorInvalid};
-        `}
-
     ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled &&
         css`
-            border-color: ${theme.colorDisabled};
             color: ${theme.colorDisabled};
+        `}
+
+    ${({ hasError, isDisabled, isFocused, isHovered, isValid, theme }): SimpleInterpolation =>
+        css`
+            /* stylelint-disable indentation */
+            border-color: ${getBorderColor({
+                defaultColor: theme.colorPrimary,
+                hasError,
+                isDisabled,
+                isFocused,
+                isHovered,
+                isValid,
+                theme,
+            })};
+            /* stylelint-enable indentation */
         `}
 `;
 
 TextField.defaultProps = {
-    theme: themeBasic,
-};
-
-interface ErrorMessageWrapperProps {
-    variant: InputVariant;
-}
-
-export const ErrorMessageWrapper = styled.div<ErrorMessageWrapperProps>`
-    ${({ theme, variant }): SimpleInterpolation =>
-        variant === InputVariant.OUTLINE &&
-        css`
-            margin: ${theme.spacing(0.5, 0, 0, 1.5)};
-        `}
-`;
-
-ErrorMessageWrapper.defaultProps = {
     theme: themeBasic,
 };
 
@@ -222,12 +203,6 @@ export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
             css`
                 right: ${theme.spacing(1)};
             `}
-        `}
-
-    ${({ hasError, theme }): SimpleInterpolation =>
-        hasError &&
-        css`
-            color: ${theme.colorInvalid};
         `}
 
     ${({ isDisabled, theme }): SimpleInterpolation =>

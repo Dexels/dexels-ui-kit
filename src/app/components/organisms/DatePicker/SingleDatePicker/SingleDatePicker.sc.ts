@@ -58,6 +58,13 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
                     `}
                 }
             `}
+
+        ${({ hasError, theme, variant }): SimpleInterpolation =>
+            variant === SingleDatePickerVariant.OUTLINE &&
+            hasError &&
+            css`
+                border-color: ${theme.colorInvalid};
+            `}
     }
 
     .DateInput_input {
@@ -80,5 +87,3 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
 StyledSingleDatePicker.defaultProps = {
     theme: themeBasic,
 };
-
-export default StyledSingleDatePicker;

@@ -5,7 +5,7 @@ import {
 } from '../../../components/organisms/EditableInformation/types';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { EditableDataComponent } from '../../../types';
-import { fruits } from '../../../components/organisms/EditableInformation/mockup/editableInformationData';
+import { fruits } from '../../../components/organisms/EditableInformation/mockup/fruits';
 import { isValidEditableInput } from '../../../components/organisms/EditableInformation/utils/informationDataFunctions';
 import moment from 'moment';
 

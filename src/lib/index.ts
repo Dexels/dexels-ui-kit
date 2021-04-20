@@ -11,13 +11,15 @@ import '../app/styles/fonts/opensans/opensans.css';
 export * from '../app/types';
 
 // Export theming
-export { themeBasic } from '../app/styles/theming/themes/basic';
+export { themeBasic, themeBasicDefinition } from '../app/styles/theming/themes/basic';
 export { themeCyrillic } from '../app/styles/theming/themes/cyrillic';
+export { themeCyrillicDark } from '../app/styles/theming/themes/cyrillicdark';
 export { themeDark } from '../app/styles/theming/themes/dark';
 export { createDuiTheme } from '../app/styles/theming/createDuiTheme';
 
 // Export mixins
 export { getAlignment } from '../app/styles/mixins/getAlignment';
+export { getBorderColor } from '../app/styles/mixins/getBorderColor';
 export { getElevation } from '../app/styles/mixins/getElevation';
 export { getPosition } from '../app/styles/mixins/getPosition';
 export { getStatusColor } from '../app/styles/mixins/getStatusColor';
@@ -110,6 +112,7 @@ export { Card, CardProps } from '../app/components/atoms/Card/Card';
 export { ErrorMessage, ErrorMessageProps } from '../app/components/atoms/ErrorMessage/ErrorMessage';
 export { Icon, IconProps } from '../app/components/atoms/Icon/Icon';
 export { Label, LabelProps } from '../app/components/atoms/Label/Label';
+export { SelectOption, SelectOptionProps } from '../app/components/atoms/SelectOption/SelectOption';
 export { StatusIndicator, StatusIndicatorProps } from '../app/components/atoms/StatusIndicator/StatusIndicator';
 
 // Export molecules
@@ -145,6 +148,10 @@ export {
     SelectionControlProps,
     SelectionControlType,
 } from '../app/components/molecules/SelectionControl';
+export {
+    SelectionControlGroup,
+    SelectionControlGroupProps,
+} from '../app/components/molecules/SelectionControlGroup/SelectionControlGroup';
 export { Skeleton, SkeletonProps } from '../app/components/molecules/Skeleton/Skeleton';
 export { TextIcon, TextIconProps } from '../app/components/molecules/TextIcon/TextIcon';
 export {

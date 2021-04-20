@@ -1,4 +1,5 @@
-import { ErrorMessageWrapper, IconWrapper, Select, StyledDropdown } from './Dropdown.sc';
+import { IconType, OptionObject } from '../../../types';
+import { IconWrapper, Select, StyledDropdown } from './Dropdown.sc';
 import React, {
     ChangeEvent,
     ComponentType,
@@ -13,13 +14,9 @@ import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
 import { IconCustomizable } from '../IconCustomizable/IconCustomizable';
 import { IconCustomizableSize } from '../IconCustomizable/types';
-import { IconType } from '../../../types';
 import SelectOption from '../../atoms/SelectOption/SelectOption';
 
-export interface DropdownOption {
-    label: string;
-    value: string | number;
-}
+export interface DropdownOption extends OptionObject {}
 
 export interface DropdownProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -158,9 +155,7 @@ export const Dropdown: FunctionComponent<DropdownProps & { [key: string]: any }>
                 </IconWrapper>
             </StyledDropdown>
             {errorMessage && hasError && !isDisabled && (
-                <ErrorMessageWrapper>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
-                </ErrorMessageWrapper>
+                <ErrorMessage isOutlineVariant={variant === DropdownVariant.OUTLINE}>{errorMessage}</ErrorMessage>
             )}
         </>
     );

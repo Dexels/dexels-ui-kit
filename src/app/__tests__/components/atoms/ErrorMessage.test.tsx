@@ -7,7 +7,7 @@ describe('test component ErrorMessage', () => {
 
     beforeEach(() => {
         const error = (
-            <ErrorMessage>
+            <ErrorMessage isOutlineVariant={false}>
                 <span className="test" />
             </ErrorMessage>
         );

@@ -33,7 +33,7 @@ export interface SelectionControlProps {
     transitionDuration?: number;
     transitionEasing?: Easing;
     type?: SelectionControlType;
-    value: string;
+    value: string | number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -91,7 +91,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                         type={type}
                     />
                     {(isChecked || isIndeterminate) && type === SelectionControlType.CHECKBOX && (
-                        <IconWrapper hasError={hasError} isDisabled={isDisabled} isValid={isValid}>
+                        <IconWrapper isDisabled={isDisabled} isValid={isValid}>
                             <IconCustomizable
                                 iconSize={IconCustomizableSize.SIZE20}
                                 iconType={isChecked ? IconType.CHECKBOXCHECK : IconType.CHECKBOXMINUS1}
@@ -120,7 +120,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
             </StyledSelectionControl>
             {errorMessage && hasError && !isDisabled && (
                 <ErrorMessageWrapper>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
+                    <ErrorMessage isOutlineVariant={false}>{errorMessage}</ErrorMessage>
                 </ErrorMessageWrapper>
             )}
         </>

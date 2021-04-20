@@ -12,6 +12,8 @@ import { TimePickerProps } from '../../molecules/TimePicker/TimePicker';
 
 export interface BaseDataProps {
     component: EditableDataComponent;
+    errorMessage?: ReactNode;
+    hasError?: boolean;
     isDisabled?: boolean;
     isEditable?: boolean;
     isRequired?: boolean;
@@ -26,7 +28,6 @@ export interface CheckboxDataProps extends BaseDataProps {
 }
 
 export interface EditableCheckboxDataProps extends CheckboxDataProps {
-    errorMessage?: SelectionControlProps['errorMessage'];
     name: SelectionControlProps['name'];
     placeholder?: SelectionControlProps['label'];
 }

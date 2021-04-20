@@ -39,15 +39,15 @@ const colorTextContrast = {
     primary: shades.nine,
 };
 
-const fontFamilyPrimary = "'Open Sans', arial, sans-serif";
-const fontFamilySecondary = "'Exo 2', sans-serif";
+const fontFamilyPrimaryDefinition = "'Open Sans', arial, sans-serif";
+const fontFamilySecondaryDefinition = "'Exo 2', sans-serif";
 
 const hover = {
     backgroundColor: background.primary,
 };
 
 /* eslint-disable sort-keys */
-export const themeBasic: Theme = {
+export const themeBasicDefinition = (fontFamilyPrimary: string, fontFamilySecondary: string): Theme => ({
     card: {
         backgroundColor: shades.nine,
     },
@@ -279,7 +279,7 @@ export const themeBasic: Theme = {
             font-weight: ${textStyle.fontWeight};
         `;
     },
-};
+});
 /* eslint-enable sort-keys */
 
-export default themeBasic;
+export const themeBasic: Theme = themeBasicDefinition(fontFamilyPrimaryDefinition, fontFamilySecondaryDefinition);

@@ -12,6 +12,7 @@ import moment from 'moment';
 import React from 'react';
 import { themeBasic } from '../app/styles/theming/themes/basic';
 import { themeCyrillic } from '../app/styles/theming/themes/cyrillic';
+import { themeCyrillicDark } from '../app/styles/theming/themes/cyrillicdark';
 import { themeDark } from '../app/styles/theming/themes/dark';
 import { withInfo } from '@storybook/addon-info';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
@@ -43,12 +44,16 @@ addDecorator(
             name: 'Basic',
         },
         {
+            ...themeDark,
+            name: 'Dark',
+        },
+        {
             ...themeCyrillic,
             name: 'Cyrillic',
         },
         {
-            ...themeDark,
-            name: 'Dark',
+            ...themeCyrillicDark,
+            name: 'CyrillicDark',
         },
     ])
 );

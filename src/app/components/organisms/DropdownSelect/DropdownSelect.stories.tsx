@@ -32,6 +32,7 @@ export const Configurable: FunctionComponent = () => {
             defaultValue="-1"
             errorMessage={text('Error message', 'Help, something went wrong!')}
             footerText={text('Instructions', 'Choose a fruit or type yourself a fruit!')}
+            hasError={boolean('Has error', false)}
             iconType={select('Type', IconType, IconType.CLUBPLACEHOLDER1)}
             isDisabled={boolean('Is disabled', false)}
             isSearchAny={boolean('Is search any', false)}
