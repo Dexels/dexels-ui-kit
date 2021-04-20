@@ -142,6 +142,7 @@ export { PanelHeader, PanelHeaderProps } from '../app/components/molecules/Panel
 export { PanelStatus, PanelStatusProps } from '../app/components/molecules/PanelStatus/PanelStatus';
 export { ProgressBar } from '../app/components/molecules/ProgressBar/ProgressBar';
 export { ScorePicker, ScorePickerProps } from '../app/components/molecules/ScorePicker/ScorePicker';
+export { SelectOption, SelectOptionProps } from '../app/components/atoms/SelectOption/SelectOption';
 export {
     SelectionControl,
     SelectionControlProps,
