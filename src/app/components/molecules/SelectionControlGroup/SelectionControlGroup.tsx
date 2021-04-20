@@ -1,16 +1,11 @@
+import { Direction, OptionObject } from '../../../types';
 import React, { FunctionComponent, ReactNode, useCallback, useEffect, useState } from 'react';
 import { SelectionControlWrapper, StyledSelectionControlGroup } from './SelectionControlGroup.sc';
-import { Direction } from '../../../types';
 import { FormElementLabel } from '../FormElementLabel/FormElementLabel';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 import Label from '../../atoms/Label/Label';
 import SelectionControl from '../SelectionControl/SelectionControl';
 import { SelectionControlType } from '../SelectionControl/types';
-
-export interface SelectionControlGroupItemProps {
-    label: string;
-    value: string;
-}
 
 export interface SelectionControlGroupProps {
     children?: never;
@@ -23,7 +18,7 @@ export interface SelectionControlGroupProps {
     isDisabled?: boolean;
     isHorizontal?: boolean;
     onChange: (selectedValue: string) => void;
-    options: SelectionControlGroupItemProps[];
+    options: OptionObject[];
     title?: ReactNode;
 }
 
@@ -40,7 +35,7 @@ export const SelectionControlGroup: FunctionComponent<SelectionControlGroupProps
     options,
     title,
 }) => {
-    const [selectedValue, setSelectedValue] = useState('');
+    const [selectedValue, setSelectedValue] = useState<string | number>('');
 
     const onChangeCallback = useCallback(
         (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>) => {
@@ -59,7 +54,9 @@ export const SelectionControlGroup: FunctionComponent<SelectionControlGroupProps
     return (
         <>
             {title && hasBorder ? (
-                <FormElementLabel isDisabled={isDisabled}>{title}</FormElementLabel>
+                <FormElementLabel hasError={hasError} isDisabled={isDisabled}>
+                    {title}
+                </FormElementLabel>
             ) : (
                 <Label hasError={hasError} isDisabled={isDisabled} isSmall>
                     {title}
@@ -73,7 +70,7 @@ export const SelectionControlGroup: FunctionComponent<SelectionControlGroupProps
                 isDisabled={isDisabled}
                 isHorizontal={isHorizontal}
             >
-                {options.map((option: SelectionControlGroupItemProps, index: number) => (
+                {options.map((option: OptionObject, index: number) => (
                     // eslint-disable-next-line react/no-array-index-key
                     <SelectionControlWrapper isFirstElement={index === 0} isHorizontal={isHorizontal} key={index}>
                         <SelectionControl

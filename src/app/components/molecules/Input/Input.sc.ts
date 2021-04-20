@@ -205,12 +205,6 @@ export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
             `}
         `}
 
-    ${({ hasError, theme }): SimpleInterpolation =>
-        hasError &&
-        css`
-            color: ${theme.colorInvalid};
-        `}
-
     ${({ isDisabled, theme }): SimpleInterpolation =>
         isDisabled &&
         css`

@@ -150,7 +150,6 @@ export {
 export {
     SelectionControlGroup,
     SelectionControlGroupProps,
-    SelectionControlGroupItemProps,
 } from '../app/components/molecules/SelectionControlGroup/SelectionControlGroup';
 export { Skeleton, SkeletonProps } from '../app/components/molecules/Skeleton/Skeleton';
 export { TextIcon, TextIconProps } from '../app/components/molecules/TextIcon/TextIcon';

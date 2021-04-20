@@ -1,12 +1,12 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { Direction, OptionObject } from '../../../types';
 import React, { FunctionComponent } from 'react';
-import SelectionControlGroup, { SelectionControlGroupItemProps } from './SelectionControlGroup';
-import { Direction } from '../../../types';
+import SelectionControlGroup from './SelectionControlGroup';
 
 export default { title: 'molecules/SelectionControlGroup' };
 
 export const Configurable: FunctionComponent = () => {
-    const options: SelectionControlGroupItemProps[] = [];
+    const options: OptionObject[] = [];
 
     options.push(
         {
@@ -30,7 +30,7 @@ export const Configurable: FunctionComponent = () => {
 
     return (
         <SelectionControlGroup
-            defaultValue={text('default value: female, male, mixed', 'male')}
+            defaultValue={'male'}
             direction={select('Direction', Direction, Direction.LTR)}
             groupName={text('Group name', 'radio-button-group')}
             hasBorder={boolean('Has border', false)}

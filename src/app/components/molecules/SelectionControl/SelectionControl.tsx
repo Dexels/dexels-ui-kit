@@ -33,7 +33,7 @@ export interface SelectionControlProps {
     transitionDuration?: number;
     transitionEasing?: Easing;
     type?: SelectionControlType;
-    value: string;
+    value: string | number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
