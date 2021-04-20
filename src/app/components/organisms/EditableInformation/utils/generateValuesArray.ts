@@ -21,6 +21,14 @@ export const generateValuesArray = <T extends DropdownSelectOption, U extends Dr
                 };
             }
 
+            if (dataInstance.component === EditableDataComponent.DROPDOWN && dataInstance.nameTextValue) {
+                return {
+                    ...accumulator,
+                    [dataInstance.name]: dataInstance.value,
+                    [dataInstance.nameTextValue]: dataInstance.textValue,
+                };
+            }
+
             if (dataInstance.component === EditableDataComponent.DROPDOWNMULTISELECT) {
                 return {
                     ...accumulator,
