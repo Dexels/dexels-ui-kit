@@ -131,6 +131,7 @@ export const TextField = styled.input<TextFieldProps>`
 
     ${({ hasError, isDisabled, isFocused, isHovered, isValid, theme }): SimpleInterpolation =>
         css`
+            /* stylelint-disable indentation */
             border-color: ${getBorderColor({
                 defaultColor: theme.colorPrimary,
                 hasError,
@@ -140,6 +141,7 @@ export const TextField = styled.input<TextFieldProps>`
                 isValid,
                 theme,
             })};
+            /* stylelint-enable indentation */
         `}
 `;
 

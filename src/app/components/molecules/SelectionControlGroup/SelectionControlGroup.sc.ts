@@ -15,12 +15,14 @@ export const StyledSelectionControlGroup = styled.div<StyledSelectionControlGrou
     ${({ hasBorder, hasError, isDisabled, theme }): SimpleInterpolation =>
         hasBorder &&
         css`
+            /* stylelint-disable indentation */
             border: 1px solid
                 ${getBorderColor({
                     hasError,
                     isDisabled,
                     theme,
                 })};
+            /* stylelint-enable indentation */
             border-radius: ${theme.spacing(1)};
             padding: ${theme.spacing(1, 1.5)};
         `}

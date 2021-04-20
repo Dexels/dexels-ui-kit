@@ -118,6 +118,7 @@ export const Select = styled.select<SelectProps>`
 
     ${({ hasError, isDisabled, isFocused, isHovered, isValid, theme }): SimpleInterpolation =>
         css`
+            /* stylelint-disable indentation */
             border-color: ${getBorderColor({
                 defaultColor: theme.colorText.primary,
                 hasError,
@@ -127,6 +128,7 @@ export const Select = styled.select<SelectProps>`
                 isValid,
                 theme,
             })};
+            /* stylelint-enable indentation */
         `}
 `;
 

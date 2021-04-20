@@ -59,12 +59,14 @@ export const StyledChip = styled.button<StyledChipProps>`
 
     ${({ isDisabled, isHoverable, isSelected, theme }): SimpleInterpolation =>
         css`
+            /* stylelint-disable indentation */
             border-color: ${getBorderColor({
                 defaultColor: theme.shades.two,
                 isDisabled: isDisabled || !isSelected,
                 isFocused: isHoverable,
                 theme,
             })};
+            /* stylelint-enable indentation */
         `}
 `;
 

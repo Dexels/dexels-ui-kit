@@ -205,6 +205,7 @@ export const FakeInput = styled.div<FakeInputProps>`
 
     ${({ hasError, isDisabled, isHovered, isValid, theme }): SimpleInterpolation =>
         css`
+            /* stylelint-disable indentation */
             border-color: ${getBorderColor({
                 defaultColor: theme.colorPrimary,
                 hasError,
@@ -213,6 +214,7 @@ export const FakeInput = styled.div<FakeInputProps>`
                 isValid,
                 theme,
             })};
+            /* stylelint-enable indentation */
         `}
 `;
 
