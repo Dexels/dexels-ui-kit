@@ -112,6 +112,7 @@ export { Card, CardProps } from '../app/components/atoms/Card/Card';
 export { ErrorMessage, ErrorMessageProps } from '../app/components/atoms/ErrorMessage/ErrorMessage';
 export { Icon, IconProps } from '../app/components/atoms/Icon/Icon';
 export { Label, LabelProps } from '../app/components/atoms/Label/Label';
+export { SelectOption, SelectOptionProps } from '../app/components/atoms/SelectOption/SelectOption';
 export { StatusIndicator, StatusIndicatorProps } from '../app/components/atoms/StatusIndicator/StatusIndicator';
 
 // Export molecules
@@ -142,7 +143,6 @@ export { PanelHeader, PanelHeaderProps } from '../app/components/molecules/Panel
 export { PanelStatus, PanelStatusProps } from '../app/components/molecules/PanelStatus/PanelStatus';
 export { ProgressBar } from '../app/components/molecules/ProgressBar/ProgressBar';
 export { ScorePicker, ScorePickerProps } from '../app/components/molecules/ScorePicker/ScorePicker';
-export { SelectOption, SelectOptionProps } from '../app/components/atoms/SelectOption/SelectOption';
 export {
     SelectionControl,
     SelectionControlProps,
