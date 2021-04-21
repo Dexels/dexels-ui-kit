@@ -2,6 +2,7 @@ import { AmountWrapper, ImageWrapper, StyledContentCell } from './ContentCell.sc
 import { formatDate, formatTime, isValidClockTime, isValidDate } from '../../../../utils/functions/dateFunctions';
 import moment, { Moment } from 'moment';
 import React, { FunctionComponent, ReactNode } from 'react';
+import { COLOR_NEGATIVE_AMOUNT } from '../../../../styles/constants';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { Locale } from '../../../../types';
@@ -23,7 +24,7 @@ export interface ContentCellProps {
 }
 
 export const ContentCell: FunctionComponent<ContentCellProps> = ({
-    colorNegativeAmount = 'red',
+    colorNegativeAmount = COLOR_NEGATIVE_AMOUNT,
     textLinesLimit = 2,
     hasLineThrough = false,
     hasTooltip = false,

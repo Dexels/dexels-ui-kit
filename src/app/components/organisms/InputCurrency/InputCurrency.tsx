@@ -11,9 +11,10 @@ export interface InputCurrencyProps extends InputProps {
     className?: string;
     errorMessage?: ReactNode;
     hasError?: boolean;
-    hasValidColor?: boolean;
+    hasNegativeAmountColor?: boolean;
     isDisabled?: boolean;
     isRequired?: boolean;
+    isValid?: boolean;
     label?: ReactNode;
     locale: Locale;
     name: string;
@@ -27,9 +28,10 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     className,
     errorMessage,
     hasError = false,
-    hasValidColor = false,
+    hasNegativeAmountColor = true,
     isDisabled = false,
     isRequired = false,
+    isValid = false,
     label,
     locale,
     max,
@@ -50,9 +52,10 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
             className={className}
             errorMessage={errorMessage}
             hasError={hasError}
+            hasNegativeAmountColor={hasNegativeAmountColor}
             isDisabled={isDisabled}
             isRequired={isRequired}
-            isValid={hasValidColor}
+            isValid={isValid}
             label={label}
             locale={locale}
             max={max}

@@ -15,6 +15,7 @@ export const Configurable: FunctionComponent = () => {
             autoFocus={boolean('Auto focus', true)}
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
@@ -45,6 +46,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
             adornmentPosition={select('Adornment Position', AdornmentPosition, AdornmentPosition.LEFT)}
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
@@ -72,6 +74,7 @@ export const ConfigurableClickable: FunctionComponent = () => {
         <Input
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
@@ -100,6 +103,7 @@ export const ConfigurableMinNumberAndRequired: FunctionComponent = () => {
         <Input
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', true)}
             isValid={boolean('Is valid', false)}
@@ -125,6 +129,7 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
         <Input
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isValid={boolean('Is valid', false)}
@@ -151,6 +156,7 @@ export const ConfigurableAddress: FunctionComponent = () => {
         <Input
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
             isDisabled={boolean('Is disabled', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This input has an empty string and maxlength')}
@@ -174,6 +180,7 @@ export const ConfigurableTextarea: FunctionComponent = () => {
         <Input
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea
@@ -201,6 +208,7 @@ export const ConfigurableTextareaClickable: FunctionComponent = () => {
         <Input
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
+            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea
