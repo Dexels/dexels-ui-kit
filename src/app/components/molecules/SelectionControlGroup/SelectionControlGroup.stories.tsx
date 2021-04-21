@@ -1,5 +1,5 @@
+import { Alignment, Direction, OptionObject, SelectionControlGroupVariant } from '../../../types';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { Direction, OptionObject } from '../../../types';
 import React, { FunctionComponent } from 'react';
 import SelectionControlGroup from './SelectionControlGroup';
 
@@ -30,16 +30,18 @@ export const Configurable: FunctionComponent = () => {
 
     return (
         <SelectionControlGroup
+            alignment={select('Alignment', Alignment, Alignment.LEFT)}
             defaultValue={'male'}
             direction={select('Direction', Direction, Direction.LTR)}
             groupName={text('Group name', 'radio-button-group')}
-            hasBorder={boolean('Has border', false)}
             hasError={boolean('Has error', false)}
             isDisabled={boolean('Is disabled', false)}
             isHorizontal={boolean('Is horizontal layout', false)}
+            isRequired={boolean('Is required', false)}
             onChange={onChange}
             options={options}
             title={text('Title', 'Select your gender')}
+            variant={select('Variant', SelectionControlGroupVariant, SelectionControlGroupVariant.COMPACT)}
         />
     );
 };
