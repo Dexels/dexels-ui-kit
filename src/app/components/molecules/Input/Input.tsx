@@ -33,6 +33,7 @@ export interface InputProps {
     className?: string;
     errorMessage?: ReactNode;
     hasError?: boolean;
+    hasNegativeAmountColor?: boolean;
     ignoreOutlineVariant?: boolean;
     isDisabled?: boolean;
     isRequired?: boolean;
@@ -63,6 +64,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     className,
     errorMessage,
     hasError = false,
+    hasNegativeAmountColor = true,
     ignoreOutlineVariant = false,
     isDisabled = false,
     isRequired = false,
@@ -208,6 +210,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     autoFocus={autoFocus}
                     hasAdornment={adornment !== undefined}
                     hasError={hasError || !isValidInputData}
+                    hasNegativeAmountColor={hasNegativeAmountColor && !isEmpty(inputValue) && toNumber(inputValue) < 0}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}

@@ -7,8 +7,8 @@ import { formatMoney } from '../../../../utils/functions/financialFunctions';
 import { Locale } from '../../../../types';
 
 export interface ContentCellProps {
-    colorNegativeAmount?: string;
     hasLineThrough?: boolean;
+    hasNegativeAmountColor?: boolean;
     hasTooltip?: boolean;
     isBold?: boolean;
     isCurrency?: boolean;
@@ -23,7 +23,7 @@ export interface ContentCellProps {
 }
 
 export const ContentCell: FunctionComponent<ContentCellProps> = ({
-    colorNegativeAmount = 'red',
+    hasNegativeAmountColor = true,
     textLinesLimit = 2,
     hasLineThrough = false,
     hasTooltip = false,
@@ -45,7 +45,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
 
     if (isCurrency) {
         content = typeof value === 'number' && (
-            <AmountWrapper colorNegativeAmount={colorNegativeAmount} isNegativeCurrency={value < 0}>
+            <AmountWrapper hasNegativeAmountColor={hasNegativeAmountColor && value < 0}>
                 {formatMoney(value, locale)}
             </AmountWrapper>
         );

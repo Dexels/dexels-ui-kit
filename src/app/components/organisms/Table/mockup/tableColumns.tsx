@@ -82,7 +82,7 @@ export const tableColumns = (): Column<TableData>[] => [
                 ),
                 DEFAULT_LOCALE
             ),
-        Cell: ({ value }): ReactNode => <ContentCell colorNegativeAmount="red" isCurrency value={value} />,
+        Cell: ({ value }): ReactNode => <ContentCell hasNegativeAmountColor isCurrency value={value} />,
         Header: 'Amount',
         accessor: 'amount',
         aggregate: 'sum',
@@ -98,7 +98,7 @@ export const tableColumns = (): Column<TableData>[] => [
     {
         Aggregated: ({ rows }) =>
             sum(rows.map((row) => (row.values.info !== undefined ? (row.values.info as number | string) : 0))),
-        Cell: ({ value }): ReactNode => <ContentCell colorNegativeAmount="red" value={value} />,
+        Cell: ({ value }): ReactNode => <ContentCell hasNegativeAmountColor value={value} />,
         Header: <Icon type={IconType.CARDS} />,
         accessor: 'info',
         aggregate: 'sum',
@@ -176,7 +176,7 @@ export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
                 accessor: 'companyName',
             },
             {
-                Cell: ({ value }): ReactNode => <ContentCell colorNegativeAmount="red" isCurrency value={value} />,
+                Cell: ({ value }): ReactNode => <ContentCell hasNegativeAmountColor isCurrency value={value} />,
                 Header: 'Amount',
                 accessor: 'amount',
             },
