@@ -24,7 +24,6 @@ export const Configurable: FunctionComponent = () => {
     );
 
     const onChange = (selectedValue: string): void => {
-        // eslint-disable-next-line no-console
         console.log('selectedValue', selectedValue);
     };
 
