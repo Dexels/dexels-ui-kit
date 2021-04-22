@@ -76,7 +76,6 @@ StyledInput.defaultProps = {
 
 interface TextFieldProps extends StyledInputBaseProps {
     adornmentPosition: AdornmentPosition;
-    colorNegativeAmount: string;
     hasAdornment: boolean;
     hasNegativeAmountColor: boolean;
     isHovered: boolean;
@@ -92,10 +91,10 @@ export const TextField = styled.input<TextFieldProps>`
     width: 100%;
     color: ${({ theme }): string => theme.colorTextBody.primary};
 
-    ${({ colorNegativeAmount, hasNegativeAmountColor }): SimpleInterpolation =>
+    ${({ hasNegativeAmountColor, theme }): SimpleInterpolation =>
         hasNegativeAmountColor &&
         css`
-            color: ${colorNegativeAmount};
+            color: ${theme.colorInvalid};
         `}
 
     ${({ adornmentPosition, hasAdornment, theme }): SimpleInterpolation =>

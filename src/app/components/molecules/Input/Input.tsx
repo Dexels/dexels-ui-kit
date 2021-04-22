@@ -20,7 +20,6 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import { COLOR_NEGATIVE_AMOUNT } from '../../../styles/constants';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
@@ -32,7 +31,6 @@ export interface InputProps {
     autoFocus?: boolean;
     children?: never;
     className?: string;
-    colorNegativeAmount?: string;
     errorMessage?: ReactNode;
     hasError?: boolean;
     hasNegativeAmountColor?: boolean;
@@ -64,7 +62,6 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     adornmentPosition = AdornmentPosition.LEFT,
     autoFocus = false,
     className,
-    colorNegativeAmount = COLOR_NEGATIVE_AMOUNT,
     errorMessage,
     hasError = false,
     hasNegativeAmountColor = true,
@@ -194,8 +191,6 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
         setIsHovered(!isHovered);
     }, [isHovered]);
 
-    console.log('hasNegativeAmountColor', hasNegativeAmountColor, inputValue, toNumber(inputValue) < 0);
-
     return (
         <>
             <StyledInput
@@ -213,7 +208,6 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     adornmentPosition={adornmentPosition}
                     as={isTextarea ? 'textarea' : 'input'}
                     autoFocus={autoFocus}
-                    colorNegativeAmount={colorNegativeAmount}
                     hasAdornment={adornment !== undefined}
                     hasError={hasError || !isValidInputData}
                     hasNegativeAmountColor={hasNegativeAmountColor && !isEmpty(inputValue) && toNumber(inputValue) < 0}
