@@ -66,15 +66,16 @@ export const StyledContentCell = styled.div<StyledContentCellProps>`
 `;
 
 interface AmountWrapperProps {
-    colorNegativeAmount: string;
+    hasNegativeAmountColor: boolean;
     isNegativeCurrency: boolean;
 }
 
 export const AmountWrapper = styled.div<AmountWrapperProps>`
-    ${({ colorNegativeAmount, isNegativeCurrency }): SimpleInterpolation =>
+    ${({ hasNegativeAmountColor, isNegativeCurrency, theme }): SimpleInterpolation =>
+        hasNegativeAmountColor &&
         isNegativeCurrency &&
         css`
-            color: ${colorNegativeAmount};
+            color: ${theme.colorInvalid};
         `}
 
     white-space: nowrap;
