@@ -138,12 +138,12 @@ module.exports = {
         'typescript-sort-keys/interface': 2,
         'typescript-sort-keys/string-enum': 2,
     },
-    "overrides": [
+    overrides: [
         {
-          "files": ["*.stories.tsx"],
-          "rules": {
-            "no-console": "off"
-          }
-        }
-      ]
+            files: ['*.stories.tsx'],
+            rules: {
+                'no-console': 'off',
+            },
+        },
+    ],
 };
