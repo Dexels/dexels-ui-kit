@@ -71,9 +71,8 @@ interface AmountWrapperProps {
 }
 
 export const AmountWrapper = styled.div<AmountWrapperProps>`
-    ${({ hasNegativeAmountColor, isNegativeCurrency, theme }): SimpleInterpolation =>
+    ${({ hasNegativeAmountColor, theme }): SimpleInterpolation =>
         hasNegativeAmountColor &&
-        isNegativeCurrency &&
         css`
             color: ${theme.colorInvalid};
         `}

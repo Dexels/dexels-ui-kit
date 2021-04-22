@@ -45,7 +45,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
 
     if (isCurrency) {
         content = typeof value === 'number' && (
-            <AmountWrapper hasNegativeAmountColor={hasNegativeAmountColor} isNegativeCurrency={value < 0}>
+            <AmountWrapper hasNegativeAmountColor={hasNegativeAmountColor && value < 0}>
                 {formatMoney(value, locale)}
             </AmountWrapper>
         );
