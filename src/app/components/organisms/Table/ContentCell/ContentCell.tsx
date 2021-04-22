@@ -1,9 +1,10 @@
 import { AmountWrapper, ImageWrapper, StyledContentCell } from './ContentCell.sc';
 import { formatDate, formatTime, isValidClockTime, isValidDate } from '../../../../utils/functions/dateFunctions';
+import { formatMoneyWithoutSymbol, getCurrencyIcon } from '../../../../utils/functions/financialFunctions';
 import moment, { Moment } from 'moment';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
-import { formatMoney } from '../../../../utils/functions/financialFunctions';
+import Icon from '../../../atoms/Icon/Icon';
 import { Locale } from '../../../../types';
 
 export interface ContentCellProps {
@@ -45,9 +46,12 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
 
     if (isCurrency) {
         content = typeof value === 'number' && (
-            <AmountWrapper hasNegativeAmountColor={hasNegativeAmountColor && value < 0}>
-                {formatMoney(value, locale)}
-            </AmountWrapper>
+            <>
+                <Icon type={getCurrencyIcon(locale)} />
+                <AmountWrapper hasNegativeAmountColor={hasNegativeAmountColor && value < 0}>
+                    {formatMoneyWithoutSymbol(value, locale)}
+                </AmountWrapper>
+            </>
         );
     }
 

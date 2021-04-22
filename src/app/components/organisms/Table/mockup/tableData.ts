@@ -37,7 +37,7 @@ export const tableData = (): TableData[] => {
     const result = makeTableData(100);
 
     result.push({
-        amount: 0,
+        amount: -120,
         companyName: 'Dexels',
         firstName: 'Anna',
         id: '186',

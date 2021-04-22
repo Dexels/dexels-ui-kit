@@ -44,6 +44,10 @@ export const StyledContentCell = styled.div<StyledContentCellProps>`
     ${({ isCurrency }): SimpleInterpolation =>
         isCurrency &&
         css`
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
             text-align: end;
         `}
 
