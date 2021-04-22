@@ -391,6 +391,12 @@ export enum Position {
     TOP_RIGHT = 'TOP_RIGHT',
 }
 
+export enum SelectionControlGroupVariant {
+    COMPACT = 'COMPACT',
+    OUTLINE = 'OUTLINE',
+    OUTLINE_INPUT = 'OUTLINE_INPUT',
+}
+
 export enum SidePanelSize {
     FULL = 'FULL',
     LARGE = 'LARGE',

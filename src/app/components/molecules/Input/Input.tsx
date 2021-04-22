@@ -131,7 +131,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
         }
     }, []);
 
-    // wheh inputValue changes validate it
+    // when inputValue changes validate it
     useEffect(() => {
         setIsValidInputData(isValidInput(inputValue || ''));
     }, [inputValue, isRequired]);
