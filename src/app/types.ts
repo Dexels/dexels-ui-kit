@@ -394,7 +394,7 @@ export enum Position {
 export enum SelectionControlGroupVariant {
     COMPACT = 'COMPACT',
     OUTLINE = 'OUTLINE',
-    OUTLINE_INPUT = 'OUTLINE_INPUT',
+    OUTLINE_CHOICE = 'OUTLINE_CHOICE',
 }
 
 export enum SidePanelSize {

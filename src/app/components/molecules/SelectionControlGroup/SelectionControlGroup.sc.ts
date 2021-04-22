@@ -22,7 +22,7 @@ export const StyledSelectionControlGroup = styled.div<StyledSelectionControlGrou
             border: 1px solid
                 ${getBorderColor({
                     hasError,
-                    isDisabled: isDisabled || variant === SelectionControlGroupVariant.OUTLINE,
+                    isDisabled: isDisabled || variant === SelectionControlGroupVariant.OUTLINE_CHOICE,
                     theme,
                 })};
             /* stylelint-enable indentation */
