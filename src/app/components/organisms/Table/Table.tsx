@@ -28,6 +28,9 @@ import {
 import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctions';
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Row, TableInstance, TableState } from 'react-table';
+import ContentCell from './ContentCell/ContentCell';
+import { DEFAULT_LOCALE } from '../../../../global/constants';
+import { sum } from './utils/aggregateFunctions';
 import toNumber from '../../../utils/functions/toNumber';
 
 export interface TableTexts {
@@ -74,6 +77,7 @@ export const Table = <T extends object>({
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
     let hasFooterColumns = false;
     const [availableTableWidth, setAvailableTableWidth] = useState(0);
+    const locale = instance.locale || DEFAULT_LOCALE;
     const tableWrapperRef = useRef<HTMLDivElement>(null);
 
     // This const contains the calculated widths in pixels.
@@ -115,19 +119,21 @@ export const Table = <T extends object>({
 
     return (
         <>
-            {caption && <TableCaption>{caption}</TableCaption>}
+            {caption && <TableCaption id="TableCaption">{caption}</TableCaption>}
             {!hasResults && noResults ? (
                 typeof noResults === 'string' ? (
-                    <StyledCardNoResults elevation={elevation}>{noResults}</StyledCardNoResults>
+                    <StyledCardNoResults elevation={elevation} id="NoResults">
+                        {noResults}
+                    </StyledCardNoResults>
                 ) : (
                     noResults
                 )
             ) : (
-                <TableWrapper ref={tableWrapperRef}>
-                    <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
-                        <TableHead>
+                <TableWrapper id="TableWrapper" ref={tableWrapperRef}>
+                    <StyledTable className={className} id="StyledTable" isFullWidth={isFullWidth} {...getTableProps()}>
+                        <TableHead id="TableHead">
                             {headerGroups.map((headerGroup) => (
-                                <TableHeaderRow {...headerGroup.getHeaderGroupProps()}>
+                                <TableHeaderRow id="TableHeaderRow" {...headerGroup.getHeaderGroupProps()}>
                                     {headerGroup.headers
                                         .filter(({ isVisible }) => isVisible)
                                         .map((column) => (
@@ -140,6 +146,7 @@ export const Table = <T extends object>({
                                                     })
                                                 )}
                                                 hasCellPadding={column.hasCellPadding}
+                                                id="TableHeaderCell"
                                                 isDisabled={isDisabled}
                                                 // Check if the column is a percentage, if so then calculate in pixels
                                                 width={
@@ -153,9 +160,10 @@ export const Table = <T extends object>({
                                             >
                                                 <TableHeaderCellInner
                                                     align={column.align || Alignment.LEFT}
+                                                    id="TableHeaderCellInner"
                                                     isSorted={column.isSorted}
                                                 >
-                                                    <TableHeaderCellContent>
+                                                    <TableHeaderCellContent id="TableHeaderCellContent">
                                                         {column.render('Header')}
                                                     </TableHeaderCellContent>
                                                     {column.canSort && renderSortIcon(column, hasUnsortedStateIcon)}
@@ -165,13 +173,14 @@ export const Table = <T extends object>({
                                 </TableHeaderRow>
                             ))}
                         </TableHead>
-                        <TableBody elevation={elevation} {...getTableBodyProps()}>
+                        <TableBody elevation={elevation} {...getTableBodyProps()} id="TableBody">
                             {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
                             {dataSource(instance, Boolean(paginator)).map((row) => {
                                 prepareRow(row);
 
                                 return (
                                     <TableRow
+                                        id="TableRow"
                                         isClickable={Boolean(onClickRow)}
                                         onClick={
                                             onClickRow
@@ -192,6 +201,7 @@ export const Table = <T extends object>({
                                                     <TableCell
                                                         {...cell.getCellProps()}
                                                         hasCellPadding={cell.column.hasCellPadding}
+                                                        id="TableCell"
                                                         isClickable={Boolean(cell.column.onClick)}
                                                         onClick={(event: SyntheticEvent): void => {
                                                             if (cell.column.onClick) {
@@ -212,7 +222,10 @@ export const Table = <T extends object>({
                                                                 : cell.column.width
                                                         }
                                                     >
-                                                        <TableCellContent align={cell.column.align || Alignment.LEFT}>
+                                                        <TableCellContent
+                                                            align={cell.column.align || Alignment.LEFT}
+                                                            id="TableCellContent"
+                                                        >
                                                             {cell.isGrouped ? (
                                                                 // If it's a grouped cell, add an expander and row count
                                                                 <>
@@ -242,9 +255,9 @@ export const Table = <T extends object>({
                             })}
                         </TableBody>
                         {hasFooterColumns && (
-                            <TableFooter elevation={elevation}>
+                            <TableFooter elevation={elevation} id="TableFooter">
                                 {footerGroups.map((footerGroup) => (
-                                    <TableFooterRow {...footerGroup.getFooterGroupProps()}>
+                                    <TableFooterRow id="TableFooterRow" {...footerGroup.getFooterGroupProps()}>
                                         {footerGroup.headers
                                             .filter(({ isVisible }) => isVisible)
                                             .map(
@@ -258,7 +271,9 @@ export const Table = <T extends object>({
                                                                     : 1
                                                             }
                                                             hasCellPadding={column.hasCellPadding}
+                                                            id="TableFooterCell"
                                                             isClickable={false}
+                                                            isCurrency={column.isCurrency || false}
                                                             isDisabled={isDisabled}
                                                             isTitleColumn={
                                                                 index === 0 && index <= footerTitleColumnSpan
@@ -285,12 +300,32 @@ export const Table = <T extends object>({
                                                         >
                                                             <TableFooterCellInner
                                                                 align={column.align || Alignment.LEFT}
+                                                                id="TableFooterCellInner"
                                                                 isSorted={column.isSorted}
                                                             >
-                                                                <TableFooterCellContent>
-                                                                    {column.aggregate
-                                                                        ? column.render('Aggregated')
-                                                                        : column.render('Footer')}
+                                                                <TableFooterCellContent id="TableFooterCellContent">
+                                                                    {column.aggregate && column.isCurrency ? (
+                                                                        // hasNegativeAmountColor is not adjustable and will follow the default
+                                                                        // Otherwise it has to be set in the columndefs and therefor added as a prop
+                                                                        <ContentCell
+                                                                            isCurrency
+                                                                            value={sum(
+                                                                                column.filteredRows.map((row) =>
+                                                                                    row.values.amount !== undefined
+                                                                                        ? (row.values.amount as
+                                                                                              | number
+                                                                                              | string)
+                                                                                        : 0
+                                                                                ),
+                                                                                true,
+                                                                                locale
+                                                                            )}
+                                                                        />
+                                                                    ) : column.aggregate ? (
+                                                                        column.render('Aggregated')
+                                                                    ) : (
+                                                                        column.render('Footer')
+                                                                    )}
                                                                 </TableFooterCellContent>
                                                             </TableFooterCellInner>
                                                         </TableFooterCell>
@@ -306,6 +341,7 @@ export const Table = <T extends object>({
             {footer && (
                 <FooterWrapper
                     elevation={elevation}
+                    id="FooterWrapper"
                     isClickable={Boolean(onClickFooter)}
                     onClick={
                         onClickFooter
@@ -318,7 +354,7 @@ export const Table = <T extends object>({
                     {footer}
                 </FooterWrapper>
             )}
-            {paginator && <PaginatorWrapper>{paginator}</PaginatorWrapper>}
+            {paginator && <PaginatorWrapper id="PaginatorWrapper">{paginator}</PaginatorWrapper>}
         </>
     );
 };

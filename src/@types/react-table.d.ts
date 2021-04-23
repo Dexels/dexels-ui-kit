@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { Alignment, Locale } from '../lib';
 import {
     UseExpandedInstanceProps,
     UseExpandedOptions,
@@ -32,7 +33,6 @@ import {
     UseSortByState,
     UseTableColumnOptions,
 } from 'react-table';
-import { Alignment } from '../lib';
 
 declare module 'react-table' {
     export interface TableOptions<D extends object>
@@ -51,7 +51,9 @@ declare module 'react-table' {
             UseTableColumnOptions<D>,
             UsePaginationInstanceProps<D>,
             UseRowSelectInstanceProps<D>,
-            UseSortByInstanceProps<D> {}
+            UseSortByInstanceProps<D> {
+        locale?: Locale;
+    }
 
     export interface TableState<D extends object = {}>
         extends UseExpandedState<D>,
@@ -69,6 +71,7 @@ declare module 'react-table' {
             UseSortByColumnOptions<D> {
         align?: Alignment;
         hasCellPadding?: boolean;
+        isCurrency?: boolean;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick?: (...args: any[]) => void;
     }
