@@ -3,6 +3,9 @@ import styled, { css, SimpleInterpolation } from 'styled-components';
 import { getBorderColor } from '../../../styles/mixins/getBorderColor';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
+export const SelectedControlGroupWrapper = styled.div`
+    position: relative;
+`;
 interface StyledSelectionControlGroupProps {
     alignment: Alignment;
     hasError: boolean;
