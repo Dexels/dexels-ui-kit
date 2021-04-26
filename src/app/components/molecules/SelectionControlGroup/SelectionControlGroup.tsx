@@ -1,6 +1,7 @@
 import { Alignment, Direction, OptionObject, SelectionControlGroupVariant } from '../../../types';
 import React, { FunctionComponent, ReactNode, useCallback, useEffect, useState } from 'react';
 import {
+    SelectedControlGroupWrapper,
     SelectionControlWrapper,
     StyledSelectionControlGroup,
     StyledSelectionControls,
@@ -67,7 +68,7 @@ export const SelectionControlGroup: FunctionComponent<SelectionControlGroupProps
     }, [defaultValue, isRequired, options, selectedValue]);
 
     return (
-        <>
+        <SelectedControlGroupWrapper>
             {title && variant !== SelectionControlGroupVariant.COMPACT ? (
                 <FormElementLabel hasError={hasError} isDisabled={isDisabled}>
                     {title}
@@ -116,7 +117,7 @@ export const SelectionControlGroup: FunctionComponent<SelectionControlGroupProps
                     ))}
                 </StyledSelectionControls>
             </StyledSelectionControlGroup>
-        </>
+        </SelectedControlGroupWrapper>
     );
 };
 
