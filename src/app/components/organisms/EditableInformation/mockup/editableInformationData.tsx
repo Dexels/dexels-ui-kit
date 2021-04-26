@@ -149,7 +149,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isRequired: true,
         label: 'Dropdown',
         name: 'Dropdown',
-        nameTextValue: ' DropdownId',
+        nameTextValue: 'DropdownId',
         options: fruits,
         textValue: 'Banana',
         value: '1',
