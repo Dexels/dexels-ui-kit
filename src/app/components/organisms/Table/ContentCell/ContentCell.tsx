@@ -81,6 +81,7 @@ export const ContentCell: FunctionComponent<ContentCellProps> = ({
         <StyledContentCell
             data-tooltip-component={hasTooltip && typeof content === 'string' ? content : null}
             hasLineThrough={hasLineThrough}
+            id="ContentCell"
             isBold={isBold}
             isCurrency={isCurrency}
             isDisabled={isDisabled}
