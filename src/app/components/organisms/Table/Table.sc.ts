@@ -10,6 +10,7 @@ const alignRightSpacing = 1; // value is the spacing value from the theme. This 
 
 interface ColumnProps {
     hasCellPadding?: boolean;
+    isCurrency?: boolean;
     width?: string | number;
 }
 
@@ -294,7 +295,9 @@ export const TableFooterCellInner = styled(TableHeaderCellInner)`
     min-height: 100%;
 `;
 
-export const TableFooterCellContent = styled(TableHeaderCellContent)``;
+export const TableFooterCellContent = styled(TableHeaderCellContent)`
+    width: 100%;
+`;
 
 interface FooterWrapperProps extends ClickableProps {
     elevation: Elevation;

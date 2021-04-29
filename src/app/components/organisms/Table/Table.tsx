@@ -28,6 +28,9 @@ import {
 import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctions';
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Row, TableInstance, TableState } from 'react-table';
+import ContentCell from './ContentCell/ContentCell';
+import { DEFAULT_LOCALE } from '../../../../global/constants';
+import { sum } from './utils/aggregateFunctions';
 import toNumber from '../../../utils/functions/toNumber';
 
 export interface TableTexts {
@@ -74,6 +77,7 @@ export const Table = <T extends object>({
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
     let hasFooterColumns = false;
     const [availableTableWidth, setAvailableTableWidth] = useState(0);
+    const locale = instance.locale || DEFAULT_LOCALE;
     const tableWrapperRef = useRef<HTMLDivElement>(null);
 
     // This const contains the calculated widths in pixels.
@@ -101,7 +105,7 @@ export const Table = <T extends object>({
 
     useEffect(() => {
         if (precentageColumnWidthsTotal > 100) {
-            throw Error('precentages of columns exceed 100%');
+            throw Error('percentages of columns exceed 100%');
         }
     }, [precentageColumnWidthsTotal]);
 
@@ -125,7 +129,7 @@ export const Table = <T extends object>({
             ) : (
                 <TableWrapper ref={tableWrapperRef}>
                     <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
-                        <TableHead>
+                        <TableHead id="TableHead">
                             {headerGroups.map((headerGroup) => (
                                 <TableHeaderRow {...headerGroup.getHeaderGroupProps()}>
                                     {headerGroup.headers
@@ -259,6 +263,7 @@ export const Table = <T extends object>({
                                                             }
                                                             hasCellPadding={column.hasCellPadding}
                                                             isClickable={false}
+                                                            isCurrency={column.isCurrency || false}
                                                             isDisabled={isDisabled}
                                                             isTitleColumn={
                                                                 index === 0 && index <= footerTitleColumnSpan
@@ -288,9 +293,28 @@ export const Table = <T extends object>({
                                                                 isSorted={column.isSorted}
                                                             >
                                                                 <TableFooterCellContent>
-                                                                    {column.aggregate
-                                                                        ? column.render('Aggregated')
-                                                                        : column.render('Footer')}
+                                                                    {column.aggregate && column.isCurrency ? (
+                                                                        // hasNegativeAmountColor is not adjustable and will follow the default
+                                                                        // Otherwise it has to be set in the columndefs and therefor added as a prop
+                                                                        <ContentCell
+                                                                            isCurrency
+                                                                            value={sum(
+                                                                                column.filteredRows.map((row) =>
+                                                                                    row.values.amount !== undefined
+                                                                                        ? (row.values.amount as
+                                                                                              | number
+                                                                                              | string)
+                                                                                        : 0
+                                                                                ),
+                                                                                true,
+                                                                                locale
+                                                                            )}
+                                                                        />
+                                                                    ) : column.aggregate ? (
+                                                                        column.render('Aggregated')
+                                                                    ) : (
+                                                                        column.render('Footer')
+                                                                    )}
                                                                 </TableFooterCellContent>
                                                             </TableFooterCellInner>
                                                         </TableFooterCell>
@@ -306,6 +330,7 @@ export const Table = <T extends object>({
             {footer && (
                 <FooterWrapper
                     elevation={elevation}
+                    id="FooterWrapper"
                     isClickable={Boolean(onClickFooter)}
                     onClick={
                         onClickFooter
@@ -318,7 +343,7 @@ export const Table = <T extends object>({
                     {footer}
                 </FooterWrapper>
             )}
-            {paginator && <PaginatorWrapper>{paginator}</PaginatorWrapper>}
+            {paginator && <PaginatorWrapper id="PaginatorWrapper">{paginator}</PaginatorWrapper>}
         </>
     );
 };

@@ -55,7 +55,7 @@ export const tableData = (): TableData[] => {
         firstName: 'Erik',
         id: '187',
         infix: undefined,
-        info: 66,
+        info: -66,
         lastName: 'Versteeg',
         relationStart: moment(),
         status: Status.INVALID,

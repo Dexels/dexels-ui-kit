@@ -4,13 +4,15 @@ import { Button } from '../../../molecules/Button/Button';
 import { Column } from 'react-table';
 import { ContentCell } from '../ContentCell/ContentCell';
 import { customSortByDate } from '../utils/tableFunctions';
-import { DEFAULT_LOCALE } from '../../../../../global/constants';
-import { formatMoney } from '../../../../utils/functions/financialFunctions';
+// import { DEFAULT_LOCALE } from '../../../../../global/constants';
+// import { formatMoneyWithoutSymbol } from '../../../../utils/functions/financialFunctions';
 import { getTableCell } from './tableFunctions';
 import { Icon } from '../../../atoms/Icon/Icon';
 import { StatusCell } from '../StatusCell/StatusCell';
 import { sum } from '../utils/aggregateFunctions';
 import { TableData } from './tableData';
+
+// const locale = DEFAULT_LOCALE;
 
 const getStatusIcon = (status: Status): IconType => {
     switch (status) {
@@ -73,20 +75,22 @@ export const tableColumns = (): Column<TableData>[] => [
         width: '30%',
     },
     {
-        Aggregated: ({ rows }) =>
-            formatMoney(
-                sum(
-                    rows.map((row) => (row.values.amount !== undefined ? (row.values.amount as number | string) : 0)),
-                    true,
-                    DEFAULT_LOCALE
-                ),
-                DEFAULT_LOCALE
-            ),
-        Cell: ({ value }): ReactNode => <ContentCell hasNegativeAmountColor isCurrency value={value} />,
+        Aggregated: ({ rows }) => rows,
+        // Aggregated: ({ rows }) =>
+        // formatMoneyWithoutSymbol(
+        //     sum(
+        //         rows.map((row) => (row.values.amount !== undefined ? (row.values.amount as number | string) : 0)),
+        //         true,
+        //         locale
+        //     ),
+        //     locale
+        // ),
+        Cell: ({ value }): ReactNode => <ContentCell isCurrency value={value} />,
         Header: 'Amount',
         accessor: 'amount',
         aggregate: 'sum',
         align: Alignment.RIGHT,
+        isCurrency: true,
     },
     {
         Cell: ({ value }): ReactNode => <ContentCell value={value} />,
@@ -98,7 +102,7 @@ export const tableColumns = (): Column<TableData>[] => [
     {
         Aggregated: ({ rows }) =>
             sum(rows.map((row) => (row.values.info !== undefined ? (row.values.info as number | string) : 0))),
-        Cell: ({ value }): ReactNode => <ContentCell hasNegativeAmountColor value={value} />,
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
         Header: <Icon type={IconType.CARDS} />,
         accessor: 'info',
         aggregate: 'sum',
