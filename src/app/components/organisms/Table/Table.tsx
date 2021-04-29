@@ -105,7 +105,7 @@ export const Table = <T extends object>({
 
     useEffect(() => {
         if (precentageColumnWidthsTotal > 100) {
-            throw Error('precentages of columns exceed 100%');
+            throw Error('percentages of columns exceed 100%');
         }
     }, [precentageColumnWidthsTotal]);
 
@@ -119,21 +119,19 @@ export const Table = <T extends object>({
 
     return (
         <>
-            {caption && <TableCaption id="TableCaption">{caption}</TableCaption>}
+            {caption && <TableCaption>{caption}</TableCaption>}
             {!hasResults && noResults ? (
                 typeof noResults === 'string' ? (
-                    <StyledCardNoResults elevation={elevation} id="NoResults">
-                        {noResults}
-                    </StyledCardNoResults>
+                    <StyledCardNoResults elevation={elevation}>{noResults}</StyledCardNoResults>
                 ) : (
                     noResults
                 )
             ) : (
-                <TableWrapper id="TableWrapper" ref={tableWrapperRef}>
-                    <StyledTable className={className} id="StyledTable" isFullWidth={isFullWidth} {...getTableProps()}>
+                <TableWrapper ref={tableWrapperRef}>
+                    <StyledTable className={className} isFullWidth={isFullWidth} {...getTableProps()}>
                         <TableHead id="TableHead">
                             {headerGroups.map((headerGroup) => (
-                                <TableHeaderRow id="TableHeaderRow" {...headerGroup.getHeaderGroupProps()}>
+                                <TableHeaderRow {...headerGroup.getHeaderGroupProps()}>
                                     {headerGroup.headers
                                         .filter(({ isVisible }) => isVisible)
                                         .map((column) => (
@@ -146,7 +144,6 @@ export const Table = <T extends object>({
                                                     })
                                                 )}
                                                 hasCellPadding={column.hasCellPadding}
-                                                id="TableHeaderCell"
                                                 isDisabled={isDisabled}
                                                 // Check if the column is a percentage, if so then calculate in pixels
                                                 width={
@@ -160,10 +157,9 @@ export const Table = <T extends object>({
                                             >
                                                 <TableHeaderCellInner
                                                     align={column.align || Alignment.LEFT}
-                                                    id="TableHeaderCellInner"
                                                     isSorted={column.isSorted}
                                                 >
-                                                    <TableHeaderCellContent id="TableHeaderCellContent">
+                                                    <TableHeaderCellContent>
                                                         {column.render('Header')}
                                                     </TableHeaderCellContent>
                                                     {column.canSort && renderSortIcon(column, hasUnsortedStateIcon)}
@@ -173,14 +169,13 @@ export const Table = <T extends object>({
                                 </TableHeaderRow>
                             ))}
                         </TableHead>
-                        <TableBody elevation={elevation} {...getTableBodyProps()} id="TableBody">
+                        <TableBody elevation={elevation} {...getTableBodyProps()}>
                             {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
                             {dataSource(instance, Boolean(paginator)).map((row) => {
                                 prepareRow(row);
 
                                 return (
                                     <TableRow
-                                        id="TableRow"
                                         isClickable={Boolean(onClickRow)}
                                         onClick={
                                             onClickRow
@@ -201,7 +196,6 @@ export const Table = <T extends object>({
                                                     <TableCell
                                                         {...cell.getCellProps()}
                                                         hasCellPadding={cell.column.hasCellPadding}
-                                                        id="TableCell"
                                                         isClickable={Boolean(cell.column.onClick)}
                                                         onClick={(event: SyntheticEvent): void => {
                                                             if (cell.column.onClick) {
@@ -222,10 +216,7 @@ export const Table = <T extends object>({
                                                                 : cell.column.width
                                                         }
                                                     >
-                                                        <TableCellContent
-                                                            align={cell.column.align || Alignment.LEFT}
-                                                            id="TableCellContent"
-                                                        >
+                                                        <TableCellContent align={cell.column.align || Alignment.LEFT}>
                                                             {cell.isGrouped ? (
                                                                 // If it's a grouped cell, add an expander and row count
                                                                 <>
@@ -255,9 +246,9 @@ export const Table = <T extends object>({
                             })}
                         </TableBody>
                         {hasFooterColumns && (
-                            <TableFooter elevation={elevation} id="TableFooter">
+                            <TableFooter elevation={elevation}>
                                 {footerGroups.map((footerGroup) => (
-                                    <TableFooterRow id="TableFooterRow" {...footerGroup.getFooterGroupProps()}>
+                                    <TableFooterRow {...footerGroup.getFooterGroupProps()}>
                                         {footerGroup.headers
                                             .filter(({ isVisible }) => isVisible)
                                             .map(
@@ -271,7 +262,6 @@ export const Table = <T extends object>({
                                                                     : 1
                                                             }
                                                             hasCellPadding={column.hasCellPadding}
-                                                            id="TableFooterCell"
                                                             isClickable={false}
                                                             isCurrency={column.isCurrency || false}
                                                             isDisabled={isDisabled}
@@ -300,10 +290,9 @@ export const Table = <T extends object>({
                                                         >
                                                             <TableFooterCellInner
                                                                 align={column.align || Alignment.LEFT}
-                                                                id="TableFooterCellInner"
                                                                 isSorted={column.isSorted}
                                                             >
-                                                                <TableFooterCellContent id="TableFooterCellContent">
+                                                                <TableFooterCellContent>
                                                                     {column.aggregate && column.isCurrency ? (
                                                                         // hasNegativeAmountColor is not adjustable and will follow the default
                                                                         // Otherwise it has to be set in the columndefs and therefor added as a prop
