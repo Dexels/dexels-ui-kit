@@ -157,7 +157,7 @@ export const themeDark: Theme = {
         },
         row: {
             backgroundColorOdd: colorShadeEleven,
-            backgroundColorEven: themeDarkValues.hover.backgroundColor,
+            backgroundColorEven: themeDarkValues.shades.seven,
         },
     },
 };
