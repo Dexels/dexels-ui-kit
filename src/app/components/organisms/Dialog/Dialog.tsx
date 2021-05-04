@@ -17,6 +17,7 @@ import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCust
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
 import { IconProps } from '../../atoms/Icon/Icon';
+import { isEmpty } from '../../../../lib';
 import Overlay from '../../molecules/Overlay/Overlay';
 
 export interface DialogProps {
@@ -84,7 +85,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
         >
             <StyledDialog elevation={elevation} isScrollable={isScrollable}>
                 {header && <Header hasHeaderPadding={hasHeaderPadding}>{header}</Header>}
-                <Body hasBodyPadding={hasBodyPadding}>
+                <Body hasBodyPadding={hasBodyPadding} hasBorderRadius={isEmpty(header)}>
                     {iconType && title && (
                         <StyledTextWithOptionalIcon iconType={iconType}>{title}</StyledTextWithOptionalIcon>
                     )}

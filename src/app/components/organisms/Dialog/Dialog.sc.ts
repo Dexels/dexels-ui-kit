@@ -120,6 +120,8 @@ interface HeaderProps {
 
 export const Header = styled.header<HeaderProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
     background-color: ${({ theme }): string => theme.colorPrimary};
     min-height: ${({ theme }): string => theme.spacing(7)};
     color: ${({ theme }): string => theme.colorTextContrast.primary};
@@ -137,9 +139,17 @@ Header.defaultProps = {
 
 interface BodyProps {
     hasBodyPadding: boolean;
+    hasBorderRadius: boolean;
 }
 
 export const Body = styled.div<BodyProps>`
+    ${({ hasBorderRadius }): SimpleInterpolation =>
+        hasBorderRadius &&
+        css`
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+        `}
+
     background-color: ${({ theme }): string => theme.card.backgroundColor};
 
     ${({ hasBodyPadding, theme }): SimpleInterpolation =>
