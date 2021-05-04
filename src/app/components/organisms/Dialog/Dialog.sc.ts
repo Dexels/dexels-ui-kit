@@ -139,11 +139,17 @@ Header.defaultProps = {
 
 interface BodyProps {
     hasBodyPadding: boolean;
+    hasBorderRadius: boolean;
 }
 
 export const Body = styled.div<BodyProps>`
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
+    ${({ hasBorderRadius }): SimpleInterpolation =>
+        hasBorderRadius &&
+        css`
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+        `}
+
     background-color: ${({ theme }): string => theme.card.backgroundColor};
 
     ${({ hasBodyPadding, theme }): SimpleInterpolation =>
