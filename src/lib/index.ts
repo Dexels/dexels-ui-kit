@@ -36,6 +36,7 @@ export {
     getOptionLabel,
     getSelectedElements,
     isAnyOptionSelected,
+    removeElement,
     selectOptionsExtend,
     selectOptionsFacade,
     setElementSelected,

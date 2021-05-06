@@ -17,7 +17,7 @@ import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCust
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { DialogButtonClosePosition } from './types';
 import { IconProps } from '../../atoms/Icon/Icon';
-import { isEmpty } from '../../../../lib';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import Overlay from '../../molecules/Overlay/Overlay';
 
 export interface DialogProps {
