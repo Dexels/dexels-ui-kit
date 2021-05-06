@@ -89,8 +89,8 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const [isValidInputData, setIsValidInputData] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+    const [isValidInputData, setIsValidInputData] = useState(true);
+    const [inputValue, setInputValue] = useState(value || '');
 
     // we want to be able to force re-render if the value is changed from outside the component
     useEffect(() => {
@@ -136,7 +136,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     // when inputValue changes validate it
     useEffect(() => {
         setIsValidInputData(isValidInput(inputValue || ''));
-    }, [inputValue, isRequired]);
+    }, [inputValue]);
 
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -199,6 +199,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 isClickable={!isDisabled && Boolean(onClick)}
                 isDisabled={isDisabled}
                 isFocused={isFocused}
+                isHovered={isHovered}
                 isValid={isValid}
                 onClick={isDisabled || !onClick ? undefined : onClick}
                 variant={variant}

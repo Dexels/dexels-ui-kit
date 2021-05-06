@@ -3,7 +3,6 @@ import Input, { InputProps } from '../../molecules/Input/Input';
 import React, { FunctionComponent, ReactNode } from 'react';
 import { getCurrencyIcon } from '../../../utils/functions/financialFunctions';
 import { Icon } from '../../atoms/Icon/Icon';
-import { StyledInputCurrency } from './InputCurrency.sc';
 
 export interface InputCurrencyProps extends InputProps {
     adornmentPosition?: AdornmentPosition;
@@ -44,32 +43,30 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
     value,
     variant = InputVariant.OUTLINE,
 }) => (
-    <StyledInputCurrency className={className}>
-        <Input
-            adornment={<Icon type={getCurrencyIcon(locale)} />}
-            adornmentPosition={adornmentPosition}
-            autoFocus={autoFocus}
-            className={className}
-            errorMessage={errorMessage}
-            hasError={hasError}
-            hasNegativeAmountColor={hasNegativeAmountColor}
-            isDisabled={isDisabled}
-            isRequired={isRequired}
-            isValid={isValid}
-            label={label}
-            locale={locale}
-            max={max}
-            min={min}
-            name={name}
-            onBlur={onBlur}
-            onChange={onChange}
-            onFocus={onFocus}
-            onKeyDown={onKeyDown}
-            type={InputType.CURRENCY}
-            value={value}
-            variant={variant}
-        />
-    </StyledInputCurrency>
+    <Input
+        adornment={<Icon type={getCurrencyIcon(locale)} />}
+        adornmentPosition={adornmentPosition}
+        autoFocus={autoFocus}
+        className={className}
+        errorMessage={errorMessage}
+        hasError={hasError}
+        hasNegativeAmountColor={hasNegativeAmountColor}
+        isDisabled={isDisabled}
+        isRequired={isRequired}
+        isValid={isValid}
+        label={label}
+        locale={locale}
+        max={max}
+        min={min}
+        name={name}
+        onBlur={onBlur}
+        onChange={onChange}
+        onFocus={onFocus}
+        onKeyDown={onKeyDown}
+        type={InputType.CURRENCY}
+        value={value}
+        variant={variant}
+    />
 );
 
 export default InputCurrency;
