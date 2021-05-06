@@ -2,7 +2,7 @@ import { DropdownMultiSelectOption, DropdownMultiSelectProps } from '../Dropdown
 import { DropdownSelectOption, DropdownSelectProps } from '../DropdownSelect/DropdownSelect';
 import { DropdownProps } from '../../molecules/Dropdown';
 import { EditableDataComponent } from '../../../types';
-import { InputCurrencyProps } from '../../../../lib';
+import { InputCurrencyProps } from '../InputCurrency/InputCurrency';
 import { InputProps } from '../../molecules/Input/Input';
 import { ReactNode } from 'react';
 import { ScorePickerProps } from '../../molecules/ScorePicker/ScorePicker';
