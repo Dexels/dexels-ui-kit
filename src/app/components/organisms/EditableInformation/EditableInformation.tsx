@@ -227,7 +227,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [data, isEditable]);
 
     useEffect(() => {
-        if (isLoading || !data.length) {
+        if (isLoading || isEmpty(data)) {
             setInformationTableData(
                 Array(amountOfColumns * DEFAULT_AMOUNT_ROWS).fill({
                     label: <Skeleton width="60%" />,

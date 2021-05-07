@@ -8,6 +8,7 @@ interface StyledInputBaseProps {
     hasError: boolean;
     isDisabled: boolean;
     isFocused: boolean;
+    isHovered: boolean;
     isValid: boolean;
     variant: InputVariant;
 }
@@ -39,7 +40,7 @@ export const StyledInput = styled.div<StyledInputProps>`
             }
         `}
 
-    ${({ hasError, isDisabled, isFocused, isValid, theme, variant }): SimpleInterpolation =>
+    ${({ hasError, isDisabled, isFocused, isHovered, isValid, theme, variant }): SimpleInterpolation =>
         variant === InputVariant.COMPACT &&
         css`
             &::after {
@@ -47,24 +48,18 @@ export const StyledInput = styled.div<StyledInputProps>`
                 height: 1px;
                 content: '';
 
-                ${isFocused &&
-                css`
-                    background-color: ${theme.colorSecondary};
-                `}
-
-                ${isValid &&
-                css`
-                    background-color: ${theme.colorValid};
-                `}
-
-                ${hasError &&
-                css`
-                    background-color: ${theme.colorInvalid};
-                `}
-
-                ${isDisabled &&
-                css`
-                    background-color: transparent;
+                ${css`
+                    /* stylelint-disable indentation */
+                    background-color: ${getBorderColor({
+                        defaultColor: theme.colorPrimary,
+                        hasError,
+                        isDisabled,
+                        isFocused,
+                        isHovered,
+                        isValid,
+                        theme,
+                    })};
+                    /* stylelint-enable indentation */
                 `}
             }
         `}
@@ -78,7 +73,6 @@ interface TextFieldProps extends StyledInputBaseProps {
     adornmentPosition: AdornmentPosition;
     hasAdornment: boolean;
     hasNegativeAmountColor: boolean;
-    isHovered: boolean;
     isTextarea: boolean;
     type: InputType;
 }
