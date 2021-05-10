@@ -3,10 +3,11 @@ import {
     formatTime,
     isFutureDate,
     isValidDate,
+    isValidStringDate,
+    isValidStringDateWithOptionalTime,
     toDate,
     toMoment,
 } from '../../../utils/functions/dateFunctions';
-import { Locale } from '../../../types';
 import moment from 'moment';
 
 describe('test date functions', () => {
@@ -16,6 +17,16 @@ describe('test date functions', () => {
         expect(formatTime('2021-04-13 13:21', false)).toEqual('13:21');
         expect(formatTime('2021-04-13 03:21')).toEqual('03:21');
         expect(formatTime('2021-04-13 03:21', false)).toEqual('3:21');
+    });
+
+    test('test isValidStringDate', () => {
+        expect(isValidStringDate('2021-05-10T17:12:00+0200')).toBe(false);
+        expect(isValidStringDate('2021-05-10')).toBe(true);
+    });
+
+    test('test isValidStringDateWithOptionalTime', () => {
+        expect(isValidStringDateWithOptionalTime('2021-05-10T17:12:00+0200')).toBe(true);
+        expect(isValidStringDateWithOptionalTime('2021-05-10')).toBe(true);
     });
 
     test('test isValidDate', () => {
@@ -28,6 +39,7 @@ describe('test date functions', () => {
         expect(isValidDate('2021-03-26T13:21:50.000Z')).toBe(true);
         expect(isValidDate('Tue Apr 13 2021 00:00:00 GMT+0200 (Central European Summer Time)')).toBe(true);
         expect(isValidDate('commissie 1')).toBe(false);
+        expect(isValidDate('2021-05-10T17:12:00+0200')).toBe(true);
         expect(isValidDate('30-09-2021')).toBe(false);
     });
 
@@ -42,16 +54,20 @@ describe('test date functions', () => {
 
     test('test toMoment', () => {
         expect(toMoment('')).toBe(null);
-        expect(toMoment('2021-09-30')).toStrictEqual(moment('2021-09-30').locale(Locale.NL));
+        expect(toMoment('2021-09-30')?.date()).toBe(30);
+        expect(toMoment('2021-09-30')?.month()).toBe(8);
+        expect(toMoment('2021-09-30')?.year()).toBe(2021);
+        expect(toMoment('2021-09-30')?.hours()).toBe(12);
         expect(toMoment('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
+        expect(toMoment('2021-05-10T17:12:00+0200')?.date()).toBe(10);
+        expect(toMoment('2021-05-10T17:12:00+0200')?.hours()).toBe(17);
     });
 
     test('test toDate', () => {
         expect(toDate('')).toBe(null);
-        expect(toDate('2021-09-30')).toMatchObject(moment('2021-09-30').locale(Locale.NL).toDate());
-
-        expect(toDate('2000-02-29')).toStrictEqual(moment('2000-02-29').locale(Locale.NL).toDate());
-        expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
+        expect(toDate('2021-09-30')?.getDate()).toBe(30);
+        expect(toDate('2021-09-30')?.getMonth()).toBe(8);
+        expect(toDate('2021-09-30')?.getFullYear()).toBe(2021);
         expect(toDate('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
     });
 });
