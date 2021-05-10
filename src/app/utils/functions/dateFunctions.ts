@@ -87,18 +87,8 @@ export const isFutureDate = (date: Moment | null, includeToday = false): boolean
     ((includeToday && date.isSameOrAfter(moment(), 'day')) || (!includeToday && date.isAfter(moment(), 'day')));
 
 // Can not use Date constructor due to browser differences, hence this function
-export const toDate = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): Date | null => {
-    if (!isValidDate(value, lang)) {
-        return null;
-    }
-
-    // Set to noon to mimic how days in the datePicker are configured internally
-    if (typeof value === 'string' && isValidStringDate(value)) {
-        return moment(value).startOf('day').hours(12).toDate();
-    }
-
-    return moment(value).toDate();
-};
+export const toDate = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): Date | null =>
+    isValidDate(value, lang) ? moment(value).locale(lang.toLowerCase()).toDate() : null;
 
 export const currentDate = (lang: string = DEFAULT_LOCALE): Date => moment().locale(lang.toLowerCase()).toDate();
 

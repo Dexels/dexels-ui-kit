@@ -60,7 +60,6 @@ describe('test date functions', () => {
         expect(toMoment('2021-09-30')?.hours()).toBe(12);
         expect(toMoment('2021-09-31')).toBe(null); // this date doesn't exist in the calendar
         expect(toMoment('2021-05-10T17:12:00+0200')?.date()).toBe(10);
-        expect(toMoment('2021-05-10T17:12:00+0200')?.hours()).toBe(17);
     });
 
     test('test toDate', () => {
