@@ -414,6 +414,7 @@ export enum Size {
 
 export enum Status {
     ALERT = 'ALERT',
+    DATA_ERROR = 'DATA_ERROR',
     DEFAULT = 'DEFAULT',
     DISABLED = 'DISABLED',
     INVALID = 'INVALID',

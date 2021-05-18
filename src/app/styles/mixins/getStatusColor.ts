@@ -5,6 +5,9 @@ export const getStatusColor = (status: Status, theme: Theme): string => {
         case Status.NONE:
             return theme.shades.six;
 
+        case Status.DATA_ERROR:
+            return theme.colorInvalid;
+
         case Status.DEFAULT:
             return theme.colorPrimary;
 
