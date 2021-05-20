@@ -31,6 +31,7 @@ import { Row, TableInstance, TableState } from 'react-table';
 import ContentCell from './ContentCell/ContentCell';
 import { sum } from './utils/aggregateFunctions';
 import toNumber from '../../../utils/functions/toNumber';
+import { isEmpty } from '../../../../lib';
 
 export interface TableTexts {
     sortByTooltip?: ReactNode;
@@ -304,7 +305,9 @@ export const Table = <T extends object>({
                                                                             locale={locale}
                                                                             value={sum(
                                                                                 column.filteredRows.map((row) =>
-                                                                                    row.values[column.id] !== undefined
+                                                                                    row.values[column.id] !==
+                                                                                        undefined &&
+                                                                                    !isEmpty(row.values[column.id])
                                                                                         ? (row.values[column.id] as
                                                                                               | number
                                                                                               | string)
