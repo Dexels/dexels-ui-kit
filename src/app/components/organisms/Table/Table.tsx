@@ -29,9 +29,9 @@ import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctio
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Row, TableInstance, TableState } from 'react-table';
 import ContentCell from './ContentCell/ContentCell';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import { sum } from './utils/aggregateFunctions';
 import toNumber from '../../../utils/functions/toNumber';
-import { isEmpty } from '../../../../lib';
 
 export interface TableTexts {
     sortByTooltip?: ReactNode;
