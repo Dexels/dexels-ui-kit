@@ -5,7 +5,7 @@ import {
     getTableFooter,
     getTableRow,
 } from './mockup/tableFunctions';
-import { Elevation, IconType } from '../../../types';
+import { Elevation, IconType, Locale } from '../../../types';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns';
 import { tableData, TableData } from './mockup/tableData';
@@ -59,7 +59,8 @@ export const Configurable: FunctionComponent = () => {
         },
         {
             width: 100,
-        }
+        },
+        isNL ? Locale.NL : Locale.EN
     );
 
     return (

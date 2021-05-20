@@ -2,6 +2,7 @@ import moment, { Moment } from 'moment';
 import { Status } from '../../../../types';
 
 export interface TableData {
+    Amount: number | string;
     amount: number | string;
     companyName: string;
     firstName: string;
@@ -18,6 +19,7 @@ const makeTableData = (amount = 15): TableData[] => {
 
     for (let i = 1; i <= amount; i += 1) {
         result.push({
+            Amount: 123,
             amount: 123,
             companyName: `Dexels ${i}`,
             firstName: `Firstname ${i}`,
@@ -37,6 +39,7 @@ export const tableData = (): TableData[] => {
     const result = makeTableData(100);
 
     result.push({
+        Amount: -120,
         amount: -120,
         companyName: 'Dexels',
         firstName: 'Anna',
@@ -50,6 +53,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 10985,
         amount: 10985,
         companyName: 'Dexels',
         firstName: 'Erik',
@@ -62,6 +66,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 0,
         amount: 0,
         companyName: 'Dexels',
         firstName: 'Lange voornaam',
@@ -74,6 +79,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: -1,
         amount: -1,
         companyName: 'Dexels',
         firstName: 'erik',
@@ -86,6 +92,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: -10985,
         amount: -10985,
         companyName: 'Dexels',
         firstName: 'Maria',
@@ -98,6 +105,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 25.87,
         amount: 25.87,
         companyName: 'Cygni',
         firstName: 'David',
@@ -110,6 +118,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 123.5432,
         amount: 123.5432,
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -122,6 +131,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 123.48,
         amount: 123.48,
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -134,6 +144,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 123.42,
         amount: 123.42,
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -146,6 +157,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 123.42,
         amount: 123.42,
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -158,6 +170,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 652464,
         amount: 652464,
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -170,6 +183,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 652464,
         amount: 652464,
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -182,6 +196,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: 1212,
         amount: 1212,
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -194,6 +209,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: '',
         amount: '',
         companyName: 'Dexels',
         firstName: 'Firstname',
@@ -206,6 +222,7 @@ export const tableData = (): TableData[] => {
     });
 
     result.push({
+        Amount: '',
         amount: '',
         companyName: 'Dexels',
         firstName: 'Firstname',

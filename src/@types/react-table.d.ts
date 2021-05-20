@@ -51,9 +51,7 @@ declare module 'react-table' {
             UseTableColumnOptions<D>,
             UsePaginationInstanceProps<D>,
             UseRowSelectInstanceProps<D>,
-            UseSortByInstanceProps<D> {
-        locale?: Locale;
-    }
+            UseSortByInstanceProps<D> {}
 
     export interface TableState<D extends object = {}>
         extends UseExpandedState<D>,
@@ -62,7 +60,9 @@ declare module 'react-table' {
             UsePaginationState<D>,
             UseTableColumnOptions<D>,
             UseRowSelectState<D>,
-            UseSortByState<D> {}
+            UseSortByState<D> {
+        locale?: Locale;
+    }
 
     export interface ColumnInterface<D extends object = {}>
         extends UseFiltersColumnOptions<D>,
