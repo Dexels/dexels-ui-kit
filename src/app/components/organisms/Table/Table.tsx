@@ -29,7 +29,6 @@ import { getColumnWidthByPercentage, renderSortIcon } from './utils/tableFunctio
 import React, { ReactNode, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Row, TableInstance, TableState } from 'react-table';
 import ContentCell from './ContentCell/ContentCell';
-import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { sum } from './utils/aggregateFunctions';
 import toNumber from '../../../utils/functions/toNumber';
 
@@ -77,7 +76,7 @@ export const Table = <T extends object>({
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
     let hasFooterColumns = false;
     const [availableTableWidth, setAvailableTableWidth] = useState(0);
-    const locale = instance.locale || DEFAULT_LOCALE;
+    const [locale, setLocale] = useState(instance.initialState?.locale);
     const tableWrapperRef = useRef<HTMLDivElement>(null);
 
     // This const contains the calculated widths in pixels.
@@ -102,6 +101,10 @@ export const Table = <T extends object>({
             }, 0),
         [instance]
     );
+
+    useEffect(() => {
+        setLocale(instance.initialState?.locale);
+    }, [instance.initialState]);
 
     useEffect(() => {
         if (precentageColumnWidthsTotal > 100) {
@@ -298,10 +301,11 @@ export const Table = <T extends object>({
                                                                         // Otherwise it has to be set in the columndefs and therefor added as a prop
                                                                         <ContentCell
                                                                             isCurrency
+                                                                            locale={locale}
                                                                             value={sum(
                                                                                 column.filteredRows.map((row) =>
-                                                                                    row.values.amount !== undefined
-                                                                                        ? (row.values.amount as
+                                                                                    row.values[column.id] !== undefined
+                                                                                        ? (row.values[column.id] as
                                                                                               | number
                                                                                               | string)
                                                                                         : 0

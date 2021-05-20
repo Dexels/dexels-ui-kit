@@ -15,6 +15,7 @@ import {
     useSortBy,
     useTable,
 } from 'react-table';
+import { DEFAULT_LOCALE } from '../../../global/constants';
 import { useMemo } from 'react';
 
 // Mind the order of the hooks, this is not random, but required by the package
@@ -23,7 +24,8 @@ export const createTable = <T extends object>(
     columns: Column<T>[],
     data: T[],
     initialState?: Partial<TableState<T>>,
-    defaultColumn?: Partial<Column<T>>
+    defaultColumn?: Partial<Column<T>>,
+    locale = DEFAULT_LOCALE
 ): TableInstance<T> => {
     const columnsWithDefaultProps = useMemo(
         () =>
@@ -46,7 +48,10 @@ export const createTable = <T extends object>(
             columns: columnsWithDefaultProps,
             data,
             defaultColumn,
-            initialState,
+            initialState: {
+                ...initialState,
+                locale,
+            },
         },
         useResizeColumns,
         useFlexLayout,

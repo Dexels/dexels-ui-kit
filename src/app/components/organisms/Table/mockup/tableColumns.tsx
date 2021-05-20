@@ -1,18 +1,14 @@
-import { Alignment, ButtonSize, ButtonVariant, IconType, Status } from '../../../../types';
+import { Alignment, ButtonSize, ButtonVariant, IconType, Locale, Status } from '../../../../types';
 import React, { ReactNode } from 'react';
 import { Button } from '../../../molecules/Button/Button';
 import { Column } from 'react-table';
 import { ContentCell } from '../ContentCell/ContentCell';
 import { customSortByDate } from '../utils/tableFunctions';
-// import { DEFAULT_LOCALE } from '../../../../../global/constants';
-// import { formatMoneyWithoutSymbol } from '../../../../utils/functions/financialFunctions';
 import { getTableCell } from './tableFunctions';
 import { Icon } from '../../../atoms/Icon/Icon';
 import { StatusCell } from '../StatusCell/StatusCell';
 import { sum } from '../utils/aggregateFunctions';
 import { TableData } from './tableData';
-
-// const locale = DEFAULT_LOCALE;
 
 const getStatusIcon = (status: Status): IconType => {
     switch (status) {
@@ -76,18 +72,18 @@ export const tableColumns = (): Column<TableData>[] => [
     },
     {
         Aggregated: ({ rows }) => rows,
-        // Aggregated: ({ rows }) =>
-        // formatMoneyWithoutSymbol(
-        //     sum(
-        //         rows.map((row) => (row.values.amount !== undefined ? (row.values.amount as number | string) : 0)),
-        //         true,
-        //         locale
-        //     ),
-        //     locale
-        // ),
         Cell: ({ value }): ReactNode => <ContentCell isCurrency value={value} />,
         Header: 'Amount',
         accessor: 'amount',
+        aggregate: 'sum',
+        align: Alignment.RIGHT,
+        isCurrency: true,
+    },
+    {
+        Aggregated: ({ rows }) => rows,
+        Cell: ({ value }): ReactNode => <ContentCell isCurrency locale={Locale.EN} value={value} />,
+        Header: 'Amount',
+        accessor: 'Amount',
         aggregate: 'sum',
         align: Alignment.RIGHT,
         isCurrency: true,
