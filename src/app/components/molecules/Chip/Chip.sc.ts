@@ -50,6 +50,12 @@ export const StyledChip = styled.button<StyledChipProps>`
             isHoverable &&
             css`
                 color: ${theme.colorSecondary};
+                /* stylelint-disable indentation */
+                border-color: ${getBorderColor({
+                    isFocused: isHoverable,
+                    theme,
+                })};
+                /* stylelint-enable indentation */
             `}
     }
 
@@ -57,13 +63,12 @@ export const StyledChip = styled.button<StyledChipProps>`
         ${rippleEffectReset()}
     }
 
-    ${({ isDisabled, isHoverable, isSelected, theme }): SimpleInterpolation =>
+    ${({ isDisabled, isSelected, theme }): SimpleInterpolation =>
         css`
             /* stylelint-disable indentation */
             border-color: ${getBorderColor({
-                defaultColor: theme.shades.two,
+                defaultColor: theme.colorPrimary,
                 isDisabled: isDisabled || !isSelected,
-                isFocused: isHoverable,
                 theme,
             })};
             /* stylelint-enable indentation */
