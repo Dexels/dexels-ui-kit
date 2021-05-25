@@ -49,13 +49,13 @@ export const StyledChip = styled.button<StyledChipProps>`
         ${({ isHoverable, theme }): SimpleInterpolation =>
             isHoverable &&
             css`
-                color: ${theme.colorSecondary};
                 /* stylelint-disable indentation */
                 border-color: ${getBorderColor({
                     isFocused: isHoverable,
                     theme,
                 })};
                 /* stylelint-enable indentation */
+                color: ${theme.colorSecondary};
             `}
     }
 
