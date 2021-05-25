@@ -11,11 +11,11 @@ import {
     Text,
     Wrapper,
 } from './Dialog.sc';
+import { DialogButtonClosePosition, IconPlacement } from './types';
 import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import { Easing, Elevation, IconType, Status } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
-import { DialogButtonClosePosition } from './types';
 import { IconProps } from '../../atoms/Icon/Icon';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 import Overlay from '../../molecules/Overlay/Overlay';
@@ -32,6 +32,7 @@ export interface DialogProps {
     hasHeaderPadding?: boolean;
     hasOverlay?: boolean;
     header?: ReactNode;
+    iconPlacement?: IconPlacement;
     iconType?: IconProps['type'] /* IconType will be used by title and inside content */;
     isScrollable?: boolean;
     isVisible: boolean;
@@ -55,6 +56,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     hasHeaderPadding = true,
     hasOverlay = true,
     header,
+    iconPlacement = IconPlacement.TOP,
     iconType,
     isScrollable = true,
     isVisible,
@@ -89,7 +91,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
                     {iconType && title && (
                         <StyledTextWithOptionalIcon iconType={iconType}>{title}</StyledTextWithOptionalIcon>
                     )}
-                    <Content>
+                    <Content iconPlacement={iconPlacement}>
                         {iconType && !title && (
                             <IconWrapper status={status}>
                                 <IconCustomizable iconSize={IconCustomizableSize.SIZE32} iconType={iconType} />
