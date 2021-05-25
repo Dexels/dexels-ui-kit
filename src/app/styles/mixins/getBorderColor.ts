@@ -17,8 +17,6 @@ export const getBorderColor = ({
     isValid?: boolean;
     theme: Theme;
 }): string => {
-    console.log('border color', defaultColor, isFocused, isHovered);
-
     if (hasError) {
         return theme.colorInvalid;
     }
