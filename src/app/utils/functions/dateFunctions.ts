@@ -67,9 +67,9 @@ export const formatTime = (value: string | Date | Moment, addLeadingZero = true)
             }
 
             if (value.length === 3) {
-                return `${
-                    addLeadingZero ? value.substring(0, 1).padStart(2, '0') : value.substring(0, 1)
-                }:${value.substring(1, 2).padStart(2, '0')}`;
+                return `${addLeadingZero ? value.substring(0, 1).padStart(2, '0') : value.substring(0, 1)}:${value
+                    .substring(1, 2)
+                    .padStart(2, '0')}`;
             }
 
             return value;

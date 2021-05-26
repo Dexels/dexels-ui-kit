@@ -114,7 +114,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     };
 
     const { componentRef } = useClickOutsideComponent((event: MouseEvent) =>
-        handleClickOutsideComponent((event as unknown) as SyntheticEvent)
+        handleClickOutsideComponent(event as unknown as SyntheticEvent)
     );
 
     useEffect(() => {
@@ -248,7 +248,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
             ? setAllElementsDeselected(updatedOptions, 'isSelected')
             : setAllElementsSelected(updatedOptions, 'isSelected');
 
-        setUpdatedOptions((newUpdatedOptions as unknown) as T[]);
+        setUpdatedOptions(newUpdatedOptions as unknown as T[]);
     }, [isSomeSelected]);
 
     const onChangeOptionCallback = useCallback(
