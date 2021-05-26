@@ -1,5 +1,5 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import { Direction, Easing } from '../../../types';
+import { Direction, Easing, SelectionControlSize } from '../../../types';
 import React, { FunctionComponent, useState } from 'react';
 import SelectionControl from './SelectionControl';
 import { SelectionControlType } from './types';
@@ -34,6 +34,7 @@ export const ConfigurableRadioButton: FunctionComponent = () => {
                 onChange={(): void => {
                     setGender('female');
                 }}
+                size={select('Size', SelectionControlSize, SelectionControlSize.DEFAULT)}
                 transitionDuration={transitionDuration}
                 transitionEasing={transitionEasing}
                 type={SelectionControlType.RADIO}
@@ -55,6 +56,7 @@ export const ConfigurableRadioButton: FunctionComponent = () => {
                 onChange={(): void => {
                     setGender('male');
                 }}
+                size={select('Size', SelectionControlSize, SelectionControlSize.DEFAULT)}
                 transitionDuration={transitionDuration}
                 transitionEasing={transitionEasing}
                 type={SelectionControlType.RADIO}
@@ -84,6 +86,7 @@ export const ConfigurableCheckbox: FunctionComponent = () => {
             onChange={(): void => {
                 setIsChecked(!isChecked);
             }}
+            size={select('Size', SelectionControlSize, SelectionControlSize.DEFAULT)}
             transitionDuration={number('Transition duration', 300)}
             transitionEasing={select('Transition type', Easing, Easing.EASE)}
             type={SelectionControlType.CHECKBOX}
