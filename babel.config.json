@@ -2,11 +2,14 @@
     "presets": [
         ["@babel/preset-env", {
             "corejs": 3,
-            "useBuiltIns": "usage"
+            "useBuiltIns": "usage",
+            "loose": true
         }],
         "@babel/preset-react"
     ],
     "plugins": [
-        "babel-plugin-styled-components"
+        "babel-plugin-styled-components",
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
     ]
 }
