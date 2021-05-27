@@ -111,11 +111,13 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                     !item.isRequired ||
                     !isEmpty(
                         values[
-                            (item as
-                                | EditableDropdownDataProps
-                                | EditableDropdownSelectDataProps<T>
-                                | EditableDropdownMultiSelectDataProps<U>
-                                | EditableDatePickerDataProps).name
+                            (
+                                item as
+                                    | EditableDropdownDataProps
+                                    | EditableDropdownSelectDataProps<T>
+                                    | EditableDropdownMultiSelectDataProps<U>
+                                    | EditableDatePickerDataProps
+                            ).name
                         ] || null
                     )
                 );

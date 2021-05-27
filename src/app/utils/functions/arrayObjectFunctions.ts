@@ -50,7 +50,7 @@ export const setElementSelected = <U, T extends U>(
     const output: Array<T> = [];
 
     data.forEach((element) => {
-        let isSelected = (element[propertySelectedName] as unknown) as boolean;
+        let isSelected = element[propertySelectedName] as unknown as boolean;
 
         if (unsetOtherValues) {
             isSelected = element[propertyIdName] === selectedElement[propertyIdName];
@@ -96,8 +96,8 @@ export const selectOptionsFacade = <U, T extends U>(
     valuePropertyName: keyof U
 ): DropdownOption[] =>
     data.map((option) => ({
-        label: (option[labelPropertyName] as unknown) as string,
-        value: (option[valuePropertyName] as unknown) as string | number,
+        label: option[labelPropertyName] as unknown as string,
+        value: option[valuePropertyName] as unknown as string | number,
     }));
 
 export const selectOptionsExtend = <T, U extends T & DropdownMultiSelectOption>(
@@ -110,9 +110,9 @@ export const selectOptionsExtend = <T, U extends T & DropdownMultiSelectOption>(
         (option) =>
             ({
                 ...option,
-                isSelected: (option[selectedPropertyName] as unknown) as boolean,
-                label: (option[labelPropertyName] as unknown) as string,
-                value: (option[valuePropertyName] as unknown) as string | number,
+                isSelected: option[selectedPropertyName] as unknown as boolean,
+                label: option[labelPropertyName] as unknown as string,
+                value: option[valuePropertyName] as unknown as string | number,
             } as U)
     );
 

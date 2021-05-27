@@ -391,6 +391,11 @@ export enum Position {
     TOP_RIGHT = 'TOP_RIGHT',
 }
 
+export enum SelectionControlSize {
+    DEFAULT = 'DEFAULT',
+    SMALL = 'SMALL',
+}
+
 export enum SelectionControlGroupVariant {
     COMPACT = 'COMPACT',
     OUTLINE = 'OUTLINE',
