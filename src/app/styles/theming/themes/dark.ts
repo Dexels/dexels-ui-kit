@@ -33,7 +33,7 @@ const themeDarkValues = createDuiTheme(
 export const themeDark: Theme = {
     ...themeDarkValues,
 
-    colorDisabled: themeDarkValues.shades.five,
+    colorDisabled: themeDarkValues.shades.six,
 
     colorTextContrast: {
         primary: themeDarkValues.shades.one,

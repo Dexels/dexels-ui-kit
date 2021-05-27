@@ -22,7 +22,7 @@ const background = {
 };
 
 const colorAlert = '#EB6500';
-const colorDisabled = shades.five;
+const colorDisabled = shades.six;
 const colorInvalid = '#F94E4E';
 const colorPrimary = '#3D4A9A';
 const colorSecondary = '#009FFD';
