@@ -108,8 +108,8 @@ workflows:
                     - dexels_docker_hub
                 requires:
                     - install_dependencies
-            - jest:
-                context:
-                    - dexels_docker_hub
-                requires:
-                    - install_dependencies
+            # - jest:
+            #    context:
+            #        - dexels_docker_hub
+            #    requires:
+            #        - install_dependencies
