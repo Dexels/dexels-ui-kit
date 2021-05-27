@@ -86,7 +86,5 @@ export const getObjectDifference = <T>(prevObject: T, nextObject: T): Array<stri
         return prevValue !== nextValue;
     });
 
-    return Array.from(
-        new Set<string>([...differKeys, ...differValues])
-    );
+    return Array.from(new Set<string>([...differKeys, ...differValues]));
 };

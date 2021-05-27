@@ -1,4 +1,3 @@
-/* eslint-disable radix */
 import { DEFAULT_DATE_FORMAT, DEFAULT_LOCALE } from '../../../global/constants';
 import moment, { Moment } from 'moment';
 
@@ -66,10 +65,11 @@ export const formatTime = (value: string | Date | Moment, addLeadingZero = true)
                     .padStart(2, '0')}`;
             }
 
+            /* eslint-disable prettier/prettier */
             if (value.length === 3) {
-                return `${
-                    addLeadingZero ? value.substring(0, 1).padStart(2, '0') : value.substring(0, 1)
-                }:${value.substring(1, 2).padStart(2, '0')}`;
+                return `${addLeadingZero ? value.substring(0, 1).padStart(2, '0') : value.substring(0, 1)}:${value
+                    .substring(1, 2)
+                    .padStart(2, '0')}`;
             }
 
             return value;
