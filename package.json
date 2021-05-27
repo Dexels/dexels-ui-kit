@@ -47,9 +47,10 @@
         "postpublish": "npm run clean",
         "prepublishOnly": "npx rimraf node_modules && npm i && npm run dist",
         "prettier": "prettier --write **/*.{ts,tsx,js,css}",
-        "test": "jest --coverage false",
-        "test:coverage": "jest --coverage true",
-        "test:watch": "jest --watch --coverage false"
+        "test": "jest --coverage=false",
+        "test:coverage": "jest --coverage=true",
+        "test:watch": "jest --watch --coverage=false",
+        "test-ci": "jest --coverage=false --ci"
     },
     "browserslist": [
         "defaults"
