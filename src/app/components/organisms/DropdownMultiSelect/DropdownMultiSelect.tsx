@@ -248,7 +248,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
             ? setAllElementsDeselected(updatedOptions, 'isSelected')
             : setAllElementsSelected(updatedOptions, 'isSelected');
 
-        setUpdatedOptions(newUpdatedOptions as unknown as T[]);
+        setUpdatedOptions(newUpdatedOptions);
     }, [isSomeSelected]);
 
     const onChangeOptionCallback = useCallback(

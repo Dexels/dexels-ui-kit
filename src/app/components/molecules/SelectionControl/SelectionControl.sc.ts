@@ -1,4 +1,4 @@
-import { Direction, Easing } from '../../../types';
+import { Direction, Easing, SelectionControlSize } from '../../../types';
 import { rippleEffect, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { getBorderColor } from '../../../styles/mixins/getBorderColor';
@@ -137,6 +137,7 @@ interface FakeInputProps {
     isHovered: boolean;
     isIndeterminate: boolean;
     isValid: boolean;
+    size: SelectionControlSize;
     type: SelectionControlType;
 }
 
@@ -148,23 +149,23 @@ export const FakeInput = styled.div<FakeInputProps>`
     border: 2px solid;
     background-color: transparent;
 
-    ${({ theme, type }): SimpleInterpolation =>
+    ${({ size, theme, type }): SimpleInterpolation =>
         type === SelectionControlType.CHECKBOX &&
         css`
             border-radius: ${theme.spacing(0.5)};
-            width: ${theme.spacing(3)};
-            height: ${theme.spacing(3)};
+            width: ${theme.spacing(size === SelectionControlSize.SMALL ? 2.5 : 3)};
+            height: ${theme.spacing(size === SelectionControlSize.SMALL ? 2.5 : 3)};
         `}
 
-    ${({ theme, type }): SimpleInterpolation =>
+    ${({ size, theme, type }): SimpleInterpolation =>
         type === SelectionControlType.RADIO &&
         css`
             border-radius: 100%;
-            width: ${theme.spacing(2.5)};
-            height: ${theme.spacing(2.5)};
+            width: ${theme.spacing(size === SelectionControlSize.SMALL ? 2 : 2.5)};
+            height: ${theme.spacing(size === SelectionControlSize.SMALL ? 2 : 2.5)};
         `}
 
-    ${({ isChecked, isIndeterminate, theme, type }): SimpleInterpolation =>
+    ${({ isChecked, isIndeterminate, size, theme, type }): SimpleInterpolation =>
         (isChecked || isIndeterminate) &&
         type === SelectionControlType.RADIO &&
         css`
@@ -173,8 +174,8 @@ export const FakeInput = styled.div<FakeInputProps>`
                 position: absolute;
                 border-radius: 100%;
                 background-color: ${theme.colorSecondary};
-                width: ${theme.spacing(1.5)};
-                height: ${theme.spacing(1.5)};
+                width: ${theme.spacing(size === SelectionControlSize.SMALL ? 1 : 1.5)};
+                height: ${theme.spacing(size === SelectionControlSize.SMALL ? 1 : 1.5)};
                 content: '';
             }
         `}
