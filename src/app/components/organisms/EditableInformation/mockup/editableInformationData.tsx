@@ -183,8 +183,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
             <span
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
-                    __html:
-                        'Bondssport:<br/>- Voetbal - Algemeen/Veld<br/>Verenigingssport:<br/>- Balgooien - Maandag/ACTIE<br/><br/>Er is/zijn één of meer verenigingssporten vastgelegd.<br/><br/>Voormalige of huidige vereniging:<br/>- Spero (BBKT07Z)<br/>- Relatiecode: HDHDHDGU (Niet gevonden)<br/><br/>Aangevraagd lidsoort: Bondslid<br/><br/>Aangevraagd lidsoort: Verenigingslid',
+                    __html: 'Bondssport:<br/>- Voetbal - Algemeen/Veld<br/>Verenigingssport:<br/>- Balgooien - Maandag/ACTIE<br/><br/>Er is/zijn één of meer verenigingssporten vastgelegd.<br/><br/>Voormalige of huidige vereniging:<br/>- Spero (BBKT07Z)<br/>- Relatiecode: HDHDHDGU (Niet gevonden)<br/><br/>Aangevraagd lidsoort: Bondslid<br/><br/>Aangevraagd lidsoort: Verenigingslid',
                 }}
             />
         ),

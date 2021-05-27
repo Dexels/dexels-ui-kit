@@ -173,7 +173,7 @@ export {
     SingleDatePickerProps,
     SingleDatePickerVariant,
 } from '../app/components/organisms/DatePicker';
-export { Dialog, DialogButtonClosePosition, DialogProps } from '../app/components/organisms/Dialog';
+export { Dialog, DialogButtonClosePosition, DialogProps, IconPlacement } from '../app/components/organisms/Dialog';
 export {
     DropdownMultiSelect,
     DropdownMultiSelectOption,

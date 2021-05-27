@@ -1,10 +1,10 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { ButtonSize, ButtonVariant, Direction, Easing, Elevation, IconType, InputType, Status } from '../../../types';
 import Dialog, { DialogProps } from './Dialog';
+import { DialogButtonClosePosition, IconPlacement } from './types';
 import moment, { Moment } from 'moment';
 import React, { FunctionComponent, useState } from 'react';
 import Button from '../../molecules/Button/Button';
-import { DialogButtonClosePosition } from './types';
 import Input from '../../molecules/Input/Input';
 import { SingleDatePicker } from '../DatePicker';
 import toNumber from '../../../utils/functions/toNumber';
@@ -33,6 +33,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
         hasHeaderPadding={boolean('Has header padding', true)}
         hasOverlay={boolean('Has overlay', true)}
         header={text('Header', '')}
+        iconPlacement={select('Icon placement', IconPlacement, IconPlacement.TOP)}
         iconType={iconType}
         isScrollable={isScrollable}
         isVisible={isVisible}

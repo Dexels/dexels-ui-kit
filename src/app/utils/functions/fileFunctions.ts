@@ -75,14 +75,14 @@ export const openBinary = (openBinaryProps: OpenBinaryProps): void => {
 
     try {
         if (!winRef || winRef.closed) {
-            ((winRef as unknown) as Window).open('', '_blank', windowParameters);
+            (winRef as unknown as Window).open('', '_blank', windowParameters);
         } else {
             winRef.focus();
         }
 
-        ((winRef as unknown) as Window).document.open();
-        ((winRef as unknown) as Window).document.write(`${head}${content}${footer}`);
-        ((winRef as unknown) as Window).focus();
+        (winRef as unknown as Window).document.open();
+        (winRef as unknown as Window).document.write(`${head}${content}${footer}`);
+        (winRef as unknown as Window).focus();
     } catch {
         // Nothing yet
     } finally {

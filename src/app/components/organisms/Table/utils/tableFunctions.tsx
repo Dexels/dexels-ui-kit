@@ -4,31 +4,37 @@ import { UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'reac
 import Icon from '../../../atoms/Icon/Icon';
 import { IconType } from '../../../../types';
 
-export const compareValues = <T extends Record<string, unknown>>(
-    key: keyof UseTableRowProps<T>['values'] | keyof UseGroupByRowProps<T>['values'],
-    desc = false,
-    caseSensitive = false
-) => (a: UseTableRowProps<T>, b: UseTableRowProps<T>): number => {
-    if (!Object.prototype.hasOwnProperty.call(a.values, key)) {
-        return 0;
-    }
+export const compareValues =
+    <T extends Record<string, unknown>>(
+        key: keyof UseTableRowProps<T>['values'] | keyof UseGroupByRowProps<T>['values'],
+        desc = false,
+        caseSensitive = false
+    ) =>
+    (a: UseTableRowProps<T>, b: UseTableRowProps<T>): number => {
+        if (!Object.prototype.hasOwnProperty.call(a.values, key)) {
+            return 0;
+        }
 
-    const varA =
-        typeof a.values[key] === 'string' && caseSensitive ? (a.values[key] as string).toUpperCase() : a.values[key];
+        const varA =
+            typeof a.values[key] === 'string' && caseSensitive
+                ? (a.values[key] as string).toUpperCase()
+                : a.values[key];
 
-    const varB =
-        typeof b.values[key] === 'string' && caseSensitive ? (b.values[key] as string).toUpperCase() : b.values[key];
+        const varB =
+            typeof b.values[key] === 'string' && caseSensitive
+                ? (b.values[key] as string).toUpperCase()
+                : b.values[key];
 
-    let comparison = 0;
+        let comparison = 0;
 
-    if (varA >= varB) {
-        comparison = 1;
-    } else if (varA < varB) {
-        comparison = -1;
-    }
+        if (varA >= varB) {
+            comparison = 1;
+        } else if (varA < varB) {
+            comparison = -1;
+        }
 
-    return desc ? comparison * -1 : comparison;
-};
+        return desc ? comparison * -1 : comparison;
+    };
 
 export const customSortByDate = <T extends object>(
     a: UseTableRowProps<T>,
