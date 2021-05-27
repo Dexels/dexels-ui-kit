@@ -73,19 +73,20 @@ jobs:
                 path: reports/junit
             - store_artifacts:
                 path: reports/junit
-    # jest:
-    #     <<: *container_config
-    #     steps:
-    #         - checkout
-    #         - *restore_dependencies
-    #         - run:
-    #             command: |
-    #                 mkdir -p reports/junit
-    #                 npm run test -- --output-file reports/junit/jest-results.xml
-    #         - store_test_results:
-    #             path: reports/junit
-    #         - store_artifacts:
-    #             path: reports/junit
+    jest:
+        <<: *container_config
+        steps:
+            - checkout
+            - *restore_dependencies
+            - run:
+                command: |
+                    mkdir -p reports/junit
+                    npm run test
+                no_output_timeout: 30m
+            - store_test_results:
+                path: reports/junit
+            - store_artifacts:
+                path: reports/junit
 
 workflows:
     install_dependencies_and_lint:
@@ -108,8 +109,8 @@ workflows:
                     - dexels_docker_hub
                 requires:
                     - install_dependencies
-            # - jest:
-            #    context:
-            #        - dexels_docker_hub
-            #    requires:
-            #        - install_dependencies
+            - jest:
+               context:
+                   - dexels_docker_hub
+               requires:
+                   - install_dependencies
