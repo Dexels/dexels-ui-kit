@@ -82,6 +82,7 @@ jobs:
                 command: |
                     mkdir -p reports/junit
                     npm run test -- --output-file reports/junit/jest-results.xml
+                no_output_timeout: 30m
             - store_test_results:
                 path: reports/junit
             - store_artifacts:
