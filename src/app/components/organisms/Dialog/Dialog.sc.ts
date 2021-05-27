@@ -1,6 +1,6 @@
+import { DialogButtonClosePosition, IconPlacement } from './types';
 import { Easing, Elevation, Status, zIndex } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
-import { DialogButtonClosePosition } from './types';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
@@ -174,10 +174,31 @@ export const StyledTextWithOptionalIcon = styled(TextWithOptionalIcon)`
     }
 `;
 
-export const Content = styled.div`
+interface ContentProps {
+    iconPlacement: IconPlacement;
+}
+
+export const Content = styled.div<ContentProps>`
     display: flex;
     flex-wrap: nowrap;
-    align-items: center;
+
+    ${({ iconPlacement }): SimpleInterpolation =>
+        iconPlacement === IconPlacement.BOTTOM &&
+        css`
+            align-items: flex-end;
+        `}
+
+    ${({ iconPlacement }): SimpleInterpolation =>
+        iconPlacement === IconPlacement.CENTER &&
+        css`
+            align-items: center;
+        `}
+
+    ${({ iconPlacement }): SimpleInterpolation =>
+        iconPlacement === IconPlacement.TOP &&
+        css`
+            align-items: flex-start;
+        `}
 `;
 
 interface IconWrapperProps {
