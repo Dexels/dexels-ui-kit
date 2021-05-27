@@ -81,7 +81,7 @@ jobs:
             - run:
                 command: |
                     mkdir -p reports/junit
-                    jest --coverage false --ci --runInBand --reporters=default --output-file reports/junit/js-lint-results.xml
+                    npm run test --ci --watchAll=false --reporters=default --output-file reports/junit/jest-results.xml
             - store_test_results:
                 path: reports/junit
             - store_artifacts:
