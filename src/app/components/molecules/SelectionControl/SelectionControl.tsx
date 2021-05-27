@@ -1,4 +1,4 @@
-import { Direction, Easing, IconType } from '../../../types';
+import { Direction, Easing, IconType, SelectionControlSize } from '../../../types';
 import {
     ErrorMessageWrapper,
     FakeInput,
@@ -30,6 +30,7 @@ export interface SelectionControlProps {
     label: ReactNode;
     name: string;
     onChange: (event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>) => void;
+    size?: SelectionControlSize;
     transitionDuration?: number;
     transitionEasing?: Easing;
     type?: SelectionControlType;
@@ -52,6 +53,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
     label,
     name,
     onChange,
+    size = SelectionControlSize.DEFAULT,
     transitionDuration = 300,
     transitionEasing = Easing.EASE,
     type = SelectionControlType.CHECKBOX,
@@ -88,6 +90,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                         isHovered={isHovered}
                         isIndeterminate={isIndeterminate}
                         isValid={isValid}
+                        size={size}
                         type={type}
                     />
                     {(isChecked || isIndeterminate) && type === SelectionControlType.CHECKBOX && (
