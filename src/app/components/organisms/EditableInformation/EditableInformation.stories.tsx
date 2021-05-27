@@ -22,15 +22,15 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     isEditingMode = false,
     withDialogs = false,
     isEditable = true,
-    errors = (undefined as unknown) as string[],
-    warnings = (undefined as unknown) as string[],
+    errors = undefined as unknown as string[],
+    warnings = undefined as unknown as string[],
     isCurrencyOnly = false
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
     const [isEditing, setIsEditing] = useState(isEditingMode);
-    const [saveErrors, setSaveErrors] = useState<Array<string>>((undefined as unknown) as string[]);
-    const [saveWarnings, setSaveWarnings] = useState<Array<string>>((undefined as unknown) as string[]);
+    const [saveErrors, setSaveErrors] = useState<Array<string>>(undefined as unknown as string[]);
+    const [saveWarnings, setSaveWarnings] = useState<Array<string>>(undefined as unknown as string[]);
 
     useEffect(() => {
         setIsEditing(saveErrors && saveErrors.length !== 0);
@@ -61,7 +61,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     };
 
     const onCancelCallback = () => {
-        setSaveErrors((undefined as unknown) as string[]);
+        setSaveErrors(undefined as unknown as string[]);
     };
 
     const onChangeCallback = (newData: unknown) => {
