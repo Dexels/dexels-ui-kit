@@ -81,7 +81,7 @@ jobs:
             - run:
                 command: |
                     mkdir -p reports/junit
-                    npm run test -- --reporters=default --json --outputFile=reports/junit/junit.xml
+                    npm run test -- --forceExit --reporters=default --json --outputFile=reports/junit/junit.xml
             - store_test_results:
                 path: reports/junit
             - store_artifacts:
