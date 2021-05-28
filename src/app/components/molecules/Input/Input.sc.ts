@@ -45,8 +45,12 @@ export const StyledInput = styled.div<StyledInputProps>`
         css`
             &::after {
                 display: block;
-                height: 1px;
                 content: '';
+
+                ${isFocused &&
+                css`
+                    height: 1px;
+                `}
 
                 ${css`
                     /* stylelint-disable indentation */

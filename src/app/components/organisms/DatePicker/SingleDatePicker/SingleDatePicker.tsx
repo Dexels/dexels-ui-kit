@@ -171,6 +171,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
             <StyledWrapper ref={singleDatePickerRef}>
                 <Wrapper
                     className={className}
+                    hasError={hasError}
                     hasYearSelector={hasYearSelector}
                     isFocused={isFocused}
                     onMouseEnter={(): void => {

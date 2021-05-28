@@ -24,6 +24,7 @@ export const Default: FunctionComponent = () => {
             endDatePlaceholderText={text('End date placeholder text', 'Eind datum')}
             focusedInput={focusedInput}
             footerText="Selecteer minimaal twee dagen"
+            hasError={boolean('Has error', false)}
             isDayBlocked={(day): boolean => day.day() === 3}
             isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}

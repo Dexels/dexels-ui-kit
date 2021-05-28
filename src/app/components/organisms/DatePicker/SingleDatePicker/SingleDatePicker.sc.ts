@@ -27,7 +27,7 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
                 `}
         }
 
-        ${({ theme, variant }): SimpleInterpolation =>
+        ${({ hasError, theme, variant }): SimpleInterpolation =>
             variant === SingleDatePickerVariant.COMPACT &&
             css`
                 border: 0;
@@ -35,6 +35,11 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
                 border-radius: 0;
                 padding: 0;
                 height: ${`calc(${theme.spacing(3)} + 1px)`};
+
+                ${hasError &&
+                css`
+                    border-color: ${theme.colorInvalid};
+                `}
             `}
 
         ${({ hasError, isFocused, theme, variant }): SimpleInterpolation =>
@@ -44,12 +49,12 @@ export const StyledSingleDatePicker = styled.div<StyledSingleDatePickerProps>`
 
                 &::after {
                     display: block;
-                    height: 2px;
                     content: '';
 
                     ${isFocused &&
                     css`
                         background-color: ${theme.colorSecondary};
+                        height: 2px;
                     `}
 
                     ${hasError &&
