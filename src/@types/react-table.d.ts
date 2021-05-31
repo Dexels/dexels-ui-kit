@@ -42,7 +42,9 @@ declare module 'react-table' {
             UsePaginationOptions<D>,
             UseRowSelectOptions<D>,
             UseResizeColumnsOptions<D>,
-            UseSortByOptions<D> {}
+            UseSortByOptions<D> {
+        isMultiSelect?: boolean;
+    }
 
     export interface TableInstance<D extends object = {}>
         extends UseExpandedInstanceProps<D>,

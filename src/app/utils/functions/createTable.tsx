@@ -15,8 +15,20 @@ import {
     useSortBy,
     useTable,
 } from 'react-table';
+import React, { forwardRef, useEffect, useMemo, useRef } from 'react';
 import { DEFAULT_LOCALE } from '../../../global/constants';
-import { useMemo } from 'react';
+// import { SelectionControl } from '../../components/molecules/SelectionControl';
+
+const RowSelectionCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
+    const defaultRef = useRef();
+    const resolvedRef = ref || defaultRef;
+
+    useEffect(() => {
+        resolvedRef.current.indeterminate = indeterminate;
+    }, [resolvedRef, indeterminate]);
+
+    return <input ref={resolvedRef} type="checkbox" {...rest} />;
+});
 
 // Mind the order of the hooks, this is not random, but required by the package
 /* eslint-disable @typescript-eslint/ban-types */
@@ -25,7 +37,8 @@ export const createTable = <T extends object>(
     data: T[],
     initialState?: Partial<TableState<T>>,
     defaultColumn?: Partial<Column<T>>,
-    locale = DEFAULT_LOCALE
+    locale = DEFAULT_LOCALE,
+    isMultiSelect = false
 ): TableInstance<T> => {
     const columnsWithDefaultProps = useMemo(
         () =>
@@ -52,6 +65,7 @@ export const createTable = <T extends object>(
                 ...initialState,
                 locale,
             },
+            isMultiSelect,
         },
         useResizeColumns,
         useFlexLayout,
@@ -63,7 +77,24 @@ export const createTable = <T extends object>(
         useSortBy,
         useExpanded,
         usePagination,
-        useRowSelect
+        useRowSelect,
+        (hooks) => {
+            hooks.visibleColumns.push((tableRowColumns) =>
+                isMultiSelect
+                    ? [
+                          // Let's make a column for selection
+                          {
+                              Cell: ({ row }) => <RowSelectionCheckbox {...row.getToggleRowSelectedProps()} />,
+                              Header: ({ getToggleAllRowsSelectedProps }) => (
+                                  <RowSelectionCheckbox {...getToggleAllRowsSelectedProps()} />
+                              ),
+                              id: 'selection',
+                          },
+                          ...tableRowColumns,
+                      ]
+                    : []
+            );
+        }
     );
 };
 
