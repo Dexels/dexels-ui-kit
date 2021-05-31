@@ -33,10 +33,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     const [saveWarnings, setSaveWarnings] = useState<Array<string>>(undefined as unknown as string[]);
 
     useEffect(() => {
-        setIsEditing(isEditingMode);
-    }, [isEditingMode]);
-
-    useEffect(() => {
         setIsEditing((saveErrors && saveErrors.length !== 0) || isEditingMode);
     }, [isEditingMode, saveErrors]);
 
@@ -77,8 +73,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         // eslint-disable-next-line no-console
         console.log('onValidationCallback', isValidData);
     };
-
-    console.log('isEditing', isEditing);
 
     return (
         <EditableInformation
