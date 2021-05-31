@@ -21,16 +21,16 @@ export const getBorderColor = ({
         return theme.colorInvalid;
     }
 
+    if (isValid) {
+        return theme.colorValid;
+    }
+
     if (isDisabled) {
         return theme.colorDisabled;
     }
 
     if (isFocused || isHovered) {
         return theme.colorSecondary;
-    }
-
-    if (isValid) {
-        return theme.colorValid;
     }
 
     return defaultColor || theme.colorPrimary;

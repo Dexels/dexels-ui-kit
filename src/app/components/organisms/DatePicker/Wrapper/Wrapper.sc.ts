@@ -8,6 +8,7 @@ import { StyledInputIcon } from '../InputIcon/InputIcon.sc';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 interface StyledWrapperProps {
+    hasError: boolean;
     hasYearSelector: boolean;
     isFocused: boolean;
 }
@@ -34,7 +35,7 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
             `}
 
         &:hover {
-            border-color: ${({ theme }): string => theme.colorSecondary};
+            border-color: ${({ hasError, theme }): string => (hasError ? theme.colorInvalid : theme.colorSecondary)};
         }
     }
 
