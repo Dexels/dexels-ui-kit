@@ -24,6 +24,7 @@ export interface DateRangePickerProps {
     endDatePlaceholderText?: string;
     focusedInput: FocusedInputShape | null;
     footerText?: DialogFooterProps['text'];
+    hasError?: boolean;
     hasYearSelector?: boolean;
     isDayBlocked?: (day: Moment) => boolean;
     isDayHighlighted?: (day: Moment) => boolean;
@@ -59,6 +60,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     endDatePlaceholderText,
     focusedInput,
     footerText,
+    hasError = false,
     hasYearSelector = false,
     isDayBlocked,
     isDayHighlighted,
@@ -109,6 +111,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     return (
         <Wrapper
             className={className}
+            hasError={hasError}
             hasYearSelector={hasYearSelector}
             isFocused={isFocused}
             onMouseEnter={(): void => {

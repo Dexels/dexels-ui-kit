@@ -22,12 +22,12 @@ export const StyledDropdown = styled.div<StyledDropdownProps>`
         css`
             &::after {
                 display: block;
-                height: 1px;
                 content: '';
 
                 ${isFocused &&
                 css`
                     background-color: ${theme.colorSecondary};
+                    height: 1px;
                 `}
 
                 ${isValid &&

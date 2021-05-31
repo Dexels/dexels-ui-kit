@@ -4,6 +4,7 @@ import { StyledWrapper } from './Wrapper.sc';
 interface WrapperProps {
     children?: ReactNode;
     className?: string;
+    hasError: boolean;
     hasYearSelector?: boolean;
     isFocused: boolean;
     onMouseEnter: (e: MouseEvent) => void;
@@ -13,6 +14,7 @@ interface WrapperProps {
 const Wrapper: FunctionComponent<WrapperProps> = ({
     children,
     className,
+    hasError,
     hasYearSelector = false,
     isFocused,
     onMouseEnter,
@@ -20,6 +22,7 @@ const Wrapper: FunctionComponent<WrapperProps> = ({
 }) => (
     <StyledWrapper
         className={className}
+        hasError={hasError}
         hasYearSelector={hasYearSelector}
         isFocused={isFocused}
         onMouseEnter={onMouseEnter}
