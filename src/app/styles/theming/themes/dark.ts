@@ -158,6 +158,8 @@ export const themeDark: Theme = {
         row: {
             backgroundColorOdd: colorShadeEleven,
             backgroundColorEven: themeDarkValues.shades.seven,
+            borderColorRowSelector: themeDarkValues.shades.five,
+            borderColorRowSelectorDisabled: themeDarkValues.colorDisabled,
         },
     },
 };

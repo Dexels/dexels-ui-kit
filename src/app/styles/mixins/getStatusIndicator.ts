@@ -12,10 +12,10 @@ export const getStatusIndicator = ({
     status?: Status;
     theme: Theme;
 }): string => `
-    border-${placement}: ${theme.spacing(size === StatusIndicatorSize.LARGE ? 1 : 0.5)} solid ${getStatusColor(
-    status,
-    theme
-)};
+    border-${placement}: ${theme.spacing(
+    // eslint-disable-next-line no-nested-ternary
+    size === StatusIndicatorSize.NONE ? 0 : size === StatusIndicatorSize.LARGE ? 1 : 0.5
+)} solid ${getStatusColor(status, theme)};
 `;
 
 export default getStatusIndicator;

@@ -35,10 +35,12 @@ const getStatusIcon = (status: Status): IconType => {
     }
 };
 
-export const tableColumns = (): Column<TableData>[] => [
+export const tableColumns = (isMultiSelect: boolean): Column<TableData>[] => [
     {
         Aggregated: () => 'Totalen',
-        Cell: ({ value }): ReactNode => <StatusCell icon={getStatusIcon(value)} status={value} />,
+        Cell: ({ value }): ReactNode => (
+            <StatusCell hasStatusIndicator={!isMultiSelect} icon={getStatusIcon(value)} status={value} />
+        ),
         accessor: 'status',
         aggregate: 'text',
         disableSortBy: true,
@@ -132,12 +134,14 @@ export const tableColumns = (): Column<TableData>[] => [
     },
 ];
 
-export const tableColumnsWithGroupHeader = (): Column<TableData>[] => [
+export const tableColumnsWithGroupHeader = (isMultiSelect: boolean): Column<TableData>[] => [
     {
         Header: 'Name',
         columns: [
             {
-                Cell: ({ value }): ReactNode => <StatusCell icon={getStatusIcon(value)} status={value} />,
+                Cell: ({ value }): ReactNode => (
+                    <StatusCell hasStatusIndicator={!isMultiSelect} icon={getStatusIcon(value)} status={value} />
+                ),
                 accessor: 'status',
                 disableSortBy: true,
             },

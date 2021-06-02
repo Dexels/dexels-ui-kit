@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
+    CellProps,
     Column,
+    HeaderProps,
+    Hooks,
     TableInstance,
     TableState,
     useColumnOrder,
@@ -15,20 +19,80 @@ import {
     useSortBy,
     useTable,
 } from 'react-table';
-import React, { forwardRef, useEffect, useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { DEFAULT_LOCALE } from '../../../global/constants';
-// import { SelectionControl } from '../../components/molecules/SelectionControl';
+import { RowSelectionCheckbox } from '../../components/organisms/Table/RowSelectionCheckbox/RowSelectionCheckbox';
 
-const RowSelectionCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
-    const defaultRef = useRef();
-    const resolvedRef = ref || defaultRef;
+// @TODO: figure out how to deal with non selectable rows
+// const setSelectOptions = (hooks: Hooks<any>) => {
+//     hooks.getToggleAllRowsSelectedProps = [
+//         (props, { instance }) => [
+//             props,
+//             {
+//                 onChange: () => {
+//                     instance.page.forEach((row) =>
+//                         row.toggleRowSelected(!instance.page.every((row) => row.isSelected))
+//                     );
+//                 },
+//                 style: { cursor: 'pointer' },
+//                 checked: instance.page.every((row) => row.isSelected),
+//                 title: 'Toggle All Rows Selected',
+//                 indeterminate: Boolean(
+//                     !instance.isAllRowsSelected && Object.keys(instance.state.selectedRowIds).length
+//                 ),
+//             },
+//         ],
+//     ];
+// };
 
-    useEffect(() => {
-        resolvedRef.current.indeterminate = indeterminate;
-    }, [resolvedRef, indeterminate]);
+const selectionHook = (hooks: Hooks<any>) => {
+    hooks.allColumns.push((columns) => [
+        // Let's make a column for selection
+        {
+            Cell: ({ row }: CellProps<any>) => {
+                let isMultiSelectAllowedValue = true;
 
-    return <input ref={resolvedRef} type="checkbox" {...rest} />;
-});
+                // Check if the key isMultiSelectAllowed has been provided for disabling the select option
+                // Mind the fact that this does not prevent the select all option from altering this value
+                Object.keys(row.original).forEach((item) => {
+                    if (item === 'isMultiSelectAllowed') {
+                        /* eslint-disable */
+                        isMultiSelectAllowedValue = row.original.isMultiSelectAllowed;
+                        /* eslint-enable */
+                    }
+                });
+
+                return (
+                    <RowSelectionCheckbox
+                        isDisabled={!isMultiSelectAllowedValue}
+                        selectedProps={row.getToggleRowSelectedProps()}
+                    />
+                );
+            },
+            Header: ({ getToggleAllRowsSelectedProps, rows }: HeaderProps<never>) => (
+                <RowSelectionCheckbox
+                    isDisabled={rows.length === 0}
+                    isHeader
+                    selectedProps={getToggleAllRowsSelectedProps()}
+                />
+            ),
+            disableGroupBy: true,
+            disableResizing: true,
+            hasCellPadding: false,
+            id: '_selector',
+            maxWidth: 32,
+            minWidth: 32,
+            width: 32,
+        },
+        ...columns,
+    ]);
+
+    hooks.useInstanceBeforeDimensions.push(({ headerGroups }) => {
+        // fix the parent group of the selection button to not be resizable
+        const selectionGroupHeader = headerGroups[0].headers[0];
+        selectionGroupHeader.canResize = false;
+    });
+};
 
 // Mind the order of the hooks, this is not random, but required by the package
 /* eslint-disable @typescript-eslint/ban-types */
@@ -56,46 +120,46 @@ export const createTable = <T extends object>(
         [columns]
     );
 
-    return useTable<T>(
-        {
-            columns: columnsWithDefaultProps,
-            data,
-            defaultColumn,
-            initialState: {
-                ...initialState,
-                locale,
-            },
-            isMultiSelect,
+    const tableOptions = {
+        columns: columnsWithDefaultProps,
+        data,
+        defaultColumn,
+        initialState: {
+            ...initialState,
+            locale,
         },
-        useResizeColumns,
-        useFlexLayout,
-        useColumnOrder,
-        useGlobalFilter,
-        useFilters,
-        useGroupBy,
-        useRowState,
-        useSortBy,
-        useExpanded,
-        usePagination,
-        useRowSelect,
-        (hooks) => {
-            hooks.visibleColumns.push((tableRowColumns) =>
-                isMultiSelect
-                    ? [
-                          // Let's make a column for selection
-                          {
-                              Cell: ({ row }) => <RowSelectionCheckbox {...row.getToggleRowSelectedProps()} />,
-                              Header: ({ getToggleAllRowsSelectedProps }) => (
-                                  <RowSelectionCheckbox {...getToggleAllRowsSelectedProps()} />
-                              ),
-                              id: 'selection',
-                          },
-                          ...tableRowColumns,
-                      ]
-                    : []
-            );
-        }
-    );
+    };
+
+    return isMultiSelect
+        ? useTable<T>(
+              tableOptions,
+              useResizeColumns,
+              useFlexLayout,
+              useColumnOrder,
+              useGlobalFilter,
+              useFilters,
+              useGroupBy,
+              useRowState,
+              useSortBy,
+              useExpanded,
+              usePagination,
+              useRowSelect,
+              selectionHook // required for multi select
+          )
+        : useTable<T>(
+              tableOptions,
+              useResizeColumns,
+              useFlexLayout,
+              useColumnOrder,
+              useGlobalFilter,
+              useFilters,
+              useGroupBy,
+              useRowState,
+              useSortBy,
+              useExpanded,
+              usePagination,
+              useRowSelect
+          );
 };
 
 export default createTable;

@@ -31,8 +31,8 @@ export const Configurable: FunctionComponent = () => {
     const [hasGroupHeader, setHasGroupHeader] = useState(false);
     const [isEmpty, setIsEmpty] = useState(false);
     const [isFooterVisible, setIsFooterVisible] = useState(false);
-    const columns = useMemo(() => tableColumns(), []);
-    const columnsWithGroupHeader = useMemo(() => tableColumnsWithGroupHeader(), []);
+    const columns = useMemo(() => tableColumns(false), []);
+    const columnsWithGroupHeader = useMemo(() => tableColumnsWithGroupHeader(false), []);
 
     const data = useMemo(() => {
         if (isEmpty) {
@@ -140,11 +140,68 @@ export const Configurable: FunctionComponent = () => {
     );
 };
 
-export const ConfigurableEmptyTableMessage: FunctionComponent = () => {
-    const columns = useMemo(() => tableColumns(), []);
-    const data = useMemo(() => [] as TableData[], []);
+export const ConfigurableMultiSelectTable: FunctionComponent = () => {
+    const columns = useMemo(() => tableColumns(true), []);
+    const data = useMemo(() => tableData(), []);
     const localizedTexts = createLocalizedTableTexts('nl');
 
+    const instance = createTable<TableData>(
+        columns,
+        data,
+        {
+            sortBy: [
+                {
+                    desc: false,
+                    id: 'lastName',
+                },
+                {
+                    desc: false,
+                    id: 'firstName',
+                },
+            ],
+        },
+        {
+            width: 100,
+        },
+        Locale.NL,
+        true
+    );
+
+    return instance ? (
+        <>
+            <Table<TableData>
+                caption={text('Table caption', 'Table caption multi select')}
+                elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
+                footerTitleColumnSpan={number('Number of columns for first footer text', 2)}
+                instance={instance}
+                isFullWidth={boolean('Is full width', true)}
+                onClickRow={getTableRow}
+                paginator={<Paginator<TableData> instance={instance} texts={createLocalizedPagingTexts('nl')} />}
+                texts={{ sortByTooltip: localizedTexts.sortByTooltip }}
+            />
+
+            <p>{`Selected Rows: ${Object.keys(instance.selectedFlatRows).length}`}</p>
+            <pre>
+                <code>
+                    {JSON.stringify(
+                        {
+                            selectedRowIds: instance.selectedFlatRows.map((d) => d.original),
+                        },
+                        null,
+                        2
+                    )}
+                </code>
+            </pre>
+        </>
+    ) : (
+        <div>{'Loading...'}</div>
+    );
+};
+
+export const ConfigurableEmptyTableMessage: FunctionComponent = () => {
+    const columns = useMemo(() => tableColumns(false), []);
+    const data = useMemo(() => [] as TableData[], []);
+    const localizedTexts = createLocalizedTableTexts('nl');
     const instance = createTable<TableData>(columns, data);
 
     return (
@@ -162,10 +219,9 @@ export const ConfigurableEmptyTableMessage: FunctionComponent = () => {
 };
 
 export const ConfigurableEmptyTableCard: FunctionComponent = () => {
-    const columns = useMemo(() => tableColumns(), []);
+    const columns = useMemo(() => tableColumns(false), []);
     const data = useMemo(() => [] as TableData[], []);
     const localizedTexts = createLocalizedTableTexts('nl');
-
     const instance = createTable<TableData>(columns, data);
 
     return (
