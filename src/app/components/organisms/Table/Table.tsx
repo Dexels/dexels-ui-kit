@@ -76,10 +76,10 @@ export const Table = <T extends object>({
 }: TableProps<T>): JSX.Element => {
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
 
-    let hasFooterColumns = false;
     const [availableTableWidth, setAvailableTableWidth] = useState(0);
     const [locale, setLocale] = useState(instance.initialState?.locale);
     const tableWrapperRef = useRef<HTMLDivElement>(null);
+    let hasFooterColumns = false;
 
     // This const contains the calculated widths in pixels.
     // Mind the fact that the default value for missing widths = 100
@@ -104,6 +104,7 @@ export const Table = <T extends object>({
         [instance]
     );
 
+    // (re)set the locale on change
     useEffect(() => {
         setLocale(instance.initialState?.locale);
     }, [instance.initialState]);
@@ -182,7 +183,7 @@ export const Table = <T extends object>({
                                 return (
                                     <TableRow
                                         id={`TableRow_${index}`}
-                                        isClickable={Boolean(onClickRow)}
+                                        isClickable={!row.isDisabled && Boolean(onClickRow)}
                                         onClick={
                                             onClickRow
                                                 ? (event: SyntheticEvent): void => {

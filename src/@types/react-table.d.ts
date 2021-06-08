@@ -87,5 +87,7 @@ declare module 'react-table' {
     export interface Row<D extends object = {}>
         extends UseExpandedRowProps<D>,
             UseGroupByRowProps<D>,
-            UseRowSelectRowProps<D> {}
+            UseRowSelectRowProps<D> {
+        isDisabled?: boolean;
+    }
 }

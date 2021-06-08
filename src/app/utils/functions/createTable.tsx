@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     CellProps,
     Column,
     HeaderProps,
     Hooks,
+    Row,
     TableInstance,
     TableState,
     useColumnOrder,
@@ -15,6 +18,7 @@ import {
     usePagination,
     useResizeColumns,
     useRowSelect,
+    UseRowSelectHooks,
     useRowState,
     useSortBy,
     useTable,
@@ -23,57 +27,53 @@ import React, { useMemo } from 'react';
 import { DEFAULT_LOCALE } from '../../../global/constants';
 import { RowSelectionCheckbox } from '../../components/organisms/Table/RowSelectionCheckbox/RowSelectionCheckbox';
 
-// @TODO: figure out how to deal with non selectable rows
-// const setSelectOptions = (hooks: Hooks<any>) => {
-//     hooks.getToggleAllRowsSelectedProps = [
-//         (props, { instance }) => [
-//             props,
-//             {
-//                 onChange: () => {
-//                     instance.page.forEach((row) =>
-//                         row.toggleRowSelected(!instance.page.every((row) => row.isSelected))
-//                     );
-//                 },
-//                 style: { cursor: 'pointer' },
-//                 checked: instance.page.every((row) => row.isSelected),
-//                 title: 'Toggle All Rows Selected',
-//                 indeterminate: Boolean(
-//                     !instance.isAllRowsSelected && Object.keys(instance.state.selectedRowIds).length
-//                 ),
-//             },
-//         ],
-//     ];
-// };
+const selectionHook = (propNameRowSelectAllowed: string) => (hooks: Hooks<any>) => {
+    hooks.getToggleAllPageRowsSelectedProps.push((props: HeaderProps<never>, { instance }: UseRowSelectHooks<D>) => [
+        props,
+        {
+            checked: instance.page.every((row: Row) => row.isSelected),
+            indeterminate: Boolean(!instance.isAllRowsSelected && Object.keys(instance.state.selectedRowIds).length),
+            onChange: () => {
+                instance.page.forEach((row: Row) => {
+                    const isRowSelectAllowedValue =
+                        row.original[propNameRowSelectAllowed] !== undefined
+                            ? row.original[propNameRowSelectAllowed]
+                            : true;
 
-const selectionHook = (hooks: Hooks<any>) => {
+                    if (isRowSelectAllowedValue) {
+                        row.toggleRowSelected();
+                    }
+                });
+            },
+            style: { cursor: 'pointer' },
+        },
+    ]);
+
     hooks.allColumns.push((columns) => [
         // Let's make a column for selection
         {
             Cell: ({ row }: CellProps<any>) => {
-                let isMultiSelectAllowedValue = true;
+                const isRowSelectAllowedValue =
+                    row.original[propNameRowSelectAllowed] !== undefined
+                        ? row.original[propNameRowSelectAllowed]
+                        : true;
 
-                // Check if the key isMultiSelectAllowed has been provided for disabling the select option
-                // Mind the fact that this does not prevent the select all option from altering this value
-                Object.keys(row.original).forEach((item) => {
-                    if (item === 'isMultiSelectAllowed') {
-                        /* eslint-disable */
-                        isMultiSelectAllowedValue = row.original.isMultiSelectAllowed;
-                        /* eslint-enable */
-                    }
-                });
+                // Set disabled prop for usage in getToggleAllRowsSelectedProps
+                // eslint-disable-next-line no-param-reassign
+                row.isDisabled = !isRowSelectAllowedValue;
 
                 return (
                     <RowSelectionCheckbox
-                        isDisabled={!isMultiSelectAllowedValue}
+                        isDisabled={!isRowSelectAllowedValue}
                         selectedProps={row.getToggleRowSelectedProps()}
                     />
                 );
             },
-            Header: ({ getToggleAllRowsSelectedProps, rows }: HeaderProps<never>) => (
+            Header: ({ getToggleAllPageRowsSelectedProps, rows }: HeaderProps<never>) => (
                 <RowSelectionCheckbox
                     isDisabled={rows.length === 0}
                     isHeader
-                    selectedProps={getToggleAllRowsSelectedProps()}
+                    selectedProps={getToggleAllPageRowsSelectedProps()}
                 />
             ),
             disableGroupBy: true,
@@ -102,7 +102,8 @@ export const createTable = <T extends object>(
     initialState?: Partial<TableState<T>>,
     defaultColumn?: Partial<Column<T>>,
     locale = DEFAULT_LOCALE,
-    isMultiSelect = false
+    isMultiSelect = false,
+    propNameRowSelectAllowed = 'isRowSelectAllowed'
 ): TableInstance<T> => {
     const columnsWithDefaultProps = useMemo(
         () =>
@@ -130,6 +131,7 @@ export const createTable = <T extends object>(
         },
     };
 
+    // @TODO: figure out how to make the selectionHook conditional
     return isMultiSelect
         ? useTable<T>(
               tableOptions,
@@ -144,7 +146,7 @@ export const createTable = <T extends object>(
               useExpanded,
               usePagination,
               useRowSelect,
-              selectionHook // required for multi select
+              selectionHook(propNameRowSelectAllowed) // required for multi select
           )
         : useTable<T>(
               tableOptions,

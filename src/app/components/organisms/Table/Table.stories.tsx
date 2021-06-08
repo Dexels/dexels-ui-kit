@@ -11,6 +11,7 @@ import { tableColumns, tableColumnsWithGroupHeader } from './mockup/tableColumns
 import { tableData, TableData } from './mockup/tableData';
 import CardNoResults from '../../molecules/CardNoResults/CardNoResults';
 import { createTable } from '../../../utils/functions/createTable';
+import { getSelectedRowIds } from './utils/tableFunctions';
 import notes from './notes.md';
 import Paginator from './Paginator/Paginator';
 import SelectionControl from '../../molecules/SelectionControl/SelectionControl';
@@ -149,6 +150,7 @@ export const ConfigurableMultiSelectTable: FunctionComponent = () => {
         columns,
         data,
         {
+            selectedRowIds: getSelectedRowIds(data),
             sortBy: [
                 {
                     desc: false,
@@ -179,13 +181,19 @@ export const ConfigurableMultiSelectTable: FunctionComponent = () => {
                 paginator={<Paginator<TableData> instance={instance} texts={createLocalizedPagingTexts('nl')} />}
                 texts={{ sortByTooltip: localizedTexts.sortByTooltip }}
             />
-
             <p>{`Selected Rows: ${Object.keys(instance.selectedFlatRows).length}`}</p>
             <pre>
                 <code>
                     {JSON.stringify(
                         {
                             selectedRowIds: instance.selectedFlatRows.map((d) => d.original),
+                        },
+                        null,
+                        2
+                    )}
+                    {JSON.stringify(
+                        {
+                            selectedRowIds: instance.state.selectedRowIds,
                         },
                         null,
                         2
