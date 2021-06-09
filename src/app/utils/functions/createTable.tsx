@@ -41,10 +41,8 @@ const selectionHook =
                 ),
                 onChange: () => {
                     instance.page.forEach((row: Row<D>) => {
-                        if (
-                            row.original[propNameRowSelectAllowed as keyof D] === undefined ||
-                            row.original[propNameRowSelectAllowed as keyof D]
-                        ) {
+                        // Skip rows that are set to disabled
+                        if (!row.isDisabled) {
                             row.toggleRowSelected();
                         }
                     });
@@ -54,7 +52,6 @@ const selectionHook =
         ];
 
         hooks.allColumns.push((columns) => [
-            // Let's make a column for selection
             {
                 Cell: ({ row }: CellProps<any>) => {
                     const isRowSelectAllowedValue =

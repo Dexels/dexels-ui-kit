@@ -75,7 +75,6 @@ export const Table = <T extends object>({
     texts,
 }: TableProps<T>): JSX.Element => {
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
-
     const [availableTableWidth, setAvailableTableWidth] = useState(0);
     const [locale, setLocale] = useState(instance.initialState?.locale);
     const tableWrapperRef = useRef<HTMLDivElement>(null);
@@ -273,6 +272,7 @@ export const Table = <T extends object>({
                                                                     : 1
                                                             }
                                                             hasCellPadding={column.hasCellPadding}
+                                                            id={`TableFooterCell_${index}`}
                                                             isClickable={false}
                                                             isCurrency={column.isCurrency || false}
                                                             isDisabled={isDisabled}

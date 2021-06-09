@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import React, { ReactNode } from 'react';
-import { UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
+import { TableInstance, UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import Icon from '../../../atoms/Icon/Icon';
 import { IconType } from '../../../../types';
 
@@ -103,3 +103,7 @@ export const getSelectedRowIds = (data: Array<object>): Record<string, boolean> 
 
     return output;
 };
+
+// Convenience function so you can skip the map function all the time
+export const getSelectedRows = <T extends object>(instance: TableInstance<T>): T[] =>
+    instance.selectedFlatRows.map((d) => d.original);
