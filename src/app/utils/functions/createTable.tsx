@@ -32,24 +32,27 @@ const selectionHook =
     (propNameRowSelectAllowed: string) =>
     <D extends object>(hooks: Hooks<any>) => {
         // eslint-disable-next-line no-param-reassign
-        hooks.getToggleAllPageRowsSelectedProps = (props: HeaderProps<never>, { instance }: MetaBase<D>) => [
-            props,
-            {
-                checked: instance.page.every((row: Row<D>) => row.isSelected),
-                indeterminate: Boolean(
-                    !instance.isAllRowsSelected && Object.keys(instance.state.selectedRowIds).length
-                ),
-                onChange: () => {
-                    instance.page.forEach((row: Row<D>) => {
-                        // Skip rows that are set to disabled
-                        if (!row.isDisabled) {
-                            row.toggleRowSelected();
-                        }
-                    });
+        hooks.getToggleAllPageRowsSelectedProps = (props: HeaderProps<never>, { instance }: MetaBase<D>) => {
+            const isAllSelected = instance.page.every((row: Row<D>) => row.isDisabled || row.isSelected); // counting disabled rows as selected for all so that disabled not selected rows will not make allSelected false.
+            const isSomeSelected = instance.page.some((row: Row<D>) => !row.isDisabled && row.isSelected); // counting disabled rows as not selected for some so that disabled selected rows don't get counted for some.
+
+            return [
+                props,
+                {
+                    checked: isAllSelected,
+                    indeterminate: !isAllSelected && isSomeSelected,
+                    onChange: () => {
+                        instance.page.forEach((row: Row<D>) => {
+                            // Skip rows that are set to disabled
+                            if (!row.isDisabled) {
+                                row.toggleRowSelected(!(isAllSelected || isSomeSelected));
+                            }
+                        });
+                    },
+                    style: { cursor: 'pointer' },
                 },
-                style: { cursor: 'pointer' },
-            },
-        ];
+            ];
+        };
 
         hooks.allColumns.push((columns) => [
             {

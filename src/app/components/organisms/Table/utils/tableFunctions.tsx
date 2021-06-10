@@ -91,15 +91,13 @@ export const getSelectedRowIds = <T extends SelectableRowObject>(data: Array<T>)
     const getSelectedIds: number[] = [];
     data.forEach((item, index) => item.isRowSelected && getSelectedIds.push(index));
 
-    const output = getSelectedIds.reduce(
+    return getSelectedIds.reduce(
         (accumulator, currentValue) => ({
             ...accumulator,
             [currentValue.toString()]: true,
         }),
         {}
     );
-
-    return output;
 };
 
 // Convenience function so you can skip the map function all the time
