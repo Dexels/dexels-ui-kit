@@ -75,10 +75,10 @@ export const Table = <T extends object>({
     texts,
 }: TableProps<T>): JSX.Element => {
     const { footerGroups, getTableBodyProps, getTableProps, headerGroups, prepareRow } = instance;
-    let hasFooterColumns = false;
     const [availableTableWidth, setAvailableTableWidth] = useState(0);
     const [locale, setLocale] = useState(instance.initialState?.locale);
     const tableWrapperRef = useRef<HTMLDivElement>(null);
+    let hasFooterColumns = false;
 
     // This const contains the calculated widths in pixels.
     // Mind the fact that the default value for missing widths = 100
@@ -103,6 +103,7 @@ export const Table = <T extends object>({
         [instance]
     );
 
+    // (re)set the locale on change
     useEffect(() => {
         setLocale(instance.initialState?.locale);
     }, [instance.initialState]);
@@ -175,12 +176,13 @@ export const Table = <T extends object>({
                         </TableHead>
                         <TableBody elevation={elevation} {...getTableBodyProps()}>
                             {/* USE A CONST (SEE TOP OF FILE) TO DETERMINE CORRECT DATA SOURCE FOR READING (PAGE OR ROWS) */}
-                            {dataSource(instance, Boolean(paginator)).map((row) => {
+                            {dataSource(instance, Boolean(paginator)).map((row, index) => {
                                 prepareRow(row);
 
                                 return (
                                     <TableRow
-                                        isClickable={Boolean(onClickRow)}
+                                        id={`TableRow_${index}`}
+                                        isClickable={!row.isDisabled && Boolean(onClickRow)}
                                         onClick={
                                             onClickRow
                                                 ? (event: SyntheticEvent): void => {
@@ -192,7 +194,7 @@ export const Table = <T extends object>({
                                     >
                                         {row.cells
                                             .filter(({ column }) => column.isVisible)
-                                            .map((cell) => {
+                                            .map((cell, cellIndex) => {
                                                 // Check if we need to do some looping for the footer based on aggregate setting
                                                 hasFooterColumns = hasFooterColumns || Boolean(cell.column.aggregate);
 
@@ -200,6 +202,7 @@ export const Table = <T extends object>({
                                                     <TableCell
                                                         {...cell.getCellProps()}
                                                         hasCellPadding={cell.column.hasCellPadding}
+                                                        id={`TableCell_${cellIndex}`}
                                                         isClickable={Boolean(cell.column.onClick)}
                                                         onClick={(event: SyntheticEvent): void => {
                                                             if (cell.column.onClick) {
@@ -220,7 +223,10 @@ export const Table = <T extends object>({
                                                                 : cell.column.width
                                                         }
                                                     >
-                                                        <TableCellContent align={cell.column.align || Alignment.LEFT}>
+                                                        <TableCellContent
+                                                            align={cell.column.align || Alignment.LEFT}
+                                                            id={`TableCellContent_${cellIndex}`}
+                                                        >
                                                             {cell.isGrouped ? (
                                                                 // If it's a grouped cell, add an expander and row count
                                                                 <>
@@ -266,6 +272,7 @@ export const Table = <T extends object>({
                                                                     : 1
                                                             }
                                                             hasCellPadding={column.hasCellPadding}
+                                                            id={`TableFooterCell_${index}`}
                                                             isClickable={false}
                                                             isCurrency={column.isCurrency || false}
                                                             isDisabled={isDisabled}

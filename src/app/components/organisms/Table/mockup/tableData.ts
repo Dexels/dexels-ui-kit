@@ -9,6 +9,8 @@ export interface TableData {
     id: string;
     infix?: string;
     info?: number;
+    isRowSelectAllowed?: boolean;
+    isRowSelected?: boolean;
     lastName: string;
     relationStart?: Moment;
     status: Status;
@@ -26,6 +28,7 @@ const makeTableData = (amount = 15): TableData[] => {
             id: `${i}`,
             infix: undefined,
             info: undefined,
+            isRowSelected: i <= 1,
             lastName: `Lastname ${i}`,
             relationStart: moment(),
             status: Status.VALID,
@@ -46,6 +49,8 @@ export const tableData = (): TableData[] => {
         id: '186',
         infix: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         info: 66,
+        isRowSelectAllowed: false,
+        isRowSelected: false,
         lastName: 'Achternaam',
         relationStart: moment(),
         status: Status.INVALID,
@@ -59,6 +64,7 @@ export const tableData = (): TableData[] => {
         id: '187',
         infix: undefined,
         info: -66,
+        isRowSelected: true,
         lastName: 'Versteeg',
         relationStart: moment(),
         status: Status.INVALID,
@@ -72,6 +78,8 @@ export const tableData = (): TableData[] => {
         id: '188',
         infix: 'een net iets te lange infix',
         info: 66,
+        isRowSelectAllowed: false,
+        isRowSelected: true,
         lastName: 'Achternaam met best veel tekens in de naam',
         relationStart: moment(),
         status: Status.INVALID,

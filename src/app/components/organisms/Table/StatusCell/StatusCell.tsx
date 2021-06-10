@@ -7,6 +7,7 @@ import { IconCustomizableSize } from '../../../molecules/IconCustomizable/types'
 import { ThemeContext } from 'styled-components';
 
 export interface StatusCellProps {
+    hasStatusIndicator?: boolean;
     icon?: IconType;
     iconColor?: string;
     image?: string | ReactNode;
@@ -14,14 +15,21 @@ export interface StatusCellProps {
     tooltipText?: string;
 }
 
-export const StatusCell: FunctionComponent<StatusCellProps> = ({ icon, iconColor, image, status, tooltipText }) => {
+export const StatusCell: FunctionComponent<StatusCellProps> = ({
+    hasStatusIndicator = true,
+    icon,
+    iconColor,
+    image,
+    status,
+    tooltipText,
+}) => {
     const theme = useContext(ThemeContext);
 
     return (
         <StyledStatusIndicator
             background="inherit"
             placement={Placement.LEFT}
-            size={StatusIndicatorSize.LARGE}
+            size={!hasStatusIndicator ? StatusIndicatorSize.NONE : StatusIndicatorSize.LARGE}
             status={status}
             tooltipText={tooltipText}
         >

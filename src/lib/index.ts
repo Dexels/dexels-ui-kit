@@ -103,6 +103,7 @@ export {
     parseMomentToTimePickerValue,
     parseTimePickerValueToClocktime,
 } from '../app/utils/functions/timePickerFunctions';
+export { getSelectedRowIds, getSelectedRows } from '../app/components/organisms/Table/utils/tableFunctions';
 export { toBoolean } from '../app/utils/functions/toBoolean';
 export { toNumber } from '../app/utils/functions/toNumber';
 export { toString } from '../app/utils/functions/toString';

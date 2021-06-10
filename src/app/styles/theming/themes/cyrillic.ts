@@ -22,7 +22,7 @@ const themeCyrillicValues: Theme = createDuiTheme(themeBasicDefinition(fontFamil
         nine: '#FFFFFF',
     },
     colorPrimary: '#647B96',
-    colorSecondary: '#C2C2C2',
+    colorSecondary: '#009FFD',
     colorTertiary: '#D6D6D6',
     colorAlert,
     colorInvalid,
@@ -160,6 +160,8 @@ export const themeCyrillic: Theme = {
         row: {
             backgroundColorEven: themeCyrillicValues.hover.backgroundColor,
             backgroundColorOdd: themeCyrillicValues.shades.nine,
+            borderColorRowSelector: themeCyrillicValues.shades.five,
+            borderColorRowSelectorDisabled: themeCyrillicValues.shades.six,
         },
     },
 };

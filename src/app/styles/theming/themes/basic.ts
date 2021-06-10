@@ -162,6 +162,8 @@ export const themeBasicDefinition = (fontFamilyPrimary: string, fontFamilySecond
         row: {
             backgroundColorEven: hover.backgroundColor,
             backgroundColorOdd: shades.nine,
+            borderColorRowSelector: shades.five,
+            borderColorRowSelectorDisabled: colorDisabled,
         },
     },
     textStyles: {

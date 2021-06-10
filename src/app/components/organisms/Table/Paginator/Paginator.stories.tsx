@@ -14,7 +14,7 @@ export const Configurable: FunctionComponent = () => {
     const localizedTexts = createLocalizedPagingTexts(isNL ? 'nl' : 'en');
     const data = tableData();
 
-    const instance = createTable<TableData>(tableColumns(), data, {
+    const instance = createTable<TableData>(tableColumns(false), data, {
         pageIndex: 0,
         sortBy: [
             {

@@ -430,6 +430,7 @@ export enum Status {
 
 export enum StatusIndicatorSize {
     LARGE = 'LARGE',
+    NONE = 'NONE', // Weird but necessary for multi select table variant
     SMALL = 'SMALL',
 }
 
@@ -572,6 +573,8 @@ export interface Theme {
         row: {
             backgroundColorEven: string;
             backgroundColorOdd: string;
+            borderColorRowSelector: string;
+            borderColorRowSelectorDisabled: string;
         };
     };
     textStyles: {

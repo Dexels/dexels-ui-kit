@@ -11,6 +11,7 @@ import { transitionEffect } from '../../../styles/mixins/transitionEffects';
 interface StyledSelectionControlProps {
     hasHorizontalCorrection: boolean;
     hasVerticalCorrection: boolean;
+    size: SelectionControlSize;
     type: SelectionControlType;
 }
 
@@ -18,18 +19,18 @@ export const StyledSelectionControl = styled.div<StyledSelectionControlProps>`
     ${setBoxSizing()}
     display: flex;
 
-    ${({ hasHorizontalCorrection, hasVerticalCorrection, theme, type }): FlattenSimpleInterpolation => css`
+    ${({ hasHorizontalCorrection, hasVerticalCorrection, size, theme, type }): FlattenSimpleInterpolation => css`
         ${type === SelectionControlType.CHECKBOX &&
         css`
             ${hasHorizontalCorrection &&
             css`
-                margin-left: ${theme.spacing(-1)};
+                margin-left: ${theme.spacing(size === SelectionControlSize.SMALL ? -0.5 : -1)};
             `}
 
             ${hasVerticalCorrection &&
             css`
-                margin-top: ${theme.spacing(-1)};
-                margin-bottom: ${theme.spacing(-1)};
+                margin-top: ${theme.spacing(size === SelectionControlSize.SMALL ? -0.5 : -1)};
+                margin-bottom: ${theme.spacing(size === SelectionControlSize.SMALL ? -0.5 : -1)};
             `}
         `}
 
@@ -37,13 +38,13 @@ export const StyledSelectionControl = styled.div<StyledSelectionControlProps>`
         css`
             ${hasHorizontalCorrection &&
             css`
-                margin-left: ${theme.spacing(-1.25)};
+                margin-left: ${theme.spacing(size === SelectionControlSize.SMALL ? -0.75 : -1.25)};
             `}
 
             ${hasVerticalCorrection &&
             css`
-                margin-top: ${theme.spacing(-1.25)};
-                margin-bottom: ${theme.spacing(-1.25)};
+                margin-top: ${theme.spacing(size === SelectionControlSize.SMALL ? -0.75 : -1.25)};
+                margin-bottom: ${theme.spacing(size === SelectionControlSize.SMALL ? -0.75 : -1.25)};
             `}
         `}
     `}
@@ -52,6 +53,7 @@ export const StyledSelectionControl = styled.div<StyledSelectionControlProps>`
 interface InputWrapperProps {
     direction: Direction;
     isDisabled: boolean;
+    size: SelectionControlSize;
     transitionDuration: number;
     transitionEasing: Easing;
 }
@@ -63,8 +65,8 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     order: ${({ direction }): number => (direction === Direction.LTR ? 1 : 2)};
     z-index: 1;
     border-radius: 100%;
-    width: ${({ theme }): string => theme.spacing(5)};
-    height: ${({ theme }): string => theme.spacing(5)};
+    width: ${({ size, theme }): string => theme.spacing(size === SelectionControlSize.SMALL ? 4 : 5)};
+    height: ${({ size, theme }): string => theme.spacing(size === SelectionControlSize.SMALL ? 4 : 5)};
     overflow: hidden;
     pointer-events: none;
 
@@ -136,6 +138,7 @@ interface FakeInputProps {
     isDisabled: boolean;
     isHovered: boolean;
     isIndeterminate: boolean;
+    isTableElement: boolean;
     isValid: boolean;
     size: SelectionControlSize;
     type: SelectionControlType;
@@ -204,11 +207,17 @@ export const FakeInput = styled.div<FakeInputProps>`
             `}
         `}
 
-    ${({ hasError, isDisabled, isHovered, isValid, theme }): SimpleInterpolation =>
+    ${({ hasError, isDisabled, isHovered, isTableElement, isValid, theme }): SimpleInterpolation =>
         css`
             /* stylelint-disable indentation */
             border-color: ${getBorderColor({
-                defaultColor: theme.colorPrimary,
+                defaultColor:
+                    // eslint-disable-next-line no-nested-ternary
+                    isTableElement && !isDisabled
+                        ? theme.table.row.borderColorRowSelector
+                        : isTableElement && isDisabled
+                        ? theme.table.row.borderColorRowSelectorDisabled
+                        : theme.colorPrimary,
                 hasError,
                 isDisabled,
                 isHovered,

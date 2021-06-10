@@ -26,10 +26,11 @@ export interface SelectionControlProps {
     isChecked?: boolean;
     isDisabled?: boolean;
     isIndeterminate?: boolean;
+    isTableElement?: boolean;
     isValid?: boolean;
     label: ReactNode;
     name: string;
-    onChange: (event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>) => void;
     size?: SelectionControlSize;
     transitionDuration?: number;
     transitionEasing?: Easing;
@@ -49,6 +50,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
     isChecked = false,
     isDisabled = false,
     isIndeterminate = false,
+    isTableElement = false,
     isValid = false,
     label,
     name,
@@ -74,12 +76,14 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                 hasVerticalCorrection={hasVerticalCorrection}
                 onMouseEnter={onToggleHover}
                 onMouseLeave={onToggleHover}
+                size={size}
                 type={type}
                 {...rest}
             >
                 <InputWrapper
                     direction={direction}
                     isDisabled={isDisabled}
+                    size={size}
                     transitionDuration={transitionDuration}
                     transitionEasing={transitionEasing}
                 >
@@ -89,6 +93,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                         isDisabled={isDisabled}
                         isHovered={isHovered}
                         isIndeterminate={isIndeterminate}
+                        isTableElement={isTableElement}
                         isValid={isValid}
                         size={size}
                         type={type}

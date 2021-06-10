@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import React, { ReactNode } from 'react';
-import { UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
+import { TableInstance, UseGroupByRowProps, UseSortByColumnProps, UseTableRowProps } from 'react-table';
 import Icon from '../../../atoms/Icon/Icon';
 import { IconType } from '../../../../types';
 
@@ -80,3 +80,26 @@ export const renderSortIcon = <T extends object>(
 
 export const getColumnWidthByPercentage = (availableWidth: number, requestedPercentage: number): number =>
     Math.round((requestedPercentage / 100) * availableWidth);
+
+export interface SelectableRowObject {
+    isRowSelected?: boolean;
+}
+
+// This function is meant to be used for preselecting selected data.
+// Not handling selected items
+export const getSelectedRowIds = <T extends SelectableRowObject>(data: Array<T>): Record<string, boolean> => {
+    const getSelectedIds: number[] = [];
+    data.forEach((item, index) => item.isRowSelected && getSelectedIds.push(index));
+
+    return getSelectedIds.reduce(
+        (accumulator, currentValue) => ({
+            ...accumulator,
+            [currentValue.toString()]: true,
+        }),
+        {}
+    );
+};
+
+// Convenience function so you can skip the map function all the time
+export const getSelectedRows = <T extends object>(instance: TableInstance<T>): T[] =>
+    instance.selectedFlatRows.map((d) => d.original);
