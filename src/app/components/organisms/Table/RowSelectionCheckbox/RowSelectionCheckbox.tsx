@@ -36,10 +36,9 @@ export const RowSelectionCheckbox: FunctionComponent<RowSelectionCheckboxProps> 
                     label=""
                     name={isHeader ? '_selector_header' : '_selector_row'} // @TODO: figure out if the non unique name will cause issues
                     onChange={(event): void => {
-                        // eslint-disable-next-line no-unused-expressions
-                        selectedProps.onChange !== undefined
-                            ? selectedProps.onChange(event as ChangeEvent<HTMLInputElement>)
-                            : undefined;
+                        if (selectedProps.onChange !== undefined) {
+                            selectedProps.onChange(event as ChangeEvent<HTMLInputElement>);
+                        }
                     }}
                     ref={resolvedRef}
                     size={SelectionControlSize.SMALL}

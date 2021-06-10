@@ -87,18 +87,16 @@ export interface SelectableRowObject {
 
 // This function is meant to be used for preselecting selected data.
 // Not handling selected items
-export const getSelectedRowIds = (data: Array<object>): Record<string, boolean> => {
-    const result: number[] = [];
-    data.forEach((item: SelectableRowObject, index) => item.isRowSelected && result.push(index));
-    let output: Record<string, boolean> = {};
+export const getSelectedRowIds = <T extends SelectableRowObject>(data: Array<T>): Record<string, boolean> => {
+    const getSelectedIds: number[] = [];
+    data.forEach((item, index) => item.isRowSelected && getSelectedIds.push(index));
 
-    result.forEach(
-        // eslint-disable-next-line no-return-assign
-        (item: number) =>
-            (output = {
-                ...output,
-                [item]: true,
-            })
+    const output = getSelectedIds.reduce(
+        (accumulator, currentValue) => ({
+            ...accumulator,
+            [currentValue.toString()]: true,
+        }),
+        {}
     );
 
     return output;
