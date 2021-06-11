@@ -26,6 +26,37 @@ export const isEmpty = (value: string | unknown | undefined | null | Array<unkno
 
 export const isObject = (object: unknown): boolean => object != null && typeof object === 'object';
 
+export const modulo = (aNumStr: string, aDiv: number): number => {
+    let tmp = '';
+    let i: number;
+    let r;
+
+    for (i = 0; i < aNumStr.length; i += 1) {
+        tmp += aNumStr.charAt(i);
+        r = toNumber(tmp) % aDiv;
+        tmp = r.toString();
+    }
+
+    return toNumber(tmp) / 1;
+};
+
+export const isValidIBAN = (value: string): boolean => {
+    const rearrange = value.substring(4, value.length) + value.substring(0, 4);
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const alphaMap: Record<string, number> = {};
+    const numberValue: number[] = [];
+
+    alphabet.forEach((letter, index) => {
+        alphaMap[letter] = index + 10;
+    });
+
+    rearrange.split('').forEach((letter, index) => {
+        numberValue[index] = alphaMap[letter] || toNumber(letter);
+    });
+
+    return modulo(numberValue.join('').toString(), 97) === 1;
+};
+
 export const isValidEmail = (value: string): boolean => {
     // eslint-disable-next-line max-len
     const emailRegex =
