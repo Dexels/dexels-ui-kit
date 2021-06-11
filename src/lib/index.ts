@@ -69,9 +69,11 @@ export {
     isEmpty,
     isObject,
     isValidEmail,
+    isValidIBAN,
     isValidMoney,
     isValidNumber,
     isValidPhoneNumber,
+    modulo,
 } from '../app/utils/functions/validateFunctions';
 export { areEqualObjects, getObjectDifference, isObjectPropertyChanged } from '../app/utils/functions/objectFunctions';
 export {
