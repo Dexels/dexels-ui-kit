@@ -24,6 +24,7 @@ export interface EditableDataProps<T extends DropdownOption, U extends DropdownM
     hasError?: boolean;
     isBeingEdited: boolean;
     locale?: Locale;
+    localeCurrency?: Locale;
     onChange: (name: string, value: ValueTypes<T, U>, isCurrency?: boolean, locale?: Locale) => void;
     onDatePickerFocusChange: (name: string, focused: boolean) => void;
     onDropdownChange: (option: T, name: string, propertyNameOfId?: string) => void;
@@ -38,6 +39,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
     datePickerFocuses,
     isBeingEdited,
     locale = DEFAULT_LOCALE,
+    localeCurrency,
     onDatePickerFocusChange,
     onDropdownChange,
     onChange,
@@ -61,7 +63,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                 return {
                     isDisabled,
                     label,
-                    value: getValueOfEditableDataComponent(dataInstance, dateFormat, locale),
+                    value: getValueOfEditableDataComponent(dataInstance, dateFormat, locale, localeCurrency),
                 };
             }
 
@@ -245,7 +247,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             hasError={hasInputError || dataInstance.hasError}
                             isDisabled={isDisabled}
                             isRequired={isRequired}
-                            locale={locale}
+                            locale={localeCurrency || locale}
                             max={dataInstance.max}
                             min={dataInstance.min}
                             name={name}

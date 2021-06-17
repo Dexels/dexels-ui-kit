@@ -44,7 +44,8 @@ export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: b
 export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     element: EditableInformationDataType<T, U>,
     dateFormat: string,
-    locale = DEFAULT_LOCALE
+    locale = DEFAULT_LOCALE,
+    localeCurrency?: Locale
 ): ReactNode => {
     const { component, value } = element;
 
@@ -67,7 +68,11 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
     }
 
     if (component === EditableDataComponent.INPUTCURRENCY && value) {
-        return formatMoney(toMoneyValue(toCents(value.toString()), locale, true), locale);
+        // Let localeCurrency prevail over locale when presnt
+        return formatMoney(
+            toMoneyValue(toCents(value.toString()), localeCurrency || locale, true),
+            localeCurrency || locale
+        );
     }
 
     if (component === EditableDataComponent.SCOREPICKER && Array.isArray(value)) {
