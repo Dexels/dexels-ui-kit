@@ -41,6 +41,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     isSaving?: boolean;
     keepEditMode?: boolean;
     locale?: Locale;
+    localeCurrency?: Locale;
     onCancel?: () => void;
     onChange?: (data: unknown, isDataChanged: boolean) => void;
     onEdit?: () => void;
@@ -71,6 +72,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     isSaving = false,
     keepEditMode = false,
     locale = DEFAULT_LOCALE,
+    localeCurrency, // If absent, use locale
     onCancel,
     onChange,
     onEdit,
@@ -91,7 +93,8 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
     const [isBeingEdited, setIsBeingEdited] = useState(isEditing);
     const [isEditable, setIsEditable] = useState<boolean>(false);
-    const [localeValue, setLocaleValue] = useState(locale);
+    const [localeValue, setLocaleValue] = useState<Locale>(locale);
+    const [localeCurrencyValue, setLocaleCurrencyValue] = useState<Locale>(localeCurrency || locale);
     const [originalValues, setOriginalValues] = useState<EditableDataProps<T, U>['values']>({});
     const [updatedValues, setUpdatedValues] = useState<EditableDataProps<T, U>['values']>({});
 
@@ -102,6 +105,10 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     useEffect(() => {
         setLocaleValue(locale);
     }, [locale]);
+
+    useEffect(() => {
+        setLocaleCurrencyValue(localeCurrency || locale);
+    }, [localeCurrency, locale]);
 
     const onEditCallback = useCallback(() => {
         setIsBeingEdited(true);
@@ -249,6 +256,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
                 hasError,
                 isBeingEdited,
                 locale: localeValue,
+                localeCurrency: localeCurrencyValue,
                 onChange: onChangeCallback,
                 onDatePickerFocusChange: onDatePickerFocusChangeCallback,
                 onDropdownChange: onDropdownChangeCallback,
@@ -267,6 +275,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         isEditable,
         isLoading,
         localeValue,
+        localeCurrencyValue,
         updatedValues,
         onChangeCallback,
         onDatePickerFocusChangeCallback,

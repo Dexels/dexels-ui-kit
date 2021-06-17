@@ -97,6 +97,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
             locale={select('Locale', Locale, DEFAULT_LOCALE)} // Doesn't change dateFormat
+            localeCurrency={select('Locale currency', Locale, DEFAULT_LOCALE)} // Doesn't change dateFormat
             onCancel={onCancelCallback}
             onChange={onChangeCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
