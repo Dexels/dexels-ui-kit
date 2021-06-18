@@ -294,6 +294,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     return onEdit || onSave ? (
         <EditablePanel
             cancelConfirmDialog={cancelConfirmDialog}
+            hasButtons={onSave !== undefined}
             hasError={hasError || !isValidInputData}
             iconCancel={iconCancel}
             iconEdit={iconEdit}
