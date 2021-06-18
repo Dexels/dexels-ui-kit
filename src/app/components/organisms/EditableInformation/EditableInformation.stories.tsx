@@ -24,7 +24,8 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     isEditable = true,
     errors = undefined as unknown as string[],
     warnings = undefined as unknown as string[],
-    isCurrencyOnly = false
+    isCurrencyOnly = false,
+    hasSaveAction = true
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
@@ -101,7 +102,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             onCancel={onCancelCallback}
             onChange={onChangeCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
-            onSave={isEditable ? onSaveCallback : undefined}
+            onSave={hasSaveAction && isEditable ? onSaveCallback : undefined}
             onValidation={isEditable ? onValidationCallback : undefined}
             saveConfirmDialog={
                 withDialogs
@@ -127,6 +128,9 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
 export const Configurable: FunctionComponent = () => BaseComponent(theData());
 
 export const ConfigurableEditingDefault: FunctionComponent = () => BaseComponent(theData(), true);
+
+export const ConfigurableEditingWithoutButtons: FunctionComponent = () =>
+    BaseComponent(theData(), true, false, true, [], [], false, false);
 
 export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => BaseComponent(theData(), false, true);
 

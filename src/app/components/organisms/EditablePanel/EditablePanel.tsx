@@ -9,6 +9,7 @@ import { Dialog } from '../Dialog';
 export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 'options'> {
     cancelConfirmDialog?: ConfirmDialog;
     children: ReactNode;
+    hasButtons?: boolean; // Will be derived from onSave action in parent component
     hasError?: boolean;
     iconCancel?: IconType;
     iconEdit?: IconType;
@@ -31,6 +32,7 @@ export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 
 export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     cancelConfirmDialog,
     children,
+    hasButtons = true,
     hasCapitalizedTitle,
     hasError = false,
     iconCancel = IconType.CROSS,
@@ -133,7 +135,8 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                 hasTitleStatusAppearance
                 iconType={iconType}
                 options={
-                    isBeingEdited ? (
+                    // eslint-disable-next-line no-nested-ternary
+                    !hasButtons ? undefined : isBeingEdited ? (
                         <ButtonWrapper>
                             <Button
                                 iconType={iconCancel}
