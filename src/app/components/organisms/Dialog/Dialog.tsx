@@ -87,17 +87,17 @@ export const Dialog: FunctionComponent<DialogProps> = ({
         >
             <StyledDialog elevation={elevation} isScrollable={isScrollable}>
                 {header && <Header hasHeaderPadding={hasHeaderPadding}>{header}</Header>}
-                <Body hasBodyPadding={hasBodyPadding} hasBorderRadius={isEmpty(header)}>
+                <Body hasBodyPadding={hasBodyPadding} hasBorderRadius={isEmpty(header)} id="DialogBody">
                     {iconType && title && (
                         <StyledTextWithOptionalIcon iconType={iconType}>{title}</StyledTextWithOptionalIcon>
                     )}
-                    <Content iconPlacement={iconPlacement}>
+                    <Content iconPlacement={iconPlacement} id="DialogContent">
                         {iconType && !title && (
                             <IconWrapper status={status}>
                                 <IconCustomizable iconSize={IconCustomizableSize.SIZE32} iconType={iconType} />
                             </IconWrapper>
                         )}
-                        {text && <Text>{text}</Text>}
+                        {text && <Text id="DialogBodyText">{text}</Text>}
                     </Content>
                     {children && (
                         <ChildrenWrapper

@@ -23,6 +23,7 @@ export const Text = styled.p`
     padding: ${({ theme }): string => theme.spacing(0, 2, 0, 0)};
     word-break: break-word;
     color: ${({ theme }): string => theme.colorText.primary};
+    width: 100%;
 `;
 
 Text.defaultProps = {
