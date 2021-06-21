@@ -435,6 +435,7 @@ export enum StatusIndicatorSize {
 }
 
 export interface OptionObject {
+    isDisabled?: boolean;
     label: string;
     value: string | number;
 }
