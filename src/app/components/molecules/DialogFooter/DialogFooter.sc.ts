@@ -21,9 +21,9 @@ export const Text = styled.p`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
     margin: 0;
     padding: ${({ theme }): string => theme.spacing(0, 2, 0, 0)};
+    width: 100%;
     word-break: break-word;
     color: ${({ theme }): string => theme.colorText.primary};
-    width: 100%;
 `;
 
 Text.defaultProps = {
@@ -44,7 +44,7 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
     align-items: center;
     margin: ${({ alignment, theme }): string =>
         theme.spacing(0, alignment === Alignment.LEFT ? 0.5 : 1, 0, alignment === Alignment.LEFT ? 0 : 1)};
-    min-height: 32px;
+    min-height: ${({ theme }): string => theme.spacing(4)};
     vertical-align: middle;
     ${({ alignment }) => alignment === Alignment.LEFT && 'float: left;'}
 
