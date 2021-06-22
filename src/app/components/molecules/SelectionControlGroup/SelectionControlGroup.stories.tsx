@@ -10,6 +10,7 @@ export const Configurable: FunctionComponent = () => {
 
     options.push(
         {
+            isDisabled: false,
             label: 'Girls',
             value: 'female',
         },
@@ -18,6 +19,7 @@ export const Configurable: FunctionComponent = () => {
             value: 'male',
         },
         {
+            isDisabled: true,
             label: 'Mixed',
             value: 'mixed',
         }

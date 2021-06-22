@@ -196,7 +196,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         setIsEditable(isEditableData(data));
     }, [data]);
 
-    // When updated values are changed do validation
+    // When updated values are changed due to validation
     useEffect(() => {
         if (!isEmpty(data) && !isEmpty(updatedValues)) {
             setIsValidInputData(isValidEditableInput(data, updatedValues, localeValue));
