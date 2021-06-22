@@ -207,7 +207,7 @@ interface IconWrapperProps {
 
 export const IconWrapper = styled.div<IconWrapperProps>`
     flex: 0 0 auto;
-    margin: 0 16px 0 0;
+    margin: ${({ theme }): string => theme.spacing(0.75, 2, 0, 0)};
     color: ${({ status, theme }): string => getStatusColor(status, theme)};
 
     span {
