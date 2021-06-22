@@ -105,13 +105,14 @@ export const SelectionControlGroup: FunctionComponent<SelectionControlGroupProps
                                 direction={direction}
                                 hasError={hasError || !isValidInputData}
                                 isChecked={selectedValue === option.value}
-                                isDisabled={isDisabled}
+                                isDisabled={isDisabled || option.isDisabled}
                                 // eslint-disable-next-line react/no-array-index-key
                                 key={index}
+                                label={option.label}
                                 name={groupName}
                                 onChange={onChangeCallback}
                                 type={SelectionControlType.RADIO}
-                                {...option}
+                                value={option.value}
                             />
                         </SelectionControlWrapper>
                     ))}
