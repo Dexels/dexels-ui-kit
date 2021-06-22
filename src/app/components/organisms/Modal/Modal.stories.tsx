@@ -5,8 +5,10 @@ import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '../../molecules/Button/Button';
 import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
+import { EditableInformation } from '../EditableInformation/EditableInformation';
+import { editableInformationData } from '../EditableInformation/mockup/editableInformationData';
 import Modal from './Modal';
-import { SingleDatePicker } from '../DatePicker';
+import { SingleDatePicker } from '../DatePicker/SingleDatePicker/SingleDatePicker';
 
 export default { title: 'organisms/Modal' };
 
@@ -61,31 +63,38 @@ export const ConfigurableModal: FunctionComponent = () => {
                 transitionDuration={number('Transition duration', 500)}
                 transitionEasing={select('Transition type', Easing, Easing.EASE)}
             >
-                <>
-                    {text('Body', 'Some body text')}
-                    <div
-                        className="Parent"
-                        ref={setWrapperElementRef}
-                        style={{
-                            marginLeft: 'auto',
-                            width: '200px',
+                <div
+                    className="Parent"
+                    ref={setWrapperElementRef}
+                    style={{
+                        marginLeft: 'auto',
+                        width: '100%',
+                    }}
+                >
+                    <SingleDatePicker
+                        date={date}
+                        id="datepicker"
+                        isFocused={isFocused}
+                        onDateChange={(newDate): void => {
+                            setDate(newDate);
                         }}
-                    >
-                        <SingleDatePicker
-                            date={date}
-                            id="datepicker"
-                            isFocused={isFocused}
-                            onDateChange={(newDate): void => {
-                                setDate(newDate);
-                            }}
-                            onFocusChange={({ focused }): void => {
-                                setIsFocused(Boolean(focused));
-                            }}
-                            parentContainer={wrapperElementRef || undefined}
-                            placeholder={'Selecteer je datum'}
-                        />
-                    </div>
-                </>
+                        onFocusChange={({ focused }): void => {
+                            setIsFocused(Boolean(focused));
+                        }}
+                        parentContainer={wrapperElementRef || undefined}
+                        placeholder={'Selecteer je datum'}
+                    />
+                    <EditableInformation
+                        amountOfColumns={select('Columns', [1, 2, 3], 2)}
+                        data={editableInformationData()}
+                        iconType={select('Icon Type', IconType, IconType.CALENDAR)}
+                        isButtonDisabled={boolean('Is button disabled', false)}
+                        isDisabled={boolean('Is disabled', false)}
+                        isEditing
+                        isLoading={boolean('Is loading', false)}
+                        title={text('Title', 'Information')}
+                    />
+                </div>
             </Modal>
         </>
     );
