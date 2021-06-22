@@ -55,6 +55,21 @@ export const editableInformationCurrency = <
         isRequired: true,
         label: 'Currency',
         max: 10,
+        min: 1,
+        name: 'EditableCurrencyRequiredDefaultZero',
+        onBlur: onBlurCallback,
+        onFocus: onFocusCallback,
+        onKeyDown: onKeyDownCallback,
+        value: '0',
+    } as EditableInputCurrencyDataProps);
+
+    result.push({
+        component: EditableDataComponent.INPUTCURRENCY,
+        isDisabled: false,
+        isEditable: true,
+        isRequired: true,
+        label: 'Currency',
+        max: 10,
         min: 0,
         name: 'EditableCurrency',
         onBlur: onBlurCallback,
