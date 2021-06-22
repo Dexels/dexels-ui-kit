@@ -156,8 +156,8 @@ export const FakeInput = styled.div<FakeInputProps>`
         type === SelectionControlType.CHECKBOX &&
         css`
             border-radius: ${theme.spacing(0.5)};
-            width: ${theme.spacing(size === SelectionControlSize.SMALL ? 2.25 : 3)};
-            height: ${theme.spacing(size === SelectionControlSize.SMALL ? 2.25 : 3)};
+            width: ${theme.spacing(size === SelectionControlSize.SMALL ? 2 : 3)};
+            height: ${theme.spacing(size === SelectionControlSize.SMALL ? 2 : 3)};
         `}
 
     ${({ size, theme, type }): SimpleInterpolation =>
