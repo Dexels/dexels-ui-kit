@@ -155,7 +155,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
                 onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },
-        [onChange, originalValues, updatedValues]
+        [localeValue, onChange, originalValues, updatedValues]
     );
 
     const onDatePickerFocusChangeCallback = useCallback(
@@ -201,7 +201,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         if (!isEmpty(data) && !isEmpty(updatedValues)) {
             setIsValidInputData(isValidEditableInput(data, updatedValues, localeValue));
         }
-    }, [data, updatedValues]);
+    }, [data, localeValue, updatedValues]);
 
     // When validation of the input data is changed call onValidation to perform action needed outside the component
     useEffect(() => {
@@ -279,6 +279,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         updatedValues,
         onChangeCallback,
         onDatePickerFocusChangeCallback,
+        onDropdownChangeCallback,
     ]);
 
     const cardData = (
