@@ -45,6 +45,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     onCancel?: () => void;
     onChange?: (data: unknown, isDataChanged: boolean) => void;
     onEdit?: () => void;
+    onRequestData?: (data: unknown, isDataChanged: boolean) => void;
     onSave?: (data: { [key: string]: ValueTypes<T, U> }, isDataChanged: boolean) => void;
     onValidation?: (isValidData: boolean) => void;
     saveConfirmDialog?: ConfirmDialog;
@@ -76,6 +77,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     onCancel,
     onChange,
     onEdit,
+    onRequestData,
     onSave,
     onValidation,
     saveConfirmDialog,
@@ -202,6 +204,13 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             setIsValidInputData(isValidEditableInput(data, updatedValues, localeValue));
         }
     }, [data, updatedValues]);
+
+    // We might want to know what the data looks like at any given moment
+    useEffect(() => {
+        if (onRequestData) {
+            onRequestData(updatedValues, !areEqualObjects(originalValues, updatedValues));
+        }
+    }, [originalValues, updatedValues]);
 
     // When validation of the input data is changed call onValidation to perform action needed outside the component
     useEffect(() => {

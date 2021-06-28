@@ -70,6 +70,11 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         console.log('onChangeCallback', newData);
     };
 
+    const onRequestDataCallback = (currentData: unknown, isDataChanged: boolean) => {
+        // eslint-disable-next-line no-console
+        console.log('onRequestDataCallback -> isDataChanged, data', isDataChanged, currentData);
+    };
+
     const onValidationCallback = (isValidData: boolean) => {
         // eslint-disable-next-line no-console
         console.log('onValidationCallback', isValidData);
@@ -102,6 +107,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             onCancel={onCancelCallback}
             onChange={onChangeCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
+            onRequestData={onRequestDataCallback}
             onSave={hasSaveAction && isEditable ? onSaveCallback : undefined}
             onValidation={isEditable ? onValidationCallback : undefined}
             saveConfirmDialog={
