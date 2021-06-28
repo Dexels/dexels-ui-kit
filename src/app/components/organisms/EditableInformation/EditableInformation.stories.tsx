@@ -68,12 +68,15 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     const onChangeCallback = (newData: unknown) => {
         // eslint-disable-next-line no-console
         console.log('onChangeCallback', newData);
+
+        setUpdatedData(
+            isCurrencyOnly
+                ? updateValuesOfCurrency(updatedData, newData as { [key: string]: ValueTypes<T, U> })
+                : updateValuesOfData(updatedData, newData as { [key: string]: ValueTypes<T, U> })
+        );
     };
 
-    const onRequestDataCallback = (currentData: unknown, isDataChanged: boolean) => {
-        // eslint-disable-next-line no-console
-        console.log('onRequestDataCallback -> isDataChanged, data', isDataChanged, currentData);
-    };
+    console.log('root - updatedData', updatedData);
 
     const onValidationCallback = (isValidData: boolean) => {
         // eslint-disable-next-line no-console
@@ -107,7 +110,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             onCancel={onCancelCallback}
             onChange={onChangeCallback}
             onEdit={isEditable ? action('onEdit') : undefined}
-            onRequestData={onRequestDataCallback}
             onSave={hasSaveAction && isEditable ? onSaveCallback : undefined}
             onValidation={isEditable ? onValidationCallback : undefined}
             saveConfirmDialog={
