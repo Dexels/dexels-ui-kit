@@ -1,5 +1,5 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import { AdornmentWrapper, StyledInput, TextField } from './Input.sc';
+import { AdornmentWrapper, StyledInput } from './Input.sc';
 import { formatMoneyWithoutSymbol, toCents, toMoneyValue } from '../../../utils/functions/financialFunctions';
 import {
     isEmpty,
@@ -23,6 +23,7 @@ import React, {
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
+import { TextField } from './component/TextField.sc';
 import toNumber from '../../../utils/functions/toNumber';
 
 export interface InputProps {
