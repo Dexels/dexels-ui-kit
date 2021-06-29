@@ -22,12 +22,12 @@ import {
     isValidInputTelephone,
     isValidInputText,
 } from '../../../../utils/functions/validateFunctions';
+import React, { ReactNode } from 'react';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
 import moment from 'moment';
-import { ReactNode } from 'react';
 
 export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: boolean): Status => {
     if (hasError) {
@@ -65,6 +65,17 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
 
     if (component === EditableDataComponent.DATEPICKER && moment.isMoment(value)) {
         return value.format(dateFormat);
+    }
+
+    if (component === EditableDataComponent.INPUTCURRENCY && value) {
+        return (
+            <span
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                    __html: (value as string) || '',
+                }}
+            />
+        );
     }
 
     if (component === EditableDataComponent.INPUTCURRENCY && value) {
