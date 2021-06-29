@@ -7,7 +7,6 @@ import {
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent } from '../../../../types';
-import React from 'react';
 
 export const updateValuesOfCurrency = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
@@ -33,33 +32,15 @@ export const editableInformationCurrency = <
 >(): EditableInformationData<T, U> => {
     const result: EditableInformationData<T, U> = [];
 
-    const onBlurCallback = (event: React.FocusEvent<HTMLInputElement>): void => {
-        // eslint-disable-next-line no-console
-        console.log('onBlurCallback', event);
-    };
-
-    const onFocusCallback = (event: React.FocusEvent<HTMLInputElement>): void => {
-        // eslint-disable-next-line no-console
-        console.log('onFocusCallback', event);
-    };
-
-    const onKeyDownCallback = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-        // eslint-disable-next-line no-console
-        console.log('onKeyDownCallback', event);
-    };
-
     result.push({
         component: EditableDataComponent.INPUTCURRENCY,
         isDisabled: false,
         isEditable: true,
         isRequired: true,
-        label: 'Currency',
+        label: 'EditableCurrencyRequiredDefaultZero',
         max: 10,
         min: 1,
         name: 'EditableCurrencyRequiredDefaultZero',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
         value: '0',
     } as EditableInputCurrencyDataProps);
 
@@ -68,13 +49,10 @@ export const editableInformationCurrency = <
         isDisabled: false,
         isEditable: true,
         isRequired: true,
-        label: 'Currency',
+        label: 'EditableCurrency',
         max: 10,
         min: 0,
         name: 'EditableCurrency',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
         value: '0.51',
     } as EditableInputCurrencyDataProps);
 
@@ -83,11 +61,8 @@ export const editableInformationCurrency = <
         isDisabled: false,
         isEditable: true,
         isRequired: true,
-        label: 'Currency2',
+        label: 'EditableCurrency2',
         name: 'EditableCurrency2',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
         value: '123.51',
     } as EditableInputCurrencyDataProps);
 
@@ -96,11 +71,8 @@ export const editableInformationCurrency = <
         isDisabled: false,
         isEditable: true,
         isRequired: true,
-        label: 'Currency (comma)',
+        label: 'EditableCurrencyComma',
         name: 'EditableCurrencyComma',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
         value: '451,123.87',
     } as EditableInputCurrencyDataProps);
 
@@ -111,9 +83,6 @@ export const editableInformationCurrency = <
         isRequired: true,
         label: 'NegativeCurrency',
         name: 'NegativeCurrency',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
         value: '-108',
     } as EditableInputCurrencyDataProps);
 
