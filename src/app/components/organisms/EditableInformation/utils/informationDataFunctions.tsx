@@ -67,7 +67,7 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
         return value.format(dateFormat);
     }
 
-    if (component === EditableDataComponent.INPUTCURRENCY && value) {
+    if (component === EditableDataComponent.TEXTAREA_READONLY && value) {
         return (
             <span
                 // eslint-disable-next-line react/no-danger
