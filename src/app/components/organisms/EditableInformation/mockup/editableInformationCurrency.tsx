@@ -1,30 +1,7 @@
-import {
-    EditableInformationData,
-    EditableInformationDataType,
-    EditableInputCurrencyDataProps,
-    ValueTypes,
-} from '../types';
+import { EditableInformationData, EditableInputCurrencyDataProps } from '../types';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent } from '../../../../types';
-
-export const updateValuesOfCurrency = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
-    data: EditableInformationData<T, U>,
-    values: { [key: string]: ValueTypes<T, U> }
-): EditableInformationData<T, U> => {
-    const newData = data.map((element: EditableInformationDataType<T, U>) => {
-        if ('name' in element && element.name in values) {
-            return {
-                ...element,
-                value: values[element.name],
-            };
-        }
-
-        return element;
-    });
-
-    return newData as EditableInformationData<T, U>;
-};
 
 export const editableInformationCurrency = <
     T extends DropdownSelectOption,

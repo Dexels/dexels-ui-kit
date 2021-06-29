@@ -25,7 +25,7 @@ export interface EditableDataProps<T extends DropdownOption, U extends DropdownM
     isBeingEdited: boolean;
     locale?: Locale;
     localeCurrency?: Locale;
-    onChange: (name: string, value: ValueTypes<T, U>, isCurrency?: boolean, locale?: Locale) => void;
+    onChange: (name: string, value: ValueTypes<T, U>, callExternOnChange?: boolean, isCurrency?: boolean) => void;
     onDatePickerFocusChange: (name: string, focused: boolean) => void;
     onDropdownChange: (option: T, name: string, propertyNameOfId?: string) => void;
     values: {
@@ -252,12 +252,14 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             min={dataInstance.min}
                             name={name}
                             onBlur={(event): void => {
+                                onChange(event.currentTarget.name, event.currentTarget.value, true, true);
+
                                 if (dataInstance.onBlur) {
                                     dataInstance.onBlur(event);
                                 }
                             }}
                             onChange={({ currentTarget }): void => {
-                                onChange(currentTarget.name, currentTarget.value, true, locale);
+                                onChange(currentTarget.name, currentTarget.value, false, true);
                             }}
                             onFocus={(event): void => {
                                 if (dataInstance.onFocus) {

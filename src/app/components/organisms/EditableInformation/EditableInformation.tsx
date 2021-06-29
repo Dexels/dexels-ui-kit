@@ -138,7 +138,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [originalValues, onCancel]);
 
     const onChangeCallback = useCallback(
-        (name: string, value: ValueTypes<T, U>, isCurrency = false) => {
+        (name: string, value: ValueTypes<T, U>, callExternOnChange = true, isCurrency = false) => {
             let newValues = {
                 ...updatedValues,
                 [name]: value,
@@ -146,12 +146,12 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
 
             setUpdatedValues(newValues);
 
-            newValues = {
-                ...updatedValues,
-                [name]: isCurrency && value ? convertToLocaleValue(value as string, localeValue) : value,
-            };
+            if (callExternOnChange && onChange) {
+                newValues = {
+                    ...updatedValues,
+                    [name]: isCurrency && value ? convertToLocaleValue(value as string, localeValue) : value,
+                };
 
-            if (onChange) {
                 onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },

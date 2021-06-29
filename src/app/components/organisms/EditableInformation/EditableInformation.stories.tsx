@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { editableInformationCurrency, updateValuesOfCurrency } from './mockup/editableInformationCurrency';
 import { editableInformationData, updateValuesOfData } from './mockup/editableInformationData';
 import { EditableInformationData, ValueTypes } from './types';
 import { IconType, Locale, Status } from '../../../types';
@@ -10,6 +8,7 @@ import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
 import EditableInformation from './EditableInformation';
+import { editableInformationCurrency } from './mockup/editableInformationCurrency';
 import { editableInformationDataWithErrorMessages } from './mockup/editableInformationDataWithErrorMessages';
 
 export default { title: 'organisms/EditableInformation' };
@@ -24,7 +23,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     isEditable = true,
     errors = undefined as unknown as string[],
     warnings = undefined as unknown as string[],
-    isCurrencyOnly = false,
     hasSaveAction = true
 ): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
@@ -43,9 +41,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setIsSaving(true);
         setIsEditing(isEditingMode);
 
-        setUpdatedData(
-            isCurrencyOnly ? updateValuesOfCurrency(updatedData, newData) : updateValuesOfData(updatedData, newData)
-        );
+        setUpdatedData(updateValuesOfData(updatedData, newData));
 
         // Show loading state for 5 seconds
         setTimeout(() => {
@@ -69,14 +65,8 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         // eslint-disable-next-line no-console
         console.log('onChangeCallback', newData);
 
-        setUpdatedData(
-            isCurrencyOnly
-                ? updateValuesOfCurrency(updatedData, newData as { [key: string]: ValueTypes<T, U> })
-                : updateValuesOfData(updatedData, newData as { [key: string]: ValueTypes<T, U> })
-        );
+        setUpdatedData(updateValuesOfData(updatedData, newData as { [key: string]: ValueTypes<T, U> }));
     };
-
-    console.log('root - updatedData', updatedData);
 
     const onValidationCallback = (isValidData: boolean) => {
         // eslint-disable-next-line no-console
@@ -138,7 +128,7 @@ export const Configurable: FunctionComponent = () => BaseComponent(theData());
 export const ConfigurableEditingDefault: FunctionComponent = () => BaseComponent(theData(), true);
 
 export const ConfigurableEditingWithoutButtons: FunctionComponent = () =>
-    BaseComponent(theData(), true, false, true, [], [], false, false);
+    BaseComponent(theData(), true, false, true, [], [], false);
 
 export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => BaseComponent(theData(), false, true);
 
@@ -160,7 +150,7 @@ export const ConfigurableWithWarningsAfterSaving: FunctionComponent = () =>
     BaseComponent(theData(), false, false, true, undefined, ['Warning number 1', 'Warning number 2']);
 
 export const ConfigurableCurrencyOnly: FunctionComponent = () =>
-    BaseComponent(theData(true), false, false, true, undefined, undefined, true);
+    BaseComponent(theData(true), false, false, true, undefined, undefined);
 
 export const ConfigurableCurrencyWithErrorsAfterSaving: FunctionComponent = () =>
     BaseComponent(theData(true), false, false, true, ['Error number 1', 'Error number 2']);
