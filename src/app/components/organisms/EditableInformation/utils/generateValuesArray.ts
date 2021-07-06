@@ -1,5 +1,3 @@
-import { toCents, toMoneyValue } from '../../../../utils/functions/financialFunctions';
-import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { EditableDataComponent } from '../../../../types';
@@ -7,8 +5,7 @@ import { EditableDataProps } from '../editableData/editableData';
 import { EditableInformationData } from '../types';
 
 export const generateValuesArray = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
-    data: EditableInformationData<T, U>,
-    locale = DEFAULT_LOCALE
+    data: EditableInformationData<T, U>
 ): EditableDataProps<T, U>['values'] =>
     data.reduce((accumulator, dataInstance) => {
         if ('name' in dataInstance) {
@@ -36,12 +33,12 @@ export const generateValuesArray = <T extends DropdownSelectOption, U extends Dr
                 };
             }
 
-            if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
-                return {
-                    ...accumulator,
-                    [dataInstance.name]: toMoneyValue(toCents(dataInstance.value || ''), locale, true).toString(),
-                };
-            }
+            // if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
+            //     return {
+            //         ...accumulator,
+            //         [dataInstance.name]: toMoneyValue(toCents(dataInstance.value || ''), locale, true).toString(),
+            //     };
+            // }
 
             return {
                 ...accumulator,

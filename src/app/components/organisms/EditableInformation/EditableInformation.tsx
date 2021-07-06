@@ -12,7 +12,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { areEqualObjects } from '../../../utils/functions/objectFunctions';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
-import { convertToLocaleValue } from '../../../utils/functions/financialFunctions';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownOption } from '../../molecules/Dropdown';
@@ -138,20 +137,15 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [originalValues, onCancel]);
 
     const onChangeCallback = useCallback(
-        (name: string, value: ValueTypes<T, U>, callExternOnChange = true, isCurrency = false) => {
-            let newValues = {
+        (name: string, value: ValueTypes<T, U>) => {
+            const newValues = {
                 ...updatedValues,
                 [name]: value,
             };
 
             setUpdatedValues(newValues);
 
-            if (callExternOnChange && onChange) {
-                newValues = {
-                    ...updatedValues,
-                    [name]: isCurrency && value ? convertToLocaleValue(value as string, localeValue) : value,
-                };
-
+            if (onChange) {
                 onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },
@@ -225,7 +219,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
                 }, {})
             );
 
-            const values = generateValuesArray(data, localeValue);
+            const values = generateValuesArray(data);
 
             // initialize 2 arrays of Values
             setOriginalValues(values);

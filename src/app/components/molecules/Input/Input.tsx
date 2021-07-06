@@ -91,13 +91,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [isValidInputData, setIsValidInputData] = useState(true);
-    const [inputValue, setInputValue] = useState(value || '');
-
-    // we want to be able to force re-render if the value is changed from outside the component
-    useEffect(() => {
-        setInputValue(value || '');
-    }, [value]);
-
+    const [inputValue, setInputValue] = useState('');
     const hasValue = !isEmpty(inputValue);
     const textFieldProps: { [key: string]: number } = {};
 
@@ -124,48 +118,40 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     return true;
             }
         },
-        [isRequired, locale, max, maxLength, min, minLength]
+        [isRequired, locale, max, maxLength, min, minLength, type]
     );
-
-    // only onMount format initial value
-    useEffect(() => {
-        if (type === InputType.CURRENCY && value) {
-            setInputValue(formatMoneyWithoutSymbol(toMoneyValue(toCents(value || ''), locale, true), locale));
-        }
-    }, []);
-
-    // when inputValue changes validate it
-    useEffect(() => {
-        setIsValidInputData(isValidInput(inputValue || ''));
-    }, [inputValue]);
 
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             let newValue = event.currentTarget.value;
 
-            if (!isTextarea) {
-                if (max !== undefined && newValue && toNumber(newValue) > max) {
-                    newValue = max.toString();
+            if (type !== InputType.CURRENCY) {
+                // for currency no manipulation of the value before loosing focus
+
+                if (!isTextarea) {
+                    if (max !== undefined && newValue && toNumber(newValue) > max) {
+                        newValue = max.toString();
+                    }
+
+                    if (min !== undefined && newValue && toNumber(newValue) < min) {
+                        newValue = min.toString();
+                    }
                 }
 
-                if (min !== undefined && newValue && toNumber(newValue) < min) {
-                    newValue = min.toString();
+                if (onChange) {
+                    onChange({
+                        ...event,
+                        currentTarget: {
+                            name: event.currentTarget.name,
+                            value: newValue,
+                        },
+                    } as ChangeEvent<HTMLInputElement>);
                 }
-            }
-
-            if (onChange) {
-                onChange({
-                    ...event,
-                    currentTarget: {
-                        name: event.currentTarget.name,
-                        value: newValue,
-                    },
-                } as ChangeEvent<HTMLInputElement>);
             }
 
             setInputValue(newValue);
         },
-        [isValidInput, onChange]
+        [onChange]
     );
 
     const toggleIsFocusedCallback = useCallback(
@@ -177,7 +163,17 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             if (isFocused && onBlur) {
                 // Perform some possible post actions
                 if (type === InputType.CURRENCY && isValidInputData) {
-                    setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
+                    // setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
+                    // @TODO something that adds the cents correctly
+
+                    if (onChange) {
+                        onChange({
+                            currentTarget: {
+                                name,
+                                value: toMoneyValue(inputValue, locale).toString(),
+                            },
+                        } as ChangeEvent<HTMLInputElement>);
+                    }
                 }
 
                 onBlur(event);
@@ -185,12 +181,26 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
             setIsFocused(!isFocused);
         },
-        [inputValue, isFocused, onBlur, onFocus]
+        [inputValue, isFocused, isValidInputData, onBlur, onChange, onFocus]
     );
 
     const toggleIsHoveredCallback = useCallback(() => {
         setIsHovered(!isHovered);
     }, [isHovered]);
+
+    // we want to be able to force re-render if the value is changed from outside the component
+    useEffect(() => {
+        if (type === InputType.CURRENCY) {
+            setInputValue(formatMoneyWithoutSymbol(toMoneyValue(toCents(value || ''), locale, true), locale));
+        } else {
+            setInputValue(value || '');
+        }
+    }, [value]);
+
+    // when inputValue changes validate it
+    useEffect(() => {
+        setIsValidInputData(isValidInput(inputValue));
+    }, [inputValue]);
 
     return (
         <>
@@ -229,7 +239,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     onMouseLeave={isDisabled ? undefined : toggleIsHoveredCallback}
                     readOnly={isDisabled}
                     type={type}
-                    value={inputValue === null ? undefined : inputValue} // Assuming that null equals undefined
+                    value={inputValue}
                     variant={variant}
                     {...textFieldProps}
                 />

@@ -135,7 +135,8 @@ export const AdornmentWrapper = styled.div<AdornmentWrapperProps>`
             color: ${theme.colorDisabled};
         `}
 
-    ${({ isFocused, isHovered, theme }): SimpleInterpolation =>
+    ${({ hasError, isFocused, isHovered, theme }): SimpleInterpolation =>
+        !hasError &&
         (isFocused || isHovered) &&
         css`
             color: ${theme.colorSecondary};

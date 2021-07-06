@@ -1,10 +1,11 @@
 import {
     isValidEmail,
     isValidIBAN,
+    isValidInputCurrency,
+    isValidMoney,
     isValidNumber,
     isValidPhoneNumber,
 } from '../../../utils/functions/validateFunctions';
-import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { Locale } from '../../../types';
 
 describe('test validating functions', () => {
@@ -39,19 +40,32 @@ describe('test validating functions', () => {
         expect(isValidNumber('1.09', false)).toBe(false);
         expect(isValidNumber('1.09', true)).toBe(false);
         expect(isValidNumber('1.09', true, 'EN' as Locale)).toBe(true);
+        expect(isValidNumber('1.', true)).toBeFalsy();
+        expect(isValidNumber('1.0', true)).toBeFalsy();
+        expect(isValidNumber('1.00', true)).toBeFalsy();
+        expect(isValidNumber('1.000', true)).toBeTruthy();
     });
 
     test('isValidPhoneNumber', () => {
         expect(isValidPhoneNumber('061234567')).toBe(true);
         expect(isValidPhoneNumber('061234567a')).toBe(true);
-        expect(isValidPhoneNumber('061234567', DEFAULT_LOCALE)).toBe(false);
-        expect(isValidPhoneNumber('061234567a', DEFAULT_LOCALE)).toBe(false);
-        expect(isValidPhoneNumber('0612345678', DEFAULT_LOCALE)).toBe(true);
-        expect(isValidPhoneNumber('06 12345678', DEFAULT_LOCALE)).toBe(true);
-        expect(isValidPhoneNumber('06-12345678', DEFAULT_LOCALE)).toBe(true);
-        expect(isValidPhoneNumber('020-1234567', DEFAULT_LOCALE)).toBe(true);
-        expect(isValidPhoneNumber('0299-123456', DEFAULT_LOCALE)).toBe(true);
-        expect(isValidPhoneNumber('020 - 1234567', DEFAULT_LOCALE)).toBe(false);
-        expect(isValidPhoneNumber('06 - 12345678', DEFAULT_LOCALE)).toBe(false);
+        expect(isValidPhoneNumber('061234567', Locale.NL)).toBe(false);
+        expect(isValidPhoneNumber('061234567a', Locale.NL)).toBe(false);
+        expect(isValidPhoneNumber('0612345678', Locale.NL)).toBe(true);
+        expect(isValidPhoneNumber('06 12345678', Locale.NL)).toBe(true);
+        expect(isValidPhoneNumber('06-12345678', Locale.NL)).toBe(true);
+        expect(isValidPhoneNumber('020-1234567', Locale.NL)).toBe(true);
+        expect(isValidPhoneNumber('0299-123456', Locale.NL)).toBe(true);
+        expect(isValidPhoneNumber('020 - 1234567', Locale.NL)).toBe(false);
+        expect(isValidPhoneNumber('06 - 12345678', Locale.NL)).toBe(false);
+    });
+
+    test('test isValidInputCurrency', () => {
+        expect(isValidInputCurrency('0,51', Locale.NL, false)).toBeTruthy();
+    });
+
+    test('test isValidMoney', () => {
+        expect(isValidMoney('1.', Locale.NL)).toBeFalsy();
+        expect(isValidInputCurrency('1.000', Locale.NL, false)).toBeTruthy();
     });
 });
