@@ -71,6 +71,15 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     } as DatePickerDataProps);
 
     result.push({
+        component: EditableDataComponent.DATEPICKER,
+        isEditable: true,
+        isVisibleOnlyOnEdit: true,
+        label: 'NullDate',
+        name: 'NullDate',
+        value: null,
+    } as DatePickerDataProps);
+
+    result.push({
         component: EditableDataComponent.TIMEPICKER,
         isEditable: false,
         label: 'Time',

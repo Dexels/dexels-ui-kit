@@ -154,7 +154,9 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                 return isValidInputCurrency(
                     values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
                     locale,
-                    item.isRequired || false
+                    item.isRequired || false,
+                    (item as EditableInputCurrencyDataProps).min,
+                    (item as EditableInputCurrencyDataProps).max
                 );
 
             case EditableDataComponent.INPUTNUMBER:
