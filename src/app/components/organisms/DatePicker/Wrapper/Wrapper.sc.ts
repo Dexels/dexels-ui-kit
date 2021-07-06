@@ -73,7 +73,7 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
         background-color: transparent;
         padding: 0;
         height: ${({ theme }): string => `calc(${theme.spacing(6)} - 2px)`};
-        color: ${({ theme }): string => theme.colorText.primary};
+        color: ${({ theme }): string => theme.shades.one};
 
         &::placeholder {
             opacity: 1;
