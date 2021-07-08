@@ -7,6 +7,7 @@ import {
     EditableDropdownSelectDataProps,
     EditableInformationData,
     EditableInformationDataType,
+    EditableInputCurrencyDataProps,
     EditableInputDataProps,
     EditableInputNumberDataProps,
     ValueTypes,
@@ -100,6 +101,20 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
     locale: Locale
 ): boolean =>
     data.every((item): boolean => {
+        if (item.component === EditableDataComponent.INPUTCURRENCY) {
+            const tempMoneyValueName = `${(item as EditableInputCurrencyDataProps).name}_currency_temp_value`;
+
+            if (tempMoneyValueName in values) {
+                return isValidInputNumber(
+                    values[tempMoneyValueName]?.toString() || null,
+                    locale,
+                    item.isRequired || false,
+                    (item as EditableInputCurrencyDataProps).min,
+                    (item as EditableInputCurrencyDataProps).max
+                );
+            }
+        }
+
         switch (item.component) {
             /* eslint-disable padding-line-between-statements */
             case EditableDataComponent.DROPDOWN:

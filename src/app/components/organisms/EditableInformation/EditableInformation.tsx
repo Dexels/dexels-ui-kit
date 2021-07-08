@@ -137,15 +137,34 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [originalValues, onCancel]);
 
     const onChangeCallback = useCallback(
-        (name: string, value: ValueTypes<T, U>) => {
-            const newValues = {
+        (name: string, value: ValueTypes<T, U>, callExternOnChange = true, isCurrency = false) => {
+            let newValues = {
                 ...updatedValues,
-                [name]: value,
             };
+
+            // if it is a temporary value of currency add temp property in values for validation purposes
+            if (isCurrency && !callExternOnChange) {
+                newValues = {
+                    ...newValues,
+                    [`${name}_currency_temp_value`]: value,
+                };
+            }
+
+            if (isCurrency && callExternOnChange) {
+                // definitive value of currency, delete the temp one for correct validation
+                delete newValues[`${name}_currency_temp_value`];
+            }
+
+            if (!isCurrency || callExternOnChange) {
+                newValues = {
+                    ...newValues,
+                    [name]: value,
+                };
+            }
 
             setUpdatedValues(newValues);
 
-            if (onChange) {
+            if (callExternOnChange && onChange) {
                 onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },

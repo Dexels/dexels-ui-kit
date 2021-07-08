@@ -52,6 +52,7 @@ export const InputCurrency: FunctionComponent<InputCurrencyProps> = ({
         hasError={hasError}
         hasNegativeAmountColor={hasNegativeAmountColor}
         isDisabled={isDisabled}
+        isOnChangeRequired={false}
         isRequired={isRequired}
         isValid={isValid}
         label={label}

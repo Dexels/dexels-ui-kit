@@ -11,6 +11,7 @@ export const editableInformationCurrency = <
 
     result.push({
         component: EditableDataComponent.INPUTCURRENCY,
+        errorMessage: 'Value should be between 1 and 10 euros only',
         isDisabled: false,
         isEditable: true,
         isRequired: true,
@@ -23,9 +24,9 @@ export const editableInformationCurrency = <
 
     result.push({
         component: EditableDataComponent.INPUTCURRENCY,
+        errorMessage: 'Value should be between 0 and 10 euros only',
         isDisabled: false,
         isEditable: true,
-        isRequired: true,
         label: 'EditableCurrency',
         max: 10,
         min: 0,
@@ -35,6 +36,7 @@ export const editableInformationCurrency = <
 
     result.push({
         component: EditableDataComponent.INPUTCURRENCY,
+        errorMessage: 'This field is required',
         isDisabled: false,
         isEditable: true,
         isRequired: true,
@@ -45,6 +47,7 @@ export const editableInformationCurrency = <
 
     result.push({
         component: EditableDataComponent.INPUTCURRENCY,
+        errorMessage: 'This field is required',
         isDisabled: false,
         isEditable: true,
         isRequired: true,
@@ -55,6 +58,7 @@ export const editableInformationCurrency = <
 
     result.push({
         component: EditableDataComponent.INPUTCURRENCY,
+        errorMessage: 'This field is required',
         isDisabled: false,
         isEditable: true,
         isRequired: true,
