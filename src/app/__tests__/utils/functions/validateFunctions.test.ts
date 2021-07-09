@@ -1,6 +1,8 @@
 import {
     isValidEmail,
     isValidIBAN,
+    isValidInputCurrency,
+    isValidMoney,
     isValidNumber,
     isValidPhoneNumber,
 } from '../../../utils/functions/validateFunctions';
@@ -38,6 +40,10 @@ describe('test validating functions', () => {
         expect(isValidNumber('1.09', false)).toBe(false);
         expect(isValidNumber('1.09', true)).toBe(false);
         expect(isValidNumber('1.09', true, 'EN' as Locale)).toBe(true);
+        expect(isValidNumber('1.', true)).toBeFalsy();
+        expect(isValidNumber('1.0', true)).toBeFalsy();
+        expect(isValidNumber('1.00', true)).toBeFalsy();
+        expect(isValidNumber('1.000', true)).toBeTruthy();
     });
 
     test('isValidPhoneNumber', () => {

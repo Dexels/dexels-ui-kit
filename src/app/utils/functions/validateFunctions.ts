@@ -1,7 +1,7 @@
-import { toCents, toMoneyValue } from './financialFunctions';
 import { DEFAULT_LOCALE } from '../../../global/constants';
 import { isDotDecimalCountry } from './localeFunctions';
 import { Locale } from '../../types';
+import { toMoneyValue } from './financialFunctions';
 import toNumber from './toNumber';
 
 export const isEmpty = (value: string | unknown | undefined | null | Array<unknown>): boolean => {
@@ -85,8 +85,7 @@ export const isValidNumber = (value: string, allowDecimals = false, locale?: Loc
 };
 
 // Always test against Locale.EN, because toMoneyValue will contain an EN format
-export const isValidMoney = (value: string, locale?: Locale): boolean =>
-    isValidNumber(toMoneyValue(toCents(value), locale || DEFAULT_LOCALE, true).toString(), true, Locale.EN);
+export const isValidMoney = (value: string, locale?: Locale): boolean => isValidNumber(value, true, locale);
 
 // **** BELOW SOME GENERIC VALIDATIONS USED BY SEVERAL COMPONENTS ****
 
@@ -97,7 +96,7 @@ export const isValidInputCurrency = (
     minValue?: number,
     maxValue?: number
 ): boolean => {
-    const numberValue = toMoneyValue(toCents(value || ''), locale, true);
+    const numberValue = toMoneyValue(value || '', locale);
 
     return (
         (!isRequired && (isEmpty(value) || value === '0')) ||

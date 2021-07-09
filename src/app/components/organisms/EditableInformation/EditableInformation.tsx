@@ -12,7 +12,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { areEqualObjects } from '../../../utils/functions/objectFunctions';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
-import { convertToLocaleValue } from '../../../utils/functions/financialFunctions';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownOption } from '../../molecules/Dropdown';
@@ -138,20 +137,34 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     }, [originalValues, onCancel]);
 
     const onChangeCallback = useCallback(
-        (name: string, value: ValueTypes<T, U>, isCurrency = false) => {
+        (name: string, value: ValueTypes<T, U>, callExternOnChange = true, isCurrency = false) => {
             let newValues = {
                 ...updatedValues,
-                [name]: value,
             };
+
+            // if it is a temporary value of currency add temp property in values for validation purposes
+            if (isCurrency && !callExternOnChange) {
+                newValues = {
+                    ...newValues,
+                    [`${name}_currency_temp_value`]: value,
+                };
+            }
+
+            if (isCurrency && callExternOnChange) {
+                // definitive value of currency, delete the temp one for correct validation
+                delete newValues[`${name}_currency_temp_value`];
+            }
+
+            if (!isCurrency || callExternOnChange) {
+                newValues = {
+                    ...newValues,
+                    [name]: value,
+                };
+            }
 
             setUpdatedValues(newValues);
 
-            newValues = {
-                ...updatedValues,
-                [name]: isCurrency && value ? convertToLocaleValue(value as string, localeValue) : value,
-            };
-
-            if (onChange) {
+            if (callExternOnChange && onChange) {
                 onChange(newValues, !areEqualObjects(newValues, originalValues));
             }
         },
@@ -225,7 +238,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
                 }, {})
             );
 
-            const values = generateValuesArray(data, localeValue);
+            const values = generateValuesArray(data);
 
             // initialize 2 arrays of Values
             setOriginalValues(values);
