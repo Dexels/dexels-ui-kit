@@ -65,14 +65,12 @@ export const isValidEmail = (value: string): boolean => {
     return emailRegex.test(value);
 };
 
-export const isValidPhoneNumber = (value: string, locale?: Locale): boolean => {
-    if (locale && locale === Locale.NL) {
-        const phoneRegExp = /^(\+(([0-9]){1,2})[-. ])?((((([0-9]){2,4})[-. ]){1,2}([0-9]{4,8}))|([0-9]{10}))$/;
+export const isValidPhoneNumber = (value: string): boolean => {
+    // const nlPhoneRegExp = /^(\+(([0-9]){1,2})[-. ])?((((([0-9]){2,4})[-. ]){1,2}([0-9]{4,8}))|([0-9]{10}))$/;
 
-        return phoneRegExp.test(value);
-    }
+    const phoneRegExp = /^(?=.{0,32}$)[0-9]+[\s]{0,1}([-][\s]{0,1}[0-9]+)?([\s]{0,1}[0-9]+)*$/;
 
-    return true; // No idea what to implement here, because this differs per Locale
+    return phoneRegExp.test(value);
 };
 
 export const isValidNumber = (value: string, allowDecimals = false, locale?: Locale): boolean => {
@@ -133,11 +131,8 @@ export const isValidInputNumber = (
     );
 };
 
-export const isValidInputTelephone = (
-    value: string | null | undefined,
-    isRequired: boolean,
-    locale = DEFAULT_LOCALE
-): boolean => (isEmpty(value) && !isRequired) || (!isEmpty(value) && isValidPhoneNumber(value as string, locale));
+export const isValidInputTelephone = (value: string | null | undefined, isRequired: boolean): boolean =>
+    (isEmpty(value) && !isRequired) || (!isEmpty(value) && isValidPhoneNumber(value as string));
 
 export const isValidInputText = (
     value: string | null | undefined,
