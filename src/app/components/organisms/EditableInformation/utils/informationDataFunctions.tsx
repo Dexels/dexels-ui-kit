@@ -13,21 +13,20 @@ import {
     ValueTypes,
 } from '../types';
 import { EditableDataComponent, InputType, Locale, Status } from '../../../../types';
-import { formatMoney, toCents, toMoneyValue } from '../../../../utils/functions/financialFunctions';
 import {
     isEmpty,
-    isValidInputCurrency,
     isValidInputEmail,
     isValidInputNumber,
     isValidInputTelephone,
     isValidInputText,
 } from '../../../../utils/functions/validateFunctions';
+import React, { ReactNode } from 'react';
+import { convertToLocaleValue } from '../../../../utils/functions/financialFunctions';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
 import moment from 'moment';
-import { ReactNode } from 'react';
 
 export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: boolean): Status => {
     if (hasError) {
@@ -68,11 +67,7 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
     }
 
     if (component === EditableDataComponent.INPUTCURRENCY && value) {
-        // Let localeCurrency prevail over locale when presnt
-        return formatMoney(
-            toMoneyValue(toCents(value.toString()), localeCurrency || locale, true),
-            localeCurrency || locale
-        );
+        return convertToLocaleValue((value as string) || '', localeCurrency || locale);
     }
 
     if (component === EditableDataComponent.SCOREPICKER && Array.isArray(value)) {
@@ -81,6 +76,17 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
 
     if (component === EditableDataComponent.TIMEPICKER && Array.isArray(value)) {
         return value[0] && value[1] ? `${value[0] as string}:${value[1] as string}` : '-';
+    }
+
+    if (component === EditableDataComponent.TEXTAREA_READONLY && value) {
+        return (
+            <span
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                    __html: (value as string) || '',
+                }}
+            />
+        );
     }
 
     return textValue || value;
@@ -106,6 +112,20 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
     locale: Locale
 ): boolean =>
     data.every((item): boolean => {
+        if (item.component === EditableDataComponent.INPUTCURRENCY) {
+            const tempMoneyValueName = `${(item as EditableInputCurrencyDataProps).name}_currency_temp_value`;
+
+            if (tempMoneyValueName in values) {
+                return isValidInputNumber(
+                    values[tempMoneyValueName]?.toString() || null,
+                    locale,
+                    item.isRequired || false,
+                    (item as EditableInputCurrencyDataProps).min,
+                    (item as EditableInputCurrencyDataProps).max
+                );
+            }
+        }
+
         switch (item.component) {
             /* eslint-disable padding-line-between-statements */
             case EditableDataComponent.DROPDOWN:
@@ -138,8 +158,7 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                 if ((item as EditableInputDataProps).type === InputType.TELEPHONE) {
                     return isValidInputTelephone(
                         values[(item as EditableInputDataProps).name]?.toString() || null,
-                        item.isRequired || false,
-                        locale
+                        item.isRequired || false
                     );
                 }
 
@@ -150,16 +169,9 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
                     (item as EditableInputDataProps).maxLength
                 );
 
-            case EditableDataComponent.INPUTCURRENCY:
-                return isValidInputCurrency(
-                    values[(item as EditableInputCurrencyDataProps).name]?.toString() || '',
-                    locale,
-                    item.isRequired || false,
-                    (item as EditableInputCurrencyDataProps).min,
-                    (item as EditableInputCurrencyDataProps).max
-                );
-
+            /* eslint-disable padding-line-between-statements */
             case EditableDataComponent.INPUTNUMBER:
+            case EditableDataComponent.INPUTCURRENCY:
                 return isValidInputNumber(
                     values[(item as EditableInputNumberDataProps).name]?.toString() || null,
                     locale,

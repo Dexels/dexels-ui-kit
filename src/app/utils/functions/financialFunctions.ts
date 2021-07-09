@@ -176,14 +176,16 @@ export const convertToLocaleValue = (value: number | string, locale: Locale): st
 // Add 00 if no decimals are present
 export const toCents = (value: number | string): number => {
     let stringValue = value.toString();
-    const decimalRegExp = /[.,][0-9]{2}$/;
+    const decimalRegExp2Digits = /[.][0-9]{2}$/;
+    const decimalRegExp1Digit = /[.][0-9]{1}$/;
 
-    if (decimalRegExp.test(stringValue)) {
+    if (decimalRegExp2Digits.test(stringValue)) {
         // Replace all . and , with nothing ;-)
         stringValue = stringValue.replace('.', '').replace(',', '');
+    } else if (decimalRegExp1Digit.test(stringValue)) {
+        stringValue = `${stringValue.replace('.', '').replace(',', '')}0`;
     } else {
         stringValue += '00';
     }
-
     return toNumber(stringValue);
 };

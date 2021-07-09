@@ -7,7 +7,7 @@ import InputCurrency from './InputCurrency';
 export default { title: 'organisms/InputCurrency' };
 
 export const Configurable: FunctionComponent = () => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState('0.51');
 
     return (
         <InputCurrency

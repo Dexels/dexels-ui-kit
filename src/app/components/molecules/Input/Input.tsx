@@ -1,5 +1,5 @@
 import { AdornmentPosition, InputType, InputVariant, Locale } from '../../../types';
-import { AdornmentWrapper, StyledInput, TextField } from './Input.sc';
+import { AdornmentWrapper, StyledInput } from './Input.sc';
 import { formatMoneyWithoutSymbol, toCents, toMoneyValue } from '../../../utils/functions/financialFunctions';
 import {
     isEmpty,
@@ -23,6 +23,7 @@ import React, {
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import ErrorMessage from '../../atoms/ErrorMessage/ErrorMessage';
 import FormElementLabel from '../FormElementLabel/FormElementLabel';
+import { TextField } from './component/TextField.sc';
 import toNumber from '../../../utils/functions/toNumber';
 
 export interface InputProps {
@@ -36,6 +37,7 @@ export interface InputProps {
     hasNegativeAmountColor?: boolean;
     ignoreOutlineVariant?: boolean;
     isDisabled?: boolean;
+    isOnChangeRequired?: boolean;
     isRequired?: boolean;
     isTextarea?: boolean;
     isValid?: boolean;
@@ -68,6 +70,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     ignoreOutlineVariant = false,
     isDisabled = false,
     isRequired = false,
+    isOnChangeRequired = true,
     isTextarea = false,
     isValid = false,
     label,
@@ -90,14 +93,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [isValidInputData, setIsValidInputData] = useState(true);
-    const [inputValue, setInputValue] = useState(value || '');
-
-    // we want to be able to force re-render if the value is changed from outside the component
-    useEffect(() => {
-        setInputValue(value || '');
-    }, [value]);
-
-    const hasValue = !isEmpty(inputValue);
+    const [inputDisplayValue, setInputDisplayValue] = useState('');
+    const [inputValue, setInputValue] = useState(''); // for currency for disabling save button purposes onnly
+    const hasValue = !isEmpty(inputDisplayValue);
     const textFieldProps: { [key: string]: number } = {};
 
     // Because this check might be performed in several actions, put it here
@@ -114,7 +112,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     return isValidInputNumber(valueToValidate, locale, isRequired, min, max);
 
                 case InputType.TELEPHONE:
-                    return isValidInputTelephone(valueToValidate, isRequired, locale);
+                    return isValidInputTelephone(valueToValidate, isRequired);
 
                 case InputType.TEXT:
                     return isValidInputText(valueToValidate, isRequired, minLength, maxLength);
@@ -123,36 +121,46 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     return true;
             }
         },
-        [isRequired, locale, max, maxLength, min, minLength]
+        [isRequired, locale, max, maxLength, min, minLength, type]
     );
 
-    // only onMount format initial value
-    useEffect(() => {
-        if (type === InputType.CURRENCY && value) {
-            setInputValue(formatMoneyWithoutSymbol(toMoneyValue(toCents(value || ''), locale, true), locale));
-        }
-    }, []);
+    const checkRange = useCallback(
+        (valueToCheck: string): string => {
+            let newValue = valueToCheck;
 
-    // when inputValue changes validate it
-    useEffect(() => {
-        setIsValidInputData(isValidInput(inputValue || ''));
-    }, [inputValue]);
+            if (max !== undefined && valueToCheck && toNumber(valueToCheck) > max) {
+                newValue = max.toString();
+            }
+
+            if (min !== undefined && valueToCheck && toNumber(valueToCheck) < min) {
+                newValue = min.toString();
+            }
+
+            return newValue;
+        },
+        [min, max]
+    );
 
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             let newValue = event.currentTarget.value;
 
-            if (!isTextarea) {
-                if (max !== undefined && newValue && toNumber(newValue) > max) {
-                    newValue = max.toString();
-                }
-
-                if (min !== undefined && newValue && toNumber(newValue) < min) {
-                    newValue = min.toString();
+            if (type !== InputType.CURRENCY) {
+                // for currency no manipulation of the value before loosing focus
+                if (!isTextarea) {
+                    newValue = checkRange(newValue);
                 }
             }
 
-            if (onChange) {
+            setInputDisplayValue(newValue);
+
+            // prepare value for calling extern onChange
+            if (type === InputType.CURRENCY) {
+                newValue = toMoneyValue(newValue, locale).toString();
+                setInputValue(newValue);
+            }
+
+            if (onChange && (type !== InputType.CURRENCY || isOnChangeRequired)) {
                 onChange({
                     ...event,
                     currentTarget: {
@@ -161,35 +169,79 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     },
                 } as ChangeEvent<HTMLInputElement>);
             }
-
-            setInputValue(newValue);
         },
-        [isValidInput, onChange]
+        [onChange]
     );
 
-    const toggleIsFocusedCallback = useCallback(
+    const onFocusCallback = useCallback(
         (event: FocusEvent<HTMLInputElement>) => {
-            if (onFocus && !isFocused) {
+            setIsFocused(true);
+
+            if (onFocus) {
                 onFocus(event);
             }
-
-            if (isFocused && onBlur) {
-                // Perform some possible post actions
-                if (type === InputType.CURRENCY && isValidInputData) {
-                    setInputValue(formatMoneyWithoutSymbol(inputValue || '', locale));
-                }
-
-                onBlur(event);
-            }
-
-            setIsFocused(!isFocused);
         },
-        [inputValue, isFocused, onBlur, onFocus]
+        [onFocus]
     );
 
-    const toggleIsHoveredCallback = useCallback(() => {
+    const onBlurCallback = useCallback(
+        (event: FocusEvent<HTMLInputElement>) => {
+            setIsFocused(false);
+
+            // Perform some possible post actions
+            if (type === InputType.CURRENCY) {
+                const newValue = checkRange(inputValue);
+
+                setInputValue(newValue);
+
+                // if onChange is not required then it wasn't fined on change and needs to be fired onBlur
+                if (onChange && !isOnChangeRequired) {
+                    onChange({
+                        currentTarget: {
+                            name,
+                            value: newValue,
+                        },
+                    } as ChangeEvent<HTMLInputElement>);
+                }
+
+                if (onBlur) {
+                    onBlur({
+                        currentTarget: {
+                            name,
+                            value: newValue,
+                        },
+                    } as FocusEvent<HTMLInputElement>);
+                }
+            } else if (onBlur) {
+                onBlur(event);
+            }
+        },
+        [inputDisplayValue, inputValue, name, onBlur, onChange, type]
+    );
+
+    const onHoveredCallback = useCallback(() => {
         setIsHovered(!isHovered);
     }, [isHovered]);
+
+    // we want to be able to force re-render if the value is changed from outside the component
+    useEffect(() => {
+        if (type === InputType.CURRENCY) {
+            setInputDisplayValue(formatMoneyWithoutSymbol(toMoneyValue(toCents(value || ''), locale, true), locale));
+        } else {
+            setInputDisplayValue(value || '');
+        }
+    }, [value]);
+
+    useEffect(() => {
+        // for currency also check the temporary inputValue
+        const validation =
+            type === InputType.CURRENCY
+                ? isValidInput(inputDisplayValue) &&
+                  (isEmpty(inputValue) || isValidInputNumber(inputValue, locale, isRequired, min, max))
+                : isValidInput(inputDisplayValue);
+
+        setIsValidInputData(validation);
+    }, [inputDisplayValue, inputValue]);
 
     return (
         <>
@@ -211,7 +263,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     autoFocus={autoFocus}
                     hasAdornment={adornment !== undefined}
                     hasError={hasError || !isValidInputData}
-                    hasNegativeAmountColor={hasNegativeAmountColor && !isEmpty(inputValue) && toNumber(inputValue) < 0}
+                    hasNegativeAmountColor={
+                        hasNegativeAmountColor && !isEmpty(inputDisplayValue) && toNumber(inputDisplayValue) < 0
+                    }
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
@@ -220,15 +274,15 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     maxLength={maxLength}
                     minLength={minLength}
                     name={name}
-                    onBlur={isDisabled ? undefined : toggleIsFocusedCallback}
+                    onBlur={isDisabled ? undefined : onBlurCallback}
                     onChange={isDisabled ? undefined : onChangeCallback}
-                    onFocus={isDisabled ? undefined : toggleIsFocusedCallback}
+                    onFocus={isDisabled ? undefined : onFocusCallback}
                     onKeyDown={isDisabled || !onKeyDown ? undefined : onKeyDown}
-                    onMouseEnter={isDisabled ? undefined : toggleIsHoveredCallback}
-                    onMouseLeave={isDisabled ? undefined : toggleIsHoveredCallback}
+                    onMouseEnter={isDisabled ? undefined : onHoveredCallback}
+                    onMouseLeave={isDisabled ? undefined : onHoveredCallback}
                     readOnly={isDisabled}
                     type={type}
-                    value={inputValue === null ? undefined : inputValue} // Assuming that null equals undefined
+                    value={inputDisplayValue}
                     variant={variant}
                     {...textFieldProps}
                 />

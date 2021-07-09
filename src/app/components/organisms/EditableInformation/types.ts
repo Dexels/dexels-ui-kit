@@ -152,7 +152,7 @@ export interface TextareaDataProps extends BaseDataProps {
 
 export interface TextareaReadOnlyDataProps extends BaseDataProps {
     component: EditableDataComponent.TEXTAREA_READONLY;
-    value: InputProps['value'] | ReactNode;
+    value: InputProps['value'];
 }
 
 export interface EditableTextareaDataProps extends TextareaDataProps {

@@ -22,7 +22,6 @@ import { Fruit, fruits } from './fruits';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import moment from 'moment';
-import React from 'react';
 
 export const updateValuesOfData = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
@@ -44,21 +43,6 @@ export const updateValuesOfData = <T extends DropdownSelectOption, U extends Dro
 
 export const editableInformationData = <T extends Fruit, U extends Fruit>(): EditableInformationData<T, U> => {
     const result: EditableInformationData<T, U> = [];
-
-    const onBlurCallback = (event: React.FocusEvent<HTMLInputElement>): void => {
-        // eslint-disable-next-line no-console
-        console.log('onBlurCallback', event);
-    };
-
-    const onFocusCallback = (event: React.FocusEvent<HTMLInputElement>): void => {
-        // eslint-disable-next-line no-console
-        console.log('onFocusCallback', event);
-    };
-
-    const onKeyDownCallback = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-        // eslint-disable-next-line no-console
-        console.log('onKeyDownCallback', event);
-    };
 
     result.push({
         component: EditableDataComponent.DATEPICKER,
@@ -104,9 +88,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         label: 'Number',
         min: 0,
         name: 'Number',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: 0,
     } as EditableInputNumberDataProps);
 
@@ -118,9 +100,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         label: 'BadNumber',
         min: 0,
         name: 'BadNumber',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: -1,
     } as EditableInputNumberDataProps);
 
@@ -131,9 +111,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isRequired: true,
         label: 'Input (null value)',
         name: 'InputNull',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: null,
     } as EditableInputDataProps);
 
@@ -145,9 +123,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         label: 'Input (not editable)',
         maxLength: 20,
         name: 'Input',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: 'Banana',
     } as EditableInputDataProps);
 
@@ -178,9 +154,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isEditable: true,
         label: 'Textarea',
         name: 'EditableTextArea',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: 'text here',
     } as EditableTextareaDataProps);
 
@@ -188,14 +162,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         component: EditableDataComponent.TEXTAREA_READONLY,
         label: 'Textarea ReactNode',
         name: 'NonEditableTextAreaReactNode',
-        value: (
-            <span
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                    __html: 'Bondssport:<br/>- Voetbal - Algemeen/Veld<br/>Verenigingssport:<br/>- Balgooien - Maandag/ACTIE<br/><br/>Er is/zijn één of meer verenigingssporten vastgelegd.<br/><br/>Voormalige of huidige vereniging:<br/>- Spero (BBKT07Z)<br/>- Relatiecode: HDHDHDGU (Niet gevonden)<br/><br/>Aangevraagd lidsoort: Bondslid<br/><br/>Aangevraagd lidsoort: Verenigingslid',
-                }}
-            />
-        ),
+        value: 'Bondssport:<br/>- Voetbal - Algemeen/Veld<br/>Verenigingssport:<br/>- Balgooien - Maandag/ACTIE<br/><br/>Er is/zijn één of meer verenigingssporten vastgelegd.<br/><br/>Voormalige of huidige vereniging:<br/>- Spero (BBKT07Z)<br/>- Relatiecode: HDHDHDGU (Niet gevonden)<br/><br/>Aangevraagd lidsoort: Bondslid<br/><br/>Aangevraagd lidsoort: Verenigingslid',
     } as EditableTextareaReadOnlyDataProps);
 
     result.push({
@@ -205,9 +172,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isRequired: true,
         label: 'Currency',
         name: 'EditableCurrency',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: '0.51',
     } as EditableInputCurrencyDataProps);
 
@@ -218,9 +183,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isRequired: true,
         label: 'Currency2',
         name: 'EditableCurrency2',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: '123.51',
     } as EditableInputCurrencyDataProps);
 
@@ -231,9 +194,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isRequired: true,
         label: 'Currency (comma)',
         name: 'EditableCurrencyComma',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: '451,123.87',
     } as EditableInputCurrencyDataProps);
 
@@ -244,9 +205,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isRequired: true,
         label: 'NegativeCurrency',
         name: 'NegativeCurrency',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: '-108',
     } as EditableInputCurrencyDataProps);
 
@@ -295,9 +254,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         max: 10,
         min: 0,
         name: 'EditableNumber',
-        onBlur: onBlurCallback,
-        onFocus: onFocusCallback,
-        onKeyDown: onKeyDownCallback,
+
         value: 5,
     } as EditableInputNumberDataProps);
 
