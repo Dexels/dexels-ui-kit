@@ -1,8 +1,6 @@
 import {
     isValidEmail,
     isValidIBAN,
-    isValidInputCurrency,
-    isValidMoney,
     isValidNumber,
     isValidPhoneNumber,
 } from '../../../utils/functions/validateFunctions';
