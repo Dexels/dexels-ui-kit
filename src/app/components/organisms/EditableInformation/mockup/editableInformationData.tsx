@@ -154,8 +154,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isEditable: true,
         label: 'Textarea',
         name: 'EditableTextArea',
-
-        value: 'text here',
+        value: 'text here\nmore text\n\nwhite spaces',
     } as EditableTextareaDataProps);
 
     result.push({
