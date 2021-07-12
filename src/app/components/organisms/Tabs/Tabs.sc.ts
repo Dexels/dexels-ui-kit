@@ -103,7 +103,7 @@ export const TabHeader = styled.button<TabHeaderProps>`
             css`
                 border-bottom-color: ${theme.colorSecondary};
                 color: ${theme.colorText.secondary};
-            `};
+            `}
     }
 
     &:active::after {
