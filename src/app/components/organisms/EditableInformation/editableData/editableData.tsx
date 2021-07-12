@@ -62,6 +62,9 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             if (!isBeingEdited || !('name' in dataInstance) || ('name' in dataInstance && !isEditable)) {
                 return {
                     isDisabled,
+                    isTextArea:
+                        dataInstance.component === EditableDataComponent.TEXTAREA ||
+                        dataInstance.component === EditableDataComponent.TEXTAREA_READONLY,
                     label,
                     value: getValueOfEditableDataComponent(dataInstance, dateFormat, locale, localeCurrency),
                 };

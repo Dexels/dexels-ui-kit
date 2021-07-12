@@ -57,6 +57,7 @@ export const TextField = styled.input<TextFieldProps>`
             padding: ${theme.spacing(1.5)};
             height: ${theme.spacing(16)};
             resize: none;
+            white-space: pre-wrap;
         `}
 
     ${({ isDisabled, theme }): SimpleInterpolation =>

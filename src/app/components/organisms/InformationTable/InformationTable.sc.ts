@@ -39,6 +39,7 @@ export const Row = styled.div`
 
 interface ColumnValueProps {
     isDisabled: boolean;
+    isTextArea: boolean;
 }
 
 export const Label = styled.div<ColumnValueProps>`
@@ -49,6 +50,12 @@ export const Label = styled.div<ColumnValueProps>`
 `;
 
 export const Value = styled.div<ColumnValueProps>`
+    ${({ isTextArea }): SimpleInterpolation =>
+        isTextArea &&
+        css`
+            white-space: pre-wrap;
+        `}
+
     flex: 0 1 auto;
     padding: 0 16px 0 0;
     width: 50%;

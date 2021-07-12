@@ -6,6 +6,7 @@ import { InformationWarnings } from './components/InformationWarnings';
 
 export interface InformationTableData {
     isDisabled?: boolean;
+    isTextArea?: boolean;
     label: ReactNode;
     value: ReactNode;
 }
@@ -17,6 +18,7 @@ export interface InformationTableProps {
     errors?: string[];
     isDisabled?: boolean;
     isSidePanel?: boolean;
+    isTextArea?: boolean;
     warnings?: string[];
 }
 
@@ -27,6 +29,7 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
     errors,
     isDisabled = false,
     isSidePanel = false,
+    isTextArea = false,
     warnings,
 }) => {
     const amountOfRowsPerColumn = Math.ceil(data.length / amountOfColumns);
@@ -40,8 +43,15 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
                           .map((element, index) => (
                               // eslint-disable-next-line react/no-array-index-key
                               <Row key={index}>
-                                  <Label isDisabled={isDisabled}>{element.label}</Label>
-                                  <Value isDisabled={isDisabled || element.isDisabled || false}>{element.value}</Value>
+                                  <Label isDisabled={isDisabled} isTextArea={isTextArea || element.isTextArea || false}>
+                                      {element.label}
+                                  </Label>
+                                  <Value
+                                      isDisabled={isDisabled || element.isDisabled || false}
+                                      isTextArea={isTextArea || element.isTextArea || false}
+                                  >
+                                      {element.value}
+                                  </Value>
                               </Row>
                           ))}
                   </Column>
