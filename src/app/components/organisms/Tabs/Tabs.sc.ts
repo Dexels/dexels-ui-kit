@@ -45,6 +45,7 @@ TabHeaders.defaultProps = {
 
 interface TabHeaderProps {
     isActive: boolean;
+    isChangeTabAllowed: boolean;
     isDisabled: boolean;
     isFullWidth: boolean;
 }
@@ -91,17 +92,22 @@ export const TabHeader = styled.button<TabHeaderProps>`
         `}
 
     &::after {
-        ${({ theme }): FlattenSimpleInterpolation => rippleEffect(theme.colorSecondary)}
+        ${({ isChangeTabAllowed, theme }): SimpleInterpolation =>
+            isChangeTabAllowed && rippleEffect(theme.colorSecondary)}
     }
 
     &:active,
     &:hover {
-        border-bottom-color: ${({ theme }): string => theme.colorSecondary};
-        color: ${({ theme }): string => theme.colorText.secondary};
+        ${({ isChangeTabAllowed, theme }): SimpleInterpolation =>
+            isChangeTabAllowed &&
+            css`
+                border-bottom-color: ${theme.colorSecondary};
+                color: ${theme.colorText.secondary};
+            `};
     }
 
     &:active::after {
-        ${rippleEffectReset()}
+        ${({ isChangeTabAllowed }): SimpleInterpolation => isChangeTabAllowed && rippleEffectReset()}
     }
 `;
 
