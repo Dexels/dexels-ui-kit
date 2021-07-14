@@ -13,3 +13,7 @@ export const StyledTextWithOptionalIcon = styled(TextWithOptionalIcon)`
 export const StyledFileUploader = styled(FileUploader)`
     margin-bottom: ${({ theme }): string => theme.spacing(2)};
 `;
+
+export const Spacer = styled.div`
+    margin: ${({ theme }): string => theme.spacing(1, 0)};
+`;

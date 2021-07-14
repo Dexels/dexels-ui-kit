@@ -34,6 +34,7 @@ export const Configurable: FunctionComponent = () => {
     const [droppedFileFormats, setDroppedFileFormats] = React.useState<string[]>();
     const [droppedTotalSize, setDroppedTotalSize] = React.useState<number>();
     const [description, setDescription] = React.useState<string>();
+    const [name, setName] = React.useState<string>();
 
     const [data, setData] = React.useState<FileUploaderData>(
         getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current)
@@ -74,6 +75,10 @@ export const Configurable: FunctionComponent = () => {
         setDescription(value);
     };
 
+    const onChangeName = (value: string) => {
+        setName(value);
+    };
+
     useEffect(() => {
         if (fileTypesRef.current && maxFileSizeRef.current) {
             setData(getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current));
@@ -108,12 +113,15 @@ export const Configurable: FunctionComponent = () => {
             data={data}
             description={description}
             fileTypes={[fileTypesRef.current]}
+            inputName="Voeg een naam toe (optioneel)"
             inputText="Voeg een omschrijving toe (optioneel)"
             isVisible={isVisible}
             maxFileSize={maxFileSizeRef.current}
             maxFiles={maxFilesRef.current}
+            name={name}
             onAlert={onAlert}
             onChangeDescription={onChangeDescription}
+            onChangeName={onChangeName}
             onClose={() => setIsVisible(false)}
             onDrop={onDrop}
             title="Bestand Uploaden"
