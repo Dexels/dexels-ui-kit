@@ -11,6 +11,7 @@ export interface TextWithOptionalIconProps {
     iconSize?: IconSize;
     iconType?: IconType;
     isCapitalized?: boolean;
+    isDisabled?: boolean;
     isSelectable?: boolean;
     isTruncatable?: boolean;
 }
@@ -23,6 +24,7 @@ export const TextWithOptionalIcon: FunctionComponent<TextWithOptionalIconProps &
     iconSize = IconSize.LARGE,
     iconType,
     isCapitalized = false,
+    isDisabled = false,
     isSelectable = true,
     isTruncatable = false,
     ...rest
@@ -57,12 +59,17 @@ export const TextWithOptionalIcon: FunctionComponent<TextWithOptionalIconProps &
 
     return (
         <StyledTextWithOptionalIcon className={className} direction={direction} {...rest}>
-            <Text isCapitalized={isCapitalized} isSelectable={isSelectable} isTruncatable={isTruncatable}>
+            <Text
+                isCapitalized={isCapitalized}
+                isDisabled={isDisabled}
+                isSelectable={isSelectable}
+                isTruncatable={isTruncatable}
+            >
                 {children}
             </Text>
             {iconType && (
                 <IconWrapper size={iconSize}>
-                    <IconCustomizable iconSize={size} iconType={iconType} />
+                    <IconCustomizable iconSize={size} iconType={iconType} isDisabled={isDisabled} />
                 </IconWrapper>
             )}
         </StyledTextWithOptionalIcon>

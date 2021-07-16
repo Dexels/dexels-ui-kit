@@ -119,6 +119,7 @@ export const SelectionControl: FunctionComponent<SelectionControlProps & { [key:
                     <Label
                         hasAlternativeTextStyle={hasAlternativeTextStyle}
                         hasError={hasError}
+                        isDisabled={isDisabled}
                         isSelectionControlLabel
                         isValid={isValid}
                     >

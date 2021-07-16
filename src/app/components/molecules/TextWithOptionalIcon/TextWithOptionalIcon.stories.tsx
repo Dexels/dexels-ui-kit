@@ -8,6 +8,7 @@ export default { title: 'molecules/TextWithOptionalIcon' };
 export const Configurable: FunctionComponent = () => (
     <TextWithOptionalIcon
         isCapitalized={boolean('Is capitalized', false)}
+        isDisabled={boolean('Is disabled', false)}
         isSelectable={boolean('Is selectable', true)}
     >
         {text('Text', 'Configure me!')}
@@ -20,6 +21,7 @@ export const ConfigurableWithIcon: FunctionComponent = () => (
         iconSize={select('Icon size', IconSize, IconSize.LARGE)}
         iconType={select('Icon type', IconType, IconType.CHECK)}
         isCapitalized={boolean('Is capitalized', false)}
+        isDisabled={boolean('Is disabled', false)}
         isSelectable={boolean('Is selectable', true)}
     >
         {text('Text', 'Configure me!')}
