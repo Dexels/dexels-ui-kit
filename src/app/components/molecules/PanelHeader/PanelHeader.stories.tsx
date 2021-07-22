@@ -13,6 +13,7 @@ export const Configurable: FunctionComponent = () => (
         hasCapitalizedTitle={boolean('Is title capitalized', true)}
         hasTitleStatusAppearance={boolean('Has title status appearance', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
+        isDisabled={boolean('Is disabled', false)}
         options={
             <Button iconType={IconType.CHECK} onClick={action('On click')} variant={ButtonVariant.TEXT_ONLY}>
                 {'Apply'}
@@ -28,6 +29,7 @@ export const ConfigurableWithMultipleButtons: FunctionComponent = () => (
         hasCapitalizedTitle={boolean('Is title capitalized', true)}
         hasTitleStatusAppearance={boolean('Has title status appearance', true)}
         iconType={select('Icon type', IconType, IconType.GEAR)}
+        isDisabled={boolean('Is disabled', false)}
         options={
             <Toolbar>
                 <Button iconType={IconType.CHECK} onClick={action('On click')} variant={ButtonVariant.TEXT_ONLY}>

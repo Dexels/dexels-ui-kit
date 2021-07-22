@@ -32,4 +32,5 @@ export interface IconCustomizableProps {
     iconColor?: string;
     iconSize: IconCustomizableSize;
     iconType: IconType;
+    isDisabled?: boolean;
 }

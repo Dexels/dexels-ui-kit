@@ -2,7 +2,7 @@ import styled, { css, SimpleInterpolation } from 'styled-components';
 import { Icon } from '../../atoms/Icon/Icon';
 import { IconCustomizableProps } from './types';
 
-export interface IconWrapperProps extends Pick<IconCustomizableProps, 'iconSize' | 'iconColor'> {}
+export interface IconWrapperProps extends Pick<IconCustomizableProps, 'iconSize' | 'iconColor' | 'isDisabled'> {}
 
 export const IconWrapper = styled.div<IconWrapperProps>`
     display: block;
@@ -10,6 +10,12 @@ export const IconWrapper = styled.div<IconWrapperProps>`
         iconColor &&
         css`
             color: ${iconColor};
+        `}
+
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
         `}
 
     font-size: ${({ iconSize }): string => `${iconSize}px`};

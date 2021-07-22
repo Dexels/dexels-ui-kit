@@ -6,9 +6,10 @@ export const IconCustomizable: FunctionComponent<IconCustomizableProps> = ({
     iconColor,
     iconSize,
     iconType,
+    isDisabled = false,
     className,
 }) => (
-    <IconWrapper className={className} iconColor={iconColor} iconSize={iconSize}>
+    <IconWrapper className={className} iconColor={iconColor} iconSize={iconSize} isDisabled={isDisabled}>
         <StyledIcon type={iconType} />
     </IconWrapper>
 );

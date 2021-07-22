@@ -9,6 +9,7 @@ export interface PanelHeaderProps {
     hasMarginBottom?: boolean;
     hasTitleStatusAppearance?: boolean;
     iconType?: IconType;
+    isDisabled?: boolean;
     options?: ReactNode;
     status?: Status;
     title: ReactNode;
@@ -19,13 +20,14 @@ export const PanelHeader: FunctionComponent<PanelHeaderProps> = ({
     hasMarginBottom = true,
     hasTitleStatusAppearance,
     iconType,
+    isDisabled = false,
     options,
     status,
     title,
 }) => (
     <StyledPanelHeader hasMarginBottom={hasMarginBottom}>
         <Title status={hasTitleStatusAppearance && status ? status : Status.DEFAULT}>
-            <TextWithOptionalIcon iconType={iconType} isCapitalized={hasCapitalizedTitle}>
+            <TextWithOptionalIcon iconType={iconType} isCapitalized={hasCapitalizedTitle} isDisabled={isDisabled}>
                 {title}
             </TextWithOptionalIcon>
         </Title>

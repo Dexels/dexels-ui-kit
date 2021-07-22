@@ -6,6 +6,7 @@ import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface TextProps {
     isCapitalized: boolean;
+    isDisabled: boolean;
     isSelectable: boolean;
     isTruncatable: boolean;
 }
@@ -26,6 +27,12 @@ export const Text = styled.p<TextProps>`
             span::first-letter {
                 text-transform: uppercase;
             }
+        `}
+
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
         `}
 `;
 
