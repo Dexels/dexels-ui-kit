@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ChangeEvent, FunctionComponent } from 'react';
 import SelectionControl from '../../../molecules/SelectionControl/SelectionControl';
-import { SelectionControlSize } from '../../../../types';
 import { SelectionControlType } from '../../../molecules/SelectionControl/types';
 import { TableToggleRowsSelectedProps } from 'react-table';
 import { Wrapper } from './RowSelectionCheckbox.sc';
@@ -32,7 +31,6 @@ export const RowSelectionCheckbox: FunctionComponent<RowSelectionCheckboxProps> 
                     selectedProps.onChange(event as ChangeEvent<HTMLInputElement>);
                 }
             }}
-            size={SelectionControlSize.SMALL}
             type={SelectionControlType.CHECKBOX}
             value=""
         />
