@@ -44,6 +44,12 @@ export const StyledLabel = styled.label<StyledLabelProps>`
             color: ${theme.colorTextBody.primary};
         `}
 
+    ${({ hasAlternativeTextStyle, theme }): SimpleInterpolation =>
+        hasAlternativeTextStyle &&
+        css`
+            color: ${theme.colorPrimary};
+        `}
+
     ${({ isActive, theme }): SimpleInterpolation =>
         isActive &&
         css`
