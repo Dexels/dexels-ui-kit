@@ -29,8 +29,33 @@ import { DEFAULT_LOCALE } from '../../../global/constants';
 import { RowSelectionCheckbox } from '../../components/organisms/Table/RowSelectionCheckbox/RowSelectionCheckbox';
 
 const selectionHook =
-    (propNameRowSelectAllowed: string) =>
+    (minimumSelected: number | undefined, maximumSelected: number | undefined, propNameRowSelectAllowed: string) =>
     <D extends object>(hooks: Hooks<any>) => {
+        const validateSelectionCount = (
+            rows: Row<D>[],
+            minimumSelectedValue: number | undefined,
+            maximumSelectedValue: number | undefined
+        ): boolean => {
+            const currentSelectedRowCount = rows.filter((rowItem: Row<D>) => rowItem.isSelected).length;
+            const maxCount = maximumSelectedValue !== undefined ? maximumSelectedValue : -1;
+            const minCount = minimumSelectedValue !== undefined ? minimumSelectedValue : -1;
+            let hasError = false;
+
+            if (!hasError && minCount !== -1 && maxCount === -1) {
+                hasError = currentSelectedRowCount < minCount;
+            }
+
+            if (!hasError && minCount === -1 && maxCount !== -1) {
+                hasError = currentSelectedRowCount > maxCount;
+            }
+
+            if (!hasError && minCount !== -1 && maxCount !== -1) {
+                hasError = currentSelectedRowCount < minCount || currentSelectedRowCount > maxCount;
+            }
+
+            return hasError;
+        };
+
         // eslint-disable-next-line no-param-reassign
         hooks.getToggleAllPageRowsSelectedProps = (props: HeaderProps<never>, { instance }: MetaBase<D>) => {
             const isAllSelected = instance.page.every((row: Row<D>) => row.isDisabled || row.isSelected); // counting disabled rows as selected for all so that disabled not selected rows will not make allSelected false.
@@ -56,7 +81,7 @@ const selectionHook =
 
         hooks.allColumns.push((columns) => [
             {
-                Cell: ({ row }: CellProps<any>) => {
+                Cell: ({ row, rows }: CellProps<any>) => {
                     const isRowSelectAllowedValue =
                         row.original[propNameRowSelectAllowed as keyof D] === undefined ||
                         row.original[propNameRowSelectAllowed as keyof D];
@@ -65,20 +90,25 @@ const selectionHook =
                     // eslint-disable-next-line no-param-reassign
                     row.isDisabled = !isRowSelectAllowedValue;
 
+                    // Set hasError prop for row when appropriate. Might be used for some other purpose, hence the variable
+                    const hasError = validateSelectionCount(rows, minimumSelected, maximumSelected);
+
                     return (
                         <RowSelectionCheckbox
-                            isDisabled={!isRowSelectAllowedValue}
+                            isDisabled={!isRowSelectAllowedValue || (hasError && !row.isSelected)}
                             selectedProps={row.getToggleRowSelectedProps()}
                         />
                     );
                 },
-                Header: ({ getToggleAllPageRowsSelectedProps, rows }: HeaderProps<never>) => (
-                    <RowSelectionCheckbox
-                        isDisabled={rows.length === 0}
-                        isHeader
-                        selectedProps={getToggleAllPageRowsSelectedProps()}
-                    />
-                ),
+                Header: ({ getToggleAllPageRowsSelectedProps, rows }: HeaderProps<never>) =>
+                    minimumSelected === -1 &&
+                    maximumSelected === -1 && (
+                        <RowSelectionCheckbox
+                            isDisabled={rows.length === 0}
+                            isHeader
+                            selectedProps={getToggleAllPageRowsSelectedProps()}
+                        />
+                    ),
                 disableGroupBy: true,
                 disableResizing: true,
                 hasCellPadding: false,
@@ -97,6 +127,13 @@ const selectionHook =
         });
     };
 
+export interface TableMultiSelectProps {
+    isMultiSelect: boolean;
+    maximumSelected?: number;
+    minimumSelected?: number;
+    propNameRowSelectAllowed?: string;
+}
+
 // Mind the order of the hooks, this is not random, but required by the package
 /* eslint-disable @typescript-eslint/ban-types */
 export const createTable = <T extends object>(
@@ -105,9 +142,25 @@ export const createTable = <T extends object>(
     initialState?: Partial<TableState<T>>,
     defaultColumn?: Partial<Column<T>>,
     locale = DEFAULT_LOCALE,
-    isMultiSelect = false,
-    propNameRowSelectAllowed = 'isRowSelectAllowed'
+    tableMultiSelectProps?: TableMultiSelectProps
 ): TableInstance<T> => {
+    const isMultiSelect = tableMultiSelectProps ? tableMultiSelectProps.isMultiSelect : false;
+
+    const maximumSelected =
+        isMultiSelect && tableMultiSelectProps && tableMultiSelectProps.maximumSelected !== undefined
+            ? tableMultiSelectProps.maximumSelected
+            : -1; // -1 means no limitation
+
+    const minimumSelected =
+        isMultiSelect && tableMultiSelectProps && tableMultiSelectProps.minimumSelected !== undefined
+            ? tableMultiSelectProps.minimumSelected
+            : -1; // -1 means no limitation
+
+    const propNameRowSelectAllowed =
+        isMultiSelect && tableMultiSelectProps
+            ? tableMultiSelectProps.propNameRowSelectAllowed || 'isRowSelectAllowed'
+            : '';
+
     const columnsWithDefaultProps = useMemo(
         () =>
             columns.map((column) => {
@@ -149,7 +202,7 @@ export const createTable = <T extends object>(
               useExpanded,
               usePagination,
               useRowSelect,
-              selectionHook(propNameRowSelectAllowed) // required for multi select
+              selectionHook(minimumSelected, maximumSelected, propNameRowSelectAllowed) // required for multi select
           )
         : useTable<T>(
               tableOptions,
