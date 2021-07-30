@@ -5,7 +5,7 @@ export interface PicklistMultiSelectProps {
 }
 
 export const PicklistMultiSelect: FunctionComponent<PicklistMultiSelectProps> = ({ isDisabled = false }) => (
-    <div>{'test'}</div>
+    <div>{`isDisabled: ${isDisabled.toString()}`}</div>
 );
 
 export default PicklistMultiSelect;
