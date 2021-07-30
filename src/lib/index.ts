@@ -215,6 +215,7 @@ export { InputPassword, InputPasswordProps } from '../app/components/organisms/I
 export { InputCurrency, InputCurrencyProps } from '../app/components/organisms/InputCurrency/InputCurrency';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
+export { PicklistMultiSelect } from '../app/components/organisms/PicklistMultiSelect/PicklistMultiSelect';
 export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/organisms/Table/Paginator/Paginator';
 export { SidePanel, SidePanelProps } from '../app/components/organisms/SidePanel/SidePanel';
 export { StatusCell, StatusCellProps } from '../app/components/organisms/Table/StatusCell/StatusCell';
