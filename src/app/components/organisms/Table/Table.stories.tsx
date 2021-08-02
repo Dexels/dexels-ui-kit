@@ -167,7 +167,7 @@ export const ConfigurableMultiSelectTable: FunctionComponent = () => {
             width: 100,
         },
         Locale.NL,
-        true
+        { isMultiSelect: true }
     );
 
     return instance ? (
@@ -175,7 +175,82 @@ export const ConfigurableMultiSelectTable: FunctionComponent = () => {
             <Table<TableData>
                 caption={text('Table caption', 'Table caption multi select')}
                 elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
-                footerTitleColumnSpan={number('Number of columns for first footer text', 3)}
+                instance={instance}
+                isFullWidth={boolean('Is full width', true)}
+                onClickRow={getTableRow}
+                paginator={
+                    <Paginator<TableData> instance={instance} texts={createLocalizedPagingTexts(DEFAULT_LOCALE)} />
+                }
+                texts={{ sortByTooltip: localizedTexts.sortByTooltip }}
+            />
+            <p>{`Selected Rows: ${Object.keys(instance.selectedFlatRows).length}`}</p>
+            <pre>
+                <code>
+                    {JSON.stringify(
+                        {
+                            selectedRowIds: instance.state.selectedRowIds,
+                        },
+                        null,
+                        2
+                    )}
+                    <br />
+                    <br />
+                    {JSON.stringify(
+                        {
+                            selectedRows: getSelectedRows(instance),
+                        },
+                        null,
+                        2
+                    )}
+                </code>
+            </pre>
+        </>
+    ) : (
+        <div>{'Loading...'}</div>
+    );
+};
+
+export const ConfigurableMultiSelectTableLimitedSelect: FunctionComponent = () => {
+    const columns = useMemo(() => tableColumns(true), []);
+    const data = useMemo(() => tableData(), []);
+    const localizedTexts = createLocalizedTableTexts(DEFAULT_LOCALE);
+    const [maximumSelectedValue] = useState(3);
+    const [minimumSelectedValue] = useState(0);
+
+    const instance = createTable<TableData>(
+        columns,
+        data,
+        {
+            selectedRowIds: getSelectedRowIds(data),
+            sortBy: [
+                {
+                    desc: false,
+                    id: 'lastName',
+                },
+                {
+                    desc: false,
+                    id: 'firstName',
+                },
+            ],
+        },
+        {
+            width: 100,
+        },
+        Locale.NL,
+        {
+            isMultiSelect: true,
+            maximumSelected: maximumSelectedValue,
+            minimumSelected: minimumSelectedValue,
+        }
+    );
+
+    return instance ? (
+        <>
+            <Table<TableData>
+                caption={text('Table caption', 'Table caption multi select')}
+                elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
+                footer={`Minimum selected: ${minimumSelectedValue} and Maximum selected: ${maximumSelectedValue}`}
+                footerTitleColumnSpan={number('Number of columns for first footer text', 2)}
                 instance={instance}
                 isFullWidth={boolean('Is full width', true)}
                 onClickRow={getTableRow}
