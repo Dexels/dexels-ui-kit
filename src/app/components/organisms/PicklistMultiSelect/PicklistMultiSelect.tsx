@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
 import Paginator, { PaginatorTexts } from '../Table/Paginator/Paginator';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Row, TableInstance } from 'react-table';
 import { StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
 import Table, { TableTexts } from '../Table/Table';
 import Button from '../../molecules/Button/Button';
 import PanelHeader from '../../molecules/PanelHeader/PanelHeader';
+import TableSkeleton from '../Table/TableSkeleton/TableSkeleton';
 
 export interface PicklistMultiSelectPanelProps {
     iconType: IconType;
@@ -36,19 +37,22 @@ export const PicklistMultiSelect = <T extends object>({
     rightPanelProps,
     tableTexts,
 }: PicklistMultiSelectProps<T>): JSX.Element => {
-    const initialSelectedRows = instance.selectedFlatRows;
-    const instanceLeft: TableInstance<T> = Object.assign({} as TableInstance<T>, instance);
-    const instanceRight: TableInstance<T> = Object.assign({} as TableInstance<T>, instance);
+    const [initialSelectedRows, setInitialSelectedRows] = useState<Row<T>[] | undefined>(undefined);
+    const [instanceLeft, setInstanceLeft] = useState<TableInstance<T> | undefined>(undefined);
+    const [instanceRight, setInstanceRight] = useState<TableInstance<T> | undefined>(undefined);
 
     console.log('initialSelectedRows', initialSelectedRows);
-    console.log('instanceLeft', instanceLeft.selectedFlatRows);
-    console.log('instanceRight', instanceRight.selectedFlatRows);
+    // console.log('instanceLeft', instanceLeft.selectedFlatRows);
+    // console.log('instanceRight', instanceRight.selectedFlatRows);
+
+    // const filterSelectedRows = (rows: Row<T>[]): Row<T>[] => rows.filter((row) => row.isSelected);
+    // const filterNonSelectedRows = (rows: Row<T>[]): Row<T>[] => rows.filter((row) => !row.isSelected);
 
     const onChangeCallback = useCallback(() => {
-        if (onChange) {
+        if (instanceRight && onChange) {
             console.log('onChange', onChange(instanceRight.rows));
         }
-    }, [onChange]);
+    }, [instanceRight, onChange]);
 
     const onAddToSelectionCallback = useCallback(() => {
         console.log('onAddToSelectionCallback', onAddToSelectionCallback);
@@ -59,6 +63,33 @@ export const PicklistMultiSelect = <T extends object>({
         console.log('onRemoveFromSelectionCallback', onRemoveFromSelectionCallback);
         onChangeCallback();
     }, []);
+
+    useEffect(() => {
+        if (instance) {
+            setInitialSelectedRows(instance.selectedFlatRows);
+
+            // createTable(
+            //     instance.columns,
+            //     instance.rows.filter((row) => row.isSelected),
+            //     {
+            //         ...instance.initialState,
+            //     },
+            //     instance.defaultColumn,
+            //     instance.initialState?.locale || DEFAULT_LOCALE,
+            //     {
+            //         ...tableMultiSelectProps,
+            //         isMultiSelect: true,
+            //     }
+            // );
+
+            const intanceTmpLeft = Object.assign({} as TableInstance<T>, instance);
+            intanceTmpLeft.rows = intanceTmpLeft.rows.filter((row) => row.isSelected);
+            setInstanceLeft(intanceTmpLeft);
+            const intanceTmpRight = Object.assign({} as TableInstance<T>, instance);
+            intanceTmpRight.rows = intanceTmpRight.rows.filter((row) => !row.isSelected);
+            setInstanceRight(intanceTmpRight);
+        }
+    }, [instance]);
 
     return (
         <StyledWrapper isDisabled={isDisabled}>
@@ -82,21 +113,25 @@ export const PicklistMultiSelect = <T extends object>({
                     status={leftPanelProps.status}
                     title={leftPanelProps.title}
                 />
-                <Table
-                    instance={instanceLeft}
-                    isDisabled={isDisabled}
-                    isFullWidth
-                    paginator={
-                        hasPaging ? (
-                            <Paginator
-                                hasPageSizeSelector={false}
-                                instance={instanceLeft}
-                                texts={paginatorTexts || ({} as PaginatorTexts)}
-                            />
-                        ) : undefined
-                    }
-                    texts={tableTexts || undefined}
-                />
+                {!instanceLeft ? (
+                    <TableSkeleton numberOfRowsPerTable={3} />
+                ) : (
+                    <Table
+                        instance={instanceLeft}
+                        isDisabled={isDisabled}
+                        isFullWidth
+                        paginator={
+                            hasPaging ? (
+                                <Paginator
+                                    hasPageSizeSelector={false}
+                                    instance={instanceLeft}
+                                    texts={paginatorTexts || ({} as PaginatorTexts)}
+                                />
+                            ) : undefined
+                        }
+                        texts={tableTexts || undefined}
+                    />
+                )}
             </StyledPanelHeader>
             {/* RIGHT PANEL */}
             <StyledPanelHeader isLeftPanel={false}>
@@ -119,21 +154,25 @@ export const PicklistMultiSelect = <T extends object>({
                     status={rightPanelProps.status}
                     title={rightPanelProps.title}
                 />
-                <Table
-                    instance={instanceRight}
-                    isDisabled={isDisabled}
-                    isFullWidth
-                    paginator={
-                        hasPaging ? (
-                            <Paginator
-                                hasPageSizeSelector={false}
-                                instance={instanceRight}
-                                texts={paginatorTexts || ({} as PaginatorTexts)}
-                            />
-                        ) : undefined
-                    }
-                    texts={tableTexts || undefined}
-                />
+                {!instanceRight ? (
+                    <TableSkeleton numberOfRowsPerTable={3} />
+                ) : (
+                    <Table
+                        instance={instanceRight}
+                        isDisabled={isDisabled}
+                        isFullWidth
+                        paginator={
+                            hasPaging ? (
+                                <Paginator
+                                    hasPageSizeSelector={false}
+                                    instance={instanceRight}
+                                    texts={paginatorTexts || ({} as PaginatorTexts)}
+                                />
+                            ) : undefined
+                        }
+                        texts={tableTexts || undefined}
+                    />
+                )}
             </StyledPanelHeader>
         </StyledWrapper>
     );
