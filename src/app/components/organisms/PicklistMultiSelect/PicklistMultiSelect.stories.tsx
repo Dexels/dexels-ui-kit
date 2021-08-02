@@ -1,30 +1,21 @@
-import { IconType, Status } from '../../../types';
+import { createLocalizedPagingTexts, createLocalizedTableTexts } from '../Table/mockup/tableFunctions';
+import { IconType, Locale, Status } from '../../../types';
 import PicklistMultiSelect, { PicklistMultiSelectPanelProps } from './PicklistMultiSelect';
 import React, { FunctionComponent, useMemo } from 'react';
 import tableData, { TableData } from '../Table/mockup/tableData';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import createTable from '../../../utils/functions/createTable';
-import { tableColumns } from '../Table/mockup/tableColumns';
+import { DEFAULT_LOCALE } from '../../../../global/constants';
+import { tableColumnsPicklistMultiSelect } from '../Table/mockup/tableColumns';
 
 export default { title: 'organisms/PicklistMultiSelect' };
 
 export const Configurable: FunctionComponent = () => {
-    const columns = useMemo(() => tableColumns(false), []);
+    const columns = useMemo(() => tableColumnsPicklistMultiSelect(), []);
     const data = useMemo(() => tableData(), []);
-
-    const leftPanelProps: PicklistMultiSelectPanelProps = {
-        iconType: IconType.ARROWRIGHT,
-        status: Status.DEFAULT,
-        textButton: 'Move',
-        title: 'Left panel',
-    };
-
-    const rightPanelProps: PicklistMultiSelectPanelProps = {
-        ...leftPanelProps,
-        iconType: IconType.ARROWLEFT,
-        title: 'Right panel',
-    };
+    const localizedTexts = createLocalizedTableTexts(DEFAULT_LOCALE);
+    const paginatorTexts = createLocalizedPagingTexts(DEFAULT_LOCALE);
 
     const instance = createTable<TableData>(
         columns,
@@ -43,21 +34,40 @@ export const Configurable: FunctionComponent = () => {
         },
         {
             width: 100,
-        }
+        },
+        Locale.NL,
+        { isMultiSelect: true }
     );
 
-    const onSave = (): void => {
-        action('On save');
+    const leftPanelProps: PicklistMultiSelectPanelProps = {
+        iconType: IconType.ROUND_CHECK,
+        status: Status.DEFAULT,
+        textButton: 'Move',
+        title: 'Left panel',
     };
 
-    return (
+    const rightPanelProps: PicklistMultiSelectPanelProps = {
+        ...leftPanelProps,
+        iconType: IconType.ROUND_EURO,
+        title: 'Right panel',
+    };
+
+    const onChange = (): void => {
+        action('On change');
+    };
+
+    return instance ? (
         <PicklistMultiSelect
-            instanceSelectableEntries={instance}
-            instanceSelectedEntries={instance}
+            hasPaging={boolean('Has paging', true)}
+            instance={instance}
             isDisabled={boolean('Is disabled', false)}
             leftPanelProps={leftPanelProps}
-            onSave={onSave}
+            onChange={onChange}
+            paginatorTexts={paginatorTexts}
             rightPanelProps={rightPanelProps}
+            tableTexts={localizedTexts}
         />
+    ) : (
+        <div>{'Loading...'}</div>
     );
 };

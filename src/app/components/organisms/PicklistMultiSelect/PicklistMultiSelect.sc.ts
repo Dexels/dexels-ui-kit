@@ -10,18 +10,20 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
     ${setBoxSizing()}
     display: flex;
     background-color: ${({ theme }): string => theme.background.secondary};
-    /* width: 100%;
-    height: 100%; */
-    /* overflow: auto; */
 `;
 
 StyledWrapper.defaultProps = {
     theme: themeBasic,
 };
 
-export const StyledPanelHeader = styled.div`
+interface StyledPanelHeader {
+    isLeftPanel: boolean;
+}
+
+export const StyledPanelHeader = styled.div<StyledPanelHeader>`
     flex: auto;
-    padding: ${({ theme }): string => theme.spacing(0.5)};
+    margin: ${({ isLeftPanel, theme }): string =>
+        isLeftPanel ? theme.spacing(0, 1, 0, 0) : theme.spacing(0, 0, 0, 1)};
     width: 50%;
 
     div > {
@@ -32,9 +34,3 @@ export const StyledPanelHeader = styled.div`
 StyledPanelHeader.defaultProps = {
     theme: themeBasic,
 };
-
-export const ButtonWrapper = styled.div`
-    button:nth-of-type(1) {
-        margin: 0 8px 0 0;
-    }
-`;

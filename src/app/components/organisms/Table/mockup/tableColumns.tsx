@@ -217,3 +217,25 @@ export const tableColumnsWithGroupHeader = (isMultiSelect: boolean): Column<Tabl
         ],
     },
 ];
+
+export const tableColumnsPicklistMultiSelect = (): Column<TableData>[] => [
+    {
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
+        Header: 'First Name',
+        accessor: 'firstName',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onClick: (cell: any, row: any, event: any): any => getTableCell(cell, row, event),
+    },
+    {
+        Cell: ({ value }): ReactNode => <ContentCell isBold value={value} />,
+        Header: 'Last Name',
+        accessor: 'lastName',
+        width: '35%',
+    },
+    {
+        Cell: ({ value }): ReactNode => <ContentCell value={value} />,
+        Header: 'Infix',
+        accessor: 'infix',
+        width: 75.5,
+    },
+];
