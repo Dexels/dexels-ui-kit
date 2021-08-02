@@ -23,18 +23,33 @@ StyledPanelHeader.defaultProps = {
 };
 
 interface TitleProps {
+    isReversed: boolean;
     status: Status;
 }
 
 export const Title = styled.div<TitleProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
     color: ${({ status, theme }): string => getStatusColor(status, theme)};
+
+    ${({ isReversed }): SimpleInterpolation =>
+        isReversed &&
+        css`
+            margin: 0 0 0 auto;
+        `}
 `;
 
 Title.defaultProps = {
     theme: themeBasic,
 };
 
-export const FunctionalWrapper = styled.div`
-    margin: 0 0 0 auto;
+interface FunctionalWrapperProps {
+    isReversed: boolean;
+}
+
+export const FunctionalWrapper = styled.div<FunctionalWrapperProps>`
+    ${({ isReversed }): SimpleInterpolation =>
+        !isReversed &&
+        css`
+            margin: 0 0 0 auto;
+        `}
 `;

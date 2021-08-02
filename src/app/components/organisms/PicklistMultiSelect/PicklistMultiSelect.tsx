@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
-import { ButtonWrapper, StyledWrapper } from './PicklistMultiSelect.sc';
+import { ButtonWrapper, StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
 import React, { useCallback } from 'react';
 import { Row, TableInstance } from 'react-table';
 import Button from '../../molecules/Button/Button';
@@ -42,47 +42,52 @@ export const PicklistMultiSelect = <T extends object>({
     return (
         <StyledWrapper isDisabled={isDisabled}>
             {/* LEFT PANEL */}
-            <PanelHeader
-                hasMarginBottom
-                iconType={leftPanelProps.iconType}
-                isDisabled={isDisabled}
-                options={
-                    <ButtonWrapper>
-                        <Button
-                            iconType={leftPanelProps.iconType}
-                            isDisabled={isDisabled}
-                            onClick={onSaveCallback}
-                            size={ButtonSize.SMALL}
-                            variant={ButtonVariant.OUTLINE}
-                        >
-                            {leftPanelProps.textButton}
-                        </Button>
-                    </ButtonWrapper>
-                }
-                status={leftPanelProps.status}
-                title={leftPanelProps.title}
-            />
+            <StyledPanelHeader>
+                <PanelHeader
+                    hasMarginBottom
+                    iconType={leftPanelProps.iconType}
+                    isDisabled={isDisabled}
+                    options={
+                        <ButtonWrapper>
+                            <Button
+                                iconType={leftPanelProps.iconType}
+                                isDisabled={isDisabled}
+                                onClick={onSaveCallback}
+                                size={ButtonSize.SMALL}
+                                variant={ButtonVariant.OUTLINE}
+                            >
+                                {leftPanelProps.textButton}
+                            </Button>
+                        </ButtonWrapper>
+                    }
+                    status={leftPanelProps.status}
+                    title={leftPanelProps.title}
+                />
+            </StyledPanelHeader>
             {/* RIGHT PANEL */}
-            <PanelHeader
-                hasMarginBottom
-                iconType={rightPanelProps.iconType}
-                isDisabled={isDisabled}
-                options={
-                    <ButtonWrapper>
-                        <Button
-                            iconType={rightPanelProps.iconType}
-                            isDisabled={isDisabled}
-                            onClick={onSaveCallback}
-                            size={ButtonSize.SMALL}
-                            variant={ButtonVariant.OUTLINE}
-                        >
-                            {rightPanelProps.textButton}
-                        </Button>
-                    </ButtonWrapper>
-                }
-                status={rightPanelProps.status}
-                title={rightPanelProps.title}
-            />
+            <StyledPanelHeader>
+                <PanelHeader
+                    hasMarginBottom
+                    iconType={rightPanelProps.iconType}
+                    isDisabled={isDisabled}
+                    isReversed
+                    options={
+                        <ButtonWrapper>
+                            <Button
+                                iconType={rightPanelProps.iconType}
+                                isDisabled={isDisabled}
+                                onClick={onSaveCallback}
+                                size={ButtonSize.SMALL}
+                                variant={ButtonVariant.OUTLINE}
+                            >
+                                {rightPanelProps.textButton}
+                            </Button>
+                        </ButtonWrapper>
+                    }
+                    status={rightPanelProps.status}
+                    title={rightPanelProps.title}
+                />
+            </StyledPanelHeader>
         </StyledWrapper>
     );
 };

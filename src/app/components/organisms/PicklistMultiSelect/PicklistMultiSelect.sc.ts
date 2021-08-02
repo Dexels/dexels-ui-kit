@@ -8,17 +8,28 @@ interface StyledWrapperProps {
 
 export const StyledWrapper = styled.div<StyledWrapperProps>`
     ${setBoxSizing()}
-
-    position: fixed;
-    top: 0;
-    right: 0;
+    display: flex;
     background-color: ${({ theme }): string => theme.background.secondary};
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    /* width: 100%;
+    height: 100%; */
+    /* overflow: auto; */
 `;
 
 StyledWrapper.defaultProps = {
+    theme: themeBasic,
+};
+
+export const StyledPanelHeader = styled.div`
+    flex: auto;
+    padding: ${({ theme }): string => theme.spacing(0.5)};
+    width: 50%;
+
+    div > {
+        width: 100%;
+    }
+`;
+
+StyledPanelHeader.defaultProps = {
     theme: themeBasic,
 };
 

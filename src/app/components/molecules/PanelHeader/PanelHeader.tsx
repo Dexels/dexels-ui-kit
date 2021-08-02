@@ -10,6 +10,7 @@ export interface PanelHeaderProps {
     hasTitleStatusAppearance?: boolean;
     iconType?: IconType;
     isDisabled?: boolean;
+    isReversed?: boolean;
     options?: ReactNode;
     status?: Status;
     title: ReactNode;
@@ -21,17 +22,19 @@ export const PanelHeader: FunctionComponent<PanelHeaderProps> = ({
     hasTitleStatusAppearance,
     iconType,
     isDisabled = false,
+    isReversed = false,
     options,
     status,
     title,
 }) => (
     <StyledPanelHeader hasMarginBottom={hasMarginBottom}>
-        <Title status={hasTitleStatusAppearance && status ? status : Status.DEFAULT}>
+        {isReversed && <FunctionalWrapper isReversed={isReversed}>{options}</FunctionalWrapper>}
+        <Title isReversed={isReversed} status={hasTitleStatusAppearance && status ? status : Status.DEFAULT}>
             <TextWithOptionalIcon iconType={iconType} isCapitalized={hasCapitalizedTitle} isDisabled={isDisabled}>
                 {title}
             </TextWithOptionalIcon>
         </Title>
-        <FunctionalWrapper>{options}</FunctionalWrapper>
+        {!isReversed && <FunctionalWrapper isReversed={isReversed}>{options}</FunctionalWrapper>}
     </StyledPanelHeader>
 );
 
