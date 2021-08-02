@@ -175,7 +175,6 @@ export const ConfigurableMultiSelectTable: FunctionComponent = () => {
             <Table<TableData>
                 caption={text('Table caption', 'Table caption multi select')}
                 elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
-                footerTitleColumnSpan={number('Number of columns for first footer text', 3)}
                 instance={instance}
                 isFullWidth={boolean('Is full width', true)}
                 onClickRow={getTableRow}
@@ -250,7 +249,8 @@ export const ConfigurableMultiSelectTableLimitedSelect: FunctionComponent = () =
             <Table<TableData>
                 caption={text('Table caption', 'Table caption multi select')}
                 elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
-                footerTitleColumnSpan={number('Number of columns for first footer text', 3)}
+                footer={`Minimum selected: ${minimumSelectedValue} and Maximum selected: ${maximumSelectedValue}`}
+                footerTitleColumnSpan={number('Number of columns for first footer text', 2)}
                 instance={instance}
                 isFullWidth={boolean('Is full width', true)}
                 onClickRow={getTableRow}
