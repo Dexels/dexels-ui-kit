@@ -114,6 +114,7 @@ export const TableHeaderCellInner = styled.div<TableHeaderCellInnerProps>`
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+    width: 100%;
 
     .icon {
         flex: 0 0 auto;

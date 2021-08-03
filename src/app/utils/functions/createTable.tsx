@@ -25,6 +25,7 @@ import {
     useTable,
 } from 'react-table';
 import React, { useMemo } from 'react';
+import { Alignment } from '../../types';
 import { DEFAULT_LOCALE } from '../../../global/constants';
 import { RowSelectionCheckbox } from '../../components/organisms/Table/RowSelectionCheckbox/RowSelectionCheckbox';
 
@@ -109,6 +110,7 @@ const selectionHook =
                             selectedProps={getToggleAllPageRowsSelectedProps()}
                         />
                     ),
+                align: Alignment.CENTER,
                 disableGroupBy: true,
                 disableResizing: true,
                 hasCellPadding: false,

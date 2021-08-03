@@ -15,24 +15,28 @@ export const RowSelectionCheckbox: FunctionComponent<RowSelectionCheckboxProps> 
     isDisabled = false,
     isHeader = false,
     selectedProps,
-}) => (
-    <Wrapper isHeader={isHeader}>
-        <SelectionControl
-            hasHorizontalCorrection={false}
-            hasVerticalCorrection={false}
-            isChecked={selectedProps.checked}
-            isDisabled={isDisabled}
-            isIndeterminate={selectedProps.indeterminate}
-            isTableElement
-            label=""
-            name={isHeader ? '_selector_header' : '_selector_row'} // @TODO: figure out if the non unique name will cause issues
-            onChange={(event): void => {
-                if (selectedProps.onChange !== undefined) {
-                    selectedProps.onChange(event as ChangeEvent<HTMLInputElement>);
-                }
-            }}
-            type={SelectionControlType.CHECKBOX}
-            value=""
-        />
-    </Wrapper>
-);
+}) => {
+    const compName = isHeader ? '_selector_header' : '_selector_row'; // @TODO: figure out if the non unique name will cause issues(
+
+    return (
+        <Wrapper id={`${compName}_wrapper`} isHeader={isHeader}>
+            <SelectionControl
+                hasHorizontalCorrection={false}
+                hasVerticalCorrection={false}
+                isChecked={selectedProps.checked}
+                isDisabled={isDisabled}
+                isIndeterminate={selectedProps.indeterminate}
+                isTableElement
+                label=""
+                name={compName}
+                onChange={(event): void => {
+                    if (selectedProps.onChange !== undefined) {
+                        selectedProps.onChange(event as ChangeEvent<HTMLInputElement>);
+                    }
+                }}
+                type={SelectionControlType.CHECKBOX}
+                value=""
+            />
+        </Wrapper>
+    );
+};

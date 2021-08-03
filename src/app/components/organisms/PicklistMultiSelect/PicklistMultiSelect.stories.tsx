@@ -1,5 +1,5 @@
 import { createLocalizedPagingTexts, createLocalizedTableTexts } from '../Table/mockup/tableFunctions';
-import { IconType, Locale, Status } from '../../../types';
+import { IconType, Status } from '../../../types';
 import PicklistMultiSelect, { PicklistMultiSelectPanelProps } from './PicklistMultiSelect';
 import React, { FunctionComponent, useMemo } from 'react';
 import tableData, { TableData } from '../Table/mockup/tableData';
@@ -7,6 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import createTable from '../../../utils/functions/createTable';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
+import { getSelectedRowIds } from '../Table/utils/tableFunctions';
 import { tableColumnsPicklistMultiSelect } from '../Table/mockup/tableColumns';
 
 export default { title: 'organisms/PicklistMultiSelect' };
@@ -21,6 +22,7 @@ export const Configurable: FunctionComponent = () => {
         columns,
         data,
         {
+            selectedRowIds: getSelectedRowIds(data),
             sortBy: [
                 {
                     desc: false,
@@ -35,7 +37,7 @@ export const Configurable: FunctionComponent = () => {
         {
             width: 100,
         },
-        Locale.NL,
+        DEFAULT_LOCALE,
         { isMultiSelect: true }
     );
 
@@ -52,8 +54,12 @@ export const Configurable: FunctionComponent = () => {
         title: 'Right panel',
     };
 
-    const onChange = (): void => {
-        action('On change');
+    const onAdd = (): void => {
+        action('On add');
+    };
+
+    const onRemove = (): void => {
+        action('On remove');
     };
 
     return instance ? (
@@ -62,7 +68,8 @@ export const Configurable: FunctionComponent = () => {
             instance={instance}
             isDisabled={boolean('Is disabled', false)}
             leftPanelProps={leftPanelProps}
-            onChange={onChange}
+            onAdd={onAdd}
+            onRemove={onRemove}
             paginatorTexts={paginatorTexts}
             rightPanelProps={rightPanelProps}
             tableTexts={localizedTexts}
