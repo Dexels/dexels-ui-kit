@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
 import Paginator, { PaginatorTexts } from '../Table/Paginator/Paginator';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Row, TableInstance } from 'react-table';
-import { StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
+import { StyledLoader, StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
 import Table, { TableTexts } from '../Table/Table';
 import Button from '../../molecules/Button/Button';
-import { createTable } from '../../../utils/functions/createTable';
-import { DEFAULT_LOCALE } from '../../../../global/constants';
+import { copyInstance } from '../../../utils/functions/createTable';
 import PanelHeader from '../../molecules/PanelHeader/PanelHeader';
 import { TableSkeleton } from '../Table/TableSkeleton/TableSkeleton';
 
@@ -43,56 +42,25 @@ export const PicklistMultiSelect = <T extends object>({
     rightPanelProps,
     tableTexts,
 }: PicklistMultiSelectProps<T>): JSX.Element => {
-    // const [instanceLeft, setInstanceLeft] = useState<TableInstance<T> | undefined>(undefined);
-    const [instanceRight, setInstanceRight] = useState<TableInstance<T> | undefined>(undefined);
-    const instanceColumns = useMemo(() => instance.columns, [instance]);
-    const instanceDefaultColumn = useMemo(() => instance.defaultColumn, [instance]);
-    const instanceLocale = useMemo(() => instance.initialState?.locale || DEFAULT_LOCALE, [instance]);
-    const instanceInitialState = useMemo(() => instance.initialState, [instance]);
     const instanceLeftData = useMemo(() => instance.rows.filter((row) => !row.isSelected) as T[], [instance]);
-    const instanceRightData = useMemo(() => instance.rows.filter((row) => row.isSelected) as T[], [instance]);
 
-    const resetSelectedRight = () =>
-        instanceRightData.forEach((row, index) => {
+    const instanceRightData = useMemo(() => {
+        const rows = instance.rows.filter((row) => row.isSelected) as T[];
+
+        rows.forEach((row, index) => {
             if ((row as Row<T>).isSelected) {
-                (instanceRightData[index] as Row<T>).isSelected = false;
+                (rows[index] as Row<T>).isSelected = false;
             }
         });
 
-    const instanceLeft = createTable<T>(
-        instanceColumns,
-        instanceLeftData,
-        {
-            ...instanceInitialState,
-            selectedRowIds: {} as Record<string, boolean>,
-        },
-        instanceDefaultColumn,
-        instanceLocale,
-        { isMultiSelect: true }
-    );
+        return rows;
+    }, [instance]);
 
-    const newInstanceRight = createTable<T>(
-        instanceColumns,
-        instanceRightData,
-        {
-            ...instanceInitialState,
-            selectedRowIds: {} as Record<string, boolean>,
-        },
-        instanceDefaultColumn,
-        instanceLocale,
-        { isMultiSelect: true }
-    );
+    const instanceLeft = copyInstance<T>(instance, instanceLeftData, { isMultiSelect: true });
+    const instanceRight = copyInstance<T>(instance, instanceRightData, { isMultiSelect: true });
 
     console.log('root -> instanceLeft', instanceLeft);
     console.log('root -> instanceRight', instanceRight);
-
-    // console.log('root -> instanceLeft', instanceLeft?.selectedFlatRows);
-    // console.log('root -> instanceRight', instanceRight?.selectedFlatRows);
-    // console.log('root -> instanceLeftData', instanceLeftData);
-    // console.log('root -> instanceRightData', instanceRightData);
-
-    // const filterSelectedRows = (rows: Row<T>[]): Row<T>[] => rows.filter((row) => row.isSelected);
-    // const filterNonSelectedRows = (rows: Row<T>[]): Row<T>[] => rows.filter((row) => !row.isSelected);
 
     const onAddCallback = useCallback(() => {
         if (instanceLeft && onAdd) {
@@ -113,22 +81,8 @@ export const PicklistMultiSelect = <T extends object>({
 
     const onRemoveFromSelectionCallback = useCallback(() => {
         console.log('onRemoveFromSelectionCallback', instanceRight?.selectedFlatRows);
-
-        // Reset selected row ids
-        resetSelectedRight();
         onRemoveCallback();
     }, [instanceRight]);
-
-    useEffect(() => {
-        if (instanceRightData) {
-            resetSelectedRight();
-        }
-    }, [instanceRightData]);
-
-    useEffect(() => {
-        console.log('useEffect right', newInstanceRight);
-        setInstanceRight(newInstanceRight);
-    }, [newInstanceRight]);
 
     return (
         <StyledWrapper isDisabled={isDisabled}>
@@ -141,7 +95,7 @@ export const PicklistMultiSelect = <T extends object>({
                     options={
                         <Button
                             iconType={IconType.ARROWRIGHT}
-                            isDisabled={isDisabled || instanceLeftData.length === 0}
+                            isDisabled={isDisabled || instanceLeft.rows.length === 0}
                             onClick={onAddToSelectionCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
@@ -153,7 +107,9 @@ export const PicklistMultiSelect = <T extends object>({
                     title={leftPanelProps.title}
                 />
                 {!instanceLeft ? (
-                    <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} />
+                    <StyledLoader>
+                        <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
+                    </StyledLoader>
                 ) : (
                     <Table
                         instance={instanceLeft}
@@ -182,7 +138,7 @@ export const PicklistMultiSelect = <T extends object>({
                     options={
                         <Button
                             iconType={IconType.ARROWLEFT}
-                            isDisabled={isDisabled || instanceRightData.length === 0}
+                            isDisabled={isDisabled || instanceRight.rows.length === 0}
                             onClick={onRemoveFromSelectionCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
@@ -194,7 +150,9 @@ export const PicklistMultiSelect = <T extends object>({
                     title={rightPanelProps.title}
                 />
                 {!instanceRight ? (
-                    <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} />
+                    <StyledLoader>
+                        <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
+                    </StyledLoader>
                 ) : (
                     <Table
                         instance={instanceRight}

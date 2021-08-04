@@ -34,3 +34,11 @@ export const StyledPanelHeader = styled.div<StyledPanelHeader>`
 StyledPanelHeader.defaultProps = {
     theme: themeBasic,
 };
+
+export const StyledLoader = styled.div`
+    margin: ${({ theme }): string => theme.spacing(6, 0, 0, 0)};
+`;
+
+StyledLoader.defaultProps = {
+    theme: themeBasic,
+};
