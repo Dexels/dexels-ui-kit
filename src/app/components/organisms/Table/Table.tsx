@@ -350,7 +350,7 @@ export const Table = <T extends object>({
                     id="FooterWrapper"
                     isClickable={Boolean(onClickFooter)}
                     onClick={
-                        onClickFooter
+                        !isDisabled && onClickFooter
                             ? (event: SyntheticEvent): void => {
                                   onClickFooter(event);
                               }

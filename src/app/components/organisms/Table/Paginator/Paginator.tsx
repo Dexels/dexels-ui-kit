@@ -9,7 +9,7 @@ import {
     PagingText,
     StyledPaginator,
 } from './Paginator.sc';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
 import Dropdown from '../../../molecules/Dropdown/Dropdown';
 import Input from '../../../molecules/Input/Input';
@@ -32,6 +32,7 @@ export interface PaginatorProps<T extends object> {
     hasGoToPage?: boolean;
     hasPageSizeSelector?: boolean;
     instance: TableInstance<T>;
+    isDisabled?: boolean;
     pageSizes?: (number | string)[];
     texts: PaginatorTexts;
     useResultsOfText?: boolean;
@@ -93,18 +94,25 @@ export const Paginator = <T extends object>({
     hasGoToPage = false,
     hasPageSizeSelector = true,
     instance,
+    isDisabled = false,
     pageSizes = [5, 10, 20],
     texts,
     useResultsOfText = true,
 }: PaginatorProps<T>): JSX.Element => {
     const { pageIndex, pageSize } = instance.state;
+    const [localIsDisabled, setLocalIsDisabled] = useState<boolean>(isDisabled);
+
+    useEffect(() => {
+        setLocalIsDisabled(isDisabled);
+    }, [isDisabled]);
 
     return (
         <StyledPaginator>
             {hasPageSizeSelector && (
                 <PageSizeSelector>
-                    <PageSizeSelectorText>{texts.show}</PageSizeSelectorText>
+                    <PageSizeSelectorText isDisabled={localIsDisabled}>{texts.show}</PageSizeSelectorText>
                     <Dropdown
+                        isDisabled={localIsDisabled}
                         name="DROPDOWN_PAGE_SIZES"
                         onChange={(e): void => {
                             instance.setPageSize(Number(e.target.value));
@@ -117,12 +125,13 @@ export const Paginator = <T extends object>({
                             </SelectOption>
                         ))}
                     </Dropdown>
-                    <PageSizeSelectorText>{texts.rowsPerPage}</PageSizeSelectorText>
+                    <PageSizeSelectorText isDisabled={localIsDisabled}>{texts.rowsPerPage}</PageSizeSelectorText>
                 </PageSizeSelector>
             )}
             {hasGoToPage && (
                 <InputWrapper hasPageSizeSelector={hasPageSizeSelector}>
                     <Input
+                        isDisabled={localIsDisabled}
                         label={texts.pageGoto}
                         name="INPUT_PAGE_INDEX"
                         onChange={(event): void => {
@@ -136,14 +145,14 @@ export const Paginator = <T extends object>({
                 </InputWrapper>
             )}
             <Paging>
-                <PagingText>
+                <PagingText isDisabled={localIsDisabled}>
                     {useResultsOfText ? pagingResultsText(instance, texts) : pagingText(instance, texts)}
                 </PagingText>
                 <PagingButtons>
                     {hasAllPagingButtons && (
                         <ButtonIcon
                             iconType={IconType.CHEVRONFIRST}
-                            isDisabled={!instance.canPreviousPage}
+                            isDisabled={localIsDisabled || !instance.canPreviousPage}
                             onClick={(): void => {
                                 instance.gotoPage(0);
                             }}
@@ -152,7 +161,7 @@ export const Paginator = <T extends object>({
                     )}
                     <ButtonIcon
                         iconType={IconType.CHEVRONLEFT}
-                        isDisabled={!instance.canPreviousPage}
+                        isDisabled={localIsDisabled || !instance.canPreviousPage}
                         onClick={(): void => {
                             instance.previousPage();
                         }}
@@ -160,7 +169,7 @@ export const Paginator = <T extends object>({
                     />
                     <ButtonIcon
                         iconType={IconType.CHEVRONRIGHT}
-                        isDisabled={!instance.canNextPage}
+                        isDisabled={localIsDisabled || !instance.canNextPage}
                         onClick={(): void => {
                             instance.nextPage();
                         }}
@@ -169,7 +178,7 @@ export const Paginator = <T extends object>({
                     {hasAllPagingButtons && (
                         <ButtonIcon
                             iconType={IconType.CHEVRONLAST}
-                            isDisabled={!instance.canNextPage}
+                            isDisabled={localIsDisabled || !instance.canNextPage}
                             onClick={(): void => {
                                 instance.gotoPage(instance.pageCount - 1);
                             }}

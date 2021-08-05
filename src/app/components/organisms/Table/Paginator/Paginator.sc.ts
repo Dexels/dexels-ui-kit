@@ -46,7 +46,17 @@ PageSizeSelector.defaultProps = {
     theme: themeBasic,
 };
 
-export const PageSizeSelectorText = styled.div`
+interface PageSizeSelectorTextProps {
+    isDisabled: boolean;
+}
+
+export const PageSizeSelectorText = styled.div<PageSizeSelectorTextProps>`
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+        `}
+
     &:first-of-type {
         padding: ${({ theme }): string => theme.spacing(0, 1)};
     }
@@ -69,10 +79,20 @@ export const Paging = styled.div`
     margin: 0 0 0 auto;
 `;
 
-export const PagingText = styled.div`
+interface PagingTextProps {
+    isDisabled: boolean;
+}
+
+export const PagingText = styled.div<PagingTextProps>`
     align-items: center;
     padding: ${({ theme }): string => theme.spacing(0, 0, 0, 1)};
     text-transform: lowercase;
+
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+        `}
 `;
 
 PagingText.defaultProps = {

@@ -7,7 +7,6 @@ import { boolean } from '@storybook/addon-knobs';
 import createTable from '../../../utils/functions/createTable';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { getSelectedRowIds } from '../Table/utils/tableFunctions';
-import { Row } from 'react-table';
 import { tableColumnsPicklistMultiSelect } from '../Table/mockup/tableColumns';
 
 export default { title: 'organisms/PicklistMultiSelect' };
@@ -54,8 +53,9 @@ export const Configurable: FunctionComponent = () => {
         title: 'Right panel',
     };
 
-    const onChange = (rows: Row<TableData>[]): void => {
-        console.log('on change rows:', rows);
+    const onChange = (inactiveRows: TableData[], activeRows: TableData[]): void => {
+        console.log('on change inactiveRows:', inactiveRows);
+        console.log('on change activeRows:', activeRows);
     };
 
     return instance ? (

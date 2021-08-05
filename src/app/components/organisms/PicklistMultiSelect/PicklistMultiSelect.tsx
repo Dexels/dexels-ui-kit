@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
 import Paginator, { PaginatorTexts } from '../Table/Paginator/Paginator';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Row, TableInstance } from 'react-table';
 import { StyledLoader, StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
 import Table, { TableTexts } from '../Table/Table';
@@ -26,13 +26,60 @@ export interface PicklistMultiSelectProps<T extends object> {
     instance: TableInstance<T>;
     isDisabled?: boolean;
     leftPanelProps: PicklistMultiSelectPanelProps;
-    onChange?: (rows: Row<T>[]) => void;
+    onChange?: (inactiveRows: T[], activeRows: T[]) => void;
     paginatorTexts?: PaginatorTexts;
     rightPanelProps: PicklistMultiSelectPanelProps;
     tableTexts?: TableTexts;
 }
 
+// Helper functions
 const convertRowsToData = <T extends object>(rows: Row<T>[]): T[] => rows.map((row) => row.original);
+
+interface CalculatedData<T extends object> {
+    left: T[];
+    right: T[];
+}
+
+const calculateData = <T extends object>(
+    allRows: Row<T>[],
+    leftRows: Row<T>[],
+    rightRows: Row<T>[],
+    isAddAction: boolean
+): CalculatedData<T> => {
+    if (isEmpty(leftRows)) {
+        return {
+            left: [],
+            right: convertRowsToData(allRows),
+        };
+    }
+
+    if (isEmpty(rightRows)) {
+        return {
+            left: convertRowsToData(allRows),
+            right: [],
+        };
+    }
+
+    const activeRowsLeft = leftRows.filter((row) => !row.isSelected || row.isDisabled);
+    const selectedRowsLeft = leftRows.filter((row) => row.isSelected && !row.isDisabled);
+    const activeRowsRight = rightRows.filter((row) => !row.isSelected || row.isDisabled);
+    const selectedRowsRight = rightRows.filter((row) => row.isSelected && !row.isDisabled);
+    let newLeftRows: Row<T>[] = [];
+    let newRightRows: Row<T>[] = [];
+
+    if (isAddAction) {
+        newLeftRows = activeRowsLeft;
+        newRightRows = rightRows.concat(selectedRowsLeft);
+    } else {
+        newLeftRows = leftRows.concat(selectedRowsRight);
+        newRightRows = activeRowsRight;
+    }
+
+    return {
+        left: convertRowsToData(newLeftRows),
+        right: convertRowsToData(newRightRows),
+    };
+};
 
 export const PicklistMultiSelect = <T extends object>({
     hasPaging = true,
@@ -44,95 +91,87 @@ export const PicklistMultiSelect = <T extends object>({
     rightPanelProps,
     tableTexts,
 }: PicklistMultiSelectProps<T>): JSX.Element => {
+    const [localInstance, setLocalInstance] = useState<TableInstance<T>>(instance);
     const [dataLeft, setDataLeft] = useState<T[]>([]);
     const [dataRight, setDataRight] = useState<T[]>([]);
+    const [localIsDisabled, setLocalIsDisabled] = useState<boolean>(isDisabled);
 
-    const instanceLeft = dataLeft
-        ? createTable(
-              instance.columns,
-              dataLeft,
-              instance.initialState,
-              instance.defaultColumn,
-              instance.initialState?.locale || DEFAULT_LOCALE,
-              { isMultiSelect: true }
-          )
-        : undefined;
+    const localInstanceInitialState = useMemo(
+        () => ({
+            ...localInstance.initialState,
+            selectedRowIds: {} as Record<string, boolean>,
+        }),
+        [localInstance]
+    );
 
-    const instanceRight = dataRight
-        ? createTable(
-              instance.columns,
-              dataRight,
-              instance.initialState,
-              instance.defaultColumn,
-              instance.initialState?.locale || DEFAULT_LOCALE,
-              { isMultiSelect: true }
-          )
-        : undefined;
+    const instanceLeft = createTable(
+        localInstance.columns,
+        dataLeft,
+        localInstanceInitialState,
+        localInstance.defaultColumn,
+        localInstance.initialState?.locale || DEFAULT_LOCALE,
+        {
+            isDisabled: localIsDisabled,
+            isMultiSelect: true,
+        }
+    );
 
-    console.log('root -> instanceLeft', instanceLeft);
-    console.log('root -> instanceRight', instanceRight);
-    console.log('root -> instanceRightData', dataRight);
+    const instanceRight = createTable(
+        localInstance.columns,
+        dataRight,
+        localInstanceInitialState,
+        localInstance.defaultColumn,
+        localInstance.initialState?.locale || DEFAULT_LOCALE,
+        {
+            isDisabled: localIsDisabled,
+            isMultiSelect: true,
+        }
+    );
 
     const onAddToSelectionCallback = useCallback(() => {
-        if (instanceLeft) {
-            console.log('onAddToSelectionCallback');
+        const newData = calculateData(localInstance.rows, instanceLeft?.rows, instanceRight?.rows, true);
+        setDataLeft(newData.left);
+        setDataRight(newData.right);
+
+        if (onChange) {
+            onChange(newData.left, newData.right);
         }
-    }, [instanceLeft]);
+    }, [localInstance, instanceLeft, instanceRight, onChange]);
 
     const onRemoveFromSelectionCallback = useCallback(() => {
-        if (instanceRight) {
-            const rowsRight = instanceRight?.rows.filter((row) => !row.isSelected);
+        const newData = calculateData(localInstance.rows, instanceLeft?.rows, instanceRight?.rows, false);
+        setDataLeft(newData.left);
+        setDataRight(newData.right);
 
-            // Now calculate the rows on the left
-            if (!isEmpty(rowsRight)) {
-                // Filter out all rows still left on the right, because those should stay right
-                setDataLeft(
-                    convertRowsToData(
-                        instance.rows.filter((row) => !rowsRight.find((rowRight) => rowRight.id === row.id))
-                    )
-                );
-
-                setDataRight(convertRowsToData(rowsRight));
-            } else {
-                setDataLeft(convertRowsToData(instance.rows));
-                setDataRight([]);
-            }
-
-            // console.log('onRemoveFromSelectionCallback', allRows, rowsRight);
-
-            if (onChange) {
-                // onChange();
-            }
+        if (onChange) {
+            onChange(newData.left, newData.right);
         }
-    }, [instance, instanceRight, onChange]);
+    }, [localInstance, instanceLeft, instanceRight, onChange]);
 
+    // Set initial data parts
     useEffect(() => {
-        console.log('new data');
-        const rowsLeft = instance.rows.filter((row) => !row.isSelected);
-        const rowsRight = instance.rows.filter((row) => row.isSelected);
-
-        rowsRight.forEach((row, index) => {
-            if (row.isSelected) {
-                rowsRight[index].isSelected = false;
-            }
-        });
-
-        setDataLeft(convertRowsToData(rowsLeft));
-        setDataRight(convertRowsToData(rowsRight));
+        // Based on isSelected, set left and right data, but make sure the isSelected props are reset
+        setDataLeft(convertRowsToData(instance.rows.filter((row) => !row.isSelected)));
+        setDataRight(convertRowsToData(instance.rows.filter((row) => row.isSelected)));
+        setLocalInstance(instance);
     }, [instance]);
 
+    useEffect(() => {
+        setLocalIsDisabled(isDisabled);
+    }, [isDisabled]);
+
     return (
-        <StyledWrapper isDisabled={isDisabled}>
+        <StyledWrapper isDisabled={localIsDisabled}>
             {/* LEFT PANEL */}
             <StyledPanelHeader isLeftPanel>
                 <PanelHeader
                     hasMarginBottom
                     iconType={leftPanelProps.iconType}
-                    isDisabled={isDisabled}
+                    isDisabled={localIsDisabled}
                     options={
                         <Button
                             iconType={IconType.ARROWRIGHT}
-                            isDisabled={isDisabled || !instanceLeft || instanceLeft.rows.length === 0}
+                            isDisabled={localIsDisabled || !instanceLeft || instanceLeft.selectedFlatRows.length === 0}
                             onClick={onAddToSelectionCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
@@ -150,7 +189,7 @@ export const PicklistMultiSelect = <T extends object>({
                 ) : (
                     <Table
                         instance={instanceLeft}
-                        isDisabled={isDisabled}
+                        isDisabled={localIsDisabled}
                         isFullWidth
                         paginator={
                             hasPaging ? (
@@ -170,12 +209,14 @@ export const PicklistMultiSelect = <T extends object>({
                 <PanelHeader
                     hasMarginBottom
                     iconType={rightPanelProps.iconType}
-                    isDisabled={isDisabled}
+                    isDisabled={localIsDisabled}
                     isReversed
                     options={
                         <Button
                             iconType={IconType.ARROWLEFT}
-                            isDisabled={isDisabled || !instanceRight || instanceRight.rows.length === 0}
+                            isDisabled={
+                                localIsDisabled || !instanceRight || instanceRight.selectedFlatRows.length === 0
+                            }
                             onClick={onRemoveFromSelectionCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
@@ -193,7 +234,7 @@ export const PicklistMultiSelect = <T extends object>({
                 ) : (
                     <Table
                         instance={instanceRight}
-                        isDisabled={isDisabled}
+                        isDisabled={localIsDisabled}
                         isFullWidth
                         paginator={
                             hasPaging ? (
