@@ -3,11 +3,11 @@ import { IconType, Status } from '../../../types';
 import PicklistMultiSelect, { PicklistMultiSelectPanelProps } from './PicklistMultiSelect';
 import React, { FunctionComponent, useMemo } from 'react';
 import tableData, { TableData } from '../Table/mockup/tableData';
-import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import createTable from '../../../utils/functions/createTable';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { getSelectedRowIds } from '../Table/utils/tableFunctions';
+import { Row } from 'react-table';
 import { tableColumnsPicklistMultiSelect } from '../Table/mockup/tableColumns';
 
 export default { title: 'organisms/PicklistMultiSelect' };
@@ -54,12 +54,8 @@ export const Configurable: FunctionComponent = () => {
         title: 'Right panel',
     };
 
-    const onAdd = (): void => {
-        action('On add');
-    };
-
-    const onRemove = (): void => {
-        action('On remove');
+    const onSave = (rows: Row<TableData>[]): void => {
+        console.log('on save rows:', rows);
     };
 
     return instance ? (
@@ -68,8 +64,7 @@ export const Configurable: FunctionComponent = () => {
             instance={instance}
             isDisabled={boolean('Is disabled', false)}
             leftPanelProps={leftPanelProps}
-            onAdd={onAdd}
-            onRemove={onRemove}
+            onSave={onSave}
             paginatorTexts={paginatorTexts}
             rightPanelProps={rightPanelProps}
             tableTexts={localizedTexts}

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
 import Paginator, { PaginatorTexts } from '../Table/Paginator/Paginator';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Row, TableInstance } from 'react-table';
 import { StyledLoader, StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
 import Table, { TableTexts } from '../Table/Table';
@@ -25,8 +25,7 @@ export interface PicklistMultiSelectProps<T extends object> {
     instance: TableInstance<T>;
     isDisabled?: boolean;
     leftPanelProps: PicklistMultiSelectPanelProps;
-    onAdd?: (rows: Row<T>[]) => void;
-    onRemove?: (rows: Row<T>[]) => void;
+    onSave?: (rows: Row<T>[]) => void;
     paginatorTexts?: PaginatorTexts;
     rightPanelProps: PicklistMultiSelectPanelProps;
     tableTexts?: TableTexts;
@@ -37,30 +36,18 @@ export const PicklistMultiSelect = <T extends object>({
     instance,
     isDisabled = false,
     leftPanelProps,
-    onAdd,
-    onRemove,
+    onSave,
     paginatorTexts,
     rightPanelProps,
     tableTexts,
 }: PicklistMultiSelectProps<T>): JSX.Element => {
-    const instanceLeftData = useMemo(() => instance.rows.filter((row) => !row.isSelected), [instance]);
+    const [dataLeft, setDataLeft] = useState<T[]>([]);
+    const [dataRight, setDataRight] = useState<T[]>([]);
 
-    const instanceRightData = useMemo(() => {
-        const rows = instance.rows.filter((row) => row.isSelected);
-
-        rows.forEach((row, index) => {
-            if (row.isSelected) {
-                rows[index].isSelected = false;
-            }
-        });
-
-        return rows;
-    }, [instance]);
-
-    const instanceLeft = instanceLeftData
+    const instanceLeft = dataLeft
         ? createTable(
               instance.columns,
-              instanceLeftData as T[],
+              dataLeft,
               instance.initialState,
               instance.defaultColumn,
               instance.initialState?.locale || DEFAULT_LOCALE,
@@ -68,10 +55,10 @@ export const PicklistMultiSelect = <T extends object>({
           )
         : undefined;
 
-    const instanceRight = instanceRightData
+    const instanceRight = dataRight
         ? createTable(
               instance.columns,
-              instanceRightData as T[],
+              dataRight,
               instance.initialState,
               instance.defaultColumn,
               instance.initialState?.locale || DEFAULT_LOCALE,
@@ -81,29 +68,39 @@ export const PicklistMultiSelect = <T extends object>({
 
     console.log('root -> instanceLeft', instanceLeft);
     console.log('root -> instanceRight', instanceRight);
-    console.log('root -> instanceRightData', instanceRightData);
-
-    const onAddCallback = useCallback(() => {
-        if (instanceLeft && onAdd) {
-            console.log('onAddCallback', onAdd(instanceLeft.selectedFlatRows));
-        }
-    }, [instanceLeft, onAdd]);
-
-    const onRemoveCallback = useCallback(() => {
-        if (instanceRight && onRemove) {
-            console.log('onRemoveCallback', onRemove(instanceRight.selectedFlatRows));
-        }
-    }, [instanceRight, onRemove]);
+    console.log('root -> instanceRightData', dataRight);
 
     const onAddToSelectionCallback = useCallback(() => {
-        console.log('onAddToSelectionCallback', instanceLeft?.selectedFlatRows);
-        onAddCallback();
+        if (instanceLeft) {
+            console.log('onAddToSelectionCallback');
+        }
     }, [instanceLeft]);
 
     const onRemoveFromSelectionCallback = useCallback(() => {
-        console.log('onRemoveFromSelectionCallback', instanceRight?.selectedFlatRows);
-        onRemoveCallback();
-    }, [instanceRight]);
+        if (instanceRight) {
+            console.log('onRemoveFromSelectionCallback');
+            setDataRight(instanceRight.rows.filter((row) => !row.isSelected) as T[]);
+
+            if (onSave) {
+                // onSave();
+            }
+        }
+    }, [instanceRight, onSave]);
+
+    useEffect(() => {
+        console.log('new data');
+        const rowsLeft = instance.rows.filter((row) => !row.isSelected);
+        const rowsRight = instance.rows.filter((row) => row.isSelected);
+
+        rowsRight.forEach((row, index) => {
+            if (row.isSelected) {
+                rowsRight[index].isSelected = false;
+            }
+        });
+
+        setDataLeft(rowsLeft as T[]);
+        setDataRight(rowsRight as T[]);
+    }, [instance]);
 
     return (
         <StyledWrapper isDisabled={isDisabled}>
