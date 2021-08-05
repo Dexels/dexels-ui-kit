@@ -6,7 +6,8 @@ import { Row, TableInstance } from 'react-table';
 import { StyledLoader, StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
 import Table, { TableTexts } from '../Table/Table';
 import Button from '../../molecules/Button/Button';
-import { copyInstance } from '../../../utils/functions/createTable';
+import createTable from '../../../utils/functions/createTable';
+import { DEFAULT_LOCALE } from '../../../../global/constants';
 import PanelHeader from '../../molecules/PanelHeader/PanelHeader';
 import { TableSkeleton } from '../Table/TableSkeleton/TableSkeleton';
 
@@ -42,25 +43,45 @@ export const PicklistMultiSelect = <T extends object>({
     rightPanelProps,
     tableTexts,
 }: PicklistMultiSelectProps<T>): JSX.Element => {
-    const instanceLeftData = useMemo(() => instance.rows.filter((row) => !row.isSelected) as T[], [instance]);
+    const instanceLeftData = useMemo(() => instance.rows.filter((row) => !row.isSelected), [instance]);
 
     const instanceRightData = useMemo(() => {
-        const rows = instance.rows.filter((row) => row.isSelected) as T[];
+        const rows = instance.rows.filter((row) => row.isSelected);
 
         rows.forEach((row, index) => {
-            if ((row as Row<T>).isSelected) {
-                (rows[index] as Row<T>).isSelected = false;
+            if (row.isSelected) {
+                rows[index].isSelected = false;
             }
         });
 
         return rows;
     }, [instance]);
 
-    const instanceLeft = copyInstance<T>(instance, instanceLeftData, { isMultiSelect: true });
-    const instanceRight = copyInstance<T>(instance, instanceRightData, { isMultiSelect: true });
+    const instanceLeft = instanceLeftData
+        ? createTable(
+              instance.columns,
+              instanceLeftData as T[],
+              instance.initialState,
+              instance.defaultColumn,
+              instance.initialState?.locale || DEFAULT_LOCALE,
+              { isMultiSelect: true }
+          )
+        : undefined;
+
+    const instanceRight = instanceRightData
+        ? createTable(
+              instance.columns,
+              instanceRightData as T[],
+              instance.initialState,
+              instance.defaultColumn,
+              instance.initialState?.locale || DEFAULT_LOCALE,
+              { isMultiSelect: true }
+          )
+        : undefined;
 
     console.log('root -> instanceLeft', instanceLeft);
     console.log('root -> instanceRight', instanceRight);
+    console.log('root -> instanceRightData', instanceRightData);
 
     const onAddCallback = useCallback(() => {
         if (instanceLeft && onAdd) {
@@ -95,7 +116,7 @@ export const PicklistMultiSelect = <T extends object>({
                     options={
                         <Button
                             iconType={IconType.ARROWRIGHT}
-                            isDisabled={isDisabled || instanceLeft.rows.length === 0}
+                            isDisabled={isDisabled || !instanceLeft || instanceLeft.rows.length === 0}
                             onClick={onAddToSelectionCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
@@ -138,7 +159,7 @@ export const PicklistMultiSelect = <T extends object>({
                     options={
                         <Button
                             iconType={IconType.ARROWLEFT}
-                            isDisabled={isDisabled || instanceRight.rows.length === 0}
+                            isDisabled={isDisabled || !instanceRight || instanceRight.rows.length === 0}
                             onClick={onRemoveFromSelectionCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}

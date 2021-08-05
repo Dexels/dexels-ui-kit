@@ -222,19 +222,4 @@ export const createTable = <T extends object>(
           );
 };
 
-// Create a copy of the instance, but with new data
-export const copyInstance = <T extends object>(
-    instance: TableInstance<T>,
-    newData: T[],
-    tableMultiSelectProps?: TableMultiSelectProps
-): TableInstance<T> =>
-    createTable<T>(
-        instance.columns,
-        newData,
-        instance.initialState,
-        instance.defaultColumn,
-        instance.initialState?.locale || DEFAULT_LOCALE,
-        tableMultiSelectProps
-    );
-
 export default createTable;
