@@ -54,8 +54,8 @@ export const Configurable: FunctionComponent = () => {
         title: 'Right panel',
     };
 
-    const onSave = (rows: Row<TableData>[]): void => {
-        console.log('on save rows:', rows);
+    const onChange = (rows: Row<TableData>[]): void => {
+        console.log('on change rows:', rows);
     };
 
     return instance ? (
@@ -64,7 +64,7 @@ export const Configurable: FunctionComponent = () => {
             instance={instance}
             isDisabled={boolean('Is disabled', false)}
             leftPanelProps={leftPanelProps}
-            onSave={onSave}
+            onChange={onChange}
             paginatorTexts={paginatorTexts}
             rightPanelProps={rightPanelProps}
             tableTexts={localizedTexts}

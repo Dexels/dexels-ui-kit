@@ -8,6 +8,7 @@ import Table, { TableTexts } from '../Table/Table';
 import Button from '../../molecules/Button/Button';
 import createTable from '../../../utils/functions/createTable';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import PanelHeader from '../../molecules/PanelHeader/PanelHeader';
 import { TableSkeleton } from '../Table/TableSkeleton/TableSkeleton';
 
@@ -25,18 +26,20 @@ export interface PicklistMultiSelectProps<T extends object> {
     instance: TableInstance<T>;
     isDisabled?: boolean;
     leftPanelProps: PicklistMultiSelectPanelProps;
-    onSave?: (rows: Row<T>[]) => void;
+    onChange?: (rows: Row<T>[]) => void;
     paginatorTexts?: PaginatorTexts;
     rightPanelProps: PicklistMultiSelectPanelProps;
     tableTexts?: TableTexts;
 }
+
+const convertRowsToData = <T extends object>(rows: Row<T>[]): T[] => rows.map((row) => row.original);
 
 export const PicklistMultiSelect = <T extends object>({
     hasPaging = true,
     instance,
     isDisabled = false,
     leftPanelProps,
-    onSave,
+    onChange,
     paginatorTexts,
     rightPanelProps,
     tableTexts,
@@ -78,14 +81,30 @@ export const PicklistMultiSelect = <T extends object>({
 
     const onRemoveFromSelectionCallback = useCallback(() => {
         if (instanceRight) {
-            console.log('onRemoveFromSelectionCallback');
-            setDataRight(instanceRight.rows.filter((row) => !row.isSelected) as T[]);
+            const rowsRight = instanceRight?.rows.filter((row) => !row.isSelected);
 
-            if (onSave) {
-                // onSave();
+            // Now calculate the rows on the left
+            if (!isEmpty(rowsRight)) {
+                // Filter out all rows still left on the right, because those should stay right
+                setDataLeft(
+                    convertRowsToData(
+                        instance.rows.filter((row) => !rowsRight.find((rowRight) => rowRight.id === row.id))
+                    )
+                );
+
+                setDataRight(convertRowsToData(rowsRight));
+            } else {
+                setDataLeft(convertRowsToData(instance.rows));
+                setDataRight([]);
+            }
+
+            // console.log('onRemoveFromSelectionCallback', allRows, rowsRight);
+
+            if (onChange) {
+                // onChange();
             }
         }
-    }, [instanceRight, onSave]);
+    }, [instance, instanceRight, onChange]);
 
     useEffect(() => {
         console.log('new data');
@@ -98,8 +117,8 @@ export const PicklistMultiSelect = <T extends object>({
             }
         });
 
-        setDataLeft(rowsLeft as T[]);
-        setDataRight(rowsRight as T[]);
+        setDataLeft(convertRowsToData(rowsLeft));
+        setDataRight(convertRowsToData(rowsRight));
     }, [instance]);
 
     return (

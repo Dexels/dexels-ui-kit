@@ -2,6 +2,9 @@
 /* eslint-disable no-nested-ternary */
 // The rule below is disabled because react-table already adds it's own keys
 /* eslint-disable react/jsx-key */
+
+// Documentation: https://react-table.tanstack.com/docs/overview
+
 import { Alignment, Elevation, IconType } from '../../../types';
 import {
     FooterWrapper,
