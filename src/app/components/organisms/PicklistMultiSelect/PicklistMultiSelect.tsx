@@ -89,7 +89,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
 
         const newUpdatedData = updatedData.map((option) => ({
             ...option,
-            isSelected: selectedRows.find((row) => (row as U).id === option.id) ? true : option.isSelected,
+            isSelected: option.isSelected || selectedRows.find((row) => (row as U).id === option.id),
         }));
 
         setUpdatedData(newUpdatedData);
@@ -98,7 +98,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
             const [removed, added] = calculateChanges(newUpdatedData, data);
             onChange(removed, added);
         }
-    }, [availableOptionsInstance]);
+    }, [availableOptionsInstance, updatedData]);
 
     const onRemoveFromSelectionCallback = useCallback(() => {
         // find selected rows in selectedOptionsInstance
@@ -115,7 +115,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
             const [removed, added] = calculateChanges(newUpdatedData, data);
             onChange(removed, added);
         }
-    }, [selectedOptionsInstance]);
+    }, [selectedOptionsInstance, updatedData]);
 
     // when updatedData is changed create new options arrays
     useEffect(() => {
@@ -130,6 +130,16 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                 }))
         );
     }, [updatedData]);
+
+    useEffect(() => {
+        // eslint-disable-next-line no-console
+        console.log('[useEffect availableOptions]', availableOptions);
+    }, [availableOptions]);
+
+    useEffect(() => {
+        // eslint-disable-next-line no-console
+        console.log('[useEffect selectedOptions]', selectedOptions);
+    }, [selectedOptions]);
 
     return (
         <StyledWrapper isDisabled={isDisabled}>
