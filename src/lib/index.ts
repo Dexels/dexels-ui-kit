@@ -36,6 +36,7 @@ export {
     getOptionLabel,
     getSelectedElements,
     isAnyOptionSelected,
+    picklistMultiSelectFacade,
     removeElement,
     selectOptionsExtend,
     selectOptionsFacade,
@@ -215,10 +216,17 @@ export { InputPassword, InputPasswordProps } from '../app/components/organisms/I
 export { InputCurrency, InputCurrencyProps } from '../app/components/organisms/InputCurrency/InputCurrency';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
+export {
+    PicklistMultiSelect,
+    PicklistMultiSelectOption,
+    PicklistMultiSelectProps,
+    PicklistMultiSelectPanelProps,
+} from '../app/components/organisms/PicklistMultiSelect/PicklistMultiSelect';
 export { Paginator, PaginatorProps, PaginatorTexts } from '../app/components/organisms/Table/Paginator/Paginator';
 export { SidePanel, SidePanelProps } from '../app/components/organisms/SidePanel/SidePanel';
 export { StatusCell, StatusCellProps } from '../app/components/organisms/Table/StatusCell/StatusCell';
 export { Table, TableProps, TableTexts } from '../app/components/organisms/Table/Table';
+export { TableSkeleton, TableSkeletonProps } from '../app/components/organisms/Table/TableSkeleton/TableSkeleton';
 export { ToggleCheckbox, ToggleCheckboxProps } from '../app/components/organisms/ToggleCheckbox/ToggleCheckbox';
 export { Tab, Tabs, TabsProps, TabHeaders } from '../app/components/organisms/Tabs';
 export { Toolbar, ToolbarProps } from '../app/components/organisms/Toolbar/Toolbar';

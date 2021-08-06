@@ -14,6 +14,14 @@ export const Wrapper = styled.div<WrapperProps>`
     height: 100%;
 
     /* Positioning the checkbox */
+    > div {
+        width: 100%;
+    }
+
+    > div > div {
+        width: 100%;
+    }
+
     div > div {
         margin: auto;
     }

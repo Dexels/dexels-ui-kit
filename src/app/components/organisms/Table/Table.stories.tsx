@@ -123,6 +123,7 @@ export const Configurable: FunctionComponent = () => {
                     footerTitleColumnSpan={number('Number of columns for first footer text', 2)}
                     hasUnsortedStateIcon={boolean('Has unsorted state icon', true)}
                     instance={instance}
+                    isDisabled={boolean('Is disabled', false)}
                     isFullWidth={boolean('Is full width', true)}
                     noResults={text('No result message', 'No results found')}
                     onClickFooter={isFooterVisible ? getTableFooter : undefined}
@@ -176,6 +177,7 @@ export const ConfigurableMultiSelectTable: FunctionComponent = () => {
                 caption={text('Table caption', 'Table caption multi select')}
                 elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
                 instance={instance}
+                isDisabled={boolean('Is disabled', false)}
                 isFullWidth={boolean('Is full width', true)}
                 onClickRow={getTableRow}
                 paginator={
@@ -252,6 +254,7 @@ export const ConfigurableMultiSelectTableLimitedSelect: FunctionComponent = () =
                 footer={`Minimum selected: ${minimumSelectedValue} and Maximum selected: ${maximumSelectedValue}`}
                 footerTitleColumnSpan={number('Number of columns for first footer text', 2)}
                 instance={instance}
+                isDisabled={boolean('Is disabled', false)}
                 isFullWidth={boolean('Is full width', true)}
                 onClickRow={getTableRow}
                 paginator={
@@ -297,6 +300,7 @@ export const ConfigurableEmptyTableMessage: FunctionComponent = () => {
             caption={text('Table caption', 'Table caption')}
             elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
             instance={instance}
+            isDisabled={boolean('Is disabled', false)}
             isFullWidth={boolean('Is full width', true)}
             noResults={text('No result message', 'No results found')}
             onClickRow={getTableRow}
@@ -317,6 +321,7 @@ export const ConfigurableEmptyTableCard: FunctionComponent = () => {
             caption={text('Table caption', 'Table caption')}
             elevation={select('Elevation', Elevation, Elevation.LEVEL_1)}
             instance={instance}
+            isDisabled={boolean('Is disabled', false)}
             isFullWidth={boolean('Is full width', true)}
             noResults={
                 <CardNoResults

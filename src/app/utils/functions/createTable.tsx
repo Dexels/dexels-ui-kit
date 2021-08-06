@@ -2,12 +2,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+// Documentation: https://react-table.tanstack.com/docs/overview
+
 import {
     CellProps,
     Column,
     HeaderProps,
     Hooks,
     MetaBase,
+    PluginHook,
     Row,
     TableInstance,
     TableState,
@@ -25,11 +29,17 @@ import {
     useTable,
 } from 'react-table';
 import React, { useMemo } from 'react';
+import { Alignment } from '../../types';
 import { DEFAULT_LOCALE } from '../../../global/constants';
 import { RowSelectionCheckbox } from '../../components/organisms/Table/RowSelectionCheckbox/RowSelectionCheckbox';
 
 const selectionHook =
-    (minimumSelected: number | undefined, maximumSelected: number | undefined, propNameRowSelectAllowed: string) =>
+    (
+        minimumSelected: number | undefined,
+        maximumSelected: number | undefined,
+        propNameRowSelectAllowed: string,
+        isDisabled: boolean
+    ) =>
     <D extends object>(hooks: Hooks<any>) => {
         const validateSelectionCount = (
             rows: Row<D>[],
@@ -46,11 +56,11 @@ const selectionHook =
             }
 
             if (!hasError && minCount === -1 && maxCount !== -1) {
-                hasError = currentSelectedRowCount > maxCount;
+                hasError = currentSelectedRowCount >= maxCount;
             }
 
             if (!hasError && minCount !== -1 && maxCount !== -1) {
-                hasError = currentSelectedRowCount < minCount || currentSelectedRowCount > maxCount;
+                hasError = currentSelectedRowCount < minCount || currentSelectedRowCount >= maxCount;
             }
 
             return hasError;
@@ -95,7 +105,7 @@ const selectionHook =
 
                     return (
                         <RowSelectionCheckbox
-                            isDisabled={!isRowSelectAllowedValue || (hasError && !row.isSelected)}
+                            isDisabled={isDisabled || !isRowSelectAllowedValue || (hasError && !row.isSelected)}
                             selectedProps={row.getToggleRowSelectedProps()}
                         />
                     );
@@ -104,11 +114,12 @@ const selectionHook =
                     minimumSelected === -1 &&
                     maximumSelected === -1 && (
                         <RowSelectionCheckbox
-                            isDisabled={rows.length === 0}
+                            isDisabled={isDisabled || rows.length === 0}
                             isHeader
                             selectedProps={getToggleAllPageRowsSelectedProps()}
                         />
                     ),
+                align: Alignment.CENTER,
                 disableGroupBy: true,
                 disableResizing: true,
                 hasCellPadding: false,
@@ -128,6 +139,7 @@ const selectionHook =
     };
 
 export interface TableMultiSelectProps {
+    isDisabled?: boolean;
     isMultiSelect: boolean;
     maximumSelected?: number;
     minimumSelected?: number;
@@ -144,7 +156,8 @@ export const createTable = <T extends object>(
     locale = DEFAULT_LOCALE,
     tableMultiSelectProps?: TableMultiSelectProps
 ): TableInstance<T> => {
-    const isMultiSelect = tableMultiSelectProps ? tableMultiSelectProps.isMultiSelect : false;
+    const isMultiDisabled = tableMultiSelectProps ? tableMultiSelectProps.isDisabled || false : false;
+    const isMultiSelect = tableMultiSelectProps ? tableMultiSelectProps.isMultiSelect || false : false;
 
     const maximumSelected =
         isMultiSelect && tableMultiSelectProps && tableMultiSelectProps.maximumSelected !== undefined
@@ -187,37 +200,27 @@ export const createTable = <T extends object>(
         },
     };
 
-    // @TODO: figure out how to make the selectionHook conditional
-    return isMultiSelect
-        ? useTable<T>(
-              tableOptions,
-              useResizeColumns,
-              useFlexLayout,
-              useColumnOrder,
-              useGlobalFilter,
-              useFilters,
-              useGroupBy,
-              useRowState,
-              useSortBy,
-              useExpanded,
-              usePagination,
-              useRowSelect,
-              selectionHook(minimumSelected, maximumSelected, propNameRowSelectAllowed) // required for multi select
-          )
-        : useTable<T>(
-              tableOptions,
-              useResizeColumns,
-              useFlexLayout,
-              useColumnOrder,
-              useGlobalFilter,
-              useFilters,
-              useGroupBy,
-              useRowState,
-              useSortBy,
-              useExpanded,
-              usePagination,
-              useRowSelect
-          );
+    const plugins: PluginHook<T>[] = [];
+
+    plugins.push(
+        useResizeColumns,
+        useFlexLayout,
+        useColumnOrder,
+        useGlobalFilter,
+        useFilters,
+        useGroupBy,
+        useRowState,
+        useSortBy,
+        useExpanded,
+        usePagination,
+        useRowSelect
+    );
+
+    if (isMultiSelect) {
+        plugins.push(selectionHook(minimumSelected, maximumSelected, propNameRowSelectAllowed, isMultiDisabled));
+    }
+
+    return useTable<T>(tableOptions, ...plugins);
 };
 
 export default createTable;

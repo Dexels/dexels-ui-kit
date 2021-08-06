@@ -44,6 +44,7 @@ export const Configurable: FunctionComponent = () => {
                 hasGoToPage={boolean('Has goto page', false)}
                 hasPageSizeSelector={boolean('Has page size selector', true)}
                 instance={instance}
+                isDisabled={boolean('Is disabled', false)}
                 pageSizes={array('Page sizes', ['5', '10', '20', '50'])}
                 texts={{
                     page: localizedTexts.page,
