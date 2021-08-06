@@ -69,7 +69,6 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
     tableTexts,
 }: PicklistMultiSelectProps<T, U>): JSX.Element => {
     const [updatedData, setUpdatedData] = useState<U[]>(data);
-
     const [availableOptions, setAvailableOptions] = useState([] as U[]);
     const [selectedOptions, setSelectedOptions] = useState([] as U[]);
 

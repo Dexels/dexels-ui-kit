@@ -117,7 +117,7 @@ export const selectOptionsExtend = <T, U extends T & DropdownMultiSelectOption>(
             } as U)
     );
 
-export const picklistMultiSelectfacade = <T, U extends T & PicklistMultiSelectOption>(
+export const picklistMultiSelectFacade = <T, U extends T & PicklistMultiSelectOption>(
     data: Array<T>,
     idPropertyName: keyof T,
     selectedPropertyName: keyof T

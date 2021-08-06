@@ -229,12 +229,12 @@ export const tableColumnsPicklistMultiSelect = (): Column<TableData>[] => [
         Cell: ({ value }): ReactNode => <ContentCell value={value} />,
         Header: 'First Name',
         accessor: 'firstName',
+        width: '25%',
     },
     {
         Cell: ({ value }): ReactNode => <ContentCell isBold value={value} />,
         Header: 'Last Name',
         accessor: 'lastName',
-        width: '35%',
     },
     {
         Cell: ({ value }): ReactNode => <ContentCell value={value} />,

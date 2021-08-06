@@ -5,7 +5,7 @@ import { PicklistMultiSelect, PicklistMultiSelectPanelProps } from './PicklistMu
 import React, { FunctionComponent, useMemo } from 'react';
 import tableData, { TableData } from '../Table/mockup/tableData';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
-import { picklistMultiSelectfacade } from '../../../utils/functions/arrayObjectFunctions';
+import { picklistMultiSelectFacade } from '../../../utils/functions/arrayObjectFunctions';
 import { tableColumnsPicklistMultiSelect } from '../Table/mockup/tableColumns';
 
 export default { title: 'organisms/PicklistMultiSelect' };
@@ -49,7 +49,7 @@ export const Configurable: FunctionComponent = () => {
             addButtonText={text('Add button text', 'Add')}
             availablePanelProps={leftPanelProps}
             columns={columns}
-            data={picklistMultiSelectfacade(data, 'id', 'isRowSelected')}
+            data={picklistMultiSelectFacade(data, 'id', 'isRowSelected')}
             hasPaging={boolean('Has paging', true)}
             isDisabled={boolean('Is disabled', false)}
             onChange={onChange}

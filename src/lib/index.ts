@@ -36,7 +36,7 @@ export {
     getOptionLabel,
     getSelectedElements,
     isAnyOptionSelected,
-    picklistMultiSelectfacade,
+    picklistMultiSelectFacade,
     removeElement,
     selectOptionsExtend,
     selectOptionsFacade,
@@ -218,6 +218,7 @@ export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
 export {
     PicklistMultiSelect,
+    PicklistMultiSelectOption,
     PicklistMultiSelectProps,
     PicklistMultiSelectPanelProps,
 } from '../app/components/organisms/PicklistMultiSelect/PicklistMultiSelect';
