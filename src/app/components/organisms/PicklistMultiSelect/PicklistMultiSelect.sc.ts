@@ -1,5 +1,5 @@
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
-import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 interface StyledWrapperProps {
@@ -16,11 +16,11 @@ StyledWrapper.defaultProps = {
     theme: themeBasic,
 };
 
-interface StyledPanelHeader {
+interface StyledPanelHeaderProps {
     isLeftPanel: boolean;
 }
 
-export const StyledPanelHeader = styled.div<StyledPanelHeader>`
+export const StyledPanelHeader = styled.div<StyledPanelHeaderProps>`
     flex: auto;
     margin: ${({ isLeftPanel, theme }): string =>
         isLeftPanel ? theme.spacing(0, 1, 0, 0) : theme.spacing(0, 0, 0, 1)};
@@ -40,5 +40,22 @@ export const StyledLoader = styled.div`
 `;
 
 StyledLoader.defaultProps = {
+    theme: themeBasic,
+};
+
+interface TableWrapperProps {
+    hasMaxHeight: boolean;
+}
+
+export const TableWrapper = styled.div<TableWrapperProps>`
+    ${({ hasMaxHeight }): SimpleInterpolation =>
+        hasMaxHeight &&
+        css`
+            max-height: ${window.innerHeight}px;
+            overflow: auto;
+        `}
+`;
+
+TableWrapper.defaultProps = {
     theme: themeBasic,
 };

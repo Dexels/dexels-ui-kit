@@ -18,7 +18,6 @@ export const Configurable: FunctionComponent = () => {
 
     const leftPanelProps: PicklistMultiSelectPanelProps = {
         iconType: IconType.ROUND_CHECK,
-        status: Status.DEFAULT,
         title: 'Left panel',
     };
 
@@ -28,9 +27,10 @@ export const Configurable: FunctionComponent = () => {
         title: 'Right panel',
     };
 
-    const onChange = <T extends TableData>(removed: T[], added: T[]): void => {
+    const onChange = <T extends TableData>(removed: T[], added: T[], updated: T[]): void => {
         console.log('on change removed:', removed);
         console.log('on change added:', added);
+        console.log('on change updated:', updated);
     };
 
     const sortBy = [
@@ -50,6 +50,7 @@ export const Configurable: FunctionComponent = () => {
             availablePanelProps={leftPanelProps}
             columns={columns}
             data={picklistMultiSelectFacade(data, 'id', 'isRowSelected')}
+            fitToScreen={boolean('Fit to screen', false)}
             hasPaging={boolean('Has paging', true)}
             isDisabled={boolean('Is disabled', false)}
             onChange={onChange}

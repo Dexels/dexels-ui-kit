@@ -3,7 +3,7 @@ import { ButtonSize, ButtonVariant, IconType, Locale, Status } from '../../../ty
 import { Column, TableState } from 'react-table';
 import Paginator, { PaginatorTexts } from '../Table/Paginator/Paginator';
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyledLoader, StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
+import { StyledLoader, StyledPanelHeader, StyledWrapper, TableWrapper } from './PicklistMultiSelect.sc';
 import Table, { TableTexts } from '../Table/Table';
 import { Button } from '../../molecules/Button/Button';
 import { createTable } from '../../../utils/functions/createTable';
@@ -16,7 +16,7 @@ const LOADING_NR_OF_ROWS = 3; // Might become an input param, hence why it's a v
 
 export interface PicklistMultiSelectPanelProps {
     iconType: IconType;
-    status: Status;
+    status?: Status;
     title: string;
 }
 
@@ -30,10 +30,11 @@ export interface PicklistMultiSelectProps<T extends object, U extends T & Pickli
     availablePanelProps: PicklistMultiSelectPanelProps;
     columns: Column<T>[];
     data: U[];
+    fitToScreen?: boolean; // maximizes height and only applies with hasPaging = false
     hasPaging?: boolean;
     isDisabled?: boolean;
     locale?: Locale;
-    onChange?: (removed: T[], added: T[]) => void;
+    onChange?: (removed: T[], added: T[], updated: T[]) => void;
     options: Partial<TableState<T>>;
     paginatorTexts?: PaginatorTexts;
     removeButtonText: string;
@@ -58,6 +59,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
     availablePanelProps,
     columns,
     data,
+    fitToScreen = false,
     hasPaging = true,
     isDisabled = false,
     locale = DEFAULT_LOCALE,
@@ -95,7 +97,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
 
         if (onChange) {
             const [removed, added] = calculateChanges(newUpdatedData, data);
-            onChange(removed, added);
+            onChange(removed, added, newUpdatedData);
         }
     }, [availableOptionsInstance, updatedData]);
 
@@ -112,7 +114,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
 
         if (onChange) {
             const [removed, added] = calculateChanges(newUpdatedData, data);
-            onChange(removed, added);
+            onChange(removed, added, newUpdatedData);
         }
     }, [selectedOptionsInstance, updatedData]);
 
@@ -129,16 +131,6 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                 }))
         );
     }, [updatedData]);
-
-    useEffect(() => {
-        // eslint-disable-next-line no-console
-        console.log('[useEffect availableOptions]', availableOptions);
-    }, [availableOptions]);
-
-    useEffect(() => {
-        // eslint-disable-next-line no-console
-        console.log('[useEffect selectedOptions]', selectedOptions);
-    }, [selectedOptions]);
 
     return (
         <StyledWrapper isDisabled={isDisabled}>
@@ -163,7 +155,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                             {addButtonText}
                         </Button>
                     }
-                    status={availablePanelProps.status}
+                    status={availablePanelProps.status || Status.DEFAULT}
                     title={availablePanelProps.title}
                 />
                 {!selectedOptionsInstance ? (
@@ -171,21 +163,23 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                         <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
                     </StyledLoader>
                 ) : (
-                    <Table
-                        instance={availableOptionsInstance}
-                        isDisabled={isDisabled}
-                        isFullWidth
-                        paginator={
-                            hasPaging ? (
-                                <Paginator
-                                    hasPageSizeSelector={false}
-                                    instance={availableOptionsInstance}
-                                    texts={paginatorTexts || ({} as PaginatorTexts)}
-                                />
-                            ) : undefined
-                        }
-                        texts={tableTexts || undefined}
-                    />
+                    <TableWrapper hasMaxHeight={!hasPaging && fitToScreen} id={'TableWrapper_left'}>
+                        <Table
+                            instance={availableOptionsInstance}
+                            isDisabled={isDisabled}
+                            isFullWidth
+                            paginator={
+                                hasPaging ? (
+                                    <Paginator
+                                        hasPageSizeSelector={false}
+                                        instance={availableOptionsInstance}
+                                        texts={paginatorTexts || ({} as PaginatorTexts)}
+                                    />
+                                ) : undefined
+                            }
+                            texts={tableTexts || undefined}
+                        />
+                    </TableWrapper>
                 )}
             </StyledPanelHeader>
             {/* RIGHT PANEL */}
@@ -210,7 +204,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                             {removeButtonText}
                         </Button>
                     }
-                    status={selectedPanelProps.status}
+                    status={selectedPanelProps.status || Status.DEFAULT}
                     title={selectedPanelProps.title}
                 />
                 {!selectedOptionsInstance ? (
@@ -218,21 +212,23 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                         <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
                     </StyledLoader>
                 ) : (
-                    <Table
-                        instance={selectedOptionsInstance}
-                        isDisabled={isDisabled}
-                        isFullWidth
-                        paginator={
-                            hasPaging ? (
-                                <Paginator
-                                    hasPageSizeSelector={false}
-                                    instance={selectedOptionsInstance}
-                                    texts={paginatorTexts || ({} as PaginatorTexts)}
-                                />
-                            ) : undefined
-                        }
-                        texts={tableTexts || undefined}
-                    />
+                    <TableWrapper hasMaxHeight={!hasPaging && fitToScreen}>
+                        <Table
+                            instance={selectedOptionsInstance}
+                            isDisabled={isDisabled}
+                            isFullWidth
+                            paginator={
+                                hasPaging ? (
+                                    <Paginator
+                                        hasPageSizeSelector={false}
+                                        instance={selectedOptionsInstance}
+                                        texts={paginatorTexts || ({} as PaginatorTexts)}
+                                    />
+                                ) : undefined
+                            }
+                            texts={tableTexts || undefined}
+                        />
+                    </TableWrapper>
                 )}
             </StyledPanelHeader>
         </StyledWrapper>
