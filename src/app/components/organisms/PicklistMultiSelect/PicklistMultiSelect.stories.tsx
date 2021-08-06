@@ -55,7 +55,7 @@ export const Configurable: FunctionComponent = () => {
             onChange={onChange}
             options={{ sortBy }}
             paginatorTexts={paginatorTexts}
-            removeButtonText={text('Add button text', 'Remove')}
+            removeButtonText={text('Remove button text', 'Remove')}
             selectedPanelProps={rightPanelProps}
             tableTexts={localizedTexts}
         />
