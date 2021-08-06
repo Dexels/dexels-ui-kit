@@ -120,7 +120,15 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
     // when updatedData is changed create new options arrays
     useEffect(() => {
         setAvailableOptions(updatedData.filter((option) => !option.isSelected));
-        setSelectedOptions(updatedData.filter((option) => option.isSelected));
+
+        setSelectedOptions(
+            updatedData
+                .filter((option) => option.isSelected)
+                .map((option) => ({
+                    ...option,
+                    isSelected: false,
+                }))
+        );
     }, [updatedData]);
 
     return (
