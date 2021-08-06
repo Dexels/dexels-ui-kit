@@ -36,6 +36,7 @@ export {
     getOptionLabel,
     getSelectedElements,
     isAnyOptionSelected,
+    picklistMultiSelectfacade,
     removeElement,
     selectOptionsExtend,
     selectOptionsFacade,

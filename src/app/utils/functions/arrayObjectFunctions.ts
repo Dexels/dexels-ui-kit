@@ -1,6 +1,7 @@
 import { DropdownMultiSelectOption } from '../../components/organisms/DropdownMultiSelect/types';
 import { DropdownOption } from '../../components/molecules/Dropdown/Dropdown';
 import { DropdownSelectOption } from '../../components/organisms/DropdownSelect/DropdownSelect';
+import { PicklistMultiSelectOption } from '../../components/organisms/PicklistMultiSelect/PicklistMultiSelect';
 
 export interface Option {
     [key: string]: unknown;
@@ -116,5 +117,18 @@ export const selectOptionsExtend = <T, U extends T & DropdownMultiSelectOption>(
             } as U)
     );
 
+export const picklistMultiSelectfacade = <T, U extends T & PicklistMultiSelectOption>(
+    data: Array<T>,
+    idPropertyName: keyof T,
+    selectedPropertyName: keyof T
+): Array<U> =>
+    data.map(
+        (option) =>
+            ({
+                ...option,
+                id: option[idPropertyName] as unknown as string | number,
+                isSelected: option[selectedPropertyName] as unknown as boolean,
+            } as U)
+    );
 export const removeElement = <U, T extends U>(data: T[], propertyName: keyof U, propertyValue: unknown): Array<T> =>
     data.filter((option) => option[propertyName] !== propertyValue);
