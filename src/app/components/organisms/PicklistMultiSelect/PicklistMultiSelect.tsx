@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
+import { ButtonSize, ButtonVariant, IconType, Locale, Status } from '../../../types';
+import { Column, Row, SortingRule } from 'react-table';
 import Paginator, { PaginatorTexts } from '../Table/Paginator/Paginator';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Row, TableInstance } from 'react-table';
 import { StyledLoader, StyledPanelHeader, StyledWrapper } from './PicklistMultiSelect.sc';
 import Table, { TableTexts } from '../Table/Table';
 import Button from '../../molecules/Button/Button';
@@ -14,7 +14,8 @@ import { TableSkeleton } from '../Table/TableSkeleton/TableSkeleton';
 
 const LOADING_NR_OF_ROWS = 3; // Might become an input param, hence why it's a var now
 
-export interface PicklistMultiSelectPanelProps {
+export interface PicklistMultiSelectPanelProps<T extends object> {
+    data: T[];
     iconType: IconType;
     status: Status;
     textButton: string;
@@ -22,13 +23,15 @@ export interface PicklistMultiSelectPanelProps {
 }
 
 export interface PicklistMultiSelectProps<T extends object> {
+    availablePanelProps: PicklistMultiSelectPanelProps<T>;
+    columns: Column<T>[];
     hasPaging?: boolean;
-    instance: TableInstance<T>;
     isDisabled?: boolean;
-    leftPanelProps: PicklistMultiSelectPanelProps;
-    onChange?: (inactiveRows: T[], activeRows: T[]) => void;
+    locale?: Locale;
+    onChange?: (removed: T[], added: T[]) => void;
     paginatorTexts?: PaginatorTexts;
-    rightPanelProps: PicklistMultiSelectPanelProps;
+    selectedPanelProps: PicklistMultiSelectPanelProps<T>;
+    sortBy?: SortingRule<T>[];
     tableTexts?: TableTexts;
 }
 
@@ -36,80 +39,81 @@ export interface PicklistMultiSelectProps<T extends object> {
 const convertRowsToData = <T extends object>(rows: Row<T>[]): T[] => rows.map((row) => row.original);
 
 interface CalculatedData<T extends object> {
-    left: T[];
-    right: T[];
+    available: T[];
+    selected: T[];
 }
 
 const calculateData = <T extends object>(
-    allRows: Row<T>[],
-    leftRows: Row<T>[],
-    rightRows: Row<T>[],
+    allRows: T[],
+    availableRows: Row<T>[],
+    selectedRows: Row<T>[],
     isAddAction: boolean
 ): CalculatedData<T> => {
-    if (isEmpty(leftRows)) {
+    if (isEmpty(availableRows)) {
         return {
-            left: [],
-            right: convertRowsToData(allRows),
+            available: [],
+            selected: allRows,
         };
     }
 
-    if (isEmpty(rightRows)) {
+    if (isEmpty(selectedRows)) {
         return {
-            left: convertRowsToData(allRows),
-            right: [],
+            available: allRows,
+            selected: [],
         };
     }
 
-    const activeRowsLeft = leftRows.filter((row) => !row.isSelected || row.isDisabled);
-    const selectedRowsLeft = leftRows.filter((row) => row.isSelected && !row.isDisabled);
-    const activeRowsRight = rightRows.filter((row) => !row.isSelected || row.isDisabled);
-    const selectedRowsRight = rightRows.filter((row) => row.isSelected && !row.isDisabled);
-    let newLeftRows: Row<T>[] = [];
-    let newRightRows: Row<T>[] = [];
+    const activeRowsLeft = availableRows.filter((row) => !row.isSelected || row.isDisabled);
+    const selectedRowsLeft = availableRows.filter((row) => row.isSelected && !row.isDisabled);
+    const activeRowsRight = selectedRows.filter((row) => !row.isSelected || row.isDisabled);
+    const selectedRowsRight = selectedRows.filter((row) => row.isSelected && !row.isDisabled);
+    let newAvailableRows: Row<T>[] = [];
+    let newSelectedRows: Row<T>[] = [];
 
     if (isAddAction) {
-        newLeftRows = activeRowsLeft;
-        newRightRows = rightRows.concat(selectedRowsLeft);
+        newAvailableRows = activeRowsLeft;
+        newSelectedRows = selectedRows.concat(selectedRowsLeft);
     } else {
-        newLeftRows = leftRows.concat(selectedRowsRight);
-        newRightRows = activeRowsRight;
+        newAvailableRows = availableRows.concat(selectedRowsRight);
+        newSelectedRows = activeRowsRight;
     }
 
     return {
-        left: convertRowsToData(newLeftRows),
-        right: convertRowsToData(newRightRows),
+        available: convertRowsToData(newAvailableRows),
+        selected: convertRowsToData(newSelectedRows),
     };
 };
 
 export const PicklistMultiSelect = <T extends object>({
+    availablePanelProps,
+    columns,
     hasPaging = true,
-    instance,
     isDisabled = false,
-    leftPanelProps,
+    locale = DEFAULT_LOCALE,
     onChange,
     paginatorTexts,
-    rightPanelProps,
+    selectedPanelProps,
+    sortBy,
     tableTexts,
 }: PicklistMultiSelectProps<T>): JSX.Element => {
-    const [localInstance, setLocalInstance] = useState<TableInstance<T>>(instance);
-    const [dataLeft, setDataLeft] = useState<T[]>([]);
-    const [dataRight, setDataRight] = useState<T[]>([]);
+    const [localColumns, setLocalColumns] = useState<Column<T>[]>(columns);
     const [localIsDisabled, setLocalIsDisabled] = useState<boolean>(isDisabled);
-
-    const localInstanceInitialState = useMemo(
-        () => ({
-            ...localInstance.initialState,
-            selectedRowIds: {} as Record<string, boolean>,
-        }),
-        [localInstance]
-    );
+    const [localSortBy, setLocalSortBy] = useState<SortingRule<T>[] | undefined>(sortBy);
+    const [localAvailableData, setLocalAvailableData] = useState<T[]>(availablePanelProps.data);
+    const [originalAvailableData, setOriginalAvailableData] = useState<T[]>(availablePanelProps.data);
+    const [localSelectedData, setLocalSelectedData] = useState<T[]>(selectedPanelProps.data);
+    const [originalSelectedData, setOriginalSelectedData] = useState<T[]>(selectedPanelProps.data);
+    const defaultColumn: Column<T> = useMemo(() => columns[0], [columns]);
 
     const instanceLeft = createTable(
-        localInstance.columns,
-        dataLeft,
-        localInstanceInitialState,
-        localInstance.defaultColumn,
-        localInstance.initialState?.locale || DEFAULT_LOCALE,
+        localColumns,
+        localAvailableData,
+        {
+            selectedRowIds: {} as Record<string, boolean>,
+            sortBy: localSortBy,
+        },
+        defaultColumn,
+        locale,
         {
             isDisabled: localIsDisabled,
             isMultiSelect: true,
@@ -117,11 +121,14 @@ export const PicklistMultiSelect = <T extends object>({
     );
 
     const instanceRight = createTable(
-        localInstance.columns,
-        dataRight,
-        localInstanceInitialState,
-        localInstance.defaultColumn,
-        localInstance.initialState?.locale || DEFAULT_LOCALE,
+        localColumns,
+        localSelectedData,
+        {
+            selectedRowIds: {} as Record<string, boolean>,
+            sortBy: localSortBy,
+        },
+        defaultColumn,
+        locale,
         {
             isDisabled: localIsDisabled,
             isMultiSelect: true,
@@ -129,36 +136,67 @@ export const PicklistMultiSelect = <T extends object>({
     );
 
     const onAddToSelectionCallback = useCallback(() => {
-        const newData = calculateData(localInstance.rows, instanceLeft?.rows, instanceRight?.rows, true);
-        setDataLeft(newData.left);
-        setDataRight(newData.right);
+        const newData = calculateData(
+            originalAvailableData.concat(originalSelectedData),
+            instanceLeft?.rows,
+            instanceRight?.rows,
+            true
+        );
+
+        setLocalAvailableData(newData.available);
+        setLocalSelectedData(newData.selected);
 
         if (onChange) {
-            onChange(newData.left, newData.right);
+            onChange(
+                originalAvailableData.filter((x) => !newData.available.includes(x)),
+                originalSelectedData.filter((x) => !newData.selected.includes(x))
+            );
         }
-    }, [localInstance, instanceLeft, instanceRight, onChange]);
+    }, [instanceLeft, instanceRight, onChange, originalAvailableData, originalSelectedData]);
 
     const onRemoveFromSelectionCallback = useCallback(() => {
-        const newData = calculateData(localInstance.rows, instanceLeft?.rows, instanceRight?.rows, false);
-        setDataLeft(newData.left);
-        setDataRight(newData.right);
+        const newData = calculateData(
+            originalAvailableData.concat(originalSelectedData),
+            instanceLeft?.rows,
+            instanceRight?.rows,
+            false
+        );
+
+        setLocalAvailableData(newData.available);
+        setLocalSelectedData(newData.selected);
 
         if (onChange) {
-            onChange(newData.left, newData.right);
+            onChange(
+                originalAvailableData.filter((x) => !newData.available.includes(x)),
+                originalSelectedData.filter((x) => !newData.selected.includes(x))
+            );
         }
-    }, [localInstance, instanceLeft, instanceRight, onChange]);
+    }, [instanceLeft, instanceRight, onChange, originalAvailableData, originalSelectedData]);
 
-    // Set initial data parts
+    // Make sure local states get changed
     useEffect(() => {
-        // Based on isSelected, set left and right data, but make sure the isSelected props are reset
-        setDataLeft(convertRowsToData(instance.rows.filter((row) => !row.isSelected)));
-        setDataRight(convertRowsToData(instance.rows.filter((row) => row.isSelected)));
-        setLocalInstance(instance);
-    }, [instance]);
+        setLocalColumns(columns);
+    }, [columns]);
+
+    // availableData
+    useEffect(() => {
+        setOriginalAvailableData(availablePanelProps.data);
+        setLocalAvailableData(availablePanelProps.data);
+    }, [availablePanelProps]);
+
+    // selectedData
+    useEffect(() => {
+        setOriginalSelectedData(selectedPanelProps.data);
+        setLocalSelectedData(selectedPanelProps.data);
+    }, [selectedPanelProps]);
 
     useEffect(() => {
         setLocalIsDisabled(isDisabled);
     }, [isDisabled]);
+
+    useEffect(() => {
+        setLocalSortBy(sortBy);
+    }, [sortBy]);
 
     return (
         <StyledWrapper isDisabled={localIsDisabled}>
@@ -166,7 +204,7 @@ export const PicklistMultiSelect = <T extends object>({
             <StyledPanelHeader isLeftPanel>
                 <PanelHeader
                     hasMarginBottom
-                    iconType={leftPanelProps.iconType}
+                    iconType={availablePanelProps.iconType}
                     isDisabled={localIsDisabled}
                     options={
                         <Button
@@ -176,11 +214,11 @@ export const PicklistMultiSelect = <T extends object>({
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
                         >
-                            {leftPanelProps.textButton}
+                            {availablePanelProps.textButton}
                         </Button>
                     }
-                    status={leftPanelProps.status}
-                    title={leftPanelProps.title}
+                    status={availablePanelProps.status}
+                    title={availablePanelProps.title}
                 />
                 {!instanceLeft ? (
                     <StyledLoader>
@@ -208,7 +246,7 @@ export const PicklistMultiSelect = <T extends object>({
             <StyledPanelHeader isLeftPanel={false}>
                 <PanelHeader
                     hasMarginBottom
-                    iconType={rightPanelProps.iconType}
+                    iconType={selectedPanelProps.iconType}
                     isDisabled={localIsDisabled}
                     isReversed
                     options={
@@ -221,11 +259,11 @@ export const PicklistMultiSelect = <T extends object>({
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
                         >
-                            {rightPanelProps.textButton}
+                            {selectedPanelProps.textButton}
                         </Button>
                     }
-                    status={rightPanelProps.status}
-                    title={rightPanelProps.title}
+                    status={selectedPanelProps.status}
+                    title={selectedPanelProps.title}
                 />
                 {!instanceRight ? (
                     <StyledLoader>
