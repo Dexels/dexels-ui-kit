@@ -43,9 +43,9 @@ export const Wrapper = styled.div<WrapperProps>`
     position: fixed;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
     z-index: ${zIndex.DIALOG - 1};
-    padding: 40px;
+    padding: ${({ isScrollable }): string => (isScrollable ? '0px' : '40px')};
     width: 100%;
-    max-width: 544px;
+    max-width: ${({ isScrollable }): string => (isScrollable ? '504px' : '544px')};
     max-height: 100%;
     overflow: ${({ isScrollable }): string => (isScrollable ? 'auto' : 'visible')};
     pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};

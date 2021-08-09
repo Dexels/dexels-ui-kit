@@ -216,6 +216,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                 ]}
                 footerText={text('Footer text', 'Hint: its not 3 or 5')}
                 iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
+                isScrollable
                 isVisible={isVisible}
                 onClose={(): void => {
                     setIsVisible(false);
@@ -249,6 +250,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}
                 />
+                <div style={{ height: '100px' }} />
             </ConfigurableDialog>
         </>
     );
