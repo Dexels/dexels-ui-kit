@@ -1,5 +1,5 @@
 import { DialogButtonClosePosition, IconPlacement } from './types';
-import { Easing, Elevation, Status, zIndex } from '../../../types';
+import { DialogSize, Easing, Elevation, Status, zIndex } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
 import { getElevation } from '../../../styles/mixins/getElevation';
@@ -9,6 +9,28 @@ import { setCentered } from '../../../styles/mixins/setCentered';
 import { TextWithOptionalIcon } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 import { Text as TText } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon.sc';
+
+const widthScrollable = 40;
+
+const dialogWidth = (size: DialogSize, isScrollable: boolean): number => {
+    let width = 544;
+
+    switch (size) {
+        case DialogSize.MEDIUM:
+            width = 650;
+            break;
+
+        case DialogSize.LARGE:
+            width = 750;
+            break;
+
+        default:
+            width = 544;
+            break;
+    }
+
+    return isScrollable ? width - widthScrollable : width;
+};
 
 interface OverlayWrapperProps {
     isVisible: boolean;
@@ -27,6 +49,7 @@ export const OverlayWrapper = styled.div<OverlayWrapperProps>`
 interface WrapperProps {
     isScrollable: boolean;
     isVisible: boolean;
+    size: DialogSize;
     transitionDuration: number;
     transitionEasing: Easing;
 }
@@ -43,9 +66,9 @@ export const Wrapper = styled.div<WrapperProps>`
     position: fixed;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
     z-index: ${zIndex.DIALOG - 1};
-    padding: ${({ isScrollable }): string => (isScrollable ? '0px' : '40px')};
+    padding: ${({ isScrollable }): string => (isScrollable ? '0px' : `${widthScrollable}px`)};
     width: 100%;
-    max-width: ${({ isScrollable }): string => (isScrollable ? '504px' : '544px')};
+    max-width: ${({ isScrollable, size }): string => `${dialogWidth(size, isScrollable)}px`};
     max-height: 100%;
     overflow: ${({ isScrollable }): string => (isScrollable ? 'auto' : 'visible')};
     pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};

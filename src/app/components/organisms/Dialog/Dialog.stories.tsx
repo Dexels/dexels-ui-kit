@@ -1,5 +1,15 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import { ButtonSize, ButtonVariant, Direction, Easing, Elevation, IconType, InputType, Status } from '../../../types';
+import {
+    ButtonSize,
+    ButtonVariant,
+    DialogSize,
+    Direction,
+    Easing,
+    Elevation,
+    IconType,
+    InputType,
+    Status,
+} from '../../../types';
 import Dialog, { DialogProps } from './Dialog';
 import { DialogButtonClosePosition, IconPlacement } from './types';
 import moment, { Moment } from 'moment';
@@ -38,6 +48,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
         isScrollable={isScrollable}
         isVisible={isVisible}
         onClose={onClose}
+        size={select('Size', DialogSize, DialogSize.DEFAULT)}
         status={status}
         text={textProp}
         title={titleProp}
@@ -221,6 +232,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                 onClose={(): void => {
                     setIsVisible(false);
                 }}
+                size={select('Size', DialogSize, DialogSize.DEFAULT)}
                 status={select('Status', Status, Status.ALERT)}
                 text="What is 2 + 2?"
                 title={text('Title', 'Title and input components')}
