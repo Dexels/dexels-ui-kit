@@ -1,7 +1,7 @@
 import { DialogButtonClosePosition, IconPlacement } from './types';
 import { DialogSize, Easing, Elevation, Status, zIndex } from '../../../types';
-import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { fadeInEffect, transitionEffect } from '../../../styles/mixins/transitionEffects';
+import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';

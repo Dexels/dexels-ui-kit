@@ -92,6 +92,7 @@ export const Configurable: FunctionComponent = () => {
                         size: ButtonSize.SMALL,
                     },
                 ]}
+                footerText={text('Footer text', 'We need you..')}
                 iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
                 isVisible={isVisible}
                 onClose={(): void => {
