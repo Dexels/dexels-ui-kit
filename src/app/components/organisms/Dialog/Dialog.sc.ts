@@ -12,7 +12,7 @@ import { Text as TText } from '../../molecules/TextWithOptionalIcon/TextWithOpti
 
 const widthScrollable = 40;
 
-const dialogWidth = (size: DialogSize, isScrollable: boolean): number => {
+const dialogwidth = (size: DialogSize, isScrollable: boolean): number => {
     let width = 544;
 
     switch (size) {
@@ -76,7 +76,7 @@ export const Wrapper = styled.div<WrapperProps>`
     z-index: ${zIndex.DIALOG - 1};
     padding: ${({ isScrollable }): string => (isScrollable ? '0px' : `${widthScrollable}px`)};
     width: 100%;
-    max-width: ${({ isScrollable, size }): string => `${dialogWidth(size, isScrollable)}px`};
+    max-width: ${({ isScrollable, size }): string => `${dialogwidth(size, isScrollable)}px`};
     max-height: 100%;
     overflow: ${({ isScrollable }): string => (isScrollable ? 'auto' : 'visible')};
     pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};
