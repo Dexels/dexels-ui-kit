@@ -232,7 +232,6 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                 onClose={(): void => {
                     setIsVisible(false);
                 }}
-                size={select('Size', DialogSize, DialogSize.DEFAULT)}
                 status={select('Status', Status, Status.ALERT)}
                 text="What is 2 + 2?"
                 title={text('Title', 'Title and input components')}

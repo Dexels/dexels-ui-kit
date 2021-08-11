@@ -1,7 +1,7 @@
 import { DialogButtonClosePosition, IconPlacement } from './types';
 import { DialogSize, Easing, Elevation, Status, zIndex } from '../../../types';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
-import { fadeInEffect } from '../../../styles/mixins/transitionEffects';
+import { fadeInEffect, transitionEffect } from '../../../styles/mixins/transitionEffects';
 import { getElevation } from '../../../styles/mixins/getElevation';
 import { getStatusColor } from '../../../styles/mixins/getStatusColor';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
@@ -57,6 +57,14 @@ interface WrapperProps {
 export const Wrapper = styled.div<WrapperProps>`
     ${setBoxSizing()}
     ${setCentered()}
+    ${transitionEffect({
+        duration: 300,
+        property: 'height',
+    })}
+    ${transitionEffect({
+        duration: 300,
+        property: 'width',
+    })}
     ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
         fadeInEffect({
             duration: transitionDuration,
