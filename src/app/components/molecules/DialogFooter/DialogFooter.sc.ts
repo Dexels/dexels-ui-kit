@@ -39,8 +39,8 @@ export const ButtonBarWrapper = styled.div<ButtonBarWrapperProps>`
     ${({ hasMultipleButtons }): SimpleInterpolation =>
         hasMultipleButtons &&
         css`
-            min-width: 300px;
             width: 100%;
+            min-width: 300px;
         `}
 
     text-align: right;
