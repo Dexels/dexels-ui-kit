@@ -1,6 +1,6 @@
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { Alignment } from '../../../types';
 import { setBoxSizing } from '../../../styles/mixins/setBoxSizing';
-import styled from 'styled-components';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
 export const StyledDialogFooter = styled.footer`
@@ -19,6 +19,7 @@ StyledDialogFooter.defaultProps = {
 
 export const Text = styled.p`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
+    flex-shrink: 2;
     margin: 0;
     padding: ${({ theme }): string => theme.spacing(0, 2, 0, 0)};
     width: 100%;
@@ -30,8 +31,18 @@ Text.defaultProps = {
     theme: themeBasic,
 };
 
-export const ButtonBarWrapper = styled.div`
-    width: 100%;
+interface ButtonBarWrapperProps {
+    hasMultipleButtons: boolean;
+}
+
+export const ButtonBarWrapper = styled.div<ButtonBarWrapperProps>`
+    ${({ hasMultipleButtons }): SimpleInterpolation =>
+        hasMultipleButtons &&
+        css`
+            width: 100%;
+            min-width: 300px;
+        `}
+
     text-align: right;
 `;
 
