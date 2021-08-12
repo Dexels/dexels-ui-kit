@@ -28,6 +28,7 @@ export { rippleEffect, rippleEffectInit, rippleEffectReset } from '../app/styles
 export { setBoxSizing } from '../app/styles/mixins/setBoxSizing';
 export { setCentered } from '../app/styles/mixins/setCentered';
 export { setTruncate } from '../app/styles/mixins/setTruncate';
+export { fadeInEffect, slideUpEffect, transitionEffect } from '../app/styles/mixins/transitionEffects';
 
 // Export functions
 export {

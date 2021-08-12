@@ -13,7 +13,7 @@ import {
 } from './Dialog.sc';
 import { DialogButtonClosePosition, IconPlacement } from './types';
 import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
-import { Easing, Elevation, IconType, Status } from '../../../types';
+import { DialogSize, Easing, Elevation, IconType, Status } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import { IconProps } from '../../atoms/Icon/Icon';
@@ -37,6 +37,7 @@ export interface DialogProps {
     isScrollable?: boolean;
     isVisible: boolean;
     onClose?: MouseEventHandler;
+    size?: DialogSize;
     status?: Status;
     text?: ReactNode;
     title?: ReactNode;
@@ -61,6 +62,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     isScrollable = true,
     isVisible,
     onClose,
+    size = DialogSize.DEFAULT,
     status = Status.DEFAULT,
     text,
     title,
@@ -82,6 +84,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
             className={className}
             isScrollable={isScrollable}
             isVisible={isVisible}
+            size={size}
             transitionDuration={transitionDuration}
             transitionEasing={transitionEasing}
         >

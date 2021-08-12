@@ -31,6 +31,12 @@ export enum Currencies {
     USD = 'USD',
 }
 
+export enum DialogSize {
+    DEFAULT = 'DEFAULT',
+    LARGE = 'LARGE',
+    MEDIUM = 'MEDIUM',
+}
+
 export enum Direction {
     LTR = 'LTR',
     RTL = 'RTL',

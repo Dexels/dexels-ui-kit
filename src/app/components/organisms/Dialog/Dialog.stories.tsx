@@ -1,5 +1,15 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import { ButtonSize, ButtonVariant, Direction, Easing, Elevation, IconType, InputType, Status } from '../../../types';
+import {
+    ButtonSize,
+    ButtonVariant,
+    DialogSize,
+    Direction,
+    Easing,
+    Elevation,
+    IconType,
+    InputType,
+    Status,
+} from '../../../types';
 import Dialog, { DialogProps } from './Dialog';
 import { DialogButtonClosePosition, IconPlacement } from './types';
 import moment, { Moment } from 'moment';
@@ -38,6 +48,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
         isScrollable={isScrollable}
         isVisible={isVisible}
         onClose={onClose}
+        size={select('Size', DialogSize, DialogSize.DEFAULT)}
         status={status}
         text={textProp}
         title={titleProp}
@@ -81,6 +92,7 @@ export const Configurable: FunctionComponent = () => {
                         size: ButtonSize.SMALL,
                     },
                 ]}
+                footerText={text('Footer text', 'We need you..')}
                 iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
                 isVisible={isVisible}
                 onClose={(): void => {
@@ -216,6 +228,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                 ]}
                 footerText={text('Footer text', 'Hint: its not 3 or 5')}
                 iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
+                isScrollable
                 isVisible={isVisible}
                 onClose={(): void => {
                     setIsVisible(false);
@@ -249,6 +262,7 @@ export const ConfigurableAlertWithInput: FunctionComponent = () => {
                     type={InputType.NUMBER}
                     value={answer ? answer.toString() : ''}
                 />
+                <div style={{ height: '100px' }} />
             </ConfigurableDialog>
         </>
     );
