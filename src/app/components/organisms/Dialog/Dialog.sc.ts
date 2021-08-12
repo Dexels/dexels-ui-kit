@@ -59,11 +59,7 @@ export const Wrapper = styled.div<WrapperProps>`
     ${setCentered()}
     ${transitionEffect({
         duration: 300,
-        property: 'height',
-    })}
-    ${transitionEffect({
-        duration: 300,
-        property: 'width',
+        property: 'all',
     })}
     ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
         fadeInEffect({
