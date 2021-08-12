@@ -57,14 +57,12 @@ interface WrapperProps {
 export const Wrapper = styled.div<WrapperProps>`
     ${setBoxSizing()}
     ${setCentered()}
-    ${transitionEffect({
-        duration: 300,
-        property: 'height',
-    })}
-    ${transitionEffect({
-        duration: 300,
-        property: 'width',
-    })}
+    ${({ transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
+        transitionEffect({
+            duration: transitionDuration,
+            easing: transitionEasing,
+            property: 'all',
+        })}
     ${({ isVisible, transitionDuration, transitionEasing }): FlattenSimpleInterpolation =>
         fadeInEffect({
             duration: transitionDuration,

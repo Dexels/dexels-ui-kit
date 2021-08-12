@@ -108,6 +108,66 @@ export const Configurable: FunctionComponent = () => {
     );
 };
 
+export const ConfigurableChangingHeight: FunctionComponent = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [isLargeHeight, setIsLargeHeight] = useState(false);
+
+    return (
+        <>
+            <Button
+                onClick={(): void => {
+                    setIsVisible(true);
+                }}
+                variant={ButtonVariant.FILLED}
+            >
+                {isVisible ? 'Dialog is showing' : 'Show dialog'}
+            </Button>
+            <ConfigurableDialog
+                footerButtons={[
+                    {
+                        children: 'Cancel',
+                        iconType: IconType.CROSS,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                        variant: ButtonVariant.TEXT_ONLY,
+                    },
+                    {
+                        children: 'Confirm',
+                        iconType: IconType.CHECK,
+                        onClick: (): void => {
+                            setIsVisible(false);
+                        },
+                        size: ButtonSize.SMALL,
+                    },
+                    {
+                        children: 'Change height',
+                        iconType: isLargeHeight ? IconType.ARROWUP : IconType.ARROWDOWN,
+                        onClick: (): void => {
+                            setIsLargeHeight(!isLargeHeight);
+                        },
+                        size: ButtonSize.SMALL,
+                    },
+                ]}
+                footerText={text('Footer text', 'We need you..')}
+                iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
+                isVisible={isVisible}
+                onClose={(): void => {
+                    setIsVisible(false);
+                }}
+                text={text(
+                    'Text',
+                    'You can put all kinds of text in here. From short ones to long ones, from boring ones to fun ones.'
+                )}
+                title={text('Title', 'We should title this')}
+            >
+                {isLargeHeight ? <div style={{ height: '300px' }} /> : <div style={{ height: '100px' }} />}
+            </ConfigurableDialog>
+        </>
+    );
+};
+
 export const ConfigurableAlert: FunctionComponent = () => {
     const [isVisible, setIsVisible] = useState(false);
 
