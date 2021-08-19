@@ -28,7 +28,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
     footerText,
     iconType,
     isScrollable,
-    isResizable = false,
+    isResizeable = false,
     isVisible,
     onClose,
     status,
@@ -47,7 +47,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
         header={text('Header', '')}
         iconPlacement={select('Icon placement', IconPlacement, IconPlacement.TOP)}
         iconType={iconType}
-        isResizable={isResizable}
+        isResizeable={isResizeable}
         isScrollable={isScrollable}
         isVisible={isVisible}
         onClose={onClose}
@@ -172,7 +172,7 @@ export const ConfigurableChangingHeight: FunctionComponent = () => {
                 ]}
                 footerText={text('Footer text', 'We need you..')}
                 iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
-                isResizable
+                isResizeable
                 isVisible={isVisible}
                 onClose={(): void => {
                     setIsVisible(false);
