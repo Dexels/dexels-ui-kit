@@ -34,7 +34,7 @@ export interface DialogProps {
     header?: ReactNode;
     iconPlacement?: IconPlacement;
     iconType?: IconProps['type'] /* IconType will be used by title and inside content */;
-    isResizeable?: boolean;
+    isResizable?: boolean;
     isScrollable?: boolean;
     isVisible: boolean;
     onClose?: MouseEventHandler;
@@ -61,7 +61,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     iconPlacement = IconPlacement.TOP,
     iconType,
     isScrollable = true,
-    isResizeable = false,
+    isResizable = false,
     isVisible,
     onClose,
     size = DialogSize.DEFAULT,
@@ -93,7 +93,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
             <Wrapper
                 className={className}
                 height={dialogRef.current?.clientHeight || 0}
-                isResizeable={isResizeable}
+                isResizable={isResizable}
                 isScrollable={isScrollable}
                 isVisible={isVisible}
                 size={size}

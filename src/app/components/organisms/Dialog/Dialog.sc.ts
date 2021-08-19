@@ -48,7 +48,7 @@ export const OverlayWrapper = styled.div<OverlayWrapperProps>`
 
 interface WrapperProps {
     height: number;
-    isResizeable: boolean;
+    isResizable: boolean;
     isScrollable: boolean;
     isVisible: boolean;
     size: DialogSize;
@@ -81,8 +81,8 @@ export const Wrapper = styled.div<WrapperProps>`
     max-height: 100%;
     overflow: 'visible';
 
-    ${({ isResizeable }): SimpleInterpolation =>
-        isResizeable &&
+    ${({ isResizable }): SimpleInterpolation =>
+        isResizable &&
         css`
             overflow: 'hidden';
         `}
