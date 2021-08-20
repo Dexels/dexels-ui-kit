@@ -47,6 +47,8 @@ export const OverlayWrapper = styled.div<OverlayWrapperProps>`
 `;
 
 interface WrapperProps {
+    height: number;
+    isResizable: boolean;
     isScrollable: boolean;
     isVisible: boolean;
     size: DialogSize;
@@ -75,8 +77,21 @@ export const Wrapper = styled.div<WrapperProps>`
     padding: ${({ isScrollable }): string => (isScrollable ? '0px' : `${widthScrollable}px`)};
     width: 100%;
     max-width: ${({ isScrollable, size }): string => `${dialogwidth(size, isScrollable)}px`};
+    height: ${({ height }): string => `${height}px`};
     max-height: 100%;
-    overflow: ${({ isScrollable }): string => (isScrollable ? 'auto' : 'visible')};
+    overflow: 'visible';
+
+    ${({ isResizable }): SimpleInterpolation =>
+        isResizable &&
+        css`
+            overflow: 'hidden';
+        `}
+
+    ${({ isScrollable }): SimpleInterpolation =>
+        isScrollable &&
+        css`
+            overflow: 'auto';
+        `}
     pointer-events: ${({ isVisible }): string => (isVisible ? 'auto' : 'none')};
 `;
 

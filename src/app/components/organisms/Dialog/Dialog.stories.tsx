@@ -13,10 +13,11 @@ import {
 import Dialog, { DialogProps } from './Dialog';
 import { DialogButtonClosePosition, IconPlacement } from './types';
 import moment, { Moment } from 'moment';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import Button from '../../molecules/Button/Button';
 import Input from '../../molecules/Input/Input';
 import { SingleDatePicker } from '../DatePicker';
+import { StyledTextWithOptionalIcon } from './Dialog.sc';
 import toNumber from '../../../utils/functions/toNumber';
 
 export default { title: 'organisms/Dialog' };
@@ -27,6 +28,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
     footerText,
     iconType,
     isScrollable,
+    isResizable = false,
     isVisible,
     onClose,
     status,
@@ -45,6 +47,7 @@ const ConfigurableDialog: FunctionComponent<DialogProps> = ({
         header={text('Header', '')}
         iconPlacement={select('Icon placement', IconPlacement, IconPlacement.TOP)}
         iconType={iconType}
+        isResizable={isResizable}
         isScrollable={isScrollable}
         isVisible={isVisible}
         onClose={onClose}
@@ -109,8 +112,33 @@ export const Configurable: FunctionComponent = () => {
 };
 
 export const ConfigurableChangingHeight: FunctionComponent = () => {
+    // const largeHeight = <div style={{ height: '300px' }} />;
+    // const smallHeight = <div style={{ height: '100px' }} />;
+
+    const largeHeight = (
+        <>
+            <StyledTextWithOptionalIcon>{'This is the content of the large dialog'}</StyledTextWithOptionalIcon>
+            <Input label="Input" name="an-input-name" type={InputType.NUMBER} value={'1'} />
+            <Input label="Input" name="an-input-name" type={InputType.NUMBER} value={'2'} />
+            <Input label="Input" name="an-input-name" type={InputType.NUMBER} value={'3'} />
+        </>
+    );
+
+    const smallHeight = (
+        <StyledTextWithOptionalIcon>{'This is the content of the small dialog'}</StyledTextWithOptionalIcon>
+    );
+
     const [isVisible, setIsVisible] = useState(false);
     const [isLargeHeight, setIsLargeHeight] = useState(false);
+    const [dialogContent, setDialogContent] = useState(smallHeight);
+
+    useEffect(() => {
+        if (isLargeHeight) {
+            setDialogContent(largeHeight);
+        } else {
+            setDialogContent(smallHeight);
+        }
+    }, [isLargeHeight]);
 
     return (
         <>
@@ -134,14 +162,6 @@ export const ConfigurableChangingHeight: FunctionComponent = () => {
                         variant: ButtonVariant.TEXT_ONLY,
                     },
                     {
-                        children: 'Confirm',
-                        iconType: IconType.CHECK,
-                        onClick: (): void => {
-                            setIsVisible(false);
-                        },
-                        size: ButtonSize.SMALL,
-                    },
-                    {
                         children: 'Change height',
                         iconType: isLargeHeight ? IconType.ARROWUP : IconType.ARROWDOWN,
                         onClick: (): void => {
@@ -152,6 +172,7 @@ export const ConfigurableChangingHeight: FunctionComponent = () => {
                 ]}
                 footerText={text('Footer text', 'We need you..')}
                 iconType={select('Icon type', IconType, IconType.ROUND_ALERT)}
+                isResizable
                 isVisible={isVisible}
                 onClose={(): void => {
                     setIsVisible(false);
@@ -162,7 +183,7 @@ export const ConfigurableChangingHeight: FunctionComponent = () => {
                 )}
                 title={text('Title', 'We should title this')}
             >
-                {isLargeHeight ? <div style={{ height: '300px' }} /> : <div style={{ height: '100px' }} />}
+                {dialogContent}
             </ConfigurableDialog>
         </>
     );
