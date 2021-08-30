@@ -38,7 +38,7 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
     isTextArea = false,
     warnings,
 }) => {
-    const [informationTableData, setInformationTableData] = useState<InformationTableData[]>(data);
+    const [informationTableData, setInformationTableData] = useState<InformationTableData[]>([]);
 
     useEffect(() => {
         if (isLoading || isEmpty(data)) {
@@ -54,7 +54,7 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
     }, [amountOfColumns, amountOfRows, data, isLoading]);
 
     const columnArray = useMemo(() => {
-        const amountOfRowsPerColumn = Math.ceil(data.length / amountOfColumns);
+        const amountOfRowsPerColumn = Math.ceil(informationTableData.length / amountOfColumns);
 
         return Array.from(Array(amountOfColumns).keys()).map((key) => (
             <Column amountOfColumns={amountOfColumns} key={key}>
