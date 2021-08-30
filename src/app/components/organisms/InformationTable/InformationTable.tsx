@@ -38,7 +38,6 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
     isTextArea = false,
     warnings,
 }) => {
-    const amountOfRowsPerColumn = Math.ceil(data.length / amountOfColumns);
     const [informationTableData, setInformationTableData] = useState<InformationTableData[]>(data);
 
     useEffect(() => {
@@ -52,32 +51,32 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
         } else {
             setInformationTableData(data);
         }
-    }, [data, isLoading]);
+    }, [amountOfColumns, amountOfRows, data, isLoading]);
 
-    const columnArray = useMemo(
-        () =>
-            Array.from(Array(amountOfColumns).keys()).map((key) => (
-                <Column amountOfColumns={amountOfColumns} key={key}>
-                    {informationTableData
-                        .slice(key * amountOfRowsPerColumn, (key + 1) * amountOfRowsPerColumn)
-                        .map((element, index) => (
-                            // eslint-disable-next-line react/no-array-index-key
-                            <Row key={index}>
-                                <Label isDisabled={isDisabled} isTextArea={isTextArea || element.isTextArea || false}>
-                                    {element.label}
-                                </Label>
-                                <Value
-                                    isDisabled={isDisabled || element.isDisabled || false}
-                                    isTextArea={isTextArea || element.isTextArea || false}
-                                >
-                                    {element.value}
-                                </Value>
-                            </Row>
-                        ))}
-                </Column>
-            )),
-        [informationTableData]
-    );
+    const columnArray = useMemo(() => {
+        const amountOfRowsPerColumn = Math.ceil(data.length / amountOfColumns);
+
+        return Array.from(Array(amountOfColumns).keys()).map((key) => (
+            <Column amountOfColumns={amountOfColumns} key={key}>
+                {informationTableData
+                    .slice(key * amountOfRowsPerColumn, (key + 1) * amountOfRowsPerColumn)
+                    .map((element, index) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <Row key={index}>
+                            <Label isDisabled={isDisabled} isTextArea={isTextArea || element.isTextArea || false}>
+                                {element.label}
+                            </Label>
+                            <Value
+                                isDisabled={isDisabled || element.isDisabled || false}
+                                isTextArea={isTextArea || element.isTextArea || false}
+                            >
+                                {element.value}
+                            </Value>
+                        </Row>
+                    ))}
+            </Column>
+        ));
+    }, [amountOfColumns, informationTableData]);
 
     return (
         <>
