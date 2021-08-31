@@ -1,4 +1,3 @@
-import { FileUploader } from '../FileUploader/FileUploader';
 import styled from 'styled-components';
 import { TextWithOptionalIcon } from '../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
 
@@ -10,7 +9,7 @@ export const StyledTextWithOptionalIcon = styled(TextWithOptionalIcon)`
     font-weight: 600;
 `;
 
-export const StyledFileUploader = styled(FileUploader)`
+export const FileUploaderWrapper = styled.div`
     margin-bottom: ${({ theme }): string => theme.spacing(2)};
 `;
 

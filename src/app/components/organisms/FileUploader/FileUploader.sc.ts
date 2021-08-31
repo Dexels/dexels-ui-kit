@@ -1,72 +1,95 @@
-import styled, { SimpleInterpolation } from 'styled-components';
-import { Button } from '../../molecules/Button/Button';
-import { IconCustomizable } from '../../molecules/IconCustomizable/IconCustomizable';
+import styled, { css, SimpleInterpolation } from 'styled-components';
+import Button from '../../molecules/Button/Button';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
-export const FileUploaderInfo = styled.div`
-    opacity: 1;
-    width: 100%;
-`;
-
-interface StyledFileUploaderProps {
+interface FileUploaderInfo {
     isDragging: boolean;
 }
+
+export const FileUploaderInfo = styled.div<FileUploaderInfo>`
+    opacity: 1;
+    padding: ${({ theme }): string => theme.spacing(1.5)};
+    width: 100%;
+
+    ${({ isDragging, theme }): SimpleInterpolation =>
+        css`
+            ${!isDragging &&
+            css`
+                border: 2px dashed ${theme.shades.five};
+            `}
+
+            ${isDragging &&
+            css`
+                opacity: 0.4;
+                border: 2px dashed ${theme.shades.four};
+            `}
+        `}
+`;
+
+FileUploaderInfo.defaultProps = {
+    theme: themeBasic,
+};
 
 export const FileUploaderContent = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: ${({ theme }): string => theme.spacing(1)};
-    padding: ${({ theme }): string => theme.spacing(1.5)};
-    min-width: 100%;
-    min-height: 100%;
+    width: 100%;
+    height: 100%;
     text-align: center;
 `;
 
-export const FileUploaderWrapper = styled.div<StyledFileUploaderProps>`
-    padding: 7px;
-    ${({ theme, isDragging }): SimpleInterpolation => {
-        let uploaderCss = `
-            border-radius: ${theme.spacing(1.5)};
-            min-height: ${theme.spacing(25)};
-            display: flex;
-        `;
+interface FileUploaderWrapperProps {
+    isDragging: boolean;
+}
 
-        if (isDragging) {
-            uploaderCss = `${uploaderCss}
-                background-color: ${theme.shades.eight};
-                ${FileUploaderContent} {
-                    border: 2px dashed ${theme.shades.four};
-                }
+export const FileUploaderWrapper = styled.div<FileUploaderWrapperProps>`
+    display: flex;
+    border-radius: ${({ theme }): string => theme.spacing(1.5)};
+    background-color: ${({ theme }): string => theme.shades.seven};
+    padding: ${({ theme }): string => theme.spacing(1)};
 
-                ${FileUploaderInfo} {
-                    opacity: .4;
-                }
-            `;
-        } else {
-            uploaderCss = `${uploaderCss}
-                background-color: ${theme.shades.seven};
-
-                ${FileUploaderContent} {
-                    border: 2px dashed ${theme.shades.five};
-                }
-            `;
-        }
-
-        return uploaderCss;
-    }}
+    ${({ isDragging, theme }): SimpleInterpolation =>
+        isDragging &&
+        css`
+            background-color: ${theme.shades.eight};
+        `}
 `;
 
-const BaseText = styled.div`
+FileUploaderWrapper.defaultProps = {
+    theme: themeBasic,
+};
+
+interface TopTextProps {
+    isInvalid: boolean;
+    isLoading: boolean;
+    isSuccess: boolean;
+}
+
+export const TopText = styled.div<TopTextProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     margin: ${({ theme }): string => theme.spacing(0, 0, 1.5)};
     overflow: hidden;
     text-overflow: ellipsis;
+    color: ${({ theme }): string => theme.colorText.primary};
+
+    ${({ isSuccess, isLoading, theme }): SimpleInterpolation =>
+        (isSuccess || isLoading) &&
+        css`
+            color: ${theme.shades.one};
+        `}
+
+    ${({ isInvalid, theme }): SimpleInterpolation =>
+        isInvalid &&
+        css`
+            color: ${theme.colorInvalid};
+        `}
 `;
 
-export const TopText = styled(BaseText)`
-    color: ${({ theme }): string => theme.shades.three};
-`;
+TopText.defaultProps = {
+    theme: themeBasic,
+};
 
 export const BottomText = styled.div`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
@@ -74,25 +97,30 @@ export const BottomText = styled.div`
     color: ${({ theme }): string => theme.shades.three};
 `;
 
-export const StatusText = styled(BaseText)`
-    color: ${({ theme }): string => theme.shades.one};
-`;
-
-export const AlertText = styled(BaseText)`
-    color: ${({ theme }): string => theme.colorInvalid};
-`;
-
-export const BaseIcon = styled(IconCustomizable)`
+interface IconWrapperProps {
+    isInvalid: boolean;
+    isSuccess: boolean;
+}
+export const IconWrapper = styled.div<IconWrapperProps>`
     margin: ${({ theme }): string => theme.spacing(0, 0, 1.25)};
+    color: ${({ theme }): string => theme.colorText.primary};
+
+    ${({ isSuccess, theme }): SimpleInterpolation =>
+        isSuccess &&
+        css`
+            color: ${theme.colorText.secondary};
+        `}
+
+    ${({ isInvalid, theme }): SimpleInterpolation =>
+        isInvalid &&
+        css`
+            color: ${theme.colorInvalid};
+        `}
 `;
 
-export const SuccessIcon = styled(BaseIcon)`
-    color: ${({ theme }): string => theme.colorText.secondary};
-`;
-
-export const AlertIcon = styled(BaseIcon)`
-    color: ${({ theme }): string => theme.colorInvalid};
-`;
+IconWrapper.defaultProps = {
+    theme: themeBasic,
+};
 
 export const HiddenInput = styled.input`
     position: absolute;
@@ -107,7 +135,3 @@ export const HiddenInput = styled.input`
 export const StyledButton = styled(Button)`
     position: relative;
 `;
-
-FileUploaderWrapper.defaultProps = {
-    theme: themeBasic,
-};
