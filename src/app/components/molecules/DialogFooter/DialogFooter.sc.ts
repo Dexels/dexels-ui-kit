@@ -32,12 +32,12 @@ Text.defaultProps = {
 };
 
 interface ButtonBarWrapperProps {
-    hasMultipleButtons: boolean;
+    hasFullWidth: boolean;
 }
 
 export const ButtonBarWrapper = styled.div<ButtonBarWrapperProps>`
-    ${({ hasMultipleButtons }): SimpleInterpolation =>
-        hasMultipleButtons &&
+    ${({ hasFullWidth }): SimpleInterpolation =>
+        hasFullWidth &&
         css`
             width: 100%;
             min-width: 300px;
