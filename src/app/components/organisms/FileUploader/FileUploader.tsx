@@ -138,6 +138,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                     } else if (droppedFilesNames.some((name) => name.length > fileNameLength)) {
                         onAlert(FileAlertType.NAME, newFileNames);
                     } else {
+                        onAlert(FileAlertType.NONE);
                         onDrop(allFiles);
                         setDroppedFiles(allFiles);
                     }

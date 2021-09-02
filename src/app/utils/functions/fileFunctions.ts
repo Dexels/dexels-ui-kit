@@ -4,7 +4,7 @@ export function getTypeName(type: string): string {
     return typeName.toUpperCase();
 }
 
-export const getFileFormats = (types: string[]): string[] => Array.from(types).map((type) => getTypeName(type));
+export const getFileFormats = (types: string[]): string[] => types.map((type) => getTypeName(type));
 export const getFileNames = (files: File[]): string[] => files.map((file) => file.name);
 export const getFileSizes = (files: File[]): number[] => files.map((file) => file.size);
 

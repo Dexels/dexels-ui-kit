@@ -7,6 +7,7 @@ export enum FileUploaderStatus {
 
 export enum FileAlertType {
     NAME = 'nameError',
+    NONE = 'noError',
     NUMBER = 'numberError',
     SIZE = 'sizeError',
     TYPE = 'typeError',
