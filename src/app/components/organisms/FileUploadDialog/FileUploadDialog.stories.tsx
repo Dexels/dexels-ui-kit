@@ -35,7 +35,7 @@ export const Configurable: FunctionComponent = () => {
 
     const onAlertCallback = useCallback(
         (type: FileAlertType, fileNames?: string[]) => {
-            if (fileTypes && maxFiles && maxFileSize) {
+            if (fileTypes && fileNames && maxFiles && maxFileSize) {
                 setStatusData(getAlertTranslation(type, fileTypes, maxFiles, maxFileSize, fileNames));
             }
         },
@@ -49,7 +49,7 @@ export const Configurable: FunctionComponent = () => {
         console.log('[onDropCallback files:]', fileNames);
         console.log('[onDropCallback total size:]', totalSizeFiles);
 
-        setStatusData(getUploadedTranslation(getFileTypes(files), fileNames, totalSizeFiles));
+        setStatusData(getUploadedTranslation(getFileTypes(files), getFileFormats(getFileTypes(files)), totalSizeFiles));
     }, []);
 
     const onUploadCallback = useCallback((files: File[], name?: string, description?: string) => {

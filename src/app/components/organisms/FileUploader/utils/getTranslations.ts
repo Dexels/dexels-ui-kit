@@ -80,13 +80,13 @@ export const getUploadedTranslation = (
         fileNames.length > 1 ? 'files' : 'file'
     } - ${fileSizeToFixed(filesTotalSize)} MB`,
     buttonText: 'Choose a file',
-    message: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'are' : 'is'} uploaded`,
+    message: `${fileNames.length > 1 ? 'are' : 'is'} uploaded`,
     status: FileUploaderStatus.SUCCESS,
 });
 
 export const getLoadingTranslation = (fileNames: string[]): FileUploaderStatusData => ({
     bottomText: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'are' : 'is'} being uploaded`,
     buttonText: 'Choose a file',
-    message: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'are' : 'is'} being uploaded`,
+    message: `${fileNames.length > 1 ? 'are' : 'is'} being uploaded`,
     status: FileUploaderStatus.LOADING,
 });

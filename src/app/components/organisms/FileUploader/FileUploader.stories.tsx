@@ -1,3 +1,4 @@
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { FileAlertType, FileTypes } from './types';
 import { FileUploader, FileUploaderStatusData } from './FileUploader';
 import {
@@ -13,8 +14,8 @@ import {
     getFileTypes,
     getTotalSizeFiles,
 } from '../../../utils/functions/fileFunctions';
-import { number, select } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useEffect, useState } from 'react';
+import { isEmpty } from '../../../../lib';
 
 export default { title: 'organisms/FileUploader' };
 
@@ -40,9 +41,13 @@ export const Configurable: FunctionComponent = () => {
 
         setStatusData(getLoadingTranslation(droppedFileNames));
 
-        setTimeout(() => {
-            setStatusData(getUploadedTranslation(droppedFileFormats, droppedFileNames, filesTotalSize));
-        }, 5000);
+        if (!isEmpty(files)) {
+            setTimeout(() => {
+                setStatusData(getUploadedTranslation(droppedFileFormats, droppedFileNames, filesTotalSize));
+            }, 5000);
+        } else {
+            setStatusData(getDefaultTranslation(fileTypes, maxFileSize));
+        }
     };
 
     useEffect(() => {
@@ -54,6 +59,8 @@ export const Configurable: FunctionComponent = () => {
     return (
         <FileUploader
             fileTypes={[fileTypes]}
+            hasThumbNails={boolean('Has thumbnails', false)}
+            isDeleteFileAllowed={boolean('Is delete file allowed', false)}
             maxFileSize={maxFileSize}
             maxFiles={maxFiles}
             onAlert={onAlert}

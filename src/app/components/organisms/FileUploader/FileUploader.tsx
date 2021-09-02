@@ -1,10 +1,13 @@
 import {
     BottomText,
+    FileName,
+    FileNamesWrapper,
     FileUploaderContent,
     FileUploaderInfo,
     FileUploaderWrapper,
     HiddenInput,
     IconWrapper,
+    ImageWrapper,
     StyledButton,
     TopText,
 } from './FileUploader.sc';
@@ -13,6 +16,7 @@ import { FileAlertType, FileTypes, FileUploaderStatus } from './types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import { defineFileFormats } from './utils/defineFileFormats';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
@@ -27,6 +31,8 @@ export interface FileUploaderProps {
     className?: string;
     fileNameLength?: number;
     fileTypes: FileTypes[];
+    hasThumbNails?: boolean;
+    isDeleteFileAllowed?: boolean;
     maxFileSize: number;
     maxFiles: number;
     onAlert(type: FileAlertType, fileNames?: string[]): void;
@@ -36,12 +42,14 @@ export interface FileUploaderProps {
 
 export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     className,
-    onAlert,
-    onDrop,
-    maxFileSize,
-    maxFiles,
     fileTypes,
     fileNameLength = 100,
+    hasThumbNails = false,
+    isDeleteFileAllowed = false,
+    maxFileSize,
+    maxFiles,
+    onAlert,
+    onDrop,
     statusData,
 }) => {
     const { status, message, buttonText, bottomText } = statusData;
@@ -145,11 +153,14 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         [droppedFiles, fileFormats, fileNameLength, maxFiles, maxFileSize, onAlert, onDrop]
     );
 
-    useEffect(() => {
-        if (dragCounter === 0) {
-            setInDropZone(false);
-        }
-    }, [dragCounter]);
+    const onDeleteCallback = useCallback(
+        (fileName: string) => {
+            const newFiles = droppedFiles.filter((file) => file.name !== fileName);
+            onDrop(newFiles);
+            setDroppedFiles(newFiles);
+        },
+        [droppedFiles]
+    );
 
     const button = useMemo(() => {
         if (status === FileUploaderStatus.LOADING || (status === FileUploaderStatus.SUCCESS && maxFiles === 1)) {
@@ -163,6 +174,41 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
             </StyledButton>
         );
     }, [maxFiles, status]);
+
+    const fileNames = useMemo(() => {
+        if (isEmpty(droppedFiles)) {
+            return null;
+        }
+
+        if (!isDeleteFileAllowed && !hasThumbNails) {
+            return getFileNames(droppedFiles).join(', ');
+        }
+
+        return (
+            <FileNamesWrapper>
+                {droppedFiles.map((file) => (
+                    <FileName key={file.name}>
+                        {hasThumbNails ? (
+                            <ImageWrapper>
+                                <img alt="" src={URL.createObjectURL(file)} />
+                            </ImageWrapper>
+                        ) : (
+                            file.name
+                        )}
+                        {isDeleteFileAllowed && (
+                            <ButtonIcon iconType={IconType.ROUND_CROSS} onClick={() => onDeleteCallback(file.name)} />
+                        )}
+                    </FileName>
+                ))}
+            </FileNamesWrapper>
+        );
+    }, [droppedFiles]);
+
+    useEffect(() => {
+        if (dragCounter === 0) {
+            setInDropZone(false);
+        }
+    }, [dragCounter]);
 
     return (
         <FileUploaderWrapper
@@ -191,6 +237,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                             isLoading={status === FileUploaderStatus.LOADING}
                             isSuccess={status === FileUploaderStatus.SUCCESS}
                         >
+                            {fileNames}
                             {message}
                         </TopText>
                         {button}

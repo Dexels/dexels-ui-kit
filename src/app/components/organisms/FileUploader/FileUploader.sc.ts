@@ -135,3 +135,28 @@ export const HiddenInput = styled.input`
 export const StyledButton = styled(Button)`
     position: relative;
 `;
+
+export const FileNamesWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`;
+
+export const FileName = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const ImageWrapper = styled.div`
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+`;
