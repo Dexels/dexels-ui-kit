@@ -5,12 +5,12 @@ export function getTypeName(type: string): string {
 }
 
 export const getFileFormats = (types: string[]): string[] => Array.from(types).map((type) => getTypeName(type));
-export const getFileNames = (files: FileList): string[] => Array.from(files).map((file) => file.name);
-export const getFileSizes = (files: FileList): number[] => Array.from(files).map((file) => file.size);
+export const getFileNames = (files: File[]): string[] => files.map((file) => file.name);
+export const getFileSizes = (files: File[]): number[] => files.map((file) => file.size);
 
 export const getFileType = (file: File): string => file.type || file.name.split('.').pop() || file.name; // Worst case is to return the filename itself, but we need something
 
-export const getFileTypes = (files: FileList): string[] => Array.from(files).map((file) => getFileType(file));
+export const getFileTypes = (files: File[]): string[] => files.map((file) => getFileType(file));
 
 export const getTotalSizeFiles = (fileSizes: number[]): number => fileSizes.reduce((a, b) => a + b, 0) / 1000000;
 

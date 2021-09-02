@@ -35,24 +35,24 @@ export const Configurable: FunctionComponent = () => {
 
     const onAlertCallback = useCallback(
         (type: FileAlertType, fileNames?: string[]) => {
-            if (fileTypes && fileNames && maxFiles && maxFileSize) {
-                setStatusData(getAlertTranslation(type, fileTypes, fileNames, maxFiles, maxFileSize));
+            if (fileTypes && maxFiles && maxFileSize) {
+                setStatusData(getAlertTranslation(type, fileTypes, maxFiles, maxFileSize, fileNames));
             }
         },
         [fileTypes, maxFiles, maxFileSize]
     );
 
-    const onDropCallback = useCallback((files: FileList) => {
+    const onDropCallback = useCallback((files: File[]) => {
         const fileNames = getFileNames(files);
         const totalSizeFiles = getTotalSizeFiles(getFileSizes(files));
 
         console.log('[onDropCallback files:]', fileNames);
         console.log('[onDropCallback total size:]', totalSizeFiles);
 
-        setStatusData(getUploadedTranslation(getFileTypes(files), getFileFormats(getFileTypes(files)), totalSizeFiles));
+        setStatusData(getUploadedTranslation(getFileTypes(files), fileNames, totalSizeFiles));
     }, []);
 
-    const onUploadCallback = useCallback((files: FileList, name?: string, description?: string) => {
+    const onUploadCallback = useCallback((files: File[], name?: string, description?: string) => {
         // eslint-disable-next-line no-alert
         alert(`Start uploading with name: ${name || ''} and description ${description || ''}`);
 

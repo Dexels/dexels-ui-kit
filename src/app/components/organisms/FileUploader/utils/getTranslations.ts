@@ -18,16 +18,16 @@ export const getSelectedTranslation = (
         fileNames.length > 1 ? 'files' : 'file'
     } - ${fileSizeToFixed(filesTotalSize)} MB`,
     buttonText: 'Choose a file',
-    message: `${fileNames ? fileNames.join(', ') : ''} ${fileNames && fileNames.length > 1 ? 'are' : 'is'} selected`,
+    message: `${fileNames && fileNames.length > 1 ? 'are' : 'is'} selected`,
     status: FileUploaderStatus.SUCCESS,
 });
 
 export const getAlertTranslation = (
     alert: FileAlertType,
     fileTypes: FileTypes,
-    fileNames: string[],
     maxFiles: number,
-    maxFileSize: number
+    maxFileSize: number,
+    fileNames?: string[]
 ): FileUploaderStatusData => {
     let alertMessage = '';
 
@@ -41,9 +41,7 @@ export const getAlertTranslation = (
             break;
 
         case FileAlertType.SIZE:
-            if (fileNames) {
-                alertMessage = `${fileNames.join(', ')} ${fileNames.length > 1 ? 'are' : 'is'} too big`;
-            }
+            alertMessage = `you can only upload max ${maxFileSize}MB`;
 
             break;
 

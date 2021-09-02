@@ -26,12 +26,12 @@ export const Configurable: FunctionComponent = () => {
     const [statusData, setStatusData] = useState<FileUploaderStatusData>(getDefaultTranslation(fileTypes, maxFileSize));
 
     const onAlert = (type: FileAlertType, fileNames?: string[]) => {
-        if (fileTypes && fileNames && maxFiles && maxFileSize) {
-            setStatusData(getAlertTranslation(type, fileTypes, fileNames, maxFiles, maxFileSize));
+        if (fileTypes && maxFiles && maxFileSize) {
+            setStatusData(getAlertTranslation(type, fileTypes, maxFiles, maxFileSize, fileNames));
         }
     };
 
-    const onDrop = (files: FileList) => {
+    const onDrop = (files: File[]) => {
         const droppedFileNames = getFileNames(files);
         const droppedFileTypes = getFileTypes(files);
         const droppedFileFormats = getFileFormats(droppedFileTypes);

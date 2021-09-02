@@ -30,7 +30,7 @@ export interface FileUploaderProps {
     maxFileSize: number;
     maxFiles: number;
     onAlert(type: FileAlertType, fileNames?: string[]): void;
-    onDrop(files: FileList): void;
+    onDrop(files: File[]): void;
     statusData: FileUploaderStatusData;
 }
 
@@ -48,6 +48,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     const fileFormats = useMemo(() => defineFileFormats(fileTypes), [fileTypes]);
     const [inDropZone, setInDropZone] = useState(false);
     const [dragCounter, setDragCounter] = useState(0);
+    const [droppedFiles, setDroppedFiles] = useState([] as File[]);
 
     const getIconType = (statusType: FileUploaderStatus): IconType => {
         switch (statusType) {
@@ -110,23 +111,27 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
             const files = getFiles();
 
             if (files) {
-                const filesNames = getFileNames(files);
-                const droppedFilesTypes = getFileTypes(files);
-                const filesSizes = getFileSizes(files);
+                const newFileNames = Array.from(files).map((file) => file.name);
+                const allFiles = droppedFiles.concat(Array.from(files));
+                const droppedFilesNames = getFileNames(allFiles);
+                const droppedFilesTypes = getFileTypes(allFiles);
+                const droppedFilesSizes = getFileSizes(allFiles);
 
-                if (!isEmpty(files)) {
-                    if (!maxFiles || maxFiles <= 0 || files.length > maxFiles) {
+                if (!isEmpty(allFiles)) {
+                    if (!maxFiles || maxFiles <= 0 || allFiles.length > maxFiles) {
                         onAlert(FileAlertType.NUMBER);
+                    } else if (droppedFilesTypes.some((type) => fileFormats && !fileFormats.includes(type))) {
+                        onAlert(FileAlertType.TYPE, newFileNames);
                     } else if (
-                        droppedFilesTypes.filter((type) => fileFormats && fileFormats.includes(type)).length === 0
+                        !maxFileSize ||
+                        !isEmpty(droppedFilesSizes.filter((size) => size / 1000000 > maxFileSize))
                     ) {
-                        onAlert(FileAlertType.TYPE, filesNames);
-                    } else if (!maxFileSize || !isEmpty(filesSizes.filter((size) => size / 1000000 > maxFileSize))) {
-                        onAlert(FileAlertType.SIZE, filesNames);
-                    } else if (!isEmpty(filesNames.filter((name) => name.length > fileNameLength))) {
-                        onAlert(FileAlertType.NAME, filesNames);
+                        onAlert(FileAlertType.SIZE);
+                    } else if (droppedFilesNames.some((name) => name.length > fileNameLength)) {
+                        onAlert(FileAlertType.NAME, newFileNames);
                     } else {
-                        onDrop(files);
+                        onDrop(allFiles);
+                        setDroppedFiles(allFiles);
                     }
 
                     if ('dataTransfer' in event && event.dataTransfer) {
@@ -137,7 +142,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 }
             }
         },
-        [fileFormats, fileNameLength, maxFiles, maxFileSize, onAlert, onDrop]
+        [droppedFiles, fileFormats, fileNameLength, maxFiles, maxFileSize, onAlert, onDrop]
     );
 
     useEffect(() => {

@@ -26,8 +26,8 @@ export interface FileUploadDialogProps {
     onChangeDescription?: (value: string) => void;
     onChangeName?: (value: string) => void;
     onClose: () => void;
-    onDrop?: (files: FileList) => void;
-    onUpload: (files: FileList, name?: string, description?: string) => void;
+    onDrop?: (files: File[]) => void;
+    onUpload: (files: File[], name?: string, description?: string) => void;
     statusData: FileUploaderStatusData;
     textCancel: string;
     textSave: string;
@@ -60,7 +60,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
 }) => {
     const [inputDescriptionValue, setInputDescriptionValue] = useState(description);
     const [inputNameValue, setInputNameValue] = useState(name);
-    const [droppedFiles, setDroppedFiles] = useState<FileList | null>();
+    const [droppedFiles, setDroppedFiles] = useState([] as File[]);
 
     const hasInputName = !isEmpty(labelInputName) && maxFiles === 1;
     const hasInputDescription = !isEmpty(labelInputDescription) && maxFiles === 1;
@@ -68,7 +68,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     const [isUploadAllowed, setIsUploadAllowed] = useState(false);
 
     const onDropCallback = useCallback(
-        (files: FileList) => {
+        (files: File[]) => {
             setDroppedFiles(files);
 
             if (onDrop) {
@@ -108,7 +108,6 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
             ]}
             iconType={iconType}
             isVisible={isVisible}
-            key="1"
             onClose={onClose}
             title={title}
         >
@@ -116,7 +115,6 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
                 <FileUploader
                     fileNameLength={fileNameLength}
                     fileTypes={fileTypes}
-                    key="2"
                     maxFileSize={maxFileSize}
                     maxFiles={maxFiles}
                     onAlert={onAlert}
@@ -128,7 +126,6 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
             {hasInputName && (
                 <Input
                     isDisabled={statusData.status === FileUploaderStatus.LOADING}
-                    key="3"
                     label={labelInputName}
                     maxLength={maxLengthName}
                     name="name"
@@ -143,7 +140,6 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
             {hasInputDescription && (
                 <Input
                     isDisabled={statusData.status === FileUploaderStatus.LOADING}
-                    key="4"
                     label={labelInputDescription}
                     maxLength={maxLengthDescription}
                     name="description"
