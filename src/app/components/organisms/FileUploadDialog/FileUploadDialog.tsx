@@ -24,8 +24,6 @@ export interface FileUploadDialogProps {
     maxLengthName?: number;
     name?: string;
     onAlert: (type: FileAlertType, fileNames?: string[]) => void;
-    onChangeDescription?: (value: string) => void;
-    onChangeName?: (value: string) => void;
     onClose: () => void;
     onDrop?: (files: File[]) => void;
     onUpload: (files: File[], name?: string, description?: string) => void;

@@ -43,11 +43,7 @@ export const Configurable: FunctionComponent = () => {
     );
 
     const onDropCallback = useCallback((files: File[]) => {
-        const fileNames = getFileNames(files);
         const totalSizeFiles = getTotalSizeFiles(getFileSizes(files));
-
-        console.log('[onDropCallback files:]', fileNames);
-        console.log('[onDropCallback total size:]', totalSizeFiles);
 
         setStatusData(getUploadedTranslation(getFileTypes(files), getFileFormats(getFileTypes(files)), totalSizeFiles));
     }, []);
