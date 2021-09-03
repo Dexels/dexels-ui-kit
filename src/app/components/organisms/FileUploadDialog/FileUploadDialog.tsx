@@ -11,6 +11,7 @@ export interface FileUploadDialogProps {
     description?: string;
     fileNameLength?: number;
     fileTypes: FileTypes[];
+    hasThumbNails?: boolean;
     iconCancel?: IconType;
     iconSave?: IconType;
     iconType?: IconType;
@@ -38,6 +39,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     description,
     fileNameLength = 100,
     fileTypes,
+    hasThumbNails = false,
     labelInputDescription,
     labelInputName,
     iconCancel = IconType.CROSS,
@@ -82,7 +84,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
         if (onUpload && droppedFiles) {
             onUpload(droppedFiles, inputNameValue, inputDescriptionValue);
         }
-    }, [droppedFiles, inputNameValue, inputDescriptionValue]);
+    }, [droppedFiles, inputNameValue, inputDescriptionValue, onUpload]);
 
     useEffect(() => {
         setIsUploadAllowed(!isEmpty(droppedFiles));
@@ -115,6 +117,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
                 <FileUploader
                     fileNameLength={fileNameLength}
                     fileTypes={fileTypes}
+                    hasThumbNails={hasThumbNails}
                     maxFileSize={maxFileSize}
                     maxFiles={maxFiles}
                     onAlert={onAlert}

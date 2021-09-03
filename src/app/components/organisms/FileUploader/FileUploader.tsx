@@ -32,7 +32,6 @@ export interface FileUploaderProps {
     fileNameLength?: number;
     fileTypes: FileTypes[];
     hasThumbNails?: boolean;
-    isDeleteFileAllowed?: boolean;
     maxFileSize: number;
     maxFiles: number;
     onAlert(type: FileAlertType, fileNames?: string[]): void;
@@ -45,7 +44,6 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     fileTypes,
     fileNameLength = 100,
     hasThumbNails = false,
-    isDeleteFileAllowed = false,
     maxFileSize,
     maxFiles,
     onAlert,
@@ -138,7 +136,6 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                     } else if (droppedFilesNames.some((name) => name.length > fileNameLength)) {
                         onAlert(FileAlertType.NAME, newFileNames);
                     } else {
-                        onAlert(FileAlertType.NONE);
                         onDrop(allFiles);
                         setDroppedFiles(allFiles);
                     }
@@ -181,29 +178,19 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
             return null;
         }
 
-        if (!isDeleteFileAllowed && !hasThumbNails) {
-            return getFileNames(droppedFiles).join(', ');
-        }
-
-        return (
-            <FileNamesWrapper>
-                {droppedFiles.map((file) => (
-                    <FileName key={file.name}>
-                        {hasThumbNails ? (
-                            <ImageWrapper>
-                                <img alt="" src={URL.createObjectURL(file)} />
-                            </ImageWrapper>
-                        ) : (
-                            file.name
-                        )}
-                        {isDeleteFileAllowed && (
-                            <ButtonIcon iconType={IconType.ROUND_CROSS} onClick={() => onDeleteCallback(file.name)} />
-                        )}
-                    </FileName>
-                ))}
-            </FileNamesWrapper>
-        );
-    }, [droppedFiles]);
+        return droppedFiles.map((file) => (
+            <FileName key={file.name}>
+                {hasThumbNails && status !== FileUploaderStatus.LOADING ? (
+                    <ImageWrapper>
+                        <img alt="" src={URL.createObjectURL(file)} />
+                    </ImageWrapper>
+                ) : (
+                    `${file.name} `
+                )}
+                <ButtonIcon iconType={IconType.ROUND_CROSS} onClick={() => onDeleteCallback(file.name)} />
+            </FileName>
+        ));
+    }, [droppedFiles, hasThumbNails, status]);
 
     useEffect(() => {
         if (dragCounter === 0) {
@@ -226,19 +213,24 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                     <>
                         {status === FileUploaderStatus.LOADING && <ProgressBar isIndeterminate />}
 
-                        <IconWrapper
-                            isInvalid={status === FileUploaderStatus.ALERT}
-                            isSuccess={status === FileUploaderStatus.SUCCESS}
-                        >
-                            <IconCustomizable iconSize={IconCustomizableSize.SIZE36} iconType={getIconType(status)} />
-                        </IconWrapper>
+                        {(status !== FileUploaderStatus.SUCCESS || !hasThumbNails) && (
+                            <IconWrapper
+                                isInvalid={status === FileUploaderStatus.ALERT}
+                                isSuccess={status === FileUploaderStatus.SUCCESS}
+                            >
+                                <IconCustomizable
+                                    iconSize={IconCustomizableSize.SIZE36}
+                                    iconType={getIconType(status)}
+                                />
+                            </IconWrapper>
+                        )}
 
                         <TopText
                             isInvalid={status === FileUploaderStatus.ALERT}
                             isLoading={status === FileUploaderStatus.LOADING}
                             isSuccess={status === FileUploaderStatus.SUCCESS}
                         >
-                            {fileNames}
+                            <FileNamesWrapper>{fileNames}</FileNamesWrapper>
                             {message}
                         </TopText>
                         {button}

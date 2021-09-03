@@ -80,7 +80,7 @@ export const getUploadedTranslation = (
         fileNames.length > 1 ? 'files' : 'file'
     } - ${fileSizeToFixed(filesTotalSize)} MB`,
     buttonText: 'Choose a file',
-    message: `${fileNames.length > 1 ? 'are' : 'is'} uploaded`,
+    message: `${fileNames.length > 1 ? 'are' : 'is'} selected`,
     status: FileUploaderStatus.SUCCESS,
 });
 

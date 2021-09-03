@@ -60,7 +60,6 @@ export const Configurable: FunctionComponent = () => {
         <FileUploader
             fileTypes={[fileTypes]}
             hasThumbNails={boolean('Has thumbnails', false)}
-            isDeleteFileAllowed={boolean('Is delete file allowed', false)}
             maxFileSize={maxFileSize}
             maxFiles={maxFiles}
             onAlert={onAlert}

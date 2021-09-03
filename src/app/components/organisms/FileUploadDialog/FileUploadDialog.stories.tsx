@@ -1,3 +1,4 @@
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { FileAlertType, FileTypes } from '../FileUploader/types';
 import {
     getAlertTranslation,
@@ -12,7 +13,6 @@ import {
     getFileTypes,
     getTotalSizeFiles,
 } from '../../../utils/functions/fileFunctions';
-import { number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
 import FileUploadDialog from './FileUploadDialog';
 import { FileUploaderStatusData } from '../FileUploader/FileUploader';
@@ -78,6 +78,7 @@ export const Configurable: FunctionComponent = () => {
     return (
         <FileUploadDialog
             fileTypes={[fileTypes]}
+            hasThumbNails={boolean('Has thumbnails', false)}
             iconCancel={select('Icon Cancel', IconType, IconType.CROSS)}
             iconSave={select('Icon Save', IconType, IconType.CHECK)}
             isVisible={isVisible}
