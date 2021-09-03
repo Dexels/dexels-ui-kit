@@ -202,14 +202,13 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         <FileUploaderWrapper
             className={className}
             isDragging={inDropZone}
-            key="FileUploaderWrapper1"
             onDragEnter={handleDragIn}
             onDragLeave={handleDragOut}
             onDragOver={handleDrag}
             onDrop={handleDrop}
         >
-            <FileUploaderContent key="FileUploaderContent">
-                <FileUploaderInfo isDragging={inDropZone} key="FileUploaderInfo">
+            <FileUploaderContent>
+                <FileUploaderInfo isDragging={inDropZone}>
                     <>
                         {status === FileUploaderStatus.LOADING && <ProgressBar isIndeterminate />}
 
