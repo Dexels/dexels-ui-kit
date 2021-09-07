@@ -136,16 +136,25 @@ export const StyledButton = styled(Button)`
     position: relative;
 `;
 
-export const FileNamesWrapper = styled.div`
+interface FileNamesWrapperProps {
+    showInColumn: boolean;
+}
+
+export const FileNamesWrapper = styled.div<FileNamesWrapperProps>`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    ${({ showInColumn }): SimpleInterpolation =>
+        showInColumn &&
+        css`
+            flex-direction: column;
+        `}
 `;
-
 export const FileName = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 `;
 
 export const ImageWrapper = styled.div`

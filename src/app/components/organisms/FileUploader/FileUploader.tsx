@@ -236,7 +236,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                             isLoading={status === FileUploaderStatus.LOADING}
                             isSuccess={status === FileUploaderStatus.SUCCESS}
                         >
-                            <FileNamesWrapper>{fileNames}</FileNamesWrapper>
+                            <FileNamesWrapper showInColumn={!hasThumbNails}>{fileNames}</FileNamesWrapper>
                             {message}
                         </TopText>
                         {button}
