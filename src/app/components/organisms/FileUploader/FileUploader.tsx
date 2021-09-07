@@ -55,6 +55,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     const [inDropZone, setInDropZone] = useState(false);
     const [dragCounter, setDragCounter] = useState(0);
     const [droppedFiles, setDroppedFiles] = useState([] as File[]);
+    const [inputValue, setInputValue] = useState('');
 
     const getIconType = (statusType: FileUploaderStatus): IconType => {
         switch (statusType) {
@@ -161,18 +162,22 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         [droppedFiles, onDrop]
     );
 
+    const onClickCallback = useCallback(() => {
+        setInputValue('');
+    }, []);
+
     const button = useMemo(() => {
         if (status === FileUploaderStatus.LOADING || (status === FileUploaderStatus.SUCCESS && maxFiles === 1)) {
             return null;
         }
 
         return (
-            <StyledButton iconType={IconType.FOLDERSEARCH} variant={ButtonVariant.FILLED}>
+            <StyledButton iconType={IconType.FOLDERSEARCH} key={dragCounter} variant={ButtonVariant.FILLED}>
                 {buttonText}
-                <HiddenInput onChange={handleDrop} type="file" />
+                <HiddenInput onChange={handleDrop} onClick={onClickCallback} type="file" value={inputValue} />
             </StyledButton>
         );
-    }, [handleDrop, maxFiles, status]);
+    }, [buttonText, handleDrop, maxFiles, status, inputValue]);
 
     const fileNames = useMemo(() => {
         if (isEmpty(droppedFiles)) {
