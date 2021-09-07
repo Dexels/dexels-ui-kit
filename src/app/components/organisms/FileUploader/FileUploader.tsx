@@ -162,6 +162,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         [droppedFiles, onDrop]
     );
 
+    // Reset hidden button on click so that you can upload the same file again
     const onClickCallback = useCallback(() => {
         setInputValue('');
     }, []);
