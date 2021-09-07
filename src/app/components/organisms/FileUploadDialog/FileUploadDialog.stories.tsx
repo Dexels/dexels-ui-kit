@@ -17,7 +17,7 @@ import React, { FunctionComponent, useCallback, useEffect, useState } from 'reac
 import FileUploadDialog from './FileUploadDialog';
 import { FileUploaderStatusData } from '../FileUploader/FileUploader';
 import { IconType } from '../../../types';
-import { isEmpty } from '../../../../lib';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export default { title: 'organisms/FileUploadDialog' };
 
