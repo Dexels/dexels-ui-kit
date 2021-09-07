@@ -1,25 +1,27 @@
 import {
-    AlertIcon,
-    AlertText,
     BottomText,
+    FileName,
+    FileNamesWrapper,
     FileUploaderContent,
     FileUploaderInfo,
     FileUploaderWrapper,
     HiddenInput,
-    StatusText,
+    IconWrapper,
+    ImageWrapper,
     StyledButton,
-    SuccessIcon,
     TopText,
 } from './FileUploader.sc';
 import { ButtonVariant, IconType } from '../../../types';
 import { FileAlertType, FileTypes, FileUploaderStatus } from './types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
-import React, { ChangeEvent, FunctionComponent, ReactNode, useEffect, useRef, useState } from 'react';
+import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
+import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import { defineFileFormats } from './utils/defineFileFormats';
-import { IconCustomizableSize } from '../../molecules/IconCustomizable';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
 
-export interface FileUploaderData {
+export interface FileUploaderStatusData {
     bottomText: ReactNode;
     buttonText: ReactNode;
     message: ReactNode;
@@ -27,187 +29,221 @@ export interface FileUploaderData {
 }
 export interface FileUploaderProps {
     className?: string;
-    data: FileUploaderData;
     fileNameLength?: number;
     fileTypes: FileTypes[];
+    hasThumbNails?: boolean;
     maxFileSize: number;
     maxFiles: number;
     onAlert(type: FileAlertType, fileNames?: string[]): void;
-    onDrop(files: FileList): void;
+    onDrop(files: File[]): void;
+    statusData: FileUploaderStatusData;
 }
 
 export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     className,
-    data,
-    onAlert,
-    onDrop,
-    maxFileSize,
-    maxFiles,
     fileTypes,
     fileNameLength = 100,
+    hasThumbNails = false,
+    maxFileSize,
+    maxFiles,
+    onAlert,
+    onDrop,
+    statusData,
 }) => {
-    const [isDragging, setIsDragging] = useState(false);
+    const { status, message, buttonText, bottomText } = statusData;
+    const fileFormats = useMemo(() => defineFileFormats(fileTypes), [fileTypes]);
+    const [inDropZone, setInDropZone] = useState(false);
     const [dragCounter, setDragCounter] = useState(0);
-    const dropRef = useRef<HTMLDivElement | null>(null);
-    const { status, message, buttonText, bottomText } = data;
-    const fileFormatsRef = useRef<string[]>();
-    fileFormatsRef.current = defineFileFormats(fileTypes);
-    const maxFilesRef = useRef<number>();
-    maxFilesRef.current = maxFiles;
-    const maxFileSizeRef = useRef<number>();
-    maxFileSizeRef.current = maxFileSize;
+    const [droppedFiles, setDroppedFiles] = useState([] as File[]);
+    const [inputValue, setInputValue] = useState('');
 
-    enum listenerAction {
-        add = 'add',
-        remove = 'remove',
-    }
+    const getIconType = (statusType: FileUploaderStatus): IconType => {
+        switch (statusType) {
+            case FileUploaderStatus.ALERT:
+                return IconType.DANGER;
 
-    function handleDrag(event: DragEvent) {
+            case FileUploaderStatus.LOADING:
+                return IconType.CHANGE;
+
+            default:
+                return IconType.FILEGENERIC;
+        }
+    };
+
+    const handleDrag = useCallback((event: React.DragEvent) => {
         event.preventDefault();
-        event.stopPropagation();
-    }
-
-    function handleDragIn(event: DragEvent) {
-        handleDrag(event);
-        setDragCounter(dragCounter + 1);
-
-        if (event.dataTransfer && event.dataTransfer.items && event.dataTransfer.items.length > 0) {
-            setIsDragging(true);
-        }
-    }
-
-    function handleDragOut(event: DragEvent) {
-        handleDrag(event);
-        setDragCounter(dragCounter - 1);
-
-        if (dropRef.current && !dropRef.current.contains(event.relatedTarget as Node) && dragCounter <= 0) {
-            setIsDragging(false);
-        }
-    }
-
-    function handleDrop(event: DragEvent | ChangeEvent<HTMLInputElement>) {
-        const getFiles = () => {
-            if ('dataTransfer' in event && event.dataTransfer) {
-                handleDrag(event);
-                setIsDragging(false);
-                const { files } = event.dataTransfer;
-
-                return files;
-            }
-
-            if (event.target) {
-                const { files } = event.target as HTMLInputElement;
-
-                return files;
-            }
-
-            return null;
-        };
-
-        const files = getFiles();
-
-        if (files) {
-            const filesNames = getFileNames(files);
-            const droppedFilesTypes = getFileTypes(files);
-            const filesSizes = getFileSizes(files);
-
-            if (files && files.length > 0) {
-                if (!maxFilesRef.current || maxFilesRef.current <= 0 || files.length > maxFiles) {
-                    onAlert(FileAlertType.NUMBER);
-                } else if (
-                    droppedFilesTypes.filter((type) => fileFormatsRef.current && fileFormatsRef.current.includes(type))
-                        .length === 0
-                ) {
-                    onAlert(FileAlertType.TYPE, filesNames);
-                } else if (
-                    !maxFileSizeRef.current ||
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    filesSizes.filter((size) => size / 1000000 > maxFileSizeRef.current!).length > 0
-                ) {
-                    onAlert(FileAlertType.SIZE, filesNames);
-                } else if (filesNames.filter((name) => name.length > fileNameLength).length > 0) {
-                    onAlert(FileAlertType.NAME, filesNames);
-                } else {
-                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                    manageListeners(listenerAction.remove);
-                    onDrop(files);
-                }
-
-                if ('dataTransfer' in event && event.dataTransfer) {
-                    event.dataTransfer.clearData();
-                }
-
-                setDragCounter(0);
-            }
-        }
-    }
-
-    function manageListeners(action: listenerAction) {
-        const dropDiv = dropRef.current;
-
-        if (dropDiv) {
-            if (action === listenerAction.add) {
-                dropDiv.addEventListener('dragenter', handleDragIn, true);
-                dropDiv.addEventListener('dragleave', handleDragOut, true);
-                dropDiv.addEventListener('dragover', handleDrag, true);
-                dropDiv.addEventListener('drop', handleDrop, true);
-            } else {
-                dropDiv.removeEventListener('dragenter', handleDragIn, true);
-                dropDiv.removeEventListener('dragleave', handleDragOut, true);
-                dropDiv.removeEventListener('dragover', handleDrag, true);
-                dropDiv.removeEventListener('drop', handleDrop, true);
-            }
-        }
-    }
-
-    useEffect(() => {
-        setDragCounter(0);
-        manageListeners(listenerAction.add);
-
-        return function cleanup() {
-            manageListeners(listenerAction.remove);
-        };
     }, []);
 
-    const button = (
-        <StyledButton iconType={IconType.FOLDERSEARCH} variant={ButtonVariant.FILLED}>
-            {buttonText}
-            <HiddenInput onChange={(event) => handleDrop(event)} type="file" />
-        </StyledButton>
+    const handleDragIn = useCallback(
+        (event: React.DragEvent) => {
+            event.preventDefault();
+            setDragCounter(dragCounter + 1);
+
+            if (event.dataTransfer && event.dataTransfer.items && event.dataTransfer.items.length > 0) {
+                setInDropZone(true);
+            }
+        },
+        [dragCounter]
     );
 
+    const handleDragOut = useCallback(
+        (event: React.DragEvent) => {
+            event.preventDefault();
+            setDragCounter(dragCounter - 1);
+        },
+        [dragCounter]
+    );
+
+    const handleDrop = useCallback(
+        (event: React.DragEvent | ChangeEvent<HTMLInputElement>) => {
+            event.preventDefault();
+            setInDropZone(false);
+
+            const getFiles = () => {
+                if ('dataTransfer' in event && event.dataTransfer) {
+                    const { files } = event.dataTransfer;
+
+                    return files;
+                }
+
+                if (event.target) {
+                    const { files } = event.target as HTMLInputElement;
+
+                    return files;
+                }
+
+                return null;
+            };
+
+            const files = getFiles();
+
+            if (files) {
+                const newFileNames = Array.from(files).map((file) => file.name);
+
+                const allFiles = droppedFiles.concat(Array.from(files));
+                const droppedFilesNames = getFileNames(allFiles);
+                const droppedFilesTypes = getFileTypes(allFiles);
+                const droppedFilesSizes = getFileSizes(allFiles);
+
+                if (!isEmpty(allFiles)) {
+                    if (maxFiles && maxFiles > 0 && allFiles.length > maxFiles) {
+                        onAlert(FileAlertType.NUMBER);
+                    } else if (droppedFilesTypes.some((type) => fileFormats && !fileFormats.includes(type))) {
+                        onAlert(FileAlertType.TYPE, newFileNames);
+                    } else if (
+                        maxFileSize &&
+                        !isEmpty(droppedFilesSizes.filter((size) => size / 1000000 > maxFileSize))
+                    ) {
+                        onAlert(FileAlertType.SIZE);
+                    } else if (droppedFilesNames.some((name) => name.length > fileNameLength)) {
+                        onAlert(FileAlertType.NAME, newFileNames);
+                    } else {
+                        onDrop(allFiles);
+                        setDroppedFiles(allFiles);
+                    }
+
+                    if ('dataTransfer' in event && event.dataTransfer) {
+                        event.dataTransfer.clearData();
+                    }
+
+                    setDragCounter(0);
+                }
+            }
+        },
+        [droppedFiles, fileFormats, fileNameLength, maxFiles, maxFileSize, onAlert, onDrop]
+    );
+
+    const onDeleteCallback = useCallback(
+        (fileIndex: number) => {
+            const newFiles = droppedFiles.filter((_, index) => index !== fileIndex);
+            onDrop(newFiles);
+            setDroppedFiles(newFiles);
+        },
+        [droppedFiles, onDrop]
+    );
+
+    // Reset hidden button on click so that you can upload the same file again
+    const onClickCallback = useCallback(() => {
+        setInputValue('');
+    }, []);
+
+    const button = useMemo(() => {
+        if (status === FileUploaderStatus.LOADING || (status === FileUploaderStatus.SUCCESS && maxFiles === 1)) {
+            return null;
+        }
+
+        return (
+            <StyledButton iconType={IconType.FOLDERSEARCH} key={dragCounter} variant={ButtonVariant.FILLED}>
+                {buttonText}
+                <HiddenInput onChange={handleDrop} onClick={onClickCallback} type="file" value={inputValue} />
+            </StyledButton>
+        );
+    }, [buttonText, handleDrop, maxFiles, status, inputValue]);
+
+    const fileNames = useMemo(() => {
+        if (isEmpty(droppedFiles)) {
+            return null;
+        }
+
+        return droppedFiles.map((file, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <FileName key={`${file.name}-${index}`}>
+                {hasThumbNails && status !== FileUploaderStatus.LOADING ? (
+                    <ImageWrapper>
+                        <img alt="" src={URL.createObjectURL(file)} />
+                    </ImageWrapper>
+                ) : (
+                    `${file.name} `
+                )}
+                <ButtonIcon iconType={IconType.ROUND_CROSS} onClick={() => onDeleteCallback(index)} />
+            </FileName>
+        ));
+    }, [droppedFiles, hasThumbNails, status]);
+
+    useEffect(() => {
+        if (dragCounter === 0) {
+            setInDropZone(false);
+        }
+    }, [dragCounter]);
+
     return (
-        <FileUploaderWrapper className={className} isDragging={isDragging} ref={dropRef}>
+        <FileUploaderWrapper
+            className={className}
+            isDragging={inDropZone}
+            onDragEnter={handleDragIn}
+            onDragLeave={handleDragOut}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+        >
             <FileUploaderContent>
-                {status === FileUploaderStatus.DEFAULT && (
-                    <FileUploaderInfo>
-                        <TopText>{message}</TopText>
+                <FileUploaderInfo isDragging={inDropZone}>
+                    <>
+                        {status === FileUploaderStatus.LOADING && <ProgressBar isIndeterminate />}
+
+                        {(status !== FileUploaderStatus.SUCCESS || !hasThumbNails) && (
+                            <IconWrapper
+                                isInvalid={status === FileUploaderStatus.ALERT}
+                                isSuccess={status === FileUploaderStatus.SUCCESS}
+                            >
+                                <IconCustomizable
+                                    iconSize={IconCustomizableSize.SIZE36}
+                                    iconType={getIconType(status)}
+                                />
+                            </IconWrapper>
+                        )}
+
+                        <TopText
+                            isInvalid={status === FileUploaderStatus.ALERT}
+                            isLoading={status === FileUploaderStatus.LOADING}
+                            isSuccess={status === FileUploaderStatus.SUCCESS}
+                        >
+                            <FileNamesWrapper showInColumn={!hasThumbNails}>{fileNames}</FileNamesWrapper>
+                            {message}
+                        </TopText>
                         {button}
                         <BottomText>{bottomText}</BottomText>
-                    </FileUploaderInfo>
-                )}
-                {status === FileUploaderStatus.SUCCESS && (
-                    <FileUploaderInfo>
-                        <SuccessIcon iconSize={IconCustomizableSize.SIZE36} iconType={IconType.FILEGENERIC} />
-                        <StatusText>{message}</StatusText>
-                        <BottomText>{bottomText}</BottomText>
-                    </FileUploaderInfo>
-                )}
-                {status === FileUploaderStatus.ALERT && (
-                    <FileUploaderInfo>
-                        <AlertIcon iconSize={IconCustomizableSize.SIZE36} iconType={IconType.DANGER} />
-                        <AlertText>{message}</AlertText>
-                        {button}
-                        <BottomText>{bottomText}</BottomText>
-                    </FileUploaderInfo>
-                )}
-                {status === FileUploaderStatus.LOADING && (
-                    <FileUploaderInfo>
-                        <ProgressBar isIndeterminate />
-                        <StatusText>{message}</StatusText>
-                        <BottomText>{bottomText}</BottomText>
-                    </FileUploaderInfo>
-                )}
+                    </>
+                </FileUploaderInfo>
             </FileUploaderContent>
         </FileUploaderWrapper>
     );

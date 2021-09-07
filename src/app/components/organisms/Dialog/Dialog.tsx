@@ -15,7 +15,7 @@ import { DialogButtonClosePosition, IconPlacement } from './types';
 import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import { DialogSize, Easing, Elevation, IconType, Status } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
-import React, { FunctionComponent, MouseEventHandler, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode, useRef } from 'react';
 import { IconProps } from '../../atoms/Icon/Icon';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 import Overlay from '../../molecules/Overlay/Overlay';
@@ -72,11 +72,6 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     transitionEasing = Easing.EASE,
 }) => {
     const dialogRef = useRef<HTMLDivElement>(null);
-    const [key, setKey] = useState(1);
-
-    useEffect(() => {
-        setKey(key + 1);
-    }, [children]);
 
     return (
         <>
@@ -118,7 +113,6 @@ export const Dialog: FunctionComponent<DialogProps> = ({
                             <ChildrenWrapper
                                 hasPaddingLeft={Boolean(iconType) && Boolean(text) && !title}
                                 hasPaddingTop={Boolean(iconType) || Boolean(text)}
-                                key={key}
                             >
                                 {children}
                             </ChildrenWrapper>

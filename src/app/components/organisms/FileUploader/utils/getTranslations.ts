@@ -1,11 +1,11 @@
 import { FileAlertType, FileTypes, FileUploaderStatus } from '../types';
 import { fileSizeToFixed } from '../../../../utils/functions/fileFunctions';
-import { FileUploaderData } from '../FileUploader';
+import { FileUploaderStatusData } from '../FileUploader';
 
-export const getDefaultTranslation = (fileTypes: FileTypes, maxFileSize: number): FileUploaderData => ({
-    bottomText: `${fileTypes} - Maximaal ${maxFileSize}MB`,
-    buttonText: 'Kies een bestand',
-    message: 'Sleep hier een bestand om te uploaden of',
+export const getDefaultTranslation = (fileTypes: FileTypes, maxFileSize: number): FileUploaderStatusData => ({
+    bottomText: `${fileTypes} - Max ${maxFileSize}MB`,
+    buttonText: 'Choose a file',
+    message: 'Drag here a file to upload or',
     status: FileUploaderStatus.DEFAULT,
 });
 
@@ -13,58 +13,48 @@ export const getSelectedTranslation = (
     fileTypes: string[],
     fileNames: string[],
     filesTotalSize: number
-): FileUploaderData => ({
+): FileUploaderStatusData => ({
     bottomText: `${Array.from(new Set(fileTypes)).join(', ')} ${
-        fileNames.length > 1 ? 'bestanden' : 'bestand'
+        fileNames.length > 1 ? 'files' : 'file'
     } - ${fileSizeToFixed(filesTotalSize)} MB`,
-    buttonText: 'Kies een bestand',
-    message: `${fileNames ? fileNames.join(', ') : ''} ${
-        fileNames && fileNames.length > 1 ? 'zijn' : 'is'
-    } geselecteerd`,
+    buttonText: 'Choose a file',
+    message: `${fileNames && fileNames.length > 1 ? 'are' : 'is'} selected`,
     status: FileUploaderStatus.SUCCESS,
 });
 
 export const getAlertTranslation = (
     alert: FileAlertType,
     fileTypes: FileTypes,
-    fileNames: string[],
     maxFiles: number,
-    maxFileSize: number
-): FileUploaderData => {
+    maxFileSize: number,
+    fileNames?: string[]
+): FileUploaderStatusData => {
     let alertMessage = '';
 
     switch (alert) {
         case FileAlertType.NUMBER:
             alertMessage =
                 maxFiles > 0
-                    ? `Er ${maxFiles > 1 ? 'kunnen' : 'kan'} maximaal ${maxFiles} ${
-                          maxFiles > 1 ? 'bestanden' : 'bestand'
-                      } per keer ${maxFiles > 1 ? 'worden' : 'wordt'} geüpload`
-                    : 'Kies het maximale aantal bestanden (meer dan null)';
+                    ? `you can only upload max ${maxFiles} ${maxFiles > 1 ? 'files' : 'file'}`
+                    : 'Choose a file';
 
             break;
 
         case FileAlertType.SIZE:
-            if (fileNames) {
-                alertMessage = `${fileNames.join(', ')} ${
-                    fileNames.length > 1 ? 'zijn' : 'is'
-                } te groot om te uploaden`;
-            }
+            alertMessage = `you can only upload max ${maxFileSize}MB`;
 
             break;
 
         case FileAlertType.TYPE:
             if (fileNames) {
-                alertMessage = `${fileNames.join(', ')} ${
-                    fileNames.length > 1 ? 'hebben' : 'heeft'
-                } de verkeerde extensie`;
+                alertMessage = `${fileNames.join(', ')} ${fileNames.length > 1 ? 'have' : 'has'} the wrong format`;
             }
 
             break;
 
         case FileAlertType.NAME:
             if (fileNames) {
-                alertMessage = `${fileNames.join(', ')} ${fileNames.length > 1 ? 'hebben' : 'heeft'} te lang naam`;
+                alertMessage = `the name of ${fileNames.join(', ')} is too long`;
             }
 
             break;
@@ -74,8 +64,8 @@ export const getAlertTranslation = (
     }
 
     return {
-        bottomText: `${fileTypes} - Maximaal ${maxFileSize}MB`,
-        buttonText: 'Kies een ander bestand',
+        bottomText: `${fileTypes} - Max ${maxFileSize}MB`,
+        buttonText: 'Choose a file',
         message: alertMessage,
         status: FileUploaderStatus.ALERT,
     };
@@ -85,18 +75,18 @@ export const getUploadedTranslation = (
     fileTypes: string[],
     fileNames: string[],
     filesTotalSize: number
-): FileUploaderData => ({
+): FileUploaderStatusData => ({
     bottomText: `${Array.from(new Set(fileTypes)).join(', ')} ${
-        fileNames.length > 1 ? 'bestanden' : 'bestand'
+        fileNames.length > 1 ? 'files' : 'file'
     } - ${fileSizeToFixed(filesTotalSize)} MB`,
-    buttonText: 'Kies een bestand',
-    message: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'zijn' : 'is'} geüpload`,
+    buttonText: 'Choose a file',
+    message: `${fileNames.length > 1 ? 'are' : 'is'} selected`,
     status: FileUploaderStatus.SUCCESS,
 });
 
-export const getLoadingTranslation = (fileNames: string[]): FileUploaderData => ({
-    bottomText: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'worden' : 'wordt'} geüpload`,
-    buttonText: 'Kies een bestand',
-    message: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'worden' : 'wordt'} geüpload`,
+export const getLoadingTranslation = (fileNames: string[]): FileUploaderStatusData => ({
+    bottomText: `${fileNames.join(', ')} ${fileNames.length > 1 ? 'are' : 'is'} being uploaded`,
+    buttonText: 'Choose a file',
+    message: `${fileNames.length > 1 ? 'are' : 'is'} being uploaded`,
     status: FileUploaderStatus.LOADING,
 });

@@ -1,10 +1,9 @@
-import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { FileAlertType, FileTypes } from '../FileUploader/types';
 import {
     getAlertTranslation,
     getDefaultTranslation,
     getLoadingTranslation,
-    getSelectedTranslation,
     getUploadedTranslation,
 } from '../FileUploader/utils/getTranslations';
 import {
@@ -14,117 +13,93 @@ import {
     getFileTypes,
     getTotalSizeFiles,
 } from '../../../utils/functions/fileFunctions';
-import { number, select } from '@storybook/addon-knobs';
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
 import FileUploadDialog from './FileUploadDialog';
-import { FileUploaderData } from '../FileUploader/FileUploader';
+import { FileUploaderStatusData } from '../FileUploader/FileUploader';
+import { IconType } from '../../../types';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export default { title: 'organisms/FileUploadDialog' };
 
 export const Configurable: FunctionComponent = () => {
-    const maxFileSizeRef = React.useRef<number>();
-    maxFileSizeRef.current = number('Max file size', 5);
-    const maxFilesRef = React.useRef<number>();
-    maxFilesRef.current = number('Max files', 3);
-    const fileTypesRef = React.useRef<FileTypes>();
-    fileTypesRef.current = select('Transition type', FileTypes, FileTypes.POWERPOINT);
-    maxFilesRef.current = number('Max files', 3);
-    const [isVisible, setIsVisible] = React.useState(true);
-    const [droppedFileNames, setDroppedFileNames] = React.useState<string[]>();
-    const [droppedFileFormats, setDroppedFileFormats] = React.useState<string[]>();
-    const [droppedTotalSize, setDroppedTotalSize] = React.useState<number>();
-    const [description, setDescription] = React.useState<string>();
-    const [name, setName] = React.useState<string>();
+    const [isVisible, setIsVisible] = useState(true);
 
-    const [data, setData] = React.useState<FileUploaderData>(
-        getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current)
+    const fileTypes = select('File type', FileTypes, FileTypes.IMAGE);
+    const maxFileSize = number('Max file size', 5);
+    const maxFiles = number('Max files', 3);
+
+    const [statusData, setStatusData] = useState<FileUploaderStatusData>(getDefaultTranslation(fileTypes, maxFileSize));
+
+    const onCloseCallback = useCallback(() => {
+        setIsVisible(false);
+    }, []);
+
+    const onAlertCallback = useCallback(
+        (type: FileAlertType, fileNames?: string[]) => {
+            if (fileTypes && maxFiles && maxFileSize) {
+                setStatusData(getAlertTranslation(type, fileTypes, maxFiles, maxFileSize, fileNames));
+            }
+        },
+        [fileTypes, maxFiles, maxFileSize]
     );
 
-    const onAlert = (type: FileAlertType, fileNames?: string[]) => {
-        if (fileTypesRef.current && fileNames && maxFilesRef.current && maxFileSizeRef.current) {
-            setData(
-                getAlertTranslation(type, fileTypesRef.current, fileNames, maxFilesRef.current, maxFileSizeRef.current)
-            );
-        }
-    };
+    const onDropCallback = useCallback(
+        (files: File[]) => {
+            const totalSizeFiles = getTotalSizeFiles(getFileSizes(files));
 
-    const onDrop = (files: FileList) => {
-        setDroppedFileNames(getFileNames(files));
-        const droppedFileTypes = getFileTypes(files);
-        setDroppedFileFormats(getFileFormats(droppedFileTypes));
-        const droppedFileSizes = getFileSizes(files);
-        setDroppedTotalSize(getTotalSizeFiles(droppedFileSizes));
-    };
+            if (isEmpty(files)) {
+                setStatusData(getDefaultTranslation(fileTypes, maxFileSize));
+            } else {
+                setStatusData(
+                    getUploadedTranslation(getFileTypes(files), getFileFormats(getFileTypes(files)), totalSizeFiles)
+                );
+            }
+        },
+        [fileTypes, maxFileSize]
+    );
 
-    const onUpload = () => {
-        if (description) {
-            // eslint-disable-next-line no-alert
-            alert(`Start uploading with description: ${description}`);
-        }
+    const onUploadCallback = useCallback((files: File[], name?: string, description?: string) => {
+        // eslint-disable-next-line no-alert
+        alert(`Start uploading with name: ${name || ''} and description ${description || ''}`);
+
+        const droppedFileNames = getFileNames(files);
+        const droppedFileFormats = getFileFormats(getFileTypes(files));
+        const droppedTotalSize = getTotalSizeFiles(getFileSizes(files));
 
         if (droppedFileFormats && droppedTotalSize && droppedFileNames) {
-            setData(getLoadingTranslation(droppedFileNames));
+            setStatusData(getLoadingTranslation(droppedFileNames));
 
             setTimeout(() => {
-                setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
+                setStatusData(getUploadedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
             }, 5000);
         }
-    };
-
-    const onChangeDescription = (value: string) => {
-        setDescription(value);
-    };
-
-    const onChangeName = (value: string) => {
-        setName(value);
-    };
+    }, []);
 
     useEffect(() => {
-        if (fileTypesRef.current && maxFileSizeRef.current) {
-            setData(getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current));
+        if (fileTypes && maxFileSize) {
+            setStatusData(getDefaultTranslation(fileTypes, maxFileSize));
         }
-    }, [maxFileSizeRef.current, fileTypesRef.current]);
-
-    useEffect(() => {
-        if (droppedFileFormats && droppedTotalSize && droppedFileNames) {
-            setData(getSelectedTranslation(droppedFileFormats, droppedFileNames, droppedTotalSize));
-        }
-    }, [droppedTotalSize]);
+    }, [maxFileSize, fileTypes]);
 
     return (
         <FileUploadDialog
-            buttons={[
-                {
-                    children: 'Sluit',
-                    iconType: IconType.CROSS,
-                    onClick: (): void => {
-                        setIsVisible(false);
-                    },
-                    size: ButtonSize.SMALL,
-                    variant: ButtonVariant.TEXT_ONLY,
-                },
-                {
-                    children: 'Voeg bestand toe',
-                    iconType: IconType.CHECK,
-                    onClick: () => onUpload(),
-                    size: ButtonSize.SMALL,
-                },
-            ]}
-            data={data}
-            description={description}
-            fileTypes={[fileTypesRef.current]}
-            inputName="Voeg een naam toe (optioneel)"
-            inputText="Voeg een omschrijving toe (optioneel)"
+            fileTypes={[fileTypes]}
+            hasThumbNails={boolean('Has thumbnails', false)}
+            iconCancel={select('Icon Cancel', IconType, IconType.CROSS)}
+            iconSave={select('Icon Save', IconType, IconType.CHECK)}
             isVisible={isVisible}
-            maxFileSize={maxFileSizeRef.current}
-            maxFiles={maxFilesRef.current}
-            name={name}
-            onAlert={onAlert}
-            onChangeDescription={onChangeDescription}
-            onChangeName={onChangeName}
-            onClose={() => setIsVisible(false)}
-            onDrop={onDrop}
-            title="Bestand Uploaden"
+            labelInputDescription="Add description (optional)"
+            labelInputName="Add name (optional)"
+            maxFileSize={maxFileSize}
+            maxFiles={maxFiles}
+            onAlert={onAlertCallback}
+            onClose={onCloseCallback}
+            onDrop={onDropCallback}
+            onUpload={onUploadCallback}
+            statusData={statusData}
+            textCancel={text('Text Cancel', 'Cancel')}
+            textSave={text('Text Save', 'Save')}
+            title="Upload files"
         />
     );
 };

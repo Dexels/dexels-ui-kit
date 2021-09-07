@@ -1,5 +1,6 @@
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { FileAlertType, FileTypes } from './types';
-import { FileUploader, FileUploaderData } from './FileUploader';
+import { FileUploader, FileUploaderStatusData } from './FileUploader';
 import {
     getAlertTranslation,
     getDefaultTranslation,
@@ -13,59 +14,57 @@ import {
     getFileTypes,
     getTotalSizeFiles,
 } from '../../../utils/functions/fileFunctions';
-import { number, select } from '@storybook/addon-knobs';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { isEmpty } from '../../../../lib';
 
 export default { title: 'organisms/FileUploader' };
 
 export const Configurable: FunctionComponent = () => {
-    const maxFileSizeRef = React.useRef<number>();
-    maxFileSizeRef.current = number('Max file size', 5);
-    const fileTypesRef = React.useRef<FileTypes>();
-    fileTypesRef.current = select('Transition type', FileTypes, FileTypes.IMAGE);
-    const maxFilesRef = React.useRef<number>();
-    maxFilesRef.current = number('Max files', 3);
+    const maxFileSize = number('Max file size', 5);
+    const fileTypes = select('File type', FileTypes, FileTypes.IMAGE);
+    const maxFiles = number('Max files', 3);
 
-    const [data, setData] = React.useState<FileUploaderData>(
-        getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current)
-    );
+    const [statusData, setStatusData] = useState<FileUploaderStatusData>(getDefaultTranslation(fileTypes, maxFileSize));
 
     const onAlert = (type: FileAlertType, fileNames?: string[]) => {
-        if (fileTypesRef.current && fileNames && maxFilesRef.current && maxFileSizeRef.current) {
-            setData(
-                getAlertTranslation(type, fileTypesRef.current, fileNames, maxFilesRef.current, maxFileSizeRef.current)
-            );
+        if (fileTypes && maxFiles && maxFileSize) {
+            setStatusData(getAlertTranslation(type, fileTypes, maxFiles, maxFileSize, fileNames));
         }
     };
 
-    const onDrop = (files: FileList) => {
+    const onDrop = (files: File[]) => {
         const droppedFileNames = getFileNames(files);
         const droppedFileTypes = getFileTypes(files);
         const droppedFileFormats = getFileFormats(droppedFileTypes);
         const droppedFileSizes = getFileSizes(files);
         const filesTotalSize = getTotalSizeFiles(droppedFileSizes);
 
-        setData(getLoadingTranslation(droppedFileNames));
+        setStatusData(getLoadingTranslation(droppedFileNames));
 
-        setTimeout(() => {
-            setData(getUploadedTranslation(droppedFileFormats, droppedFileNames, filesTotalSize));
-        }, 5000);
+        if (!isEmpty(files)) {
+            setTimeout(() => {
+                setStatusData(getUploadedTranslation(droppedFileFormats, droppedFileNames, filesTotalSize));
+            }, 5000);
+        } else {
+            setStatusData(getDefaultTranslation(fileTypes, maxFileSize));
+        }
     };
 
-    React.useEffect(() => {
-        if (fileTypesRef.current && maxFileSizeRef.current) {
-            setData(getDefaultTranslation(fileTypesRef.current, maxFileSizeRef.current));
+    useEffect(() => {
+        if (fileTypes && maxFileSize) {
+            setStatusData(getDefaultTranslation(fileTypes, maxFileSize));
         }
-    }, [maxFileSizeRef.current, fileTypesRef.current]);
+    }, [maxFileSize, fileTypes]);
 
     return (
         <FileUploader
-            data={data}
-            fileTypes={[fileTypesRef.current]}
-            maxFileSize={maxFileSizeRef.current}
-            maxFiles={maxFilesRef.current}
+            fileTypes={[fileTypes]}
+            hasThumbNails={boolean('Has thumbnails', false)}
+            maxFileSize={maxFileSize}
+            maxFiles={maxFiles}
             onAlert={onAlert}
             onDrop={onDrop}
+            statusData={statusData}
         />
     );
 };
