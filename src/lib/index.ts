@@ -36,6 +36,7 @@ export {
     getDropdownSelectOption,
     getOptionLabel,
     getSelectedElements,
+    getSelectedText,
     isAnyOptionSelected,
     picklistMultiSelectFacade,
     removeElement,
