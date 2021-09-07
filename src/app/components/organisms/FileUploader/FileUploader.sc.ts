@@ -150,8 +150,8 @@ export const FileName = styled.div`
 
 export const ImageWrapper = styled.div`
     flex: 0 0 auto;
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
 
     img {
         display: block;

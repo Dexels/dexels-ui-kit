@@ -118,18 +118,19 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
 
             if (files) {
                 const newFileNames = Array.from(files).map((file) => file.name);
+
                 const allFiles = droppedFiles.concat(Array.from(files));
                 const droppedFilesNames = getFileNames(allFiles);
                 const droppedFilesTypes = getFileTypes(allFiles);
                 const droppedFilesSizes = getFileSizes(allFiles);
 
                 if (!isEmpty(allFiles)) {
-                    if (!maxFiles || maxFiles <= 0 || allFiles.length > maxFiles) {
+                    if (maxFiles && maxFiles > 0 && allFiles.length > maxFiles) {
                         onAlert(FileAlertType.NUMBER);
                     } else if (droppedFilesTypes.some((type) => fileFormats && !fileFormats.includes(type))) {
                         onAlert(FileAlertType.TYPE, newFileNames);
                     } else if (
-                        !maxFileSize ||
+                        maxFileSize &&
                         !isEmpty(droppedFilesSizes.filter((size) => size / 1000000 > maxFileSize))
                     ) {
                         onAlert(FileAlertType.SIZE);
@@ -157,7 +158,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
             onDrop(newFiles);
             setDroppedFiles(newFiles);
         },
-        [droppedFiles]
+        [droppedFiles, onDrop]
     );
 
     const button = useMemo(() => {
@@ -171,7 +172,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 <HiddenInput onChange={handleDrop} type="file" />
             </StyledButton>
         );
-    }, [maxFiles, status]);
+    }, [handleDrop, maxFiles, status]);
 
     const fileNames = useMemo(() => {
         if (isEmpty(droppedFiles)) {

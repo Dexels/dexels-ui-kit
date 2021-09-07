@@ -17,6 +17,7 @@ import React, { FunctionComponent, useCallback, useEffect, useState } from 'reac
 import FileUploadDialog from './FileUploadDialog';
 import { FileUploaderStatusData } from '../FileUploader/FileUploader';
 import { IconType } from '../../../types';
+import { isEmpty } from '../../../../lib';
 
 export default { title: 'organisms/FileUploadDialog' };
 
@@ -25,7 +26,7 @@ export const Configurable: FunctionComponent = () => {
 
     const fileTypes = select('File type', FileTypes, FileTypes.IMAGE);
     const maxFileSize = number('Max file size', 5);
-    const maxFiles = number('Max files', 1);
+    const maxFiles = number('Max files', 3);
 
     const [statusData, setStatusData] = useState<FileUploaderStatusData>(getDefaultTranslation(fileTypes, maxFileSize));
 
@@ -35,18 +36,27 @@ export const Configurable: FunctionComponent = () => {
 
     const onAlertCallback = useCallback(
         (type: FileAlertType, fileNames?: string[]) => {
-            if (fileTypes && fileNames && maxFiles && maxFileSize) {
+            if (fileTypes && maxFiles && maxFileSize) {
                 setStatusData(getAlertTranslation(type, fileTypes, maxFiles, maxFileSize, fileNames));
             }
         },
         [fileTypes, maxFiles, maxFileSize]
     );
 
-    const onDropCallback = useCallback((files: File[]) => {
-        const totalSizeFiles = getTotalSizeFiles(getFileSizes(files));
+    const onDropCallback = useCallback(
+        (files: File[]) => {
+            const totalSizeFiles = getTotalSizeFiles(getFileSizes(files));
 
-        setStatusData(getUploadedTranslation(getFileTypes(files), getFileFormats(getFileTypes(files)), totalSizeFiles));
-    }, []);
+            if (isEmpty(files)) {
+                setStatusData(getDefaultTranslation(fileTypes, maxFileSize));
+            } else {
+                setStatusData(
+                    getUploadedTranslation(getFileTypes(files), getFileFormats(getFileTypes(files)), totalSizeFiles)
+                );
+            }
+        },
+        [fileTypes, maxFileSize]
+    );
 
     const onUploadCallback = useCallback((files: File[], name?: string, description?: string) => {
         // eslint-disable-next-line no-alert
