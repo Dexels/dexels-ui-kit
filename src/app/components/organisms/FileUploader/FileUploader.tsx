@@ -154,8 +154,8 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     );
 
     const onDeleteCallback = useCallback(
-        (fileName: string) => {
-            const newFiles = droppedFiles.filter((file) => file.name !== fileName);
+        (fileIndex: number) => {
+            const newFiles = droppedFiles.filter((_, index) => index !== fileIndex);
             onDrop(newFiles);
             setDroppedFiles(newFiles);
         },
@@ -185,8 +185,9 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
             return null;
         }
 
-        return droppedFiles.map((file) => (
-            <FileName key={file.name}>
+        return droppedFiles.map((file, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <FileName key={`${file.name}-${index}`}>
                 {hasThumbNails && status !== FileUploaderStatus.LOADING ? (
                     <ImageWrapper>
                         <img alt="" src={URL.createObjectURL(file)} />
@@ -194,7 +195,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 ) : (
                     `${file.name} `
                 )}
-                <ButtonIcon iconType={IconType.ROUND_CROSS} onClick={() => onDeleteCallback(file.name)} />
+                <ButtonIcon iconType={IconType.ROUND_CROSS} onClick={() => onDeleteCallback(index)} />
             </FileName>
         ));
     }, [droppedFiles, hasThumbNails, status]);
