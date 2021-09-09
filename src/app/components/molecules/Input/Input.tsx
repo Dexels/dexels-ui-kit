@@ -191,7 +191,6 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             // Perform some possible post actions
             if (type === InputType.CURRENCY) {
                 const newValue = checkRange(inputValue);
-
                 setInputValue(newValue);
 
                 // if onChange is not required then it wasn't fined on change and needs to be fired onBlur
@@ -222,6 +221,11 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const onHoveredCallback = useCallback(() => {
         setIsHovered(!isHovered);
     }, [isHovered]);
+
+    // Set initial local state value and with every change
+    useEffect(() => {
+        setInputValue(value || '');
+    }, [value]);
 
     // we want to be able to force re-render if the value is changed from outside the component
     useEffect(() => {
