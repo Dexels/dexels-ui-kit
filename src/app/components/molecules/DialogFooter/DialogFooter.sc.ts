@@ -40,7 +40,6 @@ export const ButtonBarWrapper = styled.div<ButtonBarWrapperProps>`
         hasFullWidth &&
         css`
             width: 100%;
-            min-width: 300px;
         `}
 
     text-align: right;
