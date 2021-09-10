@@ -16,20 +16,38 @@ export interface DialogFooterProps {
     text?: ReactNode;
 }
 
-export const DialogFooter: FunctionComponent<DialogFooterProps> = ({ buttons = [], className, text }) => (
-    <StyledDialogFooter className={className}>
-        {/* This might need to be moved if there are buttons with alignment Left, but for now, this is ok */}
-        {text && <Text>{text}</Text>}
-        <ButtonBarWrapper hasFullWidth={buttons && (isEmpty(text) || buttons.length > 1)}>
-            {buttons.map((button, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <ButtonWrapper alignment={button.alignment} key={index}>
-                    {/* eslint-disable-next-line react/no-array-index-key */}
-                    <Button {...button}>{button.children}</Button>
-                </ButtonWrapper>
-            ))}
-        </ButtonBarWrapper>
-    </StyledDialogFooter>
-);
+export const DialogFooter: FunctionComponent<DialogFooterProps> = ({ buttons = [], className, text }) => {
+    const buttonsLeft = buttons.filter((button) => button.alignment && button.alignment === Alignment.LEFT);
+    const buttonsRight = buttons.filter((button) => !button.alignment || button.alignment === Alignment.RIGHT);
+
+    return (
+        <StyledDialogFooter className={className}>
+            {/* This might need to be moved if there are buttons with alignment Left, but for now, this is ok */}
+            {text && <Text>{text}</Text>}
+            {!isEmpty(buttonsLeft) && (
+                <ButtonBarWrapper alignment={Alignment.LEFT}>
+                    {buttonsLeft.map((button, index) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <ButtonWrapper alignment={button.alignment} key={index}>
+                            {/* eslint-disable-next-line react/no-array-index-key */}
+                            <Button {...button}>{button.children}</Button>
+                        </ButtonWrapper>
+                    ))}
+                </ButtonBarWrapper>
+            )}
+            {!isEmpty(buttonsRight) && (
+                <ButtonBarWrapper alignment={Alignment.RIGHT}>
+                    {buttonsRight.map((button, index) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <ButtonWrapper alignment={button.alignment} key={index}>
+                            {/* eslint-disable-next-line react/no-array-index-key */}
+                            <Button {...button}>{button.children}</Button>
+                        </ButtonWrapper>
+                    ))}
+                </ButtonBarWrapper>
+            )}
+        </StyledDialogFooter>
+    );
+};
 
 export default DialogFooter;
