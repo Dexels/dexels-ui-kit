@@ -7,6 +7,7 @@ export const StyledDialogFooter = styled.footer`
     ${setBoxSizing()}
     display: flex;
     align-items: center;
+    justify-content: right;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
     background-color: ${({ theme }): string => theme.shades.seven};
@@ -19,7 +20,6 @@ StyledDialogFooter.defaultProps = {
 
 export const Text = styled.p`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().caption)}
-    flex-shrink: 2;
     margin: 0;
     padding: ${({ theme }): string => theme.spacing(0, 2, 0, 0)};
     width: 100%;
@@ -32,15 +32,17 @@ Text.defaultProps = {
 };
 
 interface ButtonBarWrapperProps {
-    hasFullWidth: boolean;
+    alignment: Alignment;
 }
 
 export const ButtonBarWrapper = styled.div<ButtonBarWrapperProps>`
-    ${({ hasFullWidth }): SimpleInterpolation =>
-        hasFullWidth &&
+    display: flex;
+    justify-content: ${({ alignment }): string => (alignment === Alignment.LEFT ? 'left' : 'right')};
+
+    ${({ alignment }): SimpleInterpolation =>
+        alignment === Alignment.LEFT &&
         css`
-            width: 100%;
-            min-width: 300px;
+            flex-grow: 1;
         `}
 
     text-align: right;
@@ -57,7 +59,6 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
         theme.spacing(0, alignment === Alignment.LEFT ? 0.5 : 1, 0, alignment === Alignment.LEFT ? 0 : 1)};
     min-height: ${({ theme }): string => theme.spacing(4)};
     vertical-align: middle;
-    ${({ alignment }) => alignment === Alignment.LEFT && 'float: left;'}
 
     &:last-of-type {
         margin-right: 0;
