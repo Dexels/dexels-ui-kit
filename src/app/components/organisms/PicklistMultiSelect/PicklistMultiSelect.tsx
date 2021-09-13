@@ -158,7 +158,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                     status={availablePanelProps.status || Status.DEFAULT}
                     title={availablePanelProps.title}
                 />
-                {!selectedOptionsInstance ? (
+                {!availableOptionsInstance ? (
                     <StyledLoader>
                         <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
                     </StyledLoader>
