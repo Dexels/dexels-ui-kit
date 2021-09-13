@@ -22,6 +22,7 @@ export const Configurable: FunctionComponent = () => {
     };
 
     const rightPanelProps: PicklistMultiSelectPanelProps = {
+        footer: <div style={{ fontWeight: 600 }}>{'Some info could be put here'}</div>,
         iconType: IconType.ROUND_EURO,
         status: Status.DEFAULT,
         title: 'Right panel',
