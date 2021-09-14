@@ -71,7 +71,8 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
     removeButtonText,
     tableTexts,
 }: PicklistMultiSelectProps<T, U>): JSX.Element => {
-    const [updatedData, setUpdatedData] = useState<U[]>(data);
+    const [updatedData, setUpdatedData] = useState([] as U[]);
+
     const [availableOptions, setAvailableOptions] = useState([] as U[]);
     const [selectedOptions, setSelectedOptions] = useState([] as U[]);
 
@@ -118,6 +119,10 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
             onChange(removed, added, newUpdatedData);
         }
     }, [selectedOptionsInstance, updatedData]);
+
+    useEffect(() => {
+        setUpdatedData(data);
+    }, [data]);
 
     // when updatedData is changed create new options arrays
     useEffect(() => {
