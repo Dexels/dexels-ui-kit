@@ -2,7 +2,7 @@
 import { ButtonSize, ButtonVariant, IconType, Locale, Status } from '../../../types';
 import { Column, TableState } from 'react-table';
 import Paginator, { PaginatorTexts } from '../Table/Paginator/Paginator';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { StyledLoader, StyledPanelHeader, StyledWrapper, TableWrapper } from './PicklistMultiSelect.sc';
 import Table, { TableTexts } from '../Table/Table';
 import { Button } from '../../molecules/Button/Button';
@@ -15,6 +15,7 @@ import { TableSkeleton } from '../Table/TableSkeleton/TableSkeleton';
 const LOADING_NR_OF_ROWS = 3; // Might become an input param, hence why it's a var now
 
 export interface PicklistMultiSelectPanelProps {
+    footer?: ReactNode;
     iconType: IconType;
     status?: Status;
     title: string;
@@ -158,13 +159,14 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                     status={availablePanelProps.status || Status.DEFAULT}
                     title={availablePanelProps.title}
                 />
-                {!selectedOptionsInstance ? (
+                {!availableOptionsInstance ? (
                     <StyledLoader>
                         <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
                     </StyledLoader>
                 ) : (
                     <TableWrapper hasMaxHeight={!hasPaging && fitToScreen} id={'TableWrapper_left'}>
                         <Table
+                            footer={availablePanelProps.footer}
                             instance={availableOptionsInstance}
                             isDisabled={isDisabled}
                             isFullWidth
@@ -214,6 +216,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                 ) : (
                     <TableWrapper hasMaxHeight={!hasPaging && fitToScreen}>
                         <Table
+                            footer={selectedPanelProps.footer}
                             instance={selectedOptionsInstance}
                             isDisabled={isDisabled}
                             isFullWidth
