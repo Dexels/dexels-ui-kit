@@ -54,6 +54,7 @@ export const Configurable: FunctionComponent = () => {
             fitToScreen={boolean('Fit to screen', false)}
             hasPaging={boolean('Has paging', true)}
             isDisabled={boolean('Is disabled', false)}
+            isLoading={boolean('Is loading', false)}
             onChange={onChange}
             options={{ sortBy }}
             paginatorTexts={paginatorTexts}
