@@ -32,12 +32,18 @@ const dialogwidth = (size: DialogSize, isScrollable: boolean): number => {
     return isScrollable ? width - widthScrollable : width;
 };
 
+export const StyledDialogwrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+`;
+
 interface OverlayWrapperProps {
     isVisible: boolean;
 }
 
 export const OverlayWrapper = styled.div<OverlayWrapperProps>`
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: ${zIndex.DIALOG - 2};
@@ -71,7 +77,7 @@ export const Wrapper = styled.div<WrapperProps>`
             easing: transitionEasing,
             isVisible,
         })}
-    position: fixed;
+    position: absolute;
     opacity: ${({ isVisible }): number => (isVisible ? 1 : 0)};
     z-index: ${zIndex.DIALOG - 1};
     padding: ${({ isScrollable }): string => (isScrollable ? '0px' : `${widthScrollable}px`)};
