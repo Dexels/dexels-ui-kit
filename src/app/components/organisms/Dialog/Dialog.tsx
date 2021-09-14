@@ -7,6 +7,7 @@ import {
     IconWrapper,
     OverlayWrapper,
     StyledDialog,
+    StyledDialogwrapper,
     StyledTextWithOptionalIcon,
     Text,
     Wrapper,
@@ -74,7 +75,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     const dialogRef = useRef<HTMLDivElement>(null);
 
     return (
-        <>
+        <StyledDialogwrapper>
             {hasOverlay && (
                 <OverlayWrapper isVisible={isVisible}>
                     <Overlay isVisible={isVisible} />
@@ -121,7 +122,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
                     <DialogFooter buttons={footerButtons} text={footerText} />
                 </StyledDialog>
             </Wrapper>
-        </>
+        </StyledDialogwrapper>
     );
 };
 

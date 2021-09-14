@@ -2,7 +2,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import { createLocalizedPagingTexts, createLocalizedTableTexts } from '../Table/mockup/tableFunctions';
 import { IconType, Status } from '../../../types';
 import { PicklistMultiSelect, PicklistMultiSelectPanelProps } from './PicklistMultiSelect';
-import React, { FunctionComponent, useMemo } from 'react';
+import React, { FunctionComponent, useMemo, useState } from 'react';
 import tableData, { TableData } from '../Table/mockup/tableData';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { picklistMultiSelectFacade } from '../../../utils/functions/arrayObjectFunctions';
@@ -12,7 +12,7 @@ export default { title: 'organisms/PicklistMultiSelect' };
 
 export const Configurable: FunctionComponent = () => {
     const columns = useMemo(() => tableColumnsPicklistMultiSelect(), []);
-    const data = useMemo(() => tableData(), []);
+    const [data] = useState(tableData());
     const localizedTexts = createLocalizedTableTexts(DEFAULT_LOCALE);
     const paginatorTexts = createLocalizedPagingTexts(DEFAULT_LOCALE);
 
