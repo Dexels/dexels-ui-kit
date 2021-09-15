@@ -34,6 +34,7 @@ export interface PicklistMultiSelectProps<T extends object, U extends T & Pickli
     fitToScreen?: boolean; // maximizes height and only applies with hasPaging = false
     hasPaging?: boolean;
     isDisabled?: boolean;
+    isLoading?: boolean;
     locale?: Locale;
     onChange?: (removed: T[], added: T[], updated: T[]) => void;
     options: Partial<TableState<T>>;
@@ -63,6 +64,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
     fitToScreen = false,
     hasPaging = true,
     isDisabled = false,
+    isLoading = false,
     locale = DEFAULT_LOCALE,
     onChange,
     options,
@@ -149,11 +151,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                     options={
                         <Button
                             iconType={IconType.ARROWRIGHT}
-                            isDisabled={
-                                isDisabled ||
-                                !availableOptionsInstance ||
-                                isEmpty(availableOptionsInstance.selectedFlatRows)
-                            }
+                            isDisabled={isDisabled || isEmpty(availableOptionsInstance.selectedFlatRows)}
                             onClick={onAddToSelectionCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
@@ -164,7 +162,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                     status={availablePanelProps.status || Status.DEFAULT}
                     title={availablePanelProps.title}
                 />
-                {!availableOptionsInstance ? (
+                {isLoading ? (
                     <StyledLoader>
                         <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
                     </StyledLoader>
@@ -199,11 +197,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                     options={
                         <Button
                             iconType={IconType.ARROWLEFT}
-                            isDisabled={
-                                isDisabled ||
-                                !selectedOptionsInstance ||
-                                isEmpty(selectedOptionsInstance.selectedFlatRows)
-                            }
+                            isDisabled={isDisabled || isEmpty(selectedOptionsInstance.selectedFlatRows)}
                             onClick={onRemoveFromSelectionCallback}
                             size={ButtonSize.SMALL}
                             variant={ButtonVariant.OUTLINE}
@@ -214,7 +208,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                     status={selectedPanelProps.status || Status.DEFAULT}
                     title={selectedPanelProps.title}
                 />
-                {!selectedOptionsInstance ? (
+                {isLoading ? (
                     <StyledLoader>
                         <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
                     </StyledLoader>
