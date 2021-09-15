@@ -55,7 +55,7 @@ export const Configurable: FunctionComponent = () => {
             hasPaging={boolean('Has paging', true)}
             isDisabled={boolean('Is disabled', false)}
             isLoading={boolean('Is loading', false)}
-            loadingNrOfRows={number('Loading nr of rows', 3)}
+            loadingNumberOfRows={number('Loading nr of rows', 3)}
             onChange={onChange}
             options={{ sortBy }}
             paginatorTexts={paginatorTexts}
