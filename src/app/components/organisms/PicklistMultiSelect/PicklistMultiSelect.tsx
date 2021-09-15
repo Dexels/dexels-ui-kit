@@ -74,7 +74,6 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
     tableTexts,
 }: PicklistMultiSelectProps<T, U>): JSX.Element => {
     const [updatedData, setUpdatedData] = useState([] as U[]);
-
     const [availableOptions, setAvailableOptions] = useState([] as U[]);
     const [selectedOptions, setSelectedOptions] = useState([] as U[]);
 
@@ -94,7 +93,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
 
         const newUpdatedData = updatedData.map((option) => ({
             ...option,
-            isSelected: option.isSelected || selectedRows.find((row) => (row as U).id === option.id),
+            isSelected: selectedRows.find((row) => (row as U).id === option.id) ? true : option.isSelected,
         }));
 
         setUpdatedData(newUpdatedData);
