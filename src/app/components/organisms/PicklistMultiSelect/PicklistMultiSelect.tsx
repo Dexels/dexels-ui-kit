@@ -35,7 +35,7 @@ export interface PicklistMultiSelectProps<T extends object, U extends T & Pickli
     hasPaging?: boolean;
     isDisabled?: boolean;
     isLoading?: boolean;
-    loadingNrOfRows?: number;
+    loadingNumberOfRows?: number;
     locale?: Locale;
     onChange?: (removed: T[], added: T[], updated: T[]) => void;
     options: Partial<TableState<T>>;
@@ -67,7 +67,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
     isDisabled = false,
     isLoading = false,
     locale = DEFAULT_LOCALE,
-    loadingNrOfRows = LOADING_NR_OF_ROWS,
+    loadingNumberOfRows = LOADING_NR_OF_ROWS,
     onChange,
     options,
     paginatorTexts,
@@ -165,7 +165,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                 />
                 {isLoading ? (
                     <StyledLoader>
-                        <TableSkeleton numberOfRowsPerTable={loadingNrOfRows} showRowsInCard />
+                        <TableSkeleton numberOfRowsPerTable={loadingNumberOfRows} showRowsInCard />
                     </StyledLoader>
                 ) : (
                     <TableWrapper hasMaxHeight={!hasPaging && fitToScreen} id={'TableWrapper_left'}>
@@ -211,7 +211,7 @@ export const PicklistMultiSelect = <T extends object, U extends T & PicklistMult
                 />
                 {isLoading ? (
                     <StyledLoader>
-                        <TableSkeleton numberOfRowsPerTable={LOADING_NR_OF_ROWS} showRowsInCard />
+                        <TableSkeleton numberOfRowsPerTable={loadingNumberOfRows} showRowsInCard />
                     </StyledLoader>
                 ) : (
                     <TableWrapper hasMaxHeight={!hasPaging && fitToScreen}>
