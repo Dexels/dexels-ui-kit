@@ -1,4 +1,4 @@
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 import { createLocalizedPagingTexts, createLocalizedTableTexts } from '../Table/mockup/tableFunctions';
 import { IconType, Status } from '../../../types';
 import { PicklistMultiSelect, PicklistMultiSelectPanelProps } from './PicklistMultiSelect';
@@ -55,6 +55,7 @@ export const Configurable: FunctionComponent = () => {
             hasPaging={boolean('Has paging', true)}
             isDisabled={boolean('Is disabled', false)}
             isLoading={boolean('Is loading', false)}
+            loadingNrOfRows={number('Loading nr of rows', 3)}
             onChange={onChange}
             options={{ sortBy }}
             paginatorTexts={paginatorTexts}
