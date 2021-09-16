@@ -3,6 +3,7 @@ import {
     isValidIBAN,
     isValidNumber,
     isValidPhoneNumber,
+    isValidURI,
 } from '../../../utils/functions/validateFunctions';
 import { Locale } from '../../../types';
 
@@ -64,5 +65,14 @@ describe('test validating functions', () => {
 
         expect(isValidPhoneNumber('06 - 123 45 678')).toBe(true);
         expect(isValidPhoneNumber('06 12 34 67 85')).toBe(true);
+    });
+
+    test('isValidURI', () => {
+        expect(isValidURI('www.google.com')).toBe(true);
+        expect(isValidURI('http://www.google.com')).toBe(true);
+        expect(isValidURI('https://www.google.com')).toBe(true);
+        expect(isValidURI('http://google.com')).toBe(false);
+        expect(isValidURI('google.com')).toBe(false);
+        expect(isValidURI('www.google.co.uk')).toBe(true);
     });
 });

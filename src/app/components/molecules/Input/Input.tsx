@@ -8,6 +8,7 @@ import {
     isValidInputNumber,
     isValidInputTelephone,
     isValidInputText,
+    isValidInputURI,
 } from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
@@ -116,6 +117,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
                 case InputType.TEXT:
                     return isValidInputText(valueToValidate, isRequired, minLength, maxLength);
+
+                case InputType.URI:
+                    return isValidInputURI(valueToValidate, isRequired);
 
                 default:
                     return true;

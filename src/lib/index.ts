@@ -76,6 +76,7 @@ export {
     isValidMoney,
     isValidNumber,
     isValidPhoneNumber,
+    isValidURI,
     modulo,
 } from '../app/utils/functions/validateFunctions';
 export { areEqualObjects, getObjectDifference, isObjectPropertyChanged } from '../app/utils/functions/objectFunctions';

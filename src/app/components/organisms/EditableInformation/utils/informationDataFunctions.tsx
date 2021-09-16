@@ -19,6 +19,7 @@ import {
     isValidInputNumber,
     isValidInputTelephone,
     isValidInputText,
+    isValidInputURI,
 } from '../../../../utils/functions/validateFunctions';
 import React, { ReactNode } from 'react';
 import { convertToLocaleValue } from '../../../../utils/functions/financialFunctions';
@@ -157,6 +158,13 @@ export const isValidEditableInput = <T extends DropdownSelectOption, U extends D
 
                 if ((item as EditableInputDataProps).type === InputType.TELEPHONE) {
                     return isValidInputTelephone(
+                        values[(item as EditableInputDataProps).name]?.toString() || null,
+                        item.isRequired || false
+                    );
+                }
+
+                if ((item as EditableInputDataProps).type === InputType.URI) {
+                    return isValidInputURI(
                         values[(item as EditableInputDataProps).name]?.toString() || null,
                         item.isRequired || false
                     );

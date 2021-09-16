@@ -87,6 +87,13 @@ export const isValidNumber = (value: string, allowDecimals = false, locale?: Loc
 // Always test against Locale.EN, because toMoneyValue will contain an EN format
 export const isValidMoney = (value: string, locale?: Locale): boolean => isValidNumber(value, true, locale);
 
+export const isValidURI = (value: string): boolean => {
+    // eslint-disable-next-line max-len
+    const uriRegex = /^((ftp|http[s]?):\/\/)?(www\.)([a-z0-9]+)\.[a-z]{2,5}(\.[a-z]{2})?$/;
+
+    return uriRegex.test(value);
+};
+
 // **** BELOW SOME GENERIC VALIDATIONS USED BY SEVERAL COMPONENTS ****
 
 export const isValidInputCurrency = (
@@ -142,3 +149,6 @@ export const isValidInputText = (
     (isEmpty(value) && !isRequired) ||
     (!isEmpty(value) && (minLength === undefined || (value as string).length >= minLength)) ||
     (!isEmpty(value) && (maxLength === undefined || (value as string).length <= maxLength));
+
+export const isValidInputURI = (value: string | null | undefined, isRequired: boolean): boolean =>
+    (isEmpty(value) && !isRequired) || (!isEmpty(value) && isValidURI(value as string));
