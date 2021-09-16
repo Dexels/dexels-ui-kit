@@ -34,7 +34,8 @@ const dialogwidth = (size: DialogSize, isScrollable: boolean): number => {
 
 export const StyledDialogwrapper = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    max-height: 100vh;
     overflow-y: auto;
 `;
 
