@@ -16,7 +16,7 @@ import { DialogButtonClosePosition, IconPlacement } from './types';
 import DialogFooter, { DialogFooterProps } from '../../molecules/DialogFooter/DialogFooter';
 import { DialogSize, Easing, Elevation, IconType, Status } from '../../../types';
 import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
-import React, { FunctionComponent, MouseEventHandler, ReactNode, useRef } from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode, useEffect, useRef, useState } from 'react';
 import { IconProps } from '../../atoms/Icon/Icon';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 import Overlay from '../../molecules/Overlay/Overlay';
@@ -74,6 +74,14 @@ export const Dialog: FunctionComponent<DialogProps> = ({
 }) => {
     const dialogRef = useRef<HTMLDivElement>(null);
 
+    const [dialogHeight, setDialogHeight] = useState(0);
+
+    useEffect(() => {
+        if (dialogRef.current) {
+            setDialogHeight(dialogRef.current.clientHeight);
+        }
+    }, [dialogRef.current]);
+
     return (
         <StyledDialogwrapper>
             {hasOverlay && (
@@ -88,7 +96,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
             )}
             <Wrapper
                 className={className}
-                height={dialogRef.current?.clientHeight || 0}
+                height={dialogHeight}
                 isResizable={isResizable}
                 isScrollable={isScrollable}
                 isVisible={isVisible}
