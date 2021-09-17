@@ -8,8 +8,8 @@ export default { title: 'organisms/FileUploader' };
 
 export const Configurable: FunctionComponent = () => {
     const maxFileSize = number('Max file size', 5);
-    const fileTypes = select('File type', FileTypes, FileTypes.PDF);
-    const maxFiles = number('Max files', 1);
+    const fileTypes = select('File type', FileTypes, FileTypes.IMAGE);
+    const maxFiles = number('Max files', 3);
     const bottomText = `${fileTypes} - Max ${maxFileSize}MB`;
     const [error, setErrors] = useState<ReactNode>(undefined);
 

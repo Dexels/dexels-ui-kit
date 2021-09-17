@@ -8,7 +8,11 @@ export function defineFileFormat(fileFormat: FileTypes): string[] {
             break;
 
         case FileTypes.AUDIO:
-            return ['mp3', 'audio/mpeg', 'audio/unknown'];
+            return ['mp3', 'audio/mpeg', 'audio/unknown', 'audio/midi'];
+            break;
+
+        case FileTypes.VIDEO:
+            return ['video/mpeg', 'video/x-msvideo', 'video/quicktime'];
             break;
 
         case FileTypes.CSV:
@@ -121,6 +125,9 @@ export const getFileTypeIconType = (fileType: string): IconType => {
 
         case defineFileFormats([FileTypes.AUDIO]).find((type) => type === fileType):
             return IconType.FILEAUDIO;
+
+        case defineFileFormats([FileTypes.VIDEO]).find((type) => type === fileType):
+            return IconType.FILEVIDEO;
 
         case defineFileFormats([FileTypes.CSV, FileTypes.EXCEL]).find((type) => type === fileType):
             return IconType.FILETABLE;
