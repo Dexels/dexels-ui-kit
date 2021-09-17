@@ -370,6 +370,7 @@ export enum InputType {
     PASSWORD = 'password',
     TELEPHONE = 'telephone',
     TEXT = 'text',
+    URI = 'uri',
 }
 
 export enum InputVariant {
