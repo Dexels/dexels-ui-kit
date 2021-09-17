@@ -1,20 +1,23 @@
 import { ButtonSize, ButtonVariant, IconType, InputType } from '../../../types';
-import { FileAlertType, FileTypes, FileUploaderStatus } from '../FileUploader/types';
-import { FileUploader, FileUploaderStatusData } from '../FileUploader/FileUploader';
+import { FileAlertType, FileTypes } from '../FileUploader/types';
 import { FileUploaderWrapper, Spacer } from './FileUploadDialog.sc';
 import React, { FunctionComponent, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Dialog } from '../Dialog';
+import { FileUploader } from '../FileUploader/FileUploader';
 import Input from '../../molecules/Input/Input';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export interface FileUploadDialogProps {
+    bottomText: ReactNode;
+    buttonText: ReactNode;
     description?: string;
+    errors?: ReactNode;
     fileNameLength?: number;
     fileTypes: FileTypes[];
-    hasThumbNails?: boolean;
     iconCancel?: IconType;
     iconSave?: IconType;
     iconType?: IconType;
+    isLoading?: boolean;
     isVisible: boolean;
     labelInputDescription?: ReactNode;
     labelInputName: ReactNode;
@@ -23,26 +26,30 @@ export interface FileUploadDialogProps {
     maxLengthDescription?: number;
     maxLengthName?: number;
     name?: string;
-    onAlert: (type: FileAlertType, fileNames?: string[]) => void;
+    onAlert(type: FileAlertType, fileSize?: number): void;
     onClose: () => void;
     onDrop?: (files: File[]) => void;
     onUpload: (files: File[], name?: string, description?: string) => void;
-    statusData: FileUploaderStatusData;
     textCancel: string;
     textSave: string;
     title: ReactNode;
+    topText: ReactNode;
 }
 
 export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
+    bottomText,
+    buttonText,
     description,
+    errors,
     fileNameLength = 100,
     fileTypes,
-    hasThumbNails = false,
+    iconType = IconType.FILEADD,
     labelInputDescription,
     labelInputName,
     iconCancel = IconType.CROSS,
     iconSave = IconType.CHECK,
     isVisible,
+    isLoading = false,
     maxFileSize = 5,
     maxFiles = 1,
     maxLengthDescription = 255,
@@ -52,11 +59,10 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     onClose,
     onDrop,
     onUpload,
-    statusData,
     textCancel,
     textSave,
     title,
-    iconType = IconType.FILEADD,
+    topText,
 }) => {
     const [inputDescriptionValue, setInputDescriptionValue] = useState(description);
     const [inputNameValue, setInputNameValue] = useState(name);
@@ -111,20 +117,22 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
         >
             <FileUploaderWrapper>
                 <FileUploader
+                    bottomText={bottomText}
+                    buttonText={buttonText}
+                    errors={errors}
                     fileNameLength={fileNameLength}
                     fileTypes={fileTypes}
-                    hasThumbNails={hasThumbNails}
+                    isLoading={isLoading}
                     maxFileSize={maxFileSize}
                     maxFiles={maxFiles}
                     onAlert={onAlert}
                     onDrop={onDropCallback}
-                    statusData={statusData}
+                    topText={topText}
                 />
             </FileUploaderWrapper>
 
             {hasInputName && (
                 <Input
-                    isDisabled={statusData.status === FileUploaderStatus.LOADING}
                     label={labelInputName}
                     maxLength={maxLengthName}
                     name="name"
@@ -138,7 +146,6 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
             {hasInputName && hasInputDescription && <Spacer />}
             {hasInputDescription && (
                 <Input
-                    isDisabled={statusData.status === FileUploaderStatus.LOADING}
                     label={labelInputDescription}
                     maxLength={maxLengthDescription}
                     name="description"

@@ -1,74 +1,59 @@
 import {
     BottomText,
-    FileName,
-    FileNamesWrapper,
+    FileCardsWrapper,
     FileUploaderContent,
     FileUploaderInfo,
     FileUploaderWrapper,
     HiddenInput,
-    IconWrapper,
-    ImageWrapper,
     StyledButton,
     TopText,
 } from './FileUploader.sc';
 import { ButtonVariant, IconType } from '../../../types';
 import { FileAlertType, FileTypes, FileUploaderStatus } from './types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
-import { IconCustomizable, IconCustomizableSize } from '../../molecules/IconCustomizable';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import ButtonIcon from '../../molecules/ButtonIcon/ButtonIcon';
 import { defineFileFormats } from './utils/defineFileFormats';
+import FileCard from './FileCard/FileCard';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
 
-export interface FileUploaderStatusData {
+export interface FileUploaderProps {
     bottomText: ReactNode;
     buttonText: ReactNode;
-    message: ReactNode;
-    status: FileUploaderStatus;
-}
-export interface FileUploaderProps {
     className?: string;
+    errors?: ReactNode;
     fileNameLength?: number;
     fileTypes: FileTypes[];
-    hasThumbNails?: boolean;
+    isLoading?: boolean;
     maxFileSize: number;
     maxFiles: number;
-    onAlert(type: FileAlertType, fileNames?: string[]): void;
+    onAlert(type?: FileAlertType, fileSize?: number): void;
     onDrop(files: File[]): void;
-    statusData: FileUploaderStatusData;
+    topText: ReactNode;
 }
 
 export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     className,
+    errors,
     fileTypes,
     fileNameLength = 100,
-    hasThumbNails = false,
+    isLoading = false,
     maxFileSize,
     maxFiles,
     onAlert,
     onDrop,
-    statusData,
+    topText,
+    buttonText,
+    bottomText,
 }) => {
-    const { status, message, buttonText, bottomText } = statusData;
     const fileFormats = useMemo(() => defineFileFormats(fileTypes), [fileTypes]);
     const [inDropZone, setInDropZone] = useState(false);
     const [dragCounter, setDragCounter] = useState(0);
     const [droppedFiles, setDroppedFiles] = useState([] as File[]);
     const [inputValue, setInputValue] = useState('');
-
-    const getIconType = (statusType: FileUploaderStatus): IconType => {
-        switch (statusType) {
-            case FileUploaderStatus.ALERT:
-                return IconType.DANGER;
-
-            case FileUploaderStatus.LOADING:
-                return IconType.CHANGE;
-
-            default:
-                return IconType.FILEGENERIC;
-        }
-    };
+    const [isDropZoneVisible, setIsDropZoneVisible] = useState(true);
+    const [status, setStatus] = useState(FileUploaderStatus.DEFAULT);
+    const [isValidationRequired, setIsValidationRequired] = useState(false);
 
     const handleDrag = useCallback((event: React.DragEvent) => {
         event.preventDefault();
@@ -94,6 +79,31 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         [dragCounter]
     );
 
+    const validateDroppedFiles = useCallback(
+        (files: File[]): FileAlertType | undefined => {
+            const droppedFilesNames = getFileNames(files);
+            const droppedFilesTypes = getFileTypes(files);
+            const droppedFilesSizes = getFileSizes(files);
+
+            if (!isEmpty(files)) {
+                if (droppedFilesTypes.some((type) => fileFormats && !fileFormats.includes(type))) {
+                    return FileAlertType.TYPE;
+                }
+
+                if (maxFileSize && !isEmpty(droppedFilesSizes.filter((size) => size / 1000000 > maxFileSize))) {
+                    return FileAlertType.SIZE;
+                }
+
+                if (droppedFilesNames.some((name) => name.length > fileNameLength)) {
+                    return FileAlertType.NAME;
+                }
+            }
+
+            return undefined;
+        },
+        [fileFormats, maxFileSize, fileNameLength]
+    );
+
     const handleDrop = useCallback(
         (event: React.DragEvent | ChangeEvent<HTMLInputElement>) => {
             event.preventDefault();
@@ -115,31 +125,25 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 return null;
             };
 
-            const files = getFiles();
+            const fileList = getFiles();
 
-            if (files) {
-                const newFileNames = Array.from(files).map((file) => file.name);
+            if (fileList) {
+                const files = Array.from(fileList);
 
-                const allFiles = droppedFiles.concat(Array.from(files));
-                const droppedFilesNames = getFileNames(allFiles);
-                const droppedFilesTypes = getFileTypes(allFiles);
-                const droppedFilesSizes = getFileSizes(allFiles);
+                const newFileSize = files.map((file) => file.size)[0];
+
+                const allFiles = droppedFiles.concat(files);
 
                 if (!isEmpty(allFiles)) {
-                    if (maxFiles && maxFiles > 0 && allFiles.length > maxFiles) {
-                        onAlert(FileAlertType.NUMBER);
-                    } else if (droppedFilesTypes.some((type) => fileFormats && !fileFormats.includes(type))) {
-                        onAlert(FileAlertType.TYPE, newFileNames);
-                    } else if (
-                        maxFileSize &&
-                        !isEmpty(droppedFilesSizes.filter((size) => size / 1000000 > maxFileSize))
-                    ) {
-                        onAlert(FileAlertType.SIZE);
-                    } else if (droppedFilesNames.some((name) => name.length > fileNameLength)) {
-                        onAlert(FileAlertType.NAME, newFileNames);
+                    setDroppedFiles(allFiles);
+
+                    const validationStatus = validateDroppedFiles(files);
+
+                    if (validationStatus) {
+                        setStatus(FileUploaderStatus.ALERT);
+                        onAlert(validationStatus, newFileSize);
                     } else {
                         onDrop(allFiles);
-                        setDroppedFiles(allFiles);
                     }
 
                     if ('dataTransfer' in event && event.dataTransfer) {
@@ -157,6 +161,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         (fileIndex: number) => {
             const newFiles = droppedFiles.filter((_, index) => index !== fileIndex);
             onDrop(newFiles);
+            setIsValidationRequired(true);
             setDroppedFiles(newFiles);
         },
         [droppedFiles, onDrop]
@@ -167,38 +172,60 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         setInputValue('');
     }, []);
 
-    const button = useMemo(() => {
-        if (status === FileUploaderStatus.LOADING || (status === FileUploaderStatus.SUCCESS && maxFiles === 1)) {
-            return null;
-        }
+    // Validate droppedFiles after deleted file, only change the status if the invalid file is deleted
+    useEffect(() => {
+        if (isValidationRequired) {
+            if (!validateDroppedFiles(droppedFiles)) {
+                setStatus(FileUploaderStatus.DEFAULT);
+                onAlert();
+            }
 
-        return (
+            setIsValidationRequired(false);
+        }
+    }, [isValidationRequired]);
+
+    // Hide the dropzone when there are erros, the status is alert or already enough files are uploaded
+    useEffect(() => {
+        setIsDropZoneVisible(
+            !errors && status !== FileUploaderStatus.ALERT && (maxFiles === undefined || maxFiles > droppedFiles.length)
+        );
+    }, [errors, status, maxFiles, droppedFiles]);
+
+    const button = useMemo(
+        () => (
             <StyledButton iconType={IconType.FOLDERSEARCH} key={dragCounter} variant={ButtonVariant.FILLED}>
                 {buttonText}
                 <HiddenInput onChange={handleDrop} onClick={onClickCallback} type="file" value={inputValue} />
             </StyledButton>
-        );
-    }, [buttonText, handleDrop, maxFiles, status, inputValue]);
+        ),
+        [buttonText, handleDrop, inputValue]
+    );
 
-    const fileNames = useMemo(() => {
+    const optionalFileInput = useMemo(() => undefined, []);
+
+    const fileCards = useMemo(() => {
         if (isEmpty(droppedFiles)) {
             return null;
         }
 
-        return droppedFiles.map((file, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <FileName key={`${file.name}-${index}`}>
-                {hasThumbNails && status !== FileUploaderStatus.LOADING ? (
-                    <ImageWrapper>
-                        <img alt="" src={URL.createObjectURL(file)} />
-                    </ImageWrapper>
-                ) : (
-                    `${file.name} `
-                )}
-                <ButtonIcon iconType={IconType.ROUND_CROSS} onClick={() => onDeleteCallback(index)} />
-            </FileName>
-        ));
-    }, [droppedFiles, hasThumbNails, status]);
+        return droppedFiles.map((file, index) => {
+            const isInvalud = !isEmpty(errors) && index === droppedFiles.length - 1;
+
+            return (
+                <FileCard
+                    error={isInvalud ? errors : undefined}
+                    file={file}
+                    isInvalid={isInvalud}
+                    isLoading={isLoading}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`${file.name}-${index}`}
+                    onDelete={() => onDeleteCallback(index)}
+                >
+                    {optionalFileInput}
+                </FileCard>
+            );
+        });
+    }, [droppedFiles, onDeleteCallback]);
 
     useEffect(() => {
         if (dragCounter === 0) {
@@ -207,45 +234,31 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     }, [dragCounter]);
 
     return (
-        <FileUploaderWrapper
-            className={className}
-            isDragging={inDropZone}
-            onDragEnter={handleDragIn}
-            onDragLeave={handleDragOut}
-            onDragOver={handleDrag}
-            onDrop={handleDrop}
-        >
-            <FileUploaderContent>
-                <FileUploaderInfo isDragging={inDropZone}>
-                    <>
-                        {status === FileUploaderStatus.LOADING && <ProgressBar isIndeterminate />}
+        <>
+            {fileCards && <FileCardsWrapper>{fileCards}</FileCardsWrapper>}
+            {isDropZoneVisible && (
+                <FileUploaderWrapper
+                    className={className}
+                    isDragging={inDropZone}
+                    onDragEnter={handleDragIn}
+                    onDragLeave={handleDragOut}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                >
+                    <FileUploaderContent>
+                        <FileUploaderInfo isDragging={inDropZone}>
+                            <>
+                                {status === FileUploaderStatus.LOADING && <ProgressBar isIndeterminate />}
 
-                        {(status !== FileUploaderStatus.SUCCESS || !hasThumbNails) && (
-                            <IconWrapper
-                                isInvalid={status === FileUploaderStatus.ALERT}
-                                isSuccess={status === FileUploaderStatus.SUCCESS}
-                            >
-                                <IconCustomizable
-                                    iconSize={IconCustomizableSize.SIZE36}
-                                    iconType={getIconType(status)}
-                                />
-                            </IconWrapper>
-                        )}
-
-                        <TopText
-                            isInvalid={status === FileUploaderStatus.ALERT}
-                            isLoading={status === FileUploaderStatus.LOADING}
-                            isSuccess={status === FileUploaderStatus.SUCCESS}
-                        >
-                            <FileNamesWrapper showInColumn={!hasThumbNails}>{fileNames}</FileNamesWrapper>
-                            {message}
-                        </TopText>
-                        {button}
-                        <BottomText>{bottomText}</BottomText>
-                    </>
-                </FileUploaderInfo>
-            </FileUploaderContent>
-        </FileUploaderWrapper>
+                                <TopText>{topText}</TopText>
+                                {button}
+                                <BottomText>{bottomText}</BottomText>
+                            </>
+                        </FileUploaderInfo>
+                    </FileUploaderContent>
+                </FileUploaderWrapper>
+            )}
+        </>
     );
 };
 
