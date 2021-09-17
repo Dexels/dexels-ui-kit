@@ -32,7 +32,7 @@ export const ImageWrapper = styled.div`
     }
 `;
 interface IconWrapperProps {
-    isInvalid: boolean;
+    isInvalid?: boolean;
 }
 export const IconWrapper = styled.div<IconWrapperProps>`
     margin: ${({ theme }): string => theme.spacing(0, 0, 1.25)};

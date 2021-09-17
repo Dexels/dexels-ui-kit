@@ -242,7 +242,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 />
             );
         });
-    }, [droppedFiles, labelInputDescription, labelInputName, maxFiles, onDeleteCallback]);
+    }, [droppedFiles, isLoading, labelInputDescription, labelInputName, maxFiles, onDeleteCallback]);
 
     useEffect(() => {
         if (dragCounter === 0) {

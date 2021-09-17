@@ -71,7 +71,6 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     const [inputDescriptionValue, setInputDescriptionValue] = useState(description);
     const [inputNameValue, setInputNameValue] = useState(name);
     const [droppedFiles, setDroppedFiles] = useState([] as File[]);
-
     const [isUploadAllowed, setIsUploadAllowed] = useState(false);
 
     const onDropCallback = useCallback(
@@ -109,6 +108,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
                     children: textSave,
                     iconType: iconSave,
                     isDisabled: !isUploadAllowed,
+                    isLoading,
                     onClick: onUploadCallback,
                     size: ButtonSize.SMALL,
                 },

@@ -38,6 +38,7 @@ export const Configurable: FunctionComponent = () => {
         setIsSaving(true);
 
         setTimeout(() => {
+            setIsVisible(false);
             setIsSaving(false);
         }, 5000);
     }, []);

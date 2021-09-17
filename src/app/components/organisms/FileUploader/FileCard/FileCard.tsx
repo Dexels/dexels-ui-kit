@@ -75,7 +75,11 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                 </Subtitle>
             </DetailsWrapper>
 
-            {isLoading && <IconCustomizable iconSize={IconCustomizableSize.SIZE36} iconType={IconType.CHANGE} />}
+            {isLoading && (
+                <IconWrapper>
+                    <IconCustomizable iconSize={IconCustomizableSize.SIZE36} iconType={IconType.CHANGE} />
+                </IconWrapper>
+            )}
 
             {!isLoading && onDelete && (
                 <ButtonWrapper>
@@ -83,29 +87,31 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                 </ButtonWrapper>
             )}
 
-            <InputWrapper>
-                {labelInputName && (
-                    <Input
-                        label={labelInputName}
-                        maxLength={maxLengthName}
-                        name="name"
-                        onChange={onChangeName}
-                        type={InputType.TEXT}
-                        value={valueName}
-                    />
-                )}
-                {labelInputDescription && labelInputName && <Spacer />}
-                {labelInputDescription && (
-                    <Input
-                        label={labelInputDescription}
-                        maxLength={maxLengthDescription}
-                        name="description"
-                        onChange={onChangeDescription}
-                        type={InputType.TEXT}
-                        value={valueDescription}
-                    />
-                )}
-            </InputWrapper>
+            {!isLoading && (
+                <InputWrapper>
+                    {labelInputName && (
+                        <Input
+                            label={labelInputName}
+                            maxLength={maxLengthName}
+                            name="name"
+                            onChange={onChangeName}
+                            type={InputType.TEXT}
+                            value={valueName}
+                        />
+                    )}
+                    {labelInputDescription && labelInputName && <Spacer />}
+                    {labelInputDescription && (
+                        <Input
+                            label={labelInputDescription}
+                            maxLength={maxLengthDescription}
+                            name="description"
+                            onChange={onChangeDescription}
+                            type={InputType.TEXT}
+                            value={valueDescription}
+                        />
+                    )}
+                </InputWrapper>
+            )}
         </StyledFileCard>
     );
 };

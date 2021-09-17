@@ -1,5 +1,5 @@
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { FileAlertType, FileTypes } from './types';
-import { number, select, text } from '@storybook/addon-knobs';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useState } from 'react';
 import { FileUploader } from './FileUploader';
 import { getAlertTranslation } from './utils/getTranslations';
@@ -38,6 +38,7 @@ export const Configurable: FunctionComponent = () => {
             buttonText={text('Button text', 'Choose a file')}
             errors={error}
             fileTypes={[fileTypes]}
+            isLoading={boolean('Is loading', false)}
             labelInputDescription={text('Label input description', 'Add description (optional')}
             labelInputName={text('Label input name', 'Add name (optional)')}
             maxFileSize={maxFileSize}
