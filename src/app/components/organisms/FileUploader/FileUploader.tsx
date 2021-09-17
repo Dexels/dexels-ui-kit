@@ -9,13 +9,12 @@ import {
     TopText,
 } from './FileUploader.sc';
 import { ButtonVariant, IconType } from '../../../types';
-import { FileAlertType, FileTypes, FileUploaderStatus } from './types';
+import { FileAlertType, FileTypes } from './types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { defineFileFormats } from './utils/defineFileFormats';
 import FileCard from './FileCard/FileCard';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
-import { ProgressBar } from '../../molecules/ProgressBar/ProgressBar';
 
 export interface FileUploaderProps {
     bottomText: ReactNode;
@@ -25,26 +24,42 @@ export interface FileUploaderProps {
     fileNameLength?: number;
     fileTypes: FileTypes[];
     isLoading?: boolean;
+    labelInputDescription?: ReactNode;
+    labelInputName?: ReactNode;
     maxFileSize: number;
     maxFiles: number;
+    maxLengthDescription?: number;
+    maxLengthName?: number;
     onAlert(type?: FileAlertType, fileSize?: number): void;
+    onChangeDescription?: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChangeName?: (event: ChangeEvent<HTMLInputElement>) => void;
     onDrop(files: File[]): void;
     topText: ReactNode;
+    valueDescription?: string;
+    valueName?: string;
 }
 
 export const FileUploader: FunctionComponent<FileUploaderProps> = ({
+    bottomText,
+    buttonText,
     className,
     errors,
     fileTypes,
     fileNameLength = 100,
     isLoading = false,
+    labelInputDescription,
+    labelInputName,
     maxFileSize,
     maxFiles,
+    maxLengthDescription,
+    maxLengthName,
     onAlert,
+    onChangeName,
+    onChangeDescription,
     onDrop,
     topText,
-    buttonText,
-    bottomText,
+    valueDescription,
+    valueName,
 }) => {
     const fileFormats = useMemo(() => defineFileFormats(fileTypes), [fileTypes]);
     const [inDropZone, setInDropZone] = useState(false);
@@ -52,8 +67,10 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     const [droppedFiles, setDroppedFiles] = useState([] as File[]);
     const [inputValue, setInputValue] = useState('');
     const [isDropZoneVisible, setIsDropZoneVisible] = useState(true);
-    const [status, setStatus] = useState(FileUploaderStatus.DEFAULT);
     const [isValidationRequired, setIsValidationRequired] = useState(false);
+
+    const [hasInputName, setHasInputName] = useState(false);
+    const [hasInputDescription, setHasInputDescriptions] = useState(false);
 
     const handleDrag = useCallback((event: React.DragEvent) => {
         event.preventDefault();
@@ -140,7 +157,6 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                     const validationStatus = validateDroppedFiles(files);
 
                     if (validationStatus) {
-                        setStatus(FileUploaderStatus.ALERT);
                         onAlert(validationStatus, newFileSize);
                     } else {
                         onDrop(allFiles);
@@ -176,7 +192,6 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     useEffect(() => {
         if (isValidationRequired) {
             if (!validateDroppedFiles(droppedFiles)) {
-                setStatus(FileUploaderStatus.DEFAULT);
                 onAlert();
             }
 
@@ -186,10 +201,17 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
 
     // Hide the dropzone when there are erros, the status is alert or already enough files are uploaded
     useEffect(() => {
-        setIsDropZoneVisible(
-            !errors && status !== FileUploaderStatus.ALERT && (maxFiles === undefined || maxFiles > droppedFiles.length)
+        setIsDropZoneVisible(!errors && (maxFiles === undefined || maxFiles > droppedFiles.length));
+    }, [errors, maxFiles, droppedFiles]);
+
+    // Hide input name and description when the file is invalid
+    useEffect(() => {
+        setHasInputName(!isEmpty(labelInputName) && maxFiles === 1 && !errors && onChangeName !== undefined);
+
+        setHasInputDescriptions(
+            !isEmpty(labelInputDescription) && maxFiles === 1 && !errors && onChangeDescription !== undefined
         );
-    }, [errors, status, maxFiles, droppedFiles]);
+    }, [labelInputName, labelInputDescription, maxFiles, errors, onChangeName, onChangeDescription]);
 
     const button = useMemo(
         () => (
@@ -200,8 +222,6 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         ),
         [buttonText, handleDrop, inputValue]
     );
-
-    const optionalFileInput = useMemo(() => undefined, []);
 
     const fileCards = useMemo(() => {
         if (isEmpty(droppedFiles)) {
@@ -219,13 +239,27 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                     isLoading={isLoading}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${file.name}-${index}`}
+                    labelInputDescription={hasInputName ? labelInputDescription : undefined}
+                    labelInputName={hasInputName ? labelInputName : undefined}
+                    maxLengthDescription={maxLengthDescription}
+                    maxLengthName={maxLengthName}
+                    onChangeDescription={hasInputDescription ? onChangeDescription : undefined}
+                    onChangeName={hasInputName ? onChangeName : undefined}
                     onDelete={() => onDeleteCallback(index)}
-                >
-                    {optionalFileInput}
-                </FileCard>
+                    valueDescription={valueDescription}
+                    valueName={valueName}
+                />
             );
         });
-    }, [droppedFiles, onDeleteCallback]);
+    }, [
+        droppedFiles,
+        hasInputName,
+        hasInputDescription,
+        labelInputDescription,
+        labelInputName,
+        maxFiles,
+        onDeleteCallback,
+    ]);
 
     useEffect(() => {
         if (dragCounter === 0) {
@@ -248,8 +282,6 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                     <FileUploaderContent>
                         <FileUploaderInfo isDragging={inDropZone}>
                             <>
-                                {status === FileUploaderStatus.LOADING && <ProgressBar isIndeterminate />}
-
                                 <TopText>{topText}</TopText>
                                 {button}
                                 <BottomText>{bottomText}</BottomText>

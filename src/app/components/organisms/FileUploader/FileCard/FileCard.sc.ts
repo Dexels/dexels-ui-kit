@@ -3,6 +3,7 @@ import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 export const StyledFileCard = styled.div`
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
     margin-bottom: ${({ theme }): string => theme.spacing(2)};
@@ -75,4 +76,9 @@ export const ButtonWrapper = styled.div`
     button {
         color: ${({ theme }): string => theme.colorInvalid};
     }
+`;
+
+export const InputWrapper = styled.div`
+    flex-basis: 100%;
+    padding-top: ${({ theme }): string => theme.spacing(2)};
 `;

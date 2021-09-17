@@ -43,26 +43,29 @@ export const Configurable: FunctionComponent = () => {
 
     return (
         <FileUploadDialog
-            bottomText={bottomText}
-            buttonText={text('Button text', 'Choose a file')}
             errors={error}
             fileTypes={[fileTypes]}
+            fileUploaderData={{
+                bottomText,
+                buttonText: text('Button text', 'Choose a file'),
+                topText: text('Button text', 'Drag here a file to upload or'),
+            }}
             iconCancel={select('Icon Cancel', IconType, IconType.CROSS)}
             iconSave={select('Icon Save', IconType, IconType.CHECK)}
             isLoading={isSaving}
             isVisible={isVisible}
-            labelInputDescription="Add description (optional)"
-            labelInputName="Add name (optional)"
+            labelInputDescription={text('Label input description', 'Add description (optional')}
+            labelInputName={text('Label input name', 'Add name (optional)')}
             maxFileSize={maxFileSize}
             maxFiles={maxFiles}
             onAlert={onAlertCallback}
             onClose={onCloseCallback}
             onDrop={onDropCallback}
             onUpload={onUploadCallback}
+            text={text('Text', 'Optional descriptions')}
             textCancel={text('Text Cancel', 'Cancel')}
             textSave={text('Text Save', 'Save')}
             title="Upload files"
-            topText={text('Button text', 'Drag here a file to upload or')}
         />
     );
 };

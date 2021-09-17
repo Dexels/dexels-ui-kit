@@ -16,7 +16,6 @@ export const TextField = styled.input<TextFieldProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     display: block;
     outline: none;
-    background-color: transparent;
     width: 100%;
     color: ${({ theme }): string => theme.colorTextBody.primary};
 
