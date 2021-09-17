@@ -10,6 +10,7 @@ import {
     EditableInputCurrencyDataProps,
     EditableInputDataProps,
     EditableInputNumberDataProps,
+    InputDataProps,
     ValueTypes,
 } from '../types';
 import { EditableDataComponent, InputType, Locale, Status } from '../../../../types';
@@ -20,13 +21,16 @@ import {
     isValidInputTelephone,
     isValidInputText,
     isValidInputURI,
+    isValidURI,
 } from '../../../../utils/functions/validateFunctions';
 import React, { ReactNode } from 'react';
 import { convertToLocaleValue } from '../../../../utils/functions/financialFunctions';
+import { convertToValidURIValue } from '../../../../utils/functions/linkFunctions';
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import { getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
+import Link from '../../../atoms/Link/Link';
 import moment from 'moment';
 
 export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: boolean): Status => {
@@ -57,6 +61,15 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
     // a numeric value is allowed to be 0
     if (Number.isNaN(value) && !value) {
         return '-';
+    }
+
+    if (
+        component === EditableDataComponent.INPUT &&
+        (element as InputDataProps).type &&
+        (element as InputDataProps).type === InputType.URI &&
+        isValidURI(value as string)
+    ) {
+        return <Link href={convertToValidURIValue(value as string)}>{value}</Link>;
     }
 
     if (component === EditableDataComponent.DROPDOWNMULTISELECT && Array.isArray(value)) {
