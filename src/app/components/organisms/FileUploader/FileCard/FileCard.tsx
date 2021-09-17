@@ -59,9 +59,9 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                     <img alt="" src={URL.createObjectURL(file)} />
                 </ImageWrapper>
             ) : (
-                <IconWrapper isInvalid={isInvalid}>
+                <IconWrapper isInvalid={isInvalid} isLoading={isLoading}>
                     <IconCustomizable
-                        iconSize={IconCustomizableSize.SIZE36}
+                        iconSize={IconCustomizableSize.SIZE48}
                         iconType={isInvalid ? IconType.DANGER : getFileTypeIconType(fileType)}
                     />
                 </IconWrapper>
@@ -76,8 +76,8 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
             </DetailsWrapper>
 
             {isLoading && (
-                <IconWrapper>
-                    <IconCustomizable iconSize={IconCustomizableSize.SIZE36} iconType={IconType.CHANGE} />
+                <IconWrapper isLoading={isLoading}>
+                    <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CHANGE} />
                 </IconWrapper>
             )}
 
@@ -87,10 +87,11 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                 </ButtonWrapper>
             )}
 
-            {!isLoading && (
+            {!isLoading && (labelInputDescription || labelInputName) && (
                 <InputWrapper>
                     {labelInputName && (
                         <Input
+                            hasTransparentBackground={false}
                             label={labelInputName}
                             maxLength={maxLengthName}
                             name="name"
@@ -102,6 +103,7 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                     {labelInputDescription && labelInputName && <Spacer />}
                     {labelInputDescription && (
                         <Input
+                            hasTransparentBackground={false}
                             label={labelInputDescription}
                             maxLength={maxLengthDescription}
                             name="description"

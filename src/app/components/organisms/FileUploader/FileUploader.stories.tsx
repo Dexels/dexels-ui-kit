@@ -10,9 +10,7 @@ export const Configurable: FunctionComponent = () => {
     const maxFileSize = number('Max file size', 5);
     const fileTypes = select('File type', FileTypes, FileTypes.IMAGE);
     const maxFiles = number('Max files', 3);
-    const bottomText = `${fileTypes} - Max ${maxFileSize}MB`;
     const [error, setErrors] = useState<ReactNode>(undefined);
-
     const [inputDescriptionValue, setInputDescriptionValue] = useState('');
     const [inputNameValue, setInputNameValue] = useState('');
 
@@ -34,12 +32,12 @@ export const Configurable: FunctionComponent = () => {
 
     return (
         <FileUploader
-            bottomText={bottomText}
+            bottomText={text('Bottom text', 'Something presentable can be put here')}
             buttonText={text('Button text', 'Choose a file')}
             errors={error}
             fileTypes={[fileTypes]}
             isLoading={boolean('Is loading', false)}
-            labelInputDescription={text('Label input description', 'Add description (optional')}
+            labelInputDescription={text('Label input description', 'Add description (optional)')}
             labelInputName={text('Label input name', 'Add name (optional)')}
             maxFileSize={maxFileSize}
             maxFiles={maxFiles}

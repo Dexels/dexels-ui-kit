@@ -1,4 +1,6 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
+import { Elevation } from '../../../../types';
+import getElevation from '../../../../styles/mixins/getElevation';
 import { themeBasic } from '../../../../styles/theming/themes/basic';
 
 export const StyledFileCard = styled.div`
@@ -18,10 +20,11 @@ StyledFileCard.defaultProps = {
 };
 
 export const ImageWrapper = styled.div`
+    ${getElevation(Elevation.LEVEL_1)}
     flex: 0 0 auto;
     border-radius: ${({ theme }): string => theme.spacing(1)};
-    width: 48px;
-    height: 48px;
+    width: ${({ theme }): string => theme.spacing(7)};
+    height: ${({ theme }): string => theme.spacing(7)};
 
     img {
         display: block;
@@ -33,12 +36,24 @@ export const ImageWrapper = styled.div`
 `;
 interface IconWrapperProps {
     isInvalid?: boolean;
+    isLoading: boolean;
 }
 export const IconWrapper = styled.div<IconWrapperProps>`
-    margin: ${({ theme }): string => theme.spacing(0, 0, 1.25)};
     color: ${({ theme }): string => theme.colorText.primary};
 
-    ${({ isInvalid, theme }): SimpleInterpolation =>
+    ${({ isLoading, theme }): SimpleInterpolation =>
+        isLoading &&
+        css`
+            margin: ${theme.spacing(0, 1, 0, 0)};
+        `}
+
+    ${({ isLoading, theme }): SimpleInterpolation =>
+        !isLoading &&
+        css`
+            margin: ${theme.spacing(0, 0, 1.25)};
+        `}
+
+        ${({ isInvalid, theme }): SimpleInterpolation =>
         isInvalid &&
         css`
             color: ${theme.colorInvalid};
@@ -56,7 +71,8 @@ export interface TitleProps {
 }
 
 export const Title = styled.div<TitleProps>`
-    color: ${({ theme }): string => theme.colorTextBody.primary};
+    ${({ theme }): string => theme.textStyling('buttonLarge')}
+    color: ${({ theme }): string => theme.colorText.primary};
     font-weight: 600;
 
     ${({ isInvalid, theme }): SimpleInterpolation =>
@@ -67,7 +83,7 @@ export const Title = styled.div<TitleProps>`
 `;
 export const Subtitle = styled.div`
     ${({ theme }): string => theme.textStyling('body2')}
-    color: ${({ theme }): string => theme.shades.three};
+    color: ${({ theme }): string => theme.shades.one};
 `;
 
 export const ButtonWrapper = styled.div`

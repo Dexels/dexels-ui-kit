@@ -68,9 +68,9 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     const [inputValue, setInputValue] = useState('');
     const [isDropZoneVisible, setIsDropZoneVisible] = useState(true);
     const [isValidationRequired, setIsValidationRequired] = useState(false);
-
     const hasInputName = !isEmpty(labelInputName) && maxFiles === 1;
     const hasInputDescription = !isEmpty(labelInputDescription) && maxFiles === 1;
+    const localBottomText = `${fileTypes.join()} - Max ${maxFileSize}MB`;
 
     const handleDrag = useCallback((event: React.DragEvent) => {
         event.preventDefault();
@@ -267,7 +267,11 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                             <>
                                 <TopText>{topText}</TopText>
                                 {button}
-                                <BottomText>{bottomText}</BottomText>
+                                <BottomText>
+                                    {bottomText}
+                                    {bottomText && <br />}
+                                    {localBottomText}
+                                </BottomText>
                             </>
                         </FileUploaderInfo>
                     </FileUploaderContent>

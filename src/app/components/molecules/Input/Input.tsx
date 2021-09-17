@@ -35,6 +35,7 @@ export interface InputProps {
     errorMessage?: ReactNode;
     hasError?: boolean;
     hasNegativeAmountColor?: boolean;
+    hasTransparentBackground?: boolean;
     ignoreOutlineVariant?: boolean;
     isDisabled?: boolean;
     isOnChangeRequired?: boolean;
@@ -67,6 +68,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     errorMessage,
     hasError = false,
     hasNegativeAmountColor = true,
+    hasTransparentBackground = true,
     ignoreOutlineVariant = false,
     isDisabled = false,
     isRequired = false,
@@ -270,6 +272,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     hasNegativeAmountColor={
                         hasNegativeAmountColor && !isEmpty(inputDisplayValue) && toNumber(inputDisplayValue) < 0
                     }
+                    hasTransparentBackground={hasTransparentBackground}
                     isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
