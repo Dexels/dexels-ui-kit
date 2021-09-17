@@ -14,7 +14,6 @@ export const Configurable: FunctionComponent = () => {
     const fileTypes = select('File type', FileTypes, FileTypes.IMAGE);
     const maxFileSize = number('Max file size', 5);
     const maxFiles = number('Max files', 1);
-    const bottomText = `${fileTypes} - Max ${maxFileSize}MB`;
     const [error, setErrors] = useState<ReactNode>(undefined);
     const [isSaving, setIsSaving] = useState(false);
 
@@ -57,7 +56,7 @@ export const Configurable: FunctionComponent = () => {
                 errors={error}
                 fileTypes={[fileTypes]}
                 fileUploaderData={{
-                    bottomText,
+                    bottomText: text('Bottom text', 'Something presentable can be put here'),
                     buttonText: text('Button text', 'Choose a file'),
                     topText: text('Button text', 'Drag here a file to upload or'),
                 }}

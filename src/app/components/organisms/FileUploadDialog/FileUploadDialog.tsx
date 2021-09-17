@@ -7,7 +7,7 @@ import { FileUploaderWrapper } from './FileUploadDialog.sc';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export interface FileUploaderTextData {
-    bottomText: ReactNode;
+    bottomText?: ReactNode;
     buttonText: ReactNode;
     topText: ReactNode;
 }

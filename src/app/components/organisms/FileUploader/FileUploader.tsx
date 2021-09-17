@@ -17,7 +17,7 @@ import FileCard from './FileCard/FileCard';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 
 export interface FileUploaderProps {
-    bottomText: ReactNode;
+    bottomText?: ReactNode;
     buttonText: ReactNode;
     className?: string;
     errors?: ReactNode;
@@ -220,18 +220,18 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         }
 
         return droppedFiles.map((file, index) => {
-            const isInvalud = !isEmpty(errors) && index === droppedFiles.length - 1;
+            const isInvalid = !isEmpty(errors) && index === droppedFiles.length - 1;
 
             return (
                 <FileCard
-                    error={isInvalud ? errors : undefined}
+                    error={isInvalid ? errors : undefined}
                     file={file}
-                    isInvalid={isInvalud}
+                    isInvalid={isInvalid}
                     isLoading={isLoading}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${file.name}-${index}`}
-                    labelInputDescription={hasInputDescription && !isInvalud ? labelInputDescription : undefined}
-                    labelInputName={hasInputName && !isInvalud ? labelInputName : undefined}
+                    labelInputDescription={hasInputDescription && !isInvalid ? labelInputDescription : undefined}
+                    labelInputName={hasInputName && !isInvalid ? labelInputName : undefined}
                     maxLengthDescription={maxLengthDescription}
                     maxLengthName={maxLengthName}
                     onChangeDescription={onChangeDescription}
@@ -242,7 +242,7 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 />
             );
         });
-    }, [droppedFiles, isLoading, labelInputDescription, labelInputName, maxFiles, onDeleteCallback]);
+    }, [droppedFiles, errors, isLoading, labelInputDescription, labelInputName, maxFiles, onDeleteCallback]);
 
     useEffect(() => {
         if (dragCounter === 0) {
