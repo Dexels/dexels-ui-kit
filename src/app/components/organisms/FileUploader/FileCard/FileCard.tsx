@@ -96,7 +96,7 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
             )}
 
             <InputWrapper>
-                {labelInputName && onChangeName && (
+                {labelInputName && (
                     <Input
                         label={labelInputName}
                         maxLength={maxLengthName}
@@ -106,8 +106,8 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                         value={valueName}
                     />
                 )}
-                {labelInputDescription && labelInputName && onChangeName && onChangeDescription && <Spacer />}
-                {labelInputDescription && onChangeDescription && (
+                {labelInputDescription && labelInputName && <Spacer />}
+                {labelInputDescription && (
                     <Input
                         label={labelInputDescription}
                         maxLength={maxLengthDescription}

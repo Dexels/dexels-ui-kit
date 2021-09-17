@@ -69,8 +69,8 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     const [isDropZoneVisible, setIsDropZoneVisible] = useState(true);
     const [isValidationRequired, setIsValidationRequired] = useState(false);
 
-    const [hasInputName, setHasInputName] = useState(false);
-    const [hasInputDescription, setHasInputDescriptions] = useState(false);
+    const hasInputName = !isEmpty(labelInputName) && maxFiles === 1;
+    const hasInputDescription = !isEmpty(labelInputDescription) && maxFiles === 1;
 
     const handleDrag = useCallback((event: React.DragEvent) => {
         event.preventDefault();
@@ -204,15 +204,6 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
         setIsDropZoneVisible(!errors && (maxFiles === undefined || maxFiles > droppedFiles.length));
     }, [errors, maxFiles, droppedFiles]);
 
-    // Hide input name and description when the file is invalid
-    useEffect(() => {
-        setHasInputName(!isEmpty(labelInputName) && maxFiles === 1 && !errors && onChangeName !== undefined);
-
-        setHasInputDescriptions(
-            !isEmpty(labelInputDescription) && maxFiles === 1 && !errors && onChangeDescription !== undefined
-        );
-    }, [labelInputName, labelInputDescription, maxFiles, errors, onChangeName, onChangeDescription]);
-
     const button = useMemo(
         () => (
             <StyledButton iconType={IconType.FOLDERSEARCH} key={dragCounter} variant={ButtonVariant.FILLED}>
@@ -239,27 +230,19 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                     isLoading={isLoading}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${file.name}-${index}`}
-                    labelInputDescription={hasInputName ? labelInputDescription : undefined}
-                    labelInputName={hasInputName ? labelInputName : undefined}
+                    labelInputDescription={hasInputDescription && !isInvalud ? labelInputDescription : undefined}
+                    labelInputName={hasInputName && !isInvalud ? labelInputName : undefined}
                     maxLengthDescription={maxLengthDescription}
                     maxLengthName={maxLengthName}
-                    onChangeDescription={hasInputDescription ? onChangeDescription : undefined}
-                    onChangeName={hasInputName ? onChangeName : undefined}
+                    onChangeDescription={onChangeDescription}
+                    onChangeName={onChangeName}
                     onDelete={() => onDeleteCallback(index)}
                     valueDescription={valueDescription}
                     valueName={valueName}
                 />
             );
         });
-    }, [
-        droppedFiles,
-        hasInputName,
-        hasInputDescription,
-        labelInputDescription,
-        labelInputName,
-        maxFiles,
-        onDeleteCallback,
-    ]);
+    }, [droppedFiles, labelInputDescription, labelInputName, maxFiles, onDeleteCallback]);
 
     useEffect(() => {
         if (dragCounter === 0) {
