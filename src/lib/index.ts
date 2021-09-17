@@ -201,13 +201,7 @@ export {
     isValidEditableInput,
 } from '../app/components/organisms/EditableInformation';
 export { ConfirmDialog, EditablePanel, EditablePanelProps } from '../app/components/organisms/EditablePanel';
-export {
-    FileUploader,
-    FileUploaderProps,
-    FileAlertType,
-    FileTypes,
-    FileUploaderStatus,
-} from '../app/components/organisms/FileUploader';
+export { FileUploader, FileUploaderProps, FileAlertType, FileTypes } from '../app/components/organisms/FileUploader';
 export { FileUploadDialog, FileUploadDialogProps } from '../app/components/organisms/FileUploadDialog/FileUploadDialog';
 export {
     AmountOfColumns,

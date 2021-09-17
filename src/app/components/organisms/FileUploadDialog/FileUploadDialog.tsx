@@ -1,20 +1,27 @@
-import { ButtonSize, ButtonVariant, IconType, InputType } from '../../../types';
-import { FileAlertType, FileTypes, FileUploaderStatus } from '../FileUploader/types';
-import { FileUploader, FileUploaderStatusData } from '../FileUploader/FileUploader';
-import { FileUploaderWrapper, Spacer } from './FileUploadDialog.sc';
+import { ButtonSize, ButtonVariant, IconType } from '../../../types';
+import { FileAlertType, FileTypes } from '../FileUploader/types';
 import React, { FunctionComponent, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Dialog } from '../Dialog';
-import Input from '../../molecules/Input/Input';
+import { FileUploader } from '../FileUploader/FileUploader';
+import { FileUploaderWrapper } from './FileUploadDialog.sc';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
+
+export interface FileUploaderTextData {
+    bottomText?: ReactNode;
+    buttonText: ReactNode;
+    topText: ReactNode;
+}
 
 export interface FileUploadDialogProps {
     description?: string;
+    errors?: ReactNode;
     fileNameLength?: number;
     fileTypes: FileTypes[];
-    hasThumbNails?: boolean;
+    fileUploaderData: FileUploaderTextData;
     iconCancel?: IconType;
     iconSave?: IconType;
     iconType?: IconType;
+    isLoading?: boolean;
     isVisible: boolean;
     labelInputDescription?: ReactNode;
     labelInputName: ReactNode;
@@ -23,46 +30,47 @@ export interface FileUploadDialogProps {
     maxLengthDescription?: number;
     maxLengthName?: number;
     name?: string;
-    onAlert: (type: FileAlertType, fileNames?: string[]) => void;
+    onAlert(type: FileAlertType, fileSize?: number): void;
     onClose: () => void;
     onDrop?: (files: File[]) => void;
     onUpload: (files: File[], name?: string, description?: string) => void;
-    statusData: FileUploaderStatusData;
+    text?: ReactNode;
     textCancel: string;
     textSave: string;
     title: ReactNode;
 }
 
 export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
+    fileUploaderData,
     description,
+    errors,
     fileNameLength = 100,
     fileTypes,
-    hasThumbNails = false,
+    iconType = IconType.FILEADD,
     labelInputDescription,
     labelInputName,
     iconCancel = IconType.CROSS,
     iconSave = IconType.CHECK,
     isVisible,
+    isLoading = false,
     maxFileSize = 5,
     maxFiles = 1,
-    maxLengthDescription = 255,
-    maxLengthName = 100,
+    maxLengthDescription,
+    maxLengthName,
     name,
     onAlert,
     onClose,
     onDrop,
     onUpload,
-    statusData,
     textCancel,
     textSave,
     title,
-    iconType = IconType.FILEADD,
+    text,
 }) => {
+    const { buttonText, bottomText, topText } = fileUploaderData;
     const [inputDescriptionValue, setInputDescriptionValue] = useState(description);
     const [inputNameValue, setInputNameValue] = useState(name);
     const [droppedFiles, setDroppedFiles] = useState([] as File[]);
-    const hasInputName = !isEmpty(labelInputName) && maxFiles === 1;
-    const hasInputDescription = !isEmpty(labelInputDescription) && maxFiles === 1;
     const [isUploadAllowed, setIsUploadAllowed] = useState(false);
 
     const onDropCallback = useCallback(
@@ -83,8 +91,8 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     }, [droppedFiles, inputNameValue, inputDescriptionValue, onUpload]);
 
     useEffect(() => {
-        setIsUploadAllowed(!isEmpty(droppedFiles));
-    }, [droppedFiles]);
+        setIsUploadAllowed(!isEmpty(droppedFiles) && !errors);
+    }, [droppedFiles, errors]);
 
     return (
         <Dialog
@@ -100,6 +108,7 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
                     children: textSave,
                     iconType: iconSave,
                     isDisabled: !isUploadAllowed,
+                    isLoading,
                     onClick: onUploadCallback,
                     size: ButtonSize.SMALL,
                 },
@@ -107,48 +116,34 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
             iconType={iconType}
             isVisible={isVisible}
             onClose={onClose}
+            text={text}
             title={title}
         >
             <FileUploaderWrapper>
                 <FileUploader
+                    bottomText={bottomText}
+                    buttonText={buttonText}
+                    errors={errors}
                     fileNameLength={fileNameLength}
                     fileTypes={fileTypes}
-                    hasThumbNails={hasThumbNails}
+                    isLoading={isLoading}
+                    labelInputDescription={labelInputDescription}
+                    labelInputName={labelInputName}
                     maxFileSize={maxFileSize}
                     maxFiles={maxFiles}
+                    maxLengthDescription={maxLengthDescription}
+                    maxLengthName={maxLengthName}
                     onAlert={onAlert}
-                    onDrop={onDropCallback}
-                    statusData={statusData}
-                />
-            </FileUploaderWrapper>
-
-            {hasInputName && (
-                <Input
-                    isDisabled={statusData.status === FileUploaderStatus.LOADING}
-                    label={labelInputName}
-                    maxLength={maxLengthName}
-                    name="name"
-                    onChange={({ currentTarget }): void => {
-                        setInputNameValue(currentTarget.value);
-                    }}
-                    type={InputType.TEXT}
-                    value={inputNameValue}
-                />
-            )}
-            {hasInputName && hasInputDescription && <Spacer />}
-            {hasInputDescription && (
-                <Input
-                    isDisabled={statusData.status === FileUploaderStatus.LOADING}
-                    label={labelInputDescription}
-                    maxLength={maxLengthDescription}
-                    name="description"
-                    onChange={({ currentTarget }): void => {
+                    onChangeDescription={({ currentTarget }): void => {
                         setInputDescriptionValue(currentTarget.value);
                     }}
-                    type={InputType.TEXT}
-                    value={inputDescriptionValue}
+                    onChangeName={({ currentTarget }): void => {
+                        setInputNameValue(currentTarget.value);
+                    }}
+                    onDrop={onDropCallback}
+                    topText={topText}
                 />
-            )}
+            </FileUploaderWrapper>
         </Dialog>
     );
 };

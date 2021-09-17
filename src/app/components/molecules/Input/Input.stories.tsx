@@ -16,6 +16,7 @@ export const Configurable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+            hasTransparentBackground={boolean('Has transparent background', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
@@ -47,6 +48,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+            hasTransparentBackground={boolean('Has transparent background', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
@@ -75,6 +77,7 @@ export const ConfigurableClickable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+            hasTransparentBackground={boolean('Has transparent background', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea={boolean('Is textarea', false)}
@@ -104,6 +107,7 @@ export const ConfigurableMinNumberAndRequired: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+            hasTransparentBackground={boolean('Has transparent background', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', true)}
             isValid={boolean('Is valid', false)}
@@ -130,6 +134,7 @@ export const ConfigurableMinAndMaxNumbers: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+            hasTransparentBackground={boolean('Has transparent background', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isValid={boolean('Is valid', false)}
@@ -157,6 +162,7 @@ export const ConfigurableAddress: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+            hasTransparentBackground={boolean('Has transparent background', true)}
             isDisabled={boolean('Is disabled', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This input has an empty string and maxlength')}
@@ -181,6 +187,7 @@ export const ConfigurableTextarea: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+            hasTransparentBackground={boolean('Has transparent background', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea
@@ -209,6 +216,7 @@ export const ConfigurableTextareaClickable: FunctionComponent = () => {
             errorMessage={text('Error message', 'Help, something went wrong!')}
             hasError={boolean('Has error', false)}
             hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+            hasTransparentBackground={boolean('Has transparent background', true)}
             isDisabled={boolean('Is disabled', false)}
             isRequired={boolean('Is required', false)}
             isTextarea

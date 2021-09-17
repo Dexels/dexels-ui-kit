@@ -8,6 +8,7 @@ interface TextFieldProps extends StyledInputBaseProps {
     adornmentPosition: AdornmentPosition;
     hasAdornment: boolean;
     hasNegativeAmountColor: boolean;
+    hasTransparentBackground: boolean;
     isTextarea: boolean;
     type: InputType;
 }
@@ -16,9 +17,14 @@ export const TextField = styled.input<TextFieldProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
     display: block;
     outline: none;
-    background-color: transparent;
     width: 100%;
     color: ${({ theme }): string => theme.colorTextBody.primary};
+
+    ${({ hasTransparentBackground }): SimpleInterpolation =>
+        hasTransparentBackground &&
+        css`
+            background-color: transparent;
+        `}
 
     ${({ hasNegativeAmountColor, theme }): SimpleInterpolation =>
         hasNegativeAmountColor &&

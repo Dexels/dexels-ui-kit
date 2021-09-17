@@ -1,10 +1,3 @@
-export enum FileUploaderStatus {
-    ALERT = 'alert',
-    DEFAULT = 'default',
-    LOADING = 'loading',
-    SUCCESS = 'success',
-}
-
 export enum FileAlertType {
     NAME = 'nameError',
     NUMBER = 'numberError',
