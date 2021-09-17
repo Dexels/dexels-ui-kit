@@ -12,7 +12,7 @@ import { ButtonVariant, IconType } from '../../../types';
 import { FileAlertType, FileTypes } from './types';
 import { getFileNames, getFileSizes, getFileTypes } from '../../../utils/functions/fileFunctions';
 import React, { ChangeEvent, FunctionComponent, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { defineFileFormats } from './utils/defineFileFormats';
+import { defineFileFormats } from './utils/fileFormatsFunctions';
 import FileCard from './FileCard/FileCard';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 

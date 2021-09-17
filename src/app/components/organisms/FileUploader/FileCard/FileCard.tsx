@@ -8,27 +8,15 @@ import {
     Subtitle,
     Title,
 } from './FileCard.sc';
+import { defineFileFormats, getFileTypeIconType } from '../utils/fileFormatsFunctions';
 import { IconCustomizable, IconCustomizableSize } from '../../../molecules/IconCustomizable';
 import { IconType, InputType, Size } from '../../../../types';
 import React, { ChangeEvent, FunctionComponent, ReactNode } from 'react';
 import ButtonIcon from '../../../molecules/ButtonIcon/ButtonIcon';
-import { defineFileFormats } from '../utils/defineFileFormats';
 import { FileTypes } from '../types';
 import { getFileType } from '../../../../utils/functions/fileFunctions';
 import Input from '../../../molecules/Input/Input';
 import { Spacer } from '../../FileUploadDialog/FileUploadDialog.sc';
-
-const getIconType = (): IconType =>
-    // switch (fileType) {
-    //     case defineFileFormats([FileTypes.AUDIO]).contains(fileType):
-    //         return IconType.FILEAUDIO;
-
-    //     case defineFileFormats([FileTypes.VIDEO]).contains(fileType):
-    //         return IconType.FILEVIDEO;
-
-    //     default:
-    //
-    IconType.FILEDOCUMENT;
 
 export interface FileCardProps {
     error?: ReactNode;
@@ -74,7 +62,7 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                 <IconWrapper isInvalid={isInvalid}>
                     <IconCustomizable
                         iconSize={IconCustomizableSize.SIZE36}
-                        iconType={isInvalid ? IconType.DANGER : getIconType()}
+                        iconType={isInvalid ? IconType.DANGER : getFileTypeIconType(fileType)}
                     />
                 </IconWrapper>
             )}
