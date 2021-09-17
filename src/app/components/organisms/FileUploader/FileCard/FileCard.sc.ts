@@ -53,7 +53,7 @@ export const IconWrapper = styled.div<IconWrapperProps>`
             margin: ${theme.spacing(0, 0, 1.25)};
         `}
 
-        ${({ isInvalid, theme }): SimpleInterpolation =>
+    ${({ isInvalid, theme }): SimpleInterpolation =>
         isInvalid &&
         css`
             color: ${theme.colorInvalid};
