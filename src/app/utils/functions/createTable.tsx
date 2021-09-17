@@ -70,11 +70,12 @@ const selectionHook =
         hooks.getToggleAllPageRowsSelectedProps = (props: HeaderProps<never>, { instance }: MetaBase<D>) => {
             const isAllSelected = instance.page.every((row: Row<D>) => row.isDisabled || row.isSelected); // counting disabled rows as selected for all so that disabled not selected rows will not make allSelected false.
             const isSomeSelected = instance.page.some((row: Row<D>) => !row.isDisabled && row.isSelected); // counting disabled rows as not selected for some so that disabled selected rows don't get counted for some.
+            const areAllRowsDisabled = instance.page.every((row: Row<D>) => row.isDisabled); // counting disabled rows for possible uncjecking of header check box.
 
             return [
                 props,
                 {
-                    checked: isAllSelected,
+                    checked: instance.pageCount !== 0 && !areAllRowsDisabled && isAllSelected,
                     indeterminate: !isAllSelected && isSomeSelected,
                     onChange: () => {
                         instance.page.forEach((row: Row<D>) => {

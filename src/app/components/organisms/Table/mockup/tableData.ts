@@ -78,7 +78,8 @@ export const tableData = (): TableData[] => {
         id: '188',
         infix: 'een net iets te lange infix',
         info: 66,
-        isRowSelectAllowed: false,
+        // Turned off for testing picklist multi select and check all
+        // isRowSelectAllowed: false,
         isRowSelected: true,
         lastName: 'Achternaam met best veel tekens in de naam',
         relationStart: moment(),
