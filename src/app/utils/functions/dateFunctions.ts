@@ -21,6 +21,11 @@ export const isValidStringDateWithTimezone = (inputText: string): boolean => {
 };
 
 export const isValidDate = (value: string | Date | Moment, lang: string = DEFAULT_LOCALE): boolean => {
+    // Formats with 1 - in the string should be considered false by default
+    if (typeof value === 'string' && value.match(/-/g)?.length === 1) {
+        return false;
+    }
+
     if (
         typeof value === 'string' &&
         !isValidStringDate(value) &&

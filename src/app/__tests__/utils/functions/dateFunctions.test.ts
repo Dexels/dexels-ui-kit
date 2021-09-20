@@ -41,6 +41,7 @@ describe('test date functions', () => {
         expect(isValidDate('commissie 1')).toBe(false);
         expect(isValidDate('2021-05-10T17:12:00+0200')).toBe(true);
         expect(isValidDate('30-09-2021')).toBe(false);
+        expect(isValidDate('BU-0360')).toBe(false);
     });
 
     test('test isFutureDate', () => {
