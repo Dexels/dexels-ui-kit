@@ -18,7 +18,6 @@ export interface NativeLinkProps extends LinkProps {
 
 export interface RouterLinkProps extends LinkProps {
     as?: StyledComponent<'button', DefaultTheme> | 'button';
-
     to: string;
 }
 
