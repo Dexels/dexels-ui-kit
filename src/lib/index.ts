@@ -44,6 +44,7 @@ export {
     selectOptionsFacade,
     setElementSelected,
 } from '../app/utils/functions/arrayObjectFunctions';
+export { convertToValidURIValue } from '../app/utils/functions/linkFunctions';
 export {
     toBasicLowercase,
     capitalizeFirstLetter,
