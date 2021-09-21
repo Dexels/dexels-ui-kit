@@ -63,6 +63,22 @@ export const customSortByCaseInsensitive = <T extends Record<string, unknown>>(
     // @TODO: figure out how to get the active sortBy values/props and possibly deal with paging?
     rows.sort(compareValues<T>(key));
 
+export const customSortByBoolean = <T extends object>(
+    a: UseTableRowProps<T>,
+    b: UseTableRowProps<T>,
+    key: keyof UseTableRowProps<T>['values'] | keyof UseGroupByRowProps<T>['values'],
+    desc = true
+): -1 | 1 => {
+    const valueA = Boolean(a.values[key]).toString();
+    const valueB = Boolean(b.values[key]).toString();
+
+    if (desc) {
+        return valueA.localeCompare(valueB) > 0 ? 1 : -1;
+    }
+
+    return valueB.localeCompare(valueA) > 0 ? -1 : 1;
+};
+
 export const renderSortIcon = <T extends object>(
     column: UseSortByColumnProps<T>,
     hasUnsortedStateIcon = false
