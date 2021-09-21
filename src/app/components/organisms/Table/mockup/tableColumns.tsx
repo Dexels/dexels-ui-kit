@@ -1,8 +1,8 @@
 import { Alignment, ButtonSize, ButtonVariant, IconType, Locale, Status } from '../../../../types';
+import { Column, Row } from 'react-table';
 import { customSortByBoolean, customSortByDate } from '../utils/tableFunctions';
 import React, { ReactNode } from 'react';
 import { Button } from '../../../molecules/Button/Button';
-import { Column, Row } from 'react-table';
 import { ContentCell } from '../ContentCell/ContentCell';
 import { getTableCell } from './tableFunctions';
 import { Icon } from '../../../atoms/Icon/Icon';
