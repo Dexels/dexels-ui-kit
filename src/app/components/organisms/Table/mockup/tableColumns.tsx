@@ -1,9 +1,9 @@
 import { Alignment, ButtonSize, ButtonVariant, IconType, Locale, Status } from '../../../../types';
+import { Column, Row } from 'react-table';
+import { customSortByBoolean, customSortByDate } from '../utils/tableFunctions';
 import React, { ReactNode } from 'react';
 import { Button } from '../../../molecules/Button/Button';
-import { Column } from 'react-table';
 import { ContentCell } from '../ContentCell/ContentCell';
-import { customSortByDate } from '../utils/tableFunctions';
 import { getTableCell } from './tableFunctions';
 import { Icon } from '../../../atoms/Icon/Icon';
 import { StatusCell } from '../StatusCell/StatusCell';
@@ -35,6 +35,8 @@ const getStatusIcon = (status: Status): IconType => {
     }
 };
 
+export const getBooleanText = (value: boolean): string => (value === true ? 'Yes' : 'No');
+
 export const tableColumns = (isMultiSelect: boolean): Column<TableData>[] => [
     {
         Aggregated: () => 'Totalen',
@@ -53,6 +55,12 @@ export const tableColumns = (isMultiSelect: boolean): Column<TableData>[] => [
         accessor: 'firstName',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onClick: (cell: any, row: any, event: any): any => getTableCell(cell, row, event),
+    },
+    {
+        Cell: ({ value }): ReactNode => <ContentCell value={getBooleanText(value || false)} />,
+        Header: 'Test sort boolean',
+        accessor: 'isRowSelected',
+        width: '100',
     },
     {
         Cell: ({ value }): ReactNode => <ContentCell isBold value={value} />,
@@ -94,8 +102,8 @@ export const tableColumns = (isMultiSelect: boolean): Column<TableData>[] => [
         Cell: ({ value }): ReactNode => <ContentCell value={value} />,
         Header: 'Startdate',
         accessor: 'relationStart',
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        sortType: (a: any, b: any, propName: any): any => customSortByDate(a, b, propName),
+        sortType: (a: Row<TableData>, b: Row<TableData>, propName: string): -1 | 1 =>
+            customSortByBoolean(a, b, propName),
     },
     {
         Aggregated: ({ rows }) =>
