@@ -45,14 +45,15 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     const result: EditableInformationData<T, U> = [];
 
     result.push({
-        component: EditableDataComponent.DATEPICKER,
-        isDisabled: true,
+        component: EditableDataComponent.INPUT,
+        isDisabled: false,
         isEditable: true,
-        isVisibleOnlyOnEdit: true,
-        label: 'Date',
-        name: 'Date',
-        value: moment(),
-    } as DatePickerDataProps);
+        isRequired: true,
+        label: 'Website',
+        name: 'Website',
+        type: InputType.URI,
+        value: 'www.google.com',
+    } as EditableInputDataProps);
 
     result.push({
         component: EditableDataComponent.DATEPICKER,
@@ -107,23 +108,11 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     result.push({
         component: EditableDataComponent.INPUT,
         isDisabled: false,
-        isEditable: true,
-        isRequired: true,
-        label: 'Input (null value)',
-        name: 'InputNull',
-
-        value: null,
-    } as EditableInputDataProps);
-
-    result.push({
-        component: EditableDataComponent.INPUT,
-        isDisabled: false,
         isEditable: false,
         isRequired: true,
         label: 'Input (not editable)',
         maxLength: 20,
         name: 'Input',
-
         value: 'Banana',
     } as EditableInputDataProps);
 
@@ -253,7 +242,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         max: 10,
         min: 0,
         name: 'EditableNumber',
-
         value: 5,
     } as EditableInputNumberDataProps);
 
