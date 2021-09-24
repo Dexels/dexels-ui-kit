@@ -30,6 +30,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     data: EditableInformationData<T, U>;
     dateFormat?: string;
     errors?: string[];
+    hasAutoFocus?: boolean;
     iconCancel?: IconType;
     iconEdit?: IconType;
     iconSave?: IconType;
@@ -62,6 +63,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     dateFormat = 'dd. D MMM YYYY',
     cancelConfirmDialog,
     errors,
+    hasAutoFocus = true,
     iconCancel,
     iconEdit,
     iconSave,
@@ -267,6 +269,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
                 data,
                 dateFormat,
                 datePickerFocuses,
+                hasAutoFocus,
                 hasError,
                 isBeingEdited,
                 locale: localeValue,
@@ -285,6 +288,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         data,
         dateFormat,
         datePickerFocuses,
+        hasAutoFocus,
         hasError,
         isBeingEdited,
         isEditable,
