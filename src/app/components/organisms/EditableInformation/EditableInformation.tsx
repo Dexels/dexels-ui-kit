@@ -25,6 +25,7 @@ import { Skeleton } from '../../molecules/Skeleton/Skeleton';
 export interface EditableInformationProps<T extends DropdownOption, U extends DropdownMultiSelectOption>
     extends Omit<PanelHeaderProps, 'children' | 'options'> {
     amountOfColumns?: InformationTableProps['amountOfColumns'];
+    amountOfRows?: InformationTableProps['amountOfRows'];
     cancelConfirmDialog?: ConfirmDialog;
     data: EditableInformationData<T, U>;
     dateFormat?: string;
@@ -56,6 +57,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
 
 export const EditableInformation = <T extends DropdownOption, U extends DropdownMultiSelectOption>({
     amountOfColumns = 2,
+    amountOfRows = 4,
     data,
     dateFormat = 'dd. D MMM YYYY',
     cancelConfirmDialog,
@@ -85,7 +87,6 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     title,
     warnings,
 }: EditableInformationProps<T, U>): JSX.Element => {
-    const DEFAULT_AMOUNT_ROWS = 4;
     const [datePickerFocuses, setDatePickerFocuses] = useState<DatePickerFocuses>({});
     const [isValidInputData, setIsValidInputData] = useState(true);
     const hasError = errors !== undefined;
@@ -249,7 +250,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     useEffect(() => {
         if (isLoading || isEmpty(data)) {
             setInformationTableData(
-                Array(amountOfColumns * DEFAULT_AMOUNT_ROWS).fill({
+                Array(amountOfColumns * amountOfRows).fill({
                     label: <Skeleton width="60%" />,
                     value: <Skeleton width="90%" />,
                 })
@@ -280,6 +281,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         }
     }, [
         amountOfColumns,
+        amountOfRows,
         data,
         dateFormat,
         datePickerFocuses,
@@ -298,6 +300,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     const cardData = (
         <InformationTable
             amountOfColumns={amountOfColumns}
+            amountOfRows={amountOfRows}
             data={informationTableData}
             errors={errors}
             isDisabled={isDisabled}

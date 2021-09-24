@@ -111,6 +111,7 @@ export interface EditableInputNumberDataProps extends InputNumberDataProps {
 
 export interface InputDataProps extends BaseDataProps {
     component: EditableDataComponent.INPUT;
+    type?: InputProps['type'];
     value: InputProps['value'];
 }
 
@@ -122,7 +123,6 @@ export interface EditableInputDataProps extends InputDataProps {
     onFocus?: InputProps['onFocus'];
     onKeyDown?: InputProps['onKeyDown'];
     placeholder?: InputProps['label'];
-    type?: InputProps['type'];
 }
 
 export interface TimePickerDataProps extends BaseDataProps {
