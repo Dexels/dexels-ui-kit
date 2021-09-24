@@ -90,6 +90,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             }
             data={updatedData}
             errors={saveErrors}
+            hasAutoFocus={boolean('Has AutoFocus', true)}
             iconType={select('Icon Type', IconType, IconType.CALENDAR)}
             isButtonDisabled={boolean('Is button disabled', false)}
             isDisabled={boolean('Is disabled', false)}

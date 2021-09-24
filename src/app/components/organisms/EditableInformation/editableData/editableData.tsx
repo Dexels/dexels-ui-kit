@@ -21,6 +21,7 @@ export interface EditableDataProps<T extends DropdownOption, U extends DropdownM
     datePickerFocuses: {
         [key: string]: boolean;
     };
+    hasAutoFocus?: boolean;
     hasError?: boolean;
     isBeingEdited: boolean;
     locale?: Locale;
@@ -37,6 +38,8 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
     data,
     dateFormat,
     datePickerFocuses,
+    hasAutoFocus = true,
+    hasError = false,
     isBeingEdited,
     locale = DEFAULT_LOCALE,
     localeCurrency,
@@ -44,7 +47,6 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
     onDropdownChange,
     onChange,
     values,
-    hasError = false,
 }: EditableDataProps<T, U>): InformationTableProps['data'] => {
     let isFocusedInputSet = false;
 
@@ -54,7 +56,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             const { isDisabled, isEditable, isRequired, label } = dataInstance;
             let autoFocus = false;
 
-            if (!isFocusedInputSet && isEditable) {
+            if (hasAutoFocus && !isFocusedInputSet && isEditable) {
                 autoFocus = true;
                 isFocusedInputSet = true;
             }
