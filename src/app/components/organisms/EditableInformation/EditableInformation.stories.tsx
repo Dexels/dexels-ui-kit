@@ -76,6 +76,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     return (
         <EditableInformation
             amountOfColumns={select('Columns', [1, 2, 3], 2)}
+            amountOfRows={select('Rows', [1, 2, 3, 4], 4)}
             cancelConfirmDialog={
                 withDialogs
                     ? {
