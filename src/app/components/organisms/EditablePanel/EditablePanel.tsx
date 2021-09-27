@@ -41,6 +41,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     iconType,
     isDisabled = false,
     isEditing = false,
+    isLoading = false,
     isSaving = false,
     keepEditMode = false,
     onCancel,
@@ -135,6 +136,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                 hasTitleStatusAppearance
                 iconType={iconType}
                 isDisabled={isDisabled}
+                isLoading={isLoading}
                 options={
                     // eslint-disable-next-line no-nested-ternary
                     !hasButtons ? undefined : isBeingEdited ? (

@@ -17,6 +17,7 @@ export const CloseablePanel: FunctionComponent<CloseablePanelProps> = ({
     iconClose = IconType.MINUS,
     iconOpen = IconType.PLUS,
     iconType,
+    isLoading = false,
     isOpenDefault = true,
     onToggleIsOpen,
     title,
@@ -37,6 +38,7 @@ export const CloseablePanel: FunctionComponent<CloseablePanelProps> = ({
                 hasCapitalizedTitle={hasCapitalizedTitle}
                 hasMarginBottom={isOpen}
                 iconType={iconType}
+                isLoading={isLoading}
                 options={
                     <Button
                         iconType={isOpen ? iconClose : iconOpen}

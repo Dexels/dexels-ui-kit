@@ -323,6 +323,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             iconType={iconType}
             isDisabled={isButtonDisabled || isDisabled || isLoading}
             isEditing={isBeingEdited}
+            isLoading={isLoading}
             isSaving={isSaving}
             keepEditMode={keepEditMode}
             onCancel={onCancelCallback}
