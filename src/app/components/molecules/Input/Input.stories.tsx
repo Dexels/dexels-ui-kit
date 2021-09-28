@@ -11,30 +11,32 @@ export const Configurable: FunctionComponent = () => {
     const [value, setValue] = useState('');
 
     return (
-        <Input
-            autoFocus={boolean('Auto focus', true)}
-            errorMessage={text('Error message', 'Help, something went wrong!')}
-            hasError={boolean('Has error', false)}
-            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
-            hasTransparentBackground={boolean('Has transparent background', true)}
-            isDisabled={boolean('Is disabled', false)}
-            isRequired={boolean('Is required', false)}
-            isTextarea={boolean('Is textarea', false)}
-            isValid={boolean('Is valid', false)}
-            label={text('Label', 'This is a label')}
-            locale={select('Locale', Locale, Locale.NL)}
-            maxLength={number('Max length', 100)}
-            minLength={number('Min length', 0)}
-            name="an-input-name"
-            onBlur={action('On blur')}
-            onChange={({ currentTarget }): void => {
-                setValue(currentTarget.value);
-            }}
-            onFocus={action('On focus')}
-            type={select('Type', InputType, InputType.TEXT)}
-            value={value}
-            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
-        />
+        <div style={{ width: '200px' }}>
+            <Input
+                autoFocus={boolean('Auto focus', true)}
+                errorMessage={text('Error message', 'Help, something went wrong!')}
+                hasError={boolean('Has error', false)}
+                hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+                hasTransparentBackground={boolean('Has transparent background', true)}
+                isDisabled={boolean('Is disabled', false)}
+                isRequired={boolean('Is required', false)}
+                isTextarea={boolean('Is textarea', false)}
+                isValid={boolean('Is valid', false)}
+                label={text('Label', 'This is a label')}
+                locale={select('Locale', Locale, Locale.NL)}
+                maxLength={number('Max length', 100)}
+                minLength={number('Min length', 0)}
+                name="an-input-name"
+                onBlur={action('On blur')}
+                onChange={({ currentTarget }): void => {
+                    setValue(currentTarget.value);
+                }}
+                onFocus={action('On focus')}
+                type={select('Type', InputType, InputType.TEXT)}
+                value={value}
+                variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
+            />
+        </div>
     );
 };
 
@@ -42,30 +44,32 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
     const [value, setValue] = useState('');
 
     return (
-        <Input
-            adornment={<Icon type={IconType.CURRENCY_EU} />}
-            adornmentPosition={select('Adornment Position', AdornmentPosition, AdornmentPosition.LEFT)}
-            errorMessage={text('Error message', 'Help, something went wrong!')}
-            hasError={boolean('Has error', false)}
-            hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
-            hasTransparentBackground={boolean('Has transparent background', true)}
-            isDisabled={boolean('Is disabled', false)}
-            isRequired={boolean('Is required', false)}
-            isTextarea={boolean('Is textarea', false)}
-            isValid={boolean('Is valid', false)}
-            label={text('Label', 'This is a label')}
-            locale={select('Locale', Locale, Locale.NL)}
-            maxLength={number('Max length', 100)}
-            minLength={number('Min length', 0)}
-            name="an-input-name"
-            onBlur={action('On blur')}
-            onChange={({ currentTarget }): void => {
-                setValue(currentTarget.value);
-            }}
-            type={select('Type', InputType, InputType.TEXT)}
-            value={value}
-            variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
-        />
+        <div style={{ width: '200px' }}>
+            <Input
+                adornment={<Icon type={IconType.CURRENCY_EU} />}
+                adornmentPosition={select('Adornment Position', AdornmentPosition, AdornmentPosition.LEFT)}
+                errorMessage={text('Error message', 'Help, something went wrong!')}
+                hasError={boolean('Has error', false)}
+                hasNegativeAmountColor={boolean('Has Negative Amount Color', true)}
+                hasTransparentBackground={boolean('Has transparent background', true)}
+                isDisabled={boolean('Is disabled', false)}
+                isRequired={boolean('Is required', false)}
+                isTextarea={boolean('Is textarea', false)}
+                isValid={boolean('Is valid', false)}
+                label={text('Label', 'This is a label')}
+                locale={select('Locale', Locale, Locale.NL)}
+                maxLength={number('Max length', 100)}
+                minLength={number('Min length', 0)}
+                name="an-input-name"
+                onBlur={action('On blur')}
+                onChange={({ currentTarget }): void => {
+                    setValue(currentTarget.value);
+                }}
+                type={select('Type', InputType, InputType.TEXT)}
+                value={value}
+                variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
+            />
+        </div>
     );
 };
 
