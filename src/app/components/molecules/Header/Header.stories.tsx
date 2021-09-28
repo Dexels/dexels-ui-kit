@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import Header from './Header';
 
-export default { title: 'organisms/Header' };
+export default { title: 'molecules/Header' };
 
 export const Configurable: FunctionComponent = () => {
     const elevation = select('Elevation', Elevation, Elevation.LEVEL_1);

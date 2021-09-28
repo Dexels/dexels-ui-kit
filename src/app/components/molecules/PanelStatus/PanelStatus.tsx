@@ -15,6 +15,7 @@ export const PanelStatus: FunctionComponent<PanelStatusProps> = ({
     hasFullheightContent,
     hasTitleStatusAppearance,
     iconType,
+    isLoading = false,
     options,
     status,
     title,
@@ -24,6 +25,7 @@ export const PanelStatus: FunctionComponent<PanelStatusProps> = ({
             hasCapitalizedTitle={hasCapitalizedTitle}
             hasTitleStatusAppearance={hasTitleStatusAppearance}
             iconType={iconType}
+            isLoading={isLoading}
             options={options}
             status={status}
             title={title}

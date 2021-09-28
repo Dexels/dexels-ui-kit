@@ -35,6 +35,7 @@ export const Configurable: FunctionComponent = () => {
             iconSave={select('Icon Save', IconType, IconType.CHECK)}
             iconType={select('Icon type', IconType, IconType.FLAG)}
             isDisabled={boolean('Is disabled', false)}
+            isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
@@ -58,6 +59,7 @@ export const ConfigurableIsEditingDefault: FunctionComponent = () => (
         iconType={select('Icon type', IconType, IconType.FLAG)}
         isDisabled={boolean('Is disabled', false)}
         isEditing
+        isLoading={boolean('Is loading', false)}
         isSaving={boolean('Is saving', false)}
         onCancel={action('onCancel')}
         onEdit={action('onEdit')}
@@ -79,6 +81,7 @@ export const ConfigurableNoSaveAction: FunctionComponent = () => (
         iconSave={select('Icon Save', IconType, IconType.CHECK)}
         iconType={select('Icon type', IconType, IconType.FLAG)}
         isDisabled={boolean('Is disabled', false)}
+        isLoading={boolean('Is loading', false)}
         onCancel={action('onCancel')}
         onEdit={action('onEdit')}
         onSave={action('onSave')}
@@ -106,6 +109,7 @@ export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => (
         iconType={select('Icon type', IconType, IconType.FLAG)}
         isDisabled={boolean('Is disabled', false)}
         isEditing={boolean('Is editing', false)}
+        isLoading={boolean('Is loading', false)}
         isSaving={boolean('Is saving', false)}
         onCancel={action('onCancel')}
         onEdit={action('onEdit')}

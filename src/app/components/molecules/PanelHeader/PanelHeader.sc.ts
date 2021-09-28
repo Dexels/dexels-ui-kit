@@ -22,6 +22,30 @@ StyledPanelHeader.defaultProps = {
     theme: themeBasic,
 };
 
+interface LoaderWrapperProps {
+    hasMarginBottom: boolean;
+}
+
+export const LoaderWrapper = styled.div<LoaderWrapperProps>`
+    width: 200px;
+    height: 34px;
+
+    span {
+        width: 100%;
+        height: 90%;
+    }
+
+    ${({ hasMarginBottom, theme }): SimpleInterpolation =>
+        hasMarginBottom &&
+        css`
+            margin: ${theme.spacing(0, 0, 1, 0)};
+        `}
+`;
+
+LoaderWrapper.defaultProps = {
+    theme: themeBasic,
+};
+
 interface TitleProps {
     isReversed: boolean;
     status: Status;
