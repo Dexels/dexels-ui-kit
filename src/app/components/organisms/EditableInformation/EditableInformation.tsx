@@ -346,6 +346,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         <PanelStatus
             hasTitleStatusAppearance={Boolean(status)}
             iconType={iconType}
+            isLoading={isLoading}
             status={status || getStatus(hasError || (isBeingEdited && !isValidInputData), isLoading, isDisabled)}
             title={title}
         >
