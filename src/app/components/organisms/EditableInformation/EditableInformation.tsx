@@ -321,7 +321,8 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             iconEdit={iconEdit}
             iconSave={iconSave}
             iconType={iconType}
-            isDisabled={isButtonDisabled || isDisabled || isLoading}
+            isButtonDisabled={isButtonDisabled}
+            isDisabled={isDisabled || isLoading}
             isEditing={isBeingEdited}
             isLoading={isLoading}
             isSaving={isSaving}
@@ -346,6 +347,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         <PanelStatus
             hasTitleStatusAppearance={Boolean(status)}
             iconType={iconType}
+            isLoading={isLoading}
             status={status || getStatus(hasError || (isBeingEdited && !isValidInputData), isLoading, isDisabled)}
             title={title}
         >
