@@ -103,6 +103,7 @@ export enum IconType {
     CAMERA = 'CAMERA',
     CARDS = 'CARDS',
     CHANGE = 'CHANGE',
+    CHANGE_REVERSE = 'CHANGE_REVERSE',
     CHART = 'CHART',
     CHECK = 'CHECK',
     CHECKBOXCHECK = 'CHECKBOXCHECK',

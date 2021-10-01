@@ -7,10 +7,11 @@ export const IconCustomizable: FunctionComponent<IconCustomizableProps> = ({
     iconSize,
     iconType,
     isDisabled = false,
+    isRotating = false,
     className,
 }) => (
     <IconWrapper className={className} iconColor={iconColor} iconSize={iconSize} isDisabled={isDisabled}>
-        <StyledIcon type={iconType} />
+        <StyledIcon iconSize={iconSize} isRotating={isRotating} type={iconType} />
     </IconWrapper>
 );
 

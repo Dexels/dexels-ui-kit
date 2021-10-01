@@ -77,7 +77,7 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
 
             {isLoading && (
                 <IconWrapper isLoading={isLoading}>
-                    <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CHANGE} />
+                    <IconCustomizable iconSize={IconCustomizableSize.SIZE24} iconType={IconType.CHANGE} isRotating />
                 </IconWrapper>
             )}
 

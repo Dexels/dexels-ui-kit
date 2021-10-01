@@ -18,6 +18,7 @@ export const Configurable: FunctionComponent = () => {
             iconSize={select('IconCustomizable Size', IconCustomizableSize, IconCustomizableSize.SIZE48)}
             iconType={select('IconCustomizable Type', IconType, IconType.ARROWRIGHT)}
             isDisabled={boolean('Is disabled', false)}
+            isRotating={boolean('Is rotating', false)}
         />
     );
 };
