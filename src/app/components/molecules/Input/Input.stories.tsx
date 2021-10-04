@@ -4,14 +4,19 @@ import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from './Input';
+import styled from 'styled-components';
 
 export default { title: 'molecules/Input' };
+
+export const Wrapper = styled.div`
+    width: 200px;
+`;
 
 export const Configurable: FunctionComponent = () => {
     const [value, setValue] = useState('');
 
     return (
-        <div style={{ width: '200px' }}>
+        <Wrapper>
             <Input
                 autoFocus={boolean('Auto focus', true)}
                 errorMessage={text('Error message', 'Help, something went wrong!')}
@@ -36,7 +41,7 @@ export const Configurable: FunctionComponent = () => {
                 value={value}
                 variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
             />
-        </div>
+        </Wrapper>
     );
 };
 
@@ -44,7 +49,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
     const [value, setValue] = useState('');
 
     return (
-        <div style={{ width: '200px' }}>
+        <Wrapper>
             <Input
                 adornment={<Icon type={IconType.CURRENCY_EU} />}
                 adornmentPosition={select('Adornment Position', AdornmentPosition, AdornmentPosition.LEFT)}
@@ -69,7 +74,7 @@ export const ConfigurableWithAdornment: FunctionComponent = () => {
                 value={value}
                 variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
             />
-        </div>
+        </Wrapper>
     );
 };
 
