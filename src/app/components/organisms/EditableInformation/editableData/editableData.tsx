@@ -61,12 +61,15 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                 isFocusedInputSet = true;
             }
 
-            if (!isBeingEdited || !('name' in dataInstance) || ('name' in dataInstance && !isEditable)) {
+            if (
+                dataInstance.component === EditableDataComponent.IMMUTABLE ||
+                !isBeingEdited ||
+                !('name' in dataInstance) ||
+                ('name' in dataInstance && !isEditable)
+            ) {
                 return {
                     isDisabled,
-                    isTextArea:
-                        dataInstance.component === EditableDataComponent.TEXTAREA ||
-                        dataInstance.component === EditableDataComponent.TEXTAREA_READONLY,
+                    isTextArea: dataInstance.component === EditableDataComponent.TEXTAREA,
                     label,
                     value: getValueOfEditableDataComponent(dataInstance, dateFormat, locale, localeCurrency),
                 };
