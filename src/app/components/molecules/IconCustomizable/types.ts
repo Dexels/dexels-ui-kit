@@ -33,4 +33,5 @@ export interface IconCustomizableProps {
     iconSize: IconCustomizableSize;
     iconType: IconType;
     isDisabled?: boolean;
+    isRotating?: boolean;
 }

@@ -66,6 +66,7 @@ export const isValidEmail = (value: string): boolean => {
 };
 
 export const isValidPhoneNumber = (value: string): boolean => {
+    // This might still be used in the future, so leave it here
     // const nlPhoneRegExp = /^(\+(([0-9]){1,2})[-. ])?((((([0-9]){2,4})[-. ]){1,2}([0-9]{4,8}))|([0-9]{10}))$/;
 
     const phoneRegExp = /^(?=.{0,32}$)[0-9]+[\s]{0,1}([-][\s]{0,1}[0-9]+)?([\s]{0,1}[0-9]+)*$/;
@@ -88,8 +89,10 @@ export const isValidNumber = (value: string, allowDecimals = false, locale?: Loc
 export const isValidMoney = (value: string, locale?: Locale): boolean => isValidNumber(value, true, locale);
 
 export const isValidURI = (value: string): boolean => {
+    // https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url
     // eslint-disable-next-line max-len
-    const uriRegex = /^((ftp|http[s]?):\/\/)?(www\.)([a-z0-9]+)\.[a-z]{2,5}(\.[a-z]{2})?$/;
+    const uriRegex =
+        /^(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
 
     return uriRegex.test(value);
 };

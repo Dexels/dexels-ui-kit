@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'SL-Small-Icons';
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?884gtl');
-    src: url('~fonts/iconfont/SL-Small-Icons.eot?884gtl#iefix') format('embedded-opentype'),
-        url('~fonts/iconfont/SL-Small-Icons.ttf?884gtl') format('truetype'),
-        url('~fonts/iconfont/SL-Small-Icons.woff?884gtl') format('woff'),
-        url('~fonts/iconfont/SL-Small-Icons.svg?884gtl#SL-Small-Icons') format('svg');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?nly3or');
+    src: url('~fonts/iconfont/SL-Small-Icons.eot?nly3or#iefix') format('embedded-opentype'),
+        url('~fonts/iconfont/SL-Small-Icons.ttf?nly3or') format('truetype'),
+        url('~fonts/iconfont/SL-Small-Icons.woff?nly3or') format('woff'),
+        url('~fonts/iconfont/SL-Small-Icons.svg?nly3or#SL-Small-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -26,6 +26,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ICON-CHANGE_REVERSE:before {
+    content: '\ea0c';
+}
 .ICON-USERDOUBLEADD:before {
     content: '\ea09';
 }
