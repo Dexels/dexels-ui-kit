@@ -2,7 +2,9 @@ import React, { FunctionComponent, ReactNode, useCallback } from 'react';
 import styled, { DefaultTheme, StyledComponent } from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-const StyledLink = styled.span``;
+const StyledLink = styled.span`
+    text-decoration: none;
+`;
 
 export interface LinkProps {
     children: ReactNode;

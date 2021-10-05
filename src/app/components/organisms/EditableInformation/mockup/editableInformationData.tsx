@@ -1,6 +1,5 @@
 import {
     CheckboxDataProps,
-    DatePickerDataProps,
     EditableDatePickerDataProps,
     EditableDropdownDataProps,
     EditableDropdownMultiSelectDataProps,
@@ -12,16 +11,24 @@ import {
     EditableInputNumberDataProps,
     EditableScorePickerDataProps,
     EditableTextareaDataProps,
-    EditableTextareaReadOnlyDataProps,
     EditableTimePickerDataProps,
-    TimePickerDataProps,
+    ImmutableDataProps,
     ValueTypes,
 } from '../types';
 import { EditableDataComponent, IconType, InputType } from '../../../../types';
 import { Fruit, fruits } from './fruits';
+import { action } from '@storybook/addon-actions';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
+import Link from '../../../atoms/Link/Link';
 import moment from 'moment';
+import React from 'react';
+import styled from 'styled-components';
+import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
+
+const LinkWrapper = styled.div`
+    width: fit-content;
+`;
 
 export const updateValuesOfData = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
@@ -44,42 +51,34 @@ export const updateValuesOfData = <T extends DropdownSelectOption, U extends Dro
 export const editableInformationData = <T extends Fruit, U extends Fruit>(): EditableInformationData<T, U> => {
     const result: EditableInformationData<T, U> = [];
 
-    result.push({
-        component: EditableDataComponent.INPUT,
-        isDisabled: false,
-        isEditable: true,
-        isRequired: true,
-        label: 'Website',
-        name: 'Website',
-        type: InputType.URI,
-        value: 'www.google.com',
-    } as EditableInputDataProps);
+    result.push(
+        {
+            component: EditableDataComponent.IMMUTABLE,
+            isDisabled: false,
+            isRequired: true,
+            label: 'Website',
+            name: 'ImmutableWebsite',
+            type: InputType.URI,
+            value: (
+                <LinkWrapper>
+                    <Link href={'https://dashboard.sportsads.nl/user/login'} onClick={action('On click')}>
+                        <TextWithOptionalIcon iconType={IconType.ADVERTISEMENT}>{'Club.ads'}</TextWithOptionalIcon>
+                    </Link>
+                </LinkWrapper>
+            ),
+        } as ImmutableDataProps,
 
-    result.push({
-        component: EditableDataComponent.DATEPICKER,
-        isEditable: true,
-        isVisibleOnlyOnEdit: true,
-        label: 'NullDate',
-        name: 'NullDate',
-        value: null,
-    } as DatePickerDataProps);
-
-    result.push({
-        component: EditableDataComponent.TIMEPICKER,
-        isEditable: false,
-        label: 'Time',
-        name: 'Time',
-        value: ['12', '00'],
-    } as TimePickerDataProps);
-
-    result.push({
-        component: EditableDataComponent.CHECKBOX,
-        isEditable: false,
-        label: 'Checkbox 1',
-        name: 'Checkbox',
-        textValue: 'Yes',
-        value: true,
-    } as CheckboxDataProps);
+        {
+            component: EditableDataComponent.INPUT,
+            isDisabled: false,
+            isEditable: true,
+            isRequired: true,
+            label: 'Website',
+            name: 'Website',
+            type: InputType.URI,
+            value: 'www.google.com',
+        } as EditableInputDataProps
+    );
 
     result.push({
         component: EditableDataComponent.INPUTNUMBER,
@@ -91,18 +90,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         name: 'Number',
 
         value: 0,
-    } as EditableInputNumberDataProps);
-
-    result.push({
-        component: EditableDataComponent.INPUTNUMBER,
-        isDisabled: false,
-        isEditable: true,
-        isRequired: true,
-        label: 'BadNumber',
-        min: 0,
-        name: 'BadNumber',
-
-        value: -1,
     } as EditableInputNumberDataProps);
 
     result.push({
@@ -147,11 +134,12 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     } as EditableTextareaDataProps);
 
     result.push({
-        component: EditableDataComponent.TEXTAREA_READONLY,
+        component: EditableDataComponent.IMMUTABLE,
         label: 'Textarea ReactNode',
         name: 'NonEditableTextAreaReactNode',
-        value: 'Bondssport:<br/>- Voetbal - Algemeen/Veld<br/>Verenigingssport:<br/>- Balgooien - Maandag/ACTIE<br/><br/>Er is/zijn één of meer verenigingssporten vastgelegd.<br/><br/>Voormalige of huidige vereniging:<br/>- Spero (BBKT07Z)<br/>- Relatiecode: HDHDHDGU (Niet gevonden)<br/><br/>Aangevraagd lidsoort: Bondslid<br/><br/>Aangevraagd lidsoort: Verenigingslid',
-    } as EditableTextareaReadOnlyDataProps);
+        // eslint-disable-next-line react/no-danger
+        value: <span dangerouslySetInnerHTML={{ __html: 'text with html tags <br/> new line for example' }} />,
+    } as ImmutableDataProps);
 
     result.push({
         component: EditableDataComponent.INPUTCURRENCY,
@@ -184,17 +172,6 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         name: 'EditableCurrencyComma',
 
         value: '451,123.87',
-    } as EditableInputCurrencyDataProps);
-
-    result.push({
-        component: EditableDataComponent.INPUTCURRENCY,
-        isDisabled: false,
-        isEditable: true,
-        isRequired: true,
-        label: 'NegativeCurrency',
-        name: 'NegativeCurrency',
-
-        value: '-108',
     } as EditableInputCurrencyDataProps);
 
     result.push({

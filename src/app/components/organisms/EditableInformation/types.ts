@@ -150,22 +150,12 @@ export interface TextareaDataProps extends BaseDataProps {
     value: InputProps['value'];
 }
 
-export interface TextareaReadOnlyDataProps extends BaseDataProps {
-    component: EditableDataComponent.TEXTAREA_READONLY;
-    value: InputProps['value'];
-}
-
 export interface EditableTextareaDataProps extends TextareaDataProps {
     maxLength?: InputProps['maxLength'];
     name: InputProps['name'];
     onBlur?: InputProps['onBlur'];
     onFocus?: InputProps['onFocus'];
     onKeyDown?: InputProps['onKeyDown'];
-    placeholder?: InputProps['label'];
-}
-
-export interface EditableTextareaReadOnlyDataProps extends TextareaReadOnlyDataProps {
-    name: InputProps['name'];
     placeholder?: InputProps['label'];
 }
 
@@ -185,6 +175,11 @@ export interface EditableInputCurrencyDataProps extends InputCurrencyDataProps {
     placeholder?: InputCurrencyProps['label'];
 }
 
+export interface ImmutableDataProps extends BaseDataProps {
+    component: EditableDataComponent.IMMUTABLE;
+    value: string | number | undefined | null | ReactNode;
+}
+
 export type EditableInformationDataType<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> =
     | CheckboxDataProps
     | DatePickerDataProps
@@ -202,7 +197,7 @@ export type EditableInformationDataType<T extends DropdownSelectOption, U extend
     | EditableTimePickerDataProps
     | EditableScorePickerDataProps
     | EditableTextareaDataProps
-    | EditableTextareaReadOnlyDataProps
+    | ImmutableDataProps
     | InputCurrencyDataProps
     | InputDataProps
     | InputNumberDataProps
@@ -225,7 +220,6 @@ export type ValueTypes<T extends DropdownSelectOption, U extends DropdownMultiSe
     | EditableInputNumberDataProps['value']
     | EditableScorePickerDataProps['value']
     | EditableTextareaDataProps['value']
-    | EditableTextareaReadOnlyDataProps['value']
     | EditableTimePickerDataProps['value'];
 
 export interface DatePickerFocuses {

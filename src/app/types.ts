@@ -57,12 +57,12 @@ export enum EditableDataComponent {
     DROPDOWN = 'Dropdown',
     DROPDOWNMULTISELECT = 'DropdownMultiSelect',
     DROPDOWNSELECT = 'DropdownSelect',
+    IMMUTABLE = 'Immutable',
     INPUT = 'Input',
     INPUTCURRENCY = 'InputCurrency',
     INPUTNUMBER = 'InputNumber',
     SCOREPICKER = 'ScorePicker',
     TEXTAREA = 'Textarea',
-    TEXTAREA_READONLY = 'TextareaReadOnly',
     TIMEPICKER = 'TimePicker',
 }
 
