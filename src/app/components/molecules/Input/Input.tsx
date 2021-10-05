@@ -9,6 +9,7 @@ import {
     isValidInputTelephone,
     isValidInputText,
     isValidInputURI,
+    isValidNumber,
 } from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
@@ -150,6 +151,13 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             let newValue = event.currentTarget.value;
+            let hasChanges = true;
+
+            // don't allow typing letters, Firefox and Safari ignore the input type
+            if (!isEmpty(newValue) && type === InputType.NUMBER && !isValidNumber(newValue)) {
+                newValue = inputDisplayValue;
+                hasChanges = false;
+            }
 
             if (type !== InputType.CURRENCY) {
                 // for currency no manipulation of the value before loosing focus
@@ -166,7 +174,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 setInputValue(newValue);
             }
 
-            if (onChange && (type !== InputType.CURRENCY || isOnChangeRequired)) {
+            if (hasChanges && onChange && (type !== InputType.CURRENCY || isOnChangeRequired)) {
                 onChange({
                     ...event,
                     currentTarget: {
@@ -176,7 +184,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 } as ChangeEvent<HTMLInputElement>);
             }
         },
-        [onChange]
+        [onChange, inputDisplayValue, isOnChangeRequired]
     );
 
     const onFocusCallback = useCallback(

@@ -29,6 +29,7 @@ export const Configurable: FunctionComponent = () => {
             name="an-input-name"
             onBlur={action('On blur')}
             onChange={({ currentTarget }): void => {
+                console.log(currentTarget);
                 setValue(currentTarget.value);
             }}
             onFocus={action('On focus')}
