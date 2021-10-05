@@ -64,8 +64,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     const onChangeCallback = (newData: unknown) => {
         // eslint-disable-next-line no-console
         console.log('onChangeCallback', newData);
-
-        setUpdatedData(updateValuesOfData(updatedData, newData as { [key: string]: ValueTypes<T, U> }));
     };
 
     const onValidationCallback = (isValidData: boolean) => {

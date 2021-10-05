@@ -15,3 +15,9 @@ export const Configurable: FunctionComponent = () => (
     </Link>
 );
 /* eslint-enable */
+
+export const ConfigurableStyledLink: FunctionComponent = () => (
+    <Link hasHoverEffect href={text('Href', 'https://www.google.com')} onClick={action('On click')}>
+        {text('Link text', 'www.google.com')}
+    </Link>
+);

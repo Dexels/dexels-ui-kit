@@ -58,6 +58,10 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
             ? (element as DropdownDataProps | CheckboxDataProps).textValue
             : undefined;
 
+    if (component === EditableDataComponent.IMMUTABLE) {
+        return value;
+    }
+
     // a numeric value is allowed to be 0
     if (Number.isNaN(value) && !value) {
         return '-';
@@ -90,17 +94,6 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
 
     if (component === EditableDataComponent.TIMEPICKER && Array.isArray(value)) {
         return value[0] && value[1] ? `${value[0] as string}:${value[1] as string}` : '-';
-    }
-
-    if (component === EditableDataComponent.TEXTAREA_READONLY && value) {
-        return (
-            <span
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                    __html: (value as string) || '',
-                }}
-            />
-        );
     }
 
     return textValue || value;

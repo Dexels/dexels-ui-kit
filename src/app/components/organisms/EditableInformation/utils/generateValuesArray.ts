@@ -8,7 +8,7 @@ export const generateValuesArray = <T extends DropdownSelectOption, U extends Dr
     data: EditableInformationData<T, U>
 ): EditableDataProps<T, U>['values'] =>
     data.reduce((accumulator, dataInstance) => {
-        if ('name' in dataInstance) {
+        if (dataInstance.component !== EditableDataComponent.IMMUTABLE && 'name' in dataInstance) {
             // for dropdown Select we need to keep 2 values: text value and Id.
             if (dataInstance.component === EditableDataComponent.DROPDOWNSELECT) {
                 return {
@@ -32,13 +32,6 @@ export const generateValuesArray = <T extends DropdownSelectOption, U extends Dr
                     [dataInstance.name]: dataInstance.options,
                 };
             }
-
-            // if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
-            //     return {
-            //         ...accumulator,
-            //         [dataInstance.name]: toMoneyValue(toCents(dataInstance.value || ''), locale, true).toString(),
-            //     };
-            // }
 
             return {
                 ...accumulator,
