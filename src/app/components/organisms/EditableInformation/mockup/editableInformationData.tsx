@@ -1,3 +1,4 @@
+import { ButtonSize, ButtonVariant, EditableDataComponent, IconType, InputType } from '../../../../types';
 import {
     CheckboxDataProps,
     EditableDatePickerDataProps,
@@ -15,13 +16,14 @@ import {
     ImmutableDataProps,
     ValueTypes,
 } from '../types';
-import { EditableDataComponent, IconType, InputType } from '../../../../types';
 import { Fruit, fruits } from './fruits';
 import { action } from '@storybook/addon-actions';
+import Button from '../../../molecules/Button/Button';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
 import Link from '../../../atoms/Link/Link';
 import moment from 'moment';
+import { openUrl } from '../../../../../lib';
 import React from 'react';
 import styled from 'styled-components';
 import TextWithOptionalIcon from '../../../molecules/TextWithOptionalIcon/TextWithOptionalIcon';
@@ -55,8 +57,7 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         {
             component: EditableDataComponent.IMMUTABLE,
             isDisabled: false,
-            isRequired: true,
-            label: 'Website',
+            label: 'Website with link',
             name: 'ImmutableWebsite',
             type: InputType.URI,
             value: (
@@ -67,7 +68,24 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
                 </LinkWrapper>
             ),
         } as ImmutableDataProps,
-
+        {
+            component: EditableDataComponent.IMMUTABLE,
+            isDisabled: false,
+            label: 'Website with button',
+            name: 'ImmutableWebsite2',
+            type: InputType.URI,
+            value: (
+                <Button
+                    hasNoPadding
+                    iconType={IconType.ADVERTISEMENT}
+                    onClick={() => openUrl('https://dashboard.sportsads.nl/user/login')}
+                    size={ButtonSize.SMALL}
+                    variant={ButtonVariant.TEXT_ONLY}
+                >
+                    {'Club.ads'}
+                </Button>
+            ),
+        } as ImmutableDataProps,
         {
             component: EditableDataComponent.INPUT,
             isDisabled: false,
