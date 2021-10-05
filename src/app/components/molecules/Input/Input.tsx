@@ -156,7 +156,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             if (type === InputType.NUMBER) {
                 const regex = RegExp(/[0-9]+/g);
 
-                if (!regex.test(newValue)) {
+                if (!isEmpty(newValue) && !regex.test(newValue)) {
                     newValue = inputDisplayValue;
                     hasChanges = false;
                 }
