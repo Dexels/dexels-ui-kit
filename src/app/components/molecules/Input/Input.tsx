@@ -150,6 +150,17 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const onChangeCallback = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             let newValue = event.currentTarget.value;
+            let hasChanges = true;
+
+            // don't allow typing letters, Firefox and Safari ignore the input type
+            if (type === InputType.NUMBER) {
+                const regex = RegExp(/[0-9]+/g);
+
+                if (!regex.test(newValue)) {
+                    newValue = inputDisplayValue;
+                    hasChanges = false;
+                }
+            }
 
             if (type !== InputType.CURRENCY) {
                 // for currency no manipulation of the value before loosing focus
@@ -166,7 +177,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 setInputValue(newValue);
             }
 
-            if (onChange && (type !== InputType.CURRENCY || isOnChangeRequired)) {
+            if (hasChanges && onChange && (type !== InputType.CURRENCY || isOnChangeRequired)) {
                 onChange({
                     ...event,
                     currentTarget: {
@@ -176,7 +187,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 } as ChangeEvent<HTMLInputElement>);
             }
         },
-        [onChange]
+        [onChange, inputDisplayValue, isOnChangeRequired]
     );
 
     const onFocusCallback = useCallback(
