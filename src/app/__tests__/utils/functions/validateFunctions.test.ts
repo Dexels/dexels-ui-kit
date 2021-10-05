@@ -71,8 +71,9 @@ describe('test validating functions', () => {
         expect(isValidURI('www.google.com')).toBe(true);
         expect(isValidURI('http://www.google.com')).toBe(true);
         expect(isValidURI('https://www.google.com')).toBe(true);
-        expect(isValidURI('http://google.com')).toBe(false);
+        expect(isValidURI('http://google.com')).toBe(true);
         expect(isValidURI('google.com')).toBe(false);
         expect(isValidURI('www.google.co.uk')).toBe(true);
+        expect(isValidURI('https://dashboard.sportsads.nl/user/login')).toBe(true);
     });
 });
