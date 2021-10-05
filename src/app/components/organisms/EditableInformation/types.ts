@@ -177,7 +177,7 @@ export interface EditableInputCurrencyDataProps extends InputCurrencyDataProps {
 
 export interface ImmutableDataProps extends BaseDataProps {
     component: EditableDataComponent.IMMUTABLE;
-    value: string | number | undefined | null | ReactNode;
+    value: ReactNode | null;
 }
 
 export type EditableInformationDataType<T extends DropdownSelectOption, U extends DropdownMultiSelectOption> =
