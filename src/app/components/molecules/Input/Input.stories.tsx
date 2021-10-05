@@ -32,7 +32,7 @@ export const Configurable: FunctionComponent = () => {
                 setValue(currentTarget.value);
             }}
             onFocus={action('On focus')}
-            type={select('Type', InputType, InputType.NUMBER)}
+            type={select('Type', InputType, InputType.TEXT)}
             value={value}
             variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
         />
