@@ -4,6 +4,7 @@ import React, { FunctionComponent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Icon } from '../../atoms/Icon/Icon';
 import Input from './Input';
+import { openUrl } from '../../../../lib';
 
 export default { title: 'molecules/Input' };
 
@@ -98,6 +99,20 @@ export const ConfigurableClickable: FunctionComponent = () => {
         />
     );
 };
+
+export const ConfigurableClickableLink: FunctionComponent = () => (
+    <Input
+        hasTransparentBackground={boolean('Has transparent background', true)}
+        isDisabled={boolean('Is disabled', false)}
+        isValid={boolean('Is valid', false)}
+        label={text('Label', 'This is a label')}
+        name="an-input-name-link"
+        onClick={() => openUrl('www.google.com')}
+        type={InputType.URI}
+        value={'www.google.com'}
+        variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
+    />
+);
 
 export const ConfigurableMinNumberAndRequired: FunctionComponent = () => {
     const [value, setValue] = useState('-1');

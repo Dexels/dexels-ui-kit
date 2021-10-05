@@ -1,13 +1,11 @@
-import React, { FunctionComponent, ReactNode, useCallback } from 'react';
-import styled, { DefaultTheme, StyledComponent } from 'styled-components';
+import { DefaultTheme, StyledComponent } from 'styled-components';
+import React, { FunctionComponent, ReactNode, useCallback, useState } from 'react';
+import { StyledLink, StyledLinkText } from './Link.sc';
 import { useHistory } from 'react-router-dom';
-
-const StyledLink = styled.span`
-    text-decoration: none;
-`;
 
 export interface LinkProps {
     children: ReactNode;
+    isStyled?: boolean;
     onClick?: () => void;
 }
 
@@ -24,7 +22,9 @@ export interface RouterLinkProps extends LinkProps {
 }
 
 const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props) => {
-    const { children, onClick } = props;
+    const [isFocused, setIsFocused] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const { children, isStyled, onClick } = props;
     const history = useHistory();
     // eslint-disable-next-line react/destructuring-assignment
     const route = 'to' in props ? props.to : '';
@@ -37,12 +37,29 @@ const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props) => {
         history.push(route);
     }, [route, onClick]);
 
+    const onFocusCallback = useCallback(() => {
+        setIsFocused(true);
+    }, []);
+
+    const onHoveredCallback = useCallback(() => {
+        setIsHovered(!isHovered);
+    }, [isHovered]);
+
     if ('to' in props) {
         const { as = 'button' } = props;
 
         return (
             <StyledLink as={as} onClick={onClickCallback}>
-                {children}
+                <StyledLinkText
+                    isFocused={isFocused}
+                    isHovered={isHovered}
+                    isStyled={isStyled || false}
+                    onFocus={onFocusCallback}
+                    onMouseEnter={onHoveredCallback}
+                    onMouseLeave={onHoveredCallback}
+                >
+                    {children}
+                </StyledLinkText>
             </StyledLink>
         );
     }
@@ -51,7 +68,16 @@ const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props) => {
 
     return (
         <StyledLink as={as} href={href} rel={rel} target={target}>
-            {children}
+            <StyledLinkText
+                isFocused={isFocused}
+                isHovered={isHovered}
+                isStyled={isStyled || false}
+                onFocus={onFocusCallback}
+                onMouseEnter={onHoveredCallback}
+                onMouseLeave={onHoveredCallback}
+            >
+                {children}
+            </StyledLinkText>
         </StyledLink>
     );
 };
