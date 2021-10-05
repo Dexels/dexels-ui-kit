@@ -1,5 +1,4 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
-import { getBorderColor } from '../../../styles/mixins/getBorderColor';
 import { StyledInputBaseProps } from '../../molecules/Input/Input.sc';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -13,21 +12,13 @@ interface StyledLinkTextProps extends Pick<StyledInputBaseProps, 'isFocused' | '
 
 export const StyledLinkText = styled.span<StyledLinkTextProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
+    color: ${({ theme }): string => theme.colorText.primary};
 
     ${({ isFocused, isHovered, hasHoverEffect, theme }): SimpleInterpolation =>
         hasHoverEffect &&
+        (isFocused || isHovered) &&
         css`
-            /* stylelint-disable indentation */
-            color: ${getBorderColor({
-                defaultColor: theme.colorPrimary,
-                hasError: false,
-                isDisabled: false,
-                isFocused,
-                isHovered,
-                isValid: false,
-                theme,
-            })};
-            /* stylelint-enable indentation */
+            color: ${theme.colorSecondary};
         `}
 `;
 
