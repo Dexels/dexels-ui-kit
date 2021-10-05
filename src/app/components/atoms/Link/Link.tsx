@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 export interface LinkProps {
     children: ReactNode;
-    isStyled?: boolean;
+    hasHoverEffect?: boolean;
     onClick?: () => void;
 }
 
@@ -24,7 +24,7 @@ export interface RouterLinkProps extends LinkProps {
 const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const { children, isStyled, onClick } = props;
+    const { children, hasHoverEffect, onClick } = props;
     const history = useHistory();
     // eslint-disable-next-line react/destructuring-assignment
     const route = 'to' in props ? props.to : '';
@@ -51,9 +51,9 @@ const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props) => {
         return (
             <StyledLink as={as} onClick={onClickCallback}>
                 <StyledLinkText
+                    hasHoverEffect={hasHoverEffect || false}
                     isFocused={isFocused}
                     isHovered={isHovered}
-                    isStyled={isStyled || false}
                     onFocus={onFocusCallback}
                     onMouseEnter={onHoveredCallback}
                     onMouseLeave={onHoveredCallback}
@@ -69,9 +69,9 @@ const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props) => {
     return (
         <StyledLink as={as} href={href} rel={rel} target={target}>
             <StyledLinkText
+                hasHoverEffect={hasHoverEffect || false}
                 isFocused={isFocused}
                 isHovered={isHovered}
-                isStyled={isStyled || false}
                 onFocus={onFocusCallback}
                 onMouseEnter={onHoveredCallback}
                 onMouseLeave={onHoveredCallback}

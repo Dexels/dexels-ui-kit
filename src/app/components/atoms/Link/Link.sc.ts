@@ -8,14 +8,14 @@ export const StyledLink = styled.span`
 `;
 
 interface StyledLinkTextProps extends Pick<StyledInputBaseProps, 'isFocused' | 'isHovered'> {
-    isStyled: boolean;
+    hasHoverEffect: boolean;
 }
 
 export const StyledLinkText = styled.span<StyledLinkTextProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body1)}
 
-    ${({ isFocused, isHovered, isStyled, theme }): SimpleInterpolation =>
-        isStyled &&
+    ${({ isFocused, isHovered, hasHoverEffect, theme }): SimpleInterpolation =>
+        hasHoverEffect &&
         css`
             /* stylelint-disable indentation */
             color: ${getBorderColor({
