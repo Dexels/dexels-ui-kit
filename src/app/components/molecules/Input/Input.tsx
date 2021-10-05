@@ -9,6 +9,7 @@ import {
     isValidInputTelephone,
     isValidInputText,
     isValidInputURI,
+    isValidNumber,
 } from '../../../utils/functions/validateFunctions';
 import React, {
     ChangeEvent,
@@ -153,13 +154,9 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             let hasChanges = true;
 
             // don't allow typing letters, Firefox and Safari ignore the input type
-            if (type === InputType.NUMBER) {
-                const regex = RegExp(/[0-9]+/g);
-
-                if (!isEmpty(newValue) && !regex.test(newValue)) {
-                    newValue = inputDisplayValue;
-                    hasChanges = false;
-                }
+            if (!isEmpty(newValue) && type === InputType.NUMBER && !isValidNumber(newValue)) {
+                newValue = inputDisplayValue;
+                hasChanges = false;
             }
 
             if (type !== InputType.CURRENCY) {
