@@ -130,6 +130,7 @@ export { Card, CardProps } from '../app/components/atoms/Card/Card';
 export { ErrorMessage, ErrorMessageProps } from '../app/components/atoms/ErrorMessage/ErrorMessage';
 export { Icon, IconProps } from '../app/components/atoms/Icon/Icon';
 export { Label, LabelProps } from '../app/components/atoms/Label/Label';
+export { Link, LinkProps, NativeLinkProps, RouterLinkProps } from '../app/components/atoms/Link/Link';
 export { SelectOption, SelectOptionProps } from '../app/components/atoms/SelectOption/SelectOption';
 export { StatusIndicator, StatusIndicatorProps } from '../app/components/atoms/StatusIndicator/StatusIndicator';
 

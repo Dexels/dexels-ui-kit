@@ -21,7 +21,7 @@ export interface RouterLinkProps extends LinkProps {
     to: string;
 }
 
-const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props) => {
+export const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const { children, hasHoverEffect, onClick } = props;
