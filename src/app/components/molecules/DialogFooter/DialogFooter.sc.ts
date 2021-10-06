@@ -7,7 +7,7 @@ export const StyledDialogFooter = styled.footer`
     ${setBoxSizing()}
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: flex-end;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
     background-color: ${({ theme }): string => theme.shades.seven};
