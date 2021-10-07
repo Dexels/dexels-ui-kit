@@ -1,6 +1,6 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
-import { isEmpty } from '../../../../lib';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import { Theme } from '../../../types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
