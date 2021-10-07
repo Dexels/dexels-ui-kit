@@ -21,16 +21,16 @@ interface ItemsProps {
 }
 
 const Item: FunctionComponent<ItemsProps> = ({
-    children,
+    children = undefined,
     exact = false,
     hasChildren = false,
-    iconType,
+    iconType = undefined,
     isDisabled = false,
     isVisible = true,
     isOpen = false,
     isParent = false,
-    onClick,
-    path,
+    onClick = undefined,
+    path = undefined,
 }) =>
     isVisible ? (
         <StyledItem hasChildren={hasChildren} isDisabled={isDisabled} isParent={isParent}>
