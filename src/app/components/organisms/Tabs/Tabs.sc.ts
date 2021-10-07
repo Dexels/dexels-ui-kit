@@ -1,5 +1,6 @@
 import { rippleEffect, rippleEffectInit, rippleEffectReset } from '../../../styles/mixins/rippleEffect';
 import styled, { css, FlattenSimpleInterpolation, SimpleInterpolation } from 'styled-components';
+import { isEmpty } from '../../../utils/functions/validateFunctions';
 import { Theme } from '../../../types';
 import { themeBasic } from '../../../styles/theming/themes/basic';
 
@@ -123,8 +124,18 @@ TabHeader.defaultProps = {
     theme: themeBasic,
 };
 
-export const TabPanel = styled.div`
+export interface TabbPanelProps {
+    padding: { bottom: number; left: number; right: number; top: number };
+}
+
+export const TabPanel = styled.div<TabbPanelProps>`
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().body2)}
+
+    ${({ padding }): SimpleInterpolation =>
+        !isEmpty(padding) &&
+        css`
+            padding: ${padding.top}px ${padding.left}px ${padding.bottom}px ${padding.right}px;
+        `}
 `;
 
 TabPanel.defaultProps = {

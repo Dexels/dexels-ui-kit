@@ -5,6 +5,7 @@ import { isEmpty } from '../../../utils/functions/validateFunctions';
 export interface Tab {
     content: ReactNode;
     isDisabled?: boolean;
+    padding?: { bottom: number; left: number; right: number; top: number };
     title: ReactNode;
 }
 
@@ -87,7 +88,12 @@ export const Tabs: FunctionComponent<TabsProps> = ({
                     />
                 )}
             </TabHeaders>
-            {localTabs[activeTabIndex] && <TabPanel>{localTabs[activeTabIndex].content}</TabPanel>}
+            {localTabs[activeTabIndex] && (
+                // eslint-disable-next-line object-property-newline
+                <TabPanel padding={localTabs[activeTabIndex].padding || { bottom: 0, left: 0, right: 0, top: 0 }}>
+                    {localTabs[activeTabIndex].content}
+                </TabPanel>
+            )}
         </StyledTabs>
     );
 };
