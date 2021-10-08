@@ -36,7 +36,9 @@ export const Configurable: FunctionComponent = () => {
             buttonText={text('Button text', 'Choose a file')}
             errors={error}
             fileTypes={[fileTypes]}
+            isDescriptionRequired={boolean('Is Description required', false)}
             isLoading={boolean('Is loading', false)}
+            isNameRequired={boolean('Is Name required', false)}
             labelInputDescription={text('Label input description', 'Add description (optional)')}
             labelInputName={text('Label input name', 'Add name (optional)')}
             maxFileSize={maxFileSize}

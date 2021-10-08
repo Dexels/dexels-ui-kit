@@ -23,7 +23,9 @@ export interface FileUploaderProps {
     errors?: ReactNode;
     fileNameLength?: number;
     fileTypes: FileTypes[];
+    isDescriptionRequired?: boolean;
     isLoading?: boolean;
+    isNameRequired?: boolean;
     labelInputDescription?: ReactNode;
     labelInputName?: ReactNode;
     maxFileSize: number;
@@ -46,7 +48,9 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
     errors,
     fileTypes,
     fileNameLength = 100,
+    isDescriptionRequired = false,
     isLoading = false,
+    isNameRequired = false,
     labelInputDescription,
     labelInputName,
     maxFileSize,
@@ -226,8 +230,10 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 <FileCard
                     error={isInvalid ? errors : undefined}
                     file={file}
+                    isDescriptionRequired={isDescriptionRequired}
                     isInvalid={isInvalid}
                     isLoading={isLoading}
+                    isNameRequired={isNameRequired}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${file.name}-${index}`}
                     labelInputDescription={hasInputDescription && !isInvalid ? labelInputDescription : undefined}
@@ -242,7 +248,17 @@ export const FileUploader: FunctionComponent<FileUploaderProps> = ({
                 />
             );
         });
-    }, [droppedFiles, errors, isLoading, labelInputDescription, labelInputName, maxFiles, onDeleteCallback]);
+    }, [
+        droppedFiles,
+        errors,
+        isDescriptionRequired,
+        isLoading,
+        isNameRequired,
+        labelInputDescription,
+        labelInputName,
+        maxFiles,
+        onDeleteCallback,
+    ]);
 
     useEffect(() => {
         if (dragCounter === 0) {
