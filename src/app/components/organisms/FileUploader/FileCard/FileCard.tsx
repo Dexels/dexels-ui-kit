@@ -21,8 +21,10 @@ import { Spacer } from '../../FileUploadDialog/FileUploadDialog.sc';
 export interface FileCardProps {
     error?: ReactNode;
     file: File;
+    isDescriptionRequired?: boolean;
     isInvalid?: boolean;
     isLoading?: boolean;
+    isNameRequired?: boolean;
     labelInputDescription?: ReactNode;
     labelInputName?: ReactNode;
     maxLengthDescription?: number;
@@ -37,8 +39,10 @@ export interface FileCardProps {
 export const FileCard: FunctionComponent<FileCardProps> = ({
     error,
     file,
+    isDescriptionRequired = false,
     isInvalid = false,
     isLoading = false,
+    isNameRequired = false,
     labelInputDescription,
     labelInputName,
     maxLengthDescription = 255,
@@ -96,6 +100,7 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                     {labelInputName && (
                         <Input
                             hasTransparentBackground={false}
+                            isRequired={isNameRequired}
                             label={labelInputName}
                             maxLength={maxLengthName}
                             name="name"
@@ -108,6 +113,7 @@ export const FileCard: FunctionComponent<FileCardProps> = ({
                     {labelInputDescription && (
                         <Input
                             hasTransparentBackground={false}
+                            isRequired={isDescriptionRequired}
                             label={labelInputDescription}
                             maxLength={maxLengthDescription}
                             name="description"

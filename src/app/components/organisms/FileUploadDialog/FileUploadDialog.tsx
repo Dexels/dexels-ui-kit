@@ -21,7 +21,9 @@ export interface FileUploadDialogProps {
     iconCancel?: IconType;
     iconSave?: IconType;
     iconType?: IconType;
+    isDescriptionRequired?: boolean;
     isLoading?: boolean;
+    isNameRequired?: boolean;
     isVisible: boolean;
     labelInputDescription?: ReactNode;
     labelInputName: ReactNode;
@@ -52,7 +54,9 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
     iconCancel = IconType.CROSS,
     iconSave = IconType.CHECK,
     isVisible,
+    isDescriptionRequired = false,
     isLoading = false,
+    isNameRequired = false,
     maxFileSize = 5,
     maxFiles = 1,
     maxLengthDescription,
@@ -107,7 +111,10 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
                 {
                     children: textSave,
                     iconType: iconSave,
-                    isDisabled: !isUploadAllowed,
+                    isDisabled:
+                        !isUploadAllowed ||
+                        (isDescriptionRequired && isEmpty(inputDescriptionValue)) ||
+                        (isNameRequired && isEmpty(inputNameValue)),
                     isLoading,
                     onClick: onUploadCallback,
                     size: ButtonSize.SMALL,
@@ -126,7 +133,9 @@ export const FileUploadDialog: FunctionComponent<FileUploadDialogProps> = ({
                     errors={errors}
                     fileNameLength={fileNameLength}
                     fileTypes={fileTypes}
+                    isDescriptionRequired={isDescriptionRequired}
                     isLoading={isLoading}
+                    isNameRequired={isNameRequired}
                     labelInputDescription={labelInputDescription}
                     labelInputName={labelInputName}
                     maxFileSize={maxFileSize}
