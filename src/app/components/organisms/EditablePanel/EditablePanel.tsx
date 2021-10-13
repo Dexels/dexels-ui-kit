@@ -144,7 +144,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         <ButtonWrapper>
                             <Button
                                 iconType={iconCancel}
-                                isDisabled={isButtonDisabled || isSaving}
+                                isDisabled={isSaving}
                                 onClick={onCancelCallback}
                                 size={ButtonSize.SMALL}
                                 variant={ButtonVariant.TEXT_ONLY}
