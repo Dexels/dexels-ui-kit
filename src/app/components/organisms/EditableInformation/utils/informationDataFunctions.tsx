@@ -49,6 +49,7 @@ export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: b
 export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     element: EditableInformationDataType<T, U>,
     dateFormat: string,
+    isDisabled = false,
     locale = DEFAULT_LOCALE,
     localeCurrency?: Locale
 ): ReactNode => {
@@ -74,7 +75,11 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
         (element as InputDataProps).type === InputType.URI &&
         isValidURI(value as string)
     ) {
-        return <Link href={convertToValidURIValue(value as string)}>{value}</Link>;
+        return (
+            <Link href={convertToValidURIValue(value as string)} isDisabled={isDisabled}>
+                {value}
+            </Link>
+        );
     }
 
     if (component === EditableDataComponent.DROPDOWNMULTISELECT && Array.isArray(value)) {

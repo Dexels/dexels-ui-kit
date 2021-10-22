@@ -57,14 +57,16 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     result.push(
         {
             component: EditableDataComponent.INPUTCOLOR,
-            isDisabled: false,
+            isEditable: true,
+            label: 'Editable color',
             name: 'inputColorEditable',
-            value: undefined,
+            value: '#00fd4c',
         } as InputColorDataProps,
 
         {
             component: EditableDataComponent.INPUTCOLOR,
-            isDisabled: true,
+            isEditable: false,
+            label: 'Immutable color',
             name: 'inputColorDisabled',
             value: '#009FFD',
         } as InputColorDataProps,

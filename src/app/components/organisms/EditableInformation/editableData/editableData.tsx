@@ -72,7 +72,13 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     isDisabled,
                     isTextArea: dataInstance.component === EditableDataComponent.TEXTAREA,
                     label,
-                    value: getValueOfEditableDataComponent(dataInstance, dateFormat, locale, localeCurrency),
+                    value: getValueOfEditableDataComponent(
+                        dataInstance,
+                        dateFormat,
+                        isDisabled,
+                        locale,
+                        localeCurrency
+                    ),
                 };
             }
 

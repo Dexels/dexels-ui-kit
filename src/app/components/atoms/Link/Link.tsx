@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 export interface LinkProps {
     children: ReactNode;
     hasHoverEffect?: boolean;
+    isDisabled?: boolean;
     onClick?: () => void;
 }
 
@@ -46,12 +47,13 @@ export const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props
     }, [isHovered]);
 
     if ('to' in props) {
-        const { as = 'button' } = props;
+        const { as = 'button', isDisabled = false } = props;
 
         return (
             <StyledLink as={as} onClick={onClickCallback}>
                 <StyledLinkText
                     hasHoverEffect={hasHoverEffect || false}
+                    isDisabled={isDisabled}
                     isFocused={isFocused}
                     isHovered={isHovered}
                     onFocus={onFocusCallback}
@@ -64,12 +66,13 @@ export const Link: FunctionComponent<NativeLinkProps | RouterLinkProps> = (props
         );
     }
 
-    const { as = 'a', href, rel = 'noreferrer noopener', target = '_blank' } = props;
+    const { as = 'a', href, rel = 'noreferrer noopener', target = '_blank', isDisabled = false } = props;
 
     return (
         <StyledLink as={as} href={href} rel={rel} target={target}>
             <StyledLinkText
                 hasHoverEffect={hasHoverEffect || false}
+                isDisabled={isDisabled}
                 isFocused={isFocused}
                 isHovered={isHovered}
                 onFocus={onFocusCallback}
