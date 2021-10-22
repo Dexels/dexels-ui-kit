@@ -14,6 +14,7 @@ import {
     ValueTypes,
 } from '../types';
 import { EditableDataComponent, InputType, Locale, Status } from '../../../../types';
+import { InputColor, InputColorProps } from '../../InputColor/InputColor';
 import {
     isEmpty,
     isValidInputEmail,
@@ -82,6 +83,10 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
 
     if (component === EditableDataComponent.DATEPICKER && moment.isMoment(value)) {
         return value.format(dateFormat);
+    }
+
+    if (component === EditableDataComponent.INPUTCOLOR && typeof value === 'string') {
+        return <InputColor isDisabled name={(element as InputColorProps).name} value={value} />;
     }
 
     if (component === EditableDataComponent.INPUTCURRENCY && value) {

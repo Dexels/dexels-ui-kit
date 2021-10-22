@@ -14,6 +14,7 @@ import {
     EditableTextareaDataProps,
     EditableTimePickerDataProps,
     ImmutableDataProps,
+    InputColorDataProps,
     ValueTypes,
 } from '../types';
 import { Fruit, fruits } from './fruits';
@@ -54,6 +55,19 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
     const result: EditableInformationData<T, U> = [];
 
     result.push(
+        {
+            component: EditableDataComponent.INPUTCOLOR,
+            isDisabled: false,
+            name: 'inputColorEditable',
+            value: undefined,
+        } as InputColorDataProps,
+
+        {
+            component: EditableDataComponent.INPUTCOLOR,
+            isDisabled: true,
+            name: 'inputColorDisabled',
+            value: '#009FFD',
+        } as InputColorDataProps,
         {
             component: EditableDataComponent.IMMUTABLE,
             isDisabled: false,
