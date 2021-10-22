@@ -8,14 +8,15 @@ export interface StyledInputColorProps {
 }
 
 export const StyledInputColor = styled.input<StyledInputColorProps>`
+    border: solid 1px #fff;
     border-radius: ${({ theme }): string => theme.spacing(0.5)};
+    cursor: pointer;
     width: 64px;
     height: 22px;
     overflow: hidden;
-    border: solid 1px #fff;
     ${getElevation(Elevation.LEVEL_2)}
-    cursor: pointer;
 
+    /* stylelint-disable indentation */
     ${({ isDisabled }): SimpleInterpolation =>
         isDisabled &&
         css`
