@@ -8,7 +8,7 @@ export interface StyledInputColorProps {
 }
 
 export const StyledInputColor = styled.input<StyledInputColorProps>`
-    border: solid 1px #fff;
+    border: 1px solid ${({ theme }): string => theme.shades.nine};
     border-radius: ${({ theme }): string => theme.spacing(0.5)};
     cursor: pointer;
     width: 64px;
