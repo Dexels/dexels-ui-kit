@@ -28,8 +28,6 @@ export const StyledInputColor = styled.input<StyledInputColorProps>`
         `}
     /* stylelint-enable indentation */
 
-
-
     ::-webkit-color-swatch-wrapper {
         border: none;
         border-radius: ${({ theme }): string => theme.spacing(0.5)};
