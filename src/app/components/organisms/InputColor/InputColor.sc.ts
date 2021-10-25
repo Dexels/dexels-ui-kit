@@ -33,6 +33,7 @@ export const StyledInputColor = styled.input<StyledInputColorProps>`
         border-radius: ${({ theme }): string => theme.spacing(0.5)};
         padding: 0;
     }
+
     ::-webkit-color-swatch {
         border: none;
         border-radius: ${({ theme }): string => theme.spacing(0.5)};
