@@ -59,6 +59,7 @@ export enum EditableDataComponent {
     DROPDOWNSELECT = 'DropdownSelect',
     IMMUTABLE = 'Immutable',
     INPUT = 'Input',
+    INPUTCOLOR = 'InputColor',
     INPUTCURRENCY = 'InputCurrency',
     INPUTNUMBER = 'InputNumber',
     SCOREPICKER = 'ScorePicker',
@@ -365,6 +366,7 @@ export enum IconSize {
 }
 
 export enum InputType {
+    COLOR = 'color',
     CURRENCY = 'currency',
     EMAIL = 'email',
     NUMBER = 'number',

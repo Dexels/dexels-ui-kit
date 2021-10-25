@@ -2,6 +2,7 @@ import { DropdownMultiSelectOption, DropdownMultiSelectProps } from '../Dropdown
 import { DropdownSelectOption, DropdownSelectProps } from '../DropdownSelect/DropdownSelect';
 import { DropdownProps } from '../../molecules/Dropdown';
 import { EditableDataComponent } from '../../../types';
+import { InputColorProps } from '../InputColor/InputColor';
 import { InputCurrencyProps } from '../InputCurrency/InputCurrency';
 import { InputProps } from '../../molecules/Input/Input';
 import { ReactNode } from 'react';
@@ -159,6 +160,11 @@ export interface EditableTextareaDataProps extends TextareaDataProps {
     placeholder?: InputProps['label'];
 }
 
+export interface InputColorDataProps extends BaseDataProps {
+    component: EditableDataComponent.INPUTCOLOR;
+    name: InputColorProps['name'];
+    value: InputColorProps['value'];
+}
 export interface InputCurrencyDataProps extends BaseDataProps {
     component: EditableDataComponent.INPUTCURRENCY;
     value: InputCurrencyProps['value'];
@@ -198,6 +204,7 @@ export type EditableInformationDataType<T extends DropdownSelectOption, U extend
     | EditableScorePickerDataProps
     | EditableTextareaDataProps
     | ImmutableDataProps
+    | InputColorDataProps
     | InputCurrencyDataProps
     | InputDataProps
     | InputNumberDataProps
@@ -220,7 +227,8 @@ export type ValueTypes<T extends DropdownSelectOption, U extends DropdownMultiSe
     | EditableInputNumberDataProps['value']
     | EditableScorePickerDataProps['value']
     | EditableTextareaDataProps['value']
-    | EditableTimePickerDataProps['value'];
+    | EditableTimePickerDataProps['value']
+    | InputColorDataProps['value'];
 
 export interface DatePickerFocuses {
     [key: string]: boolean;

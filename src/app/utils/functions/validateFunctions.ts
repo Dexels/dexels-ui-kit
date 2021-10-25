@@ -65,6 +65,13 @@ export const isValidEmail = (value: string): boolean => {
     return emailRegex.test(value);
 };
 
+export const isValidColor = (value: string): boolean => {
+    // hex code of color can have 6 or 3 digits after an #
+    const colorRegex = /^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
+
+    return colorRegex.test(value);
+};
+
 export const isValidPhoneNumber = (value: string): boolean => {
     // This might still be used in the future, so leave it here
     // const nlPhoneRegExp = /^(\+(([0-9]){1,2})[-. ])?((((([0-9]){2,4})[-. ]){1,2}([0-9]{4,8}))|([0-9]{10}))$/;
@@ -155,3 +162,11 @@ export const isValidInputText = (
 
 export const isValidInputURI = (value: string | null | undefined, isRequired: boolean): boolean =>
     (isEmpty(value) && !isRequired) || (!isEmpty(value) && isValidURI(value as string));
+
+export const isValidInputColor = (value: string | null | undefined | unknown): boolean => {
+    if (value === null || value === undefined || typeof value !== 'string') {
+        return false;
+    }
+
+    return isValidColor(value);
+};

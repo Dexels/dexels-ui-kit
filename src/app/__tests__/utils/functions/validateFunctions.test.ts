@@ -1,4 +1,5 @@
 import {
+    isValidColor,
     isValidEmail,
     isValidIBAN,
     isValidNumber,
@@ -75,5 +76,15 @@ describe('test validating functions', () => {
         expect(isValidURI('google.com')).toBe(false);
         expect(isValidURI('www.google.co.uk')).toBe(true);
         expect(isValidURI('https://dashboard.sportsads.nl/user/login')).toBe(true);
+    });
+
+    test('isValidColor', () => {
+        expect(isValidColor('#000')).toBe(true);
+        expect(isValidColor('#FFFFFF')).toBe(true);
+        expect(isValidColor('#808080')).toBe(true);
+        expect(isValidColor('#808')).toBe(true);
+        expect(isValidColor('#8A2BE2')).toBe(true);
+        expect(isValidColor('#8080')).toBe(false);
+        expect(isValidColor('8A2BE2')).toBe(false);
     });
 });

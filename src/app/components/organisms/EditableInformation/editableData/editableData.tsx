@@ -9,6 +9,7 @@ import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import DropdownSelect from '../../DropdownSelect/DropdownSelect';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
+import { InputColor } from '../../InputColor/InputColor';
 import InputCurrency from '../../InputCurrency/InputCurrency';
 import { isEmpty } from '../../../../utils/functions/validateFunctions';
 import React from 'react';
@@ -71,7 +72,13 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                     isDisabled,
                     isTextArea: dataInstance.component === EditableDataComponent.TEXTAREA,
                     label,
-                    value: getValueOfEditableDataComponent(dataInstance, dateFormat, locale, localeCurrency),
+                    value: getValueOfEditableDataComponent(
+                        dataInstance,
+                        dateFormat,
+                        isDisabled,
+                        locale,
+                        localeCurrency
+                    ),
                 };
             }
 
@@ -240,6 +247,22 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             type={dataInstance.type}
                             value={values[name] as string | undefined}
                             variant={InputVariant.COMPACT}
+                        />
+                    ),
+                };
+            }
+
+            if (dataInstance.component === EditableDataComponent.INPUTCOLOR) {
+                return {
+                    label,
+                    value: (
+                        <InputColor
+                            isDisabled={isDisabled}
+                            name={name}
+                            onChange={({ currentTarget }): void => {
+                                onChange(currentTarget.name, currentTarget.value);
+                            }}
+                            value={(values[name] as string) || ''}
                         />
                     ),
                 };
