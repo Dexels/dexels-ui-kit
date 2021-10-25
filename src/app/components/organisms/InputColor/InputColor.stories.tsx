@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useState } from 'react';
-import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import { InputColor } from './InputColor';
 
@@ -16,7 +15,6 @@ export const Configurable: FunctionComponent = () => {
                 console.log('[onChange]', event.currentTarget.value);
                 setValue(event.currentTarget.value);
             }}
-            onClick={action('On click')}
             value={value}
         />
     );
@@ -33,7 +31,6 @@ export const ConfigurableWithoutDefaultValue: FunctionComponent = () => {
                 console.log('[onChange]', event.currentTarget.value);
                 setValue(event.currentTarget.value);
             }}
-            onClick={action('On click')}
             value={value}
         />
     );
