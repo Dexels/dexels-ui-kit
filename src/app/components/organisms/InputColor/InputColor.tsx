@@ -1,11 +1,13 @@
-import React, { FunctionComponent, useContext } from 'react';
-import { InputProps } from '../../molecules/Input/Input';
+import React, { ChangeEvent, FunctionComponent, useContext } from 'react';
 import { InputType } from '../../../types';
 import { isValidInputColor } from '../../../utils/functions/validateFunctions';
 import { StyledInputColor } from './InputColor.sc';
 import { ThemeContext } from 'styled-components';
 
-export interface InputColorProps extends InputProps {
+export interface InputColorProps {
+    isDisabled?: boolean;
+    name: string;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     value?: string;
 }
 
