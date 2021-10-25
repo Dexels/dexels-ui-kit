@@ -11,11 +11,14 @@ export const StyledInputColor = styled.input<StyledInputColorProps>`
     border: 1px solid ${({ theme }): string => theme.shades.nine};
     border-radius: ${({ theme }): string => theme.spacing(0.5)};
     cursor: pointer;
+    padding: ${({ theme }): string =>
+        theme.spacing(0.25)}; /* Added this for Firefox styling and doesn't hurt Chorme or Edge */
     width: 64px;
     height: 22px;
     overflow: hidden;
     ${getElevation(Elevation.LEVEL_2)}
 
+    /* In Firefox the inner border-radius is absent and this is especially noticable in disabled state */
     /* stylelint-disable indentation */
     ${({ isDisabled }): SimpleInterpolation =>
         isDisabled &&

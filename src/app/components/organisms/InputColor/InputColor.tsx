@@ -6,8 +6,6 @@ import { StyledInputColor } from './InputColor.sc';
 import { ThemeContext } from 'styled-components';
 
 export interface InputColorProps extends InputProps {
-    isDisabled?: boolean;
-    name: string;
     value?: string;
 }
 

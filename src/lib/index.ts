@@ -221,6 +221,7 @@ export {
     InformationTableProps,
 } from '../app/components/organisms/InformationTable';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';
+export { InputColor, InputColorProps } from '../app/components/organisms/InputColor/InputColor';
 export { InputCurrency, InputCurrencyProps } from '../app/components/organisms/InputCurrency/InputCurrency';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
