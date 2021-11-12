@@ -18,6 +18,7 @@ export const TextField = styled.input<TextFieldProps>`
     display: block;
     outline: none;
     width: 100%;
+    text-overflow: ellipsis;
     color: ${({ theme }): string => theme.colorTextBody.primary};
 
     ${({ hasTransparentBackground }): SimpleInterpolation =>
@@ -30,13 +31,6 @@ export const TextField = styled.input<TextFieldProps>`
         hasNegativeAmountColor &&
         css`
             color: ${theme.colorInvalid};
-        `}
-
-    ${({ adornmentPosition, hasAdornment, theme }): SimpleInterpolation =>
-        hasAdornment &&
-        adornmentPosition === AdornmentPosition.LEFT &&
-        css`
-            text-indent: ${theme.spacing(2)};
         `}
 
     ${({ theme, variant }): SimpleInterpolation =>
@@ -70,6 +64,33 @@ export const TextField = styled.input<TextFieldProps>`
         isDisabled &&
         css`
             color: ${theme.colorDisabled};
+        `}
+
+    ${({ adornmentPosition, hasAdornment, theme, variant }): SimpleInterpolation =>
+        hasAdornment &&
+        css`
+            /* stylelint-disable */
+            padding: ${theme.spacing(
+                0,
+                // eslint-disable-next-line no-nested-ternary
+                variant === InputVariant.OUTLINE
+                    ? adornmentPosition === AdornmentPosition.RIGHT
+                        ? 3
+                        : 1.5
+                    : adornmentPosition === AdornmentPosition.RIGHT
+                    ? 2
+                    : 0,
+                0,
+                // eslint-disable-next-line no-nested-ternary
+                variant === InputVariant.OUTLINE
+                    ? adornmentPosition === AdornmentPosition.RIGHT
+                        ? 1.5
+                        : 3.25
+                    : adornmentPosition === AdornmentPosition.RIGHT
+                    ? 0
+                    : 2
+            )};
+            /* stylelint-enable */
         `}
 
     ${({ hasError, isDisabled, isFocused, isHovered, isValid, theme }): SimpleInterpolation =>
