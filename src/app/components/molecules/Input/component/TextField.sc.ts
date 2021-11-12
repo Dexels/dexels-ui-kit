@@ -81,10 +81,16 @@ export const TextField = styled.input<TextFieldProps>`
                     ? 2
                     : 0,
                 0,
-                variant === InputVariant.OUTLINE ? 1.5 : 0
+                // eslint-disable-next-line no-nested-ternary
+                variant === InputVariant.OUTLINE
+                    ? adornmentPosition === AdornmentPosition.RIGHT
+                        ? 1.5
+                        : 3.25
+                    : adornmentPosition === AdornmentPosition.RIGHT
+                    ? 0
+                    : 2
             )};
             /* stylelint-enable */
-            text-indent: ${theme.spacing(adornmentPosition === AdornmentPosition.LEFT ? 2 : 0)};
         `}
 
     ${({ hasError, isDisabled, isFocused, isHovered, isValid, theme }): SimpleInterpolation =>
