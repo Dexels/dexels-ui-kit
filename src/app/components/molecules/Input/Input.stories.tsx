@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 export default { title: 'molecules/Input' };
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
     width: 200px;
 `;
 
