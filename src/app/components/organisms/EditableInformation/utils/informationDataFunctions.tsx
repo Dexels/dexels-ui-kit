@@ -14,6 +14,7 @@ import {
     ValueTypes,
 } from '../types';
 import { EditableDataComponent, InputType, Locale, Status } from '../../../../types';
+import { InputColor, InputColorProps } from '../../InputColor/InputColor';
 import {
     isEmpty,
     isValidInputEmail,
@@ -48,6 +49,7 @@ export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: b
 export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     element: EditableInformationDataType<T, U>,
     dateFormat: string,
+    isDisabled = false,
     locale = DEFAULT_LOCALE,
     localeCurrency?: Locale
 ): ReactNode => {
@@ -73,7 +75,11 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
         (element as InputDataProps).type === InputType.URI &&
         isValidURI(value as string)
     ) {
-        return <Link href={convertToValidURIValue(value as string)}>{value}</Link>;
+        return (
+            <Link href={convertToValidURIValue(value as string)} isDisabled={isDisabled}>
+                {value}
+            </Link>
+        );
     }
 
     if (component === EditableDataComponent.DROPDOWNMULTISELECT && Array.isArray(value)) {
@@ -82,6 +88,10 @@ export const getValueOfEditableDataComponent = <T extends DropdownSelectOption, 
 
     if (component === EditableDataComponent.DATEPICKER && moment.isMoment(value)) {
         return value.format(dateFormat);
+    }
+
+    if (component === EditableDataComponent.INPUTCOLOR && typeof value === 'string') {
+        return <InputColor isDisabled name={(element as InputColorProps).name} value={value} />;
     }
 
     if (component === EditableDataComponent.INPUTCURRENCY && value) {

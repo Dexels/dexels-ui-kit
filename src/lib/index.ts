@@ -221,6 +221,7 @@ export {
     InformationTableProps,
 } from '../app/components/organisms/InformationTable';
 export { InputPassword, InputPasswordProps } from '../app/components/organisms/InputPassword/InputPassword';
+export { InputColor, InputColorProps } from '../app/components/organisms/InputColor/InputColor';
 export { InputCurrency, InputCurrencyProps } from '../app/components/organisms/InputCurrency/InputCurrency';
 export { Menu, MenuProps } from '../app/components/organisms/Menu/Menu';
 export { Modal, ModalProps } from '../app/components/organisms/Modal/Modal';
@@ -236,5 +237,5 @@ export { StatusCell, StatusCellProps } from '../app/components/organisms/Table/S
 export { Table, TableProps, TableTexts } from '../app/components/organisms/Table/Table';
 export { TableSkeleton, TableSkeletonProps } from '../app/components/organisms/Table/TableSkeleton/TableSkeleton';
 export { ToggleCheckbox, ToggleCheckboxProps } from '../app/components/organisms/ToggleCheckbox/ToggleCheckbox';
-export { Tab, Tabs, TabsProps, TabHeaders } from '../app/components/organisms/Tabs';
+export { Tab, Tabs, TabsProps, TabHeaders, TabPanel } from '../app/components/organisms/Tabs';
 export { Toolbar, ToolbarProps } from '../app/components/organisms/Toolbar/Toolbar';

@@ -259,11 +259,11 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
                     value: <Skeleton width="90%" />,
                 })
             );
-        } else if (!isEditable) {
+        } else if (!isEditable || isDisabled) {
             setInformationTableData(
                 data.map((element) => ({
                     label: element.label,
-                    value: getValueOfEditableDataComponent(element, dateFormat, localeValue),
+                    value: getValueOfEditableDataComponent(element, dateFormat, !isEditable || isDisabled, localeValue),
                 }))
             );
         } else if (!isEmpty(updatedValues)) {
@@ -293,6 +293,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         hasAutoFocus,
         hasError,
         isBeingEdited,
+        isDisabled,
         isEditable,
         isLoading,
         localeValue,

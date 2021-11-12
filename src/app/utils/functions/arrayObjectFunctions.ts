@@ -130,5 +130,6 @@ export const picklistMultiSelectFacade = <T, U extends T & PicklistMultiSelectOp
                 isSelected: option[selectedPropertyName] as unknown as boolean,
             } as U)
     );
+
 export const removeElement = <U, T extends U>(data: T[], propertyName: keyof U, propertyValue: unknown): Array<T> =>
     data.filter((option) => option[propertyName] !== propertyValue);

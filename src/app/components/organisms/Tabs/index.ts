@@ -1,2 +1,2 @@
 export { Tab, Tabs, TabsProps } from './Tabs';
-export { TabHeaders } from './Tabs.sc';
+export { TabHeaders, TabPanel } from './Tabs.sc';

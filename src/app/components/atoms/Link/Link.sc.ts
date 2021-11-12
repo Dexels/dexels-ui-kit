@@ -6,7 +6,7 @@ export const StyledLink = styled.span`
     text-decoration: none;
 `;
 
-interface StyledLinkTextProps extends Pick<StyledInputBaseProps, 'isFocused' | 'isHovered'> {
+interface StyledLinkTextProps extends Pick<StyledInputBaseProps, 'isFocused' | 'isHovered' | 'isDisabled'> {
     hasHoverEffect: boolean;
 }
 
@@ -19,6 +19,13 @@ export const StyledLinkText = styled.span<StyledLinkTextProps>`
         (isFocused || isHovered) &&
         css`
             color: ${theme.colorSecondary};
+        `}
+
+    ${({ isDisabled, theme }): SimpleInterpolation =>
+        isDisabled &&
+        css`
+            color: ${theme.colorDisabled};
+            pointer-events: none;
         `}
 `;
 

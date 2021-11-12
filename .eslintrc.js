@@ -119,6 +119,7 @@ module.exports = {
             },
         ],
         'react/prop-types': 0,
+        'react/require-default-props': [0, { forbidDefaultForRequired: true, ignoreFunctionalComponents: false }],
         'sort-imports': [
             2,
             {

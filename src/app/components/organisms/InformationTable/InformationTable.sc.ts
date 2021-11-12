@@ -59,6 +59,7 @@ export const Value = styled.div<ColumnValueProps>`
     flex: 0 1 auto;
     padding: 0 16px 0 0;
     width: 50%;
+    word-wrap: break-word;
     color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorTextBody.primary)};
 `;
 

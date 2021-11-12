@@ -1,6 +1,6 @@
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { ButtonVariant, IconType } from '../../../types';
 import { FileAlertType, FileTypes } from '../FileUploader/types';
-import { number, select, text } from '@storybook/addon-knobs';
 import React, { FunctionComponent, ReactNode, useCallback, useState } from 'react';
 import Button from '../../molecules/Button/Button';
 import FileUploadDialog from './FileUploadDialog';
@@ -62,7 +62,9 @@ export const Configurable: FunctionComponent = () => {
                 }}
                 iconCancel={select('Icon Cancel', IconType, IconType.CROSS)}
                 iconSave={select('Icon Save', IconType, IconType.CHECK)}
+                isDescriptionRequired={boolean('Is Description required', false)}
                 isLoading={isSaving}
+                isNameRequired={boolean('Is Name required', false)}
                 isVisible={isVisible}
                 labelInputDescription={text('Label input description', 'Add description (optional')}
                 labelInputName={text('Label input name', 'Add name (optional)')}
