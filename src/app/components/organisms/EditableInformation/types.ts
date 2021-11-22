@@ -92,6 +92,7 @@ export interface EditableDropdownMultiSelectDataProps<T extends DropdownMultiSel
     name: DropdownMultiSelectProps<T>['name'];
     noOptionsText?: DropdownMultiSelectProps<T>['noOptionsText'];
     options: DropdownMultiSelectProps<T>['options'];
+    placeholder: DropdownMultiSelectProps<T>['placeholder'];
     selectAllLabel: DropdownMultiSelectProps<T>['selectAllLabel'];
 }
 

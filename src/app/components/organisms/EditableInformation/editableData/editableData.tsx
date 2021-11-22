@@ -176,8 +176,10 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             maxHeight={dataInstance.maxHeight}
                             minHeight={dataInstance.minHeight}
                             name={name}
+                            noOptionsText={dataInstance.noOptionsText}
                             onConfirm={(_, options) => onChange(name, options)}
                             options={dataInstance.options}
+                            placeholder={dataInstance.placeholder}
                             selectAllLabel={dataInstance.selectAllLabel}
                         />
                     ),
