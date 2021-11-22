@@ -14,6 +14,7 @@ import {
     ValueTypes,
 } from '../types';
 import { EditableDataComponent, InputType, Locale, Status } from '../../../../types';
+import { getSelectedElements, getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
 import { InputColor, InputColorProps } from '../../InputColor/InputColor';
 import {
     isEmpty,
@@ -30,7 +31,6 @@ import { convertToValidURIValue } from '../../../../utils/functions/linkFunction
 import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import { DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { DropdownSelectOption } from '../../DropdownSelect/DropdownSelect';
-import { getSelectedElements, getSelectedText } from '../../../../utils/functions/arrayObjectFunctions';
 import Link from '../../../atoms/Link/Link';
 import moment from 'moment';
 
