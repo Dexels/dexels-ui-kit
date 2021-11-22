@@ -317,7 +317,9 @@ export const editableInformationData = <T extends Fruit, U extends Fruit>(): Edi
         isRequired: true,
         label: 'DropdownMultiSelect',
         name: 'DropdownMultiSelect',
+        noOptionsText: 'No options yet',
         options: fruits,
+        placeholder: 'Placeholder text',
         selectAllLabel: 'Select all',
     } as EditableDropdownMultiSelectDataProps<U>);
 
