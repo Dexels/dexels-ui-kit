@@ -17,14 +17,16 @@ interface ColumnProps {
 interface ClickableProps {
     isClickable: boolean;
 }
+interface TableCaptionProps {
+    isDisabled: boolean;
+}
 
-export const TableCaption = styled.div`
+export const TableCaption = styled.div<TableCaptionProps>`
     ${setBoxSizing()}
     ${({ theme }): string => theme.textStyling(theme.availableTextStyles().h1)}
     padding: ${({ theme }): string => theme.spacing(0, 0, 4, 0)};
-    color: ${({ theme }): string => theme.colorText.primary};
+    color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorText.primary)};
 `;
-
 interface StyledTableProps {
     isFullWidth: boolean;
 }
@@ -332,6 +334,7 @@ export const PaginatorWrapper = styled.div`
 
 interface StyledCardNoResultsProps {
     elevation: Elevation;
+    isDisabled: boolean;
 }
 
 export const StyledCardNoResults = styled.div<StyledCardNoResultsProps>`
@@ -343,7 +346,7 @@ export const StyledCardNoResults = styled.div<StyledCardNoResultsProps>`
     justify-content: flex-start;
     background-color: ${({ theme }): string => theme.card.backgroundColor};
     padding: ${({ theme }): string => theme.spacing(3)};
-    color: ${({ theme }): string => theme.colorTextBody.secondary};
+    color: ${({ isDisabled, theme }): string => (isDisabled ? theme.colorDisabled : theme.colorTextBody.secondary)};
 `;
 
 StyledCardNoResults.defaultProps = {
