@@ -23,7 +23,7 @@ export const StyledInputColor = styled.input<StyledInputColorProps>`
         css`
             border: none;
             border-color: transparent;
-            box-shadow: unset;
+            ${getElevation(Elevation.LEVEL_1)}
             cursor: none;
         `}
     /* stylelint-enable indentation */

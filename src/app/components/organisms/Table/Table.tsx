@@ -127,10 +127,12 @@ export const Table = <T extends object>({
 
     return (
         <>
-            {caption && <TableCaption>{caption}</TableCaption>}
+            {caption && <TableCaption isDisabled={isDisabled}>{caption}</TableCaption>}
             {!hasResults && noResults ? (
                 typeof noResults === 'string' ? (
-                    <StyledCardNoResults elevation={elevation}>{noResults}</StyledCardNoResults>
+                    <StyledCardNoResults elevation={elevation} isDisabled={isDisabled}>
+                        {noResults}
+                    </StyledCardNoResults>
                 ) : (
                     noResults
                 )
