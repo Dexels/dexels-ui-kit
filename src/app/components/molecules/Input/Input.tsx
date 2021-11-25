@@ -154,6 +154,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
             let hasChanges = true;
 
             // don't allow typing letters, Firefox and Safari ignore the input type
+            // EV 2021-11-23: for now we do not allow decimal input in type NUMBER
             if (!isEmpty(newValue) && type === InputType.NUMBER && !isValidNumber(newValue)) {
                 newValue = inputDisplayValue;
                 hasChanges = false;
@@ -300,7 +301,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     onMouseEnter={isDisabled ? undefined : onHoveredCallback}
                     onMouseLeave={isDisabled ? undefined : onHoveredCallback}
                     readOnly={isDisabled}
-                    type={type}
+                    type={type === InputType.NUMBER ? InputType.TEXT : type} // Because of bugs in Firefox/Safari/Edge with type=number, we set it to text and handle validation ourselves
                     value={inputDisplayValue}
                     variant={variant}
                     {...textFieldProps}
