@@ -331,7 +331,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                     {isAvailableList && (
                         <List maxHeight={listMaxHeight} minHeight={minHeight}>
                             {updatedOptions.map((item) => (
-                                <ListItem key={item.value}>
+                                <ListItem key={item.value} onClick={(): void => onChangeOptionCallback(item)}>
                                     <SelectionControl
                                         isChecked={item.isSelected}
                                         key={item.value}
