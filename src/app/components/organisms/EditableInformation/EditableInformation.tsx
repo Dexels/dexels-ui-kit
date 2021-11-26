@@ -43,10 +43,10 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     keepEditMode?: boolean;
     locale?: Locale;
     localeCurrency?: Locale;
-    onCancel?: (isEditing: boolean) => void;
+    onCancel?: () => void;
     onChange?: (data: unknown, isDataChanged: boolean) => void;
-    onEdit?: (isEditing: boolean) => void;
-    onSave?: (data: { [key: string]: ValueTypes<T, U> }, isDataChanged: boolean, isEditing: boolean) => void;
+    onEdit?: () => void;
+    onSave?: (data: { [key: string]: ValueTypes<T, U> }, isDataChanged: boolean) => void;
     onValidation?: (isValidData: boolean) => void;
     options?: ReactNode;
     saveConfirmDialog?: ConfirmDialog;
@@ -118,7 +118,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         setIsBeingEdited(true);
 
         if (onEdit) {
-            onEdit(true);
+            onEdit();
         }
     }, [onEdit]);
 
@@ -130,7 +130,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         if (onSave) {
             // Note: if in the onChange prop we cause a re-render of this component with an updated originalValues then areEqualObjects will always return false.
             // In that case it will be needed to either call areEqualObjects outside with the real originalValues or keep the value of isDataChanged in the onChange in a local state
-            onSave(updatedValues, !areEqualObjects(originalValues, updatedValues), keepEditMode);
+            onSave(updatedValues, !areEqualObjects(originalValues, updatedValues));
         }
     }, [keepEditMode, onSave, originalValues, updatedValues]);
 
@@ -139,7 +139,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         setUpdatedValues(originalValues);
 
         if (onCancel) {
-            onCancel(false);
+            onCancel();
         }
     }, [originalValues, onCancel]);
 
