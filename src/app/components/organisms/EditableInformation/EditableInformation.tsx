@@ -8,7 +8,7 @@ import {
 } from './utils/informationDataFunctions';
 import { IconType, Locale, Status } from '../../../types';
 import { InformationTable, InformationTableData, InformationTableProps } from '../InformationTable';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { areEqualObjects } from '../../../utils/functions/objectFunctions';
 import CardStatus from '../../molecules/CardStatus/CardStatus';
 import { ConfirmDialog } from '../EditablePanel';
@@ -48,6 +48,7 @@ export interface EditableInformationProps<T extends DropdownOption, U extends Dr
     onEdit?: () => void;
     onSave?: (data: { [key: string]: ValueTypes<T, U> }, isDataChanged: boolean) => void;
     onValidation?: (isValidData: boolean) => void;
+    options?: ReactNode;
     saveConfirmDialog?: ConfirmDialog;
     status?: Status;
     textCancel?: string;
@@ -81,6 +82,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
     onEdit,
     onSave,
     onValidation,
+    options,
     saveConfirmDialog,
     status,
     textCancel,
@@ -333,6 +335,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
             onSave={onSaveCallback}
+            options={options}
             saveConfirmDialog={saveConfirmDialog}
             status={status || getStatus(hasError || (isBeingEdited && !isValidInputData))}
             textCancel={textCancel || ''}

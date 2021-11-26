@@ -23,6 +23,7 @@ export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 
     onCancel: () => void;
     onEdit: () => void;
     onSave: () => void;
+    options?: ReactNode;
     saveConfirmDialog?: ConfirmDialog;
     status?: Status;
     textCancel: string;
@@ -49,6 +50,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     onCancel,
     onEdit,
     onSave,
+    options,
     saveConfirmDialog,
     status,
     textCancel,
@@ -141,7 +143,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                 options={
                     // eslint-disable-next-line no-nested-ternary
                     !hasButtons ? undefined : isBeingEdited ? (
-                        <ButtonWrapper>
+                        <ButtonWrapper hasMargin>
                             <Button
                                 iconType={iconCancel}
                                 isDisabled={isSaving}
@@ -163,16 +165,19 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                             </Button>
                         </ButtonWrapper>
                     ) : (
-                        <Button
-                            iconType={iconEdit}
-                            isDisabled={isButtonDisabled || isDisabled}
-                            isLoading={isSaving}
-                            onClick={setIsBeingEditedCallback}
-                            size={ButtonSize.SMALL}
-                            variant={ButtonVariant.TEXT_ONLY}
-                        >
-                            {textEdit}
-                        </Button>
+                        <ButtonWrapper hasMargin={options !== undefined && !isSaving}>
+                            {!isSaving && options}
+                            <Button
+                                iconType={iconEdit}
+                                isDisabled={isButtonDisabled || isDisabled}
+                                isLoading={isSaving}
+                                onClick={setIsBeingEditedCallback}
+                                size={ButtonSize.SMALL}
+                                variant={ButtonVariant.TEXT_ONLY}
+                            >
+                                {textEdit}
+                            </Button>
+                        </ButtonWrapper>
                     )
                 }
                 status={status}

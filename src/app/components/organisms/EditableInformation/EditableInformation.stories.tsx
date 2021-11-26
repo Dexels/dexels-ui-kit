@@ -1,9 +1,9 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { ButtonSize, ButtonVariant, IconType, Locale, Status } from '../../../types';
 import { editableInformationData, updateValuesOfData } from './mockup/editableInformationData';
 import { EditableInformationData, ValueTypes } from './types';
-import { IconType, Locale, Status } from '../../../types';
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { action } from '@storybook/addon-actions';
+import Button from '../../molecules/Button/Button';
 import { DEFAULT_LOCALE } from '../../../../global/constants';
 import { DropdownMultiSelectOption } from '../DropdownMultiSelect';
 import { DropdownSelectOption } from '../DropdownSelect/DropdownSelect';
@@ -18,6 +18,7 @@ const theData = (isCurrencyOnly = false): EditableInformationData<DropdownSelect
 
 const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSelectOption>(
     data: EditableInformationData<T, U>,
+    hasOptions: boolean,
     isEditingMode = false,
     withDialogs = false,
     isEditable = true,
@@ -34,6 +35,10 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     useEffect(() => {
         setIsEditing((saveErrors && saveErrors.length !== 0) || isEditingMode);
     }, [isEditingMode, saveErrors]);
+
+    const onEditCallback = () => {
+        console.log('onEditCallback');
+    };
 
     const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
         // eslint-disable-next-line no-console
@@ -99,9 +104,22 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
             localeCurrency={select('Locale currency', Locale, DEFAULT_LOCALE)} // Doesn't change dateFormat
             onCancel={onCancelCallback}
             onChange={onChangeCallback}
-            onEdit={isEditable ? action('onEdit') : undefined}
+            onEdit={isEditable ? onEditCallback : undefined}
             onSave={hasSaveAction && isEditable ? onSaveCallback : undefined}
             onValidation={isEditable ? onValidationCallback : undefined}
+            options={
+                hasOptions ? (
+                    <Button
+                        iconType={IconType.GEAR}
+                        isDisabled={isSaving}
+                        onClick={() => console.log('Does nothing -> additional button')}
+                        size={ButtonSize.SMALL}
+                        variant={ButtonVariant.TEXT_ONLY}
+                    >
+                        {'Extra button'}
+                    </Button>
+                ) : undefined
+            }
             saveConfirmDialog={
                 withDialogs
                     ? {
@@ -123,14 +141,15 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     );
 };
 
-export const Configurable: FunctionComponent = () => BaseComponent(theData());
+export const Configurable: FunctionComponent = () => BaseComponent(theData(), true);
 
-export const ConfigurableEditingDefault: FunctionComponent = () => BaseComponent(theData(), true);
+export const ConfigurableEditingDefault: FunctionComponent = () => BaseComponent(theData(), true, true);
 
 export const ConfigurableEditingWithoutButtons: FunctionComponent = () =>
-    BaseComponent(theData(), true, false, true, [], [], false);
+    BaseComponent(theData(), false, true, false, true, [], [], false);
 
-export const ConfigurableWithConfirmationDialogs: FunctionComponent = () => BaseComponent(theData(), false, true);
+export const ConfigurableWithConfirmationDialogs: FunctionComponent = () =>
+    BaseComponent(theData(), false, false, true);
 
 export const ConfigurableInformationNotEditable: FunctionComponent = () =>
     BaseComponent(
@@ -140,20 +159,21 @@ export const ConfigurableInformationNotEditable: FunctionComponent = () =>
         })),
         false,
         false,
+        false,
         false
     );
 
 export const ConfigurableWithErrorsAfterSaving: FunctionComponent = () =>
-    BaseComponent(theData(), false, false, true, ['Error number 1', 'Error number 2']);
+    BaseComponent(theData(), false, false, false, true, ['Error number 1', 'Error number 2']);
 
 export const ConfigurableWithWarningsAfterSaving: FunctionComponent = () =>
-    BaseComponent(theData(), false, false, true, undefined, ['Warning number 1', 'Warning number 2']);
+    BaseComponent(theData(), false, false, false, true, undefined, ['Warning number 1', 'Warning number 2']);
 
 export const ConfigurableCurrencyOnly: FunctionComponent = () =>
-    BaseComponent(theData(true), false, false, true, undefined, undefined);
+    BaseComponent(theData(true), false, false, false, true, undefined, undefined);
 
 export const ConfigurableCurrencyWithErrorsAfterSaving: FunctionComponent = () =>
-    BaseComponent(theData(true), false, false, true, ['Error number 1', 'Error number 2']);
+    BaseComponent(theData(true), false, false, false, true, ['Error number 1', 'Error number 2']);
 
 export const ConfigurableWithDetailedErrorMessages: FunctionComponent = () =>
-    BaseComponent(editableInformationDataWithErrorMessages());
+    BaseComponent(editableInformationDataWithErrorMessages(), false);
