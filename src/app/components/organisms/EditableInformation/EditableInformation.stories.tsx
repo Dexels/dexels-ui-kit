@@ -79,8 +79,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         console.log('onValidationCallback', isValidData);
     };
 
-    console.log('isEditing', isEditing);
-
     return (
         <EditableInformation
             amountOfColumns={select('Columns', [1, 2, 3], 2)}
@@ -116,7 +114,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                 hasOptions ? (
                     <Button
                         iconType={IconType.GEAR}
-                        isDisabled={isInEditMode}
+                        isDisabled={isSaving || isInEditMode}
                         onClick={() => console.log('Does nothing -> additional button')}
                         size={ButtonSize.SMALL}
                         variant={ButtonVariant.TEXT_ONLY}

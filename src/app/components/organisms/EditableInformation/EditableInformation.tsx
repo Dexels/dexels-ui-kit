@@ -130,7 +130,7 @@ export const EditableInformation = <T extends DropdownOption, U extends Dropdown
         if (onSave) {
             // Note: if in the onChange prop we cause a re-render of this component with an updated originalValues then areEqualObjects will always return false.
             // In that case it will be needed to either call areEqualObjects outside with the real originalValues or keep the value of isDataChanged in the onChange in a local state
-            onSave(updatedValues, !areEqualObjects(originalValues, updatedValues), !keepEditMode);
+            onSave(updatedValues, !areEqualObjects(originalValues, updatedValues), keepEditMode);
         }
     }, [keepEditMode, onSave, originalValues, updatedValues]);
 
