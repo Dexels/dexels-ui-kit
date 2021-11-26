@@ -79,8 +79,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         console.log('onValidationCallback', isValidData);
     };
 
-    console.log('isEditing', isEditing);
-
     return (
         <EditableInformation
             amountOfColumns={select('Columns', [1, 2, 3], 2)}
