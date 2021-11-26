@@ -29,7 +29,6 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
     const [updatedData, setUpdatedData] = useState<EditableInformationData<T, U>>(data);
     const [isSaving, setIsSaving] = useState(false);
     const [isEditing, setIsEditing] = useState(isEditingMode);
-    const [isInEditMode, setIsInEditMode] = useState(isEditingMode);
     const [saveErrors, setSaveErrors] = useState<Array<string>>(undefined as unknown as string[]);
     const [saveWarnings, setSaveWarnings] = useState<Array<string>>(undefined as unknown as string[]);
 
@@ -37,16 +36,15 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         setIsEditing((saveErrors && saveErrors.length !== 0) || isEditingMode);
     }, [isEditingMode, saveErrors]);
 
-    const onEditCallback = (isEditingReturnValue: boolean) => {
-        setIsInEditMode(isEditingReturnValue);
+    const onEditCallback = () => {
+        console.log('onEditCallback');
     };
 
-    const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }, isEditingReturnValue: boolean): void => {
+    const onSaveCallback = (newData: { [key: string]: ValueTypes<T, U> }): void => {
         // eslint-disable-next-line no-console
-        console.log('[onSaveCallback]] ', newData, isEditingReturnValue);
+        console.log('[onSaveCallback]] ', newData);
         setIsSaving(true);
         setIsEditing(isEditingMode);
-        setIsInEditMode(isEditingReturnValue);
 
         setUpdatedData(updateValuesOfData(updatedData, newData));
 
@@ -64,9 +62,8 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
         }, 5000);
     };
 
-    const onCancelCallback = (isEditingReturnValue: boolean) => {
+    const onCancelCallback = () => {
         setSaveErrors(undefined as unknown as string[]);
-        setIsInEditMode(isEditingReturnValue);
     };
 
     const onChangeCallback = (newData: unknown) => {
@@ -114,7 +111,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                 hasOptions ? (
                     <Button
                         iconType={IconType.GEAR}
-                        isDisabled={isSaving || isInEditMode}
+                        isDisabled={isSaving}
                         onClick={() => console.log('Does nothing -> additional button')}
                         size={ButtonSize.SMALL}
                         variant={ButtonVariant.TEXT_ONLY}
