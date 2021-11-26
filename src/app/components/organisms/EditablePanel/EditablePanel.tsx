@@ -166,7 +166,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         </ButtonWrapper>
                     ) : (
                         <ButtonWrapper hasMargin={options !== undefined && !isSaving}>
-                            {options && !isSaving && options}
+                            {!isSaving && options}
                             <Button
                                 iconType={iconEdit}
                                 isDisabled={isButtonDisabled || isDisabled}
