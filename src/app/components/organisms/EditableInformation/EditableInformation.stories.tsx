@@ -114,7 +114,7 @@ const BaseComponent = <T extends DropdownSelectOption, U extends DropdownMultiSe
                 hasOptions ? (
                     <Button
                         iconType={IconType.GEAR}
-                        isDisabled={isInEditMode}
+                        isDisabled={isSaving || isInEditMode}
                         onClick={() => console.log('Does nothing -> additional button')}
                         size={ButtonSize.SMALL}
                         variant={ButtonVariant.TEXT_ONLY}
