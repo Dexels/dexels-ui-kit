@@ -1,6 +1,6 @@
 import { ButtonSize, ButtonVariant, IconType, Status } from '../../../types';
 import PanelHeader, { PanelHeaderProps } from '../../molecules/PanelHeader/PanelHeader';
-import React, { FunctionComponent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Button from '../../molecules/Button/Button';
 import { ButtonWrapper } from './EditablePanel.sc';
 import { ConfirmDialog } from './types';
@@ -23,6 +23,7 @@ export interface EditablePanelProps extends Omit<PanelHeaderProps, 'children' | 
     onCancel: () => void;
     onEdit: () => void;
     onSave: () => void;
+    options?: ReactNode;
     saveConfirmDialog?: ConfirmDialog;
     status?: Status;
     textCancel: string;
@@ -49,6 +50,7 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
     onCancel,
     onEdit,
     onSave,
+    options,
     saveConfirmDialog,
     status,
     textCancel,
@@ -129,40 +131,40 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
         onEdit();
     }, [isBeingEdited, onEdit]);
 
-    return (
-        <>
-            <PanelHeader
-                hasCapitalizedTitle={hasCapitalizedTitle}
-                hasMarginBottom
-                hasTitleStatusAppearance
-                iconType={iconType}
-                isDisabled={isDisabled}
-                isLoading={isLoading}
-                options={
-                    // eslint-disable-next-line no-nested-ternary
-                    !hasButtons ? undefined : isBeingEdited ? (
-                        <ButtonWrapper>
-                            <Button
-                                iconType={iconCancel}
-                                isDisabled={isSaving}
-                                onClick={onCancelCallback}
-                                size={ButtonSize.SMALL}
-                                variant={ButtonVariant.TEXT_ONLY}
-                            >
-                                {textCancel}
-                            </Button>
-                            <Button
-                                iconType={iconSave}
-                                isDisabled={isButtonDisabled || isDisabled || hasError}
-                                isLoading={isSaving}
-                                onClick={!hasError ? onSaveCallback : undefined}
-                                size={ButtonSize.SMALL}
-                                variant={ButtonVariant.OUTLINE}
-                            >
-                                {textSave}
-                            </Button>
-                        </ButtonWrapper>
-                    ) : (
+    // Constructs the options (e.g. buttons) for the Panel
+    const panelOptions = useMemo(() => {
+        if (hasButtons) {
+            if (isBeingEdited) {
+                return (
+                    <ButtonWrapper>
+                        {options}
+                        <Button
+                            iconType={iconCancel}
+                            isDisabled={isSaving}
+                            onClick={onCancelCallback}
+                            size={ButtonSize.SMALL}
+                            variant={ButtonVariant.TEXT_ONLY}
+                        >
+                            {textCancel}
+                        </Button>
+                        <Button
+                            iconType={iconSave}
+                            isDisabled={isButtonDisabled || isDisabled || hasError}
+                            isLoading={isSaving}
+                            onClick={!hasError ? onSaveCallback : undefined}
+                            size={ButtonSize.SMALL}
+                            variant={ButtonVariant.OUTLINE}
+                        >
+                            {textSave}
+                        </Button>
+                    </ButtonWrapper>
+                );
+            }
+
+            if (options) {
+                return (
+                    <ButtonWrapper>
+                        {options}
                         <Button
                             iconType={iconEdit}
                             isDisabled={isButtonDisabled || isDisabled}
@@ -173,8 +175,37 @@ export const EditablePanel: FunctionComponent<EditablePanelProps> = ({
                         >
                             {textEdit}
                         </Button>
-                    )
-                }
+                    </ButtonWrapper>
+                );
+            }
+
+            return (
+                <Button
+                    iconType={iconEdit}
+                    isDisabled={isButtonDisabled || isDisabled}
+                    isLoading={isSaving}
+                    onClick={setIsBeingEditedCallback}
+                    size={ButtonSize.SMALL}
+                    variant={ButtonVariant.TEXT_ONLY}
+                >
+                    {textEdit}
+                </Button>
+            );
+        }
+
+        return undefined;
+    }, [hasButtons, isBeingEdited, options]);
+
+    return (
+        <>
+            <PanelHeader
+                hasCapitalizedTitle={hasCapitalizedTitle}
+                hasMarginBottom
+                hasTitleStatusAppearance
+                iconType={iconType}
+                isDisabled={isDisabled}
+                isLoading={isLoading}
+                options={panelOptions}
                 status={status}
                 title={title}
             />
