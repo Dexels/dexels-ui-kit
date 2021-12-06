@@ -7,7 +7,6 @@ import {
     IconWrapper,
     OverlayWrapper,
     StyledDialog,
-    StyledDialogwrapper,
     StyledTextWithOptionalIcon,
     Text,
     Wrapper,
@@ -73,17 +72,17 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     transitionEasing = Easing.EASE,
 }) => {
     const dialogRef = useRef<HTMLDivElement>(null);
-
     const [dialogHeight, setDialogHeight] = useState(0);
 
+    // After every render, save the latest height into a local state.
     useEffect(() => {
         if (dialogRef.current) {
             setDialogHeight(dialogRef.current.clientHeight);
         }
-    }, [dialogRef.current]);
+    });
 
     return (
-        <StyledDialogwrapper>
+        <>
             {hasOverlay && (
                 <OverlayWrapper isVisible={isVisible}>
                     <Overlay isVisible={isVisible} />
@@ -130,7 +129,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
                     <DialogFooter buttons={footerButtons} text={footerText} />
                 </StyledDialog>
             </Wrapper>
-        </StyledDialogwrapper>
+        </>
     );
 };
 
