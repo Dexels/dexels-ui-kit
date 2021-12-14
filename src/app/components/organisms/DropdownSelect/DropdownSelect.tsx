@@ -30,6 +30,7 @@ export interface DropdownSelectProps<T extends DropdownSelectOption> {
     hasError?: boolean;
     iconType: IconType;
     isDisabled?: boolean;
+    isRequired?: boolean;
     isSearchAny?: boolean;
     isValid?: boolean;
     label?: ReactNode;
@@ -54,6 +55,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
     iconType,
     footerText,
     isDisabled = false,
+    isRequired = false,
     isSearchAny = false,
     isValid = false,
     label,
@@ -186,6 +188,7 @@ export const DropdownSelect = <T extends DropdownSelectOption>({
                 errorMessage={errorMessage}
                 hasError={hasError}
                 isDisabled={isDisabled}
+                isRequired={isRequired}
                 isValid={isValid}
                 label={label}
                 name={name}

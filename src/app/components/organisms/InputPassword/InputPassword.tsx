@@ -10,6 +10,7 @@ export interface InputPasswordProps {
     errorMessage?: ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
+    isRequired?: boolean;
     isValid?: boolean;
     isVisibleDefault?: boolean;
     label: ReactNode;
@@ -27,6 +28,7 @@ export const InputPassword: FunctionComponent<InputPasswordProps> = ({
     errorMessage,
     hasError = false,
     isDisabled = false,
+    isRequired = false,
     isValid = false,
     isVisibleDefault = false,
     label,
@@ -46,6 +48,7 @@ export const InputPassword: FunctionComponent<InputPasswordProps> = ({
                 errorMessage={errorMessage}
                 hasError={hasError}
                 isDisabled={isDisabled}
+                isRequired={isRequired}
                 isValid={isValid}
                 label={label}
                 maxLength={maxLength}

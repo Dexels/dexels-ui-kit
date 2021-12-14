@@ -1,3 +1,4 @@
+import { DEFAULT_LOCALE, REQUIRED_INDICATOR } from '../../../../../global/constants';
 import { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../../../molecules/Dropdown';
 import { DropdownMultiSelect, DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { EditableDataComponent, InputType, InputVariant, Locale } from '../../../../types';
@@ -5,7 +6,6 @@ import { EditableInformationData, ScorePickerDataProps, ValueTypes } from '../ty
 import { generateDropdownSelectOptionLabel, getValueOfEditableDataComponent } from '../utils/informationDataFunctions';
 import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
-import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import DropdownSelect from '../../DropdownSelect/DropdownSelect';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
@@ -55,6 +55,15 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
         .filter((dataInstance) => isBeingEdited || !dataInstance.isVisibleOnlyOnEdit)
         .map((dataInstance) => {
             const { isDisabled, isEditable, isRequired, label } = dataInstance;
+
+            const labelValue = isRequired ? (
+                <>
+                    {label} {REQUIRED_INDICATOR}
+                </>
+            ) : (
+                label
+            );
+
             let autoFocus = false;
 
             if (hasAutoFocus && !isFocusedInputSet && isEditable) {
@@ -70,6 +79,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             ) {
                 return {
                     isDisabled,
+                    isRequired: isRequired || false,
                     isTextArea: dataInstance.component === EditableDataComponent.TEXTAREA,
                     label,
                     value: getValueOfEditableDataComponent(
@@ -87,7 +97,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.CHECKBOX) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <SelectionControl
                             errorMessage={dataInstance.errorMessage}
@@ -95,6 +105,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             hasVerticalCorrection
                             isChecked={values[name] as boolean}
                             isDisabled={isDisabled}
+                            isRequired={isRequired || false}
                             label={dataInstance.placeholder}
                             name={name}
                             onChange={(): void => {
@@ -108,7 +119,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.DATEPICKER) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <SingleDatePicker
                             date={values[name] as moment.Moment | null}
@@ -135,13 +146,14 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.DROPDOWN) {
                 return {
-                    label,
+                    label: labelValue,
                     textValue: dataInstance.textValue,
                     value: (
                         <Dropdown
                             errorMessage={dataInstance.errorMessage}
                             hasError={hasInputError || dataInstance.hasError}
                             isDisabled={isDisabled}
+                            isRequired={isRequired || false}
                             name={name}
                             onChange={({ currentTarget }): void => {
                                 onDropdownChange(
@@ -163,7 +175,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.DROPDOWNMULTISELECT) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <DropdownMultiSelect
                             allSelectedLabel={dataInstance.allSelectedLabel}
@@ -173,6 +185,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             errorMessage={dataInstance.errorMessage}
                             hasError={hasInputError || dataInstance.hasError}
                             isDisabled={isDisabled}
+                            isRequired={isRequired || false}
                             maxHeight={dataInstance.maxHeight}
                             minHeight={dataInstance.minHeight}
                             name={name}
@@ -188,7 +201,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.DROPDOWNSELECT) {
                 return {
-                    label,
+                    label: labelValue,
                     textValue: dataInstance.value,
                     value: (
                         <DropdownSelect
@@ -199,6 +212,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
                             hasError={hasInputError || dataInstance.hasError}
                             iconType={dataInstance.iconType}
                             isDisabled={isDisabled}
+                            isRequired={isRequired || false}
                             name={dataInstance.name}
                             noResultsMessage={dataInstance.noResultsMessage}
                             onChange={(option: T) => onDropdownChange(option, name, dataInstance.nameId)}
@@ -217,13 +231,14 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.INPUT) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <Input
                             autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
                             errorMessage={dataInstance.errorMessage}
                             hasError={hasInputError || dataInstance.hasError}
                             isDisabled={isDisabled}
+                            isRequired={isRequired || false}
                             label={dataInstance.placeholder}
                             locale={locale}
                             maxLength={dataInstance.maxLength}
@@ -256,7 +271,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.INPUTCOLOR) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <InputColor
                             isDisabled={isDisabled}
@@ -272,7 +287,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.INPUTCURRENCY) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <InputCurrency
                             autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
@@ -313,7 +328,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.INPUTNUMBER) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <Input
                             autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
@@ -354,7 +369,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.SCOREPICKER) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <ScorePicker
                             autoFocus={autoFocus}
@@ -372,7 +387,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.TEXTAREA) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <Input
                             autoFocus={autoFocus && (!hasError || !dataInstance.onBlur)}
@@ -412,7 +427,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             if (dataInstance.component === EditableDataComponent.TIMEPICKER) {
                 return {
-                    label,
+                    label: labelValue,
                     value: (
                         <TimePicker
                             autoFocus={autoFocus}
@@ -428,7 +443,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             }
 
             return {
-                label,
+                label: labelValue,
                 value: (
                     <Input
                         autoFocus={autoFocus}

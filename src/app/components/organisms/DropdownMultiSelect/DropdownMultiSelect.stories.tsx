@@ -75,6 +75,7 @@ const BaseComponent = <T extends DropdownMultiSelectOption>(
                 errorMessage={text('Error message', 'Everything is broken, oops')}
                 hasError={boolean('Has error', false)}
                 isDisabled={boolean('Is disabled', false)}
+                isRequired={boolean('Is required', false)}
                 isValid={boolean('Is valid', false)}
                 label={label}
                 maxHeight={number('Max height', 400)}

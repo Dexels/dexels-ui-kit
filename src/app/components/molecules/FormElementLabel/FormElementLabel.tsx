@@ -1,6 +1,7 @@
 import { AdornmentPosition, InputVariant } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
 import Label from '../../atoms/Label/Label';
+import { REQUIRED_INDICATOR } from '../../../../global/constants';
 import { StyledFormElementLabel } from './FormElementLabel.sc';
 
 export interface FormElementLabelProps {
@@ -14,6 +15,7 @@ export interface FormElementLabelProps {
     isDisabled?: boolean;
     isFocused?: boolean;
     isHovered?: boolean;
+    isRequired?: boolean;
     isValid?: boolean;
     variant?: InputVariant;
 }
@@ -29,6 +31,7 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
     isDisabled = false,
     isFocused = false,
     isHovered = false,
+    isRequired = false,
     isValid = false,
     variant = InputVariant.OUTLINE,
 }) => {
@@ -54,6 +57,7 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
                 isValid={isValid}
             >
                 {children}
+                {isRequired && ` ${REQUIRED_INDICATOR}`}
             </Label>
         </StyledFormElementLabel>
     );
