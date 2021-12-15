@@ -102,11 +102,6 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const hasValue = !isEmpty(inputDisplayValue);
     const textFieldProps: { [key: string]: number } = {};
 
-    console.log('hasError', hasError);
-    console.log('isRequired', isRequired);
-    console.log('hasValue', hasValue);
-    console.log('value', value);
-
     // Because this check might be performed in several actions, put it here
     const isValidInput = useCallback(
         (valueToValidate: string): boolean => {
