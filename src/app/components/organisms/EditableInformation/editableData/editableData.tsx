@@ -1,4 +1,3 @@
-import { DEFAULT_LOCALE, REQUIRED_INDICATOR } from '../../../../../global/constants';
 import { Dropdown, DropdownOption, DropdownProps, DropdownVariant } from '../../../molecules/Dropdown';
 import { DropdownMultiSelect, DropdownMultiSelectOption } from '../../DropdownMultiSelect';
 import { EditableDataComponent, InputType, InputVariant, Locale } from '../../../../types';
@@ -6,6 +5,7 @@ import { EditableInformationData, ScorePickerDataProps, ValueTypes } from '../ty
 import { generateDropdownSelectOptionLabel, getValueOfEditableDataComponent } from '../utils/informationDataFunctions';
 import { SingleDatePicker, SingleDatePickerVariant } from '../../DatePicker';
 import TimePicker, { TimePickerProps } from '../../../molecules/TimePicker/TimePicker';
+import { DEFAULT_LOCALE } from '../../../../../global/constants';
 import DropdownSelect from '../../DropdownSelect/DropdownSelect';
 import { InformationTableProps } from '../../InformationTable';
 import Input from '../../../molecules/Input/Input';
@@ -13,6 +13,7 @@ import { InputColor } from '../../InputColor/InputColor';
 import InputCurrency from '../../InputCurrency/InputCurrency';
 import { isEmpty } from '../../../../utils/functions/validateFunctions';
 import React from 'react';
+import RequiredIndicator from '../../../atoms/RequiredIndicator/RequiredIndicator';
 import ScorePicker from '../../../molecules/ScorePicker/ScorePicker';
 import { SelectionControl } from '../../../molecules/SelectionControl';
 
@@ -58,7 +59,8 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
 
             const labelValue = isRequired ? (
                 <>
-                    {label} {REQUIRED_INDICATOR}
+                    {label}
+                    <RequiredIndicator isDisabled={isDisabled} />
                 </>
             ) : (
                 label

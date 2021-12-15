@@ -30,6 +30,7 @@ export interface DateRangePickerProps {
     isDayHighlighted?: (day: Moment) => boolean;
     isDisabled?: boolean;
     isOutsideRange?: (day: Moment) => boolean;
+    isRequired?: boolean;
     keepOpenOnDateSelect?: boolean;
     label: ReactNode;
     labelMonth?: ReactNode;
@@ -66,6 +67,7 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
     isDayHighlighted,
     isDisabled = false,
     isOutsideRange,
+    isRequired = false,
     keepOpenOnDateSelect,
     label,
     labelMonth,
@@ -122,7 +124,13 @@ export const DateRangePicker: FunctionComponent<DateRangePickerProps> = ({
             }}
         >
             <StyledDateRangePicker>
-                <FormElementLabel isActive isDisabled={isDisabled} isFocused={isFocused} isHovered={isHovered}>
+                <FormElementLabel
+                    isActive
+                    isDisabled={isDisabled}
+                    isFocused={isFocused}
+                    isHovered={isHovered}
+                    isRequired={isRequired}
+                >
                     {label}
                 </FormElementLabel>
                 <AirbnbDateRangePicker

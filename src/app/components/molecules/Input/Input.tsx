@@ -102,6 +102,11 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     const hasValue = !isEmpty(inputDisplayValue);
     const textFieldProps: { [key: string]: number } = {};
 
+    console.log('hasError', hasError);
+    console.log('isRequired', isRequired);
+    console.log('hasValue', hasValue);
+    console.log('value', value);
+
     // Because this check might be performed in several actions, put it here
     const isValidInput = useCallback(
         (valueToValidate: string): boolean => {
@@ -252,8 +257,11 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
     }, [value]);
 
     useEffect(() => {
-        // Consider a required, but empty input as valid for display purposes
-        if (!hasValue && isRequired) {
+        // Consider a required, but empty input as valid for display purposes.
+        // Only when there's actually input, than hasError gets to be an effect
+        if (hasError && hasValue) {
+            setIsValidInputData(false);
+        } else if (!hasValue && isRequired) {
             setIsValidInputData(true);
         } else {
             // for currency also check the temporary inputValue
@@ -265,13 +273,13 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
             setIsValidInputData(validation);
         }
-    }, [hasValue, inputDisplayValue, inputValue]);
+    }, [hasError, hasValue, inputDisplayValue, inputValue]);
 
     return (
         <>
             <StyledInput
                 className={className}
-                hasError={hasError || !isValidInputData}
+                hasError={!isValidInputData}
                 isClickable={!isDisabled && Boolean(onClick)}
                 isDisabled={isDisabled}
                 isFocused={isFocused}
@@ -286,7 +294,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     as={isTextarea ? 'textarea' : 'input'}
                     autoFocus={autoFocus}
                     hasAdornment={adornment !== undefined}
-                    hasError={hasError || !isValidInputData}
+                    hasError={!isValidInputData}
                     hasNegativeAmountColor={
                         hasNegativeAmountColor && !isEmpty(inputDisplayValue) && toNumber(inputDisplayValue) < 0
                     }
@@ -315,7 +323,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     <FormElementLabel
                         adornmentPosition={adornmentPosition}
                         hasAdornment={adornment !== undefined}
-                        hasError={hasError || !isValidInputData}
+                        hasError={!isValidInputData}
                         isActive={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
@@ -331,7 +339,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                 {adornment && (
                     <AdornmentWrapper
                         adornmentPosition={adornmentPosition}
-                        hasError={hasError || !isValidInputData}
+                        hasError={!isValidInputData}
                         hasValue={hasValue}
                         isDisabled={isDisabled}
                         isFocused={isFocused}
@@ -343,7 +351,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
                     </AdornmentWrapper>
                 )}
             </StyledInput>
-            {errorMessage && (hasError || !isValidInputData) && !isDisabled && (
+            {errorMessage && !isValidInputData && !isDisabled && (
                 <ErrorMessage isOutlineVariant={variant === InputVariant.OUTLINE && !ignoreOutlineVariant}>
                     {errorMessage}
                 </ErrorMessage>

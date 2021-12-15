@@ -22,6 +22,7 @@ export const Default: FunctionComponent = () => {
             isDayHighlighted={(day): boolean => day.day() === 6}
             isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}
+            isRequired={boolean('Is required', false)}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Speeldatum')}
             numberOfMonths={number('Number of months', 1)}
@@ -57,6 +58,7 @@ export const DatePickerOpensUp: FunctionComponent = () => {
                 isDayHighlighted={(day): boolean => day.day() === 6}
                 isDisabled={boolean('Is disabled', false)}
                 isFocused={isFocused}
+                isRequired={boolean('Is required', false)}
                 keepOpenOnDateSelect={boolean('Keep open on date select', true)}
                 label={text('Label', 'Speeldatum')}
                 numberOfMonths={number('Number of months', 1)}
@@ -90,6 +92,7 @@ export const DatePickerAlignRight: FunctionComponent = () => {
                 displayFormat={text('Display format', 'ddd D MMM Y')}
                 id="datepicker"
                 isFocused={isFocused}
+                isRequired={boolean('Is required', false)}
                 keepOpenOnDateSelect={boolean('Keep open on date select', true)}
                 label={text('Label', 'Speeldatum')}
                 numberOfMonths={number('Number of months', 1)}
@@ -122,6 +125,7 @@ export const WithYearSelector: FunctionComponent = () => {
             isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}
             isOutsideRange={(day): boolean => day.isAfter(moment(), 'day')}
+            isRequired={boolean('Is required', false)}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Geboortedatum')}
             labelMonth={text('Label month', 'Maand')}
@@ -158,6 +162,7 @@ export const WithFooter: FunctionComponent = () => {
             isDisabled={boolean('Is disabled', false)}
             isFocused={isFocused}
             isOutsideRange={(day): boolean => day.isAfter(moment(), 'day')}
+            isRequired={boolean('Is required', false)}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Geboortedatum')}
             labelMonth={text('Label month', 'Maand')}

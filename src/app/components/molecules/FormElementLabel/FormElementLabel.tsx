@@ -1,7 +1,7 @@
 import { AdornmentPosition, InputVariant } from '../../../types';
 import React, { FunctionComponent, ReactNode } from 'react';
 import Label from '../../atoms/Label/Label';
-import { REQUIRED_INDICATOR } from '../../../../global/constants';
+import RequiredIndicator from '../../atoms/RequiredIndicator/RequiredIndicator';
 import { StyledFormElementLabel } from './FormElementLabel.sc';
 
 export interface FormElementLabelProps {
@@ -57,7 +57,7 @@ export const FormElementLabel: FunctionComponent<FormElementLabelProps> = ({
                 isValid={isValid}
             >
                 {children}
-                {isRequired && ` ${REQUIRED_INDICATOR}`}
+                {isRequired && <RequiredIndicator isDisabled={isDisabled} />}
             </Label>
         </StyledFormElementLabel>
     );

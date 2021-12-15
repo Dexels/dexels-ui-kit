@@ -29,6 +29,7 @@ export const Default: FunctionComponent = () => {
             isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
+            isRequired={boolean('Is required', false)}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
             minimumNights={number('Minimum nights', 1)}
@@ -103,6 +104,7 @@ export const DefaultWithoutShortcuts: FunctionComponent = () => {
             isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
+            isRequired={boolean('Is required', false)}
             keepOpenOnDateSelect
             label={text('Label', 'Je favoriete periode')}
             minimumNights={number('Minimum nights', 1)}
@@ -146,6 +148,7 @@ export const DefaultWithoutFooter: FunctionComponent = () => {
             isDayHighlighted={(day): boolean => day.day() === 1}
             isDisabled={boolean('Is disabled', false)}
             isOutsideRange={(): false => false}
+            isRequired={boolean('Is required', false)}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Je favoriete periode')}
             minimumNights={number('Minimum nights', 1)}
@@ -210,6 +213,7 @@ export const WithYearSelector: FunctionComponent = () => {
             isDayBlocked={(day): boolean => day.day() === 1}
             isDayHighlighted={(day): boolean => day.day() === 3}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             keepOpenOnDateSelect={boolean('Keep open on date select', true)}
             label={text('Label', 'Vakantie periode')}
             labelMonth={text('Label month', 'Maand')}
