@@ -253,7 +253,7 @@ export const Input: FunctionComponent<InputProps & { [key: string]: any }> = ({
 
     useEffect(() => {
         // Consider a required, but empty input as valid for display purposes.
-        // Only when there's actually input, than hasError gets to be an effect
+        // Only when there's actually input, then hasError gets to be an effect
         if (hasError && hasValue) {
             setIsValidInputData(false);
         } else if (!hasValue && isRequired) {
