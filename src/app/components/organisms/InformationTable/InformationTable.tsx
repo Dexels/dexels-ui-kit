@@ -4,10 +4,12 @@ import { AmountOfColumns } from './types';
 import InformationErrors from './components/InformationErrors';
 import { InformationWarnings } from './components/InformationWarnings';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
+import RequiredIndicator from '../../atoms/RequiredIndicator/RequiredIndicator';
 import { Skeleton } from '../../molecules/Skeleton/Skeleton';
 
 export interface InformationTableData {
     isDisabled?: boolean;
+    isRequired?: boolean;
     isTextArea?: boolean;
     label: ReactNode;
     value: ReactNode;
@@ -65,6 +67,7 @@ export const InformationTable: FunctionComponent<InformationTableProps> = ({
                         <Row key={index}>
                             <Label isDisabled={isDisabled} isTextArea={isTextArea || element.isTextArea || false}>
                                 {element.label}
+                                {element.isRequired && <RequiredIndicator isDisabled={isDisabled} />}
                             </Label>
                             <Value
                                 isDisabled={isDisabled || element.isDisabled || false}

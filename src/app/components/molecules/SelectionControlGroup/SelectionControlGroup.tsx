@@ -9,6 +9,7 @@ import {
 import { FormElementLabel } from '../FormElementLabel/FormElementLabel';
 import { isEmpty } from '../../../utils/functions/validateFunctions';
 import Label from '../../atoms/Label/Label';
+import RequiredIndicator from '../../atoms/RequiredIndicator/RequiredIndicator';
 import SelectionControl from '../SelectionControl/SelectionControl';
 import { SelectionControlType } from '../SelectionControl/types';
 
@@ -70,12 +71,13 @@ export const SelectionControlGroup: FunctionComponent<SelectionControlGroupProps
     return (
         <SelectedControlGroupWrapper>
             {title && variant !== SelectionControlGroupVariant.COMPACT ? (
-                <FormElementLabel hasError={hasError} isDisabled={isDisabled}>
+                <FormElementLabel hasError={hasError} isDisabled={isDisabled} isRequired={isRequired}>
                     {title}
                 </FormElementLabel>
             ) : (
                 <Label hasError={hasError} isDisabled={isDisabled} isSmall>
                     {title}
+                    {isRequired && <RequiredIndicator isDisabled={isDisabled} />}
                 </Label>
             )}
             <StyledSelectionControlGroup

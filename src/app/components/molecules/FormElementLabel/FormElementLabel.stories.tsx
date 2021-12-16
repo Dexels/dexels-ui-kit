@@ -12,6 +12,7 @@ export const Configurable: FunctionComponent = () => (
         isActive={boolean('Is active', true)}
         isDisabled={boolean('Is disabled', false)}
         isFocused={boolean('Is focused', false)}
+        isRequired={boolean('Is required', false)}
         isValid={boolean('Is valid', false)}
         variant={select('Variant', InputVariant, InputVariant.OUTLINE)}
     >

@@ -35,6 +35,7 @@ export const Configurable: FunctionComponent = () => {
             hasError={boolean('Has error', false)}
             iconType={select('Type', IconType, IconType.CLUBPLACEHOLDER1)}
             isDisabled={boolean('Is disabled', false)}
+            isRequired={boolean('Is required', false)}
             isSearchAny={boolean('Is search any', false)}
             isValid={boolean('Is valid', false)}
             label={text('Label', 'This is a label')}

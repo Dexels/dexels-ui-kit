@@ -36,6 +36,7 @@ export interface SingleDatePickerProps {
     isDisabled?: boolean;
     isFocused: boolean;
     isOutsideRange?: (day: Moment) => boolean;
+    isRequired?: boolean;
     keepOpenOnDateSelect?: boolean;
     label?: ReactNode;
     labelMonth?: ReactNode;
@@ -70,6 +71,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
     isDisabled = false,
     isFocused,
     isOutsideRange,
+    isRequired = false,
     keepOpenOnDateSelect,
     label,
     labelMonth,
@@ -193,6 +195,7 @@ export const SingleDatePicker: FunctionComponent<SingleDatePickerProps> = ({
                                 isDisabled={isDisabled}
                                 isFocused={isFocused}
                                 isHovered={isHovered}
+                                isRequired={isRequired}
                                 variant={
                                     variant === SingleDatePickerVariant.OUTLINE
                                         ? InputVariant.OUTLINE

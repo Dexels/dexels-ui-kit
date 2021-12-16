@@ -35,6 +35,7 @@ export interface DropdownMultiSelectProps<T extends DropdownMultiSelectOption> {
     errorMessage?: ReactNode;
     hasError?: boolean;
     isDisabled?: boolean;
+    isRequired?: boolean;
     isValid?: boolean;
     label?: ReactNode;
     maxHeight?: number;
@@ -64,6 +65,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
     errorMessage,
     hasError = false,
     isDisabled = false,
+    isRequired = false,
     isValid = false,
     label,
     maxHeight,
@@ -301,6 +303,7 @@ export const DropdownMultiSelect = <T extends DropdownMultiSelectOption>({
                     isDisabled={isDisabled}
                     isHovered={isHovered}
                     isOpen={isOpen}
+                    isRequired={isRequired}
                     isValid={isValid}
                     label={label}
                     name={name}

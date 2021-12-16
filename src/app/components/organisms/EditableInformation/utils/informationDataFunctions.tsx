@@ -36,7 +36,9 @@ import moment from 'moment';
 
 export const getStatus = (hasError: boolean, isLoading?: boolean, isDisabled?: boolean): Status => {
     if (hasError) {
-        return Status.INVALID;
+        // CW-1469: for now there seems to be no error state
+        // return Status.INVALID;
+        return Status.DEFAULT;
     }
 
     if (isLoading || isDisabled) {

@@ -22,6 +22,7 @@ export const ConfigurableCompactVariant: FunctionComponent = () => {
                 errorMessage={text('Error message', 'Everything is broken, oops')}
                 hasError={boolean('Has error', false)}
                 isDisabled={boolean('Is disabled', false)}
+                isRequired={boolean('Is required', false)}
                 isValid={boolean('Is valid', false)}
                 name="the-best-fruit"
                 onChange={(event): void => {
@@ -53,6 +54,7 @@ export const ConfigurableOutlineVariant: FunctionComponent = () => {
                 errorMessage={text('Error message', 'Everything is broken, oops')}
                 hasError={boolean('Has error', false)}
                 isDisabled={boolean('Is disabled', false)}
+                isRequired={boolean('Is required', false)}
                 isValid={boolean('Is valid', false)}
                 label="Your favorite fruit"
                 name="the-best-fruit"
@@ -75,6 +77,7 @@ export const ConfigurableEmptyOptions: FunctionComponent = () => (
         errorMessage={text('Error message', 'Everything is broken, oops')}
         hasError={boolean('Has error', false)}
         isDisabled={boolean('Is disabled', false)}
+        isRequired={boolean('Is required', false)}
         isValid={boolean('Is valid', false)}
         name="the-best-empty-fruit"
         noOptionsText={text('No options text', 'No options')}
