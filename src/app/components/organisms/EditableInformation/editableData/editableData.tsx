@@ -13,7 +13,6 @@ import { InputColor } from '../../InputColor/InputColor';
 import InputCurrency from '../../InputCurrency/InputCurrency';
 import { isEmpty } from '../../../../utils/functions/validateFunctions';
 import React from 'react';
-import RequiredIndicator from '../../../atoms/RequiredIndicator/RequiredIndicator';
 import ScorePicker from '../../../molecules/ScorePicker/ScorePicker';
 import { SelectionControl } from '../../../molecules/SelectionControl';
 
