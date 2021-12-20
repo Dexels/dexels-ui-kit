@@ -13,6 +13,7 @@ import { InputColor } from '../../InputColor/InputColor';
 import InputCurrency from '../../InputCurrency/InputCurrency';
 import { isEmpty } from '../../../../utils/functions/validateFunctions';
 import React from 'react';
+import RequiredIndicator from '../../../atoms/RequiredIndicator/RequiredIndicator';
 import ScorePicker from '../../../molecules/ScorePicker/ScorePicker';
 import { SelectionControl } from '../../../molecules/SelectionControl';
 
@@ -59,9 +60,7 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             const labelValue = isRequired ? (
                 <>
                     {label}
-                    {/* EV 2021-12-20: by request of Marrick, the required indicator is not visible in non edit mode */}
-                    {/* I have the feeling this might change, hence this comment and the commented code */}
-                    {/* <RequiredIndicator isDisabled={isDisabled} /> */}
+                    <RequiredIndicator isDisabled={isDisabled} />
                 </>
             ) : (
                 label
