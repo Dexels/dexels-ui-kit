@@ -60,7 +60,9 @@ export const editableData = <T extends DropdownOption, U extends DropdownMultiSe
             const labelValue = isRequired ? (
                 <>
                     {label}
-                    <RequiredIndicator isDisabled={isDisabled} />
+                    {/* EV 2021-12-20: by request of Marrick, the required indicator is not visible in non edit mode */}
+                    {/* I have the feeling this might change, hence this comment and the commented code */}
+                    {/* <RequiredIndicator isDisabled={isDisabled} /> */}
                 </>
             ) : (
                 label
