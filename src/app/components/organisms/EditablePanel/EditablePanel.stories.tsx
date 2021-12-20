@@ -36,12 +36,12 @@ export const Configurable: FunctionComponent = () => {
             iconType={select('Icon type', IconType, IconType.FLAG)}
             isButtonDisabled={boolean('Is button disabled', false)}
             isDisabled={boolean('Is disabled', false)}
+            isEditing={isEditing}
             isLoading={boolean('Is loading', false)}
             isSaving={isSaving}
             onCancel={onCancelCallback}
             onEdit={onEditCallback}
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            onSave={isEditing ? onSaveCallback : () => {}}
+            onSave={onSaveCallback}
             textCancel={text('Text Cancel', 'Cancel')}
             textEdit={text('Text Edit', 'Edit')}
             textSave={text('Text Save', 'Save')}
@@ -52,28 +52,43 @@ export const Configurable: FunctionComponent = () => {
     );
 };
 
-export const ConfigurableIsEditingDefault: FunctionComponent = () => (
-    <EditablePanel
-        iconCancel={select('Icon Cancel', IconType, IconType.CROSS)}
-        iconEdit={select('Icon Edit', IconType, IconType.PENCIL)}
-        iconSave={select('Icon Save', IconType, IconType.CHECK)}
-        iconType={select('Icon type', IconType, IconType.FLAG)}
-        isButtonDisabled={boolean('Is button disabled', false)}
-        isDisabled={boolean('Is disabled', false)}
-        isEditing
-        isLoading={boolean('Is loading', false)}
-        isSaving={boolean('Is saving', false)}
-        onCancel={action('onCancel')}
-        onEdit={action('onEdit')}
-        onSave={action('onSave')}
-        textCancel={text('Text Cancel', 'Cancel')}
-        textEdit={text('Text Edit', 'Edit')}
-        textSave={text('Text Save', 'Save')}
-        title={text('Title', 'Location')}
-    >
-        <div>{'The panel has these children'}</div>
-    </EditablePanel>
-);
+export const ConfigurableIsEditingDefault: FunctionComponent = () => {
+    const [isEditing, setIsEditing] = useState(true);
+    const [isSaving, setIsSaving] = useState(false);
+
+    const onSaveCallback = (): void => {
+        setIsSaving(true);
+
+        // show loading state for 5 seconds
+        setTimeout(() => {
+            setIsSaving(false);
+            setIsEditing(false);
+        }, 5000);
+    };
+
+    return (
+        <EditablePanel
+            iconCancel={select('Icon Cancel', IconType, IconType.CROSS)}
+            iconEdit={select('Icon Edit', IconType, IconType.PENCIL)}
+            iconSave={select('Icon Save', IconType, IconType.CHECK)}
+            iconType={select('Icon type', IconType, IconType.FLAG)}
+            isButtonDisabled={boolean('Is button disabled', false)}
+            isDisabled={boolean('Is disabled', false)}
+            isEditing={isEditing}
+            isLoading={boolean('Is loading', false)}
+            isSaving={isSaving}
+            onCancel={action('onCancel')}
+            onEdit={action('onEdit')}
+            onSave={onSaveCallback}
+            textCancel={text('Text Cancel', 'Cancel')}
+            textEdit={text('Text Edit', 'Edit')}
+            textSave={text('Text Save', 'Save')}
+            title={text('Title', 'Location')}
+        >
+            <div>{'The panel has these children'}</div>
+        </EditablePanel>
+    );
+};
 
 export const ConfigurableNoSaveAction: FunctionComponent = () => (
     <EditablePanel
